@@ -6,10 +6,17 @@ import {
   LayoutDashboard,
   CalendarDays,
   Users,
+  Activity,
+  HeartHandshake,
+  Receipt,
   ShieldAlert,
-  FileCheck,
+  CheckSquare,
+  Award,
+  GraduationCap,
+  BarChart3,
+  Inbox,
+  MessageSquare,
   Settings,
-  HelpCircle,
   ShieldCheck,
   ChevronDown
 } from "lucide-react";
@@ -17,31 +24,43 @@ import clsx from "clsx";
 
 const navGroups = [
   {
-    label: "CARE OPERATIONS",
+    label: "",
     items: [
-      { name: "Overview", icon: LayoutDashboard, id: "overview" },
-      { name: "Schedule", icon: CalendarDays, id: "schedule" },
-      { name: "Caregivers", icon: Users, id: "caregivers" },
+      { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
+      { name: "Clients", icon: Users, id: "clients" },
+      { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
+      { name: "EVV Monitoring", icon: Activity, id: "evv" },
+      { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
+      { name: "Billing & Claims", icon: Receipt, id: "billing" },
     ],
   },
   {
-    label: "FIELD TOOLS",
+    label: "COMPLIANCE & QUALITY",
     items: [
-      { name: "Incidents", icon: ShieldAlert, id: "incidents" },
-      { name: "Care Plans", icon: FileCheck, id: "care-plans" },
+      { name: "Incident & Risk", icon: ShieldAlert, id: "incidents" },
+      { name: "Compliance Tracking", icon: CheckSquare, id: "compliance" },
+      { name: "Quality Assurance", icon: Award, id: "qa" },
+      { name: "Training (LMS)", icon: GraduationCap, id: "training" },
     ],
   },
   {
-    label: "PLATFORM",
+    label: "BUSINESS",
+    items: [
+      { name: "Reports", icon: BarChart3, id: "reports" },
+      { name: "Referrals & Intake", icon: Inbox, id: "referrals" },
+      { name: "Communications", icon: MessageSquare, id: "communications" },
+    ],
+  },
+  {
+    label: "",
     items: [
       { name: "Settings", icon: Settings, id: "settings" },
-      { name: "Support", icon: HelpCircle, id: "support" },
     ],
   },
 ];
 
 export function Sidebar() {
-  const [activeItem, setActiveItem] = useState("overview");
+  const [activeItem, setActiveItem] = useState("dashboard");
 
   return (
     <aside className="w-[260px] flex-shrink-0 bg-sidebar-bg text-white flex flex-col h-screen fixed lg:sticky top-0 left-0 z-40 hidden md:flex">
@@ -54,12 +73,14 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-6">
-        {navGroups.map((group) => (
-          <div key={group.label}>
-            <div className="px-3 text-xs font-semibold text-text-secondary tracking-wider mb-2">
-              {group.label}
-            </div>
+      <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-700/50 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-600/80">
+        {navGroups.map((group, index) => (
+          <div key={index}>
+            {group.label && (
+              <div className="px-3 text-xs font-semibold text-text-secondary tracking-wider mb-2">
+                {group.label}
+              </div>
+            )}
             <ul className="space-y-1">
               {group.items.map((item) => {
                 const isActive = activeItem === item.id;

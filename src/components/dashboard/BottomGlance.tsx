@@ -11,17 +11,17 @@ export function BottomGlance() {
       <div className="text-base font-semibold text-slate-800 mb-4">At a glance</div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
         {/* Item 1 */}
-        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
-          <div className="relative w-14 h-14 shrink-0 transition-transform duration-300 group-hover:scale-110">
+        <div className="flex items-center gap-3 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-3.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          <div className="relative w-18 h-18 shrink-0 transition-transform duration-300 group-hover:scale-110">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie data={[{ value: 87 }, { value: 13 }]} cx="50%" cy="50%" innerRadius={18} outerRadius={26} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
+                <Pie data={[{ value: 87 }, { value: 13 }]} cx="50%" cy="50%" innerRadius={15} outerRadius={22} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
                   <Cell fill="#0EA383" />
                   <Cell fill="#E5E9EC" />
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
-            <div className="absolute inset-0 flex items-center justify-center font-bold text-[11px] text-slate-800">
+            <div className="absolute inset-0 flex items-center justify-center font-bold text-base text-slate-800">
               87%
             </div>
           </div>
@@ -33,10 +33,10 @@ export function BottomGlance() {
         </div>
 
         {/* Item 2 */}
-        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
-          <div className="w-14 h-14 rounded-2xl bg-accent-orange/10 text-accent-orange flex items-center justify-center shrink-0 border border-accent-orange/20 shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-            <AlertTriangle className="w-6 h-6" />
-          </div>
+        <div className="flex items-center gap-3 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-3.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          {/* <div className="w-12 h-12 rounded-xl bg-accent-orange/10 text-accent-orange flex items-center justify-center shrink-0 border border-accent-orange/20 shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <AlertTriangle className="w-5 h-5" />
+          </div> */}
           <div className="flex-1 min-w-0">
             <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Compliance alerts</div>
             <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">7 <span className="text-base text-slate-500 font-medium tracking-normal">total</span></div>
@@ -45,20 +45,20 @@ export function BottomGlance() {
         </div>
 
         {/* Item 3 */}
-        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
-          <div className="relative w-14 h-14 shrink-0 transition-transform duration-300 group-hover:scale-110">
+        <div className="flex items-center gap-3 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-3.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          {/* <div className="relative w-12 h-12 shrink-0 transition-transform duration-300 group-hover:scale-110">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie data={[{ value: 98.2 }, { value: 1.8 }]} cx="50%" cy="50%" innerRadius={18} outerRadius={26} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
+                <Pie data={[{ value: 98.2 }, { value: 1.8 }]} cx="50%" cy="50%" innerRadius={15} outerRadius={22} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
                   <Cell fill="#3B82F6" />
                   <Cell fill="#E5E9EC" />
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex items-center justify-center">
-              <CheckCircle2 className="w-4 h-4 text-accent-blue opacity-80" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-accent-blue opacity-80" />
             </div>
-          </div>
+          </div> */}
           <div className="flex-1 min-w-0">
             <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Avg completion</div>
             <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">98.2%</div>
@@ -67,10 +67,10 @@ export function BottomGlance() {
         </div>
 
         {/* Item 4 */}
-        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
-          <div className="w-14 h-14 rounded-2xl bg-accent-red/10 text-accent-red flex items-center justify-center shrink-0 border border-accent-red/20 shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-            <FileText className="w-6 h-6" />
-          </div>
+        <div className="flex items-center gap-3 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-3.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          {/* <div className="w-12 h-12 rounded-xl bg-accent-red/10 text-accent-red flex items-center justify-center shrink-0 border border-accent-red/20 shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <FileText className="w-5 h-5" />
+          </div> */}
           <div className="flex-1 min-w-0">
             <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Unbilled visits</div>
             <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">23</div>
