@@ -22,8 +22,8 @@ export function ClientSatisfaction() {
       <CardHeader title="Client Satisfaction" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
       
       {/* Gauge Area */}
-      <div className="relative h-[140px] flex items-end justify-center mb-6">
-        <div className="absolute inset-0 top-4">
+      <div className="relative h-[150px] flex items-end justify-center mb-4">
+        <div className="absolute inset-0 top-2">
           <ResponsiveContainer width="100%" height="200%">
             <PieChart>
               <Pie
@@ -32,25 +32,25 @@ export function ClientSatisfaction() {
                 cy="50%"
                 startAngle={180}
                 endAngle={0}
-                innerRadius={60}
-                outerRadius={80}
+                innerRadius={80}
+                outerRadius={100}
                 dataKey="value"
                 stroke="none"
               >
                 <Cell fill="#0EA383" />
-                <Cell fill="#E5E9EC" />
+                <Cell fill="#E5E9EC" className="dark:fill-slate-700" />
               </Pie>
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="text-center z-10 flex flex-col items-center">
-          <div className="text-3xl font-bold text-text-primary">{score.toFixed(1)}</div>
-          <div className="flex items-center gap-1 text-accent-amber mt-1">
+        <div className="text-center z-10 flex flex-col items-center translate-y-2">
+          <div className="text-4xl font-bold text-text-primary tracking-tight">{score.toFixed(1)}</div>
+          <div className="flex items-center gap-1 text-accent-amber mt-1.5">
             {[1, 2, 3, 4, 5].map((s) => (
               <Star key={s} className="w-4 h-4 fill-current" />
             ))}
           </div>
-          <div className="text-xs text-text-secondary mt-1">out of 5.0</div>
+          <div className="text-xs font-medium text-text-secondary mt-1">out of {maxScore.toFixed(1)}</div>
         </div>
       </div>
 

@@ -6,13 +6,13 @@ import { Card } from "@/components/ui/Card";
 import { cn } from "@/components/ui/Card";
 
 const kpiData = [
-  { label: "Active Patients", value: "1,248", trend: "+12 this month", icon: Users, color: "text-brand-teal", bg: "bg-brand-teal/10" },
-  { label: "Active Caregivers", value: "384", trend: "+5 this month", icon: UserCircle2, color: "text-accent-purple", bg: "bg-accent-purple/10" },
-  { label: "Today's Visits", value: "412", trend: "94% assigned", icon: CalendarCheck, color: "text-accent-blue", bg: "bg-accent-blue/10" },
-  { label: "Open Incidents", value: "3", trend: "-2 from yesterday", icon: ShieldAlert, color: "text-accent-orange", bg: "bg-accent-orange/10", negativeTrend: true },
-  { label: "Monthly Revenue", value: "$1.2M", trend: "+4.2% vs last mo", icon: DollarSign, color: "text-accent-green", bg: "bg-accent-green/10" },
-  { label: "EVV Compliance", value: "98.2%", trend: "+0.5% vs last wk", icon: CheckCircle2, color: "text-brand-teal", bg: "bg-brand-teal/10" },
-  { label: "Unfilled Shifts", value: "14", trend: "Next 48 hours", icon: Clock, color: "text-accent-amber", bg: "bg-accent-amber/10", negativeTrend: true },
+  { label: "Active Patients", value: "247", trend: "+ 12 this month", icon: Users, color: "text-brand-teal", bg: "bg-brand-teal/10", trendColor: "text-brand-teal" },
+  { label: "Active Caregivers", value: "84", trend: "5 onboarding", icon: UserCircle2, color: "text-accent-purple", bg: "bg-accent-purple/10", trendColor: "text-accent-purple" },
+  { label: "Today's Visits", value: "142", trend: "98 completed · 44 upcoming", icon: CalendarCheck, color: "text-accent-blue", bg: "bg-accent-blue/10", trendColor: "text-text-secondary" },
+  { label: "EVV Compliance", value: "96.4%", trend: "9 exceptions today", icon: CheckCircle2, color: "text-accent-green", bg: "bg-accent-green/10", trendColor: "text-accent-orange" },
+  { label: "Open Unfilled Shifts", value: "8", trend: "5 urgent (within 4 hrs)", icon: Clock, color: "text-accent-orange", bg: "bg-accent-orange/10", trendColor: "text-accent-red" },
+  { label: "Open Incidents", value: "3", trend: "1 in compliance review", icon: ShieldAlert, color: "text-accent-amber", bg: "bg-accent-amber/10", trendColor: "text-text-secondary" },
+  { label: "Monthly Revenue", value: "$486k", trend: "+ 4.4% vs last month", icon: DollarSign, color: "text-brand-teal", bg: "bg-brand-teal/10", trendColor: "text-brand-teal" },
 ];
 
 export function KpiStrip() {
@@ -21,23 +21,22 @@ export function KpiStrip() {
       {kpiData.map((kpi, idx) => {
         const Icon = kpi.icon;
         return (
-          <Card key={idx} className="p-4 sm:p-4 flex flex-col justify-between h-full group" noPadding>
-            <div className="flex items-center gap-3 mb-3">
-              <div className={cn("w-8 h-8 rounded-full flex items-center justify-center transition-transform group-hover:scale-110", kpi.bg, kpi.color)}>
+          <div key={idx} className="bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 flex flex-col h-full group relative">
+            <div className="flex justify-between items-start mb-4">
+              <span className="text-[12px] font-medium text-text-secondary leading-tight pr-2">{kpi.label}</span>
+              <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0", kpi.bg, kpi.color)}>
                 <Icon className="w-4 h-4" />
               </div>
-              <span className="text-xs font-medium text-text-secondary leading-tight">{kpi.label}</span>
             </div>
-            <div>
-              <div className="text-2xl font-bold text-text-primary">{kpi.value}</div>
-              <div className={cn(
-                "text-[10px] mt-1 font-medium",
-                kpi.negativeTrend ? "text-accent-orange" : "text-text-secondary"
-              )}>
+            <div className="mt-auto">
+              <div className="text-2xl font-bold text-slate-800 tracking-tight mb-1">
+                {kpi.value}
+              </div>
+              <div className={cn("text-[11px] font-medium", kpi.trendColor)}>
                 {kpi.trend}
               </div>
             </div>
-          </Card>
+          </div>
         );
       })}
     </div>

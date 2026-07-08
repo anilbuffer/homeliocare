@@ -3,42 +3,43 @@
 import React from "react";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { Avatar } from "@/components/ui/Avatar";
-import { MapPin, Clock } from "lucide-react";
+import { cn } from "@/components/ui/Card";
 
 const feedData = [
-  { id: 1, time: "Just now", caregiver: "Emily R.", patient: "Arthur D.", address: "124 Cherry Ln", status: "In progress", variant: "info" as const, avatar: "https://i.pravatar.cc/150?u=1" },
-  { id: 2, time: "10 mins ago", caregiver: "Marcus T.", patient: "Helen S.", address: "892 Oak St", status: "Completed", variant: "success" as const, avatar: "https://i.pravatar.cc/150?u=2" },
-  { id: 3, time: "15 mins ago", caregiver: "Sarah J.", patient: "Robert M.", address: "450 Pine Ave", status: "In progress", variant: "info" as const, avatar: "https://i.pravatar.cc/150?u=3" },
-  { id: 4, time: "In 20 mins", caregiver: "David K.", patient: "Mary W.", address: "12 Maple Dr", status: "Scheduled", variant: "warning" as const, avatar: "https://i.pravatar.cc/150?u=4" },
+  { id: 1, time: "08:00 AM", initials: "MC", bg: "bg-brand-teal/10 text-brand-teal", name: "Margaret Chen", role: "MD", address: "1289 Sunset Blvd", status: "Completed", variant: "success" as const },
+  { id: 2, time: "08:00 AM", initials: "RA", bg: "bg-accent-blue/10 text-accent-blue", name: "Robert Alvarez", role: "RN", address: "44 Cedar Ave", status: "In progress", variant: "info" as const },
+  { id: 3, time: "09:00 AM", initials: "AT", bg: "bg-accent-purple/10 text-accent-purple", name: "Aiko Tanaka", role: "LPN", address: "33 Fillmore St", status: "Scheduled", variant: "warning" as const },
+  { id: 4, time: "09:00 AM", initials: "TB", bg: "bg-accent-amber/10 text-accent-amber", name: "Thomas Becker", role: "MD", address: "18 El Camino", status: "Scheduled", variant: "warning" as const },
+  { id: 5, time: "09:00 AM", initials: "MC", bg: "bg-brand-teal/10 text-brand-teal", name: "Margaret Chen", role: "MD", address: "1289 Sunset Blvd", status: "Scheduled", variant: "warning" as const },
 ];
 
 export function LiveVisitFeed() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Live visit feed" action={<span className="relative flex h-3 w-3"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-green opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-accent-green"></span></span>} />
+      <CardHeader title="Live visit feed" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
       
-      <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
+      <div className="flex-1 space-y-3 mt-4 overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full">
         {feedData.map((item) => (
-          <div key={item.id} className="flex gap-4 items-start pb-4 border-b border-border-subtle last:border-0 last:pb-0">
-            <Avatar src={item.avatar} fallback={item.caregiver.charAt(0)} size="md" />
-            <div className="flex-1 min-w-0">
-              <div className="flex justify-between items-start mb-1">
-                <div className="font-medium text-text-primary text-sm truncate">
-                  {item.caregiver} <span className="text-text-secondary font-normal">→ {item.patient}</span>
+          <div key={item.id} className="flex gap-3 items-center bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] rounded-2xl p-3 transition-all hover:-translate-y-0.5 group shrink-0">
+            <div className="w-14 text-[11px] font-bold text-slate-400 shrink-0 text-right leading-tight">
+              {item.time.replace(' ', '\n')}
+            </div>
+            <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center text-[13px] font-bold shrink-0 shadow-inner border border-white/50 group-hover:scale-110 transition-transform", item.bg)}>
+              {item.initials}
+            </div>
+            <div className="flex-1 min-w-0 flex justify-between items-center">
+              <div>
+                <div className="font-bold text-slate-800 text-[13px] truncate flex items-center gap-1.5 mb-0.5 tracking-tight">
+                  {item.name} 
+                  <span className="text-[9px] font-bold text-accent-orange px-1.5 py-0.5 bg-accent-orange/10 rounded-md border border-accent-orange/20 uppercase tracking-wider">
+                    {item.role}
+                  </span>
                 </div>
-                <Badge variant={item.variant} className="ml-2 shrink-0">{item.status}</Badge>
-              </div>
-              <div className="flex items-center gap-3 text-xs text-text-secondary">
-                <div className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5" />
-                  {item.time}
-                </div>
-                <div className="flex items-center gap-1 truncate">
-                  <MapPin className="w-3.5 h-3.5" />
+                <div className="text-[11px] font-medium text-text-secondary truncate">
                   {item.address}
                 </div>
               </div>
+              <Badge variant={item.variant} className="ml-2 shadow-sm shrink-0">{item.status}</Badge>
             </div>
           </div>
         ))}

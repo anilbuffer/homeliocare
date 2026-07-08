@@ -1,79 +1,83 @@
 "use client";
 
 import React from "react";
-import { Card } from "@/components/ui/Card";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Card, CardHeader } from "@/components/ui/Card";
+import { AlertTriangle, FileText, CheckCircle2 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-
-function MiniGauge({ value, label, color }: { value: number; label: string; color: string }) {
-  const data = [
-    { value: value },
-    { value: 100 - value }
-  ];
-
-  return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <div className="relative w-16 h-16 mb-2">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={data}
-              cx="50%"
-              cy="50%"
-              innerRadius={24}
-              outerRadius={32}
-              startAngle={90}
-              endAngle={-270}
-              dataKey="value"
-              stroke="none"
-            >
-              <Cell fill={color} />
-              <Cell fill="#E5E9EC" />
-            </Pie>
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="absolute inset-0 flex items-center justify-center font-bold text-xs">
-          {value}%
-        </div>
-      </div>
-      <div className="text-xs text-text-secondary font-medium text-center">{label}</div>
-    </div>
-  );
-}
 
 export function BottomGlance() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <Card className="lg:col-span-2 flex items-center justify-around divide-x divide-border-subtle" noPadding>
-        <div className="flex-1">
-          <MiniGauge value={85} label="Caregiver Utilization" color="#3B82F6" />
+    <Card className="flex flex-col p-5 sm:p-6 shrink-0 overflow-visible" noPadding>
+      <div className="text-base font-semibold text-slate-800 mb-4">At a glance</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+        {/* Item 1 */}
+        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          <div className="relative w-14 h-14 shrink-0 transition-transform duration-300 group-hover:scale-110">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={[{ value: 87 }, { value: 13 }]} cx="50%" cy="50%" innerRadius={18} outerRadius={26} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
+                  <Cell fill="#0EA383" />
+                  <Cell fill="#E5E9EC" />
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="absolute inset-0 flex items-center justify-center font-bold text-[11px] text-slate-800">
+              87%
+            </div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Caregiver Util.</div>
+            <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">87%</div>
+            <div className="text-[11px] font-semibold text-text-secondary inline-flex px-1.5 py-0.5 rounded-md bg-white/60 shadow-sm border border-white/50">Target: 85%</div>
+          </div>
         </div>
-        <div className="flex-1">
-          <MiniGauge value={12} label="Compliance Alerts" color="#F97316" />
-        </div>
-        <div className="flex-1">
-          <MiniGauge value={96} label="Avg Visit Completion" color="#0EA383" />
-        </div>
-      </Card>
 
-      <Card className="bg-gradient-to-br from-sidebar-bg to-[#0e354a] text-white border-none flex flex-col justify-center relative overflow-hidden group">
-        <div className="absolute -right-10 -top-10 w-40 h-40 bg-brand-teal opacity-20 rounded-full blur-3xl group-hover:opacity-30 transition-opacity duration-500" />
-        <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-accent-purple opacity-20 rounded-full blur-3xl group-hover:opacity-30 transition-opacity duration-500" />
-        
-        <div className="relative z-10 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0 backdrop-blur-sm border border-white/20">
-            <Sparkles className="w-6 h-6 text-brand-teal" />
+        {/* Item 2 */}
+        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          <div className="w-14 h-14 rounded-2xl bg-accent-orange/10 text-accent-orange flex items-center justify-center shrink-0 border border-accent-orange/20 shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <AlertTriangle className="w-6 h-6" />
           </div>
-          <div className="flex-1">
-            <h3 className="font-semibold text-lg mb-1">Need something?</h3>
-            <p className="text-sm text-slate-300">Ask Sidekick to run reports or find patients.</p>
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Compliance alerts</div>
+            <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">7 <span className="text-base text-slate-500 font-medium tracking-normal">total</span></div>
+            <div className="text-[11px] font-semibold text-accent-orange inline-flex px-1.5 py-0.5 rounded-md bg-accent-orange/10 border border-accent-orange/20">2 require review</div>
           </div>
         </div>
-        
-        <button className="relative z-10 mt-5 w-full bg-brand-teal hover:bg-[#0c8c70] active:scale-[0.98] transition-all text-white py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 shadow-lg shadow-brand-teal/20">
-          Chat with Sidekick <ArrowRight className="w-4 h-4" />
-        </button>
-      </Card>
-    </div>
+
+        {/* Item 3 */}
+        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          <div className="relative w-14 h-14 shrink-0 transition-transform duration-300 group-hover:scale-110">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={[{ value: 98.2 }, { value: 1.8 }]} cx="50%" cy="50%" innerRadius={18} outerRadius={26} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
+                  <Cell fill="#3B82F6" />
+                  <Cell fill="#E5E9EC" />
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <CheckCircle2 className="w-4 h-4 text-accent-blue opacity-80" />
+            </div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Avg completion</div>
+            <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">98.2%</div>
+            <div className="text-[11px] font-semibold text-accent-green inline-flex px-1.5 py-0.5 rounded-md bg-accent-green/10 border border-accent-green/20">+ 1.2%</div>
+          </div>
+        </div>
+
+        {/* Item 4 */}
+        <div className="flex items-center gap-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
+          <div className="w-14 h-14 rounded-2xl bg-accent-red/10 text-accent-red flex items-center justify-center shrink-0 border border-accent-red/20 shadow-inner transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            <FileText className="w-6 h-6" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Unbilled visits</div>
+            <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">23</div>
+            <div className="text-[11px] font-semibold text-accent-red inline-flex px-1.5 py-0.5 rounded-md bg-accent-red/10 border border-accent-red/20">$4,200 at risk</div>
+          </div>
+        </div>
+      </div>
+    </Card>
   );
 }
