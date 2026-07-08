@@ -36,11 +36,12 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
   };
   const counts = getStatusCounts();
 
-  const getIconForStatus = (status: Visit["status"]) => {
+  const getIconForStatus = (status: Visit["status"], className?: string) => {
+    const defaultClassName = className || "w-4 h-4 text-white";
     switch (status) {
-      case "Unassigned": return <AlertCircle className="w-4 h-4 text-white" />;
-      case "Completed": return <CheckCircle2 className="w-4 h-4 text-white" />;
-      default: return <Home className="w-4 h-4 text-white" />; // Assigned or In Progress
+      case "Unassigned": return <AlertCircle className={defaultClassName} />;
+      case "Completed": return <CheckCircle2 className={defaultClassName} />;
+      default: return <Home className={defaultClassName} />; // Assigned or In Progress
     }
   };
 
@@ -62,22 +63,22 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
       <div className="absolute inset-0 overflow-hidden bg-white border-l border-slate-200 shadow-sm">
         <div className="w-[340px] h-full flex flex-col">
           {/* Header */}
-        <div className="p-4 border-b border-slate-100 shrink-0">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-800">Visit Queue</h2>
+        <div className="p-3 border-b border-slate-100 shrink-0">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-base font-semibold text-slate-800">Visit Queue</h2>
             <button className="text-slate-400 hover:text-slate-600">
               <Filter className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="relative mb-4">
+          <div className="relative mb-2">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search visits..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
+              className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
             />
           </div>
 
@@ -90,7 +91,7 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
                   key={tab}
                   onClick={() => setFilterStatus(tab)}
                   className={clsx(
-                    "flex-shrink-0 relative flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full transition-colors z-10",
+                    "flex-shrink-0 relative flex items-center gap-1.5 px-2 py-1 text-[11px] font-medium rounded-full transition-colors z-10",
                     isActive ? "text-white" : "text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100"
                   )}
                 >
@@ -109,12 +110,12 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
         </div>
 
         {/* Timeline */}
-        <div className="flex-1 overflow-y-auto p-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
-          <div className="text-xs font-semibold text-slate-400 tracking-wider mb-4 pl-8">TODAY</div>
+        <div className="flex-1 overflow-y-auto p-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div className="text-[11px] font-semibold text-slate-400 tracking-wider mb-2 pl-6">TODAY</div>
 
           <div className="relative">
             {/* Vertical Line connecting timeline dots */}
-            <div className="absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-100 -z-10"></div>
+            <div className="absolute left-[11px] top-4 bottom-4 w-[2px] bg-slate-100 -z-10"></div>
 
             <AnimatePresence>
               {filteredVisits.map((v, i) => {
@@ -128,28 +129,28 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.2, delay: i * 0.05 }}
                     onClick={() => onSelectVisit(isSelected ? null : v.id)}
-                    className="relative flex gap-4 mb-6 group cursor-pointer"
+                    className="relative flex gap-3 mb-3 group cursor-pointer"
                   >
                     {/* Icon Dot */}
-                    <div className="shrink-0 mt-1">
+                    <div className="shrink-0 mt-0.5">
                       <div className={clsx(
-                        "w-8 h-8 rounded-full flex items-center justify-center ring-4 ring-white z-10 relative transition-transform",
+                        "w-6 h-6 rounded-full flex items-center justify-center ring-4 ring-white z-10 relative transition-transform",
                         getColorForStatus(v.status),
                         isSelected && "scale-110"
                       )}>
-                        {getIconForStatus(v.status)}
+                        {getIconForStatus(v.status, "w-3 h-3 text-white")}
                       </div>
                     </div>
 
                     {/* Card */}
                     <div className={clsx(
-                      "flex-1 bg-white rounded-xl border p-4 transition-all hover:shadow-md",
+                      "flex-1 bg-white rounded-xl border p-2 transition-all hover:shadow-md",
                       isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200"
                     )}>
-                      <div className="flex items-start justify-between mb-1">
-                        <h3 className="font-semibold text-slate-800 text-sm truncate pr-2">{v.clientName}</h3>
+                      <div className="flex items-start justify-between mb-0.5">
+                        <h3 className="font-semibold text-slate-800 text-xs truncate pr-2">{v.clientName}</h3>
                         <span className={clsx(
-                          "text-[10px] px-1.5 py-0.5 rounded font-medium shrink-0",
+                          "text-[9px] px-1 py-0.5 rounded font-medium shrink-0",
                           v.status === "Unassigned" ? "bg-red-50 text-red-600" :
                             v.status === "Completed" ? "bg-emerald-50 text-emerald-600" :
                               "bg-slate-50 text-slate-600"
@@ -158,14 +159,14 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
                         </span>
                       </div>
 
-                      <div className="text-xs text-slate-500 mb-2">Visit #{v.id.replace('v-', '4570')}</div>
+                      <div className="text-[11px] text-slate-500 mb-1.5">Visit #{v.id.replace('v-', '4570')}</div>
 
-                      <div className="text-xs text-slate-600 bg-slate-50 p-2 rounded-md mb-2">
+                      <div className="text-[11px] text-slate-600 bg-slate-50 p-1.5 rounded-md mb-1.5">
                         {v.address}
                       </div>
 
-                      <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
+                      <div className="text-[10px] text-slate-400 flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
                         {v.time}
                       </div>
                     </div>

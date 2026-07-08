@@ -38,27 +38,27 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
       <div className="absolute inset-0 overflow-hidden bg-white border-r border-slate-200 shadow-sm">
         <div className="w-[340px] h-full flex flex-col">
           {/* Header */}
-        <div className="p-4 border-b border-slate-100 shrink-0">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-slate-800">Caregivers</h2>
+        <div className="p-3 border-b border-slate-100 shrink-0">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-base font-semibold text-slate-800">Caregivers</h2>
             <button className="text-slate-400 hover:text-slate-600">
               <Filter className="w-4 h-4" />
             </button>
           </div>
           
-          <div className="relative mb-4">
+          <div className="relative mb-2">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search caregiver..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
+              className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
             />
           </div>
 
           {/* Status Tabs */}
-          <div className="flex bg-slate-50 p-1 rounded-lg">
+          <div className="flex bg-slate-50 p-0.5 rounded-lg">
             {(["Active", "Offline", "Total"] as const).map((tab) => {
               const isActive = filterStatus === tab;
               const count = tab === "Active" ? activeCount : tab === "Offline" ? offlineCount : totalCount;
@@ -89,7 +89,7 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
         </div>
 
         {/* List */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+        <div className="flex-1 overflow-y-auto p-2 space-y-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
           <AnimatePresence>
             {filteredCaregivers.map((cg, i) => {
               const isSelected = selectedCaregiverId === cg.id;
@@ -103,13 +103,13 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
                   transition={{ duration: 0.2, delay: i * 0.05 }}
                   onClick={() => onSelectCaregiver(isSelected ? null : cg.id)}
                   className={clsx(
-                    "relative bg-white rounded-xl border p-4 cursor-pointer transition-all hover:shadow-md group",
+                    "relative bg-white rounded-xl border p-2 cursor-pointer transition-all hover:shadow-md group",
                     isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200"
                   )}
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-2">
                     <div className="relative">
-                      <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-sm font-semibold text-slate-600 shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-600 shrink-0">
                         {cg.avatar}
                       </div>
                       {cg.status === "Active" && (
@@ -121,48 +121,48 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
                     
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-0.5">
-                        <h3 className="font-semibold text-slate-800 text-sm truncate pr-2">{cg.name}</h3>
+                        <h3 className="font-semibold text-slate-800 text-xs truncate pr-2">{cg.name}</h3>
                         <span className={clsx(
-                          "text-[10px] px-1.5 py-0.5 rounded font-medium",
+                          "text-[9px] px-1 py-0.5 rounded font-medium",
                           cg.status === "Active" ? "bg-brand-teal/10 text-brand-teal" : "bg-slate-100 text-slate-500"
                         )}>
                           {cg.status}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-500 truncate mb-1">Route: {cg.currentRoute}</p>
+                      <p className="text-[11px] text-slate-500 truncate mb-0.5">Route: {cg.currentRoute}</p>
                       {cg.status === "Active" && (
-                        <p className="text-xs font-medium text-brand-teal">{cg.distanceToNext} mi to next visit</p>
+                        <p className="text-[11px] font-medium text-brand-teal">{cg.distanceToNext} mi to next visit</p>
                       )}
                     </div>
                   </div>
 
                   {/* Expanded details */}
-                  <div className="mt-4 space-y-2 border-t border-slate-100 pt-3">
-                    <div className="flex items-center gap-2 text-xs text-slate-600">
-                      <Mail className="w-3.5 h-3.5 text-slate-400" />
+                  <div className="mt-2 space-y-1 border-t border-slate-100 pt-2">
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                      <Mail className="w-3 h-3 text-slate-400" />
                       <span className="truncate">{cg.email}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-600">
-                      <Phone className="w-3.5 h-3.5 text-slate-400" />
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                      <Phone className="w-3 h-3 text-slate-400" />
                       <span>{cg.phone}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-600">
-                      <FileText className="w-3.5 h-3.5 text-slate-400" />
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                      <FileText className="w-3 h-3 text-slate-400" />
                       <span>Cert No. {cg.certNo}</span>
                     </div>
                     {cg.specialty !== "N/A" && (
-                       <div className="flex items-center gap-2 text-xs text-slate-600">
-                         <Stethoscope className="w-3.5 h-3.5 text-slate-400" />
+                       <div className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                         <Stethoscope className="w-3 h-3 text-slate-400" />
                          <span>{cg.specialty}</span>
                        </div>
                     )}
                     
-                    <div className="flex items-center justify-between pt-2">
-                       <div className="flex items-center gap-1.5 text-[11px] text-slate-500 bg-slate-50 px-2 py-1 rounded-md">
+                    <div className="flex items-center justify-between pt-1">
+                       <div className="flex items-center gap-1 text-[10px] text-slate-500 bg-slate-50 px-1.5 py-0.5 rounded">
                          <Clock className="w-3 h-3 text-slate-400" />
                          Start {cg.shiftStart}
                        </div>
-                       <div className="flex items-center gap-1.5 text-[11px] text-slate-500 bg-slate-50 px-2 py-1 rounded-md">
+                       <div className="flex items-center gap-1 text-[10px] text-slate-500 bg-slate-50 px-1.5 py-0.5 rounded">
                          <Clock className="w-3 h-3 text-slate-400" />
                          End {cg.shiftEnd}
                        </div>

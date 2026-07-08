@@ -41,7 +41,7 @@ export const mockCaregivers: Caregiver[] = [
     specialty: "Wound Care",
     shiftStart: "08:00",
     shiftEnd: "16:00",
-    location: { x: 38, y: 42 },
+    location: { x: 30, y: 42 },
   },
   {
     id: "cg-2",
@@ -56,7 +56,7 @@ export const mockCaregivers: Caregiver[] = [
     specialty: "Dementia Care",
     shiftStart: "07:30",
     shiftEnd: "15:30",
-    location: { x: 55, y: 28 },
+    location: { x: 62, y: 35 },
   },
   {
     id: "cg-3",
@@ -71,7 +71,7 @@ export const mockCaregivers: Caregiver[] = [
     specialty: "Physical Therapy",
     shiftStart: "09:00",
     shiftEnd: "17:00",
-    location: { x: 65, y: 58 },
+    location: { x: 60, y: 65 },
   },
   {
     id: "cg-4",
@@ -86,7 +86,7 @@ export const mockCaregivers: Caregiver[] = [
     specialty: "General Care",
     shiftStart: "10:00",
     shiftEnd: "18:00",
-    location: { x: 47, y: 68 },
+    location: { x: 40, y: 72 },
   },
   {
     id: "cg-5",
@@ -118,6 +118,36 @@ export const mockCaregivers: Caregiver[] = [
     shiftEnd: "N/A",
     location: { x: 31, y: 78 },
   },
+  {
+    id: "cg-7",
+    name: "Elena Rossi",
+    avatar: "ER",
+    status: "Active",
+    currentRoute: "Smith Residence",
+    distanceToNext: 1.8,
+    email: "elena@homelio.care",
+    phone: "(415) 555-0555",
+    certNo: "RN-88220",
+    specialty: "Geriatrics",
+    shiftStart: "08:00",
+    shiftEnd: "16:00",
+    location: { x: 82, y: 35 },
+  },
+  {
+    id: "cg-8",
+    name: "David Lee",
+    avatar: "DL",
+    status: "Active",
+    currentRoute: "Gomez Home",
+    distanceToNext: 0.9,
+    email: "david@homelio.care",
+    phone: "(415) 555-0666",
+    certNo: "CNA-40988",
+    specialty: "General Care",
+    shiftStart: "09:00",
+    shiftEnd: "17:00",
+    location: { x: 20, y: 50 },
+  }
 ];
 
 export const mockVisits: Visit[] = [
@@ -144,7 +174,7 @@ export const mockVisits: Visit[] = [
     clientName: "Thomas Becker",
     address: "55 El Camino, SF",
     time: "Today - 10:15",
-    status: "Assigned",
+    status: "Completed",
     caregiverId: "cg-3",
     location: { x: 68, y: 54 },
   },
@@ -153,7 +183,7 @@ export const mockVisits: Visit[] = [
     clientName: "Aiko Tanaka",
     address: "33 Fillmore St, SF",
     time: "Today - 11:00",
-    status: "In Progress",
+    status: "Completed",
     caregiverId: "cg-4",
     location: { x: 49, y: 64 },
   },
@@ -182,4 +212,22 @@ export const mockVisits: Visit[] = [
     caregiverId: "cg-1",
     location: { x: 51, y: 48 },
   },
+  {
+    id: "v-8",
+    clientName: "William Smith",
+    address: "88 Bay St, SF",
+    time: "Today - 09:30",
+    status: "Completed",
+    caregiverId: "cg-7",
+    location: { x: 80, y: 25 },
+  },
+  {
+    id: "v-9",
+    clientName: "Maria Gomez",
+    address: "12 Market St, SF",
+    time: "Today - 10:00",
+    status: "Completed",
+    caregiverId: "cg-8",
+    location: { x: 25, y: 60 },
+  }
 ];
