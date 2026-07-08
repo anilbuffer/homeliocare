@@ -64,9 +64,9 @@ const navGroups = [
 export function Sidebar() {
   const pathname = usePathname();
   
-  // Initialize active item based on current path
   const [activeItem, setActiveItem] = useState(() => {
     if (pathname?.startsWith("/training")) return "training";
+    if (pathname?.startsWith("/billing")) return "billing";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -75,6 +75,8 @@ export function Sidebar() {
   React.useEffect(() => {
     if (pathname.startsWith("/training")) {
       setActiveItem("training");
+    } else if (pathname.startsWith("/billing")) {
+      setActiveItem("billing");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -108,6 +110,7 @@ export function Sidebar() {
                 let href = "#";
                 if (item.id === "dashboard") href = "/dashboard";
                 if (item.id === "training") href = "/training";
+                if (item.id === "billing") href = "/billing";
 
                 return (
                   <li key={item.id} className="relative">
