@@ -1,0 +1,99 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+
+import { KpiStrip } from "@/components/dashboard/KpiStrip";
+import { VisitsChart } from "@/components/dashboard/VisitsChart";
+import { ClientSatisfaction } from "@/components/dashboard/ClientSatisfaction";
+import { LiveVisitFeed } from "@/components/dashboard/LiveVisitFeed";
+import { RecentIncidents } from "@/components/dashboard/RecentIncidents";
+import { TopCaregivers } from "@/components/dashboard/TopCaregivers";
+import { CredentialTracker } from "@/components/dashboard/CredentialTracker";
+import { FinancialHealth } from "@/components/dashboard/FinancialHealth";
+import { AuthUtilization } from "@/components/dashboard/AuthUtilization";
+import { CaregiverOvertime } from "@/components/dashboard/CaregiverOvertime";
+import { EvvCompliance } from "@/components/dashboard/EvvCompliance";
+import { WastedHours } from "@/components/dashboard/WastedHours";
+import { AiInsights } from "@/components/dashboard/AiInsights";
+import { BottomGlance } from "@/components/dashboard/BottomGlance";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.04,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+};
+
+export default function DashboardPage() {
+  const today = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  }).format(new Date());
+
+  return (
+    <div className="max-w-7xl mx-auto space-y-6">
+      {/* Greeting Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Good morning, Sarah!</h2>
+          <p className="text-sm text-text-secondary mt-1">{today}</p>
+        </div>
+        <button className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-sm hover:shadow-md">
+          <Sparkles className="w-4 h-4 text-brand-teal" />
+          AI Briefing
+        </button>
+      </div>
+
+      <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
+        {/* Row 1: KPI Strip */}
+        <motion.div variants={item}>
+          <KpiStrip />
+        </motion.div>
+
+        {/* Row 2 */}
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <VisitsChart />
+          <ClientSatisfaction />
+          <LiveVisitFeed />
+        </motion.div>
+
+        {/* Row 3 */}
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <RecentIncidents />
+          <TopCaregivers />
+          <CredentialTracker />
+        </motion.div>
+
+        {/* Row 4 */}
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <FinancialHealth />
+          <AuthUtilization />
+          <CaregiverOvertime />
+        </motion.div>
+
+        {/* Row 5 */}
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <EvvCompliance />
+          <WastedHours />
+          <AiInsights />
+        </motion.div>
+
+        {/* Row 6 */}
+        <motion.div variants={item}>
+          <BottomGlance />
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
