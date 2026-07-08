@@ -16,26 +16,24 @@ export default function TrainingPage() {
           <h2 className="text-xl font-bold text-text-primary">Training Center</h2>
           <p className="text-xs text-text-secondary mt-0.5">Compliance, certifications & continuing education</p>
         </div>
-        
+
         {/* Toggle */}
-        <div className="flex bg-slate-200/60 p-1 rounded-full relative">
-          <div 
+        <div className="flex gap-6 bg-slate-200/60 p-1 rounded-full relative">
+          <div
             className="absolute top-1 bottom-1 w-1/2 bg-white rounded-full shadow-sm transition-all duration-300 ease-in-out"
             style={{ left: view === "my-training" ? "4px" : "calc(50% - 4px)" }}
           />
           <button
             onClick={() => setView("my-training")}
-            className={`relative z-10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${
-              view === "my-training" ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
-            }`}
+            className={`text-center relative z-10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${view === "my-training" ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
+              }`}
           >
             My Training
           </button>
           <button
             onClick={() => setView("manage-training")}
-            className={`relative z-10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${
-              view === "manage-training" ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
-            }`}
+            className={`text-center relative z-10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${view === "manage-training" ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
+              }`}
           >
             Manage Training
           </button>

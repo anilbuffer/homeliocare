@@ -27,11 +27,11 @@ export function LiveVisitFeed() {
             <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center text-[13px] font-bold shrink-0 shadow-inner border border-white/50 group-hover:scale-110 transition-transform", item.bg)}>
               {item.initials}
             </div>
-            <div className="flex-1 min-w-0 flex justify-between items-center">
-              <div>
+            <div className="flex-1 min-w-0 flex flex-wrap justify-between items-center gap-2">
+              <div className="min-w-0 flex-1 min-w-[140px]">
                 <div className="font-bold text-slate-800 text-[13px] truncate flex items-center gap-1.5 mb-0.5 tracking-tight">
                   {item.name} 
-                  <span className="text-[9px] font-bold text-accent-orange px-1.5 py-0.5 bg-accent-orange/10 rounded-md border border-accent-orange/20 uppercase tracking-wider">
+                  <span className="text-[9px] font-bold text-accent-orange px-1.5 py-0.5 bg-accent-orange/10 rounded-md border border-accent-orange/20 uppercase tracking-wider shrink-0">
                     {item.role}
                   </span>
                 </div>
@@ -39,7 +39,7 @@ export function LiveVisitFeed() {
                   {item.address}
                 </div>
               </div>
-              <Badge variant={item.variant} className="ml-2 shadow-sm shrink-0">{item.status}</Badge>
+              <Badge variant={item.variant} className="shadow-sm shrink-0">{item.status}</Badge>
             </div>
           </div>
         ))}

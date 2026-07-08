@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle2, ShieldAlert, Award, AlertTriangle, AlertCircle, Search, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { CourseCard } from "./CourseCard";
 import { CertificateCard } from "./CertificateCard";
@@ -8,6 +8,41 @@ import { MOCK_COURSES, MOCK_USER_COURSES, MOCK_CERTIFICATIONS } from "@/lib/mock
 
 export function MyTraining() {
   const [activeCategory, setActiveCategory] = useState("All");
+
+  // Slider state and refs
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < maxScroll - 1); // -1 for rounding errors
+
+      if (maxScroll > 0) {
+        setScrollProgress((scrollLeft / maxScroll) * 100);
+      } else {
+        setScrollProgress(0);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('resize', handleScroll);
+    return () => window.removeEventListener('resize', handleScroll);
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === 'left' ? -336 : 336;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   // Filter courses logic
   const inProgressCourses = MOCK_USER_COURSES.filter(c => c.status === "In Progress")
@@ -59,7 +94,11 @@ export function MyTraining() {
           <p className="text-xs text-slate-500">Pick up where you left off</p>
         </div>
         <div className="relative">
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden">
+          <div 
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
+          >
             {inProgressCourses.map((course) => (
               <div key={course.id} className="min-w-[280px] sm:min-w-[320px] snap-start">
                 <CourseCard
@@ -76,11 +115,20 @@ export function MyTraining() {
           </div>
           {/* Scroll indicators */}
           <div className="flex items-center justify-between mt-2 px-2 text-slate-400">
-            <ChevronLeft className="w-5 h-5 cursor-pointer hover:text-slate-700" />
+            <ChevronLeft 
+              className={`w-5 h-5 transition-colors ${canScrollLeft ? 'cursor-pointer hover:text-slate-700 text-slate-500' : 'opacity-30 cursor-not-allowed'}`} 
+              onClick={() => scroll('left')}
+            />
             <div className="h-1 flex-1 mx-4 bg-slate-200 rounded-full overflow-hidden">
-              <div className="w-1/3 h-full bg-slate-400 rounded-full"></div>
+              <div 
+                className="w-1/3 h-full bg-slate-400 rounded-full transition-transform duration-100 ease-out"
+                style={{ transform: `translateX(${scrollProgress * 2}%)` }}
+              ></div>
             </div>
-            <ChevronRight className="w-5 h-5 cursor-pointer hover:text-slate-700" />
+            <ChevronRight 
+              className={`w-5 h-5 transition-colors ${canScrollRight ? 'cursor-pointer hover:text-slate-700 text-slate-500' : 'opacity-30 cursor-not-allowed'}`} 
+              onClick={() => scroll('right')}
+            />
           </div>
         </div>
       </section>

@@ -63,7 +63,24 @@ const navGroups = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [activeItem, setActiveItem] = useState("dashboard");
+  
+  // Initialize active item based on current path
+  const [activeItem, setActiveItem] = useState(() => {
+    if (typeof window !== "undefined") {
+      if (pathname.startsWith("/training")) return "training";
+      if (pathname === "/dashboard" || pathname === "/") return "dashboard";
+    }
+    return "dashboard";
+  });
+
+  // Sync active item when pathname changes (e.g. browser back/forward)
+  React.useEffect(() => {
+    if (pathname.startsWith("/training")) {
+      setActiveItem("training");
+    } else if (pathname === "/dashboard" || pathname === "/") {
+      setActiveItem("dashboard");
+    }
+  }, [pathname]);
 
   return (
     <aside className="w-[260px] flex-shrink-0 bg-sidebar-bg text-white flex flex-col h-screen fixed lg:sticky top-0 left-0 z-40 hidden md:flex">
@@ -86,10 +103,7 @@ export function Sidebar() {
             )}
             <ul className="space-y-1">
               {group.items.map((item) => {
-                const isDashboard = item.id === "dashboard" && pathname === "/dashboard";
-                const isTraining = item.id === "training" && pathname.startsWith("/training");
-                // For other items, we'll just check if their ID is active (though they don't have real routes yet)
-                const isActive = isDashboard || isTraining || activeItem === item.id;
+                const isActive = activeItem === item.id;
                 const Icon = item.icon;
                 
                 // Determine the correct href

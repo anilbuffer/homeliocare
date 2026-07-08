@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  TrendingUp, CheckCircle2, AlertCircle, AlertTriangle, BarChart3, 
-  BellRing, Plus, Edit2, Archive, ChevronDown 
+import {
+  TrendingUp, CheckCircle2, AlertCircle, AlertTriangle, BarChart3,
+  BellRing, Plus, Edit2, Archive, ChevronDown
 } from "lucide-react";
 import { ComplianceProgressBar } from "./ComplianceProgressBar";
-import { 
-  MOCK_STAFF_STATUS, MOCK_COURSES, MOCK_QUIZ_STATS, MOCK_SURVEYS 
+import {
+  MOCK_STAFF_STATUS, MOCK_COURSES, MOCK_QUIZ_STATS, MOCK_SURVEYS
 } from "@/lib/mockTrainingData";
 
 export function ManageTraining() {
@@ -102,9 +102,8 @@ export function ManageTraining() {
             <div key={cat.name} className="space-y-2">
               <div className="flex justify-between items-end text-sm">
                 <span className="font-medium text-slate-700">{cat.name}</span>
-                <span className={`font-bold ${
-                  cat.score >= 90 ? "text-brand-teal" : cat.score >= 70 ? "text-accent-amber" : "text-accent-red"
-                }`}>{cat.score}%</span>
+                <span className={`font-bold ${cat.score >= 90 ? "text-brand-teal" : cat.score >= 70 ? "text-accent-amber" : "text-accent-red"
+                  }`}>{cat.score}%</span>
               </div>
               <ComplianceProgressBar progress={cat.score} colorClass={cat.color} />
             </div>
@@ -139,7 +138,7 @@ export function ManageTraining() {
                 <th className="px-4 py-3 text-right">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50">
+            <tbody className="divide-y divide-slate-100">
               {MOCK_STAFF_STATUS.map(staff => (
                 <tr key={staff.id} className="hover:bg-slate-50/50 transition-colors group">
                   <td className="px-4 py-3">
@@ -155,14 +154,13 @@ export function ManageTraining() {
                   <td className="px-4 py-3">
                     <div className="space-y-1.5">
                       <div className="flex justify-between items-center text-xs">
-                        <span className={`font-semibold ${
-                          staff.status === "On track" ? "text-brand-teal" :
+                        <span className={`font-semibold ${staff.status === "On track" ? "text-brand-teal" :
                           staff.status === "At risk" ? "text-accent-amber" : "text-accent-red"
-                        }`}>{staff.status}</span>
+                          }`}>{staff.status}</span>
                         <span className="text-slate-500 font-medium">{staff.complianceScore}%</span>
                       </div>
-                      <ComplianceProgressBar 
-                        progress={staff.complianceScore} 
+                      <ComplianceProgressBar
+                        progress={staff.complianceScore}
                         colorClass={staff.status === "On track" ? "bg-brand-teal" : staff.status === "At risk" ? "bg-accent-amber" : "bg-accent-red"}
                       />
                     </div>
@@ -200,7 +198,7 @@ export function ManageTraining() {
             </div>
             <div className="flex items-center gap-3">
               <span className="text-xs font-medium text-slate-500">Automated reminders:</span>
-              <button 
+              <button
                 onClick={() => setRemindersOn(!remindersOn)}
                 className={`w-12 h-6 rounded-full p-1 transition-colors relative flex items-center ${remindersOn ? "bg-brand-teal" : "bg-slate-300"}`}
               >
@@ -211,7 +209,7 @@ export function ManageTraining() {
           </div>
           <div className="p-2 flex-1">
             {MOCK_STAFF_STATUS.filter(s => s.status !== "On track").map(staff => (
-              <div key={staff.id} className="flex items-center justify-between p-4 hover:bg-slate-50 rounded-xl transition-colors">
+              <div key={staff.id} className="flex items-center justify-between gap-3 p-4 border border-slate-100 rounded-lg hover:bg-slate-100 rounded-xl transition-colors">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center text-xs font-bold">
                     {staff.avatar}
@@ -224,9 +222,8 @@ export function ManageTraining() {
                   </div>
                 </div>
                 <div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    staff.daysOverdue ? "bg-red-50 text-accent-red border border-red-100" : "bg-amber-50 text-accent-amber border border-amber-100"
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${staff.daysOverdue ? "bg-red-50 text-accent-red border border-red-100" : "bg-amber-50 text-accent-amber border border-amber-100"
+                    }`}>
                     {staff.daysOverdue ? `${staff.daysOverdue}d overdue` : `${staff.daysLeft}d left`}
                   </span>
                 </div>
@@ -249,7 +246,7 @@ export function ManageTraining() {
             <div className="text-[10px] font-medium text-slate-500 uppercase tracking-wide mb-3">Most-failed questions</div>
             <div className="space-y-3">
               {MOCK_QUIZ_STATS.mostFailedQuestions.map((q, i) => (
-                <div key={i} className="flex justify-between items-center text-xs">
+                <div key={i} className="flex justify-between items-center text-xs border border-slate-100 p-2 rounded-lg">
                   <span className="text-slate-700 truncate pr-4">{q.question}</span>
                   <span className="font-semibold text-accent-red shrink-0">{q.passRate}% pass</span>
                 </div>
@@ -287,8 +284,8 @@ export function ManageTraining() {
                 <th className="px-4 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50">
-              {MOCK_COURSES.slice(0,8).map(course => (
+            <tbody className="divide-y divide-slate-100">
+              {MOCK_COURSES.slice(0, 8).map(course => (
                 <tr key={course.id} className="hover:bg-slate-50/50 transition-colors group">
                   <td className="px-4 py-3 font-semibold text-slate-800">{course.title}</td>
                   <td className="px-4 py-3">
@@ -300,8 +297,8 @@ export function ManageTraining() {
                   <td className="px-4 py-3 text-slate-600">{course.assignedCount}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <ComplianceProgressBar 
-                        progress={course.completionRate} 
+                      <ComplianceProgressBar
+                        progress={course.completionRate}
                         colorClass={course.completionRate > 80 ? "bg-brand-teal" : course.completionRate > 60 ? "bg-accent-amber" : "bg-accent-red"}
                       />
                       <span className="text-xs font-semibold text-slate-600">{course.completionRate}%</span>
@@ -332,23 +329,23 @@ export function ManageTraining() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {MOCK_SURVEYS.map(survey => (
-             <div key={survey.name} className="bg-white/70 backdrop-blur-xl rounded-2xl p-4 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all">
-               <div className="flex justify-between items-start mb-3">
-                 <h4 className="font-semibold text-slate-800 text-xs">{survey.name}</h4>
-                 <div className="text-slate-300">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
-                 </div>
-               </div>
-               <div className="text-2xl font-bold text-slate-800 mb-1">{survey.responseRate}%</div>
-               <div className="text-[10px] text-slate-500 mb-4 uppercase tracking-wide">Response rate</div>
-               <ComplianceProgressBar 
-                  progress={survey.responseRate} 
-                  colorClass={survey.responseRate > 80 ? "bg-brand-teal" : survey.responseRate > 60 ? "bg-accent-amber" : "bg-accent-red"}
-               />
-               <a href={survey.link} className="mt-4 text-xs font-semibold text-brand-teal hover:text-[#0c8a6f] inline-flex items-center gap-1 transition-colors">
-                 View results &rarr;
-               </a>
-             </div>
+            <div key={survey.name} className="bg-white/70 backdrop-blur-xl rounded-2xl p-4 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all">
+              <div className="flex justify-between items-start mb-3">
+                <h4 className="font-semibold text-slate-800 text-xs">{survey.name}</h4>
+                <div className="text-slate-300">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
+                </div>
+              </div>
+              <div className="text-2xl font-bold text-slate-800 mb-1">{survey.responseRate}%</div>
+              <div className="text-[10px] text-slate-500 mb-4 uppercase tracking-wide">Response rate</div>
+              <ComplianceProgressBar
+                progress={survey.responseRate}
+                colorClass={survey.responseRate > 80 ? "bg-brand-teal" : survey.responseRate > 60 ? "bg-accent-amber" : "bg-accent-red"}
+              />
+              <a href={survey.link} className="mt-4 text-xs font-semibold text-brand-teal hover:text-[#0c8a6f] inline-flex items-center gap-1 transition-colors">
+                View results &rarr;
+              </a>
+            </div>
           ))}
         </div>
       </section>

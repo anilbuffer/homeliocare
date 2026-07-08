@@ -9,13 +9,13 @@ export function BottomGlance() {
   return (
     <Card className="flex flex-col p-5 sm:p-6 shrink-0 overflow-visible" noPadding>
       <div className="text-base font-semibold text-slate-800 mb-4">At a glance</div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-4 gap-4 items-center">
         {/* Item 1 */}
         <div className="flex items-center gap-3 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-3.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 group">
-          <div className="relative w-18 h-18 shrink-0 transition-transform duration-300 group-hover:scale-110">
+          <div className="relative w-20 h-20 shrink-0 transition-transform duration-300 group-hover:scale-110">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie data={[{ value: 87 }, { value: 13 }]} cx="50%" cy="50%" innerRadius={15} outerRadius={22} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
+                <Pie data={[{ value: 87 }, { value: 13 }]} cx="50%" cy="50%" innerRadius={26} outerRadius={34} startAngle={90} endAngle={-270} dataKey="value" stroke="none">
                   <Cell fill="#0EA383" />
                   <Cell fill="#E5E9EC" />
                 </Pie>

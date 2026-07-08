@@ -69,11 +69,11 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Row 2: 2/3 and 1/3 */}
-        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
+        <motion.div variants={item} className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div className="xl:col-span-2">
             <VisitsChart />
           </div>
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <ClientSatisfaction />
           </div>
         </motion.div>
@@ -99,12 +99,12 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Row 6 & 7: Left 2/3 (At a glance + Insights), Right 1/3 (Live Feed) */}
-        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 flex flex-col gap-6">
+        <motion.div variants={item} className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div className="xl:col-span-2 flex flex-col gap-6">
             <BottomGlance />
             <AiInsights />
           </div>
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <LiveVisitFeed />
           </div>
         </motion.div>
