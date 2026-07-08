@@ -1,16 +1,37 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import { Menu, Search, Bell } from "lucide-react";
 
 export function TopBar() {
+  const pathname = usePathname();
+
+  const getPageTitle = () => {
+    if (!pathname) return "Dashboard";
+    if (pathname.startsWith("/training")) return "Training (LMS)";
+    if (pathname.startsWith("/clients")) return "Clients";
+    if (pathname.startsWith("/scheduling")) return "Scheduling";
+    if (pathname.startsWith("/evv")) return "EVV Monitoring";
+    if (pathname.startsWith("/caregivers")) return "Caregivers & HR";
+    if (pathname.startsWith("/billing")) return "Billing & Claims";
+    if (pathname.startsWith("/incidents")) return "Incident & Risk";
+    if (pathname.startsWith("/compliance")) return "Compliance Tracking";
+    if (pathname.startsWith("/qa")) return "Quality Assurance";
+    if (pathname.startsWith("/reports")) return "Reports";
+    if (pathname.startsWith("/referrals")) return "Referrals & Intake";
+    if (pathname.startsWith("/communications")) return "Communications";
+    if (pathname.startsWith("/settings")) return "Settings";
+    return "Dashboard";
+  };
+
   return (
     <header className="h-20 px-6 flex items-center justify-between bg-page-bg sticky top-0 z-30">
       <div className="flex items-center gap-4">
         <button className="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 lg:hidden transition-colors">
           <Menu className="w-6 h-6" />
         </button>
-        <h1 className="text-xl font-semibold text-text-primary hidden sm:block">Dashboard</h1>
+        <h1 className="text-xl font-semibold text-text-primary hidden sm:block">{getPageTitle()}</h1>
       </div>
 
       <div className="flex items-center gap-4">

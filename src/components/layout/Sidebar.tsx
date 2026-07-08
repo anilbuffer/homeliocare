@@ -66,10 +66,8 @@ export function Sidebar() {
   
   // Initialize active item based on current path
   const [activeItem, setActiveItem] = useState(() => {
-    if (typeof window !== "undefined") {
-      if (pathname.startsWith("/training")) return "training";
-      if (pathname === "/dashboard" || pathname === "/") return "dashboard";
-    }
+    if (pathname?.startsWith("/training")) return "training";
+    if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
 
