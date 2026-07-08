@@ -10,12 +10,14 @@ interface VisitQueueProps {
   visits: Visit[];
   selectedVisitId: string | null;
   onSelectVisit: (id: string | null) => void;
+  onAssign?: (caregiverId: string, visitId: string) => void;
 }
 
-export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueueProps) {
+export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign }: VisitQueueProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState<"All" | "Assigned" | "Unassigned" | "Completed">("All");
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [dragOverId, setDragOverId] = useState<string | null>(null);
 
   // Group visits (mocking a single "TODAY" group for simplicity)
   const filteredVisits = visits.filter((v) => {
@@ -130,6 +132,34 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
                     transition={{ duration: 0.2, delay: i * 0.05 }}
                     onClick={() => onSelectVisit(isSelected ? null : v.id)}
                     className="relative flex gap-3 mb-3 group cursor-pointer"
+                    onDragOver={(e) => {
+                      if (v.status === "Unassigned") {
+                        e.preventDefault(); // Allow drop
+                        e.dataTransfer.dropEffect = "move";
+                      } else {
+                        e.dataTransfer.dropEffect = "none";
+                      }
+                    }}
+                    onDragEnter={() => {
+                      if (v.status === "Unassigned") {
+                        setDragOverId(v.id);
+                      }
+                    }}
+                    onDragLeave={() => {
+                      if (v.status === "Unassigned" && dragOverId === v.id) {
+                        setDragOverId(null);
+                      }
+                    }}
+                    onDrop={(e) => {
+                      if (v.status === "Unassigned") {
+                        e.preventDefault();
+                        setDragOverId(null);
+                        const caregiverId = e.dataTransfer.getData("caregiverId");
+                        if (caregiverId && onAssign) {
+                          onAssign(caregiverId, v.id);
+                        }
+                      }
+                    }}
                   >
                     {/* Icon Dot */}
                     <div className="shrink-0 mt-0.5">
@@ -145,7 +175,8 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit }: VisitQueu
                     {/* Card */}
                     <div className={clsx(
                       "flex-1 bg-white rounded-xl border p-2 transition-all hover:shadow-md",
-                      isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200"
+                      isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200",
+                      dragOverId === v.id && v.status === "Unassigned" && "border-brand-teal shadow-[0_0_0_2px_rgba(14,163,131,0.5)] bg-emerald-50/30"
                     )}>
                       <div className="flex items-start justify-between mb-0.5">
                         <h3 className="font-semibold text-slate-800 text-xs truncate pr-2">{v.clientName}</h3>

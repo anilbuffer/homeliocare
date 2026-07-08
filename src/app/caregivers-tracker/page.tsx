@@ -8,8 +8,15 @@ import { VisitQueue } from "@/components/tracker/VisitQueue";
 import { mockCaregivers, mockVisits } from "@/lib/mockTrackerData";
 
 export default function CaregiversTrackerPage() {
+  const [caregivers, setCaregivers] = useState(mockCaregivers);
+  const [visits, setVisits] = useState(mockVisits);
   const [selectedCaregiverId, setSelectedCaregiverId] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const assignedCaregiverIds = new Set(
+    visits.filter(v => v.status === "Assigned" || v.status === "In Progress").map(v => v.caregiverId).filter(Boolean) as string[]
+  );
 
   // When selecting a caregiver, we might optionally want to clear the selected visit, 
   // or keep it if it belongs to them. For simplicity, we just set the new state.
@@ -17,7 +24,7 @@ export default function CaregiversTrackerPage() {
     setSelectedCaregiverId(id);
     if (id) {
       // If we select a caregiver, clear the specific visit focus if it doesn't belong to them
-      const visit = mockVisits.find(v => v.id === selectedVisitId);
+      const visit = visits.find(v => v.id === selectedVisitId);
       if (visit && visit.caregiverId !== id) {
         setSelectedVisitId(null);
       }
@@ -28,26 +35,41 @@ export default function CaregiversTrackerPage() {
     setSelectedVisitId(id);
     if (id) {
       // If we select a visit, highlight the assigned caregiver
-      const visit = mockVisits.find(v => v.id === id);
+      const visit = visits.find(v => v.id === id);
       if (visit && visit.caregiverId) {
         setSelectedCaregiverId(visit.caregiverId);
       }
     }
   };
 
+  const handleAssignCaregiver = (caregiverId: string, visitId: string) => {
+    const caregiver = caregivers.find(c => c.id === caregiverId);
+    const visit = visits.find(v => v.id === visitId);
+
+    if (caregiver && visit) {
+      setVisits(prev => prev.map(v => 
+        v.id === visitId ? { ...v, status: "Assigned", caregiverId } : v
+      ));
+
+      setToastMessage(`${caregiver.name} assigned to ${visit.clientName} — Visit #${visit.id.replace('v-', '4570')}`);
+      setTimeout(() => setToastMessage(null), 3000);
+    }
+  };
+
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-page-bg font-sans">
+    <div className="flex h-screen w-full overflow-hidden bg-page-bg font-sans relative">
       <IconRail />
       
       <CaregiverRoster 
-        caregivers={mockCaregivers} 
+        caregivers={caregivers} 
+        assignedCaregiverIds={assignedCaregiverIds}
         selectedCaregiverId={selectedCaregiverId}
         onSelectCaregiver={handleSelectCaregiver}
       />
       
       <LiveMap 
-        caregivers={mockCaregivers}
-        visits={mockVisits}
+        caregivers={caregivers}
+        visits={visits}
         selectedCaregiverId={selectedCaregiverId}
         selectedVisitId={selectedVisitId}
         onSelectCaregiver={handleSelectCaregiver}
@@ -55,10 +77,18 @@ export default function CaregiversTrackerPage() {
       />
       
       <VisitQueue 
-        visits={mockVisits}
+        visits={visits}
         selectedVisitId={selectedVisitId}
         onSelectVisit={handleSelectVisit}
+        onAssign={handleAssignCaregiver}
       />
+
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="absolute bottom-4 right-4 bg-slate-800 text-white text-sm font-medium px-4 py-2.5 rounded-lg shadow-lg animate-in fade-in slide-in-from-bottom-4 z-50">
+          {toastMessage}
+        </div>
+      )}
     </div>
   );
 }

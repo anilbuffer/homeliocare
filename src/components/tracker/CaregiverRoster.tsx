@@ -8,24 +8,29 @@ import { Caregiver } from "@/lib/mockTrackerData";
 
 interface CaregiverRosterProps {
   caregivers: Caregiver[];
+  assignedCaregiverIds: Set<string>;
   selectedCaregiverId: string | null;
   onSelectCaregiver: (id: string | null) => void;
 }
 
-export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCaregiver }: CaregiverRosterProps) {
+export function CaregiverRoster({ caregivers, assignedCaregiverIds, selectedCaregiverId, onSelectCaregiver }: CaregiverRosterProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState<"Active" | "Offline" | "Total">("Active");
+  const [filterStatus, setFilterStatus] = useState<"Available" | "Assigned" | "Total">("Available");
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Filter caregivers
   const filteredCaregivers = caregivers.filter((c) => {
     const matchesSearch = c.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === "Total" || c.status === filterStatus;
+    const isAssigned = assignedCaregiverIds.has(c.id);
+    const matchesStatus = 
+      filterStatus === "Total" || 
+      (filterStatus === "Assigned" && isAssigned) || 
+      (filterStatus === "Available" && !isAssigned);
     return matchesSearch && matchesStatus;
   });
 
-  const activeCount = caregivers.filter((c) => c.status === "Active").length;
-  const offlineCount = caregivers.filter((c) => c.status === "Offline").length;
+  const assignedCount = caregivers.filter((c) => assignedCaregiverIds.has(c.id)).length;
+  const availableCount = caregivers.filter((c) => !assignedCaregiverIds.has(c.id)).length;
   const totalCount = caregivers.length;
 
   return (
@@ -59,16 +64,16 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
 
           {/* Status Tabs */}
           <div className="flex bg-slate-50 p-0.5 rounded-lg">
-            {(["Active", "Offline", "Total"] as const).map((tab) => {
+            {(["Available", "Assigned", "Total"] as const).map((tab) => {
               const isActive = filterStatus === tab;
-              const count = tab === "Active" ? activeCount : tab === "Offline" ? offlineCount : totalCount;
+              const count = tab === "Available" ? availableCount : tab === "Assigned" ? assignedCount : totalCount;
               return (
                 <button
                   key={tab}
                   onClick={() => setFilterStatus(tab)}
                   className={clsx(
                     "flex-1 relative flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium rounded-md transition-colors z-10",
-                    isActive ? (tab === "Active" ? "text-white" : "text-slate-800") : "text-slate-500 hover:text-slate-700"
+                    isActive ? (tab === "Available" ? "text-white" : "text-slate-800") : "text-slate-500 hover:text-slate-700"
                   )}
                 >
                   {isActive && (
@@ -76,12 +81,12 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
                       layoutId="roster-tab"
                       className={clsx(
                         "absolute inset-0 rounded-md -z-10 shadow-sm",
-                        tab === "Active" ? "bg-brand-teal" : "bg-white border border-slate-200"
+                        tab === "Available" ? "bg-brand-teal" : "bg-white border border-slate-200"
                       )}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                  {tab} <span className={clsx("px-1.5 py-0.5 rounded-full text-[10px]", isActive && tab === "Active" ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600")}>{count}</span>
+                  {tab} <span className={clsx("px-1.5 py-0.5 rounded-full text-[10px]", isActive && tab === "Available" ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600")}>{count}</span>
                 </button>
               );
             })}
@@ -93,6 +98,7 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
           <AnimatePresence>
             {filteredCaregivers.map((cg, i) => {
               const isSelected = selectedCaregiverId === cg.id;
+              const isAvailable = !assignedCaregiverIds.has(cg.id);
               
               return (
                 <motion.div
@@ -102,9 +108,17 @@ export function CaregiverRoster({ caregivers, selectedCaregiverId, onSelectCareg
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2, delay: i * 0.05 }}
                   onClick={() => onSelectCaregiver(isSelected ? null : cg.id)}
+                  draggable={isAvailable}
+                  onDragStart={(e: any) => {
+                    if (isAvailable) {
+                      e.dataTransfer.setData("caregiverId", cg.id);
+                      e.dataTransfer.effectAllowed = "move";
+                    }
+                  }}
                   className={clsx(
-                    "relative bg-white rounded-xl border p-2 cursor-pointer transition-all hover:shadow-md group",
-                    isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200"
+                    "relative bg-white rounded-xl border p-2 transition-all hover:shadow-md group",
+                    isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200",
+                    isAvailable ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
                   )}
                 >
                   <div className="flex items-start gap-2">
