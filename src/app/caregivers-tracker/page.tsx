@@ -14,6 +14,14 @@ export default function CaregiversTrackerPage() {
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  // New states for drag & drop / hover preview
+  const [hoveredCaregiverId, setHoveredCaregiverId] = useState<string | null>(null);
+  const [draggedCaregiverId, setDraggedCaregiverId] = useState<string | null>(null);
+  const [dragOverVisitId, setDragOverVisitId] = useState<string | null>(null);
+
+  const activeCaregiverId = draggedCaregiverId || hoveredCaregiverId;
+  const activeCaregiver = caregivers.find(c => c.id === activeCaregiverId);
+
   const assignedCaregiverIds = new Set(
     visits.filter(v => v.status === "Assigned" || v.status === "In Progress").map(v => v.caregiverId).filter(Boolean) as string[]
   );
@@ -65,6 +73,8 @@ export default function CaregiversTrackerPage() {
         assignedCaregiverIds={assignedCaregiverIds}
         selectedCaregiverId={selectedCaregiverId}
         onSelectCaregiver={handleSelectCaregiver}
+        onHoverCaregiver={setHoveredCaregiverId}
+        onDragCaregiver={setDraggedCaregiverId}
       />
       
       <LiveMap 
@@ -74,6 +84,8 @@ export default function CaregiversTrackerPage() {
         selectedVisitId={selectedVisitId}
         onSelectCaregiver={handleSelectCaregiver}
         onSelectVisit={handleSelectVisit}
+        activeCaregiverId={activeCaregiverId}
+        dragOverVisitId={dragOverVisitId}
       />
       
       <VisitQueue 
@@ -81,6 +93,9 @@ export default function CaregiversTrackerPage() {
         selectedVisitId={selectedVisitId}
         onSelectVisit={handleSelectVisit}
         onAssign={handleAssignCaregiver}
+        activeCaregiver={activeCaregiver}
+        onDragOverVisit={setDragOverVisitId}
+        caregivers={caregivers}
       />
 
       {/* Toast Notification */}

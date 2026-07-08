@@ -13,6 +13,8 @@ interface LiveMapProps {
   selectedVisitId: string | null;
   onSelectCaregiver: (id: string | null) => void;
   onSelectVisit: (id: string | null) => void;
+  activeCaregiverId?: string | null;
+  dragOverVisitId?: string | null;
 }
 
 export function LiveMap({
@@ -22,6 +24,8 @@ export function LiveMap({
   selectedVisitId,
   onSelectCaregiver,
   onSelectVisit,
+  activeCaregiverId,
+  dragOverVisitId,
 }: LiveMapProps) {
 
   // Find connections (assigned visits)
@@ -41,6 +45,20 @@ export function LiveMap({
       }
       return null;
     }).filter(Boolean) as { id: string, x1: number, y1: number, x2: number, y2: number, isActive: boolean }[];
+
+  // Add preview connection
+  const activeCaregiver = caregivers.find(c => c.id === activeCaregiverId);
+  const targetVisit = visits.find(v => v.id === dragOverVisitId);
+  if (activeCaregiver && targetVisit) {
+    connections.push({
+      id: `preview-${activeCaregiver.id}-${targetVisit.id}`,
+      x1: activeCaregiver.location.x,
+      y1: activeCaregiver.location.y,
+      x2: targetVisit.location.x,
+      y2: targetVisit.location.y,
+      isActive: true,
+    });
+  }
 
   const getVisitIconInfo = (status: Visit["status"]) => {
     switch (status) {

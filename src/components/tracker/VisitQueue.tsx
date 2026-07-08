@@ -4,16 +4,19 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Filter, Home, AlertCircle, CheckCircle2, ChevronRight, ChevronLeft, Clock } from "lucide-react";
 import clsx from "clsx";
-import { Visit } from "@/lib/mockTrackerData";
+import { Visit, Caregiver } from "@/lib/mockTrackerData";
 
 interface VisitQueueProps {
   visits: Visit[];
   selectedVisitId: string | null;
   onSelectVisit: (id: string | null) => void;
   onAssign?: (caregiverId: string, visitId: string) => void;
+  activeCaregiver?: Caregiver | null;
+  onDragOverVisit?: (visitId: string | null) => void;
+  caregivers?: Caregiver[];
 }
 
-export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign }: VisitQueueProps) {
+export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, activeCaregiver, onDragOverVisit, caregivers = [] }: VisitQueueProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState<"All" | "Assigned" | "Unassigned" | "Completed">("All");
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -53,6 +56,17 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign }:
       case "Completed": return "bg-brand-teal shadow-[0_0_10px_rgba(14,163,131,0.4)]";
       default: return "bg-brand-teal shadow-[0_0_10px_rgba(14,163,131,0.4)]";
     }
+  };
+
+  const getDistanceInfo = (v: Visit, specificCaregiver?: Caregiver | null) => {
+    const targetCaregiver = specificCaregiver || activeCaregiver;
+    if (!targetCaregiver) return null;
+    const dx = targetCaregiver.location.x - v.location.x;
+    const dy = targetCaregiver.location.y - v.location.y;
+    const rawDist = Math.sqrt(dx * dx + dy * dy);
+    const miles = (rawDist / 10).toFixed(1);
+    const minutes = Math.round((rawDist / 10) * 3 + 5);
+    return { miles, minutes, name: targetCaregiver.name };
   };
 
   return (
@@ -143,17 +157,20 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign }:
                     onDragEnter={() => {
                       if (v.status === "Unassigned") {
                         setDragOverId(v.id);
+                        onDragOverVisit?.(v.id);
                       }
                     }}
                     onDragLeave={() => {
                       if (v.status === "Unassigned" && dragOverId === v.id) {
                         setDragOverId(null);
+                        onDragOverVisit?.(null);
                       }
                     }}
                     onDrop={(e) => {
                       if (v.status === "Unassigned") {
                         e.preventDefault();
                         setDragOverId(null);
+                        onDragOverVisit?.(null);
                         const caregiverId = e.dataTransfer.getData("caregiverId");
                         if (caregiverId && onAssign) {
                           onAssign(caregiverId, v.id);
@@ -195,6 +212,25 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign }:
                       <div className="text-[11px] text-slate-600 bg-slate-50 p-1.5 rounded-md mb-1.5">
                         {v.address}
                       </div>
+
+                      {(() => {
+                        const assignedCaregiver = v.caregiverId ? caregivers.find(c => c.id === v.caregiverId) : null;
+                        const distInfo = getDistanceInfo(v, assignedCaregiver);
+                        
+                        return (
+                          <div className={clsx(
+                            "text-[10px] font-medium p-1 rounded flex items-center gap-1 mb-1.5 transition-colors",
+                            distInfo 
+                              ? "bg-emerald-50/50 text-brand-teal" 
+                              : "bg-slate-50 text-slate-400"
+                          )}>
+                            📍 {distInfo 
+                              ? `~${distInfo.miles} mi (est.) · ${distInfo.minutes} min from ${distInfo.name}`
+                              : "-- mi · -- min (Unassigned)"
+                            }
+                          </div>
+                        );
+                      })()}
 
                       <div className="text-[10px] text-slate-400 flex items-center gap-1">
                         <Clock className="w-3 h-3" />

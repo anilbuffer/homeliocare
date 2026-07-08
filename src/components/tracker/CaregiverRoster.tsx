@@ -11,9 +11,18 @@ interface CaregiverRosterProps {
   assignedCaregiverIds: Set<string>;
   selectedCaregiverId: string | null;
   onSelectCaregiver: (id: string | null) => void;
+  onHoverCaregiver?: (id: string | null) => void;
+  onDragCaregiver?: (id: string | null) => void;
 }
 
-export function CaregiverRoster({ caregivers, assignedCaregiverIds, selectedCaregiverId, onSelectCaregiver }: CaregiverRosterProps) {
+export function CaregiverRoster({
+  caregivers,
+  assignedCaregiverIds,
+  selectedCaregiverId,
+  onSelectCaregiver,
+  onHoverCaregiver,
+  onDragCaregiver,
+}: CaregiverRosterProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState<"Available" | "Assigned" | "Total">("Available");
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -109,12 +118,16 @@ export function CaregiverRoster({ caregivers, assignedCaregiverIds, selectedCare
                   transition={{ duration: 0.2, delay: i * 0.05 }}
                   onClick={() => onSelectCaregiver(isSelected ? null : cg.id)}
                   draggable={isAvailable}
+                  onMouseEnter={() => onHoverCaregiver?.(cg.id)}
+                  onMouseLeave={() => onHoverCaregiver?.(null)}
                   onDragStart={(e: any) => {
                     if (isAvailable) {
                       e.dataTransfer.setData("caregiverId", cg.id);
                       e.dataTransfer.effectAllowed = "move";
+                      onDragCaregiver?.(cg.id);
                     }
                   }}
+                  onDragEnd={() => onDragCaregiver?.(null)}
                   className={clsx(
                     "relative bg-white rounded-xl border p-2 transition-all hover:shadow-md group",
                     isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200",
