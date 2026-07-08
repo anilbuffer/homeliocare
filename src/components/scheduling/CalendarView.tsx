@@ -4,18 +4,30 @@ import { format, parseISO } from "date-fns";
 import clsx from "clsx";
 
 interface CalendarViewProps {
+  viewMode: "Day" | "Week" | "Month";
   shifts: Shift[];
   caregivers: Caregiver[];
   onShiftClick: (shift: Shift) => void;
 }
 
 const HOURS = Array.from({ length: 17 }, (_, i) => i + 6); // 6am to 10pm
+const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const MONTH_WEEKS = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
 
-export function CalendarView({ shifts, caregivers, onShiftClick }: CalendarViewProps) {
+export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: CalendarViewProps) {
   // We'll create a row for Unfilled shifts, and rows for each caregiver
   const unfilledShifts = shifts.filter(s => s.status === "Unfilled");
   
   const getShiftStyle = (shift: Shift) => {
+    if (viewMode === "Week") {
+      // Mock all shifts to appear on Wednesday
+      return { left: `${(2 / 7) * 100}%`, width: `${(1 / 7) * 100}%` };
+    }
+    if (viewMode === "Month") {
+      // Mock all shifts to appear in Week 3
+      return { left: `${(2 / 5) * 100}%`, width: `${(1 / 5) * 100}%` };
+    }
+
     try {
       const start = parseISO(shift.startTime);
       const end = parseISO(shift.endTime);
@@ -34,6 +46,13 @@ export function CalendarView({ shifts, caregivers, onShiftClick }: CalendarViewP
       return { left: "0%", width: "10%" }; // fallback
     }
   };
+
+  const getColumns = () => {
+    if (viewMode === "Week") return WEEK_DAYS;
+    if (viewMode === "Month") return MONTH_WEEKS;
+    return HOURS;
+  };
+  const columns = getColumns();
 
   const getShiftColor = (status: string) => {
     switch (status) {
@@ -63,9 +82,11 @@ export function CalendarView({ shifts, caregivers, onShiftClick }: CalendarViewP
             Caregiver
           </div>
           <div className="flex-1 relative flex">
-            {HOURS.map((hour) => (
-              <div key={hour} className="flex-1 py-3 text-center text-xs font-medium text-slate-500 border-r border-slate-100 last:border-r-0">
-                {hour > 12 ? `${hour - 12}pm` : hour === 12 ? '12pm' : `${hour}am`}
+            {columns.map((col, idx) => (
+              <div key={idx} className="flex-1 py-3 text-center text-xs font-medium text-slate-500 border-r border-slate-100 last:border-r-0">
+                {viewMode === "Day" 
+                  ? (typeof col === "number" ? (col > 12 ? `${col - 12}pm` : col === 12 ? '12pm' : `${col}am`) : col)
+                  : col}
               </div>
             ))}
           </div>
@@ -83,8 +104,8 @@ export function CalendarView({ shifts, caregivers, onShiftClick }: CalendarViewP
             </div>
           </div>
           <div className="flex-1 relative">
-            {HOURS.map((hour) => (
-              <div key={hour} className="absolute top-0 bottom-0 border-r border-slate-100 w-[5.88%]" style={{ left: `${(hour - 6) * 5.88}%` }} />
+            {columns.map((_, idx) => (
+              <div key={idx} className="absolute top-0 bottom-0 border-r border-slate-100" style={{ left: `${(idx) * (100 / columns.length)}%`, width: `${100 / columns.length}%` }} />
             ))}
             {/* Shifts */}
             {unfilledShifts.map((shift) => (
@@ -123,8 +144,8 @@ export function CalendarView({ shifts, caregivers, onShiftClick }: CalendarViewP
                 </div>
               </div>
               <div className="flex-1 relative">
-                {HOURS.map((hour) => (
-                  <div key={hour} className="absolute top-0 bottom-0 border-r border-slate-100 w-[5.88%]" style={{ left: `${(hour - 6) * 5.88}%` }} />
+                {columns.map((_, idx) => (
+                  <div key={idx} className="absolute top-0 bottom-0 border-r border-slate-100" style={{ left: `${(idx) * (100 / columns.length)}%`, width: `${100 / columns.length}%` }} />
                 ))}
                 
                 {caregiverShifts.map((shift) => (

@@ -120,6 +120,7 @@ export default function SchedulingPage() {
       <div className="mt-4">
         {layoutMode === "Calendar" ? (
           <CalendarView
+            viewMode={viewMode}
             shifts={filteredShifts}
             caregivers={mockCaregivers}
             onShiftClick={(shift) => setSelectedShiftId(shift.id)}
