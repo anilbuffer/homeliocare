@@ -67,6 +67,7 @@ export function Sidebar() {
   const [activeItem, setActiveItem] = useState(() => {
     if (pathname?.startsWith("/training")) return "training";
     if (pathname?.startsWith("/billing")) return "billing";
+    if (pathname?.startsWith("/scheduling")) return "scheduling";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -77,6 +78,8 @@ export function Sidebar() {
       setActiveItem("training");
     } else if (pathname.startsWith("/billing")) {
       setActiveItem("billing");
+    } else if (pathname.startsWith("/scheduling")) {
+      setActiveItem("scheduling");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -111,6 +114,7 @@ export function Sidebar() {
                 if (item.id === "dashboard") href = "/dashboard";
                 if (item.id === "training") href = "/training";
                 if (item.id === "billing") href = "/billing";
+                if (item.id === "scheduling") href = "/scheduling";
 
                 return (
                   <li key={item.id} className="relative">

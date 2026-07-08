@@ -1,0 +1,175 @@
+import React from "react";
+import type { Shift, Caregiver } from "@/lib/scheduling/mockData";
+import { format, parseISO } from "date-fns";
+import clsx from "clsx";
+
+interface CalendarViewProps {
+  shifts: Shift[];
+  caregivers: Caregiver[];
+  onShiftClick: (shift: Shift) => void;
+}
+
+const HOURS = Array.from({ length: 17 }, (_, i) => i + 6); // 6am to 10pm
+
+export function CalendarView({ shifts, caregivers, onShiftClick }: CalendarViewProps) {
+  // We'll create a row for Unfilled shifts, and rows for each caregiver
+  const unfilledShifts = shifts.filter(s => s.status === "Unfilled");
+  
+  const getShiftStyle = (shift: Shift) => {
+    try {
+      const start = parseISO(shift.startTime);
+      const end = parseISO(shift.endTime);
+      
+      const startHour = start.getHours() + start.getMinutes() / 60;
+      const endHour = end.getHours() + end.getMinutes() / 60;
+      
+      const colStart = Math.max(0, startHour - 6);
+      const colSpan = Math.max(0.5, endHour - startHour);
+      
+      return {
+        left: `${(colStart / 17) * 100}%`,
+        width: `${(colSpan / 17) * 100}%`,
+      };
+    } catch {
+      return { left: "0%", width: "10%" }; // fallback
+    }
+  };
+
+  const getShiftColor = (status: string) => {
+    switch (status) {
+      case "Unfilled": return "bg-red-50 border-red-200 text-red-700 border-dashed";
+      case "Completed": return "bg-emerald-50 border-emerald-200 text-emerald-700";
+      case "In Progress": return "bg-blue-50 border-blue-200 text-blue-700";
+      case "Pending Confirmation": return "bg-amber-50 border-amber-200 text-amber-700";
+      case "Confirmed": return "bg-brand-teal/10 border-brand-teal/30 text-brand-teal";
+      default: return "bg-slate-50 border-slate-200 text-slate-700";
+    }
+  };
+
+  const formatTime = (iso: string) => {
+    try {
+      return format(parseISO(iso), "ha").toLowerCase();
+    } catch {
+      return "";
+    }
+  };
+
+  return (
+    <div className="bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl overflow-hidden overflow-x-auto hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all">
+      <div className="min-w-[1000px]">
+        {/* Header Row */}
+        <div className="flex border-b border-slate-200 bg-slate-50">
+          <div className="w-64 shrink-0 py-3 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider border-r border-slate-200">
+            Caregiver
+          </div>
+          <div className="flex-1 relative flex">
+            {HOURS.map((hour) => (
+              <div key={hour} className="flex-1 py-3 text-center text-xs font-medium text-slate-500 border-r border-slate-100 last:border-r-0">
+                {hour > 12 ? `${hour - 12}pm` : hour === 12 ? '12pm' : `${hour}am`}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Unfilled Row */}
+        <div className="flex border-b border-slate-200 hover:bg-slate-50 transition-colors">
+          <div className="w-64 shrink-0 py-4 px-4 border-r border-slate-200 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">
+              !
+            </div>
+            <div>
+              <div className="font-semibold text-red-600 text-sm">Unfilled</div>
+              <div className="text-xs text-slate-500">{unfilledShifts.length} shifts</div>
+            </div>
+          </div>
+          <div className="flex-1 relative">
+            {HOURS.map((hour) => (
+              <div key={hour} className="absolute top-0 bottom-0 border-r border-slate-100 w-[5.88%]" style={{ left: `${(hour - 6) * 5.88}%` }} />
+            ))}
+            {/* Shifts */}
+            {unfilledShifts.map((shift) => (
+              <div
+                key={shift.id}
+                onClick={() => onShiftClick(shift)}
+                className={clsx(
+                  "absolute top-2 bottom-2 rounded-lg border flex flex-col justify-center px-2 cursor-pointer hover:shadow-md transition-shadow overflow-hidden",
+                  getShiftColor(shift.status)
+                )}
+                style={getShiftStyle(shift)}
+              >
+                <div className="text-xs font-semibold truncate">{shift.clientName}</div>
+                <div className="text-[10px] opacity-80 truncate flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  {formatTime(shift.startTime)}-{formatTime(shift.endTime)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Caregiver Rows */}
+        {caregivers.map((caregiver) => {
+          const caregiverShifts = shifts.filter(s => s.assignedCaregiverId === caregiver.id);
+          
+          return (
+            <div key={caregiver.id} className="flex border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors">
+              <div className="w-64 shrink-0 py-4 px-4 border-r border-slate-200 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold text-xs uppercase">
+                  {caregiver.name.substring(0, 2)}
+                </div>
+                <div>
+                  <div className="font-semibold text-slate-800 text-sm">{caregiver.name}</div>
+                  <div className="text-xs text-slate-500">{caregiver.credentials.join(" • ")}</div>
+                </div>
+              </div>
+              <div className="flex-1 relative">
+                {HOURS.map((hour) => (
+                  <div key={hour} className="absolute top-0 bottom-0 border-r border-slate-100 w-[5.88%]" style={{ left: `${(hour - 6) * 5.88}%` }} />
+                ))}
+                
+                {caregiverShifts.map((shift) => (
+                  <div
+                    key={shift.id}
+                    onClick={() => onShiftClick(shift)}
+                    className={clsx(
+                      "absolute top-2 bottom-2 rounded-lg border flex flex-col justify-center px-2 cursor-pointer hover:shadow-md transition-shadow overflow-hidden",
+                      getShiftColor(shift.status)
+                    )}
+                    style={getShiftStyle(shift)}
+                  >
+                    <div className="text-xs font-semibold truncate">{shift.clientName}</div>
+                    <div className="text-[10px] opacity-80 truncate flex items-center gap-1">
+                      <Clock className="w-3 h-3 inline-block" />
+                      {formatTime(shift.startTime)}-{formatTime(shift.endTime)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// simple Clock icon just for the CalendarView inside here
+function Clock(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
