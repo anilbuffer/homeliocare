@@ -20,6 +20,8 @@ import {
   ShieldCheck,
   ChevronDown
 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import clsx from "clsx";
 
 const navGroups = [
@@ -60,6 +62,7 @@ const navGroups = [
 ];
 
 export function Sidebar() {
+  const pathname = usePathname();
   const [activeItem, setActiveItem] = useState("dashboard");
 
   return (
@@ -83,8 +86,17 @@ export function Sidebar() {
             )}
             <ul className="space-y-1">
               {group.items.map((item) => {
-                const isActive = activeItem === item.id;
+                const isDashboard = item.id === "dashboard" && pathname === "/dashboard";
+                const isTraining = item.id === "training" && pathname.startsWith("/training");
+                // For other items, we'll just check if their ID is active (though they don't have real routes yet)
+                const isActive = isDashboard || isTraining || activeItem === item.id;
                 const Icon = item.icon;
+                
+                // Determine the correct href
+                let href = "#";
+                if (item.id === "dashboard") href = "/dashboard";
+                if (item.id === "training") href = "/training";
+
                 return (
                   <li key={item.id} className="relative">
                     {isActive && (
@@ -95,16 +107,30 @@ export function Sidebar() {
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
-                    <button
-                      onClick={() => setActiveItem(item.id)}
-                      className={clsx(
-                        "relative flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors z-10",
-                        isActive ? "text-white" : "text-slate-300 hover:text-white hover:bg-sidebar-active"
-                      )}
-                    >
-                      <Icon className="w-5 h-5" />
-                      {item.name}
-                    </button>
+                    {href !== "#" ? (
+                      <Link
+                        href={href}
+                        onClick={() => setActiveItem(item.id)}
+                        className={clsx(
+                          "relative flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors z-10",
+                          isActive ? "text-white" : "text-slate-300 hover:text-white hover:bg-sidebar-active"
+                        )}
+                      >
+                        <Icon className="w-5 h-5" />
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => setActiveItem(item.id)}
+                        className={clsx(
+                          "relative flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors z-10",
+                          isActive ? "text-white" : "text-slate-300 hover:text-white hover:bg-sidebar-active"
+                        )}
+                      >
+                        <Icon className="w-5 h-5" />
+                        {item.name}
+                      </button>
+                    )}
                   </li>
                 );
               })}
