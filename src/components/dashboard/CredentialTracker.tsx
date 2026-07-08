@@ -15,8 +15,8 @@ const credentialsData = [
 export function CredentialTracker() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Credential tracker" action={<span className="text-brand-teal text-sm font-medium">Manage →</span>} />
-      
+      <CardHeader title="Training Expiry" action={<span className="text-brand-teal text-sm font-medium">Manage →</span>} />
+
       <div className="flex-1 space-y-4">
         {credentialsData.map((item) => (
           <div key={item.id} className="flex gap-4 items-center pb-4 border-b border-border-subtle last:border-0 last:pb-0">
