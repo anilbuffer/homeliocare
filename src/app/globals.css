@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  
+  --color-primary: #0ea5e9;
+  --color-primary-foreground: #ffffff;
+  
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  
+  --color-accent: #38bdf8;
+  --color-accent-foreground: #0f172a;
+  
+  --color-muted: #f8fafc;
+  --color-muted-foreground: #64748b;
+  
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #0ea5e9;
+  
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+}
+
+@layer base {
+  :root {
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+  }
+
+  .dark {
+    --background: #020617;
+    --foreground: #f8fafc;
+    
+    --color-primary: #0ea5e9;
+    --color-primary-foreground: #f8fafc;
+    
+    --color-secondary: #1e293b;
+    --color-secondary-foreground: #f8fafc;
+    
+    --color-accent: #38bdf8;
+    --color-accent-foreground: #f8fafc;
+    
+    --color-muted: #0f172a;
+    --color-muted-foreground: #94a3b8;
+    
+    --color-border: #1e293b;
+    --color-input: #1e293b;
+    --color-ring: #0ea5e9;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[var(--color-border)];
+  }
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] antialiased;
+  }
+}
