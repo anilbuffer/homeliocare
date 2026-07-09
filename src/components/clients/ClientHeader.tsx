@@ -3,6 +3,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Client } from "@/lib/clients/mockData";
 import { Calendar, ShieldAlert, MessageSquare, Edit3, MapPin } from "lucide-react";
+import { cn } from "@/components/ui/Card";
 
 interface ClientHeaderProps {
   client: Client;
@@ -19,7 +20,13 @@ export function ClientHeader({ client }: ClientHeaderProps) {
                 client.status === "Active" ? "success" :
                 client.status === "Hospitalized" ? "warning" :
                 client.status === "Discharged" ? "neutral" : "error"
-              } className="border-2 border-white shadow-sm">{client.status}</Badge>
+              } className={cn(
+                "border-2 border-white shadow-md font-bold text-white px-3 py-1",
+                client.status === "Active" && "bg-emerald-500",
+                client.status === "Hospitalized" && "bg-amber-500",
+                client.status === "Discharged" && "bg-slate-500",
+                client.status === "Inactive" && "bg-rose-500"
+              )}>{client.status}</Badge>
           </div>
         </div>
         

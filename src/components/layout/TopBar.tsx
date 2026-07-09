@@ -4,7 +4,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Search, Bell } from "lucide-react";
 
-export function TopBar() {
+export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
 
   const getPageTitle = () => {
@@ -28,7 +28,10 @@ export function TopBar() {
   return (
     <header className="h-20 px-6 flex items-center justify-between bg-page-bg sticky top-0 z-30">
       <div className="flex items-center gap-4">
-        <button className="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 lg:hidden transition-colors">
+        <button 
+          onClick={onMenuClick}
+          className="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 lg:hidden transition-colors"
+        >
           <Menu className="w-6 h-6" />
         </button>
         <h1 className="text-xl font-semibold text-text-primary hidden sm:block">{getPageTitle()}</h1>

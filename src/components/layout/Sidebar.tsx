@@ -61,7 +61,12 @@ const navGroups = [
   },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
   
   const [activeItem, setActiveItem] = useState(() => {
@@ -89,7 +94,19 @@ export function Sidebar() {
   }, [pathname]);
 
   return (
-    <aside className="w-[260px] flex-shrink-0 bg-sidebar-bg text-white flex flex-col h-screen fixed lg:sticky top-0 left-0 z-40 hidden md:flex">
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-slate-900/50 z-40 md:hidden backdrop-blur-sm transition-opacity"
+          onClick={onClose}
+        />
+      )}
+
+      <aside className={clsx(
+        "w-[260px] flex-shrink-0 bg-sidebar-bg text-white flex flex-col h-screen fixed top-0 left-0 z-50 transition-transform duration-300 md:translate-x-0 md:sticky",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
       {/* Logo Area */}
       <div className="flex items-center gap-3 px-6 py-6 h-20">
         <div className="w-8 h-8 rounded-lg bg-brand-teal flex items-center justify-center font-bold text-lg">
@@ -187,5 +204,6 @@ export function Sidebar() {
         </button>
       </div>
     </aside>
+    </>
   );
 }

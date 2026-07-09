@@ -13,7 +13,7 @@ export default async function ClientHubPage({ params }: { params: Promise<{ id: 
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full">
       <ClientHeader client={client} />
       <ClientTabs client={client} />
     </div>

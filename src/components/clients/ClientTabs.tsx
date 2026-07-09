@@ -27,24 +27,24 @@ export function ClientTabs({ client }: { client: Client }) {
   return (
     <div className="w-full">
       {/* Tab Navigation */}
-      <div className="flex items-center gap-6 border-b border-slate-200 mb-6 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+      <div className="flex items-center p-1.5 bg-slate-100/80 backdrop-blur-md rounded-2xl mb-8 overflow-x-auto [&::-webkit-scrollbar]:hidden border border-slate-200/60 max-w-fit shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative pb-4 px-2 text-sm font-medium transition-colors whitespace-nowrap ${
-                isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800"
+              className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${
+                isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
               }`}
             >
-              {tab.label}
+              <span className="relative z-10">{tab.label}</span>
               {isActive && (
                 <motion.div
                   layoutId="client-tab-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-teal"
+                  className="absolute inset-0 bg-white rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200/50"
                   initial={false}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />
               )}
             </button>
