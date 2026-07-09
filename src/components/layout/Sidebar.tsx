@@ -31,7 +31,6 @@ const navGroups = [
       { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
       { name: "Clients", icon: Users, id: "clients" },
       { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
-      { name: "EVV Monitoring", icon: Activity, id: "evv" },
       { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
       { name: "Billing & Claims", icon: Receipt, id: "billing" },
     ],
@@ -41,6 +40,7 @@ const navGroups = [
     items: [
       { name: "Incident & Risk", icon: ShieldAlert, id: "incidents" },
       { name: "Compliance Tracking", icon: CheckSquare, id: "compliance" },
+      { name: "EVV Compliance", icon: Activity, id: "evv-monitoring" },
       { name: "Quality Assurance", icon: Award, id: "qa" },
       { name: "Training (LMS)", icon: GraduationCap, id: "training" },
     ],
@@ -74,6 +74,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/billing")) return "billing";
     if (pathname?.startsWith("/scheduling")) return "scheduling";
     if (pathname?.startsWith("/clients")) return "clients";
+    if (pathname?.startsWith("/evv-monitoring")) return "evv-monitoring";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -88,6 +89,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("scheduling");
     } else if (pathname.startsWith("/clients")) {
       setActiveItem("clients");
+    } else if (pathname.startsWith("/evv-monitoring")) {
+      setActiveItem("evv-monitoring");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -136,6 +139,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 if (item.id === "billing") href = "/billing";
                 if (item.id === "scheduling") href = "/scheduling";
                 if (item.id === "clients") href = "/clients";
+                if (item.id === "evv-monitoring") href = "/evv-monitoring";
 
                 return (
                   <li key={item.id} className="relative">
