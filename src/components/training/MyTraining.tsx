@@ -3,8 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle2, ShieldAlert, Award, AlertTriangle, AlertCircle, Search, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { CourseCard } from "./CourseCard";
-import { CertificateCard } from "./CertificateCard";
-import { MOCK_COURSES, MOCK_USER_COURSES, MOCK_CERTIFICATIONS } from "@/lib/mockTrainingData";
+import { MOCK_COURSES, MOCK_USER_COURSES } from "@/lib/mockTrainingData";
 
 export function MyTraining() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -52,12 +51,7 @@ export function MyTraining() {
     })
     .filter(Boolean) as any[];
 
-  const requiredCourses = MOCK_USER_COURSES
-    .map(uc => {
-      const course = MOCK_COURSES.find(c => c.id === uc.courseId);
-      return { ...course, ...uc };
-    })
-    .filter(c => c.required);
+
 
   const catalogCourses = MOCK_COURSES.filter(c => activeCategory === "All" || c.category === activeCategory);
 
@@ -133,80 +127,7 @@ export function MyTraining() {
         </div>
       </section>
 
-      {/* 3. Required Training */}
-      <section>
-        <div className="mb-3">
-          <h3 className="text-base font-semibold text-slate-800">Required Training</h3>
-          <p className="text-xs text-slate-500">Mandatory compliance courses</p>
-        </div>
-        <div className="bg-white/70 backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs whitespace-nowrap">
-              <thead className="bg-slate-50/50 text-[10px] uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-200">
-                <tr>
-                  <th className="px-4 py-2.5">Course</th>
-                  <th className="px-4 py-2.5">Category</th>
-                  <th className="px-4 py-2.5">Status</th>
-                  <th className="px-4 py-2.5">Due</th>
-                  <th className="px-4 py-2.5 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {requiredCourses.map((course) => (
-                  <tr key={course.id} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${course.thumbnailColor}`}>
-                          <CheckCircle2 className="w-4 h-4 text-white/80" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-slate-800">{course.title}</div>
-                          <div className="text-[10px] text-slate-500">{course.duration} • {course.format}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3">
-                      <span className="text-[10px] font-medium text-slate-600 bg-slate-100 px-2 py-1 rounded-md">{course.category}</span>
-                    </td>
-                    <td className="px-4 py-3">
-                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold ${course.status === "Completed" ? "bg-teal-50 text-brand-teal" :
-                        course.status === "In Progress" ? "bg-blue-50 text-accent-blue" :
-                          course.status === "Expired" ? "bg-red-50 text-accent-red" :
-                            "bg-slate-100 text-slate-500"
-                        }`}>
-                        {course.status}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-slate-600 text-[10px]">
-                      {course.dueDate || "—"}
-                    </td>
-                    <td className="px-4 py-3 text-right">
-                      <button className={`px-3 py-1 rounded-lg text-[10px] font-semibold border transition-colors ${course.status === "Completed" ? "bg-white border-slate-200 text-slate-600 hover:bg-slate-50" :
-                        "bg-brand-teal/10 border-transparent text-brand-teal hover:bg-brand-teal/20"
-                        }`}>
-                        {course.status === "Completed" ? "Review" : course.status === "In Progress" ? "Resume" : "Start"}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
-      {/* 4. My Certifications */}
-      <section>
-        <div className="mb-3">
-          <h3 className="text-base font-semibold text-slate-800">My Certifications</h3>
-          <p className="text-xs text-slate-500">Downloadable proof of training</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {MOCK_CERTIFICATIONS.map(cert => (
-            <CertificateCard key={cert.id} {...cert} />
-          ))}
-        </div>
-      </section>
 
       {/* 5. Course Library */}
       <section>

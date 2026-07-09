@@ -4,9 +4,20 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MyTraining } from "@/components/training/MyTraining";
 import { ManageTraining } from "@/components/training/ManageTraining";
+import { RequiredTraining } from "@/components/training/RequiredTraining";
+import { MyCertifications } from "@/components/training/MyCertifications";
+
+type ViewType = "my-training" | "manage-training" | "required-training" | "my-certifications";
 
 export default function TrainingPage() {
-  const [view, setView] = useState<"my-training" | "manage-training">("my-training");
+  const [view, setView] = useState<ViewType>("my-training");
+
+  const tabs: { id: ViewType; label: string }[] = [
+    { id: "my-training", label: "My Training" },
+    { id: "manage-training", label: "Manage Training" },
+    { id: "required-training", label: "Required Training" },
+    { id: "my-certifications", label: "My Certifications" },
+  ];
 
   return (
     <div className="w-full mx-auto space-y-4">
@@ -18,25 +29,26 @@ export default function TrainingPage() {
         </div>
 
         {/* Toggle */}
-        <div className="flex gap-6 bg-slate-200/60 p-1 rounded-full relative">
-          <div
-            className="absolute top-1 bottom-1 w-1/2 bg-white rounded-full shadow-sm transition-all duration-300 ease-in-out"
-            style={{ left: view === "my-training" ? "4px" : "calc(50% - 4px)" }}
-          />
-          <button
-            onClick={() => setView("my-training")}
-            className={`text-center relative z-10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${view === "my-training" ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
+        <div className="flex bg-slate-200/60 p-1 rounded-full relative overflow-x-auto [&::-webkit-scrollbar]:hidden w-full sm:w-auto">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setView(tab.id)}
+              className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
+                view === tab.id ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
               }`}
-          >
-            My Training
-          </button>
-          <button
-            onClick={() => setView("manage-training")}
-            className={`text-center relative z-10 px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${view === "manage-training" ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
-              }`}
-          >
-            Manage Training
-          </button>
+            >
+              {view === tab.id && (
+                <motion.div
+                  layoutId="training-tab-indicator"
+                  className="absolute inset-0 bg-white rounded-full shadow-sm"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{tab.label}</span>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -52,7 +64,7 @@ export default function TrainingPage() {
           >
             <MyTraining />
           </motion.div>
-        ) : (
+        ) : view === "manage-training" ? (
           <motion.div
             key="manage-training"
             initial={{ opacity: 0, y: 10 }}
@@ -61,6 +73,26 @@ export default function TrainingPage() {
             transition={{ duration: 0.2 }}
           >
             <ManageTraining />
+          </motion.div>
+        ) : view === "required-training" ? (
+          <motion.div
+            key="required-training"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <RequiredTraining />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="my-certifications"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <MyCertifications />
           </motion.div>
         )}
       </AnimatePresence>
