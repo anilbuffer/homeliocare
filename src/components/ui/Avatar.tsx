@@ -1,15 +1,18 @@
+"use client";
+
 import React from "react";
 import { cn } from "./Card";
 
 interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallback?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
 }
 
 const sizeStyles = {
   sm: "w-8 h-8 text-xs",
   md: "w-10 h-10 text-sm",
   lg: "w-12 h-12 text-base",
+  xl: "w-16 h-16 text-xl",
 };
 
 export function Avatar({ fallback, size = "md", className, src, alt, ...props }: AvatarProps) {

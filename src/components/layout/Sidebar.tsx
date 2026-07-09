@@ -68,6 +68,7 @@ export function Sidebar() {
     if (pathname?.startsWith("/training")) return "training";
     if (pathname?.startsWith("/billing")) return "billing";
     if (pathname?.startsWith("/scheduling")) return "scheduling";
+    if (pathname?.startsWith("/clients")) return "clients";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -80,6 +81,8 @@ export function Sidebar() {
       setActiveItem("billing");
     } else if (pathname.startsWith("/scheduling")) {
       setActiveItem("scheduling");
+    } else if (pathname.startsWith("/clients")) {
+      setActiveItem("clients");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -115,6 +118,7 @@ export function Sidebar() {
                 if (item.id === "training") href = "/training";
                 if (item.id === "billing") href = "/billing";
                 if (item.id === "scheduling") href = "/scheduling";
+                if (item.id === "clients") href = "/clients";
 
                 return (
                   <li key={item.id} className="relative">
