@@ -22,14 +22,14 @@ export default function TrainingPage() {
   return (
     <div className="w-full mx-auto space-y-4">
       {/* Header and Toggle */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
         <div>
           <h2 className="text-xl font-bold text-text-primary">Training Center</h2>
           <p className="text-xs text-text-secondary mt-0.5">Compliance, certifications & continuing education</p>
         </div>
 
         {/* Toggle */}
-        <div className="flex bg-slate-200/60 p-1 rounded-full relative overflow-x-auto [&::-webkit-scrollbar]:hidden w-full sm:w-auto">
+        <div className="flex bg-slate-200/60 p-1 rounded-full relative overflow-x-auto [&::-webkit-scrollbar]:hidden w-full lg:w-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}

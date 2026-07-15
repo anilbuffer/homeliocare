@@ -60,7 +60,7 @@ export function MyTraining() {
   return (
     <div className="space-y-6 pb-6">
       {/* 1. KPI Strip */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {[
           { label: "COURSES COMPLETED", value: "4/17", icon: CheckCircle2, color: "text-brand-teal", bg: "bg-teal-50" },
           { label: "COMPLIANCE SCORE", value: "27%", icon: ShieldAlert, color: "text-brand-teal", bg: "bg-teal-50" },
@@ -138,30 +138,30 @@ export function MyTraining() {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6 items-center">
-          <div className="relative w-full sm:w-64 shrink-0">
+        <div className="flex flex-col md:flex-row gap-4 mb-6 items-start md:items-center">
+          <div className="relative w-full md:w-64 shrink-0">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search courses..."
-              className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all shadow-sm hover:shadow-md focus:shadow-md"
             />
           </div>
-          <div className="flex-1 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-            <div className="flex gap-2 min-w-max">
+          <div className="flex-1 w-full">
+            <div className="flex flex-wrap gap-2 md:justify-end lg:justify-start">
               {categories.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${activeCategory === cat
-                    ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-                    : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ease-in-out ${activeCategory === cat
+                    ? "bg-brand-teal text-white shadow-[0_4px_12px_rgba(20,184,166,0.3)] scale-105"
+                    : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:shadow-sm"
                     }`}
                 >
                   {cat}
                 </button>
               ))}
-              <button className="px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 flex items-center gap-1">
+              <button className="px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:shadow-sm transition-all duration-300 ease-in-out flex items-center gap-1.5">
                 <Filter className="w-3 h-3" /> More
               </button>
             </div>
