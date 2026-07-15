@@ -75,6 +75,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/scheduling")) return "scheduling";
     if (pathname?.startsWith("/clients")) return "clients";
     if (pathname?.startsWith("/evv-monitoring")) return "evv-monitoring";
+    if (pathname?.startsWith("/incidents")) return "incidents";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -91,6 +92,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("clients");
     } else if (pathname.startsWith("/evv-monitoring")) {
       setActiveItem("evv-monitoring");
+    } else if (pathname.startsWith("/incidents")) {
+      setActiveItem("incidents");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -146,6 +149,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 if (item.id === "scheduling") href = "/scheduling";
                 if (item.id === "clients") href = "/clients";
                 if (item.id === "evv-monitoring") href = "/evv-monitoring";
+                if (item.id === "incidents") href = "/incidents";
 
                 return (
                   <li key={item.id} className="relative">

@@ -33,16 +33,21 @@ Card.displayName = "Card";
 
 export function CardHeader({
   title,
+  subtitle,
   action,
   className,
 }: {
   title: React.ReactNode;
+  subtitle?: React.ReactNode;
   action?: React.ReactNode;
   className?: string;
 }) {
   return (
     <div className={cn("flex items-center justify-between mb-4", className)}>
-      <h3 className="text-base font-semibold text-text-primary">{title}</h3>
+      <div>
+        <h3 className="text-base font-semibold text-text-primary">{title}</h3>
+        {subtitle && <p className="text-sm text-text-secondary mt-0.5">{subtitle}</p>}
+      </div>
       {action && <div className="text-sm">{action}</div>}
     </div>
   );
