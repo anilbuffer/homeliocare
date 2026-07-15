@@ -25,6 +25,7 @@ export function RequiredTraining() {
             key={course.id}
             {...course}
             actionLabel={course.status === "Completed" ? "Review" : course.status === "In Progress" ? "Resume" : "Start"}
+            onAction={() => window.location.href = `/training/course/${course.id}`}
           />
         ))}
       </div>

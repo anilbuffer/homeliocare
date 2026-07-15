@@ -103,6 +103,7 @@ export function MyTraining() {
                   progress={course.progress}
                   thumbnailColor={course.thumbnailColor}
                   actionLabel="Resume"
+                  onAction={() => window.location.href = `/training/course/${course.id}`}
                 />
               </div>
             ))}
@@ -174,6 +175,7 @@ export function MyTraining() {
               key={course.id}
               {...course}
               actionLabel={course.required ? "Start" : "Enroll"}
+              onAction={() => window.location.href = `/training/course/${course.id}`}
             />
           ))}
         </div>
