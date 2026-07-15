@@ -59,9 +59,9 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
                 className="cursor-pointer outline-none"
               >
                 {data.map((entry, index) => (
-                  <Cell 
-                    key={`cell-${index}`} 
-                    fill={entry.color} 
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={entry.color}
                     opacity={activeIndex === null || activeIndex === index ? 1 : 0.3}
                     className="transition-opacity duration-300 outline-none hover:drop-shadow-md"
                     filter="url(#shadow)"
@@ -84,22 +84,22 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
           </ResponsiveContainer>
           {/* Inner Text Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-             <motion.div 
-               initial={{ scale: 0.8, opacity: 0 }} 
-               animate={{ scale: 1, opacity: 1 }} 
-               transition={{ delay: 0.5, duration: 0.5 }}
-               className="text-center"
-             >
-               <span className="block text-3xl font-black text-slate-800 leading-none">{total}</span>
-               <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1">Total</span>
-             </motion.div>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="text-center"
+            >
+              <span className="block text-3xl font-black text-slate-800 leading-none">{total}</span>
+              <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1">Total</span>
+            </motion.div>
           </div>
         </div>
 
         {/* Custom Legend (Right side, single column, small) */}
         <div className="w-[45%] flex flex-col gap-1 pr-2">
           {data.map((item, i) => (
-            <button 
+            <button
               key={i}
               onClick={() => handleClick(item)}
               onMouseEnter={() => setActiveIndex(i)}
@@ -107,15 +107,15 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
               className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-left group"
             >
               <div className="flex items-center gap-2">
-                <div 
-                  className="w-2.5 h-2.5 rounded-full shadow-sm transition-transform group-hover:scale-125" 
-                  style={{ backgroundColor: item.color }} 
+                <div
+                  className="w-2.5 h-2.5 rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-transform group-hover:scale-125"
+                  style={{ backgroundColor: item.color }}
                 />
                 <span className="text-[11px] font-medium text-slate-600 group-hover:text-slate-900 transition-colors truncate max-w-[90px]">
                   {item.name}
                 </span>
               </div>
-              <span className="text-[10px] font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded-md group-hover:bg-white group-hover:shadow-sm transition-all">
+              <span className="text-[10px] font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded-md group-hover:bg-white group-hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all">
                 {item.value}
               </span>
             </button>

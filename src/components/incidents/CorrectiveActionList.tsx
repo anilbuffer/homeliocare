@@ -38,21 +38,21 @@ export function CorrectiveActionList({ actions }: CorrectiveActionListProps) {
     <div className="space-y-3">
       {localActions.map(action => {
         const isCompleted = action.status === "Completed";
-        
+
         return (
-          <div 
+          <div
             key={action.id}
             className={cn(
               "flex gap-3 p-3 rounded-xl border transition-all duration-300",
-              isCompleted ? "bg-slate-50 border-slate-200" : "bg-white border-brand-teal/20 hover:border-brand-teal/40 shadow-sm"
+              isCompleted ? "bg-slate-50 border-slate-200" : "bg-white border-brand-teal/20 hover:border-brand-teal/40 shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
             )}
           >
             <button
               onClick={() => toggleAction(action.id)}
               className={cn(
                 "w-5 h-5 rounded-md border flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300",
-                isCompleted 
-                  ? "bg-brand-teal border-brand-teal text-white" 
+                isCompleted
+                  ? "bg-brand-teal border-brand-teal text-white"
                   : "border-slate-300 bg-white hover:border-brand-teal"
               )}
             >
@@ -60,7 +60,7 @@ export function CorrectiveActionList({ actions }: CorrectiveActionListProps) {
                 <Check className="w-3.5 h-3.5 animate-in zoom-in spin-in-12 duration-300" />
               )}
             </button>
-            
+
             <div className="flex-1 min-w-0">
               <div className={cn(
                 "text-sm font-medium transition-colors duration-300",
@@ -68,7 +68,7 @@ export function CorrectiveActionList({ actions }: CorrectiveActionListProps) {
               )}>
                 {action.description}
               </div>
-              
+
               <div className="flex items-center gap-4 mt-2">
                 <div className="flex items-center gap-1.5">
                   <div className="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[9px] font-bold text-slate-600">
@@ -76,10 +76,10 @@ export function CorrectiveActionList({ actions }: CorrectiveActionListProps) {
                   </div>
                   <span className="text-xs text-slate-500">{action.ownerName}</span>
                 </div>
-                
+
                 <div className="flex items-center gap-1 text-xs text-slate-500">
                   <Calendar className="w-3.5 h-3.5" />
-                  {isCompleted && action.completedDate 
+                  {isCompleted && action.completedDate
                     ? `Done ${new Date(action.completedDate).toLocaleDateString()}`
                     : `Due ${new Date(action.dueDate).toLocaleDateString()}`
                   }

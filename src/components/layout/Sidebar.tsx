@@ -74,6 +74,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/billing")) return "billing";
     if (pathname?.startsWith("/scheduling")) return "scheduling";
     if (pathname?.startsWith("/clients")) return "clients";
+    if (pathname?.startsWith("/caregivers")) return "caregivers";
     if (pathname?.startsWith("/evv-monitoring")) return "evv-monitoring";
     if (pathname?.startsWith("/incidents")) return "incidents";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
@@ -90,6 +91,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("scheduling");
     } else if (pathname.startsWith("/clients")) {
       setActiveItem("clients");
+    } else if (pathname.startsWith("/caregivers")) {
+      setActiveItem("caregivers");
     } else if (pathname.startsWith("/evv-monitoring")) {
       setActiveItem("evv-monitoring");
     } else if (pathname.startsWith("/incidents")) {
@@ -148,6 +151,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 if (item.id === "billing") href = "/billing";
                 if (item.id === "scheduling") href = "/scheduling";
                 if (item.id === "clients") href = "/clients";
+                if (item.id === "caregivers") href = "/caregivers";
                 if (item.id === "evv-monitoring") href = "/evv-monitoring";
                 if (item.id === "incidents") href = "/incidents";
 

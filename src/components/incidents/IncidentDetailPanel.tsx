@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  X, AlertTriangle, FileText, Download, RotateCcw, Lock, 
-  MapPin, ShieldCheck, Link2, Clock, CheckCircle2, AlertCircle 
+import {
+  X, AlertTriangle, FileText, Download, RotateCcw, Lock,
+  MapPin, ShieldCheck, Link2, Clock, CheckCircle2, AlertCircle
 } from "lucide-react";
 import { Incident } from "@/types/incidents";
 import { Badge } from "@/components/ui/Badge";
@@ -58,7 +58,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
         >
           {/* Header */}
           <div className="bg-white border-b border-slate-200 p-6 flex-shrink-0 relative z-10">
-            <button 
+            <button
               onClick={onClose}
               className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors"
             >
@@ -80,7 +80,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 </div>
               )}
             </div>
-            
+
             <h2 className="text-2xl font-bold text-slate-800 mb-1">{incident.type}</h2>
             <div className="text-sm text-slate-500 flex items-center gap-2">
               <span>ID: {incident.id}</span>
@@ -89,15 +89,15 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
 
             <div className="flex items-center gap-3 mt-6">
-              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 hover:border-brand-teal text-slate-700 hover:text-brand-teal text-sm font-medium rounded-xl shadow-sm transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 hover:border-brand-teal text-slate-700 hover:text-brand-teal text-sm font-medium rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-colors">
                 <Download className="w-4 h-4" />
                 Generate PDF
               </button>
-              
+
               {isClosed && (
-                <button 
+                <button
                   onClick={() => setIsReopening(!isReopening)}
-                  className="flex items-center gap-2 px-4 py-2 bg-white border border-accent-amber text-accent-amber hover:bg-accent-amber/5 text-sm font-medium rounded-xl shadow-sm transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-white border border-accent-amber text-accent-amber hover:bg-accent-amber/5 text-sm font-medium rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-colors"
                 >
                   <RotateCcw className="w-4 h-4" />
                   Reopen Incident
@@ -108,11 +108,11 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
           {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
-            
+
             {/* Reopen Form Overlay/Section */}
             <AnimatePresence>
               {isReopening && (
-                <motion.div 
+                <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -120,7 +120,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 >
                   <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl mb-6">
                     <h4 className="text-sm font-bold text-amber-900 mb-2">Reopen Incident</h4>
-                    <textarea 
+                    <textarea
                       className="w-full text-sm p-3 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 mb-3"
                       placeholder="Reason for reopening (required)..."
                       rows={3}
@@ -138,7 +138,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Pattern Detected Callout */}
             {incident.patternDetected && (
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="bg-accent-amber/10 border border-accent-amber p-4 rounded-xl flex items-start gap-3"
@@ -147,7 +147,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 <div>
                   <h4 className="text-sm font-bold text-amber-900">Pattern Detected</h4>
                   <p className="text-xs text-amber-800 mt-1 mb-2">{incident.patternDetected}</p>
-                  <button className="text-xs font-semibold bg-white text-accent-amber px-3 py-1.5 rounded-lg border border-accent-amber/30 hover:bg-accent-amber hover:text-white transition-colors shadow-sm">
+                  <button className="text-xs font-semibold bg-white text-accent-amber px-3 py-1.5 rounded-lg border border-accent-amber/30 hover:bg-accent-amber hover:text-white transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                     Flag on Client Profile
                   </button>
                 </div>
@@ -155,14 +155,14 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             )}
 
             {/* Workflow Tracker */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <h3 className="text-sm font-bold text-slate-800 mb-2">Workflow Status</h3>
               <WorkflowStepper workflow={incident.workflow} />
             </div>
 
             {/* Details Grid */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <h3 className="text-sm font-bold text-slate-800 mb-4">People Involved</h3>
                 <div className="space-y-4">
                   {incident.peopleInvolved.map((person, i) => (
@@ -179,7 +179,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col gap-4">
+              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col gap-4">
                 <div>
                   <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> Incident Time</div>
                   <div className="text-sm font-medium text-slate-800">{format(new Date(incident.incidentDate), "MMM d, yyyy - h:mm a")}</div>
@@ -198,7 +198,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <h3 className="text-sm font-bold text-slate-800 mb-3">Incident Description</h3>
               <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap bg-slate-50 p-4 rounded-lg border border-slate-100">
                 {incident.description}
@@ -206,7 +206,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
 
             {/* Regulatory Reporting */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-brand-teal" />
@@ -214,13 +214,13 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 </h3>
                 <Badge variant={
                   incident.regulatoryReport.status === "Overdue" ? "error" :
-                  incident.regulatoryReport.status === "Submitted" ? "success" :
-                  incident.regulatoryReport.status === "Pending" ? "warning" : "default"
+                    incident.regulatoryReport.status === "Submitted" ? "success" :
+                      incident.regulatoryReport.status === "Pending" ? "warning" : "default"
                 }>
                   {incident.regulatoryReport.status}
                 </Badge>
               </div>
-              
+
               {incident.regulatoryReport.required ? (
                 <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-100">
                   <div>
@@ -256,7 +256,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Linked Visit */}
             {incident.linkedVisit && (
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex items-start justify-between group cursor-pointer hover:border-brand-teal/50 transition-colors">
+              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-start justify-between group cursor-pointer hover:border-brand-teal/50 transition-colors">
                 <div>
                   <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-2">
                     <Link2 className="w-4 h-4 text-brand-teal" />
@@ -273,7 +273,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                     )}
                     <span className="text-xs text-slate-500 flex items-center gap-1">
                       <Clock className="w-3 h-3" />
-                      {incident.linkedVisit.clockInTime ? format(new Date(incident.linkedVisit.clockInTime), "h:mm a") : "--"} 
+                      {incident.linkedVisit.clockInTime ? format(new Date(incident.linkedVisit.clockInTime), "h:mm a") : "--"}
                       {" - "}
                       {incident.linkedVisit.clockOutTime ? format(new Date(incident.linkedVisit.clockOutTime), "h:mm a") : "--"}
                     </span>
@@ -287,7 +287,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Corrective Actions */}
             {incident.correctiveActions && incident.correctiveActions.length > 0 && (
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <h3 className="text-sm font-bold text-slate-800 mb-4">Corrective Action Plan</h3>
                 <CorrectiveActionList actions={incident.correctiveActions} />
               </div>

@@ -36,7 +36,7 @@ export function Header({ viewMode, setViewMode, openShiftsCount }: HeaderProps) 
           ))}
         </div>
 
-        <button className="inline-flex items-center gap-2 bg-brand-teal hover:bg-[#0c8f72] text-white px-5 py-2 rounded-full text-sm font-semibold shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-all active:scale-95">
+        <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
           <Plus className="w-4 h-4" />
           Create Shift
         </button>
