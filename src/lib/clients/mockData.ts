@@ -177,7 +177,7 @@ export const mockClients: Record<string, Client> = {
     address: "142 Maple Street, Hillside, NJ 07205",
     primaryDiagnosis: "Congestive Heart Failure (CHF)",
     riskLevel: "High",
-    avatarUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&h=150&auto=format&fit=crop",
+    avatarUrl: "/avatars/eleanor.png?v=2",
     
     demographics: {
       dob: "1944-03-12",
@@ -330,7 +330,7 @@ export const mockClients: Record<string, Client> = {
     address: "88 Oak Lane, Apt 4B, Springfield, MA 01103",
     primaryDiagnosis: "Post-Stroke Recovery",
     riskLevel: "High",
-    avatarUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&h=150&auto=format&fit=crop",
+    avatarUrl: "/avatars/arthur.png?v=2",
     
     demographics: {
       dob: "1950-11-05",

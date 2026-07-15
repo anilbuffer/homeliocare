@@ -27,7 +27,7 @@ export function AssignedClientsTab({ caregiver }: { caregiver: Caregiver }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {assignedClients.map((client) => (
             <Card key={client.id} className="p-0 overflow-hidden hover:border-brand-teal/30 hover:shadow-md transition-all group">
-              <div className="p-5">
+              <div className="p-4">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="lg" />
@@ -55,7 +55,7 @@ export function AssignedClientsTab({ caregiver }: { caregiver: Caregiver }) {
                   </div>
                 </div>
               </div>
-              <Link href={`/clients/${client.id}`} className="block w-full text-center py-3 bg-slate-50 hover:bg-brand-teal text-brand-teal hover:text-white font-medium text-sm transition-colors border-t border-slate-100 group-hover:border-transparent flex items-center justify-center gap-2">
+              <Link href={`/clients/${client.id}`} className="block w-full text-center py-3 rounded-xl bg-slate-100 hover:bg-brand-teal text-brand-teal hover:text-white font-medium text-sm transition-colors border border-slate-200 group-hover:border-transparent flex items-center justify-center gap-2">
                 View Client Profile <ArrowRight className="w-4 h-4" />
               </Link>
             </Card>

@@ -15,7 +15,7 @@ export const mockIncidents: Incident[] = [
     location: "Client Home - Bathroom",
     description: "Client slipped in the bathroom while transferring from the shower. Caregiver was present and assisted, but client hit their arm on the sink counter.",
     peopleInvolved: [
-      { id: "c-1", name: "Robert M.", role: "Client", avatar: "https://i.pravatar.cc/150?u=c1" },
+      { id: "c-1", name: "Robert M.", role: "Client", avatar: "/avatars/arthur.png?v=2" },
       { id: "cg-1", name: "Sarah J.", role: "Caregiver", avatar: "https://i.pravatar.cc/150?u=cg1" }
     ],
     workflow: [
@@ -42,7 +42,7 @@ export const mockIncidents: Incident[] = [
     location: "Client Home - Living Room",
     description: "Incorrect dosage of blood pressure medication was administered. Client experienced dizziness.",
     peopleInvolved: [
-      { id: "c-2", name: "Helen S.", role: "Client", avatar: "https://i.pravatar.cc/150?u=c2" },
+      { id: "c-2", name: "Helen S.", role: "Client", avatar: "/avatars/eleanor.png?v=2" },
       { id: "cg-2", name: "Marcus T.", role: "Caregiver", avatar: "https://i.pravatar.cc/150?u=cg2" }
     ],
     workflow: [
