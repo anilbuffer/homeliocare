@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard,
   CalendarDays,
@@ -99,15 +99,21 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   return (
     <>
       {/* Mobile overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-slate-900/50 z-40 md:hidden backdrop-blur-sm transition-opacity"
-          onClick={onClose}
-        />
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 bg-slate-900/60 z-40 md:hidden backdrop-blur-sm"
+            onClick={onClose}
+          />
+        )}
+      </AnimatePresence>
 
       <aside className={clsx(
-        "w-[260px] flex-shrink-0 bg-sidebar-bg text-white flex flex-col h-screen fixed top-0 left-0 z-50 transition-transform duration-300 md:translate-x-0 md:sticky",
+        "w-[260px] flex-shrink-0 bg-sidebar-bg text-white flex flex-col h-screen fixed top-0 left-0 z-50 transition-transform duration-300 ease-in-out md:translate-x-0 md:sticky shadow-[4px_0_24px_rgba(0,0,0,0.15)] md:shadow-none",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
       {/* Logo Area */}

@@ -19,7 +19,7 @@ export function RequiredTraining() {
         <p className="text-sm text-slate-500">Mandatory compliance courses you need to complete</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {requiredCourses.map((course: any) => (
           <CourseCard
             key={course.id}

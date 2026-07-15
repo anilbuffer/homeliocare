@@ -41,7 +41,7 @@ function BoardColumn({ id, title, dotColor, count, shifts, onShiftClick }: Board
   const { setNodeRef, isOver } = useDroppable({ id });
 
   return (
-    <div className="flex flex-col w-80 shrink-0">
+    <div className="flex flex-col w-[85vw] sm:w-80 max-w-[320px] shrink-0">
       <div className="flex items-center justify-between mb-4 px-1">
         <div className="flex items-center gap-2">
           <div className={clsx("w-2 h-2 rounded-full", dotColor)} />
@@ -133,7 +133,7 @@ export function BoardView({ shifts, onShiftClick, onShiftStatusChange }: BoardVi
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex gap-6 overflow-x-auto pb-8 snap-x">
+      <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {COLUMNS.map((col) => {
           const colShifts = shifts.filter((s) => s.status === col.id);
           return (

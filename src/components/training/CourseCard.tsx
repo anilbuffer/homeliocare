@@ -87,7 +87,7 @@ export function CourseCard({
           )}
 
           <button
-            className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${progress && progress > 0
+            className={`w-full py-2.5 sm:py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${progress && progress > 0
               ? "bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}

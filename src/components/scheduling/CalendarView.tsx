@@ -78,7 +78,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
       <div className="min-w-[1000px]">
         {/* Header Row */}
         <div className="flex border-b border-slate-200 bg-slate-50">
-          <div className="w-64 shrink-0 py-3 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider border-r border-slate-200">
+          <div className="w-32 sm:w-64 shrink-0 py-3 px-2 sm:px-4 text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider border-r border-slate-200 sticky left-0 z-20 bg-slate-50/95 backdrop-blur-sm shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
             Caregiver
           </div>
           <div className="flex-1 relative flex">
@@ -94,13 +94,13 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
 
         {/* Unfilled Row */}
         <div className="flex border-b border-slate-200 hover:bg-slate-50 transition-colors">
-          <div className="w-64 shrink-0 py-4 px-4 border-r border-slate-200 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs">
+          <div className="w-32 sm:w-64 shrink-0 py-4 px-2 sm:px-4 border-r border-slate-200 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 sticky left-0 z-10 bg-white/95 backdrop-blur-sm shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
               !
             </div>
-            <div>
-              <div className="font-semibold text-red-600 text-sm">Unfilled</div>
-              <div className="text-xs text-slate-500">{unfilledShifts.length} shifts</div>
+            <div className="overflow-hidden w-full">
+              <div className="font-semibold text-red-600 text-xs sm:text-sm truncate">Unfilled</div>
+              <div className="text-[10px] sm:text-xs text-slate-500 truncate">{unfilledShifts.length} shifts</div>
             </div>
           </div>
           <div className="flex-1 relative">
@@ -133,14 +133,14 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
           const caregiverShifts = shifts.filter(s => s.assignedCaregiverId === caregiver.id);
           
           return (
-            <div key={caregiver.id} className="flex border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors">
-              <div className="w-64 shrink-0 py-4 px-4 border-r border-slate-200 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold text-xs uppercase">
+            <div key={caregiver.id} className="flex border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors group">
+              <div className="w-32 sm:w-64 shrink-0 py-4 px-2 sm:px-4 border-r border-slate-200 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 sticky left-0 z-10 bg-white/95 backdrop-blur-sm shadow-[2px_0_10px_rgba(0,0,0,0.02)] group-hover:bg-slate-50/95 transition-colors">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center font-bold text-xs uppercase shrink-0">
                   {caregiver.name.substring(0, 2)}
                 </div>
-                <div>
-                  <div className="font-semibold text-slate-800 text-sm">{caregiver.name}</div>
-                  <div className="text-xs text-slate-500">{caregiver.credentials.join(" • ")}</div>
+                <div className="overflow-hidden w-full">
+                  <div className="font-semibold text-slate-800 text-xs sm:text-sm truncate">{caregiver.name}</div>
+                  <div className="text-[10px] sm:text-xs text-slate-500 truncate">{caregiver.credentials.join(" • ")}</div>
                 </div>
               </div>
               <div className="flex-1 relative">
