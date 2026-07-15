@@ -92,19 +92,19 @@ export function CourseOverviewHeader({ course, progress }: CourseOverviewHeaderP
         <div className="flex flex-col sm:flex-row gap-6 items-center justify-between border-t border-slate-100 pt-6 mt-auto">
           <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600 font-medium">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+              <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <Clock className="w-4 h-4 text-slate-400" />
               </div>
               <span>{course.duration}</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+              <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <BarChart className="w-4 h-4 text-slate-400" />
               </div>
               <span>{course.passRateRequired}% to pass</span>
             </div>
             <div className="flex items-center gap-2 hidden sm:flex">
-              <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-sm">
+              <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <ShieldCheck className="w-4 h-4 text-slate-400" />
               </div>
               <span>{course.caregiversCompleted} completed</span>

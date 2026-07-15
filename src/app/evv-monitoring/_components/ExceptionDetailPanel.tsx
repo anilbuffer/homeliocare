@@ -50,7 +50,7 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
             <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
               Exception Review
             </h2>
-            <button 
+            <button
               onClick={onClose}
               className="p-2 hover:bg-slate-100 rounded-full transition-colors"
             >
@@ -104,7 +104,7 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
                   </div>
                   <span className="text-sm font-semibold text-slate-900">{exception.scheduledTime.start} - {exception.scheduledTime.end}</span>
                 </div>
-                
+
                 <div className="flex items-center justify-between bg-amber-50/70 p-2.5 rounded-lg">
                   <div className="flex items-center gap-1.5 text-amber-700">
                     <Clock className="w-3.5 h-3.5" />
@@ -123,23 +123,23 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
                 <h3 className="text-[11px] font-bold text-slate-900 mb-2 uppercase tracking-wider">Location Mismatch</h3>
                 <div className="h-32 bg-slate-900 rounded-lg overflow-hidden relative flex items-center justify-center">
                   <div className="absolute inset-0 opacity-40 bg-[url('https://maps.googleapis.com/maps/api/staticmap?center=34.0522,-118.2437&zoom=14&size=400x200&style=feature:all|element:labels|visibility:off&style=feature:water|element:geometry|color:0x1a2133&style=feature:landscape|element:geometry|color:0x0e1424&style=feature:road|element:geometry|color:0x202b40')] bg-cover bg-center" />
-                  
+
                   {/* Fake map markers for effect */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8">
                     <div className="flex flex-col items-center">
                       <div className="bg-brand-teal p-1 rounded-full mb-0.5 border border-white">
                         <MapPin className="w-3.5 h-3.5 text-white" />
                       </div>
-                      <span className="text-[9px] font-bold text-brand-teal bg-white px-1 py-0.5 rounded shadow-sm">Expected</span>
+                      <span className="text-[9px] font-bold text-brand-teal bg-white px-1 py-0.5 rounded shadow-[0_6px_32px_rgba(0,0,0,0.06)]">Expected</span>
                     </div>
-                    
+
                     <div className="w-8 border-t border-dashed border-red-500/50 absolute left-6 top-3 -z-10" />
-                    
+
                     <div className="flex flex-col items-center">
                       <div className="bg-red-500 p-1 rounded-full mb-0.5 border border-white">
                         <MapPin className="w-3.5 h-3.5 text-white" />
                       </div>
-                      <span className="text-[9px] font-bold text-red-600 bg-white px-1 py-0.5 rounded shadow-sm">Actual</span>
+                      <span className="text-[9px] font-bold text-red-600 bg-white px-1 py-0.5 rounded shadow-[0_6px_32px_rgba(0,0,0,0.06)]">Actual</span>
                     </div>
                   </div>
                 </div>
@@ -161,8 +161,8 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
                     onClick={() => setResolveAction(action.id)}
                     className={clsx(
                       "w-full text-left p-2.5 rounded-lg flex items-center justify-between transition-colors",
-                      resolveAction === action.id 
-                        ? "bg-brand-teal/10 text-brand-teal" 
+                      resolveAction === action.id
+                        ? "bg-brand-teal/10 text-brand-teal"
                         : "bg-slate-50 hover:bg-slate-100 text-slate-700"
                     )}
                   >
@@ -175,13 +175,13 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
                 ))}
               </div>
             </div>
-            
+
             {/* Audit Trail */}
             <div className="pt-3 border-t border-slate-100/50">
-               <div className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
-                 <CheckCircle2 className="w-3.5 h-3.5" />
-                 Action will be recorded in the EVV audit log.
-               </div>
+              <div className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                Action will be recorded in the EVV audit log.
+              </div>
             </div>
           </div>
 

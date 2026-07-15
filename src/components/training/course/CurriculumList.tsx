@@ -160,13 +160,13 @@ export function CurriculumList({ course, progress }: CurriculumListProps) {
               </div>
 
               {isPreviousCompleted && !progress?.quizPassed && (
-                <button className="px-6 py-2.5 bg-brand-teal text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow-md hover:bg-[#0c8c70] transition-all active:scale-95">
+                <button className="px-6 py-2.5 bg-brand-teal text-white text-sm font-semibold rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md hover:bg-[#0c8c70] transition-all active:scale-95">
                   Take Quiz
                 </button>
               )}
               {progress?.quizPassed && (
                 <div className="flex items-center gap-4">
-                  <span className="px-4 py-1.5 bg-green-50 text-green-700 text-sm font-bold rounded-xl border border-green-200 shadow-sm flex items-center gap-2">
+                  <span className="px-4 py-1.5 bg-green-50 text-green-700 text-sm font-bold rounded-xl border border-green-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 fill-green-600 text-white" />
                     Score: {progress.quizScore}%
                   </span>
@@ -190,7 +190,7 @@ export function CurriculumList({ course, progress }: CurriculumListProps) {
                       const isCorrect = userAnswer === q.correctAnswerIndex;
 
                       return (
-                        <div key={q.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <div key={q.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                           <div className="flex items-start gap-3 mb-4">
                             <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-500 text-xs font-bold mt-0.5">
                               {qIdx + 1}

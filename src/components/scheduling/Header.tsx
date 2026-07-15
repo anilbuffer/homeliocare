@@ -27,7 +27,7 @@ export function Header({ viewMode, setViewMode, openShiftsCount }: HeaderProps) 
               className={clsx(
                 "px-5 py-1.5 rounded-full text-sm font-medium transition-all",
                 viewMode === mode
-                  ? "bg-brand-teal text-white shadow-sm"
+                  ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                   : "text-slate-500 hover:text-slate-800"
               )}
             >
@@ -36,7 +36,7 @@ export function Header({ viewMode, setViewMode, openShiftsCount }: HeaderProps) 
           ))}
         </div>
 
-        <button className="inline-flex items-center gap-2 bg-brand-teal hover:bg-[#0c8f72] text-white px-5 py-2 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-all active:scale-95">
+        <button className="inline-flex items-center gap-2 bg-brand-teal hover:bg-[#0c8f72] text-white px-5 py-2 rounded-full text-sm font-semibold shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-all active:scale-95">
           <Plus className="w-4 h-4" />
           Create Shift
         </button>

@@ -34,14 +34,13 @@ export default function TrainingPage() {
             <button
               key={tab.id}
               onClick={() => setView(tab.id)}
-              className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${
-                view === tab.id ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
-              }`}
+              className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors whitespace-nowrap ${view === tab.id ? "text-slate-800" : "text-slate-500 hover:text-slate-700"
+                }`}
             >
               {view === tab.id && (
                 <motion.div
                   layoutId="training-tab-indicator"
-                  className="absolute inset-0 bg-white rounded-full shadow-sm"
+                  className="absolute inset-0 bg-white rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                   initial={false}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />

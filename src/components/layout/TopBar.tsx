@@ -43,10 +43,10 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
           <input
             type="text"
             placeholder="Search patients, caregivers..."
-            className="w-[200px] lg:w-[280px] h-10 pl-10 pr-4 bg-white border border-border-subtle rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:border-brand-teal transition-all duration-300 shadow-sm hover:shadow"
+            className="w-[200px] lg:w-[280px] h-10 pl-10 pr-4 bg-white border border-border-subtle rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:border-brand-teal transition-all duration-300 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow"
           />
         </div>
-        
+
         {/* Mobile Search Icon */}
         <button className="md:hidden p-2 rounded-full text-slate-500 hover:bg-slate-200 transition-colors">
           <Search className="w-5 h-5" />

@@ -65,7 +65,7 @@ export function ReadingLessonView({ lesson, isCompleted, onComplete }: ReadingLe
           className={`flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all ${isCompleted
             ? "bg-brand-teal/10 text-brand-teal border border-brand-teal/20"
             : scrollProgress >= 95
-              ? "bg-brand-teal text-white shadow-sm hover:bg-brand-teal/90 hover:shadow-md"
+              ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:bg-brand-teal/90 hover:shadow-md"
               : "bg-slate-200 text-slate-400 cursor-not-allowed"
             }`}
         >

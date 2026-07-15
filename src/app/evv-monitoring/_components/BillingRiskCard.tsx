@@ -46,7 +46,7 @@ export function BillingRiskCard({ totalRisk, likelyDenied, needsReview }: Billin
         </div>
 
         <div className="mt-auto">
-          <button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2">
+          <button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-colors flex items-center justify-center gap-2">
             <AlertTriangle className="w-4 h-4" />
             Resolve Before Billing
           </button>

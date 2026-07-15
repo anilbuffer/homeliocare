@@ -52,11 +52,11 @@ export default function EVVMonitoringPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-white border border-slate-200 text-slate-700 rounded-lg font-semibold shadow-sm hover:bg-slate-50 transition-colors">
+            <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-white border border-slate-200 text-slate-700 rounded-lg font-semibold shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:bg-slate-50 transition-colors">
               <CalendarIcon className="w-3.5 h-3.5 text-slate-400" />
               This Week
             </button>
-            <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-brand-teal text-white rounded-lg font-bold shadow-sm hover:bg-brand-teal/90 transition-colors">
+            <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-brand-teal text-white rounded-lg font-bold shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:bg-brand-teal/90 transition-colors">
               <Download className="w-3.5 h-3.5" />
               Export Report
             </button>

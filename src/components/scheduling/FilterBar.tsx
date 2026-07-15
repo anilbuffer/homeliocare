@@ -117,7 +117,7 @@ export function FilterBar({
             className={clsx(
               "flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-all",
               layoutMode === "Calendar"
-                ? "bg-brand-teal text-white shadow-sm"
+                ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                 : "text-slate-500 hover:text-slate-800"
             )}
           >
@@ -129,7 +129,7 @@ export function FilterBar({
             className={clsx(
               "flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-all",
               layoutMode === "Board"
-                ? "bg-brand-teal text-white shadow-sm"
+                ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                 : "text-slate-500 hover:text-slate-800"
             )}
           >

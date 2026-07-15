@@ -18,7 +18,7 @@ export function MyTraining() {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
       const maxScroll = scrollWidth - clientWidth;
-      
+
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < maxScroll - 1); // -1 for rounding errors
 
@@ -88,7 +88,7 @@ export function MyTraining() {
           <p className="text-xs text-slate-500">Pick up where you left off</p>
         </div>
         <div className="relative">
-          <div 
+          <div
             ref={scrollContainerRef}
             onScroll={handleScroll}
             className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
@@ -110,18 +110,18 @@ export function MyTraining() {
           </div>
           {/* Scroll indicators */}
           <div className="flex items-center justify-between mt-2 px-2 text-slate-400">
-            <ChevronLeft 
-              className={`w-5 h-5 transition-colors ${canScrollLeft ? 'cursor-pointer hover:text-slate-700 text-slate-500' : 'opacity-30 cursor-not-allowed'}`} 
+            <ChevronLeft
+              className={`w-5 h-5 transition-colors ${canScrollLeft ? 'cursor-pointer hover:text-slate-700 text-slate-500' : 'opacity-30 cursor-not-allowed'}`}
               onClick={() => scroll('left')}
             />
             <div className="h-1 flex-1 mx-4 bg-slate-200 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="w-1/3 h-full bg-slate-400 rounded-full transition-transform duration-100 ease-out"
                 style={{ transform: `translateX(${scrollProgress * 2}%)` }}
               ></div>
             </div>
-            <ChevronRight 
-              className={`w-5 h-5 transition-colors ${canScrollRight ? 'cursor-pointer hover:text-slate-700 text-slate-500' : 'opacity-30 cursor-not-allowed'}`} 
+            <ChevronRight
+              className={`w-5 h-5 transition-colors ${canScrollRight ? 'cursor-pointer hover:text-slate-700 text-slate-500' : 'opacity-30 cursor-not-allowed'}`}
               onClick={() => scroll('right')}
             />
           </div>
@@ -154,7 +154,7 @@ export function MyTraining() {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${activeCategory === cat
-                    ? "bg-brand-teal text-white shadow-sm"
+                    ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                     : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                 >

@@ -35,7 +35,7 @@ export function OffenderRow({ offender }: OffenderRowProps) {
         </div>
 
         <div className={clsx(
-          "w-8 h-8 rounded-full flex items-center justify-center shadow-sm border",
+          "w-8 h-8 rounded-full flex items-center justify-center shadow-[0_6px_32px_rgba(0,0,0,0.06)] border",
           offender.trend === "worsening" ? "bg-red-50 text-red-600 border-red-100" :
             offender.trend === "improving" ? "bg-emerald-50 text-emerald-600 border-emerald-100" :
               "bg-slate-50 text-slate-400 border-slate-200"

@@ -7,7 +7,7 @@ import { Sparkles, MapPin } from "lucide-react";
 
 import { KpiStrip } from "@/components/dashboard/KpiStrip";
 import { VisitsChart } from "@/components/dashboard/VisitsChart";
-import { ClientSatisfaction } from "@/components/dashboard/ClientSatisfaction"; 
+import { ClientSatisfaction } from "@/components/dashboard/ClientSatisfaction";
 import { LiveVisitFeed } from "@/components/dashboard/LiveVisitFeed";
 import { RecentIncidents } from "@/components/dashboard/RecentIncidents";
 import { TopCaregivers } from "@/components/dashboard/TopCaregivers";
@@ -51,11 +51,11 @@ export default function DashboardPage() {
           <p className="text-sm text-text-secondary mt-1">{today}</p>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/caregivers-tracker" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all text-slate-700 px-4 py-2.5 rounded-full text-sm font-medium shadow-sm hover:shadow">
+          <Link href="/caregivers-tracker" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 active:scale-95 transition-all text-slate-700 px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow">
             <MapPin className="w-4 h-4 text-brand-teal" />
             Track Caregivers
           </Link>
-          <button className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-sm hover:shadow-md">
+          <button className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md">
             <Sparkles className="w-4 h-4 text-brand-teal" />
             AI Briefing
           </button>

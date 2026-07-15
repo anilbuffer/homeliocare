@@ -202,7 +202,7 @@ export function ManageTraining() {
                 onClick={() => setRemindersOn(!remindersOn)}
                 className={`w-12 h-6 rounded-full p-1 transition-colors relative flex items-center ${remindersOn ? "bg-brand-teal" : "bg-slate-300"}`}
               >
-                <div className={`w-4 h-4 bg-white rounded-full shadow-sm transition-transform absolute ${remindersOn ? "translate-x-6" : "translate-x-0"}`} />
+                <div className={`w-4 h-4 bg-white rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-transform absolute ${remindersOn ? "translate-x-6" : "translate-x-0"}`} />
               </button>
               <span className={`text-xs font-bold ${remindersOn ? "text-brand-teal" : "text-slate-400"}`}>{remindersOn ? "ON" : "OFF"}</span>
             </div>
@@ -266,7 +266,7 @@ export function ManageTraining() {
             <h3 className="text-base font-semibold text-slate-800">Course Library</h3>
             <p className="text-xs text-slate-500">Author and manage the course catalog</p>
           </div>
-          <button className="inline-flex items-center gap-2 bg-brand-teal hover:bg-[#0c8a6f] text-white px-3 py-1.5 rounded-lg text-xs font-medium shadow-sm hover:shadow transition-all">
+          <button className="inline-flex items-center gap-2 bg-brand-teal hover:bg-[#0c8a6f] text-white px-3 py-1.5 rounded-lg text-xs font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow transition-all">
             <Plus className="w-3 h-3" /> Create Course
           </button>
         </div>

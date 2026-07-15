@@ -28,7 +28,7 @@ export function BottomGlance() {
           <div className="flex-1 min-w-0">
             <div className="text-[12px] font-medium text-text-secondary leading-tight mb-1 truncate">Caregiver Util.</div>
             <div className="font-bold text-2xl text-slate-800 tracking-tight leading-none mb-1.5">87%</div>
-            <div className="text-[11px] font-semibold text-text-secondary inline-flex px-1.5 py-0.5 rounded-md bg-white/60 shadow-sm border border-white/50">Target: 85%</div>
+            <div className="text-[11px] font-semibold text-text-secondary inline-flex px-1.5 py-0.5 rounded-md bg-white/60 shadow-[0_6px_32px_rgba(0,0,0,0.06)] border border-white/50">Target: 85%</div>
           </div>
         </div>
 

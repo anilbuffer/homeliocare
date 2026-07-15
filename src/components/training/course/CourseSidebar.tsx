@@ -114,9 +114,9 @@ export function CourseSidebar({ course, progress, activeLessonId, onSelectLesson
             onClick={() => isPreviousCompleted && onSelectQuiz()}
             disabled={!isPreviousCompleted}
             className={`w-full text-left px-4 py-3.5 rounded-xl border-2 flex items-center gap-4 transition-all ${isQuizActive
-              ? "border-brand-teal bg-brand-teal/5 shadow-sm"
+              ? "border-brand-teal bg-brand-teal/5 shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
               : isPreviousCompleted
-                ? "border-slate-200 hover:border-brand-teal/30 hover:shadow-sm bg-white"
+                ? "border-slate-200 hover:border-brand-teal/30 hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] bg-white"
                 : "border-slate-100 bg-slate-50 opacity-50 cursor-not-allowed"
               }`}
           >

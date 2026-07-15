@@ -25,7 +25,7 @@ export function ShiftModal({
   if (!shift) return null;
 
   const isUnfilled = shift.status === "Unfilled";
-  
+
   const formatTime = (iso: string) => {
     try {
       return format(parseISO(iso), "h:mm a");
@@ -133,14 +133,14 @@ export function ShiftModal({
                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
                   {isUnfilled ? "Smart Match Suggestions" : "Assigned Caregiver"}
                 </h3>
-                
+
                 {isUnfilled ? (
                   <div className="space-y-3">
                     {suggestedCaregivers.map((cg, idx) => (
                       <div key={cg.id} className="bg-white border border-slate-200 rounded-xl p-3 flex items-center justify-between hover:border-brand-teal/50 transition-colors">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">
-                            {cg.name.substring(0,2).toUpperCase()}
+                            {cg.name.substring(0, 2).toUpperCase()}
                           </div>
                           <div>
                             <div className="font-medium text-slate-800 text-sm flex items-center gap-2">
@@ -170,7 +170,7 @@ export function ShiftModal({
                   <div className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-full bg-brand-teal/20 flex items-center justify-center font-bold text-brand-teal text-lg">
-                        {shift.assignedCaregiverName?.substring(0,2).toUpperCase()}
+                        {shift.assignedCaregiverName?.substring(0, 2).toUpperCase()}
                       </div>
                       <div>
                         <div className="font-semibold text-slate-800">{shift.assignedCaregiverName}</div>
@@ -194,19 +194,19 @@ export function ShiftModal({
                       onCallOff(shift.id);
                       onClose();
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-orange-200 text-orange-600 hover:bg-orange-50 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm"
+                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-orange-200 text-orange-600 hover:bg-orange-50 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                   >
                     <PhoneOff className="w-4 h-4" />
                     Mark Call-Off
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm">
+                  <button className="flex-1 flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                     <UserPlus className="w-4 h-4" />
                     Reassign
                   </button>
                 </>
               )}
               {isUnfilled && (
-                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-sm">
+                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                   Edit Shift
                 </button>
               )}

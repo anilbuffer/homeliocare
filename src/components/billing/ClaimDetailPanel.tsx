@@ -13,14 +13,14 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex justify-end">
-        <motion.div 
+        <motion.div
           className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         />
-        
+
         <motion.div
           className="relative w-full max-w-md bg-white h-full shadow-2xl shadow-slate-300/50 flex flex-col"
           initial={{ x: "100%" }}
@@ -33,16 +33,16 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
               <h2 className="text-lg font-semibold text-slate-900">Claim Details</h2>
               <p className="text-sm text-slate-500 mt-0.5">{claimId}</p>
             </div>
-            <button 
+            <button
               onClick={onClose}
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 text-slate-500 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
-          
+
           <div className="flex-1 overflow-y-auto p-6 space-y-6 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
-            
+
             {/* Client Info */}
             <div>
               <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Client Information</div>
@@ -118,12 +118,12 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
               </div>
             </div>
           </div>
-          
+
           <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex gap-3">
-            <button className="flex-1 bg-white border border-slate-200 text-slate-700 font-medium py-2.5 rounded-xl hover:bg-slate-50 transition-colors shadow-sm">
+            <button className="flex-1 bg-white border border-slate-200 text-slate-700 font-medium py-2.5 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               Edit Claim
             </button>
-            <button className="flex-1 bg-brand-teal text-white font-medium py-2.5 rounded-xl hover:bg-brand-teal/90 transition-colors shadow-sm shadow-brand-teal/20">
+            <button className="flex-1 bg-brand-teal text-white font-medium py-2.5 rounded-xl hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20">
               Submit Claim
             </button>
           </div>

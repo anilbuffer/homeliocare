@@ -43,7 +43,7 @@ export function VisitsTab({ client }: { client: Client }) {
         <h3 className="text-sm font-semibold text-slate-700 mb-3">Upcoming visits</h3>
         <div className="space-y-3">
           {upcoming.map((visit) => (
-            <Card key={visit.id} className="p-4 flex items-center justify-between border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={visit.id} className="p-4 flex items-center justify-between border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow">
               <div className="flex items-center w-1/4">
                 <span className="font-semibold text-slate-800">{visit.date}</span>
                 <span className="text-slate-500 ml-2">{visit.time}</span>
@@ -70,7 +70,7 @@ export function VisitsTab({ client }: { client: Client }) {
         </div>
         <div className="space-y-3">
           {history.map((visit) => (
-            <Card key={visit.id} className="p-4 flex items-center justify-between border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={visit.id} className="p-4 flex items-center justify-between border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow">
               <div className="flex items-center w-1/4">
                 <span className="font-semibold text-slate-800">{visit.date}</span>
                 <span className="text-slate-500 ml-2">{visit.time}</span>

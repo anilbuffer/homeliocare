@@ -17,7 +17,7 @@ export function LiveVisitFeed() {
   return (
     <Card className="flex flex-col h-full">
       <CardHeader title="Live visit feed" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
-      
+
       <div className="flex-1 space-y-3 mt-4 overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full">
         {feedData.map((item) => (
           <div key={item.id} className="flex gap-3 items-center bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] rounded-2xl p-3 transition-all hover:-translate-y-0.5 group shrink-0">
@@ -30,7 +30,7 @@ export function LiveVisitFeed() {
             <div className="flex-1 min-w-0 flex flex-wrap justify-between items-center gap-2">
               <div className="min-w-0 flex-1 min-w-[140px]">
                 <div className="font-bold text-slate-800 text-[13px] truncate flex items-center gap-1.5 mb-0.5 tracking-tight">
-                  {item.name} 
+                  {item.name}
                   <span className="text-[9px] font-bold text-accent-orange px-1.5 py-0.5 bg-accent-orange/10 rounded-md border border-accent-orange/20 uppercase tracking-wider shrink-0">
                     {item.role}
                   </span>
@@ -39,7 +39,7 @@ export function LiveVisitFeed() {
                   {item.address}
                 </div>
               </div>
-              <Badge variant={item.variant} className="shadow-sm shrink-0">{item.status}</Badge>
+              <Badge variant={item.variant} className="shadow-[0_6px_32px_rgba(0,0,0,0.06)] shrink-0">{item.status}</Badge>
             </div>
           </div>
         ))}

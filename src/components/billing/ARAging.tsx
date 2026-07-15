@@ -99,7 +99,7 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
                 </td>
                 <td className="px-4 py-3 text-slate-500 text-xs">{record.action}</td>
                 <td className="px-4 py-3 text-right">
-                  <button className="text-[11px] font-medium text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 hover:text-brand-teal transition-colors shadow-sm opacity-0 group-hover:opacity-100 focus:opacity-100">
+                  <button className="text-[11px] font-medium text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 hover:text-brand-teal transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] opacity-0 group-hover:opacity-100 focus:opacity-100">
                     Follow up
                   </button>
                 </td>
