@@ -48,19 +48,19 @@ export function CourseOverviewHeader({ course, progress }: CourseOverviewHeaderP
 
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col md:flex-row group">
-      
+
       {/* Banner / Thumbnail */}
       <div className="relative w-full md:w-2/5 min-h-[240px] md:min-h-full overflow-hidden flex flex-col justify-center items-center p-8 bg-gradient-to-br from-brand-teal to-[#098065]">
         {/* Subtle decorative elements */}
         <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_2px_2px,_white_1px,_transparent_0)]" style={{ backgroundSize: '32px 32px' }}></div>
         <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl transition-transform duration-700 group-hover:scale-110"></div>
         <div className="absolute top-4 left-4 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl transition-transform duration-700 group-hover:scale-110"></div>
-        
+
         {/* Main Icon */}
         <div className="relative z-10 w-28 h-28 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:bg-white/20">
-           <div className="text-white drop-shadow-lg">
-             {getFormatIcon("w-12 h-12")}
-           </div>
+          <div className="text-white drop-shadow-lg">
+            {getFormatIcon("w-12 h-12")}
+          </div>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ export function CourseOverviewHeader({ course, progress }: CourseOverviewHeaderP
             </span>
             {course.required && (
               <span className="bg-red-50 text-red-600 text-xs font-bold uppercase px-3 py-1.5 rounded-full border border-red-100 flex items-center gap-1">
-                 <ShieldAlert className="w-3.5 h-3.5" /> REQUIRED
+                <ShieldAlert className="w-3.5 h-3.5" /> REQUIRED
               </span>
             )}
           </div>
@@ -128,7 +128,7 @@ export function CourseOverviewHeader({ course, progress }: CourseOverviewHeaderP
             )}
             <button
               onClick={handleAction}
-              className="w-full sm:w-auto bg-brand-teal text-white font-bold py-3.5 px-8 rounded-xl hover:bg-[#0b8a6f] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 shrink-0"
+              className="cursor-pointer w-full sm:w-auto bg-brand-teal text-white font-bold py-3.5 px-8 rounded-xl hover:bg-[#0b8a6f] transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 shrink-0"
             >
               {buttonState.label}
               {buttonState.icon}
