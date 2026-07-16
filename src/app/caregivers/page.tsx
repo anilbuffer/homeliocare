@@ -12,7 +12,7 @@ import { CaregiverKpiStrip } from "@/components/caregivers/CaregiverKpiStrip";
 import { cn } from "@/components/ui/Card";
 
 export default function CaregiverRosterPage() {
-  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
+  const [viewMode, setViewMode] = useState<"grid" | "table">("table");
   const [searchQuery, setSearchQuery] = useState("");
 
   const caregiversList = Object.values(mockCaregivers).filter(cg =>
@@ -48,10 +48,10 @@ export default function CaregiverRosterPage() {
               placeholder="Search caregivers by name or role..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 bg-white rounded-full border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
+              className="w-full pl-9 pr-4 py-2.5 bg-white rounded-full border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
             />
           </div>
-          <button className="px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-2 text-sm font-medium ">
+          <button className="px-3.5 py-2.5 rounded-full bg-white border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-2 text-sm font-medium ">
             <Filter className="w-4 h-4" />
             Filters
           </button>
@@ -59,13 +59,13 @@ export default function CaregiverRosterPage() {
         <div className="flex items-center bg-white p-1 rounded-full border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
           <button
             onClick={() => setViewMode("grid")}
-            className={cn("p-2 rounded-full transition-all", viewMode === "grid" ? "bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] bg-brand-teal/20 text-brand-teal" : "text-slate-500 hover:text-slate-700")}
+            className={cn("p-2 rounded-full transition-all", viewMode === "grid" ? "bg-brand-teal/20 text-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.06)]" : "text-slate-500 hover:text-slate-700")}
           >
             <LayoutGrid className="w-4 h-4" />
           </button>
           <button
             onClick={() => setViewMode("table")}
-            className={cn("p-2 rounded-full transition-all", viewMode === "table" ? "bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] text-brand-teal" : "text-slate-500 hover:text-slate-700")}
+            className={cn("p-2 rounded-full transition-all", viewMode === "table" ? "bg-brand-teal/20 text-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.06)]" : "text-slate-500 hover:text-slate-700")}
           >
             <List className="w-4 h-4" />
           </button>

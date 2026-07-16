@@ -1,15 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Users, Search, Filter, MoreVertical, ArrowRight } from "lucide-react";
+import { Users, Search, Filter, MoreVertical, ArrowRight, LayoutGrid, List } from "lucide-react";
 import { mockClients } from "@/lib/clients/mockData";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
 
 export default function ClientsPage() {
+  const router = useRouter();
+  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const savedView = localStorage.getItem("clientViewMode") as "grid" | "list";
+    if (savedView) {
+      setViewMode(savedView);
+    }
+  }, []);
+
+  const handleViewChange = (mode: "grid" | "list") => {
+    setViewMode(mode);
+    localStorage.setItem("clientViewMode", mode);
+  };
+
   return (
     <div className="w-full mx-auto space-y-6">
       {/* Header */}
@@ -24,10 +42,28 @@ export default function ClientsPage() {
             <input
               type="text"
               placeholder="Search clients..."
-              className="pl-9 pr-4 py-2.5 rounded-full border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all w-64"
+              className="pl-9 pr-4 py-2.5 rounded-full bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all w-64"
             />
           </div>
-          <button className="p-2.5 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors">
+
+          <div className="flex items-center bg-white p-1 rounded-full border border-slate-200">
+            <button
+              onClick={() => handleViewChange("list")}
+              className={`p-1.5 rounded-full transition-colors ${viewMode === "list" ? "bg-brand-teal/20 text-brand-teal shadow-[0_8px_30px_rgb(0,0,0,0.04)]" : "text-slate-500 hover:text-slate-700"}`}
+              title="List View"
+            >
+              <List className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => handleViewChange("grid")}
+              className={`p-1.5 rounded-full transition-colors ${viewMode === "grid" ? "bg-brand-teal/20 text-brand-teal shadow-[0_8px_30px_rgb(0,0,0,0.04)]" : "text-slate-500 hover:text-slate-700"}`}
+              title="Card View"
+            >
+              <LayoutGrid className="w-4 h-4" />
+            </button>
+          </div>
+
+          <button className="p-2.5 rounded-full bg-white border border-slate-200 text-slate-600 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-50 transition-colors">
             <Filter className="w-4 h-4" />
           </button>
           <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
@@ -37,61 +73,134 @@ export default function ClientsPage() {
         </div>
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-        {Object.values(mockClients).map((client, index) => (
-          <motion.div
-            key={client.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-          >
-            <Link href={`/clients/${client.id}`} className="block h-full group">
-              <Card className="h-full hover:border-brand-teal/30 hover:shadow-md transition-all group-hover:scale-[1.02]">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-4">
-                    <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="lg" />
-                    <div>
-                      <h3 className="font-semibold text-text-primary group-hover:text-brand-teal transition-colors">{client.name}</h3>
-                      <p className="text-sm text-text-secondary">{client.age} yrs • {client.demographics.gender}</p>
+      {/* Content */}
+      {isMounted && viewMode === "list" ? (
+        <div className="w-full bg-white rounded-xl border border-slate-200 overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left whitespace-nowrap">
+              <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 sticky top-0 z-10">
+                <tr>
+                  <th className="px-6 py-4 font-medium">Client</th>
+                  <th className="px-6 py-4 font-medium hidden sm:table-cell">Status</th>
+                  <th className="px-6 py-4 font-medium hidden md:table-cell">Risk Level</th>
+                  <th className="px-6 py-4 font-medium hidden lg:table-cell">Diagnosis</th>
+                  <th className="px-6 py-4 font-medium text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {Object.values(mockClients).map((client) => (
+                  <tr
+                    key={client.id}
+                    className="even:bg-slate-50/40 hover:bg-slate-100/60 transition-colors group cursor-pointer"
+                    onClick={() => router.push(`/clients/${client.id}`)}
+                  >
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="sm" />
+                        <div>
+                          <div className="font-medium text-slate-900 group-hover:text-brand-teal transition-colors">{client.name}</div>
+                          <div className="text-slate-500 text-xs mt-0.5">{client.age} yrs • {client.demographics.gender}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 hidden sm:table-cell">
+                      <Badge variant={
+                        client.status === "Active" ? "success" :
+                          client.status === "Hospitalized" ? "warning" :
+                            client.status === "Discharged" ? "default" : "error"
+                      }>{client.status}</Badge>
+                    </td>
+                    <td className="px-6 py-4 hidden md:table-cell">
+                      <Badge variant={
+                        client.riskLevel === "Low" ? "success" :
+                          client.riskLevel === "Medium" ? "warning" : "error"
+                      }>{client.riskLevel} Risk</Badge>
+                    </td>
+                    <td className="px-6 py-4 hidden lg:table-cell">
+                      <span className="text-slate-700 max-w-[200px] truncate block" title={client.primaryDiagnosis}>{client.primaryDiagnosis}</span>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
+                          title="View Profile"
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                        <button
+                          className="p-1.5 text-slate-400 hover:bg-slate-200 rounded-lg transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <MoreVertical className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {Object.values(mockClients).map((client, index) => (
+            <motion.div
+              key={client.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.05 }}
+            >
+              <Link href={`/clients/${client.id}`} className="block h-full group">
+                <Card className="h-full hover:border-brand-teal/30 hover:shadow-md transition-all group-hover:scale-[1.02]">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="lg" />
+                      <div>
+                        <h3 className="font-semibold text-text-primary group-hover:text-brand-teal transition-colors">{client.name}</h3>
+                        <p className="text-sm text-text-secondary">{client.age} yrs • {client.demographics.gender}</p>
+                      </div>
+                    </div>
+                    <button
+                      className="p-1.5 text-slate-400 hover:bg-slate-100 rounded-lg transition-colors"
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <MoreVertical className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-slate-500">Status</span>
+                      <Badge variant={
+                        client.status === "Active" ? "success" :
+                          client.status === "Hospitalized" ? "warning" :
+                            client.status === "Discharged" ? "default" : "error"
+                      }>{client.status}</Badge>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-slate-500">Risk Level</span>
+                      <Badge variant={
+                        client.riskLevel === "Low" ? "success" :
+                          client.riskLevel === "Medium" ? "warning" : "error"
+                      }>{client.riskLevel} Risk</Badge>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-slate-500">Diagnosis</span>
+                      <span className="font-medium text-slate-700 truncate max-w-[140px] text-right" title={client.primaryDiagnosis}>{client.primaryDiagnosis}</span>
                     </div>
                   </div>
-                  <button className="p-1.5 text-slate-400 hover:bg-slate-100 rounded-lg transition-colors">
-                    <MoreVertical className="w-4 h-4" />
-                  </button>
-                </div>
 
-                <div className="space-y-3 mb-6">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-slate-500">Status</span>
-                    <Badge variant={
-                      client.status === "Active" ? "success" :
-                        client.status === "Hospitalized" ? "warning" :
-                          client.status === "Discharged" ? "default" : "error"
-                    }>{client.status}</Badge>
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-brand-teal text-sm font-medium">
+                    View Client Profile
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-slate-500">Risk Level</span>
-                    <Badge variant={
-                      client.riskLevel === "Low" ? "success" :
-                        client.riskLevel === "Medium" ? "warning" : "error"
-                    }>{client.riskLevel} Risk</Badge>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-slate-500">Diagnosis</span>
-                    <span className="font-medium text-slate-700 truncate max-w-[140px] text-right" title={client.primaryDiagnosis}>{client.primaryDiagnosis}</span>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-brand-teal text-sm font-medium">
-                  View Client Profile
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Card>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+                </Card>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
+

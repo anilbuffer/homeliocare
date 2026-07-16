@@ -18,7 +18,7 @@ export function CaregiverKpiStrip() {
       {kpiData.map((kpi, idx) => {
         const Icon = kpi.icon;
         return (
-          <div key={idx} className="bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 flex flex-col h-full group relative">
+          <div key={idx} className="bg-white border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 flex flex-col h-full group relative">
             <div className="flex justify-between items-start mb-4">
               <span className="text-[12px] font-medium text-text-secondary leading-tight pr-2">{kpi.label}</span>
               <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0", kpi.bg, kpi.color)}>
