@@ -1,45 +1,45 @@
 import React from "react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { Calendar, ShieldAlert, MessageSquare, Edit3, MapPin } from "lucide-react";
 import { cn } from "@/components/ui/Card";
 
-interface ClientHeaderProps {
-  client: Client;
+interface PatientHeaderProps {
+  patient: Patient;
 }
 
-export function ClientHeader({ client }: ClientHeaderProps) {
+export function PatientHeader({ patient }: PatientHeaderProps) {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-[0_6px_32px_rgba(0,0,0,0.06)] border border-slate-200 mb-6 flex flex-col md:flex-row md:items-start justify-between gap-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
         <div className="relative">
-          <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="xl" className="w-24 h-24 text-2xl" />
+          <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="xl" className="w-24 h-24 text-2xl" />
           <div className="absolute -bottom-2 -right-2">
             <Badge variant={
-              client.status === "Active" ? "success" :
-                client.status === "Hospitalized" ? "warning" :
-                  client.status === "Discharged" ? "neutral" : "error"
+              patient.status === "Active" ? "success" :
+                patient.status === "Hospitalized" ? "warning" :
+                  patient.status === "Discharged" ? "neutral" : "error"
             } className={cn(
               "border-2 border-white shadow-md font-bold text-white px-3 py-1",
-              client.status === "Active" && "bg-emerald-500",
-              client.status === "Hospitalized" && "bg-amber-500",
-              client.status === "Discharged" && "bg-slate-500",
-              client.status === "Inactive" && "bg-rose-500"
-            )}>{client.status}</Badge>
+              patient.status === "Active" && "bg-emerald-500",
+              patient.status === "Hospitalized" && "bg-amber-500",
+              patient.status === "Discharged" && "bg-slate-500",
+              patient.status === "Inactive" && "bg-rose-500"
+            )}>{patient.status}</Badge>
           </div>
         </div>
 
         <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">{client.name}</h1>
+          <h1 className="text-3xl font-bold text-text-primary mb-2">{patient.name}</h1>
           <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary mb-3">
-            <span className="font-medium text-slate-700">{client.age} years old</span>
+            <span className="font-medium text-slate-700">{patient.age} years old</span>
             <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {client.address}</span>
+            <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {patient.address}</span>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Diagnosis</span>
-            <Badge variant="brand" className="bg-brand-teal/10 text-brand-teal border-brand-teal/20">{client.primaryDiagnosis}</Badge>
+            <Badge variant="brand" className="bg-brand-teal/10 text-brand-teal border-brand-teal/20">{patient.primaryDiagnosis}</Badge>
           </div>
         </div>
       </div>
@@ -48,10 +48,10 @@ export function ClientHeader({ client }: ClientHeaderProps) {
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-slate-600">Risk Level</span>
           <Badge variant={
-            client.riskLevel === "Low" ? "success" :
-              client.riskLevel === "Medium" ? "warning" : "error"
+            patient.riskLevel === "Low" ? "success" :
+              patient.riskLevel === "Medium" ? "warning" : "error"
           } className="text-base px-3 py-1">
-            {client.riskLevel}
+            {patient.riskLevel}
           </Badge>
         </div>
 

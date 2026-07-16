@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, cn } from "@/components/ui/Card";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { MessageSquare, Phone, Lock } from "lucide-react";
 
-export function CommunicationTab({ client }: { client: Client }) {
-  if (!client.communication) {
+export function CommunicationTab({ patient }: { patient: Patient }) {
+  if (!patient.communication) {
     return (
       <div className="space-y-6">
         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
@@ -14,7 +14,7 @@ export function CommunicationTab({ client }: { client: Client }) {
     );
   }
 
-  const { familyThread, logs, internalNotes } = client.communication;
+  const { familyThread, logs, internalNotes } = patient.communication;
 
   return (
     <div className="space-y-6">

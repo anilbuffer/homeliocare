@@ -119,7 +119,7 @@ export default function EVVMonitoringPage() {
                 <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Search caregiver or client..."
+                  placeholder="Search caregiver or patient..."
                   className="pl-8 pr-3 py-1.5 border border-slate-200 rounded-lg text-xs font-medium w-full md:w-56 focus:outline-none focus:ring-1 focus:ring-brand-teal/20 focus:border-brand-teal"
                 />
               </div>
@@ -133,7 +133,7 @@ export default function EVVMonitoringPage() {
             <div className="min-w-[800px]">
               {/* Header row */}
               <div className="flex items-center px-4 py-2 border-b border-slate-100 bg-slate-50/80 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                <div className="flex-[1.5] min-w-[200px]">Caregiver / Client</div>
+                <div className="flex-[1.5] min-w-[200px]">Caregiver / Patient</div>
                 <div className="flex-1 min-w-[150px]">Exception Type</div>
                 <div className="flex-[1.5] min-w-[200px]">Details</div>
                 <div className="w-[100px] shrink-0 text-right pr-4">Billing Risk</div>

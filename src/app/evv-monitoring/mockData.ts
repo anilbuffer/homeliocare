@@ -11,7 +11,7 @@ export const mockExceptions: EVVException[] = [
       name: "Marcus Johnson",
       avatarUrl: "https://i.pravatar.cc/150?u=marcus",
     },
-    client: {
+    patient: {
       id: "cl-1",
       name: "Eleanor Vance",
     },
@@ -33,7 +33,7 @@ export const mockExceptions: EVVException[] = [
       name: "Sarah Jenkins",
       avatarUrl: "https://i.pravatar.cc/150?u=sarah",
     },
-    client: {
+    patient: {
       id: "cl-2",
       name: "Robert Chen",
     },
@@ -53,7 +53,7 @@ export const mockExceptions: EVVException[] = [
       name: "Jessica Alba",
       avatarUrl: "https://i.pravatar.cc/150?u=jessica",
     },
-    client: {
+    patient: {
       id: "cl-3",
       name: "Michael Smith",
     },
@@ -73,7 +73,7 @@ export const mockExceptions: EVVException[] = [
       name: "David Kim",
       avatarUrl: "https://i.pravatar.cc/150?u=david",
     },
-    client: {
+    patient: {
       id: "cl-4",
       name: "Mary Johnson",
     },
@@ -92,7 +92,7 @@ export const mockExceptions: EVVException[] = [
       name: "Amanda Hugginkiss",
       avatarUrl: "https://i.pravatar.cc/150?u=amanda",
     },
-    client: {
+    patient: {
       id: "cl-5",
       name: "John Doe",
     },
@@ -101,7 +101,7 @@ export const mockExceptions: EVVException[] = [
     actualTime: { start: "01:00 PM", end: "05:00 PM" },
     timeDeltaMinutes: 0,
     estimatedBillingImpact: 0,
-    notes: "Caregiver forgot phone. Time verified via client call.",
+    notes: "Caregiver forgot phone. Time verified via patient call.",
   }
 ];
 

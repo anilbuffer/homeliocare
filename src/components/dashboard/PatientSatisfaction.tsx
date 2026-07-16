@@ -6,7 +6,7 @@ import { Card, CardHeader } from "@/components/ui/Card";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Star } from "lucide-react";
 
-export function ClientSatisfaction() {
+export function PatientSatisfaction() {
   const score = 4.8;
   const maxScore = 5.0;
   const percentage = (score / maxScore) * 100;
@@ -19,7 +19,7 @@ export function ClientSatisfaction() {
 
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Client Satisfaction" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
+      <CardHeader title="Patient Satisfaction" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
       
       {/* Gauge Area */}
       <div className="relative h-[150px] flex items-end justify-center mb-4">

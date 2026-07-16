@@ -1,11 +1,11 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { Badge } from "@/components/ui/Badge";
 import { Clock, CheckCircle, AlertCircle, ChevronDown, Filter } from "lucide-react";
 
-export function VisitsTab({ client }: { client: Client }) {
-  if (!client.visits) {
+export function VisitsTab({ patient }: { patient: Patient }) {
+  if (!patient.visits) {
     return (
       <div className="space-y-6">
         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
@@ -15,7 +15,7 @@ export function VisitsTab({ client }: { client: Client }) {
     );
   }
 
-  const { upcoming, history } = client.visits;
+  const { upcoming, history } = patient.visits;
 
   const getStatusBadge = (type: string) => {
     switch (type) {

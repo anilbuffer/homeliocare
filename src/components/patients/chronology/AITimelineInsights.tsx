@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Sparkles, TrendingUp, TrendingDown, Minus, AlertCircle } from "lucide-react";
-import { ChronologyInsights } from "@/lib/clients/mockChronology";
+import { ChronologyInsights } from "@/lib/patients/mockChronology";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 

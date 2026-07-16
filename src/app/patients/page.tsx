@@ -5,19 +5,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Users, Search, Filter, MoreVertical, ArrowRight, LayoutGrid, List } from "lucide-react";
-import { mockClients } from "@/lib/clients/mockData";
+import { mockPatients } from "@/lib/patients/mockData";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
 
-export default function ClientsPage() {
+export default function PatientsPage() {
   const router = useRouter();
   const [viewMode, setViewMode] = useState<"grid" | "list">("list");
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    const savedView = localStorage.getItem("clientViewMode") as "grid" | "list";
+    const savedView = localStorage.getItem("patientViewMode") as "grid" | "list";
     if (savedView) {
       setViewMode(savedView);
     }
@@ -25,7 +25,7 @@ export default function ClientsPage() {
 
   const handleViewChange = (mode: "grid" | "list") => {
     setViewMode(mode);
-    localStorage.setItem("clientViewMode", mode);
+    localStorage.setItem("patientViewMode", mode);
   };
 
   return (
@@ -33,15 +33,15 @@ export default function ClientsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-2xl font-bold text-text-primary">Clients</h2>
-          <p className="text-sm text-text-secondary mt-1">Manage and view all client records.</p>
+          <h2 className="text-2xl font-bold text-text-primary">Patients</h2>
+          <p className="text-sm text-text-secondary mt-1">Manage and view all patient records.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
-              placeholder="Search clients..."
+              placeholder="Search patients..."
               className="pl-9 pr-4 py-2.5 rounded-full bg-white border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all w-64"
             />
           </div>
@@ -68,7 +68,7 @@ export default function ClientsPage() {
           </button>
           <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
             <Users className="w-4 h-4" />
-            New Client
+            New Patient
           </button>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function ClientsPage() {
             <table className="w-full text-sm text-left whitespace-nowrap">
               <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 sticky top-0 z-10">
                 <tr>
-                  <th className="px-6 py-4 font-medium">Client</th>
+                  <th className="px-6 py-4 font-medium">Patient</th>
                   <th className="px-6 py-4 font-medium hidden sm:table-cell">Status</th>
                   <th className="px-6 py-4 font-medium hidden md:table-cell">Risk Level</th>
                   <th className="px-6 py-4 font-medium hidden lg:table-cell">Diagnosis</th>
@@ -88,36 +88,36 @@ export default function ClientsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {Object.values(mockClients).map((client) => (
+                {Object.values(mockPatients).map((patient) => (
                   <tr
-                    key={client.id}
+                    key={patient.id}
                     className="even:bg-slate-50/40 hover:bg-slate-100/60 transition-colors group cursor-pointer"
-                    onClick={() => router.push(`/clients/${client.id}`)}
+                    onClick={() => router.push(`/patients/${patient.id}`)}
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="sm" />
+                        <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="sm" />
                         <div>
-                          <div className="font-medium text-slate-900 group-hover:text-brand-teal transition-colors">{client.name}</div>
-                          <div className="text-slate-500 text-xs mt-0.5">{client.age} yrs • {client.demographics.gender}</div>
+                          <div className="font-medium text-slate-900 group-hover:text-brand-teal transition-colors">{patient.name}</div>
+                          <div className="text-slate-500 text-xs mt-0.5">{patient.age} yrs • {patient.demographics.gender}</div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 hidden sm:table-cell">
                       <Badge variant={
-                        client.status === "Active" ? "success" :
-                          client.status === "Hospitalized" ? "warning" :
-                            client.status === "Discharged" ? "default" : "error"
-                      }>{client.status}</Badge>
+                        patient.status === "Active" ? "success" :
+                          patient.status === "Hospitalized" ? "warning" :
+                            patient.status === "Discharged" ? "default" : "error"
+                      }>{patient.status}</Badge>
                     </td>
                     <td className="px-6 py-4 hidden md:table-cell">
                       <Badge variant={
-                        client.riskLevel === "Low" ? "success" :
-                          client.riskLevel === "Medium" ? "warning" : "error"
-                      }>{client.riskLevel} Risk</Badge>
+                        patient.riskLevel === "Low" ? "success" :
+                          patient.riskLevel === "Medium" ? "warning" : "error"
+                      }>{patient.riskLevel} Risk</Badge>
                     </td>
                     <td className="px-6 py-4 hidden lg:table-cell">
-                      <span className="text-slate-700 max-w-[200px] truncate block" title={client.primaryDiagnosis}>{client.primaryDiagnosis}</span>
+                      <span className="text-slate-700 max-w-[200px] truncate block" title={patient.primaryDiagnosis}>{patient.primaryDiagnosis}</span>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -143,21 +143,21 @@ export default function ClientsPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {Object.values(mockClients).map((client, index) => (
+          {Object.values(mockPatients).map((patient, index) => (
             <motion.div
-              key={client.id}
+              key={patient.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
             >
-              <Link href={`/clients/${client.id}`} className="block h-full group">
+              <Link href={`/patients/${patient.id}`} className="block h-full group">
                 <Card className="h-full hover:border-brand-teal/30 hover:shadow-md transition-all group-hover:scale-[1.02]">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-4">
-                      <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="lg" />
+                      <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="lg" />
                       <div>
-                        <h3 className="font-semibold text-text-primary group-hover:text-brand-teal transition-colors">{client.name}</h3>
-                        <p className="text-sm text-text-secondary">{client.age} yrs • {client.demographics.gender}</p>
+                        <h3 className="font-semibold text-text-primary group-hover:text-brand-teal transition-colors">{patient.name}</h3>
+                        <p className="text-sm text-text-secondary">{patient.age} yrs • {patient.demographics.gender}</p>
                       </div>
                     </div>
                     <button
@@ -172,26 +172,26 @@ export default function ClientsPage() {
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-slate-500">Status</span>
                       <Badge variant={
-                        client.status === "Active" ? "success" :
-                          client.status === "Hospitalized" ? "warning" :
-                            client.status === "Discharged" ? "default" : "error"
-                      }>{client.status}</Badge>
+                        patient.status === "Active" ? "success" :
+                          patient.status === "Hospitalized" ? "warning" :
+                            patient.status === "Discharged" ? "default" : "error"
+                      }>{patient.status}</Badge>
                     </div>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-slate-500">Risk Level</span>
                       <Badge variant={
-                        client.riskLevel === "Low" ? "success" :
-                          client.riskLevel === "Medium" ? "warning" : "error"
-                      }>{client.riskLevel} Risk</Badge>
+                        patient.riskLevel === "Low" ? "success" :
+                          patient.riskLevel === "Medium" ? "warning" : "error"
+                      }>{patient.riskLevel} Risk</Badge>
                     </div>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-slate-500">Diagnosis</span>
-                      <span className="font-medium text-slate-700 truncate max-w-[140px] text-right" title={client.primaryDiagnosis}>{client.primaryDiagnosis}</span>
+                      <span className="font-medium text-slate-700 truncate max-w-[140px] text-right" title={patient.primaryDiagnosis}>{patient.primaryDiagnosis}</span>
                     </div>
                   </div>
 
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-brand-teal text-sm font-medium">
-                    View Client Profile
+                    View Patient Profile
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </Card>

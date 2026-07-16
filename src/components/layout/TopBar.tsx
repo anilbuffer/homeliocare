@@ -11,7 +11,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const getPageTitle = () => {
     if (!pathname) return "Dashboard";
     if (pathname.startsWith("/training")) return "Training (LMS)";
-    if (pathname.startsWith("/clients")) return "Clients";
+    if (pathname.startsWith("/patients")) return "Patients";
     if (pathname.startsWith("/scheduling")) return "Scheduling";
     if (pathname.startsWith("/evv")) return "EVV Monitoring";
     if (pathname.startsWith("/caregivers")) return "Caregivers & HR";

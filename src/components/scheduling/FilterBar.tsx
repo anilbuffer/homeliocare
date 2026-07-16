@@ -11,12 +11,12 @@ interface FilterBarProps {
   setActiveFilter: (filter: string) => void;
   caregiverFilter: string;
   setCaregiverFilter: (val: string) => void;
-  clientFilter: string;
-  setClientFilter: (val: string) => void;
+  patientFilter: string;
+  setPatientFilter: (val: string) => void;
   regionFilter: string;
   setRegionFilter: (val: string) => void;
   uniqueCaregivers: string[];
-  uniqueClients: string[];
+  uniquePatients: string[];
   uniqueRegions: string[];
 }
 
@@ -36,12 +36,12 @@ export function FilterBar({
   setActiveFilter,
   caregiverFilter,
   setCaregiverFilter,
-  clientFilter,
-  setClientFilter,
+  patientFilter,
+  setPatientFilter,
   regionFilter,
   setRegionFilter,
   uniqueCaregivers,
-  uniqueClients,
+  uniquePatients,
   uniqueRegions,
 }: FilterBarProps) {
   return (
@@ -83,12 +83,12 @@ export function FilterBar({
 
           <div className="relative">
             <select
-              value={clientFilter}
-              onChange={(e) => setClientFilter(e.target.value)}
+              value={patientFilter}
+              onChange={(e) => setPatientFilter(e.target.value)}
               className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white/90 backdrop-blur-sm border border-slate-100 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
             >
-              <option value="">Client</option>
-              {uniqueClients.map(cl => (
+              <option value="">Patient</option>
+              {uniquePatients.map(cl => (
                 <option key={cl} value={cl}>{cl}</option>
               ))}
             </select>

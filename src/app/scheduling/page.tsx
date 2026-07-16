@@ -20,7 +20,7 @@ export default function SchedulingPage() {
   const [activeFilter, setActiveFilter] = useState("All Shifts");
   
   const [caregiverFilter, setCaregiverFilter] = useState("");
-  const [clientFilter, setClientFilter] = useState("");
+  const [patientFilter, setPatientFilter] = useState("");
   const [regionFilter, setRegionFilter] = useState("");
   
   const [shifts, setShifts] = useState<Shift[]>(mockShifts);
@@ -81,14 +81,14 @@ export default function SchedulingPage() {
 
     // 2. Dropdown Filters
     if (caregiverFilter && s.assignedCaregiverName !== caregiverFilter) return false;
-    if (clientFilter && s.clientName !== clientFilter) return false;
+    if (patientFilter && s.patientName !== patientFilter) return false;
     if (regionFilter && s.region !== regionFilter) return false;
 
     return true;
   });
 
   const uniqueCaregivers = Array.from(new Set(shifts.map(s => s.assignedCaregiverName).filter(Boolean))) as string[];
-  const uniqueClients = Array.from(new Set(shifts.map(s => s.clientName).filter(Boolean)));
+  const uniquePatients = Array.from(new Set(shifts.map(s => s.patientName).filter(Boolean)));
   const uniqueRegions = Array.from(new Set(shifts.map(s => s.region).filter(Boolean)));
 
   return (
@@ -108,12 +108,12 @@ export default function SchedulingPage() {
         setActiveFilter={setActiveFilter}
         caregiverFilter={caregiverFilter}
         setCaregiverFilter={setCaregiverFilter}
-        clientFilter={clientFilter}
-        setClientFilter={setClientFilter}
+        patientFilter={patientFilter}
+        setPatientFilter={setPatientFilter}
         regionFilter={regionFilter}
         setRegionFilter={setRegionFilter}
         uniqueCaregivers={uniqueCaregivers}
-        uniqueClients={uniqueClients}
+        uniquePatients={uniquePatients}
         uniqueRegions={uniqueRegions}
       />
 

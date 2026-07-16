@@ -223,7 +223,7 @@ export function LiveMap({
         </div>
       ))}
 
-      {/* Client/Visit Markers */}
+      {/* Patient/Visit Markers */}
       {visits.map(v => {
         const isSelected = selectedVisitId === v.id || (selectedCaregiverId && v.caregiverId === selectedCaregiverId);
         
@@ -251,7 +251,7 @@ export function LiveMap({
             <div
               className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 bg-[#0f172a]/90 backdrop-blur-md rounded border border-slate-700/50 shadow-xl text-[11px] font-semibold tracking-wide whitespace-nowrap flex flex-col items-start pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50"
             >
-              <span className="text-[#38bdf8]">{v.clientName}</span>
+              <span className="text-[#38bdf8]">{v.patientName}</span>
               <span className="text-[9px] text-[#cbd5e1]">{v.time}</span>
             </div>
           </div>

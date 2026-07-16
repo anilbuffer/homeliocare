@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Client } from "@/lib/clients/mockData";
-import { OverviewTab } from "@/components/clients/tabs/OverviewTab";
-import { CarePlanTab } from "@/components/clients/tabs/CarePlanTab";
-import { VisitsTab } from "@/components/clients/tabs/VisitsTab";
-import { MedicationsTab } from "@/components/clients/tabs/MedicationsTab";
-import { DocumentsTab } from "@/components/clients/tabs/DocumentsTab";
-import { BillingTab } from "@/components/clients/tabs/BillingTab";
-import { CommunicationTab } from "@/components/clients/tabs/CommunicationTab";
+import { Patient } from "@/lib/patients/mockData";
+import { OverviewTab } from "@/components/patients/tabs/OverviewTab";
+import { CarePlanTab } from "@/components/patients/tabs/CarePlanTab";
+import { VisitsTab } from "@/components/patients/tabs/VisitsTab";
+import { MedicationsTab } from "@/components/patients/tabs/MedicationsTab";
+import { DocumentsTab } from "@/components/patients/tabs/DocumentsTab";
+import { BillingTab } from "@/components/patients/tabs/BillingTab";
+import { CommunicationTab } from "@/components/patients/tabs/CommunicationTab";
 import { ChronologyTab } from "./tabs/ChronologyTab";
 
 const tabs = [
@@ -23,7 +23,7 @@ const tabs = [
   { id: "chronology", label: "Chronology" },
 ];
 
-export function ClientTabs({ client }: { client: Client }) {
+export function PatientTabs({ patient }: { patient: Patient }) {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
@@ -42,7 +42,7 @@ export function ClientTabs({ client }: { client: Client }) {
               <span className="relative z-10">{tab.label}</span>
               {isActive && (
                 <motion.div
-                  layoutId="client-tab-indicator"
+                  layoutId="patient-tab-indicator"
                   className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
                   initial={false}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
@@ -63,14 +63,14 @@ export function ClientTabs({ client }: { client: Client }) {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
-            {activeTab === "overview" && <OverviewTab client={client} />}
-            {activeTab === "careplan" && <CarePlanTab client={client} />}
-            {activeTab === "visits" && <VisitsTab client={client} />}
-            {activeTab === "medications" && <MedicationsTab client={client} />}
-            {activeTab === "documents" && <DocumentsTab client={client} />}
-            {activeTab === "billing" && <BillingTab client={client} />}
-            {activeTab === "communication" && <CommunicationTab client={client} />}
-            {activeTab === "chronology" && <ChronologyTab client={client} />}
+            {activeTab === "overview" && <OverviewTab patient={patient} />}
+            {activeTab === "careplan" && <CarePlanTab patient={patient} />}
+            {activeTab === "visits" && <VisitsTab patient={patient} />}
+            {activeTab === "medications" && <MedicationsTab patient={patient} />}
+            {activeTab === "documents" && <DocumentsTab patient={patient} />}
+            {activeTab === "billing" && <BillingTab patient={patient} />}
+            {activeTab === "communication" && <CommunicationTab patient={patient} />}
+            {activeTab === "chronology" && <ChronologyTab patient={patient} />}
           </motion.div>
         </AnimatePresence>
       </div>

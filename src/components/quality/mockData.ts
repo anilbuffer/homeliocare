@@ -5,8 +5,8 @@ export interface Audit {
   id: string;
   type: AuditType;
   subjectName: string;
-  subjectType: 'Client' | 'Caregiver';
-  subjectId: string; // Links to client or caregiver profile
+  subjectType: 'Patient' | 'Caregiver';
+  subjectId: string; // Links to patient or caregiver profile
   assignedSupervisor: string;
   dueDate: string;
   status: AuditStatus;
@@ -37,7 +37,7 @@ export const mockAudits: Audit[] = [
     id: "AUD-001",
     type: "Chart Audit",
     subjectName: "Eleanor Vance",
-    subjectType: "Client",
+    subjectType: "Patient",
     subjectId: "CLI-001",
     assignedSupervisor: "Sarah Jenkins",
     dueDate: "2026-07-20",
@@ -60,7 +60,7 @@ export const mockAudits: Audit[] = [
     id: "AUD-003",
     type: "Medication Audit",
     subjectName: "Robert Chen",
-    subjectType: "Client",
+    subjectType: "Patient",
     subjectId: "CLI-003",
     assignedSupervisor: "Sarah Jenkins",
     dueDate: "2026-07-18",
@@ -71,7 +71,7 @@ export const mockAudits: Audit[] = [
     id: "AUD-004",
     type: "Care Plan Audit",
     subjectName: "Maria Garcia",
-    subjectType: "Client",
+    subjectType: "Patient",
     subjectId: "CLI-005",
     assignedSupervisor: "Emily Thorne",
     dueDate: "2026-07-25",
@@ -116,13 +116,13 @@ export const mockFindings: Finding[] = [
 export const mockChecklists: Record<AuditType, ChecklistItem[]> = {
   "Chart Audit": [
     { id: "c1", question: "Is the initial assessment present and signed?", status: null },
-    { id: "c2", question: "Are all consent forms signed and dated by client/proxy?", status: null },
+    { id: "c2", question: "Are all consent forms signed and dated by patient/proxy?", status: null },
     { id: "c3", question: "Is the emergency contact information current?", status: null },
     { id: "c4", question: "Are advanced directives on file (if applicable)?", status: null }
   ],
   "Visit Audit": [
     { id: "v1", question: "Did the caregiver clock in/out within 5 minutes of scheduled time?", status: null },
-    { id: "v2", question: "Does GPS location match the client's home address?", status: null },
+    { id: "v2", question: "Does GPS location match the patient's home address?", status: null },
     { id: "v3", question: "Were all assigned tasks marked as complete?", status: null }
   ],
   "Documentation Audit": [

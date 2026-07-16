@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, cn } from "@/components/ui/Card";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { FileText, Image as ImageIcon } from "lucide-react";
 
-export function DocumentsTab({ client }: { client: Client }) {
-  if (!client.documents) {
+export function DocumentsTab({ patient }: { patient: Patient }) {
+  if (!patient.documents) {
     return (
       <div className="space-y-6">
         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
@@ -14,7 +14,7 @@ export function DocumentsTab({ client }: { client: Client }) {
     );
   }
 
-  const { documents } = client;
+  const { documents } = patient;
   
   const sections = [
     { title: "Intake", items: documents.intake },

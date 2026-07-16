@@ -12,8 +12,8 @@ export interface Certification {
 
 export interface Shift {
   id: string;
-  clientId: string;
-  clientName: string;
+  patientId: string;
+  patientName: string;
   date: string;
   startTime: string;
   endTime: string;
@@ -38,7 +38,7 @@ export interface Caregiver {
   employmentType: EmploymentType;
   payRate: number;
   complianceScore: number;
-  assignedClientsCount: number;
+  assignedPatientsCount: number;
   lastActiveDate: string;
   certifications: Certification[];
   recentShifts: Shift[];
@@ -63,15 +63,15 @@ export const mockCaregivers: Record<string, Caregiver> = {
     employmentType: "W2",
     payRate: 45.00,
     complianceScore: 100,
-    assignedClientsCount: 4,
+    assignedPatientsCount: 4,
     lastActiveDate: "2026-07-15",
     certifications: [
       { id: "cert-1", name: "RN License", issueDate: "2022-05-01", expiryDate: "2027-05-01", status: "Active", issuer: "State Board of Nursing" },
       { id: "cert-2", name: "BLS/CPR", issueDate: "2025-01-10", expiryDate: "2027-01-10", status: "Active", issuer: "American Heart Association" },
     ],
     recentShifts: [
-      { id: "s-1", clientId: "c-001", clientName: "Robert Hayes", date: "2026-07-14", startTime: "09:00", endTime: "13:00", status: "Completed" },
-      { id: "s-2", clientId: "c-002", clientName: "Mary Johnson", date: "2026-07-15", startTime: "14:00", endTime: "18:00", status: "Upcoming" },
+      { id: "s-1", patientId: "c-001", patientName: "Robert Hayes", date: "2026-07-14", startTime: "09:00", endTime: "13:00", status: "Completed" },
+      { id: "s-2", patientId: "c-002", patientName: "Mary Johnson", date: "2026-07-15", startTime: "14:00", endTime: "18:00", status: "Upcoming" },
     ]
   },
   "cg-002": {
@@ -92,14 +92,14 @@ export const mockCaregivers: Record<string, Caregiver> = {
     employmentType: "1099",
     payRate: 22.50,
     complianceScore: 92,
-    assignedClientsCount: 6,
+    assignedPatientsCount: 6,
     lastActiveDate: "2026-07-14",
     certifications: [
       { id: "cert-3", name: "HHA Certification", issueDate: "2024-06-01", expiryDate: "2026-06-01", status: "Active", issuer: "State Health Dept" },
       { id: "cert-4", name: "First Aid", issueDate: "2024-08-15", expiryDate: "2026-08-15", status: "Active", issuer: "Red Cross" },
     ],
     recentShifts: [
-      { id: "s-3", clientId: "c-003", clientName: "John Doe", date: "2026-07-13", startTime: "08:00", endTime: "16:00", status: "Completed" }
+      { id: "s-3", patientId: "c-003", patientName: "John Doe", date: "2026-07-13", startTime: "08:00", endTime: "16:00", status: "Completed" }
     ]
   },
   "cg-003": {
@@ -120,7 +120,7 @@ export const mockCaregivers: Record<string, Caregiver> = {
     employmentType: "W2",
     payRate: 25.00,
     complianceScore: 65,
-    assignedClientsCount: 0,
+    assignedPatientsCount: 0,
     lastActiveDate: "2026-07-15",
     certifications: [
       { id: "cert-5", name: "CNA License", issueDate: "2026-05-20", expiryDate: "2028-05-20", status: "Active", issuer: "State Nursing Board" },
@@ -146,7 +146,7 @@ export const mockCaregivers: Record<string, Caregiver> = {
     employmentType: "W2",
     payRate: 55.00,
     complianceScore: 100,
-    assignedClientsCount: 8,
+    assignedPatientsCount: 8,
     lastActiveDate: "2026-07-15",
     certifications: [
       { id: "cert-7", name: "PT License", issueDate: "2020-09-01", expiryDate: "2030-09-01", status: "Active", issuer: "State PT Board" }

@@ -1,6 +1,6 @@
 import React from "react";
 import { AppLayout } from "@/components/layout/AppLayout";
 
-export default function ClientsLayout({ children }: { children: React.ReactNode }) {
+export default function PatientsLayout({ children }: { children: React.ReactNode }) {
   return <AppLayout>{children}</AppLayout>;
 }

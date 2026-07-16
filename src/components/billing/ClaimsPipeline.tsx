@@ -10,7 +10,7 @@ type ClaimStatus = "Draft" | "Submitted" | "Pending" | "Paid" | "Denied";
 
 interface Claim {
   id: string;
-  client: string;
+  patient: string;
   amount: number;
   payer: "Medicare" | "Medicaid" | "Private Pay" | "Commercial";
   status: ClaimStatus;
@@ -19,21 +19,21 @@ interface Claim {
 }
 
 const initialClaims: Claim[] = [
-  { id: "CLM-10231", client: "Margaret Chen", amount: 2450, payer: "Medicare", status: "Draft", date: "Oct 12", age: "" },
-  { id: "CLM-10232", client: "Robert Alvarez", amount: 1820, payer: "Medicaid", status: "Draft", date: "Oct 11", age: "" },
-  { id: "CLM-10201", client: "Aiko Tanaka", amount: 3120, payer: "Private Pay", status: "Submitted", date: "", age: "6d in submitted" },
-  { id: "CLM-10202", client: "Thomas Becker", amount: 4260, payer: "Commercial", status: "Submitted", date: "", age: "7d in submitted" },
-  { id: "CLM-10203", client: "Priya Patel", amount: 1590, payer: "Medicaid", status: "Submitted", date: "", age: "9d in submitted" },
-  { id: "CLM-10188", client: "Devon Price", amount: 2985, payer: "Medicare", status: "Pending", date: "", age: "18d in pending" },
-  { id: "CLM-10189", client: "Rachel Kim", amount: 2110, payer: "Medicaid", status: "Pending", date: "", age: "20d in pending" },
-  { id: "CLM-10190", client: "Carlos Mendez", amount: 5210, payer: "Commercial", status: "Pending", date: "", age: "23d in pending" },
-  { id: "CLM-10145", client: "Maria Santos", amount: 3480, payer: "Medicare", status: "Paid", date: "Sep 12", age: "" },
-  { id: "CLM-10146", client: "James O'Brien", amount: 4020, payer: "Private Pay", status: "Paid", date: "Sep 10", age: "" },
-  { id: "CLM-10147", client: "Aisha Williams", amount: 1780, payer: "Medicaid", status: "Paid", date: "Sep 08", age: "" },
-  { id: "CLM-10099", client: "David Kim", amount: 2650, payer: "Commercial", status: "Denied", date: "Aug 30", age: "" },
-  { id: "CLM-10100", client: "Lisa Chen", amount: 980, payer: "Medicaid", status: "Denied", date: "Aug 27", age: "" },
-  { id: "CLM-10101", client: "Marcus Lee", amount: 1420, payer: "Medicare", status: "Denied", date: "Aug 22", age: "" },
-  { id: "CLM-10102", client: "Amy Rodriguez", amount: 720, payer: "Commercial", status: "Denied", date: "Aug 18", age: "" },
+  { id: "CLM-10231", patient: "Margaret Chen", amount: 2450, payer: "Medicare", status: "Draft", date: "Oct 12", age: "" },
+  { id: "CLM-10232", patient: "Robert Alvarez", amount: 1820, payer: "Medicaid", status: "Draft", date: "Oct 11", age: "" },
+  { id: "CLM-10201", patient: "Aiko Tanaka", amount: 3120, payer: "Private Pay", status: "Submitted", date: "", age: "6d in submitted" },
+  { id: "CLM-10202", patient: "Thomas Becker", amount: 4260, payer: "Commercial", status: "Submitted", date: "", age: "7d in submitted" },
+  { id: "CLM-10203", patient: "Priya Patel", amount: 1590, payer: "Medicaid", status: "Submitted", date: "", age: "9d in submitted" },
+  { id: "CLM-10188", patient: "Devon Price", amount: 2985, payer: "Medicare", status: "Pending", date: "", age: "18d in pending" },
+  { id: "CLM-10189", patient: "Rachel Kim", amount: 2110, payer: "Medicaid", status: "Pending", date: "", age: "20d in pending" },
+  { id: "CLM-10190", patient: "Carlos Mendez", amount: 5210, payer: "Commercial", status: "Pending", date: "", age: "23d in pending" },
+  { id: "CLM-10145", patient: "Maria Santos", amount: 3480, payer: "Medicare", status: "Paid", date: "Sep 12", age: "" },
+  { id: "CLM-10146", patient: "James O'Brien", amount: 4020, payer: "Private Pay", status: "Paid", date: "Sep 10", age: "" },
+  { id: "CLM-10147", patient: "Aisha Williams", amount: 1780, payer: "Medicaid", status: "Paid", date: "Sep 08", age: "" },
+  { id: "CLM-10099", patient: "David Kim", amount: 2650, payer: "Commercial", status: "Denied", date: "Aug 30", age: "" },
+  { id: "CLM-10100", patient: "Lisa Chen", amount: 980, payer: "Medicaid", status: "Denied", date: "Aug 27", age: "" },
+  { id: "CLM-10101", patient: "Marcus Lee", amount: 1420, payer: "Medicare", status: "Denied", date: "Aug 22", age: "" },
+  { id: "CLM-10102", patient: "Amy Rodriguez", amount: 720, payer: "Commercial", status: "Denied", date: "Aug 18", age: "" },
 ];
 
 const COLUMNS: { id: ClaimStatus; color: string; bg: string }[] = [
@@ -128,7 +128,7 @@ export function ClaimsPipeline({ onClaimClick }: { onClaimClick?: (id: string) =
                     >
                       <div className="flex justify-between items-start mb-3">
                         <div>
-                          <div className="font-medium text-slate-900 text-sm">{claim.client}</div>
+                          <div className="font-medium text-slate-900 text-sm">{claim.patient}</div>
                           <div className="text-xs text-slate-500 mt-0.5">{claim.id}</div>
                         </div>
                         <div className="font-semibold text-slate-800 text-sm">${claim.amount.toLocaleString("en-US")}</div>

@@ -172,7 +172,7 @@ export default function CaregiverRosterPage() {
                     <th className="px-6 py-4">Status</th>
                     <th className="px-6 py-4">Rating</th>
                     <th className="px-6 py-4">Compliance</th>
-                    <th className="px-6 py-4">Clients</th>
+                    <th className="px-6 py-4">Patients</th>
                     <th className="px-6 py-4">Last Active</th>
                     <th className="px-6 py-4 text-right">Actions</th>
                   </tr>
@@ -208,7 +208,7 @@ export default function CaregiverRosterPage() {
                         </Badge>
                       </td>
                       <td className="px-6 py-4 text-slate-600">
-                        {cg.assignedClientsCount} Active
+                        {cg.assignedPatientsCount} Active
                       </td>
                       <td className="px-6 py-4 text-slate-500">
                         {cg.lastActiveDate}

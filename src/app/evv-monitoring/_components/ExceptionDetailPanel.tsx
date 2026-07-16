@@ -79,8 +79,8 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
 
               <div className="bg-slate-50/70 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-slate-500 text-xs font-medium">Client</span>
-                  <span className="text-sm font-semibold text-slate-900">{exception.client.name}</span>
+                  <span className="text-slate-500 text-xs font-medium">Patient</span>
+                  <span className="text-sm font-semibold text-slate-900">{exception.patient.name}</span>
                 </div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-slate-500 text-xs font-medium">Date</span>

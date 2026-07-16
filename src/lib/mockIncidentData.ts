@@ -12,10 +12,10 @@ export const mockIncidents: Incident[] = [
     // Let's use the valid types.
     reportedDate: formatISO(subHours(now, 2)),
     incidentDate: formatISO(subHours(now, 3)),
-    location: "Client Home - Bathroom",
-    description: "Client slipped in the bathroom while transferring from the shower. Caregiver was present and assisted, but client hit their arm on the sink counter.",
+    location: "Patient Home - Bathroom",
+    description: "Patient slipped in the bathroom while transferring from the shower. Caregiver was present and assisted, but patient hit their arm on the sink counter.",
     peopleInvolved: [
-      { id: "c-1", name: "Robert M.", role: "Client", avatar: "/avatars/arthur.png?v=2" },
+      { id: "c-1", name: "Robert M.", role: "Patient", avatar: "/avatars/arthur.png?v=2" },
       { id: "cg-1", name: "Sarah J.", role: "Caregiver", avatar: "https://i.pravatar.cc/150?u=cg1" }
     ],
     workflow: [
@@ -39,10 +39,10 @@ export const mockIncidents: Incident[] = [
     status: "Corrective Action",
     reportedDate: formatISO(subDays(now, 2)),
     incidentDate: formatISO(subDays(now, 2)),
-    location: "Client Home - Living Room",
-    description: "Incorrect dosage of blood pressure medication was administered. Client experienced dizziness.",
+    location: "Patient Home - Living Room",
+    description: "Incorrect dosage of blood pressure medication was administered. Patient experienced dizziness.",
     peopleInvolved: [
-      { id: "c-2", name: "Helen S.", role: "Client", avatar: "/avatars/eleanor.png?v=2" },
+      { id: "c-2", name: "Helen S.", role: "Patient", avatar: "/avatars/eleanor.png?v=2" },
       { id: "cg-2", name: "Marcus T.", role: "Caregiver", avatar: "https://i.pravatar.cc/150?u=cg2" }
     ],
     workflow: [
@@ -73,10 +73,10 @@ export const mockIncidents: Incident[] = [
     status: "Closed",
     reportedDate: formatISO(subDays(now, 5)),
     incidentDate: formatISO(subDays(now, 5)),
-    location: "Client Home",
-    description: "Caregiver did not show up for scheduled shift. Client called agency.",
+    location: "Patient Home",
+    description: "Caregiver did not show up for scheduled shift. Patient called agency.",
     peopleInvolved: [
-      { id: "c-3", name: "Arthur D.", role: "Client" },
+      { id: "c-3", name: "Arthur D.", role: "Patient" },
       { id: "cg-3", name: "Emily R.", role: "Caregiver" }
     ],
     workflow: [
@@ -103,7 +103,7 @@ export const mockIncidents: Incident[] = [
     reportedDate: formatISO(subHours(now, 1)),
     incidentDate: formatISO(subHours(now, 2)),
     location: "Agency Office",
-    description: "Client files were left unsecured on a desk accessible to non-authorized personnel.",
+    description: "Patient files were left unsecured on a desk accessible to non-authorized personnel.",
     peopleInvolved: [
       { id: "cg-4", name: "Admin Staff", role: "Other" }
     ],

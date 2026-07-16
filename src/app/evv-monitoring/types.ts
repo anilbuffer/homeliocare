@@ -18,7 +18,7 @@ export interface EVVException {
     name: string;
     avatarUrl?: string;
   };
-  client: {
+  patient: {
     id: string;
     name: string;
   };

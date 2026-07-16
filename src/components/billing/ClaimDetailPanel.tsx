@@ -43,9 +43,9 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
 
           <div className="flex-1 overflow-y-auto p-6 space-y-6 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
 
-            {/* Client Info */}
+            {/* Patient Info */}
             <div>
-              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Client Information</div>
+              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Patient Information</div>
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal font-bold text-lg">
                   MC

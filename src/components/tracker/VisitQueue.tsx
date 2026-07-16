@@ -24,7 +24,7 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
 
   // Group visits (mocking a single "TODAY" group for simplicity)
   const filteredVisits = visits.filter((v) => {
-    const matchesSearch = v.clientName.toLowerCase().includes(searchTerm.toLowerCase()) || v.id.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = v.patientName.toLowerCase().includes(searchTerm.toLowerCase()) || v.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = filterStatus === "All"
       || (filterStatus === "Assigned" && (v.status === "Assigned" || v.status === "In Progress"))
       || v.status === filterStatus;
@@ -196,7 +196,7 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
                         dragOverId === v.id && v.status === "Unassigned" && "border-brand-teal shadow-[0_0_0_2px_rgba(14,163,131,0.5)] bg-emerald-50/30"
                       )}>
                         <div className="flex items-start justify-between mb-0.5">
-                          <h3 className="font-semibold text-slate-800 text-xs truncate pr-2">{v.clientName}</h3>
+                          <h3 className="font-semibold text-slate-800 text-xs truncate pr-2">{v.patientName}</h3>
                           <span className={clsx(
                             "text-[9px] px-1 py-0.5 rounded font-medium shrink-0",
                             v.status === "Unassigned" ? "bg-red-50 text-red-600" :

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp, User, Pill, Activity, AlertTriangle, MessageCircle, FileText, ClipboardList } from "lucide-react";
-import { ChronologyEntry, ChronologyCategory } from "@/lib/clients/mockChronology";
+import { ChronologyEntry, ChronologyCategory } from "@/lib/patients/mockChronology";
 
 interface MedicalTimelineProps {
   entries: ChronologyEntry[];

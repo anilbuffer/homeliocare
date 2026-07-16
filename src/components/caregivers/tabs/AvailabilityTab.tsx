@@ -85,7 +85,7 @@ export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
             {caregiver.recentShifts.filter(s => s.status === "Upcoming").map(shift => (
               <div key={shift.id} className="p-4 border border-slate-100 rounded-xl hover:border-brand-teal/30 hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all group">
                 <div className="flex justify-between items-start mb-2">
-                  <div className="font-semibold text-slate-800 group-hover:text-brand-teal transition-colors">{shift.clientName}</div>
+                  <div className="font-semibold text-slate-800 group-hover:text-brand-teal transition-colors">{shift.patientName}</div>
                   <Badge variant="brand" className="bg-blue-50 text-blue-600 border-blue-100">{shift.status}</Badge>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-600 mb-1">

@@ -62,7 +62,7 @@ export function ShiftCard({ shift, onClick }: ShiftCardProps) {
       <div className="relative z-10 flex flex-col gap-2">
         <div className="flex items-start justify-between gap-2">
           <div className="font-semibold text-slate-800 text-sm truncate">
-            {shift.clientName}
+            {shift.patientName}
           </div>
           {isUnfilled ? (
             <div className="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">
@@ -89,7 +89,7 @@ export function ShiftCard({ shift, onClick }: ShiftCardProps) {
 
         <div className="text-xs text-slate-500 flex items-center gap-1.5">
           <MapPin className="w-3.5 h-3.5 shrink-0" />
-          <span className="truncate">{shift.clientAddress}</span>
+          <span className="truncate">{shift.patientAddress}</span>
         </div>
 
         <div className="text-xs text-slate-500 flex items-center gap-1.5">

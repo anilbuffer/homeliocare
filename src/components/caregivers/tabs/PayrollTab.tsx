@@ -110,13 +110,13 @@ export function PayrollTab({ caregiver }: { caregiver: Caregiver }) {
                 <tbody className="divide-y divide-slate-50">
                   <tr>
                     <td className="py-3 font-medium text-slate-700">Jul 14</td>
-                    <td className="py-3 text-slate-600 truncate max-w-[150px]">Client A to Client B</td>
+                    <td className="py-3 text-slate-600 truncate max-w-[150px]">Patient A to Patient B</td>
                     <td className="py-3 text-right font-medium text-slate-700">12.5</td>
                     <td className="py-3 text-right text-slate-600">$8.12</td>
                   </tr>
                   <tr>
                     <td className="py-3 font-medium text-slate-700">Jul 12</td>
-                    <td className="py-3 text-slate-600 truncate max-w-[150px]">Office to Client A</td>
+                    <td className="py-3 text-slate-600 truncate max-w-[150px]">Office to Patient A</td>
                     <td className="py-3 text-right font-medium text-slate-700">5.2</td>
                     <td className="py-3 text-right text-slate-600">$3.38</td>
                   </tr>

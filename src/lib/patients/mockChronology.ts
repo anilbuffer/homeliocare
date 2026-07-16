@@ -9,7 +9,7 @@ export type ChronologyCategory =
 
 export interface ChronologyEntry {
   id: string;
-  clientId: string;
+  patientId: string;
   timestamp: string; // ISO date string
   category: ChronologyCategory;
   summary: string;
@@ -18,7 +18,7 @@ export interface ChronologyEntry {
 }
 
 export interface ChronologyInsights {
-  clientId: string;
+  patientId: string;
   trend: 'Improving' | 'Stable' | 'Declining' | 'Needs attention';
   summary: string;
   flaggedPatterns: { id: string, text: string, relatedEntryIds: string[] }[];
@@ -29,7 +29,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
   "c-1": [ // Eleanor Vance
     {
       id: "entry-1",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
       category: "vitals",
       summary: "Blood pressure recorded: 128/82",
@@ -38,7 +38,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
     },
     {
       id: "entry-2",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1 day ago
       category: "visit",
       summary: "Routine check-in and assistance with ADLs",
@@ -47,7 +47,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
     },
     {
       id: "entry-3",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days ago
       category: "medication",
       summary: "Adjusted morning Lasix dosage per PCP orders",
@@ -56,7 +56,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
     },
     {
       id: "entry-4",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 3).toISOString(), // 3 days ago
       category: "communication",
       summary: "Update given to daughter (Sarah)",
@@ -65,7 +65,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
     },
     {
       id: "entry-5",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5 days ago
       category: "incident",
       summary: "Patient reported mild dizziness upon standing",
@@ -74,7 +74,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
     },
     {
       id: "entry-6",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 10).toISOString(), // 10 days ago
       category: "care_plan",
       summary: "Care plan updated to include daily weight monitoring",
@@ -83,7 +83,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
     },
     {
       id: "entry-7",
-      clientId: "c-1",
+      patientId: "c-1",
       timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString(), // 30 days ago
       category: "admission",
       summary: "Admitted to Home Care Services",
@@ -95,7 +95,7 @@ export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
 
 export const mockChronologyInsights: Record<string, ChronologyInsights> = {
   "c-1": {
-    clientId: "c-1",
+    patientId: "c-1",
     trend: "Stable",
     summary: "Eleanor has been stable over the last week with good adherence to her updated medication regimen. Her recent vital signs are within normal limits, and the slight dizziness reported last week has not recurred. Family is engaged and informed about her care plan.",
     flaggedPatterns: [

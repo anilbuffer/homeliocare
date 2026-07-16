@@ -9,7 +9,7 @@ export interface Caregiver {
   distanceMiles?: number;
 }
 
-export interface Client {
+export interface Patient {
   id: string;
   name: string;
   address: string;
@@ -17,9 +17,9 @@ export interface Client {
 
 export interface Shift {
   id: string;
-  clientId: string;
-  clientName: string;
-  clientAddress: string;
+  patientId: string;
+  patientName: string;
+  patientAddress: string;
   requiredSkills: string[];
   startTime: string; // ISO date string or simplified "10a-2p"
   endTime: string;
@@ -48,9 +48,9 @@ export const mockCaregivers: Caregiver[] = [
 export const mockShifts: Shift[] = [
   {
     id: 's1',
-    clientId: 'cl1',
-    clientName: 'Mabel Ortiz',
-    clientAddress: '1201 Grand St, Queen',
+    patientId: 'cl1',
+    patientName: 'Mabel Ortiz',
+    patientAddress: '1201 Grand St, Queen',
     requiredSkills: ['HHA', 'Hoyer'],
     startTime: '2026-07-08T10:00:00Z',
     endTime: '2026-07-08T14:00:00Z',
@@ -61,9 +61,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's2',
-    clientId: 'cl2',
-    clientName: 'George Patel',
-    clientAddress: '331 Wyckoff Ave, Bust',
+    patientId: 'cl2',
+    patientName: 'George Patel',
+    patientAddress: '331 Wyckoff Ave, Bust',
     requiredSkills: ['CNA'],
     startTime: '2026-07-08T15:00:00Z',
     endTime: '2026-07-08T19:00:00Z',
@@ -74,9 +74,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's3',
-    clientId: 'cl3',
-    clientName: 'Frank Delaney',
-    clientAddress: '77 Boerum Pl, Brookly',
+    patientId: 'cl3',
+    patientName: 'Frank Delaney',
+    patientAddress: '77 Boerum Pl, Brookly',
     requiredSkills: ['HHA'],
     startTime: '2026-07-08T12:00:00Z',
     endTime: '2026-07-08T16:00:00Z',
@@ -88,9 +88,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's4',
-    clientId: 'cl4',
-    clientName: 'Harold Simmons',
-    clientAddress: '98 5th Ave, Brookly',
+    patientId: 'cl4',
+    patientName: 'Harold Simmons',
+    patientAddress: '98 5th Ave, Brookly',
     requiredSkills: ['CNA', 'Diabetes'],
     startTime: '2026-07-08T09:00:00Z',
     endTime: '2026-07-08T13:00:00Z',
@@ -102,9 +102,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's5',
-    clientId: 'cl5',
-    clientName: 'Rosa Beltran',
-    clientAddress: '9 Vernon Blvd, LIC',
+    patientId: 'cl5',
+    patientName: 'Rosa Beltran',
+    patientAddress: '9 Vernon Blvd, LIC',
     requiredSkills: ['HHA', 'Diabetes'],
     startTime: '2026-07-08T14:00:00Z',
     endTime: '2026-07-08T18:00:00Z',
@@ -116,9 +116,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's6',
-    clientId: 'cl6',
-    clientName: 'Eleanor Whitaker',
-    clientAddress: '412 Oak Ln, Astoria',
+    patientId: 'cl6',
+    patientName: 'Eleanor Whitaker',
+    patientAddress: '412 Oak Ln, Astoria',
     requiredSkills: ['HHA', 'Dementia'],
     startTime: '2026-07-08T08:00:00Z',
     endTime: '2026-07-08T12:00:00Z',
@@ -130,9 +130,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's7',
-    clientId: 'cl7',
-    clientName: 'Doris Hensley',
-    clientAddress: '540 Metropolitan A',
+    patientId: 'cl7',
+    patientName: 'Doris Hensley',
+    patientAddress: '540 Metropolitan A',
     requiredSkills: ['HHA'],
     startTime: '2026-07-08T07:00:00Z',
     endTime: '2026-07-08T11:00:00Z',
@@ -144,9 +144,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's8',
-    clientId: 'cl8',
-    clientName: 'Albert Wright',
-    clientAddress: '110 W 14th St',
+    patientId: 'cl8',
+    patientName: 'Albert Wright',
+    patientAddress: '110 W 14th St',
     requiredSkills: ['HHA', 'Post-op'],
     startTime: '2026-07-08T10:30:00Z',
     endTime: '2026-07-08T14:30:00Z',
@@ -157,9 +157,9 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's9',
-    clientId: 'cl9',
-    clientName: 'Betty Cooper',
-    clientAddress: '23 River Rd',
+    patientId: 'cl9',
+    patientName: 'Betty Cooper',
+    patientAddress: '23 River Rd',
     requiredSkills: ['CNA'],
     startTime: '2026-07-08T16:00:00Z',
     endTime: '2026-07-08T20:00:00Z',

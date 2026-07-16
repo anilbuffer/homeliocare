@@ -49,7 +49,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
         </Card>
 
         <Card className="p-5">
-          <div className="text-slate-500 text-sm font-medium mb-1">Care Quality (Client)</div>
+          <div className="text-slate-500 text-sm font-medium mb-1">Care Quality (Patient)</div>
           <div className="text-2xl font-bold text-slate-800 mb-2">4.9/5</div>
           <div className="text-xs font-medium text-emerald-600 bg-emerald-50 w-fit px-2 py-0.5 rounded-full flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> +0.1 vs agency avg
@@ -107,7 +107,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
 
         <Card className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-slate-800">Recent Client Feedback</h3>
+            <h3 className="text-lg font-semibold text-slate-800">Recent Patient Feedback</h3>
             <button className="text-sm text-brand-teal font-medium">View All</button>
           </div>
           
@@ -153,7 +153,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
               <tr className="border-b border-slate-200 text-slate-500">
                 <th className="py-3 font-medium">Date</th>
                 <th className="py-3 font-medium">Type</th>
-                <th className="py-3 font-medium">Client Involved</th>
+                <th className="py-3 font-medium">Patient Involved</th>
                 <th className="py-3 font-medium">Severity</th>
                 <th className="py-3 font-medium text-right">Status</th>
               </tr>

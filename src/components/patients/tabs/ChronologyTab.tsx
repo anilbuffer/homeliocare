@@ -2,12 +2,12 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { Search, Filter, X } from "lucide-react";
-import { Client } from "@/lib/clients/mockData";
-import { mockChronologyEntries, mockChronologyInsights, ChronologyCategory } from "@/lib/clients/mockChronology";
+import { Patient } from "@/lib/patients/mockData";
+import { mockChronologyEntries, mockChronologyInsights, ChronologyCategory } from "@/lib/patients/mockChronology";
 import { AITimelineInsights } from "../chronology/AITimelineInsights";
 import { MedicalTimeline } from "../chronology/MedicalTimeline";
 
-export function ChronologyTab({ client }: { client: Client }) {
+export function ChronologyTab({ patient }: { patient: Patient }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<ChronologyCategory | "all">("all");
   const [highlightedEntryIds, setHighlightedEntryIds] = useState<string[]>([]);
@@ -21,8 +21,8 @@ export function ChronologyTab({ client }: { client: Client }) {
     return () => clearTimeout(timer);
   }, []);
 
-  const entries = mockChronologyEntries[client.id] || [];
-  const insights = mockChronologyInsights[client.id] || null;
+  const entries = mockChronologyEntries[patient.id] || [];
+  const insights = mockChronologyInsights[patient.id] || null;
 
   const filteredEntries = useMemo(() => {
     return entries.filter(entry => {

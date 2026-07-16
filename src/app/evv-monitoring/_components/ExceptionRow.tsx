@@ -35,7 +35,7 @@ export function ExceptionRow({ exception, onClick, index }: ExceptionRowProps) {
       onClick={() => onClick(exception)}
       className="flex items-center py-2.5 px-4 border-b border-slate-100 cursor-pointer bg-white last:border-0 transition-colors"
     >
-      {/* Caregiver & Client */}
+      {/* Caregiver & Patient */}
       <div className="flex-[1.5] min-w-[200px] flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-full bg-slate-200 overflow-hidden shrink-0 border border-slate-100">
           {exception.caregiver.avatarUrl ? (
@@ -49,7 +49,7 @@ export function ExceptionRow({ exception, onClick, index }: ExceptionRowProps) {
         <div>
           <div className="font-semibold text-slate-900 text-[13px] leading-tight">{exception.caregiver.name}</div>
           <div className="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5 leading-tight">
-            to {exception.client.name}
+            to {exception.patient.name}
           </div>
         </div>
       </div>

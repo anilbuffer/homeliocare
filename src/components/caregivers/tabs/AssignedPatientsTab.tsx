@@ -7,33 +7,33 @@ import { Card } from "@/components/ui/Card";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Users, Calendar, ArrowRight, Activity } from "lucide-react";
-import { mockClients } from "@/lib/clients/mockData";
+import { mockPatients } from "@/lib/patients/mockData";
 
-export function AssignedClientsTab({ caregiver }: { caregiver: Caregiver }) {
-  // Mock grabbing assigned clients from the existing client mock data
+export function AssignedPatientsTab({ caregiver }: { caregiver: Caregiver }) {
+  // Mock grabbing assigned patients from the existing patient mock data
   // In a real app, this would be a filtered array based on assignments
-  const assignedClients = Object.values(mockClients).slice(0, caregiver.assignedClientsCount || 2);
+  const assignedPatients = Object.values(mockPatients).slice(0, caregiver.assignedPatientsCount || 2);
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-slate-800">Assigned Clients ({assignedClients.length})</h3>
+        <h3 className="text-lg font-semibold text-slate-800">Assigned Patients ({assignedPatients.length})</h3>
         <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
-          Assign New Client
+          Assign New Patient
         </button>
       </div>
 
-      {assignedClients.length > 0 ? (
+      {assignedPatients.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {assignedClients.map((client) => (
-            <Card key={client.id} className="p-0 overflow-hidden hover:border-brand-teal/30 hover:shadow-md transition-all group">
+          {assignedPatients.map((patient) => (
+            <Card key={patient.id} className="p-0 overflow-hidden hover:border-brand-teal/30 hover:shadow-md transition-all group">
               <div className="p-4">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
-                    <Avatar src={client.avatarUrl} alt={client.name} fallback={client.name.substring(0, 2)} size="lg" />
+                    <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="lg" />
                     <div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-brand-teal transition-colors">{client.name}</h4>
-                      <div className="text-xs text-slate-500 mt-0.5">{client.address}</div>
+                      <h4 className="font-semibold text-slate-800 group-hover:text-brand-teal transition-colors">{patient.name}</h4>
+                      <div className="text-xs text-slate-500 mt-0.5">{patient.address}</div>
                     </div>
                   </div>
                 </div>
@@ -45,8 +45,8 @@ export function AssignedClientsTab({ caregiver }: { caregiver: Caregiver }) {
                   </div>
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-slate-500 flex items-center gap-1.5"><Activity className="w-4 h-4" /> Risk Level</span>
-                    <Badge variant={client.riskLevel === "High" ? "error" : client.riskLevel === "Medium" ? "warning" : "success"}>
-                      {client.riskLevel}
+                    <Badge variant={patient.riskLevel === "High" ? "error" : patient.riskLevel === "Medium" ? "warning" : "success"}>
+                      {patient.riskLevel}
                     </Badge>
                   </div>
                   <div className="flex justify-between items-center text-sm">
@@ -55,8 +55,8 @@ export function AssignedClientsTab({ caregiver }: { caregiver: Caregiver }) {
                   </div>
                 </div>
               </div>
-              <Link href={`/clients/${client.id}`} className="block w-full text-center py-3 rounded-xl bg-slate-100 hover:bg-brand-teal text-brand-teal hover:text-white font-medium text-sm transition-colors border border-slate-200 group-hover:border-transparent flex items-center justify-center gap-2">
-                View Client Profile <ArrowRight className="w-4 h-4" />
+              <Link href={`/patients/${patient.id}`} className="block w-full text-center py-3 rounded-xl bg-slate-100 hover:bg-brand-teal text-brand-teal hover:text-white font-medium text-sm transition-colors border border-slate-200 group-hover:border-transparent flex items-center justify-center gap-2">
+                View Patient Profile <ArrowRight className="w-4 h-4" />
               </Link>
             </Card>
           ))}
@@ -66,12 +66,12 @@ export function AssignedClientsTab({ caregiver }: { caregiver: Caregiver }) {
           <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4">
             <Users className="w-8 h-8 text-slate-300" />
           </div>
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">No Clients Assigned</h3>
+          <h3 className="text-lg font-semibold text-slate-800 mb-2">No Patients Assigned</h3>
           <p className="text-slate-500 max-w-md">
-            This caregiver does not currently have any active client assignments. They are ready for scheduling.
+            This caregiver does not currently have any active patient assignments. They are ready for scheduling.
           </p>
           <button className="mt-6 bg-brand-teal text-white px-6 py-2.5 rounded-xl font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-all active:scale-95">
-            Find Matching Clients
+            Find Matching Patients
           </button>
         </Card>
       )}

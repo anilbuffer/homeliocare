@@ -7,7 +7,7 @@ import { Sparkles, MapPin } from "lucide-react";
 
 import { KpiStrip } from "@/components/dashboard/KpiStrip";
 import { VisitsChart } from "@/components/dashboard/VisitsChart";
-import { ClientSatisfaction } from "@/components/dashboard/ClientSatisfaction";
+import { PatientSatisfaction } from "@/components/dashboard/PatientSatisfaction";
 import { LiveVisitFeed } from "@/components/dashboard/LiveVisitFeed";
 import { RecentIncidents } from "@/components/dashboard/RecentIncidents";
 import { TopCaregivers } from "@/components/dashboard/TopCaregivers";
@@ -74,7 +74,7 @@ export default function DashboardPage() {
             <VisitsChart />
           </div>
           <div className="xl:col-span-1">
-            <ClientSatisfaction />
+            <PatientSatisfaction />
           </div>
         </motion.div>
 

@@ -118,7 +118,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
                 )}
                 style={getShiftStyle(shift)}
               >
-                <div className="text-xs font-semibold truncate">{shift.clientName}</div>
+                <div className="text-xs font-semibold truncate">{shift.patientName}</div>
                 <div className="text-[10px] opacity-80 truncate flex items-center gap-1">
                   <Clock className="w-3 h-3" />
                   {formatTime(shift.startTime)}-{formatTime(shift.endTime)}
@@ -158,7 +158,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
                     )}
                     style={getShiftStyle(shift)}
                   >
-                    <div className="text-xs font-semibold truncate">{shift.clientName}</div>
+                    <div className="text-xs font-semibold truncate">{shift.patientName}</div>
                     <div className="text-[10px] opacity-80 truncate flex items-center gap-1">
                       <Clock className="w-3 h-3 inline-block" />
                       {formatTime(shift.startTime)}-{formatTime(shift.endTime)}

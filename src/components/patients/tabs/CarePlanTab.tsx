@@ -1,11 +1,11 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 
-export function CarePlanTab({ client }: { client: Client }) {
-  if (!client.carePlan) {
+export function CarePlanTab({ patient }: { patient: Patient }) {
+  if (!patient.carePlan) {
     return (
       <div className="space-y-6">
         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
@@ -15,7 +15,7 @@ export function CarePlanTab({ client }: { client: Client }) {
     );
   }
 
-  const { carePlan } = client;
+  const { carePlan } = patient;
 
   return (
     <div className="space-y-6">

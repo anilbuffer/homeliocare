@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { cn } from "@/components/ui/Card";
 
-export function MedicationsTab({ client }: { client: Client }) {
-  if (!client.medications) {
+export function MedicationsTab({ patient }: { patient: Patient }) {
+  if (!patient.medications) {
     return (
       <div className="space-y-6">
         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
@@ -14,7 +14,7 @@ export function MedicationsTab({ client }: { client: Client }) {
     );
   }
 
-  const { scheduled, prn, mar } = client.medications;
+  const { scheduled, prn, mar } = patient.medications;
 
   const renderMarCell = (status: "taken" | "missed" | "pending" | "na") => {
     const statusClasses = {

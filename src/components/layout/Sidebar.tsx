@@ -29,7 +29,7 @@ const navGroups = [
     label: "",
     items: [
       { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
-      { name: "Clients", icon: Users, id: "clients" },
+      { name: "Patients", icon: Users, id: "patients" },
       { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
       { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
       { name: "Billing & Claims", icon: Receipt, id: "billing" },
@@ -73,7 +73,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/training")) return "training";
     if (pathname?.startsWith("/billing")) return "billing";
     if (pathname?.startsWith("/scheduling")) return "scheduling";
-    if (pathname?.startsWith("/clients")) return "clients";
+    if (pathname?.startsWith("/patients")) return "patients";
     if (pathname?.startsWith("/caregivers")) return "caregivers";
     if (pathname?.startsWith("/evv-monitoring")) return "evv-monitoring";
     if (pathname?.startsWith("/quality-assurance")) return "qa";
@@ -91,8 +91,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("billing");
     } else if (pathname.startsWith("/scheduling")) {
       setActiveItem("scheduling");
-    } else if (pathname.startsWith("/clients")) {
-      setActiveItem("clients");
+    } else if (pathname.startsWith("/patients")) {
+      setActiveItem("patients");
     } else if (pathname.startsWith("/caregivers")) {
       setActiveItem("caregivers");
     } else if (pathname.startsWith("/evv-monitoring")) {
@@ -156,7 +156,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 if (item.id === "training") href = "/training";
                 if (item.id === "billing") href = "/billing";
                 if (item.id === "scheduling") href = "/scheduling";
-                if (item.id === "clients") href = "/clients";
+                if (item.id === "patients") href = "/patients";
                 if (item.id === "caregivers") href = "/caregivers";
                 if (item.id === "evv-monitoring") href = "/evv-monitoring";
                 if (item.id === "qa") href = "/quality-assurance";

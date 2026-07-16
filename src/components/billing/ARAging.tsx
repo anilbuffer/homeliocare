@@ -13,13 +13,13 @@ const segments = [
 ];
 
 const arRecords = [
-  { id: "CLM-10231", client: "Margaret Chen", payer: "Medicare", amount: 2450, days: 12, action: "Submitted Oct 3", urgent: false },
-  { id: "CLM-10201", client: "Aiko Tanaka", payer: "Private Pay", amount: 3120, days: 24, action: "Invoice emailed", urgent: false },
-  { id: "CLM-10189", client: "Rachel Kim", payer: "Medicaid", amount: 2110, days: 42, action: "Follow-up call", urgent: false },
-  { id: "CLM-10188", client: "Devon Price", payer: "Medicare", amount: 2985, days: 55, action: "Corrected & resubmitted", urgent: false },
-  { id: "CLM-10190", client: "Carlos Mendez", payer: "Commercial", amount: 5210, days: 71, action: "Payer inquiry", urgent: false },
-  { id: "CLM-10101", client: "Marcus Lee", payer: "Medicare", amount: 1420, days: 96, action: "Escalated to supervisor", urgent: true },
-  { id: "CLM-10099", client: "David Kim", payer: "Commercial", amount: 2650, days: 112, action: "Appeal in progress", urgent: true },
+  { id: "CLM-10231", patient: "Margaret Chen", payer: "Medicare", amount: 2450, days: 12, action: "Submitted Oct 3", urgent: false },
+  { id: "CLM-10201", patient: "Aiko Tanaka", payer: "Private Pay", amount: 3120, days: 24, action: "Invoice emailed", urgent: false },
+  { id: "CLM-10189", patient: "Rachel Kim", payer: "Medicaid", amount: 2110, days: 42, action: "Follow-up call", urgent: false },
+  { id: "CLM-10188", patient: "Devon Price", payer: "Medicare", amount: 2985, days: 55, action: "Corrected & resubmitted", urgent: false },
+  { id: "CLM-10190", patient: "Carlos Mendez", payer: "Commercial", amount: 5210, days: 71, action: "Payer inquiry", urgent: false },
+  { id: "CLM-10101", patient: "Marcus Lee", payer: "Medicare", amount: 1420, days: 96, action: "Escalated to supervisor", urgent: true },
+  { id: "CLM-10099", patient: "David Kim", payer: "Commercial", amount: 2650, days: 112, action: "Appeal in progress", urgent: true },
 ];
 
 const payerColors = {
@@ -66,7 +66,7 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
         <table className="w-full text-sm text-left">
           <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
             <tr>
-              <th className="px-4 py-3 font-medium">Client</th>
+              <th className="px-4 py-3 font-medium">Patient</th>
               <th className="px-4 py-3 font-medium">Payer</th>
               <th className="px-4 py-3 font-medium text-right">Amount</th>
               <th className="px-4 py-3 font-medium text-right">Days out</th>
@@ -84,7 +84,7 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
                 )}
                 onClick={() => onClaimClick?.(record.id)}
               >
-                <td className="px-4 py-3 font-medium text-slate-900 whitespace-nowrap">{record.client}</td>
+                <td className="px-4 py-3 font-medium text-slate-900 whitespace-nowrap">{record.patient}</td>
                 <td className="px-4 py-3">
                   <div className={clsx("inline-flex px-2 py-1 rounded-md text-[10px] font-medium items-center gap-1.5 whitespace-nowrap", payerColors[record.payer as keyof typeof payerColors].bg, payerColors[record.payer as keyof typeof payerColors].text)}>
                     <div className={clsx("w-1.5 h-1.5 rounded-full", payerColors[record.payer as keyof typeof payerColors].dot)} />

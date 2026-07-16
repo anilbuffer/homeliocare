@@ -9,7 +9,7 @@ import { OverviewTab } from "@/components/caregivers/tabs/OverviewTab";
 import { CertificationsTab } from "@/components/caregivers/tabs/CertificationsTab";
 import { AvailabilityTab } from "@/components/caregivers/tabs/AvailabilityTab";
 import { PerformanceTab } from "@/components/caregivers/tabs/PerformanceTab";
-import { AssignedClientsTab } from "@/components/caregivers/tabs/AssignedClientsTab";
+import { AssignedPatientsTab } from "@/components/caregivers/tabs/AssignedPatientsTab";
 import { DocumentsTab } from "@/components/caregivers/tabs/DocumentsTab";
 import { PayrollTab } from "@/components/caregivers/tabs/PayrollTab";
 
@@ -18,7 +18,7 @@ const tabs = [
   { id: "certifications", label: "Certifications" },
   { id: "availability", label: "Availability" },
   { id: "performance", label: "Performance" },
-  { id: "assigned-clients", label: "Assigned Clients" },
+  { id: "assigned-patients", label: "Assigned Patients" },
   { id: "documents", label: "Documents" },
   { id: "payroll", label: "Payroll" },
 ];
@@ -67,7 +67,7 @@ export function CaregiverTabs({ caregiver }: { caregiver: Caregiver }) {
             {activeTab === "certifications" && <CertificationsTab caregiver={caregiver} />}
             {activeTab === "availability" && <AvailabilityTab caregiver={caregiver} />}
             {activeTab === "performance" && <PerformanceTab caregiver={caregiver} />}
-            {activeTab === "assigned-clients" && <AssignedClientsTab caregiver={caregiver} />}
+            {activeTab === "assigned-patients" && <AssignedPatientsTab caregiver={caregiver} />}
             {activeTab === "documents" && <DocumentsTab caregiver={caregiver} />}
             {activeTab === "payroll" && <PayrollTab caregiver={caregiver} />}
           </motion.div>

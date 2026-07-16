@@ -19,7 +19,7 @@ export interface Caregiver {
 
 export interface Visit {
   id: string;
-  clientName: string;
+  patientName: string;
   address: string;
   time: string;
   status: VisitStatus;
@@ -153,7 +153,7 @@ export const mockCaregivers: Caregiver[] = [
 export const mockVisits: Visit[] = [
   {
     id: "v-1",
-    clientName: "Margaret Chen",
+    patientName: "Margaret Chen",
     address: "1200 Sunset Blvd, SF",
     time: "Today - 08:30",
     status: "In Progress",
@@ -162,7 +162,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-2",
-    clientName: "Robert Alvarez",
+    patientName: "Robert Alvarez",
     address: "44 Linden Ave, SF",
     time: "Today - 09:00",
     status: "Assigned",
@@ -171,7 +171,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-3",
-    clientName: "Thomas Becker",
+    patientName: "Thomas Becker",
     address: "55 El Camino, SF",
     time: "Today - 10:15",
     status: "Completed",
@@ -180,7 +180,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-4",
-    clientName: "Aiko Tanaka",
+    patientName: "Aiko Tanaka",
     address: "33 Fillmore St, SF",
     time: "Today - 11:00",
     status: "Completed",
@@ -189,7 +189,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-5",
-    clientName: "David Kim",
+    patientName: "David Kim",
     address: "9 Buena Vista, SF",
     time: "Today - 12:30",
     status: "Unassigned",
@@ -197,7 +197,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-6",
-    clientName: "Lisa Chen",
+    patientName: "Lisa Chen",
     address: "180 Mission St, SF",
     time: "Today - 14:00",
     status: "Unassigned",
@@ -205,7 +205,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-7",
-    clientName: "Amy Rodriguez",
+    patientName: "Amy Rodriguez",
     address: "12 Baker St, SF",
     time: "Today - 07:00",
     status: "Completed",
@@ -214,7 +214,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-8",
-    clientName: "William Smith",
+    patientName: "William Smith",
     address: "88 Bay St, SF",
     time: "Today - 09:30",
     status: "Completed",
@@ -223,7 +223,7 @@ export const mockVisits: Visit[] = [
   },
   {
     id: "v-9",
-    clientName: "Maria Gomez",
+    patientName: "Maria Gomez",
     address: "12 Market St, SF",
     time: "Today - 10:00",
     status: "Completed",

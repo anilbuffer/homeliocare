@@ -70,8 +70,8 @@ export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
                 <span className="text-sm font-medium text-slate-800">${caregiver.payRate.toFixed(2)}/hr</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-slate-50">
-                <span className="text-sm text-slate-500">Assigned Clients</span>
-                <span className="text-sm font-medium text-slate-800">{caregiver.assignedClientsCount}</span>
+                <span className="text-sm text-slate-500">Assigned Patients</span>
+                <span className="text-sm font-medium text-slate-800">{caregiver.assignedPatientsCount}</span>
               </div>
             </div>
           </Card>
@@ -104,7 +104,7 @@ export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
             <div className="relative pl-6 border-l-2 border-slate-100 pb-2">
               <div className="absolute w-3 h-3 bg-brand-teal rounded-full -left-[7px] top-1 ring-4 ring-white" />
               <div className="text-sm font-medium text-slate-800">Completed Shift</div>
-              <div className="text-xs text-slate-500 mt-0.5">Today, 1:00 PM • Client: Robert Hayes</div>
+              <div className="text-xs text-slate-500 mt-0.5">Today, 1:00 PM • Patient: Robert Hayes</div>
             </div>
             <div className="relative pl-6 border-l-2 border-slate-100 pb-2">
               <div className="absolute w-3 h-3 bg-amber-400 rounded-full -left-[7px] top-1 ring-4 ring-white" />

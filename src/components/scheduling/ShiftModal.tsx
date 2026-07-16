@@ -83,14 +83,14 @@ export function ShiftModal({
                 <div className="text-sm font-mono opacity-80">{shift.shiftNumber}</div>
               </div>
 
-              {/* Client Info */}
+              {/* Patient Info */}
               <section>
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Client</h3>
+                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Patient</h3>
                 <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <div className="font-semibold text-slate-800 text-lg mb-2">{shift.clientName}</div>
+                  <div className="font-semibold text-slate-800 text-lg mb-2">{shift.patientName}</div>
                   <div className="flex items-start gap-2 text-slate-600 text-sm mb-2">
                     <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-slate-400" />
-                    <span>{shift.clientAddress}</span>
+                    <span>{shift.patientAddress}</span>
                   </div>
                   <div className="flex items-center gap-2 text-brand-teal text-sm font-medium mt-3 hover:underline cursor-pointer">
                     View Care Plan &rarr;

@@ -32,7 +32,7 @@ export type IncidentCategory =
 export interface PersonInvolved {
   id: string;
   name: string;
-  role: "Client" | "Caregiver" | "Witness" | "Other";
+  role: "Patient" | "Caregiver" | "Witness" | "Other";
   avatar?: string;
   contactInfo?: string;
 }
@@ -67,7 +67,7 @@ export interface LinkedVisit {
   visitId: string;
   date: string;
   caregiverName: string;
-  clientName: string;
+  patientName: string;
   clockInTime?: string;
   clockOutTime?: string;
   gpsVerified: boolean;

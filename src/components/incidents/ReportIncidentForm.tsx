@@ -125,10 +125,10 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Client</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-1">Patient</label>
                       <input
                         type="text"
-                        placeholder="Search client..."
+                        placeholder="Search patient..."
                         className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
                       />
                     </div>
@@ -165,7 +165,7 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                     <label className="block text-sm font-medium text-slate-700 mb-1">Location</label>
                     <input
                       type="text"
-                      placeholder="e.g. Client Home - Bathroom"
+                      placeholder="e.g. Patient Home - Bathroom"
                       className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
                     />
                   </div>

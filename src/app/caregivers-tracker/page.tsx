@@ -59,7 +59,7 @@ export default function CaregiversTrackerPage() {
         v.id === visitId ? { ...v, status: "Assigned", caregiverId } : v
       ));
 
-      setToastMessage(`${caregiver.name} assigned to ${visit.clientName} — Visit #${visit.id.replace('v-', '4570')}`);
+      setToastMessage(`${caregiver.name} assigned to ${visit.patientName} — Visit #${visit.id.replace('v-', '4570')}`);
       setTimeout(() => setToastMessage(null), 3000);
     }
   };

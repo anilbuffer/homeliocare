@@ -1,4 +1,4 @@
-export interface Client {
+export interface Patient {
   id: string;
   name: string;
   status: "Active" | "Inactive" | "Hospitalized" | "Discharged";
@@ -168,7 +168,7 @@ export interface Client {
   };
 }
 
-export const mockClients: Record<string, Client> = {
+export const mockPatients: Record<string, Patient> = {
   "c-1": {
     id: "c-1",
     name: "Eleanor Vance",
@@ -318,7 +318,7 @@ export const mockClients: Record<string, Client> = {
         { id: "log3", type: "Call out", contact: "Dr. Rina Osei's office", duration: "3m 44s", timestamp: "Oct 02, 10:22 AM", summary: "Confirmed Furosemide dose" }
       ],
       internalNotes: [
-        { id: "note1", author: "Maya Alvarez, CNA", timestamp: "Oct 04, 3:20 PM", note: "Watch sodium \u2014 client had extra salt at dinner Wednesday. Flagged in visit notes." }
+        { id: "note1", author: "Maya Alvarez, CNA", timestamp: "Oct 04, 3:20 PM", note: "Watch sodium \u2014 patient had extra salt at dinner Wednesday. Flagged in visit notes." }
       ]
     }
   },

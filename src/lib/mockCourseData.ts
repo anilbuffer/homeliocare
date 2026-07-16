@@ -88,10 +88,10 @@ export const MOCK_COURSE_DETAIL: CourseDetail = {
       {
         id: "q2",
         type: "scenario",
-        question: "Scenario: You are at a coffee shop and your friend asks how your client Mrs. Smith is doing. What should you do?",
+        question: "Scenario: You are at a coffee shop and your friend asks how your patient Mrs. Smith is doing. What should you do?",
         options: [
           "Share details quietly so nobody else hears",
-          "Explain that you cannot discuss client information to protect privacy",
+          "Explain that you cannot discuss patient information to protect privacy",
           "Only share her first name and general condition",
           "Say she is fine but don't mention her medical condition"
         ],
@@ -100,7 +100,7 @@ export const MOCK_COURSE_DETAIL: CourseDetail = {
       {
         id: "q3",
         type: "multiple-choice",
-        question: "How should you dispose of physical notes containing a client's medical history?",
+        question: "How should you dispose of physical notes containing a patient's medical history?",
         options: [
           "Throw them in the regular trash",
           "Shred them using an approved shredder",

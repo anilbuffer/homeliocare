@@ -1,12 +1,12 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { Client } from "@/lib/clients/mockData";
+import { Patient } from "@/lib/patients/mockData";
 import { ArrowUpRight } from "lucide-react";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Badge } from "@/components/ui/Badge";
 
-export function BillingTab({ client }: { client: Client }) {
-  if (!client.billing) {
+export function BillingTab({ patient }: { patient: Patient }) {
+  if (!patient.billing) {
     return (
       <div className="space-y-6">
         <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
@@ -16,7 +16,7 @@ export function BillingTab({ client }: { client: Client }) {
     );
   }
 
-  const { billing } = client;
+  const { billing } = patient;
   const progressPercent = (billing.authorization.used / billing.authorization.total) * 100;
   const remainingHours = billing.authorization.total - billing.authorization.used;
 
@@ -37,7 +37,7 @@ export function BillingTab({ client }: { client: Client }) {
         <Card className="p-6">
           <h3 className="text-sm font-semibold text-slate-700 mb-4">Outstanding balance</h3>
           <div className="text-3xl font-bold text-amber-500 mb-1">${billing.balance}</div>
-          <p className="text-xs text-slate-500">Client responsibility</p>
+          <p className="text-xs text-slate-500">Patient responsibility</p>
         </Card>
       </div>
 

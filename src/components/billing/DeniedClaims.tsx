@@ -5,10 +5,10 @@ import { Card, CardHeader } from "@/components/ui/Card";
 import { clsx } from "clsx";
 
 const deniedClaims = [
-  { id: "CLM-10099", client: "David Kim", payer: "Commercial", amount: 2650, reason: "Missing authorization", date: "Aug 30", status: "Appealing", reasonColor: "bg-red-50 text-red-700" },
-  { id: "CLM-10100", client: "Lisa Chen", payer: "Medicaid", amount: 980, reason: "Eligibility lapse", date: "Aug 27", status: "Resubmitted", reasonColor: "bg-orange-50 text-orange-700" },
-  { id: "CLM-10101", client: "Marcus Lee", payer: "Medicare", amount: 1420, reason: "Documentation error", date: "Aug 22", status: "Appealing", reasonColor: "bg-amber-50 text-amber-700" },
-  { id: "CLM-10102", client: "Amy Rodriguez", payer: "Commercial", amount: 720, reason: "Coding error", date: "Aug 18", status: "Written off", reasonColor: "bg-purple-50 text-purple-700" },
+  { id: "CLM-10099", patient: "David Kim", payer: "Commercial", amount: 2650, reason: "Missing authorization", date: "Aug 30", status: "Appealing", reasonColor: "bg-red-50 text-red-700" },
+  { id: "CLM-10100", patient: "Lisa Chen", payer: "Medicaid", amount: 980, reason: "Eligibility lapse", date: "Aug 27", status: "Resubmitted", reasonColor: "bg-orange-50 text-orange-700" },
+  { id: "CLM-10101", patient: "Marcus Lee", payer: "Medicare", amount: 1420, reason: "Documentation error", date: "Aug 22", status: "Appealing", reasonColor: "bg-amber-50 text-amber-700" },
+  { id: "CLM-10102", patient: "Amy Rodriguez", payer: "Commercial", amount: 720, reason: "Coding error", date: "Aug 18", status: "Written off", reasonColor: "bg-purple-50 text-purple-700" },
 ];
 
 const payerColors = {
@@ -29,7 +29,7 @@ export function DeniedClaims({ onClaimClick }: { onClaimClick?: (id: string) => 
         <table className="w-full text-sm text-left">
           <thead className="text-[11px] text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
             <tr>
-              <th className="px-3 py-2.5 font-medium">Client</th>
+              <th className="px-3 py-2.5 font-medium">Patient</th>
               <th className="px-3 py-2.5 font-medium">Payer</th>
               <th className="px-3 py-2.5 font-medium">Claim</th>
               <th className="px-3 py-2.5 font-medium">Reason</th>
@@ -49,7 +49,7 @@ export function DeniedClaims({ onClaimClick }: { onClaimClick?: (id: string) => 
                 )}
                 onClick={() => onClaimClick?.(claim.id)}
               >
-                <td className="px-3 py-3 font-medium text-slate-900 whitespace-nowrap">{claim.client}</td>
+                <td className="px-3 py-3 font-medium text-slate-900 whitespace-nowrap">{claim.patient}</td>
                 <td className="px-3 py-3">
                   <div className={clsx("inline-flex px-1.5 py-0.5 rounded-md text-[9px] font-medium items-center gap-1", payerColors[claim.payer as keyof typeof payerColors].bg, payerColors[claim.payer as keyof typeof payerColors].text)}>
                     <div className={clsx("w-1 h-1 rounded-full", payerColors[claim.payer as keyof typeof payerColors].dot)} />

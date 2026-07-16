@@ -148,7 +148,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                   <h4 className="text-sm font-bold text-amber-900">Pattern Detected</h4>
                   <p className="text-xs text-amber-800 mt-1 mb-2">{incident.patternDetected}</p>
                   <button className="text-xs font-semibold bg-white text-accent-amber px-3 py-1.5 rounded-lg border border-accent-amber/30 hover:bg-accent-amber hover:text-white transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-                    Flag on Client Profile
+                    Flag on Patient Profile
                   </button>
                 </div>
               </motion.div>
@@ -263,7 +263,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                     Linked Visit Record
                   </h3>
                   <div className="text-sm text-slate-600">
-                    {format(new Date(incident.linkedVisit.date), "MMM d, yyyy")} • {incident.linkedVisit.caregiverName} & {incident.linkedVisit.clientName}
+                    {format(new Date(incident.linkedVisit.date), "MMM d, yyyy")} • {incident.linkedVisit.caregiverName} & {incident.linkedVisit.patientName}
                   </div>
                   <div className="flex items-center gap-4 mt-2">
                     {incident.linkedVisit.gpsVerified && (

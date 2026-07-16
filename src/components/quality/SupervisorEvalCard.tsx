@@ -33,7 +33,7 @@ export function SupervisorEvalCard() {
           <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-3">
             <div className="flex items-center gap-2 text-xs text-text-primary">
               <User className="w-3.5 h-3.5 text-slate-500" />
-              Client: Eleanor Vance
+              Patient: Eleanor Vance
             </div>
             <div className="flex items-center gap-2 text-xs text-text-primary">
               <Calendar className="w-3.5 h-3.5 text-slate-500" />
@@ -43,7 +43,7 @@ export function SupervisorEvalCard() {
 
           <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-border-subtle">
             <FileText className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-            <p>Excellent bedside manner. Followed safety protocols for transfer exactly as per care plan. Client expressed high satisfaction.</p>
+            <p>Excellent bedside manner. Followed safety protocols for transfer exactly as per care plan. Patient expressed high satisfaction.</p>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export function SupervisorEvalCard() {
           <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-3">
             <div className="flex items-center gap-2 text-xs text-text-primary">
               <User className="w-3.5 h-3.5 text-slate-500" />
-              Client: Robert Chen
+              Patient: Robert Chen
             </div>
             <div className="flex items-center gap-2 text-xs text-text-primary">
               <Calendar className="w-3.5 h-3.5 text-slate-500" />
