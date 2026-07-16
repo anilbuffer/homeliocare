@@ -48,7 +48,7 @@ export function DocumentsTab({ caregiver }: { caregiver: Caregiver }) {
               <Folder className="w-5 h-5 text-brand-teal" />
               <h4 className="font-semibold text-slate-800">{group.title}</h4>
             </div>
-            <div className="p-2 flex-1">
+            <div className="flex-1">
               {group.files.map((file, fIdx) => (
                 <div key={fIdx} className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors group/file">
                   <div className="flex items-start gap-3">

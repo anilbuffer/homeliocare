@@ -15,9 +15,9 @@ const payers = [
 
 export function RevenueByPayer() {
   const [activePayer, setActivePayer] = useState<string | null>(null);
-  
+
   const totalValue = 614000;
-  
+
   // Calculate SVG arc paths based on percentages
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
@@ -25,11 +25,11 @@ export function RevenueByPayer() {
 
   return (
     <Card>
-      <CardHeader 
-        title="Revenue by Payer" 
-        action={<span className="text-slate-500">Click a segment or legend to filter the claims pipeline below.</span>} 
+      <CardHeader
+        title="Revenue by Payer"
+        action={<span className="text-slate-500 text-xs">Click a segment or legend to filter the claims pipeline below.</span>}
       />
-      
+
       <div className="flex flex-col md:flex-row items-center gap-12 mt-4">
         {/* Donut Chart */}
         <div className="relative w-64 h-64 shrink-0 flex items-center justify-center">
@@ -38,9 +38,9 @@ export function RevenueByPayer() {
               const dashArray = (payer.percentage / 100) * circumference;
               const dashOffset = currentOffset;
               currentOffset -= dashArray;
-              
+
               const isActive = activePayer === payer.name || activePayer === null;
-              
+
               return (
                 <motion.circle
                   key={payer.name}
@@ -62,7 +62,7 @@ export function RevenueByPayer() {
               );
             })}
           </svg>
-          
+
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
             <span className="text-sm text-slate-500 font-medium">Total Revenue</span>
             <span className="text-3xl font-bold text-slate-900">${totalValue.toLocaleString("en-US")}</span>
@@ -70,15 +70,15 @@ export function RevenueByPayer() {
         </div>
 
         {/* Legend */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+        <div className="flex-1 grid w-full grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 md:gap-y-6">
           {payers.map((payer) => {
             const isActive = activePayer === payer.name || activePayer === null;
-            
+
             return (
-              <div 
-                key={payer.name} 
+              <div
+                key={payer.name}
                 className={clsx(
-                  "flex items-center justify-between p-4 rounded-2xl cursor-pointer transition-all duration-200 border",
+                  "flex items-center justify-between p-3 rounded-2xl cursor-pointer transition-all duration-200 border",
                   isActive ? "bg-slate-50 border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)]" : "bg-slate-50/50 border-slate-100 opacity-60 hover:opacity-100 hover:border-slate-200"
                 )}
                 onClick={() => setActivePayer(activePayer === payer.name ? null : payer.name)}
@@ -86,9 +86,9 @@ export function RevenueByPayer() {
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: payer.color }} />
                   <div>
-                    <div className="font-medium text-slate-900">{payer.name}</div>
+                    <div className="font-base text-slate-900">{payer.name}</div>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-lg font-bold text-slate-700">${payer.value.toLocaleString("en-US")}</span>
+                      <span className="text-base font-bold text-slate-700">${payer.value.toLocaleString("en-US")}</span>
                       <span className="flex items-center text-xs font-medium text-brand-teal">
                         <ArrowUp className="w-3 h-3 mr-0.5" />
                         {payer.trend}
@@ -96,7 +96,7 @@ export function RevenueByPayer() {
                     </div>
                   </div>
                 </div>
-                <div className="text-lg font-medium text-slate-400">{payer.percentage}%</div>
+                <div className="text-base font-medium text-slate-400">{payer.percentage}%</div>
               </div>
             );
           })}

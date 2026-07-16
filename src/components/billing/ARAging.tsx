@@ -84,20 +84,20 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
                 )}
                 onClick={() => onClaimClick?.(record.id)}
               >
-                <td className="px-4 py-3 font-medium text-slate-900">{record.client}</td>
+                <td className="px-4 py-3 font-medium text-slate-900 whitespace-nowrap">{record.client}</td>
                 <td className="px-4 py-3">
-                  <div className={clsx("inline-flex px-2 py-1 rounded-md text-[10px] font-medium items-center gap-1.5", payerColors[record.payer as keyof typeof payerColors].bg, payerColors[record.payer as keyof typeof payerColors].text)}>
+                  <div className={clsx("inline-flex px-2 py-1 rounded-md text-[10px] font-medium items-center gap-1.5 whitespace-nowrap", payerColors[record.payer as keyof typeof payerColors].bg, payerColors[record.payer as keyof typeof payerColors].text)}>
                     <div className={clsx("w-1.5 h-1.5 rounded-full", payerColors[record.payer as keyof typeof payerColors].dot)} />
                     {record.payer}
                   </div>
                 </td>
-                <td className="px-4 py-3 font-medium text-slate-800 text-right">${record.amount.toLocaleString("en-US")}</td>
-                <td className="px-4 py-3 text-right">
-                  <span className={clsx("font-semibold", record.days >= 90 ? "text-red-600" : record.days >= 60 ? "text-orange-600" : record.days >= 30 ? "text-amber-600" : "text-brand-teal")}>
+                <td className="px-4 py-3 font-medium text-slate-800 text-right whitespace-nowrap">${record.amount.toLocaleString("en-US")}</td>
+                <td className="px-4 py-3 text-right whitespace-nowrap">
+                  <span className={clsx("font-semibold whitespace-nowrap", record.days >= 90 ? "text-red-600" : record.days >= 60 ? "text-orange-600" : record.days >= 30 ? "text-amber-600" : "text-brand-teal")}>
                     {record.days}d
                   </span>
                 </td>
-                <td className="px-4 py-3 text-slate-500 text-xs">{record.action}</td>
+                <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">{record.action}</td>
                 <td className="px-4 py-3 text-right">
                   <button className="text-[11px] font-medium text-slate-600 bg-white border border-slate-200 px-3 py-1.5 rounded-lg hover:bg-slate-50 hover:text-brand-teal transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] opacity-0 group-hover:opacity-100 focus:opacity-100">
                     Follow up

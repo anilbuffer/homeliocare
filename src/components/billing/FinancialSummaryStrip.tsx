@@ -12,11 +12,11 @@ function AnimatedNumber({ value, prefix = "", suffix = "" }: { value: number; pr
   useEffect(() => {
     let startTime: number;
     const duration = 1000;
-    
+
     const animate = (time: number) => {
       if (!startTime) startTime = time;
       const progress = Math.min((time - startTime) / duration, 1);
-      
+
       // Easing function (easeOutQuart)
       const ease = 1 - Math.pow(1 - progress, 4);
       setDisplayValue(value * ease);
@@ -25,7 +25,7 @@ function AnimatedNumber({ value, prefix = "", suffix = "" }: { value: number; pr
         requestAnimationFrame(animate);
       }
     };
-    
+
     requestAnimationFrame(animate);
   }, [value]);
 
@@ -96,10 +96,10 @@ const metrics = [
 
 export function FinancialSummaryStrip() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+    <div className="grid w-full sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
       {metrics.map((metric, i) => (
-        <Card 
-          key={i} 
+        <Card
+          key={i}
           className="p-4 sm:p-5 flex flex-col justify-between"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

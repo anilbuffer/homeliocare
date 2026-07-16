@@ -2,14 +2,19 @@
 
 import React from "react";
 import Link from "next/link";
-import { LayoutDashboard, CalendarDays, MapPin, Users } from "lucide-react";
+import { LayoutDashboard, CalendarDays, MapPin, HeartHandshake, Wrench, Wallet, Scale, GraduationCap, ShieldCheck } from "lucide-react";
 import clsx from "clsx";
 
 const navItems = [
   { id: "dashboard", icon: LayoutDashboard, href: "/dashboard", title: "Dashboard" },
-  { id: "scheduling", icon: CalendarDays, href: "#", title: "Scheduling" },
+  { id: "scheduling", icon: CalendarDays, href: "/scheduling", title: "Scheduling" },
   { id: "tracker", icon: MapPin, href: "/caregivers-tracker", title: "Tracker" },
-  { id: "team", icon: Users, href: "#", title: "Team" },
+  { id: "team", icon: HeartHandshake, href: "/caregivers", title: "Team" },
+  { id: "Incidents", icon: Wrench, href: "/incidents", title: "Incidents" },
+  { id: "Billing", icon: Wallet, href: "/billing", title: "Billing" },
+  { id: "Quality", icon: Scale, href: "/quality-assurance", title: "Quality" },
+  { id: "Training", icon: GraduationCap, href: "/training", title: "Training" },
+  { id: "EVV", icon: ShieldCheck, href: "/evv-monitoring", title: "EVV" },
 ];
 
 export function IconRail() {

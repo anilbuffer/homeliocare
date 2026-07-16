@@ -56,7 +56,7 @@ export function DeniedClaims({ onClaimClick }: { onClaimClick?: (id: string) => 
                     {claim.payer}
                   </div>
                 </td>
-                <td className="px-3 py-3 text-xs text-slate-500">{claim.id}</td>
+                <td className="px-3 py-3 text-xs text-slate-500 whitespace-nowrap">{claim.id}</td>
                 <td className="px-3 py-3">
                   <span className={clsx("px-2 py-1 rounded-md text-[10px] font-medium whitespace-nowrap border border-black/5", claim.reasonColor)}>
                     {claim.reason}
@@ -64,7 +64,7 @@ export function DeniedClaims({ onClaimClick }: { onClaimClick?: (id: string) => 
                 </td>
                 <td className="px-3 py-3 font-medium text-slate-800 text-right">${claim.amount.toLocaleString("en-US")}</td>
                 <td className="px-3 py-3 text-slate-500 text-xs text-right whitespace-nowrap">{claim.date}</td>
-                <td className="px-3 py-3 text-slate-600 text-xs">{claim.status}</td>
+                <td className="px-3 py-3 text-slate-600 text-xs whitespace-nowrap">{claim.status}</td>
                 <td className="px-3 py-3 text-right whitespace-nowrap">
                   <div className="flex justify-end gap-1">
                     <button className="text-[10px] font-medium text-slate-600 bg-white border border-slate-200 px-2 py-1 rounded hover:bg-slate-50 hover:text-brand-teal transition-colors" onClick={(e) => { e.stopPropagation(); }}>

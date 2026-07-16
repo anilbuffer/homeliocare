@@ -35,7 +35,7 @@ export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
               <tbody>
                 {TIMES.map((time, tIdx) => (
                   <tr key={time} className="border-t border-slate-100">
-                    <td className="p-3 text-slate-600 font-medium">{time}</td>
+                    <td className="p-3 text-slate-600 font-medium whitespace-nowrap">{time}</td>
                     {DAYS.map((day, dIdx) => {
                       // Mocking some availability: Weekdays morning/afternoon are mostly available
                       const isAvailable = (tIdx < 2 && dIdx < 5) || (tIdx === 2 && dIdx === 5);

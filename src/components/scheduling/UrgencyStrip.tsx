@@ -53,21 +53,21 @@ export function UrgencyStrip() {
         return (
           <div
             key={idx}
-            className="bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl p-4 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-0.5 relative overflow-hidden group flex flex-col h-full"
+            className="bg-white backdrop-blur-xl border border-white/60 shadow-[0_4px_24px_rgb(0,0,0,0.04)] rounded-2xl p-4 transition-all duration-300 hover:shadow-[0_8px_32px_rgb(0,0,0,0.08)] hover:-translate-y-1 relative overflow-hidden group flex items-center gap-4"
           >
-            <div className="flex justify-between items-start mb-4">
-              <div className={clsx("p-2 rounded-full", kpi.bg)}>
-                <Icon className={clsx("w-5 h-5", kpi.color)} />
-              </div>
-              <div className={clsx("w-1.5 h-1.5 rounded-full", kpi.dot)} />
+            <div className={clsx("p-3 rounded-xl shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3", kpi.bg, kpi.color)}>
+              <Icon className="w-5 h-5" />
             </div>
-            <div>
-              <div className={clsx("text-2xl font-bold mb-1", kpi.color)}>{kpi.value}</div>
-              <div className="text-sm font-medium text-slate-500">{kpi.label}</div>
+            <div className="flex-1 min-w-0 py-0.5">
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <div className={clsx("text-2xl font-bold tracking-tight leading-none", kpi.color)}>{kpi.value}</div>
+                <div className={clsx("w-2 h-2 rounded-full shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-150", kpi.dot)} />
+              </div>
+              <div className="text-[12px] font-medium text-slate-500 leading-tight line-clamp-2">{kpi.label}</div>
             </div>
             
-            {/* Subtle bottom accent line */}
-            <div className={clsx("absolute bottom-0 left-0 w-full h-1 opacity-0 group-hover:opacity-100 transition-opacity", kpi.dot)} />
+            {/* Subtle background glow */}
+            <div className={clsx("absolute -right-4 -bottom-4 w-16 h-16 rounded-full opacity-0 blur-xl transition-all duration-500 group-hover:opacity-20", kpi.dot)} />
           </div>
         );
       })}

@@ -11,7 +11,7 @@ export function BillingHeader() {
   const [selectedRange, setSelectedRange] = useState(dateRanges[0]);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
       <div>
         <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Billing & Claims Workspace</h1>
         <p className="text-sm text-slate-500 mt-1">Track revenue, resolve denials, and keep AR moving.</p>
@@ -21,7 +21,7 @@ export function BillingHeader() {
         <div className="relative">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex items-center gap-2 bg-white border border-slate-200 text-sm font-medium text-slate-700 px-4 py-2 rounded-full hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
+            className="flex items-center gap-2 bg-white border border-slate-200 text-sm font-medium whitespace-nowrap text-slate-700 px-4 py-2 rounded-full hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
           >
             {selectedRange}
             <ChevronDown className="w-4 h-4 text-slate-400" />

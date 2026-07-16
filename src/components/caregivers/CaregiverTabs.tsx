@@ -29,22 +29,21 @@ export function CaregiverTabs({ caregiver }: { caregiver: Caregiver }) {
   return (
     <div className="w-full">
       {/* Tab Navigation */}
-      <div className="flex items-center p-1.5 bg-slate-100/80 backdrop-blur-md rounded-2xl mb-8 overflow-x-auto [&::-webkit-scrollbar]:hidden border border-slate-200/60 max-w-fit shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
+      <div className="flex items-center p-1.5 bg-white backdrop-blur-md rounded-2xl mb-8 overflow-x-auto [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300/80 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-thumb]:rounded-full border border-slate-200/60 w-fit max-w-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${
-                isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
-              }`}
+              className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+                }`}
             >
               <span className="relative z-10">{tab.label}</span>
               {isActive && (
                 <motion.div
                   layoutId="caregiver-tab-indicator"
-                  className="absolute inset-0 bg-white rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-slate-200/50"
+                  className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
                   initial={false}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                 />

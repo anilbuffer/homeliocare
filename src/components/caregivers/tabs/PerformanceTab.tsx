@@ -4,6 +4,16 @@ import React, { useEffect, useState } from "react";
 import { Caregiver } from "@/lib/caregivers/mockData";
 import { Card } from "@/components/ui/Card";
 import { Star, TrendingUp, MessageCircle, ShieldAlert } from "lucide-react";
+import { AreaChart, Area, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+
+const performanceData = [
+  { month: 'Jan', score: 4.2 },
+  { month: 'Feb', score: 4.4 },
+  { month: 'Mar', score: 4.3 },
+  { month: 'Apr', score: 4.6 },
+  { month: 'May', score: 4.7 },
+  { month: 'Jun', score: 4.9 },
+];
 
 export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
   const [mounted, setMounted] = useState(false);
@@ -58,35 +68,40 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="p-6">
           <h3 className="text-lg font-semibold text-slate-800 mb-6">Performance Trend</h3>
-          <div className="h-64 flex items-end justify-between gap-2 relative">
-            {/* Mock chart */}
-            <div className="absolute inset-0 flex flex-col justify-between border-l border-b border-slate-200 pb-6 pl-2">
-              {[5, 4, 3, 2, 1].map((n) => (
-                <div key={n} className="flex items-center text-xs text-slate-400 w-full relative">
-                  <span className="-ml-6 absolute">{n}</span>
-                  <div className="w-full h-px bg-slate-100" />
-                </div>
-              ))}
-            </div>
-            
-            {/* Bars */}
-            <div className="w-full h-full flex items-end justify-around pb-6 pl-6 z-10 pt-4">
-              {mounted && [4.2, 4.4, 4.3, 4.6, 4.7, 4.9].map((val, i) => (
-                <div key={i} className="flex flex-col items-center gap-2 group w-1/8">
-                  <div 
-                    className="w-full max-w-[2rem] bg-brand-teal/80 hover:bg-brand-teal rounded-t-sm transition-all duration-1000 ease-out origin-bottom relative"
-                    style={{ height: `${(val / 5) * 100}%` }}
-                  >
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                      {val}
-                    </div>
-                  </div>
-                  <span className="text-xs text-slate-500 mt-2 absolute -bottom-1">
-                    {["Jan", "Feb", "Mar", "Apr", "May", "Jun"][i]}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="h-64 w-full mt-4">
+            {mounted ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={performanceData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#14b8a6" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                  <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} dy={10} />
+                  <YAxis domain={[0, 5]} axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} tickCount={6} />
+                  <RechartsTooltip
+                    contentStyle={{ backgroundColor: '#ffffff', borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', padding: '8px 12px' }}
+                    itemStyle={{ color: '#14b8a6', fontWeight: 600, fontSize: '14px' }}
+                    labelStyle={{ color: '#64748b', fontSize: '12px', marginBottom: '4px' }}
+                    cursor={{ stroke: '#cbd5e1', strokeWidth: 1, strokeDasharray: '4 4' }}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="score"
+                    stroke="#14b8a6"
+                    strokeWidth={3}
+                    fillOpacity={1}
+                    fill="url(#colorScore)"
+                    activeDot={{ r: 6, fill: '#14b8a6', stroke: '#ffffff', strokeWidth: 2 }}
+                    animationDuration={1500}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="w-full h-full bg-slate-50 rounded-xl animate-pulse" />
+            )}
           </div>
         </Card>
 

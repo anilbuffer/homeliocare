@@ -17,26 +17,26 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {caregiver.certifications.map((cert) => (
           <Card key={cert.id} className="p-5 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-md transition-all">
             <div className="flex justify-between items-start mb-4">
               <div className={cn(
                 "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
                 cert.status === "Active" ? "bg-emerald-50 text-emerald-600" :
-                cert.status === "Expiring Soon" ? "bg-amber-50 text-amber-600" :
-                "bg-rose-50 text-rose-600"
+                  cert.status === "Expiring Soon" ? "bg-amber-50 text-amber-600" :
+                    "bg-rose-50 text-rose-600"
               )}>
                 <Award className="w-5 h-5" />
               </div>
               <Badge variant={
                 cert.status === "Active" ? "success" :
-                cert.status === "Expiring Soon" ? "warning" : "error"
+                  cert.status === "Expiring Soon" ? "warning" : "error"
               }>
                 {cert.status}
               </Badge>
             </div>
-            
+
             <div className="mb-4 flex-1">
               <h4 className="font-bold text-slate-800 mb-1">{cert.name}</h4>
               <p className="text-sm text-slate-500">{cert.issuer}</p>
@@ -52,7 +52,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                 <span className={cn(
                   "font-medium",
                   cert.status === "Expiring Soon" ? "text-amber-600" :
-                  cert.status === "Expired" ? "text-rose-600" : "text-slate-700"
+                    cert.status === "Expired" ? "text-rose-600" : "text-slate-700"
                 )}>{cert.expiryDate}</span>
               </div>
             </div>
@@ -70,12 +70,12 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
 
       {/* Required Training List */}
       <Card className="mt-8 overflow-hidden border border-slate-200">
-        <div className="px-6 py-4 border-b border-slate-100 bg-slate-50 flex items-center justify-between">
+        <div className="border-b border-slate-200 bg-slate-50 pb-3 flex items-center justify-between">
           <h4 className="font-semibold text-slate-800">Required Training Modules</h4>
           <Badge variant="brand">2 Pending</Badge>
         </div>
-        <div className="divide-y divide-slate-100">
-          <div className="p-4 px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+        <div className="divide-y divide-slate-200">
+          <div className="py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
             <div className="flex items-center gap-3">
               <CheckCircle2 className="w-5 h-5 text-emerald-500" />
               <div>
@@ -85,7 +85,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
             </div>
             <button className="text-sm text-brand-teal font-medium">View Certificate</button>
           </div>
-          <div className="p-4 px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+          <div className="py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
             <div className="flex items-center gap-3">
               <CheckCircle2 className="w-5 h-5 text-emerald-500" />
               <div>
@@ -95,7 +95,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
             </div>
             <button className="text-sm text-brand-teal font-medium">View Certificate</button>
           </div>
-          <div className="p-4 px-6 flex items-center justify-between hover:bg-slate-50 transition-colors">
+          <div className="py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
             <div className="flex items-center gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-500" />
               <div>
