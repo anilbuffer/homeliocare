@@ -39,14 +39,9 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
-        <div className="hidden min-[1120px]:block flex-1 max-w-[480px] mx-4">
+        <div className="flex-1 flex justify-end min-[1120px]:justify-start min-[1120px]:max-w-[480px] mx-1 sm:mx-4 z-40">
           <GlobalSearch />
         </div>
-
-        {/* Mobile Search Icon */}
-        <button className="min-[1120px]:hidden p-2 rounded-full text-slate-500 hover:bg-slate-200 transition-colors">
-          <Search className="w-5 h-5" />
-        </button>
 
         <button className="relative p-2 rounded-full bg-white border border-border-subtle text-slate-500 hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
           <Bell className="w-5 h-5" />
