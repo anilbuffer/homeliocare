@@ -3,6 +3,7 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Search, Bell } from "lucide-react";
+import { GlobalSearch } from "./GlobalSearch";
 
 export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
@@ -38,13 +39,8 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
-        <div className="relative hidden min-[1120px]:block group">
-          <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-teal transition-colors" />
-          <input
-            type="text"
-            placeholder="Search patients, caregivers..."
-            className="w-[200px] min-[1120px]:w-[280px] h-10 pl-10 pr-4 bg-white border border-border-subtle rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:border-brand-teal transition-all duration-300 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow"
-          />
+        <div className="hidden min-[1120px]:block flex-1 max-w-[480px] mx-4">
+          <GlobalSearch />
         </div>
 
         {/* Mobile Search Icon */}
