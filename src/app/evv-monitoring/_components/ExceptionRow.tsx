@@ -70,7 +70,7 @@ export function ExceptionRow({ exception, onClick, index }: ExceptionRowProps) {
           <Clock className="w-3.5 h-3.5 text-slate-400" />
           <span>Sch: {exception.scheduledTime.start}</span>
         </div>
-        
+
         {exception.timeDeltaMinutes !== undefined && exception.timeDeltaMinutes !== 0 && (
           <div className="flex items-center gap-1.5 text-xs font-medium">
             <span className={exception.timeDeltaMinutes < 0 ? "text-red-600" : "text-amber-600"}>
@@ -102,7 +102,7 @@ export function ExceptionRow({ exception, onClick, index }: ExceptionRowProps) {
       {/* Status & Actions */}
       <div className="w-[140px] shrink-0 ml-4 flex items-center justify-between">
         <span className={clsx(
-          "inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold text-center leading-tight",
+          "inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold text-center whitespace-nowrap leading-tight",
           statusColors[exception.status]
         )}>
           {exception.status}
