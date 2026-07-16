@@ -1,0 +1,74 @@
+"use client";
+
+import React from "react";
+import { CheckCircle2, AlertTriangle, XCircle, Clock, Bell, Calendar } from "lucide-react";
+import { KpiSummaryData } from "@/types/compliance";
+
+interface KpiCardStripProps {
+  data: KpiSummaryData;
+}
+
+export function KpiCardStrip({ data }: KpiCardStripProps) {
+  const cards = [
+    {
+      title: "Fully Compliant Staff",
+      value: data.fullyCompliantCount,
+      icon: CheckCircle2,
+      color: "text-emerald-400",
+      bg: "bg-emerald-400/10",
+    },
+    {
+      title: "Expiring Within 30 Days",
+      value: data.expiringCount,
+      icon: AlertTriangle,
+      color: "text-amber-400",
+      bg: "bg-amber-400/10",
+    },
+    {
+      title: "Expired / Overdue",
+      value: data.expiredCount,
+      icon: XCircle,
+      color: "text-red-400",
+      bg: "bg-red-400/10",
+    },
+    {
+      title: "Pending Verification",
+      value: data.pendingCount,
+      icon: Clock,
+      color: "text-blue-400",
+      bg: "bg-blue-400/10",
+    },
+    {
+      title: "Automated Reminders",
+      value: data.remindersSent,
+      icon: Bell,
+      color: "text-purple-400",
+      bg: "bg-purple-400/10",
+    },
+    {
+      title: "Avg Days to Renewal",
+      value: data.avgDaysToRenewal.toFixed(1),
+      icon: Calendar,
+      color: "text-brand-teal",
+      bg: "bg-brand-teal/10",
+    },
+  ];
+
+  return (
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      {cards.map((card, idx) => (
+        <div key={idx} className="bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4 flex flex-col justify-between h-full hover:border-slate-300 transition-colors">
+          <div className="flex items-start justify-between mb-2">
+            <h3 className="text-xs font-medium text-slate-500">{card.title}</h3>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${card.bg}`}>
+              <card.icon className={`w-4 h-4 ${card.color}`} />
+            </div>
+          </div>
+          <div className="text-2xl font-bold text-slate-900 mt-auto">
+            {card.value}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}

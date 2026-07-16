@@ -97,7 +97,7 @@ export function ManageTraining() {
           <h3 className="text-base font-semibold text-slate-800">Compliance by Category</h3>
           <p className="text-xs text-slate-500">Percent of staff current on each category</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-6">
           {categories.map(cat => (
             <div key={cat.name} className="space-y-2">
               <div className="flex justify-between items-end text-sm">

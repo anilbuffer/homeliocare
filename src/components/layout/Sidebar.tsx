@@ -78,6 +78,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/evv-monitoring")) return "evv-monitoring";
     if (pathname?.startsWith("/quality-assurance")) return "qa";
     if (pathname?.startsWith("/incidents")) return "incidents";
+    if (pathname?.startsWith("/compliance")) return "compliance";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -100,6 +101,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("qa");
     } else if (pathname.startsWith("/incidents")) {
       setActiveItem("incidents");
+    } else if (pathname.startsWith("/compliance")) {
+      setActiveItem("compliance");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -158,6 +161,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 if (item.id === "evv-monitoring") href = "/evv-monitoring";
                 if (item.id === "qa") href = "/quality-assurance";
                 if (item.id === "incidents") href = "/incidents";
+                if (item.id === "compliance") href = "/compliance";
 
                 return (
                   <li key={item.id} className="relative">
