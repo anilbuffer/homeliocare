@@ -17,7 +17,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/billing")) return "Billing & Claims";
     if (pathname.startsWith("/incidents")) return "Incident & Risk";
     if (pathname.startsWith("/compliance")) return "Compliance Tracking";
-    if (pathname.startsWith("/qa")) return "Quality Assurance";
+    if (pathname.startsWith("/qa") || pathname.startsWith("/quality-assurance")) return "Quality Assurance";
     if (pathname.startsWith("/reports")) return "Reports";
     if (pathname.startsWith("/referrals")) return "Referrals & Intake";
     if (pathname.startsWith("/communications")) return "Communications";

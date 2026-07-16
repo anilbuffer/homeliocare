@@ -29,7 +29,7 @@ export default function TrainingPage() {
         </div>
 
         {/* Toggle */}
-        <div className="flex bg-slate-200/60 p-1 rounded-full relative overflow-x-auto [&::-webkit-scrollbar]:hidden w-full lg:w-auto">
+        <div className="flex flex-wrap lg:flex-nowrap bg-slate-200/60 p-1 gap-1 rounded-2xl lg:rounded-full relative w-full lg:w-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}

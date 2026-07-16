@@ -60,7 +60,7 @@ export function MyTraining() {
   return (
     <div className="space-y-6 pb-6">
       {/* 1. KPI Strip */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {[
           { label: "COURSES COMPLETED", value: "4/17", icon: CheckCircle2, color: "text-brand-teal", bg: "bg-teal-50" },
           { label: "COMPLIANCE SCORE", value: "27%", icon: ShieldAlert, color: "text-brand-teal", bg: "bg-teal-50" },

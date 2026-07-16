@@ -35,55 +35,8 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
       <CardHeader title="Incidents by Category" subtitle="Last 30 days" />
       <div className="flex-1 flex flex-row items-center min-h-0">
         <div className="relative w-[55%] h-full min-h-[220px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <defs>
-                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.15" />
-                </filter>
-              </defs>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                innerRadius={55}
-                outerRadius={85}
-                paddingAngle={4}
-                dataKey="value"
-                onMouseEnter={onPieEnter}
-                onMouseLeave={onPieLeave}
-                onClick={handleClick}
-                stroke="none"
-                animationBegin={0}
-                animationDuration={1000}
-                className="cursor-pointer outline-none"
-              >
-                {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={entry.color}
-                    opacity={activeIndex === null || activeIndex === index ? 1 : 0.3}
-                    className="transition-opacity duration-300 outline-none hover:drop-shadow-md"
-                    filter="url(#shadow)"
-                  />
-                ))}
-              </Pie>
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                  backdropFilter: 'blur(8px)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(255,255,255,0.5)',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                  padding: '10px 14px',
-                }}
-                itemStyle={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}
-                formatter={(value: any) => [`${value} Incidents`, '']}
-              />
-            </PieChart>
-          </ResponsiveContainer>
           {/* Inner Text Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -93,6 +46,55 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
               <span className="block text-3xl font-black text-slate-800 leading-none">{total}</span>
               <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1">Total</span>
             </motion.div>
+          </div>
+          <div className="relative z-10 w-full h-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <defs>
+                  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="6" floodOpacity="0.15" />
+                  </filter>
+                </defs>
+                <Pie
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={55}
+                  outerRadius={85}
+                  paddingAngle={4}
+                  dataKey="value"
+                  onMouseEnter={onPieEnter}
+                  onMouseLeave={onPieLeave}
+                  onClick={handleClick}
+                  stroke="none"
+                  animationBegin={0}
+                  animationDuration={1000}
+                  className="cursor-pointer outline-none"
+                >
+                  {data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={entry.color}
+                      opacity={activeIndex === null || activeIndex === index ? 1 : 0.3}
+                      className="transition-opacity duration-300 outline-none hover:drop-shadow-md"
+                      filter="url(#shadow)"
+                    />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(8px)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(255,255,255,0.5)',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                    padding: '10px 14px',
+                  }}
+                  itemStyle={{ color: '#334155', fontWeight: 600, fontSize: '13px' }}
+                  formatter={(value: any) => [`${value} Incidents`, '']}
+                />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
 
