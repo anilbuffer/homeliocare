@@ -86,11 +86,10 @@ export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
               const isMedical = skill.includes("IV") || skill.includes("Wound") || skill.includes("Vital");
               const isMemory = skill.includes("Dementia") || skill.includes("Alzheimer");
               return (
-                <span key={idx} className={`px-3 py-1.5 rounded-xl text-sm font-medium border ${
-                  isMedical ? "bg-rose-50 text-rose-700 border-rose-100" :
+                <span key={idx} className={`px-3 py-1.5 rounded-xl text-sm font-medium border ${isMedical ? "bg-rose-50 text-rose-700 border-rose-100" :
                   isMemory ? "bg-purple-50 text-purple-700 border-purple-100" :
-                  "bg-slate-50 text-slate-700 border-slate-200"
-                }`}>
+                    "bg-slate-50 text-slate-700 border-slate-200"
+                  }`}>
                   {skill}
                 </span>
               );
@@ -131,28 +130,28 @@ export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
         <Card className="p-6 bg-gradient-to-br from-slate-800 to-slate-900 text-white border-0 shadow-lg relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-2xl pointer-events-none" />
           <h3 className="text-lg font-semibold text-white/90 mb-4">Compliance Snapshot</h3>
-          
+
           <div className="flex items-center gap-4 mb-6">
-            <div className="relative w-20 h-20 shrink-0">
+            <div className="relative w-40 h-40 shrink-0">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="8" />
-                <circle 
-                  cx="50" cy="50" r="40" fill="none" 
-                  stroke={caregiver.complianceScore === 100 ? "#10b981" : "#f59e0b"} 
-                  strokeWidth="8" 
-                  strokeDasharray="251.2" 
+                <circle
+                  cx="50" cy="50" r="40" fill="none"
+                  stroke={caregiver.complianceScore === 100 ? "#10b981" : "#f59e0b"}
+                  strokeWidth="8"
+                  strokeDasharray="251.2"
                   strokeDashoffset={251.2 - (251.2 * caregiver.complianceScore) / 100}
-                  strokeLinecap="round" 
+                  strokeLinecap="round"
                   className="transition-all duration-1000 ease-out"
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xl font-bold">{caregiver.complianceScore}%</span>
+                <span className="text-4xl font-semibold">{caregiver.complianceScore}%</span>
               </div>
             </div>
             <div>
-              <div className="text-sm font-medium text-white/80">Overall Score</div>
-              <div className="text-xs text-white/60 mt-1">
+              <div className="text-2xl font-medium text-white/80">Overall Score</div>
+              <div className="text-sm text-white/60 mt-1">
                 {caregiver.complianceScore === 100 ? "Fully compliant and up to date." : "Action required for upcoming expirations."}
               </div>
             </div>
