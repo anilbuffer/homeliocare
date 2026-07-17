@@ -82,7 +82,7 @@ export default function EVVMonitoringPage() {
             />
           </div>
 
-          <div className="lg:col-span-1 h-[320px] bg-white/70 backdrop-blur-xl rounded-xl p-4 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col">
+          <div className="lg:col-span-1 h-[320px] bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
             <h3 className="text-sm font-semibold text-slate-900 mb-2">Top Offenders</h3>
             <p className="text-[11px] text-slate-500 font-medium mb-3">Caregivers with the most exceptions this period.</p>
             <div className="flex-1 overflow-y-auto pr-2 space-y-1">
@@ -103,7 +103,7 @@ export default function EVVMonitoringPage() {
         </div>
 
         {/* Row 3: Exceptions Queue */}
-        <div className="bg-white/70 backdrop-blur-xl rounded-xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col">
+        <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
           <div className="p-3 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3 bg-slate-50/50">
             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
               Exceptions Queue

@@ -62,7 +62,7 @@ export default function CoursePlayerPage({ params }: { params: Promise<{ courseI
     const lessonCompleted = isCompleted(activeLesson.id);
 
     return (
-      <div className="flex flex-col h-full bg-[#F8FAFC]">
+      <div className="flex flex-col lg:h-full bg-[#F8FAFC]">
         {/* Lesson Header */}
         <div className="flex-shrink-0 px-6 py-5 md:px-10 md:py-8 flex justify-between items-center z-10">
           <div>
@@ -75,7 +75,7 @@ export default function CoursePlayerPage({ params }: { params: Promise<{ courseI
 
         {/* Lesson Content Area */}
         <div className="flex-1 overflow-hidden px-6 pb-6 md:px-10 md:pb-10 flex flex-col max-w-6xl mx-auto w-full">
-          <div className="flex-1 w-full h-full min-h-0">
+          <div className="flex-1 w-full h-full min-h-0 flex flex-col justify-center">
             {activeLesson.format === "Video" && (
               <VideoLessonPlayer lesson={activeLesson} isCompleted={lessonCompleted} onComplete={handleCompleteLesson} />
             )}
@@ -92,14 +92,14 @@ export default function CoursePlayerPage({ params }: { params: Promise<{ courseI
             <button
               onClick={() => setActiveLessonId(allLessons[activeLessonIndex - 1].id)}
               disabled={activeLessonIndex === 0}
-              className="px-6 py-3 font-semibold text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white hover:shadow-[0_6px_32px_rgba(0,0,0,0.08)] rounded-xl transition-all border border-slate-200 shadow-[0_6px_16px_rgba(0,0,0,0.06)] hover:border-slate-200"
+              className="px-4 py-2 lg:px-6 lg:py-3 font-semibold text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white hover:shadow-[0_6px_32px_rgba(0,0,0,0.08)] rounded-xl transition-all border border-slate-200 shadow-[0_6px_16px_rgba(0,0,0,0.06)] hover:border-slate-200"
             >
               Previous Lesson
             </button>
             <button
               onClick={handleNextLesson}
               disabled={!lessonCompleted && activeLesson.isRequired}
-              className="px-8 py-3 font-semibold text-white bg-brand-teal disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all shadow-[0_4px_12px_rgba(12,140,112,0.3)] hover:shadow-[0_6px_20px_rgba(12,140,112,0.4)] hover:-translate-y-0.5 active:scale-[0.98]"
+              className="px-4 py-2 lg:px-8 lg:py-3 font-semibold text-white bg-brand-teal disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all shadow-[0_4px_12px_rgba(12,140,112,0.3)] hover:shadow-[0_6px_20px_rgba(12,140,112,0.4)] hover:-translate-y-0.5 active:scale-[0.98]"
             >
               {activeLessonIndex === allLessons.length - 1 ? "Go to Final Quiz" : "Next Lesson"}
             </button>
@@ -110,15 +110,15 @@ export default function CoursePlayerPage({ params }: { params: Promise<{ courseI
   };
 
   return (
-    <div className="flex h-screen bg-[#F4F6F8] overflow-hidden backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+    <div className="flex lg:h-screen bg-[#F4F6F8] overflow-hidden backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
 
       {/* Mobile Sidebar Toggle */}
-      <div className="lg:hidden fixed bottom-4 right-4 z-50">
+      <div className="lg:hidden fixed top-4 right-4 z-50">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="bg-slate-900 text-white p-4 rounded-full shadow-xl"
         >
-          {sidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {sidebarOpen ? <X className="w-4 h-6" /> : <Menu className="w-4 h-4" />}
         </button>
       </div>
 

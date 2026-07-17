@@ -11,38 +11,38 @@ interface CertificateCardProps {
 }
 
 export function CertificateCard({ name, issued, expires, status }: CertificateCardProps) {
-  
+
   const statusConfig = {
     "Active": {
       badge: "bg-brand-teal text-white",
       iconBg: "bg-purple-100",
       iconColor: "text-purple-600",
-      border: "border-slate-100"
+      border: "border-teal-200"
     },
     "Expiring Soon": {
       badge: "bg-accent-amber text-white",
-      iconBg: "bg-amber-50",
+      iconBg: "bg-amber-100",
       iconColor: "text-amber-500",
-      border: "border-amber-100"
+      border: "border-amber-200"
     },
     "Expired": {
       badge: "bg-accent-red text-white",
-      iconBg: "bg-red-50",
+      iconBg: "bg-red-100",
       iconColor: "text-red-500",
-      border: "border-red-100"
+      border: "border-red-200"
     }
   };
 
   const config = statusConfig[status];
 
   return (
-    <div className={`bg-white/70 backdrop-blur-xl rounded-2xl border ${config.border} shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 p-5 flex flex-col relative`}>
+    <div className={`bg-white/70 backdrop-blur-xl rounded-2xl border ${config.border} shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 p-4 flex flex-col relative`}>
       {/* Status Ribbon/Badge */}
       <div className={`absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-[10px] font-bold uppercase tracking-wider ${config.badge}`}>
         {status}
       </div>
 
-      <div className="flex items-start gap-4 mb-6 mt-2">
+      <div className="flex items-center gap-4 mb-6 mt-2">
         <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${config.iconBg}`}>
           <Award className={`w-6 h-6 ${config.iconColor}`} />
         </div>
@@ -62,7 +62,7 @@ export function CertificateCard({ name, issued, expires, status }: CertificateCa
         </div>
       </div>
 
-      <button className="w-full flex items-center justify-center gap-2 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors mt-auto">
+      <button className="w-full flex items-center justify-center gap-2 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-colors mt-auto">
         <Download className="w-4 h-4" />
         Download PDF
       </button>

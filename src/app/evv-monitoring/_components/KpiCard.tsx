@@ -22,7 +22,7 @@ export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={clsx(
-        "bg-white/70 backdrop-blur-xl rounded-2xl p-5 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between h-full",
+        "bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full",
         hero && "bg-brand-teal/5 border-brand-teal/20"
       )}
     >
@@ -47,13 +47,13 @@ export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero 
           >
             {value}
           </motion.div>
-          
+
           {trend && trendValue && (
             <div className={clsx(
               "flex items-center text-xs font-medium rounded-full px-2 py-0.5",
-              trend === "up" ? "text-emerald-700 bg-emerald-50" : 
-              trend === "down" ? "text-amber-700 bg-amber-50" : 
-              "text-slate-600 bg-slate-100"
+              trend === "up" ? "text-emerald-700 bg-emerald-50" :
+                trend === "down" ? "text-amber-700 bg-amber-50" :
+                  "text-slate-600 bg-slate-100"
             )}>
               {trend === "up" && <ArrowUpRight className="w-3 h-3 mr-1" />}
               {trend === "down" && <ArrowDownRight className="w-3 h-3 mr-1" />}

@@ -144,7 +144,7 @@ export function MyTraining() {
             <input
               type="text"
               placeholder="Search courses..."
-              className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all shadow-sm hover:shadow-md focus:shadow-md"
+              className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]  rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all "
             />
           </div>
           <div className="flex-1 w-full">
@@ -155,13 +155,13 @@ export function MyTraining() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ease-in-out ${activeCategory === cat
                     ? "bg-brand-teal text-white shadow-[0_4px_12px_rgba(20,184,166,0.3)] scale-105"
-                    : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:shadow-sm"
+                    : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
                     }`}
                 >
                   {cat}
                 </button>
               ))}
-              <button className="px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 hover:shadow-sm transition-all duration-300 ease-in-out flex items-center gap-1.5">
+              <button className="px-4 py-1.5 rounded-full text-xs font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 ease-in-out flex items-center gap-1.5">
                 <Filter className="w-3 h-3" /> More
               </button>
             </div>

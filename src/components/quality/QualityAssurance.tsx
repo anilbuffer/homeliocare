@@ -43,7 +43,7 @@ export function QualityAssurance() {
           </p>
         </div>
         <div className="flex items-center gap-2 sm:gap-4">
-          <div className="hidden sm:flex items-center gap-2 bg-white border border-border-subtle rounded-full px-4 py-2 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+          <div className="hidden sm:flex items-center gap-2 bg-white backdrop-blur-xl rounded-2xl px-4 py-2 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <CalendarIcon className="w-4 h-4 text-slate-400" />
             <select className="bg-transparent text-sm font-medium text-slate-700 focus:outline-none cursor-pointer">
               <option className="bg-white">This Month (July 2026)</option>
@@ -65,7 +65,7 @@ export function QualityAssurance() {
         </div>
         <div className="lg:col-span-2 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {KPI_DATA.map((kpi, index) => (
-            <div key={index} className="bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4 flex flex-col justify-between">
+            <div key={index} className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
               <div className="flex items-center gap-3 mb-2">
                 <div className={clsx("p-2 rounded-lg", kpi.bg, kpi.color)}>
                   <kpi.icon className="w-4 h-4" />
@@ -89,7 +89,7 @@ export function QualityAssurance() {
       {/* Row 4: Audit Types Breakdown (Tabs & Checklist) */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 min-h-[500px]">
         {/* Tabs */}
-        <div className="lg:col-span-1 bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4 flex flex-col gap-2">
+        <div className="lg:col-span-1 bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col gap-2">
           <h3 className="text-lg font-medium text-text-primary mb-2 px-2">Audit Instruments</h3>
           {AUDIT_TABS.map((tab) => (
             <button

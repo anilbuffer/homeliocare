@@ -34,7 +34,7 @@ export function QAScoreCard() {
   let cumulativePercent = 0;
 
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4 h-full flex flex-col sm:flex-row lg:flex-col 2xl:flex-row gap-6 items-center justify-between xl:justify-center 2xl:justify-between">
+    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col sm:flex-row lg:flex-col 2xl:flex-row gap-6 items-center justify-between xl:justify-center 2xl:justify-between">
       <div className="flex-1">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-brand-teal/20 rounded-lg text-brand-teal">

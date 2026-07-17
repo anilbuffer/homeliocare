@@ -15,7 +15,7 @@ export function BillingRiskCard({ totalRisk, likelyDenied, needsReview }: Billin
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-red-50/70 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden h-full flex flex-col"
+      className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col"
     >
       {/* Background Icon */}
       <ShieldAlert className="absolute -right-6 -bottom-6 w-32 h-32 text-red-100 opacity-50 pointer-events-none" />

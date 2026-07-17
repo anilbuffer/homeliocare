@@ -81,7 +81,7 @@ export function CourseOverviewHeader({ course, progress }: CourseOverviewHeaderP
             )}
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4 tracking-tight leading-tight group-hover:text-brand-teal transition-colors duration-300">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-slate-800 mb-4 tracking-tight leading-tight group-hover:text-brand-teal transition-colors duration-300">
             {course.title}
           </h1>
           <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-8">

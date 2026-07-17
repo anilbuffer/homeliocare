@@ -5,7 +5,7 @@ import { User, Calendar, Star, FileText } from "lucide-react";
 
 export function SupervisorEvalCard() {
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4 h-full flex flex-col">
+    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-border-subtle">
         <h3 className="text-lg font-medium text-text-primary">Recent Supervisor Home Visits</h3>
         <button className="text-sm font-medium text-brand-teal hover:text-brand-teal-hover transition-colors">

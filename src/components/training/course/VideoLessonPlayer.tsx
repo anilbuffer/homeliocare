@@ -29,7 +29,7 @@ export function VideoLessonPlayer({ lesson, isCompleted, onComplete }: VideoLess
   }, [isCompleted, onComplete]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center bg-black/5 rounded-2xl overflow-hidden relative shadow-[0_8px_30px_rgb(0,0,0,0.12)] ring-1 ring-slate-900/5 group/player">
+    <div className="w-full aspect-video max-h-[80vh] flex flex-col items-center bg-black/5 rounded-2xl overflow-hidden relative shadow-2xl ring-1 ring-slate-900/10 group/player">
       {lesson.contentUrl ? (
         <video 
           ref={videoRef}

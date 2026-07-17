@@ -12,17 +12,17 @@ export default async function CourseOverviewPage({ params }: { params: Promise<{
   const courseId = resolvedParams.courseId;
 
   const course = MOCK_COURSE_DETAIL;
-  
+
   const isCompletedCourse = ["c3", "c5", "c9", "c11"].includes(courseId);
 
-  const progress = isCompletedCourse 
+  const progress = isCompletedCourse
     ? {
-        ...MOCK_USER_PROGRESS,
-        lessons: MOCK_USER_PROGRESS.lessons.map(l => ({ ...l, status: "completed" as const })),
-        quizPassed: true,
-        quizScore: 100,
-        quizAnswers: { "q1": 0, "q2": 1, "q3": 1 }
-      }
+      ...MOCK_USER_PROGRESS,
+      lessons: MOCK_USER_PROGRESS.lessons.map(l => ({ ...l, status: "completed" as const })),
+      quizPassed: true,
+      quizScore: 100,
+      quizAnswers: { "q1": 0, "q2": 1, "q3": 1 }
+    }
     : MOCK_USER_PROGRESS;
 
   return (
@@ -37,20 +37,20 @@ export default async function CourseOverviewPage({ params }: { params: Promise<{
         </div>
       </div>
 
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <div className="w-full mx-auto pt-6 lg:pt-8 space-y-6">
 
         {/* Header Banner */}
         <CourseOverviewHeader course={course} progress={progress} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Main Column */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-6">
 
             {/* What you'll learn */}
-            <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] p-6 md:p-8">
+            <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] p-4 md:p-8">
               <h3 className="text-xl font-bold text-slate-800 mb-6">What you'll learn</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
                 {course.learningOutcomes.map((outcome, idx) => (
                   <div key={idx} className="flex items-start gap-3">
                     <div className="mt-0.5">
@@ -67,7 +67,7 @@ export default async function CourseOverviewPage({ params }: { params: Promise<{
           </div>
 
           {/* Sidebar Column */}
-          <div className="space-y-8">
+          <div className="space-y-6">
 
             {/* Instructor Card */}
             <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] p-6">
