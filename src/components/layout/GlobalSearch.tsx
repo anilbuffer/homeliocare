@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useRouter } from "next/navigation";
 import {
   Search,
   Sparkles,
@@ -46,25 +47,29 @@ const mockResults = [
     title: "Patient Note: Recent fall risk assessment for John Doe",
     matchedIn: "caregiver note, June 12",
     icon: FileText,
-    color: "text-accent-blue"
+    color: "text-accent-blue",
+    path: "/patients/c-1?tab=chronology"
   },
   {
     id: 2,
     title: "Lisinopril 10mg - Active Prescription",
     matchedIn: "medication name",
     icon: Pill,
-    color: "text-accent-purple"
+    color: "text-accent-purple",
+    path: "/patients/c-1?tab=medications"
   },
   {
     id: 3,
     title: "Care Plan Update - Fall Prevention",
     matchedIn: "care plan title",
     icon: ShieldCheck,
-    color: "text-accent-green"
+    color: "text-accent-green",
+    path: "/patients/c-1?tab=careplan"
   }
 ];
 
 export function GlobalSearch() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -266,6 +271,10 @@ export function GlobalSearch() {
                       return (
                         <button
                           key={result.id}
+                          onClick={() => {
+                            setIsOpen(false);
+                            router.push(result.path);
+                          }}
                           className="w-full text-left p-3 bg-white border border-slate-200 hover:bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-[0_8px_32px_rgb(0,0,0,0.08)] rounded-xl transition-all duration-200 flex items-start gap-3 group"
                         >
                           <div className={`mt-0.5 p-2 rounded-lg bg-white border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-colors ${result.color}`}>

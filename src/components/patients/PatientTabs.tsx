@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Patient } from "@/lib/patients/mockData";
 import { OverviewTab } from "@/components/patients/tabs/OverviewTab";
@@ -23,8 +24,25 @@ const tabs = [
   { id: "chronology", label: "Chronology" },
 ];
 
-export function PatientTabs({ patient }: { patient: Patient }) {
-  const [activeTab, setActiveTab] = useState("overview");
+function PatientTabsContent({ patient }: { patient: Patient }) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const tabFromUrl = searchParams.get("tab");
+  const initialTab = tabFromUrl && tabs.some(t => t.id === tabFromUrl) ? tabFromUrl : "overview";
+  const [activeTab, setActiveTab] = useState(initialTab);
+
+  useEffect(() => {
+    if (tabFromUrl && tabs.some(t => t.id === tabFromUrl) && tabFromUrl !== activeTab) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [tabFromUrl, activeTab]);
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    router.replace(`${pathname}?tab=${tabId}`, { scroll: false });
+  };
 
   return (
     <div className="w-full">
@@ -35,7 +53,7 @@ export function PatientTabs({ patient }: { patient: Patient }) {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
               className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
                 }`}
             >
@@ -75,5 +93,13 @@ export function PatientTabs({ patient }: { patient: Patient }) {
         </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+export function PatientTabs({ patient }: { patient: Patient }) {
+  return (
+    <Suspense fallback={<div>Loading tabs...</div>}>
+      <PatientTabsContent patient={patient} />
+    </Suspense>
   );
 }

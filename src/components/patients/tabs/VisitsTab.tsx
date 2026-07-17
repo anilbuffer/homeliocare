@@ -16,6 +16,7 @@ export function VisitsTab({ patient }: { patient: Patient }) {
   }
 
   const { upcoming, history } = patient.visits;
+  const [expandedVisitId, setExpandedVisitId] = React.useState<string | null>(null);
 
   const getStatusBadge = (type: string) => {
     switch (type) {
@@ -42,21 +43,35 @@ export function VisitsTab({ patient }: { patient: Patient }) {
       <div>
         <h3 className="text-sm font-semibold text-slate-700 mb-3">Upcoming visits</h3>
         <div className="space-y-3">
-          {upcoming.map((visit) => (
-            <Card key={visit.id} className="p-4 flex items-center justify-between border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow">
-              <div className="flex items-center w-1/4">
-                <span className="font-semibold text-slate-800">{visit.date}</span>
-                <span className="text-slate-500 ml-2">{visit.time}</span>
+          {upcoming.map((visit) => {
+            const isExpanded = expandedVisitId === visit.id;
+            return (
+              <div key={visit.id} className="flex flex-col border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow rounded-xl bg-white overflow-hidden">
+                <button
+                  onClick={() => setExpandedVisitId(isExpanded ? null : visit.id)}
+                  className="p-4 flex items-center justify-between w-full hover:bg-slate-50 transition-colors text-left"
+                >
+                  <div className="flex items-center w-1/4">
+                    <span className="font-semibold text-slate-800">{visit.date}</span>
+                    <span className="text-slate-500 ml-2">{visit.time}</span>
+                  </div>
+                  <div className="w-1/4 text-slate-700 font-medium">{visit.staff}</div>
+                  <div className="w-1/6 text-slate-500 text-sm">{visit.duration}</div>
+                  <div className="w-1/6 flex items-center text-sm">{getVerificationIcon(visit.status)}</div>
+                  <div className="w-1/6 flex items-center justify-end gap-3">
+                    {getStatusBadge(visit.type)}
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                  </div>
+                </button>
+                {isExpanded && (
+                  <div className="px-4 pb-4 pt-1 bg-slate-50 border-t border-slate-100 text-sm text-slate-600">
+                    <p className="mb-2"><strong>Location:</strong> {patient.address}</p>
+                    <p><strong>Notes:</strong> Routine checkup. Ensure all vitals are recorded and reported.</p>
+                  </div>
+                )}
               </div>
-              <div className="w-1/4 text-slate-700 font-medium">{visit.staff}</div>
-              <div className="w-1/6 text-slate-500 text-sm">{visit.duration}</div>
-              <div className="w-1/6 flex items-center text-sm">{getVerificationIcon(visit.status)}</div>
-              <div className="w-1/6 flex items-center justify-end gap-3">
-                {getStatusBadge(visit.type)}
-                <ChevronDown className="w-4 h-4 text-slate-400" />
-              </div>
-            </Card>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -69,21 +84,35 @@ export function VisitsTab({ patient }: { patient: Patient }) {
           </button>
         </div>
         <div className="space-y-3">
-          {history.map((visit) => (
-            <Card key={visit.id} className="p-4 flex items-center justify-between border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow">
-              <div className="flex items-center w-1/4">
-                <span className="font-semibold text-slate-800">{visit.date}</span>
-                <span className="text-slate-500 ml-2">{visit.time}</span>
+          {history.map((visit) => {
+            const isExpanded = expandedVisitId === visit.id;
+            return (
+              <div key={visit.id} className="flex flex-col border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow rounded-xl bg-white overflow-hidden">
+                <button
+                  onClick={() => setExpandedVisitId(isExpanded ? null : visit.id)}
+                  className="p-4 flex items-center justify-between w-full hover:bg-slate-50 transition-colors text-left"
+                >
+                  <div className="flex items-center w-1/4">
+                    <span className="font-semibold text-slate-800">{visit.date}</span>
+                    <span className="text-slate-500 ml-2">{visit.time}</span>
+                  </div>
+                  <div className="w-1/4 text-slate-700 font-medium">{visit.staff}</div>
+                  <div className="w-1/6 text-slate-500 text-sm">{visit.duration}</div>
+                  <div className="w-1/6 flex items-center text-sm">{getVerificationIcon(visit.status)}</div>
+                  <div className="w-1/6 flex items-center justify-end gap-3">
+                    {getStatusBadge(visit.type)}
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                  </div>
+                </button>
+                {isExpanded && (
+                  <div className="px-4 pb-4 pt-1 bg-slate-50 border-t border-slate-100 text-sm text-slate-600">
+                    <p className="mb-2"><strong>Location:</strong> {patient.address}</p>
+                    <p><strong>Outcome:</strong> Visit completed successfully. No critical issues reported.</p>
+                  </div>
+                )}
               </div>
-              <div className="w-1/4 text-slate-700 font-medium">{visit.staff}</div>
-              <div className="w-1/6 text-slate-500 text-sm">{visit.duration}</div>
-              <div className="w-1/6 flex items-center text-sm">{getVerificationIcon(visit.status)}</div>
-              <div className="w-1/6 flex items-center justify-end gap-3">
-                {getStatusBadge(visit.type)}
-                <ChevronDown className="w-4 h-4 text-slate-400" />
-              </div>
-            </Card>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

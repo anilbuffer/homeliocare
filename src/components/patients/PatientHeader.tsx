@@ -50,7 +50,7 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
           <Badge variant={
             patient.riskLevel === "Low" ? "success" :
               patient.riskLevel === "Medium" ? "warning" : "error"
-          } className="text-base px-3 py-1">
+          } className="text-sm px-3 py-1">
             {patient.riskLevel}
           </Badge>
         </div>
