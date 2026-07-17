@@ -53,7 +53,7 @@ export function UrgencyStrip() {
         return (
           <div
             key={idx}
-            className="bg-white backdrop-blur-xl border border-white/60 shadow-[0_4px_24px_rgb(0,0,0,0.04)] rounded-2xl p-4 transition-all duration-300 hover:shadow-[0_8px_32px_rgb(0,0,0,0.08)] hover:-translate-y-1 relative overflow-hidden group flex items-center gap-4"
+            className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden group flex items-center gap-4"
           >
             <div className={clsx("p-3 rounded-xl shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3", kpi.bg, kpi.color)}>
               <Icon className="w-5 h-5" />
@@ -65,7 +65,7 @@ export function UrgencyStrip() {
               </div>
               <div className="text-[12px] font-medium text-slate-500 leading-tight line-clamp-2">{kpi.label}</div>
             </div>
-            
+
             {/* Subtle background glow */}
             <div className={clsx("absolute -right-4 -bottom-4 w-16 h-16 rounded-full opacity-0 blur-xl transition-all duration-500 group-hover:opacity-20", kpi.dot)} />
           </div>

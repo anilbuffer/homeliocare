@@ -100,7 +100,7 @@ export function FinancialSummaryStrip() {
       {metrics.map((metric, i) => (
         <Card
           key={i}
-          className="p-4 sm:p-5 flex flex-col justify-between"
+          className="flex flex-col justify-between bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1 }}

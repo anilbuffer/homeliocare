@@ -226,7 +226,7 @@ export function LiveMap({
       {/* Patient/Visit Markers */}
       {visits.map(v => {
         const isSelected = selectedVisitId === v.id || (selectedCaregiverId && v.caregiverId === selectedCaregiverId);
-        
+
         return (
           <div
             key={v.id}

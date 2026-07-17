@@ -19,23 +19,23 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
 
   const filteredIncidents = incidents.filter(inc => {
     const matchesSearch = inc.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          inc.peopleInvolved.some(p => p.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                          inc.type.toLowerCase().includes(searchTerm.toLowerCase());
+      inc.peopleInvolved.some(p => p.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      inc.type.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory ? inc.type === selectedCategory : true;
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <Card className="flex flex-col h-full" noPadding>
+    <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full" noPadding>
       <div className="p-5 border-b border-slate-100 flex items-center justify-between gap-4">
         <h2 className="font-semibold text-slate-800">Incident Queue</h2>
-        
+
         <div className="flex items-center gap-2 flex-1 max-w-md">
           <div className="relative flex-1">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input 
-              type="text" 
-              placeholder="Search by ID, name, or type..." 
+            <input
+              type="text"
+              placeholder="Search by ID, name, or type..."
               className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -58,9 +58,9 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
           filteredIncidents.map((incident) => {
             const isHighSeverity = incident.severity === "High" || incident.severity === "Critical";
             const needsSupervisorAlert = incident.supervisorAlert;
-            
+
             return (
-              <div 
+              <div
                 key={incident.id}
                 onClick={() => onRowClick(incident)}
                 className={cn(
@@ -90,8 +90,8 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
                 <div className="flex-1 min-w-0 flex items-center gap-3">
                   <div className="flex -space-x-2">
                     {incident.peopleInvolved.slice(0, 3).map((person, i) => (
-                      <div 
-                        key={i} 
+                      <div
+                        key={i}
                         className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600 overflow-hidden relative z-10"
                         title={`${person.role}: ${person.name}`}
                       >
@@ -121,9 +121,9 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
                 {/* Status Badge */}
                 <div className="w-[130px] shrink-0 flex justify-end">
                   <Badge variant={
-                    incident.status === "Closed" ? "success" : 
-                    incident.status === "Corrective Action" ? "warning" :
-                    incident.status === "Reported" ? "error" : "default"
+                    incident.status === "Closed" ? "success" :
+                      incident.status === "Corrective Action" ? "warning" :
+                        incident.status === "Reported" ? "error" : "default"
                   }>
                     {incident.status}
                   </Badge>

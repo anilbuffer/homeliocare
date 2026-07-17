@@ -71,7 +71,7 @@ export function FilterBar({
             <select
               value={caregiverFilter}
               onChange={(e) => setCaregiverFilter(e.target.value)}
-              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white/90 backdrop-blur-sm border border-slate-100 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white backdrop-blur-sm border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
             >
               <option value="">Caregiver</option>
               {uniqueCaregivers.map(cg => (
@@ -85,7 +85,7 @@ export function FilterBar({
             <select
               value={patientFilter}
               onChange={(e) => setPatientFilter(e.target.value)}
-              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white/90 backdrop-blur-sm border border-slate-100 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white backdrop-blur-sm border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
             >
               <option value="">Patient</option>
               {uniquePatients.map(cl => (
@@ -99,7 +99,7 @@ export function FilterBar({
             <select
               value={regionFilter}
               onChange={(e) => setRegionFilter(e.target.value)}
-              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white/90 backdrop-blur-sm border border-slate-100 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white backdrop-blur-sm border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
             >
               <option value="">Region</option>
               {uniqueRegions.map(reg => (
@@ -111,7 +111,7 @@ export function FilterBar({
         </div>
 
         {/* View Toggle */}
-        <div className="flex bg-white/80 backdrop-blur-md rounded-xl p-1 border border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.04)] ml-2">
+        <div className="flex bg-white backdrop-blur-md rounded-xl p-1 border border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.04)] ml-2">
           <button
             onClick={() => setLayoutMode("Calendar")}
             className={clsx(

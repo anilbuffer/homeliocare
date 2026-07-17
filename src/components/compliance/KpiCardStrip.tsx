@@ -57,7 +57,7 @@ export function KpiCardStrip({ data }: KpiCardStripProps) {
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4">
       {cards.map((card, idx) => (
-        <div key={idx} className="bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4 flex flex-col justify-between h-full hover:border-slate-300 transition-colors">
+        <div key={idx} className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="flex items-start justify-between mb-2">
             <h3 className="text-xs font-medium text-slate-500">{card.title}</h3>
             <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${card.bg}`}>

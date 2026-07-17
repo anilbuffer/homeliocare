@@ -34,7 +34,7 @@ export function ManageTraining() {
       {/* 1. KPI Strip */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Main Hero Card */}
-        <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-4 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col col-span-1 md:col-span-1">
+        <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col col-span-1 md:col-span-1">
           <div className="text-[10px] font-bold text-slate-500 tracking-wider uppercase mb-1">AGENCY COMPLIANCE</div>
           <div className="text-3xl font-bold text-slate-800 flex items-end gap-3">
             82%
@@ -49,7 +49,7 @@ export function ManageTraining() {
 
         {/* Other KPIs */}
         <div className="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-4 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start mb-2">
               <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">FULLY COMPLIANT STAFF</span>
               <div className="w-8 h-8 rounded-full flex items-center justify-center bg-teal-50">
@@ -61,7 +61,7 @@ export function ManageTraining() {
               <div className="text-[10px] text-slate-400">8 total</div>
             </div>
           </div>
-          <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-5 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start">
               <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">OVERDUE TRAINING</span>
               <div className="w-8 h-8 rounded-full flex items-center justify-center bg-red-50">
@@ -70,7 +70,7 @@ export function ManageTraining() {
             </div>
             <div className="text-xl font-bold text-slate-800">2</div>
           </div>
-          <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-5 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start">
               <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">CERTS EXPIRING (30D)</span>
               <div className="w-8 h-8 rounded-full flex items-center justify-center bg-amber-50">
@@ -92,7 +92,7 @@ export function ManageTraining() {
       </div>
 
       {/* 2. Compliance by Category */}
-      <section className="bg-white/70 backdrop-blur-xl rounded-2xl p-4 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+      <section className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
         <div className="mb-4">
           <h3 className="text-base font-semibold text-slate-800">Compliance by Category</h3>
           <p className="text-xs text-slate-500">Percent of staff current on each category</p>
@@ -112,7 +112,7 @@ export function ManageTraining() {
       </section>
 
       {/* 3. Staff Training Status */}
-      <section className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden">
+      <section className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h3 className="text-base font-semibold text-slate-800">Staff Training Status</h3>
@@ -190,7 +190,7 @@ export function ManageTraining() {
       {/* Row 4: Expiring & Overdue | Quiz Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Expiring & Overdue */}
-        <section className="lg:col-span-2 bg-white/70 backdrop-blur-xl rounded-2xl border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col">
+        <section className="lg:col-span-2 bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex justify-between items-start">
             <div>
               <h3 className="text-base font-semibold text-slate-800">Expiring & Overdue</h3>
@@ -233,7 +233,7 @@ export function ManageTraining() {
         </section>
 
         {/* Quiz & Assessments */}
-        <section className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col p-4">
+        <section className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col p-4">
           <div className="mb-4">
             <h3 className="text-base font-semibold text-slate-800">Quiz & Assessments</h3>
             <p className="text-xs text-slate-500">Last 30 days</p>
@@ -260,7 +260,7 @@ export function ManageTraining() {
       </div>
 
       {/* Row 5: Course Builder */}
-      <section className="bg-white/70 backdrop-blur-xl rounded-2xl border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden">
+      <section className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h3 className="text-base font-semibold text-slate-800">Course Library</h3>
@@ -329,7 +329,7 @@ export function ManageTraining() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {MOCK_SURVEYS.map(survey => (
-            <div key={survey.name} className="bg-white/70 backdrop-blur-xl rounded-2xl p-4 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all">
+            <div key={survey.name} className="flex flex-col bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
               <div className="flex justify-between items-start mb-3">
                 <h4 className="font-semibold text-slate-800 text-xs">{survey.name}</h4>
                 <div className="text-slate-300">

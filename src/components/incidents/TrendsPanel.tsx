@@ -21,9 +21,9 @@ const patternsData = [
 
 export function TrendsPanel() {
   return (
-    <Card className="flex flex-col">
+    <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
       <CardHeader title="Trends & Patterns" subtitle="Last 30 days" />
-      
+
       <div className="flex-1 flex flex-col gap-4">
         {/* Chart */}
         <div className="h-[140px] w-full -mx-2 mt-2">
@@ -31,35 +31,35 @@ export function TrendsPanel() {
             <AreaChart data={trendData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorIncidents" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#14b8a6" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#14b8a6" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <XAxis 
-                dataKey="name" 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fontSize: 10, fill: '#94a3b8', fontWeight: 500 }} 
-                dy={10} 
+              <XAxis
+                dataKey="name"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 10, fill: '#94a3b8', fontWeight: 500 }}
+                dy={10}
               />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)', 
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
                   backdropFilter: 'blur(8px)',
-                  borderRadius: '12px', 
-                  border: '1px solid rgba(255,255,255,0.5)', 
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)' 
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255,255,255,0.5)',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
                 }}
                 itemStyle={{ color: '#0f172a', fontWeight: 600 }}
               />
-              <Area 
-                type="monotone" 
-                dataKey="incidents" 
-                stroke="#14b8a6" 
-                strokeWidth={3} 
-                fillOpacity={1} 
-                fill="url(#colorIncidents)" 
-                activeDot={{ r: 6, strokeWidth: 0, fill: '#14b8a6', className: "drop-shadow-md" }} 
+              <Area
+                type="monotone"
+                dataKey="incidents"
+                stroke="#14b8a6"
+                strokeWidth={3}
+                fillOpacity={1}
+                fill="url(#colorIncidents)"
+                activeDot={{ r: 6, strokeWidth: 0, fill: '#14b8a6', className: "drop-shadow-md" }}
               />
             </AreaChart>
           </ResponsiveContainer>
@@ -71,17 +71,17 @@ export function TrendsPanel() {
           {patternsData.map((pattern, i) => {
             const isError = pattern.type === "error";
             const Icon = isError ? AlertCircle : AlertTriangle;
-            
+
             return (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                key={i} 
+                key={i}
                 className={cn(
                   "p-3 rounded-xl text-sm border relative overflow-hidden group",
-                  isError 
-                    ? "bg-red-50/50 border-red-100 text-red-900" 
+                  isError
+                    ? "bg-red-50/50 border-red-100 text-red-900"
                     : "bg-amber-50/50 border-amber-100 text-amber-900"
                 )}
               >

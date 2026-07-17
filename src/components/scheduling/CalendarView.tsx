@@ -17,7 +17,7 @@ const MONTH_WEEKS = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
 export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: CalendarViewProps) {
   // We'll create a row for Unfilled shifts, and rows for each caregiver
   const unfilledShifts = shifts.filter(s => s.status === "Unfilled");
-  
+
   const getShiftStyle = (shift: Shift) => {
     if (viewMode === "Week") {
       // Mock all shifts to appear on Wednesday
@@ -31,13 +31,13 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
     try {
       const start = parseISO(shift.startTime);
       const end = parseISO(shift.endTime);
-      
+
       const startHour = start.getHours() + start.getMinutes() / 60;
       const endHour = end.getHours() + end.getMinutes() / 60;
-      
+
       const colStart = Math.max(0, startHour - 6);
       const colSpan = Math.max(0.5, endHour - startHour);
-      
+
       return {
         left: `${(colStart / 17) * 100}%`,
         width: `${(colSpan / 17) * 100}%`,
@@ -74,7 +74,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
   };
 
   return (
-    <div className="bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-2xl overflow-hidden overflow-x-auto hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all">
+    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <div className="min-w-[1000px]">
         {/* Header Row */}
         <div className="flex border-b border-slate-200 bg-slate-50">
@@ -84,7 +84,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
           <div className="flex-1 relative flex">
             {columns.map((col, idx) => (
               <div key={idx} className="flex-1 py-3 text-center text-xs font-medium text-slate-500 border-r border-slate-100 last:border-r-0">
-                {viewMode === "Day" 
+                {viewMode === "Day"
                   ? (typeof col === "number" ? (col > 12 ? `${col - 12}pm` : col === 12 ? '12pm' : `${col}am`) : col)
                   : col}
               </div>
@@ -131,7 +131,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
         {/* Caregiver Rows */}
         {caregivers.map((caregiver) => {
           const caregiverShifts = shifts.filter(s => s.assignedCaregiverId === caregiver.id);
-          
+
           return (
             <div key={caregiver.id} className="flex border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors group">
               <div className="w-32 sm:w-64 shrink-0 py-4 px-2 sm:px-4 border-r border-slate-200 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 sticky left-0 z-10 bg-white/95 backdrop-blur-sm shadow-[2px_0_10px_rgba(0,0,0,0.02)] group-hover:bg-slate-50/95 transition-colors">
@@ -147,7 +147,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
                 {columns.map((_, idx) => (
                   <div key={idx} className="absolute top-0 bottom-0 border-r border-slate-100" style={{ left: `${(idx) * (100 / columns.length)}%`, width: `${100 / columns.length}%` }} />
                 ))}
-                
+
                 {caregiverShifts.map((shift) => (
                   <div
                     key={shift.id}

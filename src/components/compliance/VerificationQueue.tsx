@@ -10,7 +10,7 @@ interface VerificationQueueProps {
 
 export function VerificationQueue({ items }: VerificationQueueProps) {
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col h-full">
+    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full">
       <div className="p-5 border-b border-slate-200 flex items-center justify-between bg-white/50">
         <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
           <Clock className="w-5 h-5 text-brand-teal" />

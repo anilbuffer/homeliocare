@@ -19,7 +19,7 @@ const payerColors = {
 
 export function DeniedClaims({ onClaimClick }: { onClaimClick?: (id: string) => void }) {
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full">
       <CardHeader
         title="Denied Claims"
         action={<span className="text-slate-500">Categorized denials awaiting action.</span>}
