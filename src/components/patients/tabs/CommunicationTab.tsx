@@ -20,7 +20,7 @@ export function CommunicationTab({ patient }: { patient: Patient }) {
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Family portal thread */}
-        <Card className="p-6 lg:col-span-2">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden lg:col-span-2">
           <div className="flex items-center gap-2 mb-6">
             <MessageSquare className="w-5 h-5 text-brand-teal" />
             <h3 className="text-sm font-semibold text-slate-700">Family portal thread</h3>
@@ -35,8 +35,8 @@ export function CommunicationTab({ patient }: { patient: Patient }) {
                 </div>
                 <div className={cn(
                   "p-3.5 rounded-2xl text-sm",
-                  msg.direction === "outbound" 
-                    ? "bg-emerald-50 text-emerald-900 rounded-tr-sm" 
+                  msg.direction === "outbound"
+                    ? "bg-emerald-50 text-emerald-900 rounded-tr-sm"
                     : "bg-slate-100 text-slate-800 rounded-tl-sm"
                 )}>
                   {msg.message}
@@ -47,7 +47,7 @@ export function CommunicationTab({ patient }: { patient: Patient }) {
         </Card>
 
         {/* Call & SMS log */}
-        <Card className="p-6">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="flex items-center gap-2 mb-6">
             <Phone className="w-5 h-5 text-blue-500" />
             <h3 className="text-sm font-semibold text-slate-700">Call & SMS log</h3>
@@ -76,7 +76,7 @@ export function CommunicationTab({ patient }: { patient: Patient }) {
       </div>
 
       {/* Internal care-team notes */}
-      <Card className="border-purple-200 overflow-hidden">
+      <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-purple-200  shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
         <div className="bg-purple-50/50 p-4 border-b border-purple-100 flex items-center gap-2">
           <Lock className="w-4 h-4 text-purple-500" />
           <h3 className="text-sm font-semibold text-purple-900">Internal care-team notes</h3>

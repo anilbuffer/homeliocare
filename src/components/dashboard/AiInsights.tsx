@@ -6,17 +6,17 @@ import { Sparkles, Users, ShieldAlert, TrendingUp, AlertCircle, FileText } from 
 
 export function AiInsights() {
   return (
-    <Card className="flex flex-col h-full">
-      <CardHeader 
+    <Card className="flex flex-col h-full bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+      <CardHeader
         title="All Insights"
         action={
           <button className="flex items-center gap-2 bg-[#e6f6f4] text-brand-teal px-3 py-1.5 rounded-full text-xs font-semibold hover:bg-brand-teal/20 transition-colors">
             <Sparkles className="w-3 h-3" />
             Sidekick
           </button>
-        } 
+        }
       />
-      
+
       <div className="flex-1 flex flex-col gap-3 mt-4 overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full">
         {/* Staffing */}
         <div className="flex gap-4 p-4 bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] rounded-2xl transition-all hover:-translate-y-0.5 cursor-pointer group shrink-0">

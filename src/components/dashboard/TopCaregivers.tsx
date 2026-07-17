@@ -16,9 +16,9 @@ const caregiversData = [
 
 export function TopCaregivers() {
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <CardHeader title="Top performing caregivers" action={<Link href="/caregivers"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">Full ranking →</span></Link>} />
-      
+
       <div className="flex-1 space-y-5">
         {caregiversData.map((item, index) => (
           <div key={item.id} className="flex gap-4 items-center">

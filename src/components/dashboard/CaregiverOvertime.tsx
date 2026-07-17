@@ -8,9 +8,9 @@ import { AlertCircle, CheckCircle2 } from "lucide-react";
 
 export function CaregiverOvertime() {
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <CardHeader title="Caregiver overtime" action={<Link href="/scheduling"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">Schedule →</span></Link>} />
-      
+
       <div className="flex-1 space-y-3">
         {/* Alerts */}
         <div className="bg-accent-red/5 border border-accent-red/20 rounded-xl p-3 flex gap-3 items-center">
@@ -22,7 +22,7 @@ export function CaregiverOvertime() {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-accent-red/5 border border-accent-red/20 rounded-xl p-3 flex gap-3 items-center">
           <Avatar src="https://i.pravatar.cc/150?u=15" fallback="T" size="sm" />
           <div className="flex-1 min-w-0">

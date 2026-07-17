@@ -12,18 +12,18 @@ import { Card } from "@/components/ui/Card";
 
 export default function PatientsPage() {
   const router = useRouter();
-  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    const savedView = localStorage.getItem("patientViewMode") as "grid" | "list";
+    const savedView = localStorage.getItem("patientViewMode") as "list" | "grid";
     if (savedView) {
       setViewMode(savedView);
     }
   }, []);
 
-  const handleViewChange = (mode: "grid" | "list") => {
+  const handleViewChange = (mode: "list" | "grid") => {
     setViewMode(mode);
     localStorage.setItem("patientViewMode", mode);
   };
@@ -74,7 +74,7 @@ export default function PatientsPage() {
       </div>
 
       {/* Content */}
-      {isMounted && viewMode === "list" ? (
+      {viewMode === "list" ? (
         <div className="w-full bg-white rounded-xl border border-slate-200 overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left whitespace-nowrap">
@@ -151,7 +151,7 @@ export default function PatientsPage() {
               transition={{ delay: index * 0.05 }}
             >
               <Link href={`/patients/${patient.id}`} className="block h-full group">
-                <Card className="h-full hover:border-brand-teal/30 hover:shadow-md transition-all group-hover:scale-[1.02]">
+                <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-4">
                       <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="lg" />

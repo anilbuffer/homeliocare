@@ -15,7 +15,7 @@ export function EvvCompliance() {
   ];
 
   return (
-    <Card className="flex flex-col h-full bg-white">
+    <Card className="flex flex-col h-full bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <div className="flex justify-between items-start mb-8">
         <h3 className="text-lg font-bold text-slate-900">EVV Compliance</h3>
         <Link href="/compliance"><span className="text-brand-teal text-sm font-medium cursor-pointer hover:underline">Exceptions →</span></Link>

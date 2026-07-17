@@ -7,7 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 export function BottomGlance() {
   return (
-    <Card className="flex flex-col p-5 sm:p-6 shrink-0 overflow-visible" noPadding>
+    <Card className="flex flex-col p-5 sm:p-6 shrink-0 overflow-visible bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <div className="text-base font-semibold text-slate-800 mb-4">At a glance</div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-4 gap-4 items-center">
         {/* Item 1 */}

@@ -24,7 +24,7 @@ export function BillingTab({ patient }: { patient: Patient }) {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Authorization */}
-        <Card className="p-6 md:col-span-2">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden md:col-span-2">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-sm font-semibold text-slate-700">Authorization hours</h3>
             <span className="text-xs text-slate-500 font-medium">{billing.authorization.used} / {billing.authorization.total} hrs</span>
@@ -34,7 +34,7 @@ export function BillingTab({ patient }: { patient: Patient }) {
         </Card>
 
         {/* Outstanding Balance */}
-        <Card className="p-6">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <h3 className="text-sm font-semibold text-slate-700 mb-4">Outstanding balance</h3>
           <div className="text-3xl font-bold text-amber-500 mb-1">${billing.balance}</div>
           <p className="text-xs text-slate-500">Patient responsibility</p>
@@ -42,7 +42,7 @@ export function BillingTab({ patient }: { patient: Patient }) {
       </div>
 
       {/* Linked claims */}
-      <Card className="overflow-hidden">
+      <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
         <div className="flex justify-between items-center p-6 pb-4">
           <h3 className="text-sm font-semibold text-slate-700">Linked claims</h3>
           <button className="flex items-center text-xs font-semibold text-brand-teal hover:text-emerald-600 transition-colors">

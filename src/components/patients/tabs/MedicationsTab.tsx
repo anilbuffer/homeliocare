@@ -39,7 +39,7 @@ export function MedicationsTab({ patient }: { patient: Patient }) {
       {/* Scheduled medications */}
       <div>
         <TableHeader title="Scheduled medications" />
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-slate-600">
               <thead className="bg-slate-50 text-xs text-slate-500 font-semibold uppercase tracking-wider">
@@ -71,7 +71,7 @@ export function MedicationsTab({ patient }: { patient: Patient }) {
       {/* MAR */}
       <div>
         <TableHeader title="MAR — last 14 days" />
-        <Card className="p-6">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="overflow-x-auto">
             <div className="min-w-[800px]">
               {/* Dates Row */}
@@ -80,12 +80,12 @@ export function MedicationsTab({ patient }: { patient: Patient }) {
                   <div key={i} className="flex-1 text-center">{date}</div>
                 ))}
               </div>
-              
+
               {/* Time slots */}
               {["am", "noon", "pm", "night"].map((time, idx) => {
                 const rowData = mar[time as keyof typeof mar] as Array<"taken" | "missed" | "pending" | "na">;
                 if (!Array.isArray(rowData)) return null;
-                
+
                 return (
                   <div key={time} className="flex items-center mb-1">
                     <div className="w-16 text-xs font-semibold text-slate-600 capitalize">
@@ -101,7 +101,7 @@ export function MedicationsTab({ patient }: { patient: Patient }) {
               })}
             </div>
           </div>
-          
+
           {/* Legend */}
           <div className="flex items-center gap-4 mt-6 text-xs text-slate-500 font-medium">
             <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm bg-emerald-500"></div> taken</div>
@@ -115,7 +115,7 @@ export function MedicationsTab({ patient }: { patient: Patient }) {
       {/* PRN medications */}
       <div>
         <TableHeader title="PRN medications" />
-        <Card className="overflow-hidden">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-slate-600">
               <thead className="bg-slate-50 text-xs text-slate-500 font-semibold uppercase tracking-wider">

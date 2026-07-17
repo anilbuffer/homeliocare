@@ -17,9 +17,9 @@ const data = [
 
 export function VisitsChart() {
   return (
-    <Card className="h-full flex flex-col">
-      <CardHeader 
-        title="Visits this week" 
+    <Card className="h-full flex flex-col bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+      <CardHeader
+        title="Visits this week"
         action={<Badge variant="success">96% Completion</Badge>}
       />
       <div className="flex-1 min-h-[250px] w-full mt-4 -ml-4">
@@ -28,7 +28,7 @@ export function VisitsChart() {
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E9EC" />
             <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#6B7684" }} dy={10} />
             <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#6B7684" }} />
-            <Tooltip 
+            <Tooltip
               cursor={{ fill: "#F4F6F8" }}
               contentStyle={{ borderRadius: "12px", border: "1px solid #E5E9EC", boxShadow: "0 2px 8px rgba(0,0,0,0.05)" }}
             />

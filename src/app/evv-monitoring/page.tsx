@@ -40,7 +40,7 @@ export default function EVVMonitoringPage() {
 
   return (
     <div className="flex-1 bg-page-bg min-h-screen">
-      <div className="max-w-full mx-auto p-4 space-y-4">
+      <div className="max-w-full mx-auto space-y-4">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">

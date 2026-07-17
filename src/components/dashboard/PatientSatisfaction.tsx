@@ -11,7 +11,7 @@ export function PatientSatisfaction() {
   const score = 4.8;
   const maxScore = 5.0;
   const percentage = (score / maxScore) * 100;
-  
+
   // Recharts pie chart for half circle gauge
   const data = [
     { value: percentage },
@@ -19,9 +19,9 @@ export function PatientSatisfaction() {
   ];
 
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <CardHeader title="Patient Satisfaction" action={<Link href="/quality-assurance"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">View all →</span></Link>} />
-      
+
       {/* Gauge Area */}
       <div className="relative h-[150px] flex items-end justify-center mb-4">
         <div className="absolute inset-0 top-2">
