@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ShieldAlert, AlertTriangle, AlertCircle } from "lucide-react";
@@ -14,7 +15,7 @@ const incidentsData = [
 export function RecentIncidents() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Recent Incidents" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
+      <CardHeader title="Recent Incidents" action={<Link href="/incidents"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">View all →</span></Link>} />
       
       <div className="flex-1 space-y-4">
         {incidentsData.map((item) => {

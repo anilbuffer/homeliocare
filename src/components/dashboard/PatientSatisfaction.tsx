@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { ProgressBar } from "@/components/ui/ProgressBar";
@@ -19,7 +20,7 @@ export function PatientSatisfaction() {
 
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Patient Satisfaction" action={<span className="text-brand-teal text-sm font-medium">View all →</span>} />
+      <CardHeader title="Patient Satisfaction" action={<Link href="/quality-assurance"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">View all →</span></Link>} />
       
       {/* Gauge Area */}
       <div className="relative h-[150px] flex items-end justify-center mb-4">

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
@@ -62,7 +63,7 @@ export function WastedHours() {
       </div>
 
       <div className="mt-5">
-        <span className="text-brand-teal text-sm font-medium cursor-pointer hover:underline">View all wasted-time exceptions →</span>
+        <Link href="/scheduling"><span className="text-brand-teal text-sm font-medium cursor-pointer hover:underline">View all wasted-time exceptions →</span></Link>
       </div>
     </Card>
   );

@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 
 export function AuthUtilization() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Authorization utilization" action={<span className="text-brand-teal text-sm font-medium">Report →</span>} />
+      <CardHeader title="Authorization utilization" action={<Link href="/patients"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">Report →</span></Link>} />
 
       <div className="flex-1 space-y-4">
         {/* At Risk */}

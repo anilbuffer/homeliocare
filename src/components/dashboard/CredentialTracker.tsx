@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
@@ -15,7 +16,7 @@ const credentialsData = [
 export function CredentialTracker() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Training Expiry" action={<span className="text-brand-teal text-sm font-medium">Manage →</span>} />
+      <CardHeader title="Training Expiry" action={<Link href="/training"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">Manage →</span></Link>} />
 
       <div className="flex-1 space-y-4">
         {credentialsData.map((item) => (

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { Card, CardHeader } from "@/components/ui/Card";
 
@@ -14,18 +15,18 @@ const payerData = [
 export function FinancialHealth() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Financial Health" action={<span className="text-brand-teal text-sm font-medium">Details →</span>} />
-      
+      <CardHeader title="Financial Health" action={<Link href="/billing"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">Details →</span></Link>} />
+
       <div className="flex gap-4 mb-6">
-        <div className="relative w-[120px] h-[120px] shrink-0">
+        <div className="relative w-[160px] h-[160px] shrink-0">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={payerData}
                 cx="50%"
                 cy="50%"
-                innerRadius={40}
-                outerRadius={60}
+                innerRadius={60}
+                outerRadius={80}
                 paddingAngle={2}
                 dataKey="value"
                 stroke="none"
@@ -37,11 +38,11 @@ export function FinancialHealth() {
             </PieChart>
           </ResponsiveContainer>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-xs text-text-secondary">Total Rev</span>
+            <span className="text-lg text-text-secondary">Total Rev</span>
             <span className="font-bold text-text-primary">$1.2M</span>
           </div>
         </div>
-        
+
         <div className="flex-1 flex flex-col justify-center gap-2 text-xs">
           {payerData.map((item) => (
             <div key={item.name} className="flex justify-between items-center">

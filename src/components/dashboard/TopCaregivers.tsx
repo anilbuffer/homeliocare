@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Avatar } from "@/components/ui/Avatar";
 import { ProgressBar } from "@/components/ui/ProgressBar";
@@ -16,7 +17,7 @@ const caregiversData = [
 export function TopCaregivers() {
   return (
     <Card className="flex flex-col h-full">
-      <CardHeader title="Top performing caregivers" action={<span className="text-brand-teal text-sm font-medium">Full ranking →</span>} />
+      <CardHeader title="Top performing caregivers" action={<Link href="/caregivers"><span className="text-brand-teal text-sm font-medium hover:underline cursor-pointer">Full ranking →</span></Link>} />
       
       <div className="flex-1 space-y-5">
         {caregiversData.map((item, index) => (
