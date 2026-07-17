@@ -62,14 +62,14 @@ export function MyTraining() {
       {/* 1. KPI Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {[
-          { label: "COURSES COMPLETED", value: "4/17", icon: CheckCircle2, color: "text-brand-teal", bg: "bg-teal-50" },
-          { label: "COMPLIANCE SCORE", value: "27%", icon: ShieldAlert, color: "text-brand-teal", bg: "bg-teal-50" },
+          { label: "COURSES COMPLETED", value: "4/17", icon: CheckCircle2, color: "text-brand-teal", bg: "bg-teal-100" },
+          { label: "COMPLIANCE SCORE", value: "27%", icon: ShieldAlert, color: "text-brand-teal", bg: "bg-teal-100" },
           { label: "CERTIFICATIONS ACTIVE", value: "3", icon: Award, color: "text-slate-600", bg: "bg-slate-100" },
-          { label: "EXPIRING SOON", value: "2", subtext: "within 60 days", icon: AlertTriangle, color: "text-accent-amber", bg: "bg-amber-50" },
-          { label: "OVERDUE", value: "1", icon: AlertCircle, color: "text-accent-red", bg: "bg-red-50" },
+          { label: "EXPIRING SOON", value: "2", subtext: "within 60 days", icon: AlertTriangle, color: "text-accent-amber", bg: "bg-amber-100" },
+          { label: "OVERDUE", value: "1", icon: AlertCircle, color: "text-accent-red", bg: "bg-red-100" },
         ].map((kpi, i) => (
           <div key={i} className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
-            <div className="flex justify-between items-start mb-1">
+            <div className="flex justify-between items-center mb-1">
               <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">{kpi.label}</span>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${kpi.bg}`}>
                 <kpi.icon className={`w-4 h-4 ${kpi.color}`} />

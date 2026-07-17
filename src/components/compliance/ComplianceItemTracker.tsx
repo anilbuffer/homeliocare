@@ -57,7 +57,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
   return (
     <>
       <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-slate-200 flex flex-col md:flex-row items-start sm:items-center justify-between gap-4 bg-white/50">
+        <div className="pb-4 border-b border-slate-200 flex flex-col md:flex-row items-start sm:items-center justify-between gap-4 bg-white/50">
           <h3 className="text-lg font-bold text-slate-900">Compliance Item Tracker</h3>
 
           <div className="flex items-center gap-3 w-full sm:w-auto">

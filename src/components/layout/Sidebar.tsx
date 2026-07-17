@@ -135,7 +135,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         {/* Logo Area */}
-        <div className="flex items-center gap-3 px-6 py-6 h-20">
+        <div className="flex items-center gap-3 px-6 py-4 h-20">
           <div className="w-8 h-8 rounded-lg bg-brand-teal flex items-center justify-center font-bold text-lg">
             H
           </div>

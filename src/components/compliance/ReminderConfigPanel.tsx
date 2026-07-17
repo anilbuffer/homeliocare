@@ -13,7 +13,7 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
 
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full">
-      <div className="p-4 md:p-6 border-b border-slate-200 flex items-center justify-between bg-white/50">
+      <div className="pb-4 border-b border-slate-200 flex items-center justify-between bg-white/50">
         <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
           <Bell className="w-5 h-5 text-brand-teal" />
           Automated Reminders
@@ -39,7 +39,7 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
         </button>
       </div>
 
-      <div className="flex-1 overflow-auto p-5 space-y-3 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <div className="flex-1 overflow-auto mt-4 space-y-3 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
         <h4 className="text-[11px] uppercase tracking-wider text-slate-500 font-bold mb-3">Recent Logs</h4>
         {logs.map((log) => (
           <div key={log.id} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]  hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200">

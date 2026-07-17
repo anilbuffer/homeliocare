@@ -14,14 +14,14 @@ export function OnlineReferralQueue() {
           <Inbox className="w-4 h-4 text-brand-teal" />
           Inbound Queue
         </h3>
-        <span className="bg-brand-teal/10 text-brand-teal text-xs font-bold px-2 py-0.5 rounded-full">
+        <span className="bg-brand-teal/10 text-brand-teal text-xs font-semibold px-2 py-0.5 rounded-full">
           {queue.length} New
         </span>
       </div>
 
       <div className="space-y-3 flex-1 overflow-y-auto pr-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300">
         {queue.map(item => (
-          <div key={item.id} className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex justify-between items-center hover:border-slate-200 transition-colors">
+          <div key={item.id} className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 flex justify-between items-center hover:border-slate-200 transition-colors">
             <div>
               <h4 className="text-sm font-medium text-slate-800">{item.name}</h4>
               <p className="text-xs text-slate-500">{item.type} • {item.date}</p>

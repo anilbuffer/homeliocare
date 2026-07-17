@@ -26,10 +26,10 @@ function KpiCard({ title, value, trend, trendUp, icon: Icon, alertStatus = "none
       <div className="flex justify-between items-start mb-2">
         <h3 className="text-sm font-medium text-text-secondary pr-4">{title}</h3>
         <div className={clsx(
-          "w-8 h-8 rounded-lg flex items-center justify-center shrink-0",
-          isDanger ? "bg-red-50 text-accent-red" :
-            isWarning ? "bg-amber-50 text-accent-amber" :
-              "bg-slate-50 text-slate-500"
+          "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
+          isDanger ? "bg-red-100 text-accent-red" :
+            isWarning ? "bg-amber-100 text-accent-amber" :
+              "bg-slate-100 text-slate-500"
         )}>
           <Icon className="w-4 h-4" />
         </div>

@@ -51,42 +51,42 @@ export function ManageTraining() {
         <div className="col-span-1 md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start mb-2">
-              <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">FULLY COMPLIANT STAFF</span>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-teal-50">
+              <span className="text-[10px] font-bold text-slate-600 tracking-wider uppercase">FULLY COMPLIANT STAFF</span>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-teal-100">
                 <CheckCircle2 className="w-4 h-4 text-brand-teal" />
               </div>
             </div>
             <div>
-              <div className="text-xl font-bold text-slate-800">2</div>
+              <div className="text-3xl font-bold text-slate-800">2</div>
               <div className="text-[10px] text-slate-400">8 total</div>
             </div>
           </div>
           <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start">
-              <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">OVERDUE TRAINING</span>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-red-50">
+              <span className="text-[10px] font-bold text-slate-600 tracking-wider uppercase">OVERDUE TRAINING</span>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-red-100">
                 <AlertCircle className="w-4 h-4 text-accent-red" />
               </div>
             </div>
-            <div className="text-xl font-bold text-slate-800">2</div>
+            <div className="text-3xl font-bold text-slate-800">2</div>
           </div>
           <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start">
-              <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">CERTS EXPIRING (30D)</span>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-amber-50">
+              <span className="text-[10px] font-bold text-slate-600 tracking-wider uppercase">CERTS EXPIRING (30D)</span>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-amber-100">
                 <AlertTriangle className="w-4 h-4 text-accent-amber" />
               </div>
             </div>
-            <div className="text-xl font-bold text-slate-800">4</div>
+            <div className="text-3xl font-bold text-slate-800">4</div>
           </div>
           <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-5 border border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <div className="flex justify-between items-start">
-              <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase">AVG COMPLETION RATE</span>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-50">
+              <span className="text-[10px] font-bold text-slate-600 tracking-wider uppercase">AVG COMPLETION RATE</span>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-100">
                 <BarChart3 className="w-4 h-4 text-accent-blue" />
               </div>
             </div>
-            <div className="text-xl font-bold text-slate-800">78%</div>
+            <div className="text-3xl font-bold text-slate-800">78%</div>
           </div>
         </div>
       </div>

@@ -7,16 +7,16 @@ const KPI_DATA = [
     label: "Unfilled Shifts",
     value: "2",
     icon: AlertCircle,
-    color: "text-red-500",
-    bg: "bg-red-50",
+    color: "text-red-600",
+    bg: "bg-red-100",
     dot: "bg-red-500",
   },
   {
     label: "Filling Soon (<4h)",
     value: "1",
     icon: Clock,
-    color: "text-amber-500",
-    bg: "bg-amber-50",
+    color: "text-amber-600",
+    bg: "bg-amber-100",
     dot: "bg-amber-500",
   },
   {
@@ -24,15 +24,15 @@ const KPI_DATA = [
     value: "3",
     icon: UserCheck,
     color: "text-brand-teal",
-    bg: "bg-brand-teal/10",
+    bg: "bg-brand-teal/20",
     dot: "bg-brand-teal",
   },
   {
     label: "Call-Offs This Week",
     value: "3",
     icon: PhoneOff,
-    color: "text-orange-500",
-    bg: "bg-orange-50",
+    color: "text-orange-600",
+    bg: "bg-orange-100",
     dot: "bg-orange-500",
   },
   {
@@ -55,7 +55,7 @@ export function UrgencyStrip() {
             key={idx}
             className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden group flex items-center gap-4"
           >
-            <div className={clsx("p-3 rounded-xl shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3", kpi.bg, kpi.color)}>
+            <div className={clsx("p-3 rounded-full shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3", kpi.bg, kpi.color)}>
               <Icon className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0 py-0.5">

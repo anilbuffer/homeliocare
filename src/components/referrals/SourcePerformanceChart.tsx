@@ -21,7 +21,7 @@ export function SourcePerformanceChart() {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-lg font-bold text-slate-800">Referral Source Performance</h3>
-          <p className="text-sm text-slate-500">Volume and conversion rates by channel</p>
+          <p className="text-xs text-slate-500">Volume and conversion rates by channel</p>
         </div>
         <div className="flex gap-2">
           <button

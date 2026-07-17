@@ -67,7 +67,7 @@ export function QualityAssurance() {
           {KPI_DATA.map((kpi, index) => (
             <div key={index} className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
               <div className="flex items-center gap-3 mb-2">
-                <div className={clsx("p-2 rounded-lg", kpi.bg, kpi.color)}>
+                <div className={clsx("p-2 rounded-full", kpi.bg, kpi.color)}>
                   <kpi.icon className="w-4 h-4" />
                 </div>
                 <div className="text-sm font-medium text-text-secondary line-clamp-1">{kpi.label}</div>
