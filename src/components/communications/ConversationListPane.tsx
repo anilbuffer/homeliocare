@@ -31,12 +31,12 @@ export function ConversationListPane({
     if (activeCategory === "Announcements") return false; // Handled separately
     if (c.categoryId !== activeCategory) return false;
     if (activeFilter === "Unread" && c.unreadCount === 0) return false;
-    
+
     // Basic search simulation
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       const match = c.participants.some(p => p.name.toLowerCase().includes(q)) ||
-                    c.lastMessage.content.toLowerCase().includes(q);
+        c.lastMessage.content.toLowerCase().includes(q);
       if (!match) return false;
     }
     return true;
@@ -45,13 +45,13 @@ export function ConversationListPane({
   return (
     <div className="flex flex-col h-full bg-white border-r border-slate-200 w-full sm:w-[320px] shrink-0">
       {/* Category Tabs */}
-      <div className="flex overflow-x-auto border-b border-slate-200 hide-scrollbar pt-2 px-2">
+      <div className="flex overflow-x-auto border-b border-slate-200 hide-scrollbar pt-2 pb-2 px-2">
         {CATEGORIES.map(category => (
           <button
             key={category}
             onClick={() => onSelectCategory(category)}
             className={clsx(
-              "px-3 py-2 text-sm font-medium whitespace-nowrap border-b-2 transition-colors",
+              "px-2 py-1.4 text-[12px] font-medium whitespace-nowrap border-b-1 transition-colors",
               activeCategory === category
                 ? "border-brand-teal text-brand-teal"
                 : "border-transparent text-slate-500 hover:text-slate-700"
@@ -76,16 +76,16 @@ export function ConversationListPane({
                 className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal"
               />
             </div>
-            <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+            <div className="flex gap-2 overflow-x-auto hide-scrollbar bg-slate-50 p-2 pb-2">
               {["All", "Unread", "Mentions", "Muted", "Archived"].map((f) => (
                 <button
                   key={f}
                   onClick={() => setActiveFilter(f as any)}
                   className={clsx(
-                    "px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors",
+                    "px-2 py-1.8 rounded-full text-[11px] font-medium whitespace-nowrap transition-colors",
                     activeFilter === f
                       ? "bg-slate-800 text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-200"
                   )}
                 >
                   {f}
@@ -104,7 +104,7 @@ export function ConversationListPane({
               filteredConversations.map(conv => {
                 const primaryParticipant = conv.participants[0];
                 const isActive = activeConversationId === conv.id;
-                
+
                 return (
                   <button
                     key={conv.id}
@@ -117,7 +117,7 @@ export function ConversationListPane({
                     {isActive && (
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-teal" />
                     )}
-                    
+
                     {/* Avatar with Presence */}
                     <div className="relative shrink-0">
                       <img
@@ -128,7 +128,7 @@ export function ConversationListPane({
                       <div className={clsx(
                         "absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white",
                         primaryParticipant.status === "online" ? "bg-brand-teal" :
-                        primaryParticipant.status === "away" ? "bg-amber-500" : "bg-slate-400"
+                          primaryParticipant.status === "away" ? "bg-amber-500" : "bg-slate-400"
                       )} />
                     </div>
 
@@ -141,7 +141,7 @@ export function ConversationListPane({
                           {conv.lastMessage.timestamp}
                         </span>
                       </div>
-                      
+
                       <div className="flex items-center gap-1.5 mb-1">
                         <span className="text-xs text-slate-500 truncate">
                           {primaryParticipant.role}
@@ -159,10 +159,10 @@ export function ConversationListPane({
                       </div>
 
                       <div className="flex items-center gap-2">
-                        {conv.lastMessage.channelMode === "sms" && <Phone className="w-3 h-3 text-slate-400" />}
-                        {conv.lastMessage.channelMode === "email" && <Mail className="w-3 h-3 text-slate-400" />}
-                        {conv.lastMessage.channelMode === "in-app" && <MessageSquare className="w-3 h-3 text-slate-400" />}
-                        <p className="text-sm text-slate-600 truncate flex-1">
+                        {conv.lastMessage.channelMode === "sms" && <Phone className="w-2.5 h-2.5 text-slate-400" />}
+                        {conv.lastMessage.channelMode === "email" && <Mail className="w-2.5 h-2.5 text-slate-400" />}
+                        {conv.lastMessage.channelMode === "in-app" && <MessageSquare className="w-2.5 h-2.5 text-slate-400" />}
+                        <p className="text-xs text-slate-600 truncate flex-1">
                           {conv.lastMessage.content}
                         </p>
                         {conv.unreadCount > 0 && (
