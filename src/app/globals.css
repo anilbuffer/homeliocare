@@ -15,6 +15,7 @@
   --color-border-subtle: #E5E9EC;
   --color-text-primary: #0F1B24;
   --color-text-secondary: #6B7684;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
