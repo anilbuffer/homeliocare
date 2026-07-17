@@ -177,7 +177,7 @@ export function GlobalSearch() {
             <Sparkles className="w-3 h-3" />
             <span>Global</span>
           </div>
-          <div className="flex items-center gap-0.5 text-xs text-slate-400 font-medium px-1.5 py-0.5 bg-slate-100 rounded border border-slate-200">
+          <div className="flex items-center gap-0.5 text-sm text-slate-400 font-medium px-1.5 py-0.5 bg-slate-100 rounded-full border border-slate-200">
             <span>⌘</span>
             <span>K</span>
           </div>
