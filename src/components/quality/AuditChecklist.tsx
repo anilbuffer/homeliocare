@@ -71,7 +71,7 @@ export function AuditChecklist({ activeTab }: Props) {
                   onClick={() => handleStatusChange(item.id, 'Pass')}
                   className={clsx(
                     "px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 relative overflow-hidden",
-                    item.status === 'Pass' ? "bg-white shadow-sm text-emerald-600 ring-1 ring-emerald-500/20" : "text-slate-500 hover:text-slate-700 hover:bg-slate-100/50"
+                    item.status === 'Pass' ? "bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] text-emerald-600 ring-1 ring-emerald-500/20" : "text-slate-500 hover:text-slate-700 hover:bg-slate-100/50"
                   )}
                 >
                   <span className="relative z-10 flex items-center gap-1">
@@ -87,7 +87,7 @@ export function AuditChecklist({ activeTab }: Props) {
                   onClick={() => handleStatusChange(item.id, 'Fail')}
                   className={clsx(
                     "px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 relative",
-                    item.status === 'Fail' ? "bg-white shadow-sm text-red-600 ring-1 ring-red-500/20" : "text-slate-500 hover:text-slate-700 hover:bg-slate-100/50"
+                    item.status === 'Fail' ? "bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] text-red-600 ring-1 ring-red-500/20" : "text-slate-500 hover:text-slate-700 hover:bg-slate-100/50"
                   )}
                 >
                   <span className="relative z-10 flex items-center gap-1">
@@ -103,7 +103,7 @@ export function AuditChecklist({ activeTab }: Props) {
                   onClick={() => handleStatusChange(item.id, 'N-A')}
                   className={clsx(
                     "px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200",
-                    item.status === 'N-A' ? "bg-white shadow-sm text-slate-700 ring-1 ring-slate-200" : "text-slate-500 hover:text-slate-700 hover:bg-slate-100/50"
+                    item.status === 'N-A' ? "bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] text-slate-700 ring-1 ring-slate-200" : "text-slate-500 hover:text-slate-700 hover:bg-slate-100/50"
                   )}
                 >
                   N/A

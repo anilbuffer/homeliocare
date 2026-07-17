@@ -42,8 +42,8 @@ export function PDFLessonViewer({ lesson, isCompleted, onComplete }: PDFLessonVi
           onClick={onComplete}
           disabled={isCompleted}
           className={`flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all ${isCompleted
-              ? "bg-brand-teal/10 text-brand-teal border border-brand-teal/20"
-              : "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:bg-brand-teal/90 hover:shadow-md"
+            ? "bg-brand-teal/10 text-brand-teal border border-brand-teal/20"
+            : "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:bg-brand-teal/90 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]"
             }`}
         >
           {isCompleted && <CheckCircle2 className="w-5 h-5" />}

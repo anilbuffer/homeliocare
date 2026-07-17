@@ -191,7 +191,7 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
 
                       {/* Card */}
                       <div className={clsx(
-                        "flex-1 bg-white rounded-xl border p-2 transition-all hover:shadow-md",
+                        "flex-1 bg-white rounded-xl border p-2 transition-all hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]",
                         isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200",
                         dragOverId === v.id && v.status === "Unassigned" && "border-brand-teal shadow-[0_0_0_2px_rgba(14,163,131,0.5)] bg-emerald-50/30"
                       )}>

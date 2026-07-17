@@ -42,7 +42,7 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
       <div className="flex-1 overflow-auto mt-4 space-y-3 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
         <h4 className="text-[11px] uppercase tracking-wider text-slate-500 font-bold mb-3">Recent Logs</h4>
         {logs.map((log) => (
-          <div key={log.id} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]  hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200">
+          <div key={log.id} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]  hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-200">
             <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-inner border border-slate-100/50 ${log.channel === "email" ? "bg-blue-500/10 text-blue-400" :
               log.channel === "sms" ? "bg-purple-500/10 text-purple-400" :
                 "bg-emerald-500/10 text-emerald-400"

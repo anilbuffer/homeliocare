@@ -23,7 +23,7 @@ export function HandoffSummaryModal({ isOpen, onClose, referral, onConfirm }: Ha
           className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
           onClick={onClose}
         />
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -74,7 +74,7 @@ export function HandoffSummaryModal({ isOpen, onClose, referral, onConfirm }: Ha
           </div>
 
           <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
-            <button onClick={onClose} className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-lg shadow-sm">
+            <button onClick={onClose} className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-lg shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               Cancel
             </button>
             <button onClick={onConfirm} className="px-5 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-teal-600 rounded-lg shadow-md flex items-center gap-2 transition-colors">

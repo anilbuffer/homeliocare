@@ -113,8 +113,8 @@ export function QuizSection({ course, onPass }: QuizSectionProps) {
                   key={idx}
                   onClick={() => handleAnswer(idx)}
                   className={`w-full text-left p-5 rounded-xl border-2 transition-all flex items-center gap-4 ${isSelected
-                      ? "border-brand-teal bg-brand-teal/5 scale-[1.01] shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-                      : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                    ? "border-brand-teal bg-brand-teal/5 scale-[1.01] shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
+                    : "border-slate-200 hover:border-slate-300 hover:bg-slate-50"
                     }`}
                 >
                   <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? "border-brand-teal" : "border-slate-300"
@@ -142,7 +142,7 @@ export function QuizSection({ course, onPass }: QuizSectionProps) {
           <button
             onClick={handleNext}
             disabled={!isAnswered}
-            className="flex items-center gap-2 px-8 py-3 font-bold text-white bg-brand-teal disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md active:scale-95"
+            className="flex items-center gap-2 px-8 py-3 font-bold text-white bg-brand-teal disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] active:scale-95"
           >
             {currentQuestionIdx === quiz.questions.length - 1 ? "Submit Quiz" : "Next"} <ArrowRight className="w-5 h-5" />
           </button>
@@ -194,7 +194,7 @@ export function QuizSection({ course, onPass }: QuizSectionProps) {
           <div className="flex gap-4">
             <button
               onClick={handleRetake}
-              className="bg-brand-teal text-white font-bold px-8 py-3 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md active:scale-95"
+              className="bg-brand-teal text-white font-bold px-8 py-3 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] active:scale-95"
             >
               Retake Quiz
             </button>

@@ -24,7 +24,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
           className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm"
           onClick={onClose}
         />
-        
+
         <motion.div
           initial={{ x: "100%", boxShadow: "-20px 0 40px rgba(0,0,0,0)" }}
           animate={{ x: 0, boxShadow: "-20px 0 40px rgba(0,0,0,0.1)" }}
@@ -59,7 +59,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
           {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
-            
+
             {/* Alerts Section */}
             {(referral.nextAction?.isOverdue || referral.isPossibleDuplicate) && (
               <div className="space-y-3">
@@ -72,7 +72,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                     </div>
                   </motion.div>
                 )}
-                
+
                 {referral.isPossibleDuplicate && (
                   <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
                     <Copy className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
@@ -124,7 +124,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
               <div className="bg-white border border-slate-200 rounded-xl p-4">
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Coordinator</h3>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 border-2 border-white shadow-sm flex items-center justify-center text-slate-600 font-medium">
+                  <div className="w-10 h-10 rounded-full bg-slate-100 border-2 border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-600 font-medium">
                     {referral.assignedCoordinator.name.charAt(0)}
                   </div>
                   <div>
@@ -168,8 +168,8 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                         <span className={clsx(
                           "px-2 py-1 rounded-md text-xs",
                           referral.insurance.status === "Verified" ? "bg-emerald-100 text-emerald-700" :
-                          referral.insurance.status === "Pending" ? "bg-amber-100 text-amber-700" :
-                          "bg-red-100 text-red-700"
+                            referral.insurance.status === "Pending" ? "bg-amber-100 text-amber-700" :
+                              "bg-red-100 text-red-700"
                         )}>
                           {referral.insurance.status}
                         </span>
@@ -195,10 +195,10 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                       <div className={clsx(
                         "w-5 h-5 rounded flex items-center justify-center shrink-0",
                         doc.status === "Verified" ? "bg-emerald-100 text-emerald-600" :
-                        doc.status === "Uploaded" ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
+                          doc.status === "Uploaded" ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"
                       )}>
-                        {doc.status === "Verified" ? <CheckCircle2 className="w-3.5 h-3.5" /> : 
-                         doc.status === "Uploaded" ? <FileText className="w-3.5 h-3.5" /> : <div className="w-2 h-2 rounded-full bg-slate-300" />}
+                        {doc.status === "Verified" ? <CheckCircle2 className="w-3.5 h-3.5" /> :
+                          doc.status === "Uploaded" ? <FileText className="w-3.5 h-3.5" /> : <div className="w-2 h-2 rounded-full bg-slate-300" />}
                       </div>
                       <span className="text-sm font-medium text-slate-700">{doc.name}</span>
                     </div>
@@ -225,7 +225,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                     <div key={comm.id} className="flex gap-3">
                       <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 shrink-0 mt-1">
                         {comm.type === "call" ? <Phone className="w-4 h-4" /> :
-                         comm.type === "email" ? <Mail className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
+                          comm.type === "email" ? <Mail className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
                       </div>
                       <div>
                         <div className="flex items-center gap-2">

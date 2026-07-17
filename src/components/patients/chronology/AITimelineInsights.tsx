@@ -80,7 +80,7 @@ export function AITimelineInsights({ insights, onPatternClick, isLoading }: AITi
               <li key={pattern.id}>
                 <button
                   onClick={() => onPatternClick(pattern.id, pattern.relatedEntryIds)}
-                  className="text-left w-full flex items-start gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-teal/30 hover:shadow-sm transition-all group"
+                  className="text-left w-full flex items-start gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-teal/30 hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all group"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-teal mt-2 flex-shrink-0 group-hover:scale-125 transition-transform" />
                   <span className="text-sm text-slate-700 group-hover:text-brand-teal transition-colors">

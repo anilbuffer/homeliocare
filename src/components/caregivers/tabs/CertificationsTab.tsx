@@ -19,7 +19,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {caregiver.certifications.map((cert) => (
-          <Card key={cert.id} className="p-5 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-md transition-all">
+          <Card key={cert.id} className="p-5 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all">
             <div className="flex justify-between items-start mb-4">
               <div className={cn(
                 "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",

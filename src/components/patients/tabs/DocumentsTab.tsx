@@ -15,7 +15,7 @@ export function DocumentsTab({ patient }: { patient: Patient }) {
   }
 
   const { documents } = patient;
-  
+
   const sections = [
     { title: "Intake", items: documents.intake },
     { title: "Consents", items: documents.consents },
@@ -32,7 +32,7 @@ export function DocumentsTab({ patient }: { patient: Patient }) {
             <h3 className="text-sm font-semibold text-slate-700 mb-3">{section.title}</h3>
             <div className="flex flex-wrap gap-4">
               {section.items.map((doc) => (
-                <Card key={doc.id} className="p-4 flex items-center gap-4 w-[400px] border border-slate-200 hover:border-brand-teal/50 hover:shadow-md transition-all cursor-pointer">
+                <Card key={doc.id} className="p-4 flex items-center gap-4 w-[400px] bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden cursor-pointer">
                   <div className={cn("w-10 h-10 rounded-lg flex items-center justify-center shrink-0", doc.type === "img" ? "bg-blue-50 text-blue-500" : "bg-rose-50 text-rose-500")}>
                     {doc.type === "img" ? (
                       <ImageIcon className="w-5 h-5" />

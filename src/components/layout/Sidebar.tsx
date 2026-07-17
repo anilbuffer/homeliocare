@@ -81,6 +81,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/compliance")) return "compliance";
     if (pathname?.startsWith("/referrals")) return "referrals";
     if (pathname?.startsWith("/communications")) return "communications";
+    if (pathname?.startsWith("/reports")) return "reports";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -109,6 +110,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("referrals");
     } else if (pathname.startsWith("/communications")) {
       setActiveItem("communications");
+    } else if (pathname.startsWith("/reports")) {
+      setActiveItem("reports");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -170,6 +173,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "compliance") href = "/compliance";
                   if (item.id === "referrals") href = "/referrals";
                   if (item.id === "communications") href = "/communications";
+                  if (item.id === "reports") href = "/reports";
 
                   return (
                     <li key={item.id} className="relative">
@@ -184,7 +188,9 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                       {href !== "#" ? (
                         <Link
                           href={href}
-                          onClick={() => setActiveItem(item.id)}
+                          onClick={() => {
+                            if (onClose) onClose();
+                          }}
                           className={clsx(
                             "relative flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-colors z-10",
                             isActive ? "text-white" : "text-slate-300 hover:text-white hover:bg-sidebar-active"

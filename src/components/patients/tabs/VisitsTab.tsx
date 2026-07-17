@@ -46,7 +46,7 @@ export function VisitsTab({ patient }: { patient: Patient }) {
           {upcoming.map((visit) => {
             const isExpanded = expandedVisitId === visit.id;
             return (
-              <div key={visit.id} className="flex flex-col border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow rounded-xl bg-white overflow-hidden">
+              <div key={visit.id} className="flex flex-col border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-shadow rounded-xl bg-white overflow-hidden">
                 <button
                   onClick={() => setExpandedVisitId(isExpanded ? null : visit.id)}
                   className="p-4 flex items-center justify-between w-full hover:bg-slate-50 transition-colors text-left"
@@ -87,7 +87,7 @@ export function VisitsTab({ patient }: { patient: Patient }) {
           {history.map((visit) => {
             const isExpanded = expandedVisitId === visit.id;
             return (
-              <div key={visit.id} className="flex flex-col border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-shadow rounded-xl bg-white overflow-hidden">
+              <div key={visit.id} className="flex flex-col border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-shadow rounded-xl bg-white overflow-hidden">
                 <button
                   onClick={() => setExpandedVisitId(isExpanded ? null : visit.id)}
                   className="p-4 flex items-center justify-between w-full hover:bg-slate-50 transition-colors text-left"

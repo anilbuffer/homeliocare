@@ -129,7 +129,7 @@ export function CaregiverRoster({
                     }}
                     onDragEnd={() => onDragCaregiver?.(null)}
                     className={clsx(
-                      "relative bg-white rounded-xl border p-2 transition-all hover:shadow-md group",
+                      "relative bg-white rounded-xl border p-2 transition-all hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] group",
                       isSelected ? "border-brand-teal shadow-[0_0_0_1px_rgba(14,163,131,1)]" : "border-slate-200",
                       isAvailable ? "cursor-grab active:cursor-grabbing" : "cursor-pointer"
                     )}

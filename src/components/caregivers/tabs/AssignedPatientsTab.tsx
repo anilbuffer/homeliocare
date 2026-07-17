@@ -26,7 +26,7 @@ export function AssignedPatientsTab({ caregiver }: { caregiver: Caregiver }) {
       {assignedPatients.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {assignedPatients.map((patient) => (
-            <Card key={patient.id} className="p-0 overflow-hidden hover:border-brand-teal/30 hover:shadow-md transition-all group">
+            <Card key={patient.id} className="p-0 overflow-hidden hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all group">
               <div className="p-4">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
@@ -70,7 +70,7 @@ export function AssignedPatientsTab({ caregiver }: { caregiver: Caregiver }) {
           <p className="text-slate-500 max-w-md">
             This caregiver does not currently have any active patient assignments. They are ready for scheduling.
           </p>
-          <button className="mt-6 bg-brand-teal text-white px-6 py-2.5 rounded-xl font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md transition-all active:scale-95">
+          <button className="mt-6 bg-brand-teal text-white px-6 py-2.5 rounded-xl font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all active:scale-95">
             Find Matching Patients
           </button>
         </Card>

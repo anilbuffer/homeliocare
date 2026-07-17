@@ -113,7 +113,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
                 key={shift.id}
                 onClick={() => onShiftClick(shift)}
                 className={clsx(
-                  "absolute top-2 bottom-2 rounded-lg border flex flex-col justify-center px-2 cursor-pointer hover:shadow-md transition-shadow overflow-hidden",
+                  "absolute top-2 bottom-2 rounded-lg border flex flex-col justify-center px-2 cursor-pointer hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-shadow overflow-hidden",
                   getShiftColor(shift.status)
                 )}
                 style={getShiftStyle(shift)}
@@ -153,7 +153,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
                     key={shift.id}
                     onClick={() => onShiftClick(shift)}
                     className={clsx(
-                      "absolute top-2 bottom-2 rounded-lg border flex flex-col justify-center px-2 cursor-pointer hover:shadow-md transition-shadow overflow-hidden",
+                      "absolute top-2 bottom-2 rounded-lg border flex flex-col justify-center px-2 cursor-pointer hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-shadow overflow-hidden",
                       getShiftColor(shift.status)
                     )}
                     style={getShiftStyle(shift)}

@@ -160,7 +160,7 @@ export function CurriculumList({ course, progress }: CurriculumListProps) {
               </div>
 
               {isPreviousCompleted && !progress?.quizPassed && (
-                <button className="px-6 py-2.5 bg-brand-teal text-white text-sm font-semibold rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-md hover:bg-[#0c8c70] transition-all active:scale-95">
+                <button className="px-6 py-2.5 bg-brand-teal text-white text-sm font-semibold rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:bg-[#0c8c70] transition-all active:scale-95">
                   Take Quiz
                 </button>
               )}

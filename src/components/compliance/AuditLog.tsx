@@ -50,7 +50,7 @@ export function AuditLog({ logs }: AuditLogProps) {
           else Icon = User;
 
           return (
-            <div key={log.id} className="flex gap-4 p-4 bg-white rounded-xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200">
+            <div key={log.id} className="flex gap-4 p-4 bg-white rounded-xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-200">
               <div className="shrink-0 mt-0.5 text-slate-400 bg-slate-50 p-2 rounded-lg border border-slate-100">
                 <Icon className="w-4 h-4" />
               </div>

@@ -69,7 +69,7 @@ export function MedicalTimeline({ entries, highlightedEntryIds }: MedicalTimelin
             <div key={entry.id} className={`relative flex gap-4 sm:gap-6 group ${isHighlighted ? 'opacity-100' : highlightedEntryIds.length > 0 ? 'opacity-40' : 'opacity-100'} transition-opacity duration-300`}>
               {/* Timeline Node */}
               <div className="relative z-10 mt-1">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 shadow-sm ${config.color} ${isHighlighted ? 'ring-4 ring-brand-teal/20 scale-110' : ''} transition-all`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 shadow-[0_6px_32px_rgba(0,0,0,0.06)] ${config.color} ${isHighlighted ? 'ring-4 ring-brand-teal/20 scale-110' : ''} transition-all`}>
                   {config.icon}
                 </div>
               </div>

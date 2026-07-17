@@ -19,7 +19,7 @@ export function DetailsPane({ conversation, onClose, isOpen }: DetailsPaneProps)
       {/* Header */}
       <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200 shrink-0">
         <h3 className="font-semibold text-slate-800">Details</h3>
-        <button 
+        <button
           onClick={onClose}
           className="p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded-md transition-colors"
         >
@@ -30,14 +30,14 @@ export function DetailsPane({ conversation, onClose, isOpen }: DetailsPaneProps)
       <div className="flex-1 overflow-y-auto">
         {/* Contact Profile Info */}
         <div className="p-6 text-center border-b border-slate-100">
-          <img 
-            src={primaryParticipant.avatar} 
-            alt={primaryParticipant.name} 
-            className="w-20 h-20 rounded-full mx-auto mb-3 object-cover shadow-sm"
+          <img
+            src={primaryParticipant.avatar}
+            alt={primaryParticipant.name}
+            className="w-20 h-20 rounded-full mx-auto mb-3 object-cover shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
           />
           <h2 className="font-semibold text-lg text-slate-900">{primaryParticipant.name}</h2>
           <p className="text-sm text-slate-500 mb-4">{primaryParticipant.role}</p>
-          
+
           <div className="flex justify-center gap-3">
             <button className="w-10 h-10 rounded-full bg-slate-50 hover:bg-slate-100 flex items-center justify-center text-slate-600 transition-colors">
               <Phone className="w-4 h-4" />
@@ -89,24 +89,24 @@ export function DetailsPane({ conversation, onClose, isOpen }: DetailsPaneProps)
         <div className="p-6">
           <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Shared Files</h4>
           <div className="space-y-3">
-             <div className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer">
-                <div className="w-8 h-8 rounded bg-blue-50 flex items-center justify-center">
-                  <FileText className="w-4 h-4 text-blue-500" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-slate-700 truncate">care_plan_v2.pdf</p>
-                  <p className="text-xs text-slate-400">Oct 12 • 2.4 MB</p>
-                </div>
-             </div>
-             <div className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer">
-                <div className="w-8 h-8 rounded bg-purple-50 flex items-center justify-center">
-                  <ImageIcon className="w-4 h-4 text-purple-500" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-slate-700 truncate">wound_photo_1.jpg</p>
-                  <p className="text-xs text-slate-400">Oct 10 • 1.1 MB</p>
-                </div>
-             </div>
+            <div className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer">
+              <div className="w-8 h-8 rounded bg-blue-50 flex items-center justify-center">
+                <FileText className="w-4 h-4 text-blue-500" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-slate-700 truncate">care_plan_v2.pdf</p>
+                <p className="text-xs text-slate-400">Oct 12 • 2.4 MB</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer">
+              <div className="w-8 h-8 rounded bg-purple-50 flex items-center justify-center">
+                <ImageIcon className="w-4 h-4 text-purple-500" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-slate-700 truncate">wound_photo_1.jpg</p>
+                <p className="text-xs text-slate-400">Oct 10 • 1.1 MB</p>
+              </div>
+            </div>
           </div>
         </div>
 
