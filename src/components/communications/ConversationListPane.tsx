@@ -1,36 +1,38 @@
-import React, { useState } from "react";
-import { Search, Filter, BellRing, Phone, Mail, MessageSquare, AlertCircle, Users, Heart, Users2, Shield, Megaphone } from "lucide-react";
-import { Conversation, ConversationCategory, mockConversations } from "./mockData";
+import React from "react";
+import { Phone, Mail, MessageSquare, AlertCircle, Search } from "lucide-react";
+import { ConversationCategory, mockConversations } from "./mockData";
+import { FilterType } from "./CommunicationsLayout";
 import clsx from "clsx";
 
 interface ConversationListPaneProps {
-  activeCategory: ConversationCategory;
-  onSelectCategory: (category: ConversationCategory) => void;
+  activeCategory: ConversationCategory | "All";
+  activeFilter: FilterType;
+  searchQuery: string;
   activeConversationId: string | null;
   onSelectConversation: (conversationId: string) => void;
+  onOpenSidebar?: () => void;
 }
-
-const CATEGORIES: { id: ConversationCategory, icon: React.ReactNode }[] = [
-  { id: "Clients", icon: <Users className="w-4 h-4" /> },
-  { id: "Family Members", icon: <Heart className="w-4 h-4" /> },
-  { id: "Staff & Caregivers", icon: <Users2 className="w-4 h-4" /> },
-  { id: "Care Team Channels", icon: <Shield className="w-4 h-4" /> },
-  { id: "Announcements", icon: <Megaphone className="w-4 h-4" /> }
-];
 
 export function ConversationListPane({
   activeCategory,
-  onSelectCategory,
+  activeFilter,
+  searchQuery,
   activeConversationId,
-  onSelectConversation
+  onSelectConversation,
+  onOpenSidebar
 }: ConversationListPaneProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState<"All" | "Unread" | "Mentions" | "Muted" | "Archived">("All");
 
   const filteredConversations = mockConversations.filter(c => {
-    if (activeCategory === "Announcements") return false; // Handled separately
-    if (c.categoryId !== activeCategory) return false;
+    // If we are looking at announcements, only show announcements
+    if (activeCategory === "Announcements" && c.categoryId !== "Announcements") return false;
+    
+    // If a specific category is selected, filter by it.
+    if (activeCategory !== "All" && c.categoryId !== activeCategory) return false;
+
+    // Apply global filters
     if (activeFilter === "Unread" && c.unreadCount === 0) return false;
+    if (activeFilter === "Mentions") { /* Add logic for mentions if needed */ }
+    if (activeFilter === "Archived") { /* Add logic for archived if needed */ }
 
     // Basic search simulation
     if (searchQuery) {
@@ -43,75 +45,31 @@ export function ConversationListPane({
   });
 
   return (
-    <div className="flex flex-col h-full bg-slate-50/50 border-r border-slate-200 w-full sm:w-[360px] shrink-0">
+    <div className="flex flex-col h-full bg-[#fcfdfd] border-r border-slate-200/50 w-full sm:w-[360px] shrink-0">
       
-      {/* Header & Search Area */}
-      <div className="p-5 bg-white border-b border-slate-200/60 sticky top-0 z-10 space-y-4">
-        
-        {/* Category Selector (Modern Dropdown/Scrollable Tabs) */}
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1 -mx-2 px-2">
-          {CATEGORIES.map(category => (
-            <button
-              key={category.id}
-              onClick={() => onSelectCategory(category.id)}
-              className={clsx(
-                "flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-200",
-                activeCategory === category.id
-                  ? "bg-brand-teal text-white shadow-md shadow-brand-teal/20"
-                  : "bg-slate-100/80 text-slate-600 hover:bg-slate-200 hover:text-slate-900"
-              )}
+      {/* Dynamic Header */}
+      <div className="p-5 bg-[#fcfdfd]/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-10 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {onOpenSidebar && (
+            <button 
+              onClick={onOpenSidebar}
+              className="xl:hidden p-2 -ml-2 text-slate-500 hover:text-brand-teal hover:bg-slate-100 rounded-lg transition-colors"
             >
-              <span className={clsx("opacity-80", activeCategory === category.id ? "text-white" : "text-slate-500")}>
-                {category.icon}
-              </span>
-              {category.id}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
             </button>
-          ))}
+          )}
+          <h2 className="text-[17px] font-semibold text-slate-800">
+            {activeCategory !== "All" ? activeCategory : activeFilter === "All" ? "Home" : activeFilter}
+          </h2>
         </div>
-
-        {activeCategory !== "Announcements" && (
-          <div className="space-y-4">
-            {/* Elegant Search Bar */}
-            <div className="relative group">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                <Search className="w-4 h-4 text-slate-400 group-focus-within:text-brand-teal transition-colors" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search conversations..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-100/50 border-transparent rounded-xl text-sm 
-                           placeholder:text-slate-400 text-slate-800
-                           focus:bg-white focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/10 
-                           transition-all outline-none"
-              />
-            </div>
-
-            {/* Subtle Filters */}
-            <div className="flex gap-2 overflow-x-auto hide-scrollbar">
-              {["All", "Unread", "Mentions", "Muted", "Archived"].map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setActiveFilter(f as any)}
-                  className={clsx(
-                    "px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all",
-                    activeFilter === f
-                      ? "bg-slate-800 text-white shadow-sm"
-                      : "text-slate-500 hover:bg-slate-200/70 hover:text-slate-700"
-                  )}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Conversation List */}
-      {activeCategory !== "Announcements" && (
-        <div className="flex-1 overflow-y-auto p-3 space-y-1.5 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-3 space-y-1.5 custom-scrollbar">
           {filteredConversations.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-40 text-slate-400 space-y-3">
               <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
@@ -129,10 +87,10 @@ export function ConversationListPane({
                   key={conv.id}
                   onClick={() => onSelectConversation(conv.id)}
                   className={clsx(
-                    "w-full text-left p-3.5 rounded-2xl transition-all duration-200 relative group border",
+                    "w-full text-left p-3.5 rounded-2xl transition-all duration-300 relative group border",
                     isActive 
-                      ? "bg-white border-brand-teal/30 shadow-[0_4px_20px_-4px_rgba(20,184,166,0.15)]" 
-                      : "bg-transparent border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm"
+                      ? "bg-white border-brand-teal/20 shadow-[0_8px_30px_-6px_rgba(20,184,166,0.12)] scale-[1.02] z-10" 
+                      : "bg-transparent border-transparent hover:bg-white hover:border-slate-100 hover:shadow-sm"
                   )}
                 >
                   {/* Indicator Line for Active */}
@@ -219,7 +177,6 @@ export function ConversationListPane({
             })
           )}
         </div>
-      )}
     </div>
   );
 }

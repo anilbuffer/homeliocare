@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { 
   MoreVertical, Phone, Mail, MessageSquare, AlertCircle, 
-  Paperclip, Send, Smile, Info, ShieldAlert, Check, CheckCheck
+  Paperclip, Send, Smile, Info, ShieldAlert, Check, CheckCheck, Mic, ChevronLeft
 } from "lucide-react";
 import { Conversation, mockMessages, Message, mockContacts } from "./mockData";
 import clsx from "clsx";
@@ -10,9 +10,10 @@ interface ActiveThreadPaneProps {
   conversation: Conversation | null;
   onToggleDetails: () => void;
   showDetails: boolean;
+  onBack?: () => void;
 }
 
-export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }: ActiveThreadPaneProps) {
+export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, onBack }: ActiveThreadPaneProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isUploading, setIsUploading] = useState(false);
@@ -32,9 +33,51 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }:
 
   if (!conversation) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center bg-slate-50 text-slate-400">
-        <MessageSquare className="w-16 h-16 mb-4 text-slate-300" />
-        <p>Select a conversation to start messaging</p>
+      <div className="flex-1 flex flex-col items-center justify-center bg-white h-full relative overflow-hidden">
+        {/* Abstract Background Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-teal/5 rounded-full blur-[80px] pointer-events-none" />
+        
+        <div className="relative w-80 h-80 mb-6">
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-sm">
+            {/* Background Frame */}
+            <rect x="40" y="60" width="220" height="160" rx="16" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="2"/>
+            
+            {/* Sidebar Line */}
+            <path d="M90 60V220" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4"/>
+            
+            {/* Sidebar Mock Items */}
+            <rect x="55" y="80" width="20" height="8" rx="4" fill="#CBD5E1"/>
+            <rect x="55" y="100" width="16" height="8" rx="4" fill="#E2E8F0"/>
+            <rect x="55" y="120" width="22" height="8" rx="4" fill="#E2E8F0"/>
+            
+            {/* Chat Bubble 1 (Left) */}
+            <rect x="110" y="90" width="100" height="40" rx="12" fill="white" stroke="#E2E8F0" strokeWidth="2"/>
+            <path d="M110 115L100 120L115 105" fill="white" stroke="#E2E8F0" strokeWidth="2" strokeLinejoin="round"/>
+            <rect x="125" y="104" width="40" height="4" rx="2" fill="#94A3B8"/>
+            <rect x="125" y="114" width="60" height="4" rx="2" fill="#CBD5E1"/>
+            
+            {/* Chat Bubble 2 (Right / Primary) */}
+            <rect x="150" y="145" width="90" height="50" rx="12" fill="#F0FDFA" stroke="#CCFBF1" strokeWidth="2"/>
+            <path d="M240 180L250 185L235 170" fill="#F0FDFA" stroke="#CCFBF1" strokeWidth="2" strokeLinejoin="round"/>
+            <rect x="165" y="159" width="55" height="4" rx="2" fill="#5EEAD4"/>
+            <rect x="165" y="169" width="40" height="4" rx="2" fill="#99F6E4"/>
+            <rect x="165" y="179" width="50" height="4" rx="2" fill="#99F6E4"/>
+            
+            {/* Selection Cursor */}
+            <circle cx="150" cy="180" r="16" fill="#14B8A6" fillOpacity="0.15"/>
+            <path d="M150 170L145 195L155 188Z" fill="#14B8A6" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+            
+            {/* Floating Decorative Elements */}
+            <circle cx="270" cy="50" r="6" fill="#FBBF24"/>
+            <circle cx="30" cy="220" r="8" fill="#818CF8"/>
+            <path d="M250 250L256 238L266 244Z" fill="#F472B6"/>
+          </svg>
+        </div>
+        
+        <h3 className="text-xl font-semibold text-slate-800 mb-3 relative z-10">No conversation selected</h3>
+        <p className="text-[15px] text-slate-500 max-w-[320px] text-center leading-relaxed relative z-10">
+          Select a chat from the sidebar to view the conversation, or start a new message.
+        </p>
       </div>
     );
   }
@@ -77,10 +120,18 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }:
   const isPHIWarningVisible = selectedChannel === "sms" && inputValue.toLowerCase().includes("clinical");
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-slate-50 min-w-0">
+    <div className="flex-1 flex flex-col h-full bg-[#f8fafd] min-w-0 relative">
       {/* Header */}
-      <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200 bg-white shrink-0">
-        <div className="flex items-center gap-4">
+      <div className="h-16 flex items-center justify-between px-2 lg:px-6 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
+        <div className="flex items-center gap-2 lg:gap-4">
+          {onBack && (
+            <button 
+              onClick={onBack}
+              className="lg:hidden p-2 text-slate-500 hover:bg-slate-100 hover:text-brand-teal rounded-full transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
           <div className="relative">
             <img src={primaryParticipant.avatar} alt="Avatar" className="w-10 h-10 rounded-full" />
             <div className={clsx(
@@ -135,7 +186,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }:
       )}
 
       {/* Message Stream */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto p-6 pb-36 space-y-6 custom-scrollbar">
         {messages.map((msg, idx) => {
           const isMe = msg.senderId === "me";
           const sender = isMe ? null : mockContacts[msg.senderId] || primaryParticipant;
@@ -157,9 +208,9 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }:
 
                 {/* Bubble */}
                 <div className={clsx(
-                  "p-3 rounded-2xl relative group",
-                  msg.isInternalNote ? "bg-amber-100 text-amber-900 border border-amber-200" :
-                  isMe ? "bg-brand-teal text-white rounded-br-sm" : "bg-white border border-slate-200 text-slate-800 rounded-bl-sm"
+                  "p-3 rounded-2xl relative group shadow-sm",
+                  msg.isInternalNote ? "bg-amber-100 text-amber-900 border border-amber-200 shadow-amber-900/5" :
+                  isMe ? "bg-brand-teal text-white rounded-br-sm shadow-brand-teal/20" : "bg-white border border-slate-100 text-slate-800 rounded-bl-sm shadow-slate-200/50"
                 )}>
                   {/* Internal Note Label */}
                   {msg.isInternalNote && (
@@ -201,39 +252,37 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }:
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Composer */}
-      <div className="p-4 bg-white border-t border-slate-200 shrink-0">
+      {/* Composer (Floating) */}
+      <div className="p-4 shrink-0 bg-gradient-to-t from-[#f8fafd] via-[#f8fafd] to-transparent pt-8 absolute bottom-0 left-0 right-0 z-20">
         
         {/* PHI Warning */}
         {isPHIWarningVisible && (
-          <div className="mb-2 p-2 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-2 text-xs text-amber-800">
+          <div className="mb-2 p-2 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-2 text-xs text-amber-800 shadow-sm">
             <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
             <p>This will be sent via SMS, which isn't a secure channel for health information. Consider using in-app messaging instead.</p>
           </div>
         )}
 
-        <div className="flex items-end gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2 focus-within:ring-2 focus-within:ring-brand-teal/20 focus-within:border-brand-teal transition-all">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-2 bg-white border border-slate-200/60 rounded-2xl p-2 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.08)] focus-within:ring-4 focus-within:ring-brand-teal/10 focus-within:border-brand-teal/50 transition-all">
           
-          <div className="flex flex-col gap-2">
-             <button 
-                onClick={handleAttachment}
-                disabled={isUploading}
-                className="p-2 text-slate-400 hover:text-brand-teal rounded-lg transition-colors disabled:opacity-50"
-              >
-                {isUploading ? (
-                  <div className="w-5 h-5 border-2 border-brand-teal border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  <Paperclip className="w-5 h-5" />
-                )}
-              </button>
-          </div>
+          <div className="flex items-end gap-2 flex-1 min-w-0">
+            <button 
+              onClick={handleAttachment}
+              disabled={isUploading}
+              className="p-2 shrink-0 text-slate-400 hover:text-brand-teal rounded-lg transition-colors disabled:opacity-50"
+            >
+              {isUploading ? (
+                <div className="w-5 h-5 border-2 border-brand-teal border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <Paperclip className="w-5 h-5" />
+              )}
+            </button>
 
-          <div className="flex-1">
             <textarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Type a message..."
-              className="w-full bg-transparent resize-none text-sm p-2 max-h-32 focus:outline-none"
+              className="flex-1 min-w-0 bg-transparent resize-none text-sm p-2 max-h-32 focus:outline-none"
               rows={1}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
@@ -242,35 +291,58 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails }:
                 }
               }}
             />
+
+            {/* Mic and Send (Mobile View - placed inline with input) */}
+            <div className="flex sm:hidden items-center gap-1 shrink-0 pb-1">
+              <button 
+                type="button"
+                className="p-2 text-slate-400 hover:text-brand-teal rounded-lg transition-colors"
+              >
+                <Mic className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={handleSend}
+                disabled={!inputValue.trim()}
+                className="p-2 bg-brand-teal text-white rounded-lg hover:bg-brand-teal/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2 pb-1">
-            {primaryParticipant.preferredLanguage && (
-               <button 
-                  onClick={handleTranslate}
-                  className="text-xs font-medium text-brand-teal px-2 py-1 rounded hover:bg-brand-teal/10 transition-colors"
-                >
-                  {isTranslating ? "Translating..." : "Translate"}
-                </button>
-            )}
-           
-            <select
-              value={selectedChannel}
-              onChange={(e) => setSelectedChannel(e.target.value as any)}
-              className="text-xs bg-slate-200 border-none rounded p-1.5 focus:ring-0 text-slate-700"
-            >
-              <option value="in-app">In-App</option>
-              <option value="sms">SMS</option>
-              <option value="email">Email</option>
-            </select>
+          {/* Controls row (Desktop view inline, Mobile view bottom row) */}
+          <div className="flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-0 border-t sm:border-none border-slate-100 sm:pb-1">
             
-            <button 
-              onClick={handleSend}
-              disabled={!inputValue.trim()}
-              className="p-2 bg-brand-teal text-white rounded-lg hover:bg-brand-teal/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <Send className="w-4 h-4" />
-            </button>
+            <div className="flex items-center gap-2 px-2 sm:px-0">
+              <span className="text-[10px] font-semibold text-slate-400 uppercase sm:hidden tracking-wider">Channel:</span>
+              <select
+                value={selectedChannel}
+                onChange={(e) => setSelectedChannel(e.target.value as any)}
+                className="text-xs bg-slate-100/80 sm:bg-slate-200 border-none rounded-lg p-1.5 focus:ring-0 text-slate-700 cursor-pointer hover:bg-slate-200 transition-colors"
+              >
+                <option value="in-app">In-App</option>
+                <option value="sms">SMS</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+            
+            {/* Mic and Send (Desktop View) */}
+            <div className="hidden sm:flex items-center gap-1">
+              <button 
+                type="button"
+                className="p-2 text-slate-400 hover:text-brand-teal rounded-lg transition-colors"
+              >
+                <Mic className="w-5 h-5" />
+              </button>
+
+              <button 
+                onClick={handleSend}
+                disabled={!inputValue.trim()}
+                className="p-2 bg-brand-teal text-white rounded-lg hover:bg-brand-teal/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
