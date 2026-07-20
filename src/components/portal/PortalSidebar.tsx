@@ -174,20 +174,12 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
               >
                 <div className="p-1 flex flex-col gap-1">
                   <Link
-                    href="/portal/profile"
-                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
-                    onClick={() => setIsProfileOpen(false)}
-                  >
-                    <User className="w-4 h-4" />
-                    My Profile
-                  </Link>
-                  <Link
                     href="/portal/settings"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <Settings className="w-4 h-4" />
-                    Account Settings
+                    Settings
                   </Link>
                   <Link
                     href="/portal/help"

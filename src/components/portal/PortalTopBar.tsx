@@ -14,8 +14,7 @@ export function PortalTopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/portal/billing")) return "Billing & Payments";
     if (pathname.startsWith("/portal/documents")) return "Documents";
     if (pathname.startsWith("/portal/care-plan")) return "Care Plan Summary";
-    if (pathname.startsWith("/portal/settings")) return "Account Settings";
-    if (pathname.startsWith("/portal/profile")) return "My Profile";
+    if (pathname.startsWith("/portal/settings")) return "Settings";
     return "Overview";
   };
 
