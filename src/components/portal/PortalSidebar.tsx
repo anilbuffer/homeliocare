@@ -9,7 +9,9 @@ import {
   Receipt,
   FileText,
   Heart,
-  ChevronDown
+  ChevronDown,
+  LogOut,
+  LogIn
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -36,6 +38,7 @@ interface PortalSidebarProps {
 
 export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
   const pathname = usePathname();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const [activeItem, setActiveItem] = useState(() => {
     if (pathname?.startsWith("/portal/visits")) return "visits";
@@ -136,8 +139,11 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
         </nav>
 
         {/* User Profile */}
-        <div className="p-4 border-t border-sidebar-active">
-          <button className="flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left">
+        <div className="p-4 border-t border-sidebar-active relative">
+          <button 
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
+            className="flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left"
+          >
             <div className="w-9 h-9 rounded-full bg-slate-600 shrink-0 overflow-hidden flex items-center justify-center text-sm font-medium">
               L
             </div>
@@ -145,8 +151,40 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
               <div className="text-sm font-medium text-white truncate">Linda Alvarez</div>
               <div className="text-xs text-brand-teal truncate">Family Member</div>
             </div>
-            <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
+            <ChevronDown className={clsx("w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200", isProfileOpen && "rotate-180")} />
           </button>
+
+          <AnimatePresence>
+            {isProfileOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute bottom-[calc(100%-10px)] left-4 right-4 mb-2 bg-slate-800 border border-sidebar-active rounded-xl shadow-xl overflow-hidden z-50"
+              >
+                <div className="p-1 flex flex-col gap-1">
+                  <Link 
+                    href="/login" 
+                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    <LogIn className="w-4 h-4" />
+                    Log in
+                  </Link>
+                  <div className="h-px w-full bg-sidebar-active/50 my-0.5"></div>
+                  <Link 
+                    href="/login" 
+                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-sidebar-active rounded-lg transition-colors"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Log out
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </aside>
     </>
