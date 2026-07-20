@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AuthProvider } from "@/lib/auth/RBACContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,7 +24,7 @@ export default function RootLayout({
       className={`${inter.variable}`}
     >
       <body className="min-h-screen antialiased bg-page-bg text-text-primary font-sans">
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
