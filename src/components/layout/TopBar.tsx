@@ -23,6 +23,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/referrals")) return "Referrals & Intake";
     if (pathname.startsWith("/communications")) return "Communications";
     if (pathname.startsWith("/settings")) return "Settings";
+    if (pathname.startsWith("/profile")) return "Profile";
     return "Dashboard";
   };
 

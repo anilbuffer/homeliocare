@@ -181,7 +181,7 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <Settings className="w-4 h-4" />
-                    Preferences
+                    Account Settings
                   </Link>
                   <Link 
                     href="/portal/help" 
@@ -189,7 +189,7 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <HelpCircle className="w-4 h-4" />
-                    Help Center
+                    Support
                   </Link>
                   <div className="h-px w-full bg-sidebar-active/50 my-0.5"></div>
                   <Link 
