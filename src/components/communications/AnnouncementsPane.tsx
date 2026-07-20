@@ -8,19 +8,19 @@ export function AnnouncementsPane() {
   return (
     <div className="flex-1 flex flex-col h-full bg-slate-50 min-w-0">
       {/* Header */}
-      <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200 bg-white shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center">
-            <Megaphone className="w-5 h-5 text-indigo-600" />
+      <div className="h-16 flex items-center justify-between px-3 border-b border-slate-200 bg-white shrink-0">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
+            <Megaphone className="w-4 h-4 text-indigo-600" />
           </div>
           <div>
-            <h2 className="font-semibold text-slate-900">Announcements</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Announcements</h2>
             <p className="text-xs text-slate-500">Agency-wide broadcasts and updates</p>
           </div>
         </div>
         <button
           onClick={() => setIsComposing(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-brand-teal text-white text-sm font-medium rounded-lg hover:bg-brand-teal/90 transition-colors"
+          className="flex items-center gap-1 px-3 py-2 bg-brand-teal text-white text-xs font-medium rounded-lg hover:bg-brand-teal/90 transition-colors"
         >
           <Plus className="w-4 h-4" />
           New Announcement
@@ -88,17 +88,17 @@ export function AnnouncementsPane() {
           <div className="max-w-4xl mx-auto space-y-4">
             {mockAnnouncements.map(announcement => (
               <div key={announcement.id} className="bg-white rounded-xl border border-slate-200 p-5 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-shadow">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-semibold text-slate-800 text-lg">{announcement.title}</h3>
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-semibold text-slate-800 text-base">{announcement.title}</h3>
                   <span className="text-xs text-slate-400 flex items-center gap-1 bg-slate-50 px-2 py-1 rounded-md border border-slate-100">
                     <Calendar className="w-3 h-3" />
                     {announcement.date}
                   </span>
                 </div>
 
-                <p className="text-sm text-slate-600 mb-4 whitespace-pre-wrap">{announcement.content}</p>
+                <p className="text-xs text-slate-600 mb-2 whitespace-pre-wrap">{announcement.content}</p>
 
-                <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-slate-100">
+                <div className="flex flex-wrap items-center gap-4 pt-2 border-t border-slate-100">
                   <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium bg-slate-50 px-2.5 py-1 rounded-full">
                     <Users className="w-3.5 h-3.5 text-indigo-500" />
                     Audience: {announcement.audience}

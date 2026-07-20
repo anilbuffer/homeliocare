@@ -9,7 +9,7 @@ interface ReportCategoryTabsProps {
 
 export function ReportCategoryTabs({ categories, activeCategory, onSelect }: ReportCategoryTabsProps) {
   return (
-    <div className="flex bg-white rounded-2xl p-1.5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] mb-6 overflow-x-auto [&::-webkit-scrollbar]:hidden max-w-full w-fit">
+    <div className="flex bg-white rounded-2xl p-1.5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] mb-6 overflow-x-auto max-w-full w-fit [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
       {categories.map((category) => {
         const isActive = activeCategory === category;
         return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, Mail, MessageSquare, AlertCircle, Search } from "lucide-react";
+import { Phone, Mail, MessageSquare, AlertCircle, Search, Edit } from "lucide-react";
 import { ConversationCategory, mockConversations } from "./mockData";
 import { FilterType } from "./CommunicationsLayout";
 import clsx from "clsx";
@@ -11,6 +11,7 @@ interface ConversationListPaneProps {
   activeConversationId: string | null;
   onSelectConversation: (conversationId: string) => void;
   onOpenSidebar?: () => void;
+  onStartNew?: () => void;
 }
 
 export function ConversationListPane({
@@ -19,7 +20,8 @@ export function ConversationListPane({
   searchQuery,
   activeConversationId,
   onSelectConversation,
-  onOpenSidebar
+  onOpenSidebar,
+  onStartNew
 }: ConversationListPaneProps) {
 
   const filteredConversations = mockConversations.filter(c => {
@@ -45,10 +47,10 @@ export function ConversationListPane({
   });
 
   return (
-    <div className="flex flex-col h-full bg-[#fcfdfd] border-r border-slate-200/50 w-full sm:w-[360px] shrink-0">
+    <div className="flex flex-col h-full bg-[#fcfdfd] border-r border-slate-200/50 w-full sm:w-[320px] shrink-0">
 
       {/* Dynamic Header */}
-      <div className="p-5 bg-[#fcfdfd]/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-10 flex items-center justify-between">
+      <div className="px-4 py-3 bg-[#fcfdfd]/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-10 flex items-center justify-between">
         <div className="flex items-center gap-3">
           {onOpenSidebar && (
             <button
@@ -66,6 +68,9 @@ export function ConversationListPane({
             {activeCategory !== "All" ? activeCategory : activeFilter === "All" ? "Home" : activeFilter}
           </h2>
         </div>
+        <button onClick={onStartNew} className="p-2 text-brand-teal hover:bg-brand-teal/10 rounded-full transition-colors flex items-center justify-center group relative" title="New Message">
+          <Edit className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Conversation List */}
@@ -101,7 +106,7 @@ export function ConversationListPane({
                 <div className="flex gap-3.5 items-start">
                   {/* Premium Avatar */}
                   <div className="relative shrink-0">
-                    <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-slate-200 to-slate-100 group-hover:from-brand-teal/20 group-hover:to-brand-teal/10 transition-colors">
+                    <div className="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-slate-200 to-slate-100 group-hover:from-brand-teal/20 group-hover:to-brand-teal/10 transition-colors">
                       <img
                         src={primaryParticipant.avatar}
                         alt={primaryParticipant.name}
@@ -119,7 +124,7 @@ export function ConversationListPane({
                     {/* Name & Time */}
                     <div className="flex justify-between items-center mb-1">
                       <div className={clsx(
-                        "font-semibold truncate pr-2 transition-colors",
+                        "font-semibold text-sm truncate pr-2 transition-colors",
                         isActive ? "text-brand-teal" : "text-slate-900"
                       )}>
                         {conv.participants.map(p => p.name).join(", ")}
@@ -157,7 +162,7 @@ export function ConversationListPane({
                         {conv.lastMessage.channelMode === "email" && <Mail className="w-3 h-3 text-slate-400 shrink-0" />}
                         {conv.lastMessage.channelMode === "in-app" && <MessageSquare className="w-3 h-3 text-slate-400 shrink-0" />}
                         <p className={clsx(
-                          "text-sm truncate leading-snug",
+                          "text-[11px] truncate leading-snug",
                           conv.unreadCount > 0 ? "font-medium text-slate-800" : "text-slate-500"
                         )}>
                           {conv.lastMessage.content}
@@ -165,7 +170,7 @@ export function ConversationListPane({
                       </div>
 
                       {conv.unreadCount > 0 && (
-                        <div className="shrink-0 flex items-center justify-center min-w-[22px] h-[22px] px-1.5 bg-brand-teal text-white text-[11px] font-bold rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/30">
+                        <div className="shrink-0 flex items-center justify-center min-w-[18px] h-[18px] px-1.5 bg-brand-teal text-white text-[10px] font-bold rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/30">
                           {conv.unreadCount}
                         </div>
                       )}

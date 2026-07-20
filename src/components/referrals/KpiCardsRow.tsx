@@ -23,8 +23,8 @@ function KpiCard({ title, value, trend, trendUp, icon: Icon, alertStatus = "none
       {isDanger && (
         <div className="absolute top-0 left-0 w-full h-1 bg-accent-red" />
       )}
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="text-sm font-medium text-text-secondary pr-4">{title}</h3>
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-xs font-medium text-text-secondary pr-4">{title}</h3>
         <div className={clsx(
           "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
           isDanger ? "bg-red-100 text-accent-red" :
@@ -37,7 +37,7 @@ function KpiCard({ title, value, trend, trendUp, icon: Icon, alertStatus = "none
 
       <div className="flex items-baseline gap-2">
         <span className={clsx(
-          "text-2xl font-bold",
+          "text-xl font-bold",
           isDanger ? "text-accent-red" : "text-text-primary"
         )}>
           {value}
@@ -105,7 +105,7 @@ export function KpiCardsRow() {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
       {kpis.map((kpi, idx) => (
         <KpiCard key={idx} {...kpi} />
       ))}

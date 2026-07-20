@@ -30,7 +30,7 @@ const COLORS = ["#0ea5e9", "#10b981", "#8b5cf6", "#f59e0b", "#ef4444", "#64748b"
 export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], height = 300 }: ChartRendererProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 p-8" style={{ minHeight: height }}>
+      <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 p-4 md:p-8" style={{ minHeight: height }}>
         <div className="text-sm">No data available for this period</div>
       </div>
     );
@@ -84,12 +84,12 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
             <Tooltip content={<CustomTooltip />} />
             {dataKeys.length > 1 && <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />}
             {dataKeys.map((dk, i) => (
-              <Line 
-                key={dk.key} 
-                type="monotone" 
-                dataKey={dk.key} 
-                name={dk.name || dk.key} 
-                stroke={dk.color} 
+              <Line
+                key={dk.key}
+                type="monotone"
+                dataKey={dk.key}
+                name={dk.name || dk.key}
+                stroke={dk.color}
                 strokeWidth={3}
                 dot={{ r: 4, strokeWidth: 2 }}
                 activeDot={{ r: 6, strokeWidth: 0 }}
@@ -122,7 +122,7 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip 
+            <Tooltip
               contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', borderRadius: '0.5rem', color: '#0f172a' }}
               itemStyle={{ color: '#0f172a' }}
             />
@@ -136,12 +136,37 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
   if (type === "kpi") {
     // For KPI, we just show the first item's primary value
     const firstItem = data[0];
-    const key = dataKeys[0]?.key;
+    const key = dataKeys[0]?.key || "value";
+    const color = dataKeys[0]?.color || "#10b981";
     const value = firstItem ? firstItem[key as string] : "--";
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center" style={{ minHeight: height }}>
-        <div className="text-4xl font-bold text-slate-900">{value}</div>
-        {dataKeys[0]?.name && <div className="text-sm font-medium text-slate-500 mt-2">{dataKeys[0].name}</div>}
+      <div className="w-full h-full flex flex-col items-center justify-center relative pt-8" style={{ minHeight: height }}>
+        <div className="flex flex-col items-center justify-center z-10 flex-1">
+          <div className="text-6xl font-bold text-slate-900">{value}</div>
+          {dataKeys[0]?.name && <div className="text-sm font-medium text-slate-500 mt-2">{dataKeys[0].name}</div>}
+        </div>
+        {data.length > 1 && (
+          <div className="w-full h-32 mt-4 opacity-80 shrink-0">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={data}>
+                <Line 
+                  type="monotone" 
+                  dataKey={key} 
+                  stroke={color} 
+                  strokeWidth={4}
+                  dot={false}
+                  activeDot={{ r: 6, strokeWidth: 0, fill: color }}
+                />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: '#fff', borderColor: '#e2e8f0', borderRadius: '0.5rem', color: '#0f172a', fontSize: '12px', padding: '6px 12px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                  itemStyle={{ color: '#0f172a', fontWeight: '600' }}
+                  labelStyle={{ display: 'none' }}
+                  cursor={{ stroke: '#e2e8f0', strokeWidth: 2, strokeDasharray: '4 4' }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        )}
       </div>
     );
   }
@@ -149,14 +174,14 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
   if (type === "table") {
     // A simple table renderer
     const headers = Object.keys(data[0] || {}).filter(k => k !== "id");
-    
+
     return (
       <div className="w-full overflow-auto" style={{ maxHeight: height }}>
-        <table className="w-full text-left text-sm text-slate-700">
+        <table className="w-full text-left text-xs text-slate-700">
           <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200 sticky top-0 z-10">
             <tr>
               {headers.map(h => (
-                <th key={h} className="px-4 py-3 font-semibold">{h}</th>
+                <th key={h} className="px-3 py-2 font-semibold">{h}</th>
               ))}
             </tr>
           </thead>
@@ -164,7 +189,7 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
             {data.map((row, i) => (
               <tr key={i} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors last:border-0">
                 {headers.map(h => (
-                  <td key={h} className="px-4 py-3">{row[h]}</td>
+                  <td key={h} className="px-3 py-2">{row[h]}</td>
                 ))}
               </tr>
             ))}

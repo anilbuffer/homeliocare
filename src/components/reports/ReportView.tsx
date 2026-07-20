@@ -38,18 +38,18 @@ export function ReportView({ report, onClose }: ReportViewProps) {
         initial={{ y: 20, scale: 0.95 }}
         animate={{ y: 0, scale: 1 }}
         exit={{ y: 20, scale: 0.95 }}
-        className="relative bg-white w-full max-w-6xl max-h-[90vh] rounded-[24px] border border-slate-200 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden"
+        className="relative bg-white w-full max-w-6xl max-h-[90vh] rounded-[16px] md:rounded-[20px] border border-slate-200 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden"
       >
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-6 sm:px-8 border-b border-slate-100 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 sm:px-6 border-b border-slate-100 gap-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <span className="px-2.5 py-1 rounded bg-slate-100 text-xs font-medium text-slate-600 border border-slate-200">
+              <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-xs font-medium text-slate-600 border border-slate-200">
                 {report.category}
               </span>
-              <h2 className="text-2xl font-semibold text-slate-900">{report.title}</h2>
+              <h2 className="text-xl font-semibold text-slate-900">{report.title}</h2>
             </div>
-            <p className="text-slate-500">{report.description}</p>
+            <p className="text-slate-500 text-xs md:text-sm">{report.description}</p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export function ReportView({ report, onClose }: ReportViewProps) {
         </div>
 
         {/* Controls */}
-        <div className="p-4 sm:px-8 bg-slate-50/50 border-b border-slate-100 flex flex-wrap items-center gap-4">
+        <div className="p-4 sm:px-6 bg-slate-50/50 border-b border-slate-100 flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-slate-400" />
             <select
@@ -108,25 +108,29 @@ export function ReportView({ report, onClose }: ReportViewProps) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-8 bg-slate-50/30">
-          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-            <ChartRenderer
-              type={report.chartType}
-              data={report.data}
-              xAxisKey={report.xAxisKey}
-              dataKeys={report.dataKeys}
-              height={400}
-            />
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">Underlying Data</h3>
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50/30">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-[250px] sm:h-[300px]">
               <ChartRenderer
-                type="table"
+                type={report.chartType}
                 data={report.data}
-                height={300}
+                xAxisKey={report.xAxisKey}
+                dataKeys={report.dataKeys}
+                height="100%"
               />
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col h-[250px] sm:h-[300px]">
+              <div className="px-3 sm:px-4 py-3 border-b border-slate-100 bg-slate-50/50 shrink-0">
+                <h3 className="font-semibold text-slate-900">Underlying Data</h3>
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <ChartRenderer
+                  type="table"
+                  data={report.data}
+                  height="100%"
+                />
+              </div>
             </div>
           </div>
         </div>
