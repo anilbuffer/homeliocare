@@ -4,7 +4,7 @@ import {
   Paperclip, Send, Smile, Info, ShieldAlert, Check, CheckCheck, Mic, ChevronLeft, Edit,
   Archive, BellOff, EyeOff, Trash2, X
 } from "lucide-react";
-import { Conversation, mockMessages, Message, mockContacts } from "./mockData";
+import { Conversation, mockMessages, Message, mockContacts, Contact } from "./mockData";
 import clsx from "clsx";
 
 interface ActiveThreadPaneProps {
