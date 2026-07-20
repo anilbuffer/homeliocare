@@ -26,7 +26,7 @@ export default function PortalSchedulePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 relative">
+    <div className="max-w-7xl mx-auto space-y-6 relative">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-text-primary">Schedule</h1>
@@ -112,7 +112,7 @@ export default function PortalSchedulePage() {
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                     <div className="flex items-center gap-3 w-48">
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center shrink-0">
                         <CalendarDays className="w-5 h-5" />
                       </div>
                       <div>

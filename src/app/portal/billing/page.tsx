@@ -24,22 +24,22 @@ export default function PortalBillingPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 relative">
+    <div className="max-w-7xl mx-auto space-y-6 relative">
       <div>
         <h1 className="text-2xl font-semibold text-text-primary">Billing & Payments</h1>
         <p className="text-xs text-text-secondary mt-1">Manage your invoices and payment methods safely and securely.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Current Balance */}
-        <div className="md:col-span-2 bg-white rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle">
+        <div className="md:col-span-2 bg-white rounded-2xl p-4 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <Receipt className="w-6 h-6" />
+            <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <Receipt className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm text-text-secondary font-medium">Current Balance</div>
-              <div className="text-3xl font-bold text-text-primary">${billingData.currentBalance.toFixed(2)}</div>
+              <div className="text-xs text-text-secondary font-medium">Current Balance</div>
+              <div className="text-2xl font-bold text-text-primary">${billingData.currentBalance.toFixed(2)}</div>
             </div>
           </div>
 
@@ -62,7 +62,7 @@ export default function PortalBillingPage() {
         </div>
 
         {/* Payment Method */}
-        <div className="bg-white rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle">
+        <div className="bg-white rounded-2xl p-4 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle">
           <h2 className="text-sm font-semibold text-text-primary mb-4">Payment Method</h2>
           <div className="p-4 border border-border-subtle rounded-xl flex items-center gap-3 bg-slate-50 mb-4">
             <CreditCard className="w-5 h-5 text-slate-500" />
@@ -81,7 +81,7 @@ export default function PortalBillingPage() {
       </div>
 
       {/* Insurance Info */}
-      <div className="bg-[#E6F7F1] border border-teal-100 rounded-2xl p-4 flex items-start gap-3">
+      <div className="bg-[#E6F7F1] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-teal-200 rounded-2xl p-4 flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
         <div>
           <div className="text-sm font-semibold text-teal-900">Coverage Information</div>

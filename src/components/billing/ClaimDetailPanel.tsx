@@ -106,7 +106,7 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
               <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Attached Documents</div>
               <div className="space-y-2">
                 <div className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
-                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-brand-teal/20 text-brand-teal flex items-center justify-center shrink-0">
                     <FileText className="w-4 h-4" />
                   </div>
                   <div className="flex-1 overflow-hidden">

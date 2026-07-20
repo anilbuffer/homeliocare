@@ -32,16 +32,16 @@ export default function DocumentDetailsPage() {
         Back to Documents
       </Link>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-border-subtle overflow-hidden">
-        <div className="p-6 sm:p-8 border-b border-border-subtle bg-slate-50/50">
+      <div className="bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle overflow-hidden">
+        <div className="p-3 sm:p-4 border-b border-border-subtle bg-slate-50/50">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center shrink-0">
-                <FileText className="w-6 h-6" />
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center shrink-0">
+                <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h1 className="text-2xl font-semibold text-text-primary">{document.name}</h1>
-                <div className="flex items-center text-sm text-text-secondary mt-1 gap-2">
+                <h1 className="text-lg font-semibold text-text-primary">{document.name}</h1>
+                <div className="flex items-center text-xs text-text-secondary gap-2">
                   <span>{document.category}</span>
                   <span>•</span>
                   <span>Shared {document.date}</span>
@@ -57,17 +57,17 @@ export default function DocumentDetailsPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 rounded-xl text-sm font-semibold transition-colors shadow-sm"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 rounded-xl text-sm font-semibold transition-colors shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
                 >
                   <PenTool className="w-4 h-4" />
                   Sign Now
                 </motion.button>
               )}
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-border-subtle hover:bg-slate-50 text-text-primary rounded-xl text-sm font-medium transition-colors shadow-sm">
+              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-white border border-border-subtle hover:bg-slate-50 text-text-primary rounded-xl text-sm font-medium transition-colors shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 <Share2 className="w-4 h-4" />
                 Share
               </button>
-              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-brand-teal hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors shadow-sm">
+              <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-brand-teal hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 <Download className="w-4 h-4" />
                 Download
               </button>

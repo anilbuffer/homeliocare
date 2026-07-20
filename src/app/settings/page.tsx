@@ -26,16 +26,15 @@ export default function SettingsPage() {
       <Card noPadding className="overflow-hidden">
         <div className="flex flex-col md:flex-row min-h-[600px]">
           {/* Settings Sidebar */}
-          <div className="w-full md:w-64 p-6 border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/50 space-y-2 shrink-0">
+          <div className="w-full md:w-64 p-4 border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/50 space-y-2 shrink-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition-colors ${
-                  activeTab === tab.id
-                    ? "bg-brand-teal/10 text-brand-teal"
-                    : "text-slate-600 hover:bg-slate-100"
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition-colors ${activeTab === tab.id
+                  ? "bg-brand-teal/10 text-brand-teal"
+                  : "text-slate-600 hover:bg-slate-100"
+                  }`}
               >
                 <tab.icon className="w-4 h-4" />
                 {tab.label}
@@ -44,40 +43,40 @@ export default function SettingsPage() {
           </div>
 
           {/* Settings Content */}
-          <div className="flex-1 p-6 sm:p-8 space-y-8">
+          <div className="flex-1 p-4 sm:p-6 space-y-6">
             {activeTab === "general" && (
               <>
                 <div>
                   <h3 className="text-lg font-semibold text-text-primary">General Information</h3>
-                  <p className="text-sm text-text-secondary mt-1">Update your basic profile details.</p>
+                  <p className="text-xs text-text-secondary mt-1">Update your basic profile details.</p>
                 </div>
 
                 <form className="space-y-6 max-w-2xl">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-text-primary">First Name</label>
-                      <input 
-                        type="text" 
-                        defaultValue={currentUser?.name?.split(' ')[0] || "Sarah"} 
-                        className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" 
+                      <input
+                        type="text"
+                        defaultValue={currentUser?.name?.split(' ')[0] || "Sarah"}
+                        className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm"
                       />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-text-primary">Last Name</label>
-                      <input 
-                        type="text" 
-                        defaultValue={currentUser?.name?.split(' ')[1] || "Jenkins"} 
-                        className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" 
+                      <input
+                        type="text"
+                        defaultValue={currentUser?.name?.split(' ')[1] || "Jenkins"}
+                        className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-text-primary">Email Address</label>
-                    <input 
-                      type="email" 
-                      defaultValue={currentUser?.email || "sarah.jenkins@example.com"} 
-                      className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" 
+                    <input
+                      type="email"
+                      defaultValue={currentUser?.email || "sarah.jenkins@example.com"}
+                      className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm"
                     />
                   </div>
 

@@ -17,9 +17,9 @@ export default function PortalDocumentsPage() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-text-primary">Documents</h1>
+          <h1 className="text-xl font-semibold text-text-primary">Documents</h1>
           <p className="text-xs text-text-secondary mt-1">View and download important care plans, agreements, and agency documents.</p>
         </div>
         <Link href="/portal/documents/upload" className="flex items-center justify-center gap-2 px-4 py-2 bg-brand-teal hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors shadow-sm w-full sm:w-auto">

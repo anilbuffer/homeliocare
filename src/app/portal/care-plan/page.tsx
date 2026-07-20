@@ -33,39 +33,63 @@ export default function PortalCarePlanPage() {
             Current goals, daily tasks, and how you can help.
           </p>
         </div>
-        <div className="w-12 h-12 bg-[#b8e1d3] rounded-full flex items-center justify-center text-brand-teal shrink-0">
-          <Heart className="w-6 h-6" />
+        <div className="w-10 h-10 bg-[#b8e1d3] rounded-full flex items-center justify-center text-brand-teal shrink-0">
+          <Heart className="w-5 h-5" />
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-border-subtle overflow-x-auto scrollbar-hide pb-px">
+      <div className="flex items-center p-1.5 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl overflow-x-auto [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 border border-slate-200 w-full sm:w-max max-w-full">
         <button
           onClick={() => setActiveTab("overview")}
           className={clsx(
-            "px-4 py-3 text-sm font-medium transition-colors border-b-2 whitespace-nowrap",
-            activeTab === "overview" ? "border-brand-teal text-brand-teal" : "border-transparent text-slate-500 hover:text-slate-700"
+            "relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
+            activeTab === "overview" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
-          Overview & Tasks
+          <span className="relative z-10">Overview & Tasks</span>
+          {activeTab === "overview" && (
+            <motion.div
+              layoutId="careplan-tab-indicator"
+              className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
+              initial={false}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+            />
+          )}
         </button>
         <button
           onClick={() => setActiveTab("medications")}
           className={clsx(
-            "px-4 py-3 text-sm font-medium transition-colors border-b-2 whitespace-nowrap",
-            activeTab === "medications" ? "border-brand-teal text-brand-teal" : "border-transparent text-slate-500 hover:text-slate-700"
+            "relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
+            activeTab === "medications" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
-          Medications
+          <span className="relative z-10">Medications</span>
+          {activeTab === "medications" && (
+            <motion.div
+              layoutId="careplan-tab-indicator"
+              className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
+              initial={false}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+            />
+          )}
         </button>
         <button
           onClick={() => setActiveTab("todos")}
           className={clsx(
-            "px-4 py-3 text-sm font-medium transition-colors border-b-2 whitespace-nowrap",
-            activeTab === "todos" ? "border-brand-teal text-brand-teal" : "border-transparent text-slate-500 hover:text-slate-700"
+            "relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
+            activeTab === "todos" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
-          Things You Can Help With
+          <span className="relative z-10">Things You Can Help With</span>
+          {activeTab === "todos" && (
+            <motion.div
+              layoutId="careplan-tab-indicator"
+              className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
+              initial={false}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+            />
+          )}
         </button>
       </div>
 

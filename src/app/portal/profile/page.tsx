@@ -9,7 +9,7 @@ export default function ProfilePage() {
   const { currentUser } = useAuth();
 
   return (
-    <div className="w-full mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6 relative">
       <div>
         <h2 className="text-2xl font-bold text-text-primary">My Profile</h2>
         <p className="text-sm text-text-secondary mt-1">Manage your personal information and preferences.</p>
@@ -18,12 +18,12 @@ export default function ProfilePage() {
       <Card noPadding className="overflow-hidden">
         {/* Header Cover */}
         <div className="h-32 bg-gradient-to-r from-brand-teal/80 to-blue-600/80"></div>
-        
+
         {/* Profile Info */}
         <div className="px-8 pb-8">
           <div className="relative flex justify-between items-end -mt-12 mb-6">
             <div className="relative group">
-              <div className="w-24 h-24 bg-white rounded-full p-1 shadow-sm">
+              <div className="w-24 h-24 bg-white rounded-full p-1 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
                 <div className="w-full h-full rounded-full bg-slate-100 overflow-hidden relative">
                   <img src={currentUser?.avatarUrl || "https://i.pravatar.cc/150?u=admin"} alt="Profile" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center cursor-pointer transition-all">
@@ -54,7 +54,7 @@ export default function ProfilePage() {
                   <p className="text-sm font-medium text-text-primary">{currentUser?.email || "sarah.jenkins@example.com"}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
                   <Phone className="w-5 h-5" />
@@ -64,7 +64,7 @@ export default function ProfilePage() {
                   <p className="text-sm font-medium text-text-primary">+1 (555) 123-4567</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 shrink-0">
                   <Briefcase className="w-5 h-5" />

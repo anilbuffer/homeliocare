@@ -20,7 +20,7 @@ export function VisitsTab({ patient }: { patient: Patient }) {
 
   const getStatusBadge = (type: string) => {
     switch (type) {
-      case "Scheduled": return <Badge variant="info" className="bg-blue-50 text-blue-600"><span className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-1.5"></span>Scheduled</Badge>;
+      case "Scheduled": return <Badge variant="info" className="bg-brand-teal/20 text-brand-teal"><span className="w-1.5 h-1.5 rounded-full bg-blue-600 mr-1.5"></span>Scheduled</Badge>;
       case "Completed": return <Badge variant="success" className="bg-emerald-50 text-emerald-600"><span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1.5"></span>Completed</Badge>;
       case "Late": return <Badge variant="warning" className="bg-amber-50 text-amber-600"><span className="w-1.5 h-1.5 rounded-full bg-amber-600 mr-1.5"></span>Late</Badge>;
       case "Missed": return <Badge variant="error" className="bg-rose-50 text-rose-600"><span className="w-1.5 h-1.5 rounded-full bg-rose-600 mr-1.5"></span>Missed</Badge>;

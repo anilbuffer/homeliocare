@@ -309,14 +309,14 @@ export default function PortalMessagesPage() {
               {/* Info Panel */}
               {showInfoPanel && (
                 <div className="w-64 border-l border-slate-200/50 bg-[#fcfdfd] shrink-0 flex flex-col">
-                  <div className="p-4 border-b border-slate-200/50 flex items-center justify-between">
+                  <div className="px-4 py-3 border-b border-slate-200/50 flex items-center justify-between">
                     <h3 className="font-medium text-slate-900">Details</h3>
                     <button onClick={() => setShowInfoPanel(false)} className="p-1 text-slate-400 hover:text-slate-600 rounded-lg">
                       <X className="w-4 h-4" />
                     </button>
                   </div>
-                  <div className="p-6 flex flex-col items-center text-center border-b border-slate-200/50">
-                    <img src={activeThread.photo} alt={activeThread.careTeamMember} className="w-20 h-20 rounded-full object-cover mb-3 shadow-md" />
+                  <div className="px-4 py-3 flex flex-col items-center text-center border-b border-slate-200/50">
+                    <img src={activeThread.photo} alt={activeThread.careTeamMember} className="w-20 h-20 rounded-full object-cover mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)]" />
                     <h3 className="font-semibold text-slate-900">{activeThread.careTeamMember}</h3>
                     <p className="text-xs text-brand-teal mt-1">Care Team Member</p>
                   </div>
@@ -343,7 +343,7 @@ export default function PortalMessagesPage() {
       {showNewMessageModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
-            <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+            <div className="px-4 py-2 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
               <h2 className="font-semibold text-slate-900">New Message</h2>
               <button
                 onClick={() => setShowNewMessageModal(false)}
@@ -359,7 +359,7 @@ export default function PortalMessagesPage() {
                   <button
                     key={member.id}
                     onClick={() => handleStartNewChat(member)}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-100 text-left"
+                    className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors border border-slate-100 hover:border-slate-100 text-left"
                   >
                     <img src={member.photo} alt={member.name} className="w-10 h-10 rounded-full object-cover shadow-sm" />
                     <div>
