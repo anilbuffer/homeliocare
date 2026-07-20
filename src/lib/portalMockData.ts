@@ -84,7 +84,7 @@ export const visitHistory = [
     caregiver: "Marcus Thorne",
     duration: "4 hours",
     shortNote: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
-    tasksCompleted: ["Medication reminder", "Light housekeeping", "Companionship"],
+    tasksCompleted: ["Medication reminders", "Tidy living room", "Reading aloud or conversation"],
     photos: [],
   },
   {
@@ -93,7 +93,7 @@ export const visitHistory = [
     caregiver: "Sarah Jenkins",
     duration: "4 hours",
     shortNote: "Good morning overall. Assisted with bathing and dressing.",
-    tasksCompleted: ["Personal Care", "Meal preparation", "Mobility assistance"],
+    tasksCompleted: ["Help with getting dressed and bathing", "Breakfast preparation", "20-minute walk"],
     photos: [],
   },
 ];
@@ -130,6 +130,28 @@ export const carePlanSummary = {
     { title: "Medication Support", progress: 100, description: "Daily reminders for morning and evening medications." },
     { title: "Companionship", progress: 95, description: "Engaging in hobbies, conversation, and mental exercises." }
   ],
+  tasks: [
+    {
+      category: "Personal Care",
+      items: ["Help with getting dressed and bathing", "Assistance with grooming"]
+    },
+    {
+      category: "Meals",
+      items: ["Breakfast preparation", "Lunch preparation", "Clean up dining area"]
+    },
+    {
+      category: "Light Housekeeping",
+      items: ["Laundry", "Tidy living room"]
+    },
+    {
+      category: "Health Monitoring",
+      items: ["Medication reminders", "Check blood pressure"]
+    },
+    {
+      category: "Companionship",
+      items: ["20-minute walk", "Reading aloud or conversation"]
+    }
+  ]
 };
 
 export const billingData = {
@@ -141,6 +163,70 @@ export const billingData = {
 };
 
 export const documentsData = [
-  { id: "doc-1", name: "October Care Plan Summary", date: "Oct 1, 2026", type: "PDF" },
-  { id: "doc-2", name: "Service Agreement", date: "Jan 15, 2026", type: "PDF" },
+  { id: "doc-1", name: "October Care Plan Summary", date: "Oct 1, 2026", type: "PDF", category: "Care Plan Summary", needsSignature: false },
+  { id: "doc-2", name: "Service Agreement v2", date: "Oct 20, 2026", type: "PDF", category: "Signed Agreements", needsSignature: true },
+  { id: "doc-3", name: "September Invoice", date: "Oct 1, 2026", type: "PDF", category: "Invoices & Receipts", needsSignature: false },
+  { id: "doc-4", name: "Aetna Insurance Card", date: "Jan 10, 2026", type: "IMG", category: "Insurance Information", needsSignature: false },
 ];
+
+export const medicationsData = [
+  { id: "med-1", name: "Lisinopril", purpose: "For blood pressure", schedule: "Morning", icon: "pill", todayStatus: "reminded", declineReason: null },
+  { id: "med-2", name: "Atorvastatin", purpose: "For cholesterol", schedule: "Evening", icon: "capsule", todayStatus: "upcoming", declineReason: null },
+  { id: "med-3", name: "Vitamin D3", purpose: "Supplement", schedule: "Morning", icon: "vitamin", todayStatus: "declined", declineReason: "Client felt nauseous; nurse notified." },
+];
+
+export const todosData = [
+  { id: "todo-1", text: "Refill Lisinopril prescription by Oct 28", dueDate: "Oct 28, 2026", status: "pending" },
+  { id: "todo-2", text: "Sign updated service agreement", dueDate: "Oct 30, 2026", status: "pending" },
+  { id: "todo-3", text: "Upcoming care plan review via Zoom", dueDate: "Nov 5, 2026", status: "pending" },
+];
+
+export const feedbackHistoryData = [
+  { id: "fb-1", date: "Oct 10, 2026", category: "Care Quality", type: "feedback", status: "Resolved", description: "Sarah is doing a wonderful job getting my dad to go on walks." },
+  { id: "fb-2", date: "Sep 22, 2026", category: "Scheduling", type: "complaint", status: "Being Reviewed", description: "The weekend caregiver arrived 30 mins late without calling." },
+];
+
+export const portalActivities = [
+  {
+    id: "act-1",
+    type: "visit_completed",
+    title: "Visit completed",
+    description: "Good morning overall. Assisted with bathing and dressing.",
+    timestamp: "Today at 1:00 PM",
+    link: "/portal/visits", // links into Visit Notes page for detail
+  },
+  {
+    id: "act-2",
+    type: "care_plan_updated",
+    title: "Care plan updated",
+    description: "Added focus on fall prevention.",
+    timestamp: "Yesterday",
+    link: "/portal/care-plan",
+  },
+  {
+    id: "act-3",
+    type: "incident_reported",
+    title: "Incident reported",
+    description: "Minor skin tear on arm, cleaned and bandaged.",
+    timestamp: "Oct 21",
+    link: null,
+  },
+  {
+    id: "act-4",
+    type: "visit_completed",
+    title: "Visit completed",
+    description: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
+    timestamp: "Oct 21 at 5:00 PM",
+    link: "/portal/visits",
+  },
+  {
+    id: "act-5",
+    type: "care_plan_updated",
+    title: "Care plan updated",
+    description: "Adjusted medication schedule.",
+    timestamp: "Oct 20",
+    link: "/portal/care-plan",
+  }
+];
+
+export const statusBanner = null; // e.g. { type: 'warning', message: "Today's visit hasn't been confirmed yet" }

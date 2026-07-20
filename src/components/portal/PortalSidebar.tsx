@@ -14,7 +14,8 @@ import {
   LogIn,
   User,
   Settings,
-  HelpCircle
+  HelpCircle,
+  Calendar
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -25,11 +26,13 @@ const navGroups = [
     label: "",
     items: [
       { name: "Overview", icon: LayoutDashboard, id: "overview" },
-      { name: "Visit History", icon: CalendarDays, id: "visits" },
-      { name: "Messages", icon: MessageSquare, id: "messages" },
-      { name: "Billing & Payments", icon: Receipt, id: "billing" },
-      { name: "Documents", icon: FileText, id: "documents" },
+      { name: "Scheduling", icon: Calendar, id: "scheduling" },
       { name: "Care Plan", icon: Heart, id: "care-plan" },
+      { name: "Visit History", icon: CalendarDays, id: "visits" },
+      { name: "Billing & Payments", icon: Receipt, id: "billing" },
+      { name: "Messages", icon: MessageSquare, id: "messages" },
+      { name: "Documents", icon: FileText, id: "documents" },
+
     ],
   },
 ];
@@ -45,6 +48,7 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
 
   const [activeItem, setActiveItem] = useState(() => {
     if (pathname?.startsWith("/portal/visits")) return "visits";
+    if (pathname?.startsWith("/portal/schedule")) return "scheduling";
     if (pathname?.startsWith("/portal/messages")) return "messages";
     if (pathname?.startsWith("/portal/billing")) return "billing";
     if (pathname?.startsWith("/portal/documents")) return "documents";
@@ -54,6 +58,7 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
 
   React.useEffect(() => {
     if (pathname.startsWith("/portal/visits")) setActiveItem("visits");
+    else if (pathname.startsWith("/portal/schedule")) setActiveItem("scheduling");
     else if (pathname.startsWith("/portal/messages")) setActiveItem("messages");
     else if (pathname.startsWith("/portal/billing")) setActiveItem("billing");
     else if (pathname.startsWith("/portal/documents")) setActiveItem("documents");
@@ -104,11 +109,12 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
                   const Icon = item.icon;
 
                   let href = "/portal";
+                  if (item.id === "scheduling") href = "/portal/schedule";
                   if (item.id === "visits") href = "/portal/visits";
-                  if (item.id === "messages") href = "/portal/messages";
-                  if (item.id === "billing") href = "/portal/billing";
-                  if (item.id === "documents") href = "/portal/documents";
                   if (item.id === "care-plan") href = "/portal/care-plan";
+                  if (item.id === "billing") href = "/portal/billing";
+                  if (item.id === "messages") href = "/portal/messages";
+                  if (item.id === "documents") href = "/portal/documents";
 
                   return (
                     <li key={item.id} className="relative">
@@ -143,7 +149,7 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
 
         {/* User Profile */}
         <div className="p-4 border-t border-sidebar-active relative">
-          <button 
+          <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className="flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left"
           >
@@ -167,24 +173,24 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
                 className="absolute bottom-[calc(100%-10px)] left-4 right-4 mb-2 bg-slate-800 border border-sidebar-active rounded-xl shadow-xl overflow-hidden z-50"
               >
                 <div className="p-1 flex flex-col gap-1">
-                  <Link 
-                    href="/portal/profile" 
+                  <Link
+                    href="/portal/profile"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <User className="w-4 h-4" />
                     My Profile
                   </Link>
-                  <Link 
-                    href="/portal/settings" 
+                  <Link
+                    href="/portal/settings"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <Settings className="w-4 h-4" />
                     Account Settings
                   </Link>
-                  <Link 
-                    href="/portal/help" 
+                  <Link
+                    href="/portal/help"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
@@ -192,8 +198,8 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
                     Support
                   </Link>
                   <div className="h-px w-full bg-sidebar-active/50 my-0.5"></div>
-                  <Link 
-                    href="/login" 
+                  <Link
+                    href="/login"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >

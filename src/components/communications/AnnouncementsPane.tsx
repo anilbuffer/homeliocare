@@ -85,7 +85,7 @@ export function AnnouncementsPane() {
             </div>
           </div>
         ) : (
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-7xl mx-auto space-y-4">
             {mockAnnouncements.map(announcement => (
               <div key={announcement.id} className="bg-white rounded-xl border border-slate-200 p-5 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-shadow">
                 <div className="flex justify-between items-start mb-2">

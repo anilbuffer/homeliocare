@@ -155,14 +155,14 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             )}
 
             {/* Workflow Tracker */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <h3 className="text-sm font-bold text-slate-800 mb-2">Workflow Status</h3>
               <WorkflowStepper workflow={incident.workflow} />
             </div>
 
             {/* Details Grid */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <h3 className="text-sm font-bold text-slate-800 mb-4">People Involved</h3>
                 <div className="space-y-4">
                   {incident.peopleInvolved.map((person, i) => (
@@ -179,7 +179,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col gap-4">
+              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col gap-4">
                 <div>
                   <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> Incident Time</div>
                   <div className="text-sm font-medium text-slate-800">{format(new Date(incident.incidentDate), "MMM d, yyyy - h:mm a")}</div>
@@ -198,7 +198,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <h3 className="text-sm font-bold text-slate-800 mb-3">Incident Description</h3>
               <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap bg-slate-50 p-4 rounded-lg border border-slate-100">
                 {incident.description}
@@ -206,7 +206,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
 
             {/* Regulatory Reporting */}
-            <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-brand-teal" />
@@ -256,7 +256,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Linked Visit */}
             {incident.linkedVisit && (
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-start justify-between group cursor-pointer hover:border-brand-teal/50 transition-colors">
+              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-start justify-between group cursor-pointer hover:border-brand-teal/50 transition-colors">
                 <div>
                   <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-2">
                     <Link2 className="w-4 h-4 text-brand-teal" />
@@ -287,7 +287,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Corrective Actions */}
             {incident.correctiveActions && incident.correctiveActions.length > 0 && (
-              <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                 <h3 className="text-sm font-bold text-slate-800 mb-4">Corrective Action Plan</h3>
                 <CorrectiveActionList actions={incident.correctiveActions} />
               </div>
@@ -295,7 +295,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Sign-off */}
             {incident.signOff && (
-              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200 text-center">
+              <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center">
                 <div className="text-sm text-slate-500 mb-1">Incident Closed & Signed Off By</div>
                 <div className="font-[signature] text-3xl text-slate-800 my-2" style={{ fontFamily: "cursive" }}>
                   {incident.signOff.name}

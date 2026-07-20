@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { PortalSidebar } from "./PortalSidebar";
 import { PortalTopBar } from "./PortalTopBar";
-
+import { FeedbackFAB } from "./FeedbackFAB";
 export function PortalLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -16,6 +16,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
+      <FeedbackFAB />
     </div>
   );
 }
