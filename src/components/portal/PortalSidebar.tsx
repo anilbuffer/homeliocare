@@ -11,7 +11,10 @@ import {
   Heart,
   ChevronDown,
   LogOut,
-  LogIn
+  LogIn,
+  User,
+  Settings,
+  HelpCircle
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -165,12 +168,28 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
               >
                 <div className="p-1 flex flex-col gap-1">
                   <Link 
-                    href="/login" 
+                    href="/portal/profile" 
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
-                    <LogIn className="w-4 h-4" />
-                    Log in
+                    <User className="w-4 h-4" />
+                    My Profile
+                  </Link>
+                  <Link 
+                    href="/portal/settings" 
+                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    <Settings className="w-4 h-4" />
+                    Preferences
+                  </Link>
+                  <Link 
+                    href="/portal/help" 
+                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    <HelpCircle className="w-4 h-4" />
+                    Help Center
                   </Link>
                   <div className="h-px w-full bg-sidebar-active/50 my-0.5"></div>
                   <Link 
