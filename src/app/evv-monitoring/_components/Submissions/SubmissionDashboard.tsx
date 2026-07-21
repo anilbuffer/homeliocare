@@ -31,12 +31,12 @@ export function SubmissionDashboard() {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  
+
   const filteredSubmissions = useMemo(() => {
     if (!searchQuery) return mockSubmissions;
     const q = searchQuery.toLowerCase();
-    return mockSubmissions.filter(s => 
-      s.id.toLowerCase().includes(q) || 
+    return mockSubmissions.filter(s =>
+      s.id.toLowerCase().includes(q) ||
       s.aggregator.toLowerCase().includes(q)
     );
   }, [searchQuery]);
@@ -76,7 +76,7 @@ export function SubmissionDashboard() {
             <p className="text-xs font-medium text-teal-100 uppercase tracking-wider">Pending Batch</p>
             <p className="text-2xl font-bold">{pendingVisits} Visits</p>
           </div>
-          <button 
+          <button
             onClick={handleSubmit}
             disabled={isSubmitting || pendingVisits === 0}
             className="w-full sm:w-auto justify-center bg-white/20 hover:bg-white/30 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
@@ -92,12 +92,12 @@ export function SubmissionDashboard() {
           <h3 className="text-base font-bold text-slate-900">Recent Aggregator Submissions</h3>
           <div className="relative w-full sm:w-64">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input 
-              type="text" 
-              placeholder="Search batch ID or aggregator..." 
+            <input
+              type="text"
+              placeholder="Search batch ID or aggregator..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all shadow-sm"
+              className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
             />
           </div>
         </div>
@@ -116,7 +116,7 @@ export function SubmissionDashboard() {
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm">
               {filteredSubmissions.map((sub, idx) => (
-                <motion.tr 
+                <motion.tr
                   key={sub.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -155,7 +155,7 @@ export function SubmissionDashboard() {
                     )}
                   </td>
                   <td className="p-4 text-right">
-                    <button 
+                    <button
                       onClick={() => setSelectedJsonSub(sub.id)}
                       className="text-brand-teal hover:text-teal-700 font-semibold text-sm flex items-center gap-1.5 ml-auto">
                       <FileText className="w-4 h-4" />
@@ -183,7 +183,7 @@ export function SubmissionDashboard() {
             </div>
             <div className="p-4 sm:p-6 bg-slate-900 overflow-y-auto flex-1">
               <pre className="text-xs sm:text-sm text-emerald-400 font-mono overflow-x-auto whitespace-pre">
-{`{
+                {`{
   "batchId": "${selectedJsonSub}",
   "status": "Accepted",
   "timestamp": "${new Date().toISOString()}",
@@ -199,7 +199,7 @@ export function SubmissionDashboard() {
               </pre>
             </div>
             <div className="p-4 border-t border-slate-100 flex justify-end bg-slate-50">
-              <button 
+              <button
                 onClick={() => setSelectedJsonSub(null)}
                 className="w-full sm:w-auto px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-bold rounded-xl transition-colors">
                 Close Viewer
