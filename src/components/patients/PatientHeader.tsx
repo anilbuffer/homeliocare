@@ -179,7 +179,7 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
         <div className="space-y-4 py-2">
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">To</label>
-            <input type="text" readOnly value={`${patient.emergencyContacts?.[0]?.name || 'No contact'} (${patient.emergencyContacts?.[0]?.relationship || 'N/A'})`} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm bg-slate-50 text-slate-600 outline-none" />
+            <input type="text" readOnly value={`${patient.demographics?.emergencyContacts?.[0]?.name || 'No contact'} (${patient.demographics?.emergencyContacts?.[0]?.relation || 'N/A'})`} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm bg-slate-50 text-slate-600 outline-none" />
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
