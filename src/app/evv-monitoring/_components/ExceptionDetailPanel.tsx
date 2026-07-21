@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { EVVException } from "../types";
 import { X, MapPin, Clock, CheckCircle2, ChevronRight } from "lucide-react";
 import clsx from "clsx";
+import { VisitMaintenanceModal } from "./VisitMaintenanceModal";
 
 interface ExceptionDetailPanelProps {
   exception: EVVException | null;
@@ -15,10 +16,16 @@ interface ExceptionDetailPanelProps {
 export function ExceptionDetailPanel({ exception, onClose, onResolve }: ExceptionDetailPanelProps) {
   const [resolving, setResolving] = useState(false);
   const [resolveAction, setResolveAction] = useState("");
+  const [isMaintenanceOpen, setIsMaintenanceOpen] = useState(false);
 
   if (!exception) return null;
 
-  const handleResolve = () => {
+  const handleConfirmClick = () => {
+    setIsMaintenanceOpen(true);
+  };
+
+  const handleMaintenanceSave = (reasonCode: string, note: string) => {
+    setIsMaintenanceOpen(false);
     setResolving(true);
     setTimeout(() => {
       onResolve(exception.id, resolveAction);
@@ -189,7 +196,7 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
           <div className="p-3 border-t border-slate-100 bg-white">
             <button
               disabled={!resolveAction || resolving}
-              onClick={handleResolve}
+              onClick={handleConfirmClick}
               className={clsx(
                 "w-full py-2.5 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-all",
                 resolveAction && !resolving
@@ -211,9 +218,17 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
               )}
             </button>
           </div>
-
         </motion.div>
       </motion.div>
+      
+      {isMaintenanceOpen && (
+        <VisitMaintenanceModal
+          isOpen={isMaintenanceOpen}
+          onClose={() => setIsMaintenanceOpen(false)}
+          onSave={handleMaintenanceSave}
+          exceptionType={exception.type}
+        />
+      )}
     </AnimatePresence>
   );
 }

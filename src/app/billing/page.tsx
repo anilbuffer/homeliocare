@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BillingHeader } from "@/components/billing/BillingHeader";
+import { PreBillingScrubGate } from "@/components/billing/PreBillingScrubGate";
 import { FinancialSummaryStrip } from "@/components/billing/FinancialSummaryStrip";
 import { RevenueByPayer } from "@/components/billing/RevenueByPayer";
 import { ClaimsPipeline } from "@/components/billing/ClaimsPipeline";
@@ -32,6 +33,8 @@ export default function BillingWorkspace() {
       >
         <BillingHeader />
         
+        <PreBillingScrubGate />
+
         <FinancialSummaryStrip />
 
         <RevenueByPayer />

@@ -57,6 +57,18 @@ const navGroups = [
     ],
   },
   {
+    label: "CAREGIVER PORTAL",
+    items: [
+      { name: "EVV Capture", icon: Activity, id: "evv-capture" },
+    ],
+  },
+  {
+    label: "FINANCE & PAYROLL",
+    items: [
+      { name: "Payroll", icon: Receipt, id: "payroll" },
+    ],
+  },
+  {
     label: "",
     items: [
       { name: "Settings", icon: Settings, id: "settings" },
@@ -86,6 +98,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/referrals")) return "referrals";
     if (pathname?.startsWith("/communications")) return "communications";
     if (pathname?.startsWith("/reports")) return "reports";
+    if (pathname?.startsWith("/evv-capture")) return "evv-capture";
+    if (pathname?.startsWith("/payroll")) return "payroll";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -116,6 +130,10 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
       setActiveItem("communications");
     } else if (pathname.startsWith("/reports")) {
       setActiveItem("reports");
+    } else if (pathname.startsWith("/evv-capture")) {
+      setActiveItem("evv-capture");
+    } else if (pathname.startsWith("/payroll")) {
+      setActiveItem("payroll");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -177,7 +195,9 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "compliance") href = "/compliance";
                   if (item.id === "referrals") href = "/referrals";
                   if (item.id === "communications") href = "/communications";
-                  if (item.id === "reports") href = "/reports";
+                  if (pathname?.startsWith("/reports")) href = "/reports";
+                  if (item.id === "evv-capture") href = "/evv-capture";
+                  if (item.id === "payroll") href = "/payroll";
 
                   return (
                     <li key={item.id} className="relative">
