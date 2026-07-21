@@ -15,7 +15,7 @@ export function IncidentsHeader({ onReportIncident }: IncidentsHeaderProps) {
 
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-      <div className="mb-4 lg:mb-8">
+      <div className="mb-4 lg:mb-6">
         <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Incident Reports</h1>
         <p className="text-sm text-slate-500 mt-1">Manage and track incident reports, regulatory compliance, and corrective actions.</p>
       </div>

@@ -41,8 +41,8 @@ export function AuditChecklist({ activeTab }: Props) {
   const score = scoreableItems.length > 0 ? Math.round((passItems.length / scoreableItems.length) * 100) : 0;
 
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
-      <div className="flex items-center justify-between mb-6 pb-4 border-b border-border-subtle">
+    <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
+      <div className="flex items-center justify-between mb-6 p-4 border-b border-border-subtle">
         <div>
           <h3 className="text-lg font-medium text-text-primary">{activeTab} Checklist</h3>
           <p className="text-xs text-text-secondary mt-1">Complete all items to finalize audit</p>

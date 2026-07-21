@@ -12,7 +12,7 @@ export function PortalLayout({ children }: { children: React.ReactNode }) {
       <PortalSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col h-screen overflow-hidden relative">
         <PortalTopBar onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-24 sm:pb-12 transition-all duration-300 ease-in-out">
+        <main className="flex-1 overflow-y-auto px-4 sm:px-4 lg:px-6 py-4 sm:py-4 pb-20 sm:pb-10 transition-all duration-300 ease-in-out">
           {children}
         </main>
       </div>

@@ -47,7 +47,7 @@ export function AggregatorConfig() {
         ))}
       </div>
 
-      <div className="lg:col-span-3">
+      <div className="lg:col-span-3" key={selectedState.state}>
         <Card className="p-6 md:p-8">
           <div className="flex justify-between items-center mb-8">
             <div>
@@ -115,10 +115,13 @@ export function AggregatorConfig() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1.5">Rounding Rule (Minutes)</label>
-                  <select className="w-full px-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:border-brand-teal/50 transition-all shadow-sm shadow-slate-100">
-                    <option value="1" selected={selectedState.roundingRuleMinutes === 1}>Exact (1 min)</option>
-                    <option value="7" selected={selectedState.roundingRuleMinutes === 7}>7/8 Minute Rule</option>
-                    <option value="15" selected={selectedState.roundingRuleMinutes === 15}>15 Minute Rule</option>
+                  <select 
+                    className="w-full px-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:border-brand-teal/50 transition-all shadow-sm shadow-slate-100"
+                    defaultValue={selectedState.roundingRuleMinutes}
+                  >
+                    <option value={1}>Exact (1 min)</option>
+                    <option value={7}>7/8 Minute Rule</option>
+                    <option value={15}>15 Minute Rule</option>
                   </select>
                 </div>
                 

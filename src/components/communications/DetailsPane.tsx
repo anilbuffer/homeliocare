@@ -17,7 +17,7 @@ export function DetailsPane({ conversation, onClose, isOpen }: DetailsPaneProps)
   return (
     <div className="w-full bg-white flex flex-col h-full shrink-0 animate-in slide-in-from-right-10 duration-200 ease-out">
       {/* Header */}
-      <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200 shrink-0">
+      <div className="h-14 flex items-center justify-between px-6 border-b border-slate-200 shrink-0">
         <h3 className="font-semibold text-slate-800">Details</h3>
         <button
           onClick={onClose}

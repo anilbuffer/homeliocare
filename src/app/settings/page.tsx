@@ -26,13 +26,13 @@ export default function SettingsPage() {
 
   return (
     <div className="w-full max-w-full mx-auto">
-      <div className="mb-8">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Settings & Configuration</h1>
         <p className="text-xs text-slate-500 mt-1">Manage agency-wide preferences, compliance configurations, and security policies.</p>
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex items-center p-1.5 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl mb-8 overflow-x-auto [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 border border-slate-200 w-full sm:w-max max-w-full">
+      <div className="flex items-center p-1.5 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl mb-6 overflow-x-auto [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 border border-slate-200 w-full sm:w-max max-w-full">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (

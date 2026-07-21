@@ -35,7 +35,7 @@ export default function ReferralsPage() {
   return (
     <div className="w-full mx-auto space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-text-primary">Referrals & Intake</h2>
           <p className="text-sm text-text-secondary mt-1">3 active referrals in pipeline</p>
@@ -67,7 +67,7 @@ export default function ReferralsPage() {
             </button>
           </div>
 
-          <button 
+          <button
             onClick={() => setIsModalOpen(true)}
             className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_24px_rgba(14,163,131,0.25)] hover:shadow-lg"
           >
@@ -100,9 +100,9 @@ export default function ReferralsPage() {
         </motion.div>
       </motion.div>
 
-      <NewReferralModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <NewReferralModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </div>
   );

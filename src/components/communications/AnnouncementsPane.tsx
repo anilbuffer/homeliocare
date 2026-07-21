@@ -8,7 +8,7 @@ export function AnnouncementsPane() {
   return (
     <div className="flex-1 flex flex-col h-full bg-slate-50 min-w-0">
       {/* Header */}
-      <div className="h-16 flex items-center justify-between px-3 border-b border-slate-200 bg-white shrink-0">
+      <div className="h-14 flex items-center justify-between px-3 border-b border-slate-200 bg-white shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
             <Megaphone className="w-4 h-4 text-indigo-600" />

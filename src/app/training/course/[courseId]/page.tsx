@@ -29,7 +29,7 @@ export default async function CourseOverviewPage({ params }: { params: Promise<{
     <div className="min-h-screen bg-[#F4F6F8] -mt-8">
       {/* Top Navigation */}
       <div className="bg-white border-b border-slate-200 sticky -top-8 z-40 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-        <div className="w-full mx-auto h-16 flex items-center">
+        <div className="w-full mx-auto h-14 flex items-center">
           <Link href="/training" className="flex items-center gap-2 text-slate-500 hover:text-slate-800 transition-colors text-sm font-medium">
             <ArrowLeft className="w-4 h-4" />
             Back to Training Center

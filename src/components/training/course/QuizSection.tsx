@@ -86,8 +86,8 @@ export function QuizSection({ course, onPass }: QuizSectionProps) {
     const isAnswered = answers[currentQuestionIdx] !== undefined;
 
     return (
-      <div className="max-w-3xl mx-auto h-full flex flex-col p-4 md:p-8">
-        <div className="mb-8">
+      <div className="max-w-3xl mx-auto h-full flex flex-col p-4 md:p-6">
+        <div className="mb-6">
           <div className="flex justify-between text-sm font-semibold text-slate-500 mb-2">
             <span>Question {currentQuestionIdx + 1} of {quiz.questions.length}</span>
             <span>{Math.round(((currentQuestionIdx) / quiz.questions.length) * 100)}% Complete</span>

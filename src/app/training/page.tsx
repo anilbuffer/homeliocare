@@ -22,7 +22,7 @@ export default function TrainingPage() {
   return (
     <div className="w-full mx-auto space-y-4">
       {/* Header and Toggle */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-xl font-bold text-text-primary">Training Center</h2>
           <p className="text-xs text-text-secondary mt-0.5">Compliance, certifications & continuing education</p>

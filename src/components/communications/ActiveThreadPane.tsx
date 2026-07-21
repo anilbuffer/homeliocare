@@ -26,7 +26,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
   const [recipientSearch, setRecipientSearch] = useState("");
   const [selectedRecipient, setSelectedRecipient] = useState<Contact | null>(null);
   const [isRecipientDropdownOpen, setIsRecipientDropdownOpen] = useState(false);
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const optionsMenuRef = useRef<HTMLDivElement>(null);
   const recipientDropdownRef = useRef<HTMLDivElement>(null);
@@ -58,14 +58,14 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
 
   if (isCreatingNew) {
     const contactsArray = Object.values(mockContacts);
-    const filteredContacts = contactsArray.filter(c => 
-      c.name.toLowerCase().includes(recipientSearch.toLowerCase()) || 
+    const filteredContacts = contactsArray.filter(c =>
+      c.name.toLowerCase().includes(recipientSearch.toLowerCase()) ||
       c.role.toLowerCase().includes(recipientSearch.toLowerCase())
     );
 
     return (
       <div className="flex-1 flex flex-col h-full bg-[#f8fafd] min-w-0 relative">
-        <div className="h-16 flex items-center px-4 lg:px-6 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
+        <div className="h-14 flex items-center px-4 lg:px-6 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
           {onBack && (
             <button
               onClick={onBack}
@@ -76,10 +76,10 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
           )}
           <h2 className="font-semibold text-slate-900 text-lg">New Message</h2>
         </div>
-        
+
         <div className="flex-1 overflow-y-auto p-4 lg:p-8 custom-scrollbar">
           <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200/60 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.06)] p-6 space-y-6">
-            
+
             <div ref={recipientDropdownRef}>
               <label className="block text-sm font-semibold text-slate-700 mb-1.5">To</label>
               <div className="relative">
@@ -98,7 +98,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
                         <span className="text-xs text-slate-500 ml-2 bg-slate-200/50 px-1.5 py-0.5 rounded">{selectedRecipient.role}</span>
                       </div>
                     </div>
-                    <button 
+                    <button
                       onClick={() => setSelectedRecipient(null)}
                       className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-lg transition-colors"
                     >
@@ -107,18 +107,18 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
                   </div>
                 ) : (
                   <>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={recipientSearch}
                       onChange={(e) => {
                         setRecipientSearch(e.target.value);
                         setIsRecipientDropdownOpen(true);
                       }}
                       onFocus={() => setIsRecipientDropdownOpen(true)}
-                      placeholder="Search patients, family members, or staff..." 
+                      placeholder="Search patients, family members, or staff..."
                       className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
                     />
-                    
+
                     {isRecipientDropdownOpen && (
                       <div className="absolute top-full left-0 right-0 mt-1 max-h-60 overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-[0_8px_30px_-6px_rgba(0,0,0,0.12)] z-50 p-1 custom-scrollbar">
                         {filteredContacts.length > 0 ? filteredContacts.map(contact => (
@@ -157,12 +157,12 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
               <label className="block text-sm font-semibold text-slate-700 mb-1.5">Channel</label>
               <div className="flex flex-wrap gap-3">
                 {['In-App', 'SMS', 'Email'].map(channel => (
-                  <button 
-                    key={channel} 
+                  <button
+                    key={channel}
                     className={clsx(
                       "px-5 py-2 text-sm font-medium rounded-xl border transition-all",
-                      channel === 'In-App' 
-                        ? "border-brand-teal bg-brand-teal/5 text-brand-teal shadow-[0_2px_10px_-2px_rgba(20,184,166,0.2)]" 
+                      channel === 'In-App'
+                        ? "border-brand-teal bg-brand-teal/5 text-brand-teal shadow-[0_2px_10px_-2px_rgba(20,184,166,0.2)]"
                         : "border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50"
                     )}
                   >
@@ -174,9 +174,9 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
 
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1.5">Message</label>
-              <textarea 
-                rows={6} 
-                placeholder="Type your message here..." 
+              <textarea
+                rows={6}
+                placeholder="Type your message here..."
                 className="w-full p-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all resize-none placeholder:text-slate-400"
               />
             </div>
@@ -288,7 +288,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f8fafd] min-w-0 relative">
       {/* Header */}
-      <div className="h-16 flex items-center justify-between px-2 lg:px-6 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
+      <div className="h-14 flex items-center justify-between px-2 lg:px-6 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
         <div className="flex items-center gap-2 lg:gap-4">
           {onBack && (
             <button
@@ -339,7 +339,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
             <Info className="w-5 h-5" />
           </button>
           <div className="relative" ref={optionsMenuRef}>
-            <button 
+            <button
               onClick={() => setIsOptionsMenuOpen(!isOptionsMenuOpen)}
               className={clsx(
                 "p-2 rounded-lg transition-colors",
@@ -348,7 +348,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
             >
               <MoreVertical className="w-5 h-5" />
             </button>
-            
+
             {isOptionsMenuOpen && (
               <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-[0_8px_30px_-6px_rgba(0,0,0,0.12)] border border-slate-100 py-2 z-50 animate-in fade-in zoom-in-95 duration-200">
                 <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
@@ -388,7 +388,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
       )}
 
       {/* Message Stream */}
-      <div className="flex-1 overflow-y-auto p-6 pb-36 space-y-6 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-6 pb-30 space-y-6 custom-scrollbar">
         {messages.map((msg, idx) => {
           const isMe = msg.senderId === "me";
           const sender = isMe ? null : mockContacts[msg.senderId] || primaryParticipant;

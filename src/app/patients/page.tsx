@@ -33,7 +33,7 @@ export default function PatientsPage() {
   return (
     <div className="w-full mx-auto space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-text-primary">Patients</h2>
           <p className="text-sm text-text-secondary mt-1">Showing {Object.values(mockPatients).length} of 247 patients.</p>
@@ -68,7 +68,7 @@ export default function PatientsPage() {
           <button className="p-2.5 rounded-full bg-white border border-slate-200 text-slate-600 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-50 transition-colors">
             <Filter className="w-4 h-4" />
           </button>
-          <button 
+          <button
             onClick={() => setIsNewPatientModalOpen(true)}
             className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap"
           >
@@ -206,10 +206,10 @@ export default function PatientsPage() {
           ))}
         </div>
       )}
-      
-      <NewPatientModal 
-        isOpen={isNewPatientModalOpen} 
-        onClose={() => setIsNewPatientModalOpen(false)} 
+
+      <NewPatientModal
+        isOpen={isNewPatientModalOpen}
+        onClose={() => setIsNewPatientModalOpen(false)}
       />
     </div>
   );

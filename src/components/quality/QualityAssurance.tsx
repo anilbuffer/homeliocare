@@ -32,7 +32,7 @@ export function QualityAssurance() {
   const [activeTab, setActiveTab] = useState<AuditType>("Chart Audit");
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 full-width space-y-6">
+    <div className="p-4 sm:p-6 lg:p-6 full-width space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
