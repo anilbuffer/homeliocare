@@ -9,6 +9,7 @@ import { PipelineBoard } from "../../components/referrals/PipelineBoard";
 import { SourcePerformanceChart } from "../../components/referrals/SourcePerformanceChart";
 import { OnlineReferralQueue } from "../../components/referrals/OnlineReferralQueue";
 import { RecentlyDeclinedList } from "../../components/referrals/RecentlyDeclinedList";
+import { NewReferralModal } from "../../components/referrals/NewReferralModal";
 
 const container = {
   hidden: { opacity: 0 },
@@ -29,6 +30,7 @@ type ViewMode = "pipeline" | "list" | "tasks";
 
 export default function ReferralsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("pipeline");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="w-full mx-auto space-y-6">
@@ -65,7 +67,10 @@ export default function ReferralsPage() {
             </button>
           </div>
 
-          <button className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_24px_rgba(14,163,131,0.25)] hover:shadow-lg">
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_24px_rgba(14,163,131,0.25)] hover:shadow-lg"
+          >
             <Plus className="w-4 h-4" />
             New Referral
           </button>
@@ -94,6 +99,11 @@ export default function ReferralsPage() {
           </div>
         </motion.div>
       </motion.div>
+
+      <NewReferralModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }

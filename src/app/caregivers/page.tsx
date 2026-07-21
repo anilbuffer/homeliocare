@@ -10,10 +10,13 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
 import { CaregiverKpiStrip } from "@/components/caregivers/CaregiverKpiStrip";
 import { cn } from "@/components/ui/Card";
+import { AddCaregiverModal } from "@/components/caregivers/AddCaregiverModal";
+import { HRNavHeader } from "@/components/caregivers/HRNavHeader";
 
 export default function CaregiverRosterPage() {
   const [viewMode, setViewMode] = useState<"grid" | "table">("table");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const caregiversList = Object.values(mockCaregivers).filter(cg =>
     cg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -22,14 +25,19 @@ export default function CaregiverRosterPage() {
 
   return (
     <div className="w-full mx-auto space-y-6">
+      <HRNavHeader activeTab="roster" />
+
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2 mt-2">
         <div>
-          <h2 className="text-2xl font-bold text-text-primary">Caregivers</h2>
+          <h2 className="text-xl font-bold text-text-primary">Roster Details</h2>
           <p className="text-sm text-text-secondary mt-1">{caregiversList.length} active caregivers in roster.</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap"
+          >
             <Plus className="w-4 h-4" />
             Add Caregiver
           </button>
@@ -228,6 +236,11 @@ export default function CaregiverRosterPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AddCaregiverModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }

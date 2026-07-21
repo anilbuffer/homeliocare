@@ -5,11 +5,13 @@ import { Plus, ChevronDown, LayoutDashboard, Send, CreditCard } from "lucide-rea
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { NewClaimModal } from "./NewClaimModal";
 
 const dateRanges = ["This Month", "Last Quarter", "Year to Date", "Custom"];
 
 export function BillingHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRange, setSelectedRange] = useState(dateRanges[0]);
   const pathname = usePathname();
 
@@ -49,7 +51,10 @@ export function BillingHeader() {
           )}
         </div>
         
-        <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
+        <button 
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap"
+        >
           <Plus className="w-4 h-4" />
           New Claim
         </button>
@@ -116,6 +121,11 @@ export function BillingHeader() {
         </Link>
 
       </div>
+
+      <NewClaimModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }
