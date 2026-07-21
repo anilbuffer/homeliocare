@@ -5,6 +5,7 @@ import { mockChecklists, AuditType, ChecklistItem } from "./mockData";
 import { CheckCircle2, AlertCircle, MessageSquare, Save } from "lucide-react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
+import { Modal } from "@/components/ui/Modal";
 
 interface Props {
   activeTab: AuditType;
@@ -12,6 +13,7 @@ interface Props {
 
 export function AuditChecklist({ activeTab }: Props) {
   const [items, setItems] = useState<ChecklistItem[]>(mockChecklists[activeTab] || []);
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [showComments, setShowComments] = useState<Record<string, boolean>>({});
 
   // Reset items when tab changes
@@ -52,14 +54,16 @@ export function AuditChecklist({ activeTab }: Props) {
             <div className="text-2xl font-bold text-brand-teal tabular-nums">{score}%</div>
             <div className="text-xs text-text-secondary font-medium">Current Score</div>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-brand-teal hover:bg-brand-teal-hover text-white rounded-xl transition-colors font-medium text-sm">
+          <button 
+            onClick={() => setIsSaveModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-brand-teal hover:bg-brand-teal-hover text-white rounded-xl transition-colors font-medium text-sm">
             <Save className="w-4 h-4" />
             Save Draft
           </button>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto pr-2 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-100/50 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <div className="flex-1 overflow-y-auto mx-4 my-2 pr-2 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-100/50 [&::-webkit-scrollbar-thumb]:rounded-full">
         {items.map((item) => (
           <div key={item.id} className="p-4 rounded-2xl bg-white border border-slate-200 hover:border-brand-teal/30 shadow-[0_2px_10px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 group">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -158,6 +162,28 @@ export function AuditChecklist({ activeTab }: Props) {
           </div>
         ))}
       </div>
+
+      <Modal
+        isOpen={isSaveModalOpen}
+        onClose={() => setIsSaveModalOpen(false)}
+        title="Draft Saved"
+        description={`Your progress on the ${activeTab} has been saved.`}
+        footer={
+          <button 
+            onClick={() => setIsSaveModalOpen(false)}
+            className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
+          >
+            Okay
+          </button>
+        }
+      >
+        <div className="flex flex-col items-center justify-center py-6">
+          <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-4">
+            <CheckCircle2 className="w-8 h-8" />
+          </div>
+          <p className="text-slate-600 text-center font-medium">You can return to this audit anytime to complete it.</p>
+        </div>
+      </Modal>
     </div>
   );
 }

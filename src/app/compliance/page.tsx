@@ -41,8 +41,8 @@ export default function ComplianceTrackingPage() {
         <TopBar onMenuClick={() => setSidebarOpen(true)} />
 
         {/* Scrollable Page Content */}
-        <main className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-6 py-4 sm:py-4 pb-20 sm:pb-10 transition-all duration-300 ease-in-out">
-          <div className="full-width space-y-6">
+        <main className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-6 py-4 sm:py-4 pb-15 sm:pb-10 transition-all duration-300 ease-in-out">
+          <div className="full-width space-y-4">
 
             {/* Header Area */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -86,7 +86,7 @@ export default function ComplianceTrackingPage() {
             </div>
 
             {/* Row 5 & 6: Reminders and Verification Queue */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-8">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-6">
               <div>
                 <ReminderConfigPanel logs={mockReminderLogs} />
               </div>

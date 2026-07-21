@@ -39,27 +39,27 @@ export function MedicationsTab({ patient }: { patient: Patient }) {
       {/* Scheduled medications */}
       <div>
         <TableHeader title="Scheduled medications" />
-        <Card className="overflow-hidden bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+        <Card className="overflow-hidden bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-slate-600">
               <thead className="bg-slate-50 text-xs text-slate-500 font-semibold uppercase tracking-wider">
                 <tr>
-                  <th className="px-6 py-4 border-b border-slate-100">Medication</th>
-                  <th className="px-6 py-4 border-b border-slate-100">Dosage</th>
-                  <th className="px-6 py-4 border-b border-slate-100">Frequency</th>
-                  <th className="px-6 py-4 border-b border-slate-100">Started</th>
+                  <th className="px-4 py-3 border-b border-slate-100">Medication</th>
+                  <th className="px-4 py-3 border-b border-slate-100">Dosage</th>
+                  <th className="px-4 py-3 border-b border-slate-100">Frequency</th>
+                  <th className="px-4 py-3 border-b border-slate-100">Started</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {scheduled.map((med) => (
                   <tr key={med.id} className="hover:bg-slate-50/50">
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3 ">
                       <p className="font-semibold text-slate-800">{med.name}</p>
                       <p className="text-xs text-slate-500">{med.prescriber}</p>
                     </td>
-                    <td className="px-6 py-4">{med.dosage}</td>
-                    <td className="px-6 py-4">{med.frequency}</td>
-                    <td className="px-6 py-4">{med.started}</td>
+                    <td className="px-4 py-3 ">{med.dosage}</td>
+                    <td className="px-4 py-3 ">{med.frequency}</td>
+                    <td className="px-4 py-3 ">{med.started}</td>
                   </tr>
                 ))}
               </tbody>

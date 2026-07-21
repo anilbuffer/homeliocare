@@ -39,7 +39,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           className="bg-white rounded-3xl w-full max-w-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] overflow-hidden flex flex-col max-h-[90vh]"
         >
-          <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50/50">
+          <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-slate-50/50">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center">
                 <ClipboardList className="w-5 h-5 text-brand-teal" />
@@ -57,7 +57,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 bg-slate-50/30">
+          <div className="flex-1 overflow-y-auto p-4 bg-slate-50/30">
             {submitted ? (
               <div className="h-full flex flex-col items-center justify-center py-20">
                 <motion.div
@@ -71,13 +71,13 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                 <p className="text-slate-500 mt-2">The care plan has been updated.</p>
               </div>
             ) : (
-              <div className="space-y-8">
+              <div className="space-y-4">
                 {step === 1 && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
                     <h4 className="font-semibold text-slate-800 border-b border-slate-200 pb-2">Activities of Daily Living (ADLs)</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {["Bathing", "Dressing", "Toileting", "Transferring", "Continence", "Feeding"].map((adl) => (
-                        <div key={adl} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <div key={adl} className="bg-white p-4 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                           <label className="block text-sm font-medium text-slate-700 mb-2">{adl} Support Required</label>
                           <select className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-brand-teal focus:border-brand-teal">
                             <option>Independent</option>
@@ -95,7 +95,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
                     <h4 className="font-semibold text-slate-800 border-b border-slate-200 pb-2">Home Environment & Safety</h4>
                     <div className="space-y-4">
-                      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] space-y-3">
                         <label className="flex items-center gap-3">
                           <input type="checkbox" className="w-4 h-4 text-brand-teal rounded border-slate-300" />
                           <span className="text-sm text-slate-700">Are there slip/fall hazards present? (e.g., loose rugs)</span>
@@ -109,7 +109,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                           <span className="text-sm text-slate-700">Are mobility aids (walkers, canes) accessible?</span>
                         </label>
                       </div>
-                      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                         <label className="block text-sm font-medium text-slate-700 mb-2">Additional Safety Notes</label>
                         <textarea className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-brand-teal focus:border-brand-teal min-h-[100px]" placeholder="Note any specific environmental concerns..."></textarea>
                       </div>
@@ -132,14 +132,14 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                   </button>
                 )}
                 {step === 1 ? (
-                  <button onClick={() => setStep(2)} className="px-5 py-2.5 text-sm font-semibold text-white bg-brand-teal hover:bg-teal-700 rounded-xl transition-colors shadow-sm">
+                  <button onClick={() => setStep(2)} className="px-5 py-2.5 text-sm font-semibold text-white bg-brand-teal hover:bg-teal-700 rounded-xl transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                     Next Step
                   </button>
                 ) : (
-                  <button 
-                    onClick={handleSubmit} 
+                  <button
+                    onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-brand-teal hover:bg-teal-700 rounded-xl transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-brand-teal hover:bg-teal-700 rounded-xl transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     <FileSignature className="w-4 h-4" />
                     {isSubmitting ? "Signing & Saving..." : "Sign & Complete"}

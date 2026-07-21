@@ -76,7 +76,7 @@ export function CommunicationTab({ patient }: { patient: Patient }) {
       </div>
 
       {/* Internal care-team notes */}
-      <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-purple-200  shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+      <Card className="bg-white backdrop-blur-xl rounded-2xl border border-purple-200  shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
         <div className="bg-purple-50/50 p-4 border-b border-purple-100 flex items-center gap-2">
           <Lock className="w-4 h-4 text-purple-500" />
           <h3 className="text-sm font-semibold text-purple-900">Internal care-team notes</h3>

@@ -9,6 +9,12 @@ import { Card } from "@/components/ui/Card";
 export function AggregatorConfig() {
   const [configs] = useState(mockStateConfigs);
   const [selectedState, setSelectedState] = useState(configs[0]);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -56,7 +62,9 @@ export function AggregatorConfig() {
               </h2>
               <p className="text-sm text-slate-500 mt-1">Configure API credentials and state-specific EVV rules.</p>
             </div>
-            <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5">
+            <button 
+              onClick={() => showToast("EVV Aggregator configuration saved.")}
+              className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5">
               <Save className="w-4 h-4" />
               Save Config
             </button>
@@ -152,6 +160,13 @@ export function AggregatorConfig() {
           <AltEVVCertification status={selectedState.altEvvStatus} />
         </Card>
       </div>
+
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-4 right-4 bg-slate-800 text-white text-sm font-medium px-4 py-2.5 rounded-lg shadow-lg animate-in fade-in slide-in-from-bottom-4 z-[100]">
+          {toastMessage}
+        </div>
+      )}
     </div>
   );
 }

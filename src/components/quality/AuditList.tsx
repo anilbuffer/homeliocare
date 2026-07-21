@@ -4,9 +4,21 @@ import React, { useState } from "react";
 import { Search, Filter, Calendar as CalendarIcon, User, ChevronRight } from "lucide-react";
 import { mockAudits, Audit, AuditType, AuditStatus } from "./mockData";
 import clsx from "clsx";
+import { Modal } from "@/components/ui/Modal";
 
 export function AuditList() {
   const [audits] = useState<Audit[]>(mockAudits);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [activeAudit, setActiveAudit] = useState<Audit | null>(null);
+
+  const filteredAudits = audits.filter(audit => {
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return audit.subjectName.toLowerCase().includes(q) || 
+           audit.type.toLowerCase().includes(q) ||
+           audit.assignedSupervisor.toLowerCase().includes(q);
+  });
 
   const getStatusColor = (status: AuditStatus) => {
     switch (status) {
@@ -27,10 +39,14 @@ export function AuditList() {
             <input
               type="text"
               placeholder="Search audits..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-white border border-border-subtle rounded-xl pl-9 pr-4 py-2 text-sm text-text-primary placeholder-slate-400 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all"
             />
           </div>
-          <button className="p-2 border border-border-subtle rounded-xl hover:bg-slate-50 transition-colors text-text-primary">
+          <button 
+            onClick={() => setIsFilterModalOpen(true)}
+            className="p-2 border border-border-subtle rounded-xl hover:bg-slate-50 transition-colors text-text-primary">
             <Filter className="w-4 h-4" />
           </button>
         </div>
@@ -49,7 +65,7 @@ export function AuditList() {
             </tr>
           </thead>
           <tbody className="divide-y divide-border-subtle">
-            {audits.map((audit) => (
+            {filteredAudits.map((audit) => (
               <tr key={audit.id} className="hover:bg-slate-50/30 transition-colors group">
                 <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
@@ -90,14 +106,16 @@ export function AuditList() {
                   </span>
                 </td>
                 <td className="px-5 py-4 text-right">
-                  <button className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-brand-teal hover:text-text-primary hover:bg-brand-teal rounded-lg transition-colors whitespace-nowrap">
+                  <button 
+                    onClick={() => setActiveAudit(audit)}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-brand-teal hover:text-text-primary hover:bg-brand-teal rounded-lg transition-colors whitespace-nowrap">
                     {audit.status === "Completed" ? "View" : (audit.status === "In Progress" ? "Continue" : "Start")}
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </td>
               </tr>
             ))}
-            {audits.length === 0 && (
+            {filteredAudits.length === 0 && (
               <tr>
                 <td colSpan={6} className="px-5 py-8 text-center text-text-secondary text-sm">
                   No audits scheduled this month
@@ -107,6 +125,82 @@ export function AuditList() {
           </tbody>
         </table>
       </div>
+
+      <Modal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        title="Filter Audits"
+        description="Select criteria to filter the audit list."
+        footer={
+          <>
+            <button 
+              onClick={() => setIsFilterModalOpen(false)}
+              className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+            >
+              Clear All
+            </button>
+            <button 
+              onClick={() => setIsFilterModalOpen(false)}
+              className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
+            >
+              Apply Filters
+            </button>
+          </>
+        }
+      >
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
+            <select className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
+              <option>All Statuses</option>
+              <option>Completed</option>
+              <option>In Progress</option>
+              <option>Pending</option>
+              <option>Overdue</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Date Range</label>
+            <select className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
+              <option>Any Time</option>
+              <option>This Week</option>
+              <option>This Month</option>
+              <option>Last Month</option>
+            </select>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={!!activeAudit}
+        onClose={() => setActiveAudit(null)}
+        title={`${activeAudit?.status === "Completed" ? "View" : (activeAudit?.status === "In Progress" ? "Continue" : "Start")} Audit`}
+        description={`Audit for ${activeAudit?.subjectName} (${activeAudit?.type})`}
+        footer={
+          <>
+            <button 
+              onClick={() => setActiveAudit(null)}
+              className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              onClick={() => setActiveAudit(null)}
+              className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
+            >
+              Confirm
+            </button>
+          </>
+        }
+      >
+        <div className="py-4">
+          <p className="text-sm text-slate-600">
+            {activeAudit?.status === "Completed" 
+              ? "You are about to view a completed audit. It cannot be modified."
+              : "Are you ready to begin or continue working on this audit? Your progress will be saved automatically."}
+          </p>
+        </div>
+      </Modal>
     </div>
   );
 }

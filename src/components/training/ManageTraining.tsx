@@ -188,7 +188,7 @@ export function ManageTraining() {
       </section>
 
       {/* Row 4: Expiring & Overdue | Quiz Stats */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Expiring & Overdue */}
         <section className="lg:col-span-2 bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex justify-between items-start">

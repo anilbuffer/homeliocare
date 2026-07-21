@@ -42,8 +42,8 @@ export function BillingTab({ patient }: { patient: Patient }) {
       </div>
 
       {/* Linked claims */}
-      <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
-        <div className="flex justify-between items-center p-6 pb-4">
+      <Card className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+        <div className="flex justify-between items-center p-4 pb-4">
           <h3 className="text-sm font-semibold text-slate-700">Linked claims</h3>
           <button className="flex items-center text-xs font-semibold text-brand-teal hover:text-emerald-600 transition-colors">
             Open Billing <ArrowUpRight className="w-3.5 h-3.5 ml-1" />

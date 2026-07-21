@@ -6,16 +6,16 @@ import { Phone, Mail, Globe, Users, Activity, Pill, Brain, Clock, Shield, Shield
 
 export function OverviewTab({ patient }: { patient: Patient }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 flex flex-col gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="lg:col-span-2 flex flex-col gap-4">
         {/* Demographics & Insurance */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
               <Users className="w-5 h-5 text-brand-teal" /> Demographics
             </h3>
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-y-3 text-sm">
+              <div className="grid grid-cols-2 gap-y-3 text-xs">
                 <span className="text-slate-500">DOB</span>
                 <span className="font-medium">{patient.demographics.dob}</span>
                 <span className="text-slate-500">Gender</span>
@@ -31,7 +31,7 @@ export function OverviewTab({ patient }: { patient: Patient }) {
                 <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Emergency Contacts</h4>
                 <div className="space-y-3">
                   {patient.demographics.emergencyContacts.map((contact, i) => (
-                    <div key={i} className="flex justify-between items-center text-sm">
+                    <div key={i} className="flex justify-between items-center text-xs">
                       <div>
                         <p className="font-medium text-slate-800">{contact.name}</p>
                         <p className="text-xs text-slate-500">{contact.relation}</p>
@@ -53,15 +53,15 @@ export function OverviewTab({ patient }: { patient: Patient }) {
             <div className="space-y-4">
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <p className="text-xs text-slate-500 mb-1">Primary Payer</p>
-                <p className="font-medium text-slate-800">{patient.insurance.primary}</p>
+                <p className="text-sm font-medium text-slate-800">{patient.insurance.primary}</p>
               </div>
               {patient.insurance.secondary && (
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
                   <p className="text-xs text-slate-500 mb-1">Secondary Payer</p>
-                  <p className="font-medium text-slate-800">{patient.insurance.secondary}</p>
+                  <p className="text-sm font-medium text-slate-800">{patient.insurance.secondary}</p>
                 </div>
               )}
-              <div className="grid grid-cols-2 gap-y-3 text-sm pt-2">
+              <div className="grid grid-cols-2 gap-y-3 text-xs pt-2">
                 <span className="text-slate-500">Policy Number</span>
                 <span className="font-medium text-right">{patient.insurance.policyNumber}</span>
                 <span className="text-slate-500">Group Number</span>
@@ -71,7 +71,7 @@ export function OverviewTab({ patient }: { patient: Patient }) {
                 <p className="text-xs text-slate-500 mb-1">Authorization Status</p>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  <span className="text-sm font-medium text-emerald-700">{patient.insurance.authorizationStatus}</span>
+                  <span className="text-xs font-medium text-emerald-700">{patient.insurance.authorizationStatus}</span>
                 </div>
               </div>
             </div>
@@ -106,20 +106,20 @@ export function OverviewTab({ patient }: { patient: Patient }) {
         </Card>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4">
         {/* Care Team */}
         <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <h3 className="text-lg font-semibold text-text-primary mb-4">Care Team</h3>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <Avatar fallback="PCP" size="md" />
+              <Avatar fallback="PP" size="sm" />
               <div>
                 <p className="text-sm font-medium text-slate-800">{patient.careTeam.pcp}</p>
                 <p className="text-xs text-slate-500">Primary Care Physician</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Avatar src={patient.careTeam.caseManager.avatarUrl} fallback="CM" size="md" />
+              <Avatar src={patient.careTeam.caseManager.avatarUrl} fallback="CM" size="sm" />
               <div>
                 <p className="text-sm font-medium text-slate-800">{patient.careTeam.caseManager.name}</p>
                 <p className="text-xs text-slate-500">Case Manager</p>

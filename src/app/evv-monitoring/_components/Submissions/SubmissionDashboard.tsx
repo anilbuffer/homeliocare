@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { CheckCircle2, AlertCircle, Clock, Server, ArrowUpRight, Search, FileText } from "lucide-react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -11,6 +11,23 @@ const mockSubmissions = [
 ];
 
 export function SubmissionDashboard() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
+  
+  const filteredSubmissions = useMemo(() => {
+    if (!searchQuery) return mockSubmissions;
+    const q = searchQuery.toLowerCase();
+    return mockSubmissions.filter(s => 
+      s.id.toLowerCase().includes(q) || 
+      s.aggregator.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
   return (
     <div className="space-y-4">
       {/* KPI Row */}
@@ -47,7 +64,9 @@ export function SubmissionDashboard() {
             <p className="text-xs font-medium text-teal-100 uppercase tracking-wider">Pending Batch</p>
             <p className="text-2xl font-bold">14 Visits</p>
           </div>
-          <button className="bg-white/20 hover:bg-white/30 px-3 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors">
+          <button 
+            onClick={() => showToast("Submitting 14 pending visits to aggregators...")}
+            className="bg-white/20 hover:bg-white/30 px-3 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors">
             Submit Now
             <ArrowUpRight className="w-4 h-4" />
           </button>
@@ -62,7 +81,9 @@ export function SubmissionDashboard() {
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input 
               type="text" 
-              placeholder="Search batch ID..." 
+              placeholder="Search batch ID or aggregator..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
             />
           </div>
@@ -81,7 +102,7 @@ export function SubmissionDashboard() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm">
-              {mockSubmissions.map((sub, idx) => (
+              {filteredSubmissions.map((sub, idx) => (
                 <motion.tr 
                   key={sub.id}
                   initial={{ opacity: 0, y: 10 }}
@@ -121,7 +142,9 @@ export function SubmissionDashboard() {
                     )}
                   </td>
                   <td className="p-4 text-right">
-                    <button className="text-brand-teal hover:text-teal-700 font-semibold text-sm flex items-center gap-1.5 ml-auto">
+                    <button 
+                      onClick={() => showToast(`Viewing raw JSON response for ${sub.id}`)}
+                      className="text-brand-teal hover:text-teal-700 font-semibold text-sm flex items-center gap-1.5 ml-auto">
                       <FileText className="w-4 h-4" />
                       View JSON
                     </button>
@@ -132,6 +155,13 @@ export function SubmissionDashboard() {
           </table>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-4 right-4 bg-slate-800 text-white text-sm font-medium px-4 py-2.5 rounded-lg shadow-lg animate-in fade-in slide-in-from-bottom-4 z-[100]">
+          {toastMessage}
+        </div>
+      )}
     </div>
   );
 }

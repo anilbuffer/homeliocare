@@ -57,14 +57,14 @@ export function FeedbackFAB() {
   return (
     <>
       <motion.button
-        className="fixed bottom-6 right-6 z-40 bg-brand-teal text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group flex items-center gap-2"
+        className="fixed bottom-6 right-6 z-40 bg-brand-teal text-white p-4 md:px-5 md:py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2.5"
         onClick={() => setIsOpen(true)}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
       >
         <MessageCircleHeart className="w-6 h-6" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap opacity-0 group-hover:max-w-xs group-hover:opacity-100 transition-all duration-300 ease-in-out font-medium pr-1">
+        <span className="hidden md:block font-medium whitespace-nowrap">
           Give Feedback
         </span>
       </motion.button>

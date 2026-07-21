@@ -85,11 +85,11 @@ export default function PatientsPage() {
             <table className="w-full text-sm text-left whitespace-nowrap">
               <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 sticky top-0 z-10">
                 <tr>
-                  <th className="px-6 py-4 font-medium">Patient</th>
-                  <th className="px-6 py-4 font-medium hidden sm:table-cell">Status</th>
-                  <th className="px-6 py-4 font-medium hidden md:table-cell">Risk Level</th>
-                  <th className="px-6 py-4 font-medium hidden lg:table-cell">Diagnosis</th>
-                  <th className="px-6 py-4 font-medium text-right">Actions</th>
+                  <th className="px-4 py-3 font-medium">Patient</th>
+                  <th className="px-4 py-3 font-medium hidden sm:table-cell">Status</th>
+                  <th className="px-4 py-3 font-medium hidden md:table-cell">Risk Level</th>
+                  <th className="px-4 py-3 font-medium hidden lg:table-cell">Diagnosis</th>
+                  <th className="px-4 py-3 font-medium text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -99,7 +99,7 @@ export default function PatientsPage() {
                     className="even:bg-slate-50/40 hover:bg-slate-100/60 transition-colors group cursor-pointer"
                     onClick={() => router.push(`/patients/${patient.id}`)}
                   >
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="sm" />
                         <div>
@@ -108,23 +108,23 @@ export default function PatientsPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 hidden sm:table-cell">
+                    <td className="px-4 py-3 hidden sm:table-cell">
                       <Badge variant={
                         patient.status === "Active" ? "success" :
                           patient.status === "Hospitalized" ? "warning" :
                             patient.status === "Discharged" ? "default" : "error"
                       }>{patient.status}</Badge>
                     </td>
-                    <td className="px-6 py-4 hidden md:table-cell">
+                    <td className="px-4 py-3 hidden md:table-cell">
                       <Badge variant={
                         patient.riskLevel === "Low" ? "success" :
                           patient.riskLevel === "Medium" ? "warning" : "error"
                       }>{patient.riskLevel} Risk</Badge>
                     </td>
-                    <td className="px-6 py-4 hidden lg:table-cell">
+                    <td className="px-4 py-3 hidden lg:table-cell">
                       <span className="text-slate-700 max-w-[200px] truncate block" title={patient.primaryDiagnosis}>{patient.primaryDiagnosis}</span>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded-lg transition-colors opacity-0 group-hover:opacity-100"

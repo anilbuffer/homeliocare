@@ -59,7 +59,6 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
       <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-200 flex flex-col md:flex-row items-start sm:items-center justify-between gap-4 bg-white/50">
           <h3 className="text-lg font-bold text-slate-900">Compliance Item Tracker</h3>
-
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <div className="relative flex-1 sm:w-64">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
@@ -95,11 +94,11 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
           <table className="w-full text-left border-collapse">
             <thead className="sticky top-0 bg-slate-50/95 backdrop-blur-sm z-10 text-[11px] uppercase tracking-wider text-slate-500 font-bold border-b border-slate-200">
               <tr>
-                <th className="px-6 py-4 rounded-tl-lg whitespace-nowrap">Staff Member</th>
-                <th className="px-6 py-4 whitespace-nowrap">Compliance Item</th>
-                <th className="px-6 py-4 whitespace-nowrap">Issue / Expiry</th>
-                <th className="px-6 py-4 whitespace-nowrap">Status</th>
-                <th className="px-6 py-4 text-right rounded-tr-lg whitespace-nowrap">Actions</th>
+                <th className="px-4 py-3 rounded-tl-lg whitespace-nowrap">Staff Member</th>
+                <th className="px-4 py-3 whitespace-nowrap">Compliance Item</th>
+                <th className="px-4 py-3 whitespace-nowrap">Issue / Expiry</th>
+                <th className="px-4 py-3 whitespace-nowrap">Status</th>
+                <th className="px-4 py-3 text-right rounded-tr-lg whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200">
@@ -114,7 +113,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                     onClick={() => setSelectedItem(item)}
                     className={`group cursor-pointer hover:bg-slate-50/80 transition-all duration-200 ${item.status === "Expired" ? "border-l-[3px] border-l-red-500" : "border-l-[3px] border-l-transparent"}`}
                   >
-                    <td className="px-6 py-5">
+                    <td className="px-4 py-3">
                       <div className="flex items-center gap-3.5">
                         {item.caregiver.avatarUrl ? (
                           <img src={item.caregiver.avatarUrl} alt={item.caregiver.name} className="w-9 h-9 rounded-full object-cover bg-slate-100 ring-2 ring-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] shrink-0" />
@@ -129,11 +128,11 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-5">
+                    <td className="px-4 py-3">
                       <div className="text-xs font-semibold text-slate-800 whitespace-nowrap">{item.itemName}</div>
                       <div className="text-[10px] font-bold text-slate-500 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 inline-block mt-1.5 whitespace-nowrap">{item.category}</div>
                     </td>
-                    <td className="px-6 py-5">
+                    <td className="px-4 py-3">
                       <div className="text-xs font-medium text-slate-600 flex items-center gap-2 whitespace-nowrap">
                         <Calendar className="w-4 h-4 text-slate-400" />
                         {item.issueDate ? new Date(item.issueDate).toLocaleDateString('en-US') : "N/A"} - {item.expiryDate ? new Date(item.expiryDate).toLocaleDateString('en-US') : "N/A"}
@@ -142,10 +141,10 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                         {getDaysRemainingPill(item.expiryDate, item.status)}
                       </div>
                     </td>
-                    <td className="px-6 py-5">
+                    <td className="px-4 py-3">
                       {getStatusBadge(item.status)}
                     </td>
-                    <td className="px-6 py-5 text-right">
+                    <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2" onClick={e => e.stopPropagation()}>
                         {item.status === "Expiring" || item.status === "Expired" ? (
                           <button className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded transition-colors" title="Send Reminder">

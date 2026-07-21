@@ -73,11 +73,17 @@ export default async function CourseOverviewPage({ params }: { params: Promise<{
             <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] p-6">
               <h3 className="text-lg font-bold text-slate-800 mb-4">Instructor</h3>
               <div className="flex items-center gap-4">
-                <img
-                  src={course.instructor.photo}
-                  alt={course.instructor.name}
-                  className="w-16 h-16 rounded-full border-2 border-slate-100 object-cover"
-                />
+                {course.instructor.photo ? (
+                  <img
+                    src={course.instructor.photo}
+                    alt={course.instructor.name}
+                    className="w-16 h-16 rounded-full border-2 border-slate-100 object-cover"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-brand-teal/10 text-brand-teal border-2 border-slate-100 flex items-center justify-center font-bold text-xl uppercase">
+                    {course.instructor.name.split(' ').map((n: string) => n[0]).join('').substring(0, 2)}
+                  </div>
+                )}
                 <div>
                   <h4 className="font-semibold text-slate-800">{course.instructor.name}</h4>
                   <p className="text-sm text-slate-500">{course.instructor.credentials}</p>

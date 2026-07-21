@@ -10,6 +10,7 @@ import { SupervisorEvalCard } from "./SupervisorEvalCard";
 import { TrendsChart } from "./TrendsChart";
 import { AuditType } from "./mockData";
 import clsx from "clsx";
+import { Modal } from "@/components/ui/Modal";
 
 const KPI_DATA = [
   { label: "Audits Completed", value: "24", subtext: "This Month", icon: FileCheck, color: "text-brand-teal", bg: "bg-brand-teal/20" },
@@ -30,6 +31,7 @@ const AUDIT_TABS: AuditType[] = [
 
 export function QualityAssurance() {
   const [activeTab, setActiveTab] = useState<AuditType>("Chart Audit");
+  const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
 
   return (
     <div className="p-4 sm:p-6 lg:p-6 full-width space-y-6">
@@ -51,7 +53,9 @@ export function QualityAssurance() {
               <option className="bg-white">Q3 2026</option>
             </select>
           </div>
-          <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
+          <button 
+            onClick={() => setIsScheduleModalOpen(true)}
+            className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
             <Plus className="w-4 h-4" />
             Schedule Audit
           </button>
@@ -122,6 +126,55 @@ export function QualityAssurance() {
         <SupervisorEvalCard />
         <TrendsChart />
       </div>
+
+      <Modal
+        isOpen={isScheduleModalOpen}
+        onClose={() => setIsScheduleModalOpen(false)}
+        title="Schedule New Audit"
+        description="Select the type and subject for the new quality assurance audit."
+        footer={
+          <>
+            <button 
+              onClick={() => setIsScheduleModalOpen(false)}
+              className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              onClick={() => setIsScheduleModalOpen(false)}
+              className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
+            >
+              Confirm Schedule
+            </button>
+          </>
+        }
+      >
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Audit Type</label>
+            <select className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
+              {AUDIT_TABS.map(tab => (
+                <option key={tab}>{tab}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Subject (Caregiver / Patient)</label>
+            <input 
+              type="text" 
+              placeholder="Search subject name..."
+              className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Due Date</label>
+            <input 
+              type="date" 
+              className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
+            />
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
