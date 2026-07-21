@@ -35,9 +35,9 @@ export function CurriculumList({ course, progress }: CurriculumListProps) {
     }
   };
 
-  // Basic sequential logic: a lesson is locked if the previous lesson in the course isn't completed.
-  // In a real app, backend provides this. Here we compute it on the fly.
-  let isPreviousCompleted = true; // first lesson is unlocked
+  const allLessons = course.modules.flatMap(m => m.lessons);
+  const lastLesson = allLessons[allLessons.length - 1];
+  const isAllLessonsCompleted = lastLesson ? progress?.lessons.find(l => l.lessonId === lastLesson.id)?.status === "completed" : true;
 
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden">
@@ -83,10 +83,13 @@ export function CurriculumList({ course, progress }: CurriculumListProps) {
                   <div className="bg-slate-50/50 pb-6 px-6 pt-2">
                     <div className="relative border-l-2 border-slate-200 space-y-4">
                       {module.lessons.map((lesson) => {
+                        const lessonIndex = allLessons.findIndex(l => l.id === lesson.id);
+                        const prevLesson = lessonIndex > 0 ? allLessons[lessonIndex - 1] : null;
+                        const isPreviousCompleted = prevLesson ? progress?.lessons.find(l => l.lessonId === prevLesson.id)?.status === "completed" : true;
+                        
                         const lessonProgress = progress?.lessons.find(l => l.lessonId === lesson.id);
                         const isCompleted = lessonProgress?.status === "completed";
                         const isLocked = !isPreviousCompleted && !!progress;
-                        isPreviousCompleted = isCompleted;
 
                         return (
                           <div key={lesson.id} className="relative pl-8 group/lesson">
@@ -139,27 +142,27 @@ export function CurriculumList({ course, progress }: CurriculumListProps) {
               className={`flex items-center justify-between px-4 py-4 transition-all ${progress?.quizPassed ? 'cursor-pointer hover:bg-slate-50/50' : ''}`}
             >
               <div className="flex items-center gap-4">
-                <div className={`flex items-center justify-center w-12 h-12 rounded-full transition-colors ${progress?.quizPassed ? 'bg-brand-teal/10' : isPreviousCompleted ? 'bg-brand-teal/5 group-hover/quiz:bg-brand-teal/10' : 'bg-slate-50'}`}>
+                <div className={`flex items-center justify-center w-12 h-12 rounded-full transition-colors ${progress?.quizPassed ? 'bg-brand-teal/10' : isAllLessonsCompleted ? 'bg-brand-teal/5 group-hover/quiz:bg-brand-teal/10' : 'bg-slate-50'}`}>
                   {progress?.quizPassed ? (
                     <>
                       <CheckCircle2 className="w-6 h-6 text-brand-teal group-hover/quiz:hidden" />
                       <CheckCircle2 className="w-6 h-6 text-white fill-brand-teal hidden group-hover/quiz:block" />
                     </>
-                  ) : isPreviousCompleted ? (
+                  ) : isAllLessonsCompleted ? (
                     <FileText className="w-6 h-6 text-brand-teal group-hover/quiz:scale-110 transition-transform" />
                   ) : (
                     <Lock className="w-6 h-6 text-slate-400" />
                   )}
                 </div>
                 <div>
-                  <h4 className={`font-bold text-base lg:text-lg transition-colors ${isPreviousCompleted ? 'text-slate-800 group-hover/quiz:text-brand-teal' : 'text-slate-400'}`}>
+                  <h4 className={`font-bold text-base lg:text-lg transition-colors ${isAllLessonsCompleted ? 'text-slate-800 group-hover/quiz:text-brand-teal' : 'text-slate-400'}`}>
                     {course.quiz.title}
                   </h4>
                   <p className="text-sm text-slate-500 mt-1">Requires {course.quiz.passPercentage}% to pass • Certification Badge</p>
                 </div>
               </div>
 
-              {isPreviousCompleted && !progress?.quizPassed && (
+              {isAllLessonsCompleted && !progress?.quizPassed && (
                 <button className="px-6 py-2.5 bg-brand-teal text-white text-sm font-semibold rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:bg-[#0c8c70] transition-all active:scale-95">
                   Take Quiz
                 </button>

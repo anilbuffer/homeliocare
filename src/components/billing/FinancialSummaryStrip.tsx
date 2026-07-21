@@ -7,27 +7,7 @@ import { ArrowUp, ArrowDown } from "lucide-react";
 import { clsx } from "clsx";
 
 function AnimatedNumber({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
-  const [displayValue, setDisplayValue] = useState(0);
-
-  useEffect(() => {
-    let startTime: number;
-    const duration = 1000;
-
-    const animate = (time: number) => {
-      if (!startTime) startTime = time;
-      const progress = Math.min((time - startTime) / duration, 1);
-
-      // Easing function (easeOutQuart)
-      const ease = 1 - Math.pow(1 - progress, 4);
-      setDisplayValue(value * ease);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
-  }, [value]);
+  const [displayValue, setDisplayValue] = useState(value);
 
   const formattedValue = value >= 1000 ? Math.round(displayValue).toLocaleString("en-US") : (Math.round(displayValue * 10) / 10).toLocaleString("en-US", { minimumFractionDigits: value % 1 !== 0 ? 1 : 0, maximumFractionDigits: 1 });
 

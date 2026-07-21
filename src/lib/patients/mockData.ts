@@ -223,10 +223,10 @@ export const mockPatients: Record<string, Patient> = {
     ],
 
     carePlan: {
-      approval: { signer: "Dr. Alan Park", date: "Oct 04, 2025" },
+      approval: { signer: "Dr. Alan Park", date: "Jul 04, 2026" },
       problems: [
-        { id: "p1", title: "Congestive heart failure \u2014 fluid overload risk", targetDate: "Dec 31, 2025", status: "On track" },
-        { id: "p2", title: "Type 2 Diabetes \u2014 glycemic control", targetDate: "Nov 15, 2025", status: "At risk" },
+        { id: "p1", title: "Congestive heart failure \u2014 fluid overload risk", targetDate: "Dec 31, 2026", status: "On track" },
+        { id: "p2", title: "Type 2 Diabetes \u2014 glycemic control", targetDate: "Nov 15, 2026", status: "At risk" },
         { id: "p3", title: "Fall prevention", targetDate: "Ongoing", status: "On track" }
       ],
       tasks: [
@@ -234,22 +234,22 @@ export const mockPatients: Record<string, Patient> = {
         { id: "t2", task: "Medication administration", frequency: "BID", assigned: "Rotating", lastCompleted: "Today, 8 AM", nextDue: "Today, 6 PM" },
         { id: "t3", task: "Weight & I/O log", frequency: "Daily", assigned: "Maya Alvarez", lastCompleted: "Today", nextDue: "Tomorrow" },
         { id: "t4", task: "Bath / hygiene assist", frequency: "3x/week", assigned: "Maya Alvarez", lastCompleted: "Yesterday", nextDue: "Wednesday" },
-        { id: "t5", task: "Nurse cardiac assessment", frequency: "Weekly", assigned: "Sarah Kim, RN", lastCompleted: "Sep 30", nextDue: "Oct 07" }
+        { id: "t5", task: "Nurse cardiac assessment", frequency: "Weekly", assigned: "Sarah Kim, RN", lastCompleted: "Sep 30", nextDue: "Jul 07" }
       ],
       versionHistory: { revisions: 3 }
     },
 
     visits: {
       upcoming: [
-        { id: "v1", date: "Oct 08", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h", status: "pending", type: "Scheduled" },
-        { id: "v2", date: "Oct 08", time: "5:00 PM", staff: "Jordan Reed", duration: "1h 30m", status: "pending", type: "Scheduled" }
+        { id: "v1", date: "Jul 08", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h", status: "pending", type: "Scheduled" },
+        { id: "v2", date: "Jul 08", time: "5:00 PM", staff: "Jordan Reed", duration: "1h 30m", status: "pending", type: "Scheduled" }
       ],
       history: [
-        { id: "v3", date: "Oct 07", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h 15m", status: "verified", type: "Completed" },
-        { id: "v4", date: "Oct 06", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h", status: "verified", type: "Completed" },
-        { id: "v5", date: "Oct 05", time: "9:00 AM", staff: "Jordan Reed", duration: "1h 50m", status: "flagged", type: "Late" },
-        { id: "v6", date: "Oct 04", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h 05m", status: "verified", type: "Completed" },
-        { id: "v7", date: "Oct 03", time: "9:00 AM", staff: "Maya Alvarez", duration: "0m", status: "flagged", type: "Missed" }
+        { id: "v3", date: "Jul 07", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h 15m", status: "verified", type: "Completed" },
+        { id: "v4", date: "Jul 06", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h", status: "verified", type: "Completed" },
+        { id: "v5", date: "Jul 05", time: "9:00 AM", staff: "Jordan Reed", duration: "1h 50m", status: "flagged", type: "Late" },
+        { id: "v6", date: "Jul 04", time: "9:00 AM", staff: "Maya Alvarez", duration: "2h 05m", status: "verified", type: "Completed" },
+        { id: "v7", date: "Jul 03", time: "9:00 AM", staff: "Maya Alvarez", duration: "0m", status: "flagged", type: "Missed" }
       ]
     },
 
@@ -275,21 +275,21 @@ export const mockPatients: Record<string, Patient> = {
 
     documents: {
       intake: [
-        { id: "d1", name: "Intake Assessment 2024.pdf", author: "Sarah Kim, RN", date: "Aug 22, 2025", size: "1.2 MB", type: "pdf" }
+        { id: "d1", name: "Intake Assessment 2024.pdf", author: "Sarah Kim, RN", date: "Aug 22, 2026", size: "1.2 MB", type: "pdf" }
       ],
       consents: [
-        { id: "d2", name: "Care Consent Form.pdf", author: "David Chen", date: "Aug 22, 2025", size: "384 KB", type: "pdf" },
-        { id: "d3", name: "HIPAA Authorization.pdf", author: "David Chen", date: "Aug 22, 2025", size: "296 KB", type: "pdf" }
+        { id: "d2", name: "Care Consent Form.pdf", author: "David Chen", date: "Aug 22, 2026", size: "384 KB", type: "pdf" },
+        { id: "d3", name: "HIPAA Authorization.pdf", author: "David Chen", date: "Aug 22, 2026", size: "296 KB", type: "pdf" }
       ],
       clinical: [
-        { id: "d4", name: "Cardiac Assessment Q3.pdf", author: "Sarah Kim, RN", date: "Sep 30, 2025", size: "812 KB", type: "pdf" },
-        { id: "d5", name: "Lab Results - A1C.pdf", author: "Dr. Alan Park", date: "Sep 12, 2025", size: "204 KB", type: "pdf" }
+        { id: "d4", name: "Cardiac Assessment Q3.pdf", author: "Sarah Kim, RN", date: "Sep 30, 2026", size: "812 KB", type: "pdf" },
+        { id: "d5", name: "Lab Results - A1C.pdf", author: "Dr. Alan Park", date: "Sep 12, 2026", size: "204 KB", type: "pdf" }
       ],
       insurance: [
-        { id: "d6", name: "Medicare Card.jpg", author: "Intake Team", date: "Aug 22, 2025", size: "612 KB", type: "img" }
+        { id: "d6", name: "Medicare Card.jpg", author: "Intake Team", date: "Aug 22, 2026", size: "612 KB", type: "img" }
       ],
       orders: [
-        { id: "d7", name: "Physician Orders Oct 2025.pdf", author: "Dr. Alan Park", date: "Oct 03, 2025", size: "441 KB", type: "pdf" }
+        { id: "d7", name: "Physician Orders Jul 2026.pdf", author: "Dr. Alan Park", date: "Jul 03, 2026", size: "441 KB", type: "pdf" }
       ]
     },
 
@@ -300,7 +300,7 @@ export const mockPatients: Record<string, Patient> = {
       },
       balance: 240,
       claims: [
-        { id: "CLM-10231", serviceDates: "Oct 1 - Oct 10", payer: "Medicare", amount: "$2,450", status: "Draft" },
+        { id: "CLM-10231", serviceDates: "Jul 1 - Jul 10", payer: "Medicare", amount: "$2,450", status: "Draft" },
         { id: "CLM-10188", serviceDates: "Sep 15 - Sep 25", payer: "Medicare", amount: "$2,985", status: "Pending" },
         { id: "CLM-10145", serviceDates: "Sep 1 - Sep 12", payer: "Medicare", amount: "$3,480", status: "Paid" }
       ]
@@ -313,12 +313,12 @@ export const mockPatients: Record<string, Patient> = {
         { id: "msg3", sender: "David Chen", timestamp: "Yesterday, 8:03 PM", message: "Thank you. Any changes to her medications?", direction: "inbound" }
       ],
       logs: [
-        { id: "log1", type: "Call in", contact: "David Chen", duration: "6m 12s", timestamp: "Oct 05, 2:14 PM", summary: "Discussed weekend visit schedule" },
-        { id: "log2", type: "SMS out", contact: "Margaret Chen", timestamp: "Oct 04, 8:00 AM", summary: "Appointment reminder sent" },
-        { id: "log3", type: "Call out", contact: "Dr. Rina Osei's office", duration: "3m 44s", timestamp: "Oct 02, 10:22 AM", summary: "Confirmed Furosemide dose" }
+        { id: "log1", type: "Call in", contact: "David Chen", duration: "6m 12s", timestamp: "Jul 05, 2:14 PM", summary: "Discussed weekend visit schedule" },
+        { id: "log2", type: "SMS out", contact: "Margaret Chen", timestamp: "Jul 04, 8:00 AM", summary: "Appointment reminder sent" },
+        { id: "log3", type: "Call out", contact: "Dr. Rina Osei's office", duration: "3m 44s", timestamp: "Jul 02, 10:22 AM", summary: "Confirmed Furosemide dose" }
       ],
       internalNotes: [
-        { id: "note1", author: "Maya Alvarez, CNA", timestamp: "Oct 04, 3:20 PM", note: "Watch sodium \u2014 patient had extra salt at dinner Wednesday. Flagged in visit notes." }
+        { id: "note1", author: "Maya Alvarez, CNA", timestamp: "Jul 04, 3:20 PM", note: "Watch sodium \u2014 patient had extra salt at dinner Wednesday. Flagged in visit notes." }
       ]
     }
   },

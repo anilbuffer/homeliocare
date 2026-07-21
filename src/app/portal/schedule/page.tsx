@@ -240,8 +240,8 @@ export default function PortalSchedulePage() {
                         <label className="block text-sm font-medium text-text-primary mb-1">Which visit?</label>
                         <select className="w-full px-3 py-2 border border-border-subtle rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 bg-white">
                           <option>Select a visit...</option>
-                          <option>Tomorrow, Oct 25 - Sarah Jenkins</option>
-                          <option>Friday, Oct 27 - Marcus Thorne</option>
+                          <option>Tomorrow, Jul 22 - Sarah Jenkins</option>
+                          <option>Friday, Jul 24 - Marcus Thorne</option>
                         </select>
                       </div>
 

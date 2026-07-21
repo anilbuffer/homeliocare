@@ -36,7 +36,7 @@ export default function PatientsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="text-2xl font-bold text-text-primary">Patients</h2>
-          <p className="text-sm text-text-secondary mt-1">Manage and view all patient records.</p>
+          <p className="text-sm text-text-secondary mt-1">Showing {Object.values(mockPatients).length} of 247 patients.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -129,6 +129,7 @@ export default function PatientsPage() {
                         <button
                           className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
                           title="View Profile"
+                          onClick={(e) => { e.stopPropagation(); router.push(`/patients/${patient.id}`); }}
                         >
                           <ArrowRight className="w-4 h-4" />
                         </button>

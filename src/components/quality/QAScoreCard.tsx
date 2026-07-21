@@ -5,23 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowDownRight, Award } from "lucide-react";
 
 export function QAScoreCard() {
-  const [score, setScore] = useState(0);
   const targetScore = 92.1;
-
-  useEffect(() => {
-    const duration = 1500;
-    const steps = 60;
-    const stepTime = duration / steps;
-    let currentStep = 0;
-
-    const timer = setInterval(() => {
-      currentStep++;
-      setScore(Math.min(targetScore, (targetScore * currentStep) / steps));
-      if (currentStep >= steps) clearInterval(timer);
-    }, stepTime);
-
-    return () => clearInterval(timer);
-  }, []);
+  const [score, setScore] = useState(targetScore);
 
   const data = [
     { name: "Chart", value: 35, color: "#14b8a6" },

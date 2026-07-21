@@ -24,15 +24,7 @@ interface ComplianceScoreCardProps {
 }
 
 export function ComplianceScoreCard({ data, onCategoryClick }: ComplianceScoreCardProps) {
-  const [score, setScore] = useState(0);
-
-  useEffect(() => {
-    // Animate score counter
-    const timer = setTimeout(() => {
-      setScore(data.overallScore);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [data.overallScore]);
+  const [score, setScore] = useState(data.overallScore);
 
   const chartData = data.breakdown.map((item, index) => ({
     name: item.category,

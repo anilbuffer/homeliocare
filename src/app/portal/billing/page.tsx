@@ -231,7 +231,7 @@ export default function PortalBillingPage() {
                           <div className="text-sm font-medium text-text-primary">Recent Unbilled Activity</div>
                           <div className="text-xs text-text-secondary">Oct 20 - Present</div>
                         </div>
-                        <div className="font-semibold text-text-primary">$0.00</div>
+                        <div className="font-semibold text-text-primary">$450.00</div>
                       </div>
                     </div>
 

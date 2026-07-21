@@ -43,13 +43,13 @@ export const recentUpdates = [
 export const upcomingVisits = [
   {
     id: "visit-2",
-    date: "Tomorrow, Oct 25",
+    date: "Tomorrow, Jul 22",
     time: "9:00 AM - 1:00 PM",
     caregiverName: "Sarah Jenkins",
   },
   {
     id: "visit-3",
-    date: "Friday, Oct 27",
+    date: "Friday, Jul 24",
     time: "9:00 AM - 1:00 PM",
     caregiverName: "Marcus Thorne",
   },
@@ -80,7 +80,7 @@ export const careTeam = [
 export const visitHistory = [
   {
     id: "hist-1",
-    date: "Yesterday, Oct 23",
+    date: "Yesterday, Jul 23",
     caregiver: "Marcus Thorne",
     duration: "4 hours",
     shortNote: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
@@ -89,7 +89,7 @@ export const visitHistory = [
   },
   {
     id: "hist-2",
-    date: "Monday, Oct 21",
+    date: "Monday, Jul 21",
     caregiver: "Sarah Jenkins",
     duration: "4 hours",
     shortNote: "Good morning overall. Assisted with bathing and dressing.",
@@ -157,15 +157,15 @@ export const carePlanSummary = {
 export const billingData = {
   currentBalance: 120.00,
   invoices: [
-    { id: "inv-002", date: "Oct 15, 2026", amount: 120.00, status: "Due" },
+    { id: "inv-002", date: "Jul 15, 2026", amount: 120.00, status: "Due" },
     { id: "inv-001", date: "Sep 15, 2026", amount: 480.00, status: "Paid" },
   ]
 };
 
 export const documentsData = [
-  { id: "doc-1", name: "October Care Plan Summary", date: "Oct 1, 2026", type: "PDF", category: "Care Plan Summary", needsSignature: false },
-  { id: "doc-2", name: "Service Agreement v2", date: "Oct 20, 2026", type: "PDF", category: "Signed Agreements", needsSignature: true },
-  { id: "doc-3", name: "September Invoice", date: "Oct 1, 2026", type: "PDF", category: "Invoices & Receipts", needsSignature: false },
+  { id: "doc-1", name: "July Care Plan Summary", date: "Jul 1, 2026", type: "PDF", category: "Care Plan Summary", needsSignature: false },
+  { id: "doc-2", name: "Service Agreement v2", date: "Jul 20, 2026", type: "PDF", category: "Signed Agreements", needsSignature: true },
+  { id: "doc-3", name: "September Invoice", date: "Jul 1, 2026", type: "PDF", category: "Invoices & Receipts", needsSignature: false },
   { id: "doc-4", name: "Aetna Insurance Card", date: "Jan 10, 2026", type: "IMG", category: "Insurance Information", needsSignature: false },
 ];
 
@@ -176,13 +176,13 @@ export const medicationsData = [
 ];
 
 export const todosData = [
-  { id: "todo-1", text: "Refill Lisinopril prescription by Oct 28", dueDate: "Oct 28, 2026", status: "pending" },
-  { id: "todo-2", text: "Sign updated service agreement", dueDate: "Oct 30, 2026", status: "pending" },
+  { id: "todo-1", text: "Refill Lisinopril prescription by Jul 28", dueDate: "Jul 28, 2026", status: "pending" },
+  { id: "todo-2", text: "Sign updated service agreement", dueDate: "Jul 30, 2026", status: "pending" },
   { id: "todo-3", text: "Upcoming care plan review via Zoom", dueDate: "Nov 5, 2026", status: "pending" },
 ];
 
 export const feedbackHistoryData = [
-  { id: "fb-1", date: "Oct 10, 2026", category: "Care Quality", type: "feedback", status: "Resolved", description: "Sarah is doing a wonderful job getting my dad to go on walks." },
+  { id: "fb-1", date: "Jul 10, 2026", category: "Care Quality", type: "feedback", status: "Resolved", description: "Sarah is doing a wonderful job getting my dad to go on walks." },
   { id: "fb-2", date: "Sep 22, 2026", category: "Scheduling", type: "complaint", status: "Being Reviewed", description: "The weekend caregiver arrived 30 mins late without calling." },
 ];
 
@@ -208,7 +208,7 @@ export const portalActivities = [
     type: "incident_reported",
     title: "Incident reported",
     description: "Minor skin tear on arm, cleaned and bandaged.",
-    timestamp: "Oct 21",
+    timestamp: "Jul 21",
     link: null,
   },
   {
@@ -216,7 +216,7 @@ export const portalActivities = [
     type: "visit_completed",
     title: "Visit completed",
     description: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
-    timestamp: "Oct 21 at 5:00 PM",
+    timestamp: "Jul 21 at 5:00 PM",
     link: "/portal/visits",
   },
   {
@@ -224,7 +224,7 @@ export const portalActivities = [
     type: "care_plan_updated",
     title: "Care plan updated",
     description: "Adjusted medication schedule.",
-    timestamp: "Oct 20",
+    timestamp: "Jul 20",
     link: "/portal/care-plan",
   }
 ];

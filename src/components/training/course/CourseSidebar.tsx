@@ -18,7 +18,9 @@ export function CourseSidebar({ course, progress, activeLessonId, onSelectLesson
   const totalCount = course.totalLessons;
   const percentComplete = Math.round((completedCount / totalCount) * 100) || 0;
 
-  let isPreviousCompleted = true; // For simple sequential unlock logic
+  const allLessons = course.modules.flatMap(m => m.lessons);
+  const lastLesson = allLessons[allLessons.length - 1];
+  const isAllLessonsCompleted = lastLesson ? progress?.lessons.find(l => l.lessonId === lastLesson.id)?.status === "completed" : true;
 
   const getFormatIcon = (format: string) => {
     switch (format) {
@@ -64,9 +66,12 @@ export function CourseSidebar({ course, progress, activeLessonId, onSelectLesson
                 const isCompleted = lessonProgress?.status === "completed";
                 const isActive = lesson.id === activeLessonId && !isQuizActive;
 
+                const lessonIndex = allLessons.findIndex(l => l.id === lesson.id);
+                const prevLesson = lessonIndex > 0 ? allLessons[lessonIndex - 1] : null;
+                const isPreviousCompleted = prevLesson ? progress?.lessons.find(l => l.lessonId === prevLesson.id)?.status === "completed" : true;
+                
                 // Locked if prev not complete
                 const isLocked = !isPreviousCompleted && !!progress;
-                isPreviousCompleted = isCompleted;
 
                 return (
                   <li key={lesson.id}>
@@ -111,20 +116,20 @@ export function CourseSidebar({ course, progress, activeLessonId, onSelectLesson
         {/* Final Quiz Item */}
         <div className="mt-4 pt-4 border-t border-slate-100 px-1">
           <button
-            onClick={() => isPreviousCompleted && onSelectQuiz()}
-            disabled={!isPreviousCompleted}
+            onClick={() => isAllLessonsCompleted && onSelectQuiz()}
+            disabled={!isAllLessonsCompleted}
             className={`w-full text-left px-4 py-3.5 rounded-xl border-2 flex items-center gap-4 transition-all ${isQuizActive
               ? "border-brand-teal bg-brand-teal/5 shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-              : isPreviousCompleted
+              : isAllLessonsCompleted
                 ? "border-slate-200 hover:border-brand-teal/30 hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] bg-white"
                 : "border-slate-100 bg-slate-50 opacity-50 cursor-not-allowed"
               }`}
           >
-            <div className={`p-2 rounded-full ${isQuizActive ? "bg-brand-teal text-white" : isPreviousCompleted ? "bg-slate-100 text-slate-600" : "bg-slate-100 text-slate-400"}`}>
-              {progress?.quizPassed ? <CheckCircle2 className="w-5 h-5 text-brand-teal" /> : !isPreviousCompleted ? <Lock className="w-5 h-5" /> : <FileText className="w-5 h-5" />}
+            <div className={`p-2 rounded-full ${isQuizActive ? "bg-brand-teal text-white" : isAllLessonsCompleted ? "bg-slate-100 text-slate-600" : "bg-slate-100 text-slate-400"}`}>
+              {progress?.quizPassed ? <CheckCircle2 className="w-5 h-5 text-brand-teal" /> : !isAllLessonsCompleted ? <Lock className="w-5 h-5" /> : <FileText className="w-5 h-5" />}
             </div>
             <div>
-              <p className={`font-bold text-sm ${isQuizActive ? "text-brand-teal" : isPreviousCompleted ? "text-slate-800" : "text-slate-400"}`}>
+              <p className={`font-bold text-sm ${isQuizActive ? "text-brand-teal" : isAllLessonsCompleted ? "text-slate-800" : "text-slate-400"}`}>
                 Final Certification
               </p>
               <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">Quiz • {course.quiz.passPercentage}% to pass</p>
