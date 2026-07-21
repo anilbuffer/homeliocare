@@ -15,6 +15,7 @@ import { ExceptionDetailPanel } from "./_components/ExceptionDetailPanel";
 import { OffenderRow } from "./_components/OffenderRow";
 import { BillingRiskCard } from "./_components/BillingRiskCard";
 import { SubmissionDashboard } from "./_components/Submissions/SubmissionDashboard";
+import { AggregatorConfig } from "@/components/billing/evv/AggregatorConfig";
 
 const donutData = [
   { name: "Wrong GPS location", value: 45 },
@@ -28,7 +29,7 @@ export default function EVVMonitoringPage() {
   const [exceptions, setExceptions] = useState(mockExceptions);
   const [selectedException, setSelectedException] = useState<EVVException | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const [activeTab, setActiveTab] = useState<"exceptions" | "submissions">("exceptions");
+  const [activeTab, setActiveTab] = useState<"exceptions" | "submissions" | "config">("exceptions");
 
   const filteredExceptions = activeFilter === "All"
     ? exceptions
@@ -91,6 +92,22 @@ export default function EVVMonitoringPage() {
           >
             <span className="relative z-10">State Submissions</span>
             {activeTab === "submissions" && (
+              <motion.div
+                layoutId="evv-tab"
+                className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
+                initial={false}
+                transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+              />
+            )}
+          </button>
+          <button 
+            onClick={() => setActiveTab("config")}
+            className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${
+              activeTab === "config" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+            }`}
+          >
+            <span className="relative z-10">State Config & Connectors</span>
+            {activeTab === "config" && (
               <motion.div
                 layoutId="evv-tab"
                 className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
@@ -211,8 +228,10 @@ export default function EVVMonitoringPage() {
           </div>
         </div>
         </>
-        ) : (
+        ) : activeTab === "submissions" ? (
           <SubmissionDashboard />
+        ) : (
+          <AggregatorConfig />
         )}
 
       </div>
