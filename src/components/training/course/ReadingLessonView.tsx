@@ -51,7 +51,7 @@ export function ReadingLessonView({ lesson, isCompleted, onComplete }: ReadingLe
 
       <div
         ref={contentRef}
-        className="flex-1 overflow-y-auto p-8 md:p-12 prose prose-slate max-w-none prose-headings:text-slate-800 prose-p:text-slate-600 prose-a:text-brand-teal"
+        className="flex-1 overflow-y-auto p-6 md:p-8 prose prose-slate max-w-none prose-headings:text-slate-800 prose-p:text-slate-600 prose-a:text-brand-teal"
         dangerouslySetInnerHTML={{ __html: lesson.textContent || "<p>No content provided.</p>" }}
       />
 

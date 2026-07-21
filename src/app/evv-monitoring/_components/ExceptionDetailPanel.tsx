@@ -84,18 +84,18 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
                 </div>
               </div>
 
-              <div className="bg-slate-50/70 rounded-lg p-3">
+              <div className="bg-slate-50 border border-slate-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-slate-500 text-xs font-medium">Patient</span>
-                  <span className="text-sm font-semibold text-slate-900">{exception.patient.name}</span>
+                  <span className="text-xs font-semibold text-slate-900">{exception.patient.name}</span>
                 </div>
                 <div className="flex items-center justify-between mb-1.5">
                   <span className="text-slate-500 text-xs font-medium">Date</span>
-                  <span className="text-sm font-semibold text-slate-900">{exception.visitDate}</span>
+                  <span className="text-xs font-semibold text-slate-900">{exception.visitDate}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500 text-xs font-medium">Exception Type</span>
-                  <span className="text-sm font-semibold text-slate-900">{exception.type}</span>
+                  <span className="text-xs font-semibold text-slate-900">{exception.type}</span>
                 </div>
               </div>
             </div>
@@ -104,20 +104,20 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
             <div>
               <h3 className="text-[11px] font-bold text-slate-900 mb-2 uppercase tracking-wider">Time Logs</h3>
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between bg-slate-50/80 p-2.5 rounded-lg">
+                <div className="flex items-center justify-between bg-slate-100 p-2.5 rounded-lg">
                   <div className="flex items-center gap-1.5 text-slate-500">
                     <Clock className="w-3.5 h-3.5" />
                     <span className="text-xs font-medium">Scheduled</span>
                   </div>
-                  <span className="text-sm font-semibold text-slate-900">{exception.scheduledTime.start} - {exception.scheduledTime.end}</span>
+                  <span className="text-xs font-semibold text-slate-900">{exception.scheduledTime.start} - {exception.scheduledTime.end}</span>
                 </div>
 
-                <div className="flex items-center justify-between bg-amber-50/70 p-2.5 rounded-lg">
+                <div className="flex items-center justify-between bg-amber-100 p-2.5 rounded-lg">
                   <div className="flex items-center gap-1.5 text-amber-700">
                     <Clock className="w-3.5 h-3.5" />
                     <span className="text-xs font-medium">Actual</span>
                   </div>
-                  <span className="text-sm font-bold text-amber-900">
+                  <span className="text-xs font-bold text-amber-900">
                     {exception.actualTime.start || "Missing"} - {exception.actualTime.end || "Missing"}
                   </span>
                 </div>
@@ -128,11 +128,11 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
             {exception.type === "Wrong GPS location" && (
               <div>
                 <h3 className="text-[11px] font-bold text-slate-900 mb-2 uppercase tracking-wider">Location Mismatch</h3>
-                <div className="h-32 bg-slate-900 rounded-lg overflow-hidden relative flex items-center justify-center">
+                <div className="h-26 bg-slate-900 rounded-lg overflow-hidden relative flex items-center justify-center">
                   <div className="absolute inset-0 opacity-40 bg-[url('https://maps.googleapis.com/maps/api/staticmap?center=34.0522,-118.2437&zoom=14&size=400x200&style=feature:all|element:labels|visibility:off&style=feature:water|element:geometry|color:0x1a2133&style=feature:landscape|element:geometry|color:0x0e1424&style=feature:road|element:geometry|color:0x202b40')] bg-cover bg-center" />
 
                   {/* Fake map markers for effect */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-4">
                     <div className="flex flex-col items-center">
                       <div className="bg-brand-teal p-1 rounded-full mb-0.5 border border-white">
                         <MapPin className="w-3.5 h-3.5 text-white" />
@@ -220,7 +220,7 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
           </div>
         </motion.div>
       </motion.div>
-      
+
       {isMaintenanceOpen && (
         <VisitMaintenanceModal
           isOpen={isMaintenanceOpen}

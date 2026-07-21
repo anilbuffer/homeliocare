@@ -34,11 +34,11 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
       <CardHeader
         title="AR Aging"
-        action={<span className="text-slate-500">Outstanding balances grouped by days since submission.</span>}
+        action={<span className="text-slate-500 text-xs">Outstanding balances grouped by days since submission.</span>}
       />
 
       {/* Segmented Bar */}
-      <div className="mt-4 mb-8">
+      <div className="mt-4 mb-4">
         <div className="flex justify-between text-xs font-medium mb-2">
           {segments.map(seg => (
             <div key={seg.label} className={clsx("flex flex-col", seg.percentage < 10 ? "items-end" : "")}>
@@ -63,7 +63,7 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
 
       {/* Table */}
       <div className="overflow-x-auto border border-slate-200 rounded-xl">
-        <table className="w-full text-sm text-left">
+        <table className="w-full text-sm text-left shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
           <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
             <tr>
               <th className="px-4 py-3 font-medium">Patient</th>

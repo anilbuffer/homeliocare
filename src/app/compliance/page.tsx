@@ -48,7 +48,7 @@ export default function ComplianceTrackingPage() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
                 <h1 className="text-xl font-bold text-slate-900">Compliance Tracking</h1>
-                <p className="text-sm text-slate-500 font-medium mt-0.5 flex items-center gap-2">
+                <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-2">
                   <span className="inline-block w-2 h-2 rounded-full bg-amber-400"></span>
                   17 compliance items need attention across the agency.
                 </p>

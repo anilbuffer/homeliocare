@@ -13,17 +13,19 @@ interface KpiCardProps {
   trendValue?: string;
   icon?: React.ReactNode;
   hero?: boolean;
+  className?: string;
 }
 
-export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero = false }: KpiCardProps) {
+export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero = false, className }: KpiCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={clsx(
-        "bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full",
-        hero && "bg-brand-teal/5 border-brand-teal/20"
+        "bg-white backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] hover:border-brand-teal/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full group",
+        hero && "bg-gradient-to-br from-brand-teal/5 to-transparent border-brand-teal/20",
+        className
       )}
     >
       <div className="flex items-center justify-between mb-4">
@@ -43,7 +45,7 @@ export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero 
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", bounce: 0.4 }}
-            className={clsx("font-bold tracking-tight", hero ? "text-4xl text-brand-teal" : "text-2xl text-slate-900")}
+            className={clsx("font-bold tracking-tight", hero ? "text-3xl text-brand-teal" : "text-2xl text-slate-900")}
           >
             {value}
           </motion.div>
@@ -51,8 +53,8 @@ export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero 
           {trend && trendValue && (
             <div className={clsx(
               "flex items-center text-xs font-medium rounded-full px-2 py-0.5",
-              trend === "up" ? "text-emerald-700 bg-emerald-50" :
-                trend === "down" ? "text-amber-700 bg-amber-50" :
+              trend === "up" ? "text-emerald-700 bg-emerald-100" :
+                trend === "down" ? "text-amber-700 bg-amber-100" :
                   "text-slate-600 bg-slate-100"
             )}>
               {trend === "up" && <ArrowUpRight className="w-3 h-3 mr-1" />}

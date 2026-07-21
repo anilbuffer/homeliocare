@@ -10,6 +10,15 @@ export function AggregatorConfig() {
   const [configs] = useState(mockStateConfigs);
   const [selectedState, setSelectedState] = useState(configs[0]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSave = () => {
+    setIsSaving(true);
+    setTimeout(() => {
+      setIsSaving(false);
+      showToast("EVV Aggregator configuration saved successfully.");
+    }, 1500);
+  };
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -54,23 +63,24 @@ export function AggregatorConfig() {
       </div>
 
       <div className="lg:col-span-3" key={selectedState.state}>
-        <Card className="p-6 md:p-8">
-          <div className="flex justify-between items-center mb-8">
+        <Card className="p-5 sm:p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 {selectedState.state} - {selectedState.aggregator}
               </h2>
-              <p className="text-sm text-slate-500 mt-1">Configure API credentials and state-specific EVV rules.</p>
+              <p className="text-sm text-slate-500 mt-1.5 font-medium">Configure API credentials and state-specific EVV rules.</p>
             </div>
             <button 
-              onClick={() => showToast("EVV Aggregator configuration saved.")}
-              className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5">
-              <Save className="w-4 h-4" />
-              Save Config
+              onClick={handleSave}
+              disabled={isSaving}
+              className="w-full sm:w-auto justify-center flex items-center gap-2 bg-brand-teal text-white text-sm font-bold px-6 py-3 rounded-xl hover:bg-brand-teal/90 transition-all shadow-md shadow-brand-teal/20 hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0 active:scale-95">
+              <Save className={`w-4 h-4 ${isSaving ? 'animate-pulse' : ''}`} />
+              {isSaving ? 'Saving...' : 'Save Config'}
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div className="space-y-5">
               <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2">
                 <Shield className="w-4 h-4 text-brand-teal" />

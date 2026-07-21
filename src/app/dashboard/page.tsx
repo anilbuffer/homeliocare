@@ -45,7 +45,7 @@ export default function DashboardPage() {
   return (
     <div className="w-full mx-auto space-y-6">
       {/* Greeting Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <div>
           <h2 className="text-2xl font-bold text-text-primary">Good morning, Sarah!</h2>
           <p className="text-sm text-text-secondary mt-1">{today}</p>
@@ -62,14 +62,14 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <motion.div variants={container} initial="hidden" animate="show" className="space-y-6">
+      <motion.div variants={container} initial="hidden" animate="show" className="space-y-4">
         {/* Row 1: KPI Strip */}
         <motion.div variants={item}>
           <KpiStrip />
         </motion.div>
 
         {/* Row 2: 2/3 and 1/3 */}
-        <motion.div variants={item} className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <motion.div variants={item} className="grid grid-cols-1 xl:grid-cols-3 gap-4">
           <div className="xl:col-span-2">
             <VisitsChart />
           </div>
@@ -79,28 +79,28 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Row 3: 1/2 and 1/2 */}
-        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <EvvCompliance />
           <WastedHours />
         </motion.div>
 
         {/* Row 4: 1/3, 1/3, 1/3 */}
-        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <FinancialHealth />
           <AuthUtilization />
           <CaregiverOvertime />
         </motion.div>
 
         {/* Row 5: 1/3, 1/3, 1/3 */}
-        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <motion.div variants={item} className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <RecentIncidents />
           <TopCaregivers />
           <CredentialTracker />
         </motion.div>
 
         {/* Row 6 & 7: Left 2/3 (At a glance + Insights), Right 1/3 (Live Feed) */}
-        <motion.div variants={item} className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          <div className="xl:col-span-2 flex flex-col gap-6">
+        <motion.div variants={item} className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+          <div className="xl:col-span-2 flex flex-col gap-4">
             <BottomGlance />
             <AiInsights />
           </div>

@@ -38,7 +38,7 @@ export function ComplianceScoreCard({ data, onCategoryClick }: ComplianceScoreCa
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
       <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-400/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
 
-      <div className="relative z-10 max-w-5xl mx-auto p-8 md:p-12 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32">
+      <div className="relative z-10 max-w-5xl mx-auto p-6 md:p-8 flex flex-col md:flex-row items-center justify-center gap-12 md:gap-32">
         <div className="flex-1 flex flex-col justify-center">
           <h2 className="text-xl font-bold text-slate-900 mb-2">Agency Compliance Score</h2>
           <p className="text-sm text-slate-500 mb-6">Aggregate compliance across all staff and categories</p>
