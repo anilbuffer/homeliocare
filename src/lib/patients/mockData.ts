@@ -202,10 +202,10 @@ export const mockPatients: Record<string, Patient> = {
     careTeam: {
       pcp: "Dr. Amanda Chen",
       specialists: ["Dr. Robert Patel (Cardiology)"],
-      caseManager: { name: "Maria Garcia, RN", avatarUrl: "https://i.pravatar.cc/150?u=maria" },
+      caseManager: { name: "Maria Garcia, RN", avatarUrl: "" },
       primaryCaregivers: [
-        { name: "David Kim", avatarUrl: "https://i.pravatar.cc/150?u=david" },
-        { name: "Jessica Smith", avatarUrl: "https://i.pravatar.cc/150?u=jessica" }
+        { name: "David Kim", avatarUrl: "" },
+        { name: "Jessica Smith", avatarUrl: "" }
       ]
     },
 
@@ -353,7 +353,7 @@ export const mockPatients: Record<string, Patient> = {
     careTeam: {
       pcp: "Dr. James Wilson",
       specialists: ["Dr. Sarah Neurologist"],
-      caseManager: { name: "John Doe, RN", avatarUrl: "https://i.pravatar.cc/150?u=john" },
+      caseManager: { name: "John Doe, RN", avatarUrl: "" },
       primaryCaregivers: []
     },
 

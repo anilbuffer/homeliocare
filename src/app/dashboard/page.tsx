@@ -55,8 +55,8 @@ export default function DashboardPage() {
             <MapPin className="w-4 h-4 text-brand-teal" />
             Track Caregivers
           </Link>
-          <button className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-            <Sparkles className="w-4 h-4 text-brand-teal" />
+          <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
+            <Sparkles className="w-4 h-4 text-white" />
             AI Briefing
           </button>
         </div>

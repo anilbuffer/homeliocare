@@ -20,7 +20,7 @@ export const MOCK_COURSE_DETAIL: CourseDetail = {
   instructor: {
     name: "Dr. Sarah Jenkins",
     credentials: "Chief Compliance Officer",
-    photo: "https://i.pravatar.cc/150?u=sarah"
+    photo: ""
   },
   modules: [
     {

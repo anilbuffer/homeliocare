@@ -51,11 +51,11 @@ function BoardColumn({ id, title, dotColor, count, shifts, onShiftClick }: Board
           {count}
         </div>
       </div>
-      
+
       <div
         ref={setNodeRef}
         className={clsx(
-          "flex-1 bg-white/40 backdrop-blur-md border border-white/40 shadow-[0_4px_30px_rgba(0,0,0,0.05)] rounded-2xl p-3 min-h-[500px] transition-all",
+          "flex-1 bg-white backdrop-blur-md border border-slate-200 shadow-[0_4px_30px_rgba(0,0,0,0.05)] rounded-2xl p-3 min-h-[500px] transition-all",
           isOver ? "bg-white/80 border-brand-teal/30 ring-2 ring-brand-teal/20" : ""
         )}
       >
@@ -111,7 +111,7 @@ export function BoardView({ shifts, onShiftClick, onShiftStatusChange }: BoardVi
 
     // Check if dropping on another shift or a column
     let targetStatus: ShiftStatus | undefined;
-    
+
     // Dropping on column directly
     if (COLUMNS.find(c => c.id === over.id)) {
       targetStatus = over.id as ShiftStatus;
@@ -152,7 +152,7 @@ export function BoardView({ shifts, onShiftClick, onShiftStatusChange }: BoardVi
       </div>
 
       <DragOverlay>
-        {activeShift ? <ShiftCard shift={activeShift} onClick={() => {}} /> : null}
+        {activeShift ? <ShiftCard shift={activeShift} onClick={() => { }} /> : null}
       </DragOverlay>
     </DndContext>
   );

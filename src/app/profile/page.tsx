@@ -25,7 +25,13 @@ export default function ProfilePage() {
             <div className="relative group">
               <div className="w-24 h-24 bg-white rounded-full p-1 shadow-sm">
                 <div className="w-full h-full rounded-full bg-slate-100 overflow-hidden relative">
-                  <img src={currentUser?.avatarUrl || "https://i.pravatar.cc/150?u=admin"} alt="Profile" className="w-full h-full object-cover" />
+                  {currentUser?.avatarUrl ? (
+                    <img src={currentUser.avatarUrl} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-3xl">
+                      {currentUser?.name?.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase() || 'U'}
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center cursor-pointer transition-all">
                     <Camera className="w-6 h-6 text-white" />
                   </div>

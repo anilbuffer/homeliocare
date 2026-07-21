@@ -48,7 +48,7 @@ export const mockCaregivers: Record<string, Caregiver> = {
   "cg-001": {
     id: "cg-001",
     name: "Elena Rodriguez",
-    avatarUrl: "https://i.pravatar.cc/150?u=cg1",
+    avatarUrl: "",
     role: "Registered Nurse (RN)",
     status: "Active",
     rating: 4.9,
@@ -77,7 +77,7 @@ export const mockCaregivers: Record<string, Caregiver> = {
   "cg-002": {
     id: "cg-002",
     name: "Marcus Johnson",
-    avatarUrl: "https://i.pravatar.cc/150?u=cg2",
+    avatarUrl: "",
     role: "Home Health Aide (HHA)",
     status: "Active",
     rating: 4.7,
@@ -105,7 +105,7 @@ export const mockCaregivers: Record<string, Caregiver> = {
   "cg-003": {
     id: "cg-003",
     name: "Sarah Jenkins",
-    avatarUrl: "https://i.pravatar.cc/150?u=cg3",
+    avatarUrl: "",
     role: "Certified Nursing Assistant (CNA)",
     status: "Onboarding",
     rating: 0,
@@ -131,7 +131,7 @@ export const mockCaregivers: Record<string, Caregiver> = {
   "cg-004": {
     id: "cg-004",
     name: "David Chen",
-    avatarUrl: "https://i.pravatar.cc/150?u=cg4",
+    avatarUrl: "",
     role: "Physical Therapist",
     status: "Active",
     rating: 4.8,

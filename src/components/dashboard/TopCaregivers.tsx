@@ -8,10 +8,10 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Star } from "lucide-react";
 
 const caregiversData = [
-  { id: 1, name: "Emily R.", role: "RN", score: 98, rating: 4.9, avatar: "https://i.pravatar.cc/150?u=1" },
-  { id: 2, name: "Sarah J.", role: "HHA", score: 96, rating: 4.8, avatar: "https://i.pravatar.cc/150?u=3" },
-  { id: 3, name: "Marcus T.", role: "CNA", score: 94, rating: 4.7, avatar: "https://i.pravatar.cc/150?u=2" },
-  { id: 4, name: "David K.", role: "PT", score: 91, rating: 4.6, avatar: "https://i.pravatar.cc/150?u=4" },
+  { id: 1, name: "Emily R.", role: "RN", score: 98, rating: 4.9, avatar: "" },
+  { id: 2, name: "Sarah J.", role: "HHA", score: 96, rating: 4.8, avatar: "" },
+  { id: 3, name: "Marcus T.", role: "CNA", score: 94, rating: 4.7, avatar: "" },
+  { id: 4, name: "David K.", role: "PT", score: 91, rating: 4.6, avatar: "" },
 ];
 
 export function TopCaregivers() {

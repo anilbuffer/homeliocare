@@ -181,14 +181,14 @@ export function PortalSidebar({ isOpen = false, onClose }: PortalSidebarProps) {
                     <Settings className="w-4 h-4" />
                     Settings
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/portal/help"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <HelpCircle className="w-4 h-4" />
                     Support
-                  </Link>
+                  </Link> */}
                   <div className="h-px w-full bg-sidebar-active/50 my-0.5"></div>
                   <Link
                     href="/login"

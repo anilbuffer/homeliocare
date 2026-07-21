@@ -12,7 +12,7 @@ export default function PortalSchedulePage() {
   // Helper to get caregiver photo
   const getCaregiverPhoto = (name: string) => {
     const member = careTeam.find(c => c.name === name);
-    return member?.photo || "https://i.pravatar.cc/150?u=default";
+    return member?.photo || "";
   };
 
   const handleOpenVisit = (visit: any, isToday: boolean = false) => {

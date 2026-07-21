@@ -35,7 +35,13 @@ export function VerificationQueue({ items }: VerificationQueueProps) {
                   <div className="w-12 h-14 bg-slate-50 rounded-xl border border-slate-200 shadow-inner flex items-center justify-center group-hover:border-brand-teal/30 transition-colors">
                     <FileText className="w-6 h-6 text-slate-400 group-hover:text-brand-teal transition-colors" />
                   </div>
-                  <img src={item.caregiver.avatarUrl} alt={item.caregiver.name} className="w-6 h-6 rounded-full border-2 border-white absolute -bottom-2 -right-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)]" />
+                  {item.caregiver.avatarUrl ? (
+                    <img src={item.caregiver.avatarUrl} alt={item.caregiver.name} className="w-6 h-6 rounded-full border-2 border-white absolute -bottom-2 -right-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-slate-100 object-cover" />
+                  ) : (
+                    <div className="w-6 h-6 rounded-full border-2 border-white absolute -bottom-2 -right-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-[8px]">
+                      {item.caregiver.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                    </div>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0 mt-0.5">
                   <div className="text-sm font-medium text-slate-900 truncate">{item.caregiver.name}</div>

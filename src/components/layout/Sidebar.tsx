@@ -95,6 +95,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/reports")) return "reports";
 
     if (pathname?.startsWith("/payroll")) return "payroll";
+    if (pathname?.startsWith("/settings")) return "settings";
     if (pathname === "/dashboard" || pathname === "/") return "dashboard";
     return "dashboard";
   });
@@ -128,6 +129,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
     } else if (pathname.startsWith("/payroll")) {
       setActiveItem("payroll");
+    } else if (pathname.startsWith("/settings")) {
+      setActiveItem("settings");
     } else if (pathname === "/dashboard" || pathname === "/") {
       setActiveItem("dashboard");
     }
@@ -190,8 +193,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "referrals") href = "/referrals";
                   if (item.id === "communications") href = "/communications";
                   if (pathname?.startsWith("/reports")) href = "/reports";
-
                   if (item.id === "payroll") href = "/payroll";
+                  if (item.id === "settings") href = "/settings";
 
                   return (
                     <li key={item.id} className="relative">
@@ -250,12 +253,12 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
         {/* User Profile */}
         <div className="p-4 border-t border-sidebar-active relative">
-          <button 
+          <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className="flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left"
           >
-            <div className="w-9 h-9 rounded-full bg-slate-600 shrink-0 overflow-hidden">
-              <img src="https://i.pravatar.cc/150?u=admin" alt="User" className="w-full h-full object-cover" />
+            <div className="w-9 h-9 rounded-full bg-slate-600 shrink-0 overflow-hidden flex items-center justify-center">
+              <User className="w-5 h-5 text-slate-400" />
             </div>
             <div className="flex-1 overflow-hidden">
               <div className="text-sm font-medium text-white truncate">Sarah Jenkins</div>
@@ -274,33 +277,25 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                 className="absolute bottom-[calc(100%-10px)] left-4 right-4 mb-2 bg-slate-800 border border-sidebar-active rounded-xl shadow-xl overflow-hidden z-50"
               >
                 <div className="p-1 flex flex-col gap-1">
-                  <Link 
-                    href="/profile" 
-                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
-                    onClick={() => setIsProfileOpen(false)}
-                  >
-                    <User className="w-4 h-4" />
-                    My Profile
-                  </Link>
-                  <Link 
-                    href="/settings" 
+                  <Link
+                    href="/settings"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <Settings className="w-4 h-4" />
-                    Account Settings
+                    Settings
                   </Link>
-                  <Link 
+                  {/* <Link 
                     href="/support" 
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <HelpCircle className="w-4 h-4" />
                     Support
-                  </Link>
+                  </Link> */}
                   <div className="h-px w-full bg-sidebar-active/50 my-0.5"></div>
-                  <Link 
-                    href="/login" 
+                  <Link
+                    href="/login"
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >

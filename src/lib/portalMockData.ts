@@ -12,7 +12,7 @@ export const todaysVisit = {
   status: "In progress", // Scheduled, On the way, In progress, Completed
   caregiver: {
     name: "Sarah Jenkins",
-    photo: "https://i.pravatar.cc/150?u=sarah",
+    photo: "",
   },
 };
 
@@ -27,7 +27,7 @@ export const recentUpdates = [
     id: "update-1",
     timestamp: "Today at 10:30 AM",
     caregiverName: "Sarah Jenkins",
-    caregiverPhoto: "https://i.pravatar.cc/150?u=sarah",
+    caregiverPhoto: "",
     note: "Robert had a good morning! He ate all of his breakfast and we just finished our walk around the neighborhood. He's in good spirits today.",
     photos: ["https://images.unsplash.com/photo-1516307365426-bea591f05011?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"],
   },
@@ -35,7 +35,7 @@ export const recentUpdates = [
     id: "update-2",
     timestamp: "Yesterday at 12:45 PM",
     caregiverName: "Marcus Thorne",
-    caregiverPhoto: "https://i.pravatar.cc/150?u=marcus",
+    caregiverPhoto: "",
     note: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
   },
 ];
@@ -60,20 +60,20 @@ export const careTeam = [
     id: "team-1",
     name: "Sarah Jenkins",
     role: "Primary Caregiver",
-    photo: "https://i.pravatar.cc/150?u=sarah",
+    photo: "",
     isPrimaryContact: true,
   },
   {
     id: "team-2",
     name: "Marcus Thorne",
     role: "Caregiver",
-    photo: "https://i.pravatar.cc/150?u=marcus",
+    photo: "",
   },
   {
     id: "team-3",
     name: "Dr. Emily Chen",
     role: "Care Coordinator",
-    photo: "https://i.pravatar.cc/150?u=emily",
+    photo: "",
   },
 ];
 
@@ -102,7 +102,7 @@ export const messageThreads = [
   {
     id: "thread-1",
     careTeamMember: "Sarah Jenkins",
-    photo: "https://i.pravatar.cc/150?u=sarah",
+    photo: "",
     lastMessage: "He's doing great today! We are going for a walk now.",
     time: "10:35 AM",
     unread: 1,
@@ -114,7 +114,7 @@ export const messageThreads = [
   {
     id: "thread-2",
     careTeamMember: "Dr. Emily Chen",
-    photo: "https://i.pravatar.cc/150?u=emily",
+    photo: "",
     lastMessage: "I've updated the care plan for next month.",
     time: "Yesterday",
     unread: 1,

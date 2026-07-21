@@ -43,7 +43,7 @@ export const mockAudits: Audit[] = [
     dueDate: "2026-07-20",
     status: "Completed",
     score: 95,
-    avatarUrl: "https://i.pravatar.cc/150?u=eleanor"
+    avatarUrl: ""
   },
   {
     id: "AUD-002",
@@ -54,7 +54,7 @@ export const mockAudits: Audit[] = [
     assignedSupervisor: "David Kim",
     dueDate: "2026-07-15",
     status: "Overdue",
-    avatarUrl: "https://i.pravatar.cc/150?u=marcus"
+    avatarUrl: ""
   },
   {
     id: "AUD-003",
@@ -65,7 +65,7 @@ export const mockAudits: Audit[] = [
     assignedSupervisor: "Sarah Jenkins",
     dueDate: "2026-07-18",
     status: "In Progress",
-    avatarUrl: "https://i.pravatar.cc/150?u=robert"
+    avatarUrl: ""
   },
   {
     id: "AUD-004",
@@ -76,7 +76,7 @@ export const mockAudits: Audit[] = [
     assignedSupervisor: "Emily Thorne",
     dueDate: "2026-07-25",
     status: "Scheduled",
-    avatarUrl: "https://i.pravatar.cc/150?u=maria"
+    avatarUrl: ""
   }
 ];
 

@@ -16,7 +16,7 @@ export const mockIncidents: Incident[] = [
     description: "Patient slipped in the bathroom while transferring from the shower. Caregiver was present and assisted, but patient hit their arm on the sink counter.",
     peopleInvolved: [
       { id: "c-1", name: "Robert M.", role: "Patient", avatar: "/avatars/arthur.png?v=2" },
-      { id: "cg-1", name: "Sarah J.", role: "Caregiver", avatar: "https://i.pravatar.cc/150?u=cg1" }
+      { id: "cg-1", name: "Sarah J.", role: "Caregiver", avatar: "" }
     ],
     workflow: [
       { stage: "Reported", completedBy: "Sarah J.", completedAt: formatISO(subHours(now, 2)), startedAt: formatISO(subHours(now, 2)) },
@@ -43,7 +43,7 @@ export const mockIncidents: Incident[] = [
     description: "Incorrect dosage of blood pressure medication was administered. Patient experienced dizziness.",
     peopleInvolved: [
       { id: "c-2", name: "Helen S.", role: "Patient", avatar: "/avatars/eleanor.png?v=2" },
-      { id: "cg-2", name: "Marcus T.", role: "Caregiver", avatar: "https://i.pravatar.cc/150?u=cg2" }
+      { id: "cg-2", name: "Marcus T.", role: "Caregiver", avatar: "" }
     ],
     workflow: [
       { stage: "Reported", completedBy: "Marcus T.", completedAt: formatISO(subDays(now, 2)), startedAt: formatISO(subDays(now, 2)) },

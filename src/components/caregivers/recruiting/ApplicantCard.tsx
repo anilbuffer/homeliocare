@@ -22,7 +22,7 @@ interface ApplicantCardProps {
 
 export function ApplicantCard({ applicant }: ApplicantCardProps) {
   return (
-    <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col gap-3 group">
+    <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-brand-teal/30 transition-all duration-300 cursor-pointer flex flex-col gap-3 group">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <Avatar 

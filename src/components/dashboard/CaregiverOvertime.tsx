@@ -14,7 +14,7 @@ export function CaregiverOvertime() {
       <div className="flex-1 space-y-3">
         {/* Alerts */}
         <div className="bg-accent-red/5 border border-accent-red/20 rounded-xl p-3 flex gap-3 items-center">
-          <Avatar src="https://i.pravatar.cc/150?u=12" fallback="J" size="sm" />
+          <Avatar src="" fallback="J" size="sm" />
           <div className="flex-1 min-w-0">
             <div className="font-medium text-sm text-text-primary">Jessica Miller</div>
             <div className="text-xs text-accent-red flex items-center gap-1">
@@ -24,7 +24,7 @@ export function CaregiverOvertime() {
         </div>
 
         <div className="bg-accent-red/5 border border-accent-red/20 rounded-xl p-3 flex gap-3 items-center">
-          <Avatar src="https://i.pravatar.cc/150?u=15" fallback="T" size="sm" />
+          <Avatar src="" fallback="T" size="sm" />
           <div className="flex-1 min-w-0">
             <div className="font-medium text-sm text-text-primary">Thomas Wright</div>
             <div className="text-xs text-accent-red flex items-center gap-1">

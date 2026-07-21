@@ -71,10 +71,10 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden shrink-0">
                   {exception.caregiver.avatarUrl ? (
-                    <img src={exception.caregiver.avatarUrl} alt={exception.caregiver.name} className="w-full h-full object-cover" />
+                    <img src={exception.caregiver.avatarUrl} alt={exception.caregiver.name} className="w-full h-full object-cover bg-slate-100" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-slate-500 font-bold text-sm">
-                      {exception.caregiver.name.charAt(0)}
+                    <div className="w-full h-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">
+                      {exception.caregiver.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
                     </div>
                   )}
                 </div>

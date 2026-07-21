@@ -12,7 +12,7 @@ import { CategoryProgressBars } from "@/components/compliance/CategoryProgressBa
 import { ComplianceItemTracker } from "@/components/compliance/ComplianceItemTracker";
 import { ReminderConfigPanel } from "@/components/compliance/ReminderConfigPanel";
 import { VerificationQueue } from "@/components/compliance/VerificationQueue";
-import { AuditLog } from "@/components/compliance/AuditLog";
+import { SystemAuditLog } from "@/components/compliance/SystemAuditLog";
 import { PolicyAcknowledgmentMatrix } from "@/components/compliance/PolicyAcknowledgmentMatrix";
 
 // Mock Data
@@ -97,7 +97,7 @@ export default function ComplianceTrackingPage() {
 
             {/* Row 7: Audit Log */}
             <div className="w-full">
-              <AuditLog logs={mockAuditLogs} />
+              <SystemAuditLog />
             </div>
 
             {/* Row 8: Policy Acknowledgment Tracker */}

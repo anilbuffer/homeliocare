@@ -53,7 +53,13 @@ export function AuditList() {
               <tr key={audit.id} className="hover:bg-slate-50/30 transition-colors group">
                 <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <img src={audit.avatarUrl} alt={audit.subjectName} className="w-8 h-8 rounded-full bg-slate-100" />
+                    {audit.avatarUrl ? (
+                      <img src={audit.avatarUrl} alt={audit.subjectName} className="w-8 h-8 rounded-full object-cover bg-slate-100" />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-semibold text-xs shrink-0">
+                        {audit.subjectName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                      </div>
+                    )}
                     <div>
                       <div className="text-sm font-medium text-text-primary whitespace-nowrap">{audit.subjectName}</div>
                       <div className="text-xs text-text-secondary">{audit.subjectType}</div>

@@ -2,8 +2,9 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { Menu, Search, Bell } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { GlobalSearch } from "./GlobalSearch";
+import { NotificationsCenter } from "./NotificationsCenter";
 
 export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
@@ -44,10 +45,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
           <GlobalSearch />
         </div>
 
-        <button className="relative p-2 rounded-full bg-white border border-border-subtle text-slate-500 hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-accent-red rounded-full border-2 border-white animate-pulse" />
-        </button>
+        <NotificationsCenter />
       </div>
     </header>
   );

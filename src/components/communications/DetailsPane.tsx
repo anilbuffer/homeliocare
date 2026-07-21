@@ -30,11 +30,17 @@ export function DetailsPane({ conversation, onClose, isOpen }: DetailsPaneProps)
       <div className="flex-1 overflow-y-auto">
         {/* Contact Profile Info */}
         <div className="p-6 text-center border-b border-slate-100">
-          <img
-            src={primaryParticipant.avatar}
-            alt={primaryParticipant.name}
-            className="w-20 h-20 rounded-full mx-auto mb-3 object-cover shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-          />
+          {primaryParticipant.avatar ? (
+            <img
+              src={primaryParticipant.avatar}
+              alt={primaryParticipant.name}
+              className="w-20 h-20 rounded-full mx-auto mb-3 object-cover shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
+            />
+          ) : (
+            <div className="w-20 h-20 rounded-full mx-auto mb-3 shadow-[0_6px_32px_rgba(0,0,0,0.06)] bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-2xl border border-white">
+              {primaryParticipant.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+            </div>
+          )}
           <h2 className="font-semibold text-lg text-slate-900">{primaryParticipant.name}</h2>
           <p className="text-sm text-slate-500 mb-4">{primaryParticipant.role}</p>
 

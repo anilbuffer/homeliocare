@@ -6,11 +6,13 @@ import { ArrowLeft, Download, FileText, Printer, Share2, PenTool } from "lucide-
 import Link from "next/link";
 import { documentsData } from "@/lib/portalMockData";
 import { motion } from "framer-motion";
+import { ESignatureFlow } from "@/components/documents/ESignatureFlow";
 
 export default function DocumentDetailsPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
+  const [isSignModalOpen, setIsSignModalOpen] = React.useState(false);
 
   const document = documentsData.find(d => d.id === id);
 
@@ -57,6 +59,7 @@ export default function DocumentDetailsPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setIsSignModalOpen(true)}
                   className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 text-amber-700 rounded-xl text-sm font-semibold transition-colors shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
                 >
                   <PenTool className="w-4 h-4" />
@@ -83,6 +86,15 @@ export default function DocumentDetailsPage() {
           </div>
         </div>
       </div>
+      <ESignatureFlow 
+        isOpen={isSignModalOpen} 
+        onClose={() => setIsSignModalOpen(false)} 
+        documentName={document.name}
+        onSuccess={() => {
+          setIsSignModalOpen(false);
+          // In real app, we'd update document status here
+        }}
+      />
     </div>
   );
 }

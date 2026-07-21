@@ -19,22 +19,22 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
   const unfilledShifts = shifts.filter(s => s.status === "Unfilled");
 
   const getShiftStyle = (shift: Shift) => {
-    if (viewMode === "Week") {
-      // Mock all shifts to appear on Wednesday
-      return { left: `${(2 / 7) * 100}%`, width: `${(1 / 7) * 100}%` };
-    }
-    if (viewMode === "Month") {
-      // Mock all shifts to appear in Week 3
-      return { left: `${(2 / 5) * 100}%`, width: `${(1 / 5) * 100}%` };
-    }
-
     try {
       const start = parseISO(shift.startTime);
       const end = parseISO(shift.endTime);
 
+      if (viewMode === "Week") {
+        const dayIndex = (start.getDay() + 6) % 7;
+        return { left: `${(dayIndex / 7) * 100}%`, width: `${(1 / 7) * 100}%` };
+      }
+      if (viewMode === "Month") {
+        const date = start.getDate();
+        const weekIndex = Math.min(4, Math.floor((date - 1) / 7));
+        return { left: `${(weekIndex / 5) * 100}%`, width: `${(1 / 5) * 100}%` };
+      }
+
       const startHour = start.getHours() + start.getMinutes() / 60;
       const endHour = end.getHours() + end.getMinutes() / 60;
-
       const colStart = Math.max(0, startHour - 6);
       const colSpan = Math.max(0.5, endHour - startHour);
 

@@ -39,10 +39,10 @@ export function ExceptionRow({ exception, onClick, index }: ExceptionRowProps) {
       <div className="flex-[1.5] min-w-[200px] flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-full bg-slate-200 overflow-hidden shrink-0 border border-slate-100">
           {exception.caregiver.avatarUrl ? (
-            <img src={exception.caregiver.avatarUrl} alt={exception.caregiver.name} className="w-full h-full object-cover" />
+            <img src={exception.caregiver.avatarUrl} alt={exception.caregiver.name} className="w-full h-full object-cover bg-slate-100" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-slate-500 font-medium text-xs">
-              {exception.caregiver.name.charAt(0)}
+            <div className="w-full h-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs">
+              {exception.caregiver.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
             </div>
           )}
         </div>

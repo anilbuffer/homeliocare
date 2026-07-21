@@ -62,10 +62,10 @@ export interface Announcement {
 // MOCK DATA
 
 export const mockContacts: Record<string, Contact> = {
-  c1: { id: "c1", name: "Robert Alvarez", avatar: "https://i.pravatar.cc/150?u=robert", role: "Client", status: "online", phone: "555-0101", email: "robert@example.com" },
-  c2: { id: "c2", name: "Linda Chen", avatar: "https://i.pravatar.cc/150?u=linda", role: "Daughter/Family", status: "away", phone: "555-0102", email: "linda@example.com", preferredLanguage: "Spanish" },
-  c3: { id: "c3", name: "Sarah Jenkins", avatar: "https://i.pravatar.cc/150?u=sarah", role: "Caregiver", status: "offline", phone: "555-0103", email: "sarah@example.com" },
-  c4: { id: "c4", name: "Dr. Emily Wong", avatar: "https://i.pravatar.cc/150?u=emily", role: "Primary Nurse", status: "online", phone: "555-0104", email: "emily@example.com" },
+  c1: { id: "c1", name: "Robert Alvarez", avatar: "", role: "Client", status: "online", phone: "555-0101", email: "robert@example.com" },
+  c2: { id: "c2", name: "Linda Chen", avatar: "", role: "Daughter/Family", status: "away", phone: "555-0102", email: "linda@example.com", preferredLanguage: "Spanish" },
+  c3: { id: "c3", name: "Sarah Jenkins", avatar: "", role: "Caregiver", status: "offline", phone: "555-0103", email: "sarah@example.com" },
+  c4: { id: "c4", name: "Dr. Emily Wong", avatar: "", role: "Primary Nurse", status: "online", phone: "555-0104", email: "emily@example.com" },
 };
 
 export const mockMessages: Record<string, Message[]> = {

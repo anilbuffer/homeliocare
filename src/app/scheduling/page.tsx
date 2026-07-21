@@ -7,6 +7,7 @@ import { UrgencyStrip } from "@/components/scheduling/UrgencyStrip";
 import { CalendarView } from "@/components/scheduling/CalendarView";
 import { BoardView } from "@/components/scheduling/BoardView";
 import { ShiftModal } from "@/components/scheduling/ShiftModal";
+import { CreateShiftModal } from "@/components/scheduling/CreateShiftModal";
 import {
   mockShifts,
   mockCaregivers,
@@ -25,6 +26,7 @@ export default function SchedulingPage() {
   
   const [shifts, setShifts] = useState<Shift[]>(mockShifts);
   const [selectedShiftId, setSelectedShiftId] = useState<string | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const openShiftsCount = shifts.filter((s) => s.status === "Unfilled").length;
 
@@ -97,6 +99,7 @@ export default function SchedulingPage() {
         viewMode={viewMode}
         setViewMode={setViewMode}
         openShiftsCount={openShiftsCount}
+        onCreateShift={() => setIsCreateModalOpen(true)}
       />
       
       <UrgencyStrip />
@@ -141,6 +144,12 @@ export default function SchedulingPage() {
         suggestedCaregivers={suggestedCaregivers}
         onAssignCaregiver={handleAssignCaregiver}
         onCallOff={handleCallOff}
+      />
+
+      <CreateShiftModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onCreate={(newShift) => setShifts((prev) => [...prev, newShift])}
       />
     </div>
   );

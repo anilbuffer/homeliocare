@@ -9,7 +9,7 @@ export const mockExceptions: EVVException[] = [
     caregiver: {
       id: "cg-1",
       name: "Marcus Johnson",
-      avatarUrl: "https://i.pravatar.cc/150?u=marcus",
+      avatarUrl: "",
     },
     patient: {
       id: "cl-1",
@@ -31,7 +31,7 @@ export const mockExceptions: EVVException[] = [
     caregiver: {
       id: "cg-2",
       name: "Sarah Jenkins",
-      avatarUrl: "https://i.pravatar.cc/150?u=sarah",
+      avatarUrl: "",
     },
     patient: {
       id: "cl-2",
@@ -51,7 +51,7 @@ export const mockExceptions: EVVException[] = [
     caregiver: {
       id: "cg-3",
       name: "Jessica Alba",
-      avatarUrl: "https://i.pravatar.cc/150?u=jessica",
+      avatarUrl: "",
     },
     patient: {
       id: "cl-3",
@@ -71,7 +71,7 @@ export const mockExceptions: EVVException[] = [
     caregiver: {
       id: "cg-4",
       name: "David Kim",
-      avatarUrl: "https://i.pravatar.cc/150?u=david",
+      avatarUrl: "",
     },
     patient: {
       id: "cl-4",
@@ -90,7 +90,7 @@ export const mockExceptions: EVVException[] = [
     caregiver: {
       id: "cg-5",
       name: "Amanda Hugginkiss",
-      avatarUrl: "https://i.pravatar.cc/150?u=amanda",
+      avatarUrl: "",
     },
     patient: {
       id: "cl-5",
@@ -109,7 +109,7 @@ export const mockTopOffenders: TopOffender[] = [
   {
     id: "cg-2",
     name: "Sarah Jenkins",
-    avatarUrl: "https://i.pravatar.cc/150?u=sarah",
+    avatarUrl: "",
     exceptionCount: 8,
     mostCommonType: "Missing clock-out",
     trend: "worsening",
@@ -117,7 +117,7 @@ export const mockTopOffenders: TopOffender[] = [
   {
     id: "cg-1",
     name: "Marcus Johnson",
-    avatarUrl: "https://i.pravatar.cc/150?u=marcus",
+    avatarUrl: "",
     exceptionCount: 5,
     mostCommonType: "Wrong GPS location",
     trend: "stable",
@@ -125,7 +125,7 @@ export const mockTopOffenders: TopOffender[] = [
   {
     id: "cg-4",
     name: "David Kim",
-    avatarUrl: "https://i.pravatar.cc/150?u=david",
+    avatarUrl: "",
     exceptionCount: 3,
     mostCommonType: "Missing clock-in",
     trend: "improving",

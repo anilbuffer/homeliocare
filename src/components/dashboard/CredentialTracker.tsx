@@ -7,10 +7,10 @@ import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 
 const credentialsData = [
-  { id: 1, name: "David K.", cert: "CPR & First Aid", days: 3, avatar: "https://i.pravatar.cc/150?u=4", variant: "error" as const },
-  { id: 2, name: "Sarah J.", cert: "HHA License", days: 12, avatar: "https://i.pravatar.cc/150?u=3", variant: "warning" as const },
-  { id: 3, name: "Marcus T.", cert: "TB Test", days: 28, avatar: "https://i.pravatar.cc/150?u=2", variant: "warning" as const },
-  { id: 4, name: "Emily R.", cert: "RN License", days: 45, avatar: "https://i.pravatar.cc/150?u=1", variant: "success" as const },
+  { id: 1, name: "David K.", cert: "CPR & First Aid", days: 3, avatar: "", variant: "error" as const },
+  { id: 2, name: "Sarah J.", cert: "HHA License", days: 12, avatar: "", variant: "warning" as const },
+  { id: 3, name: "Marcus T.", cert: "TB Test", days: 28, avatar: "", variant: "warning" as const },
+  { id: 4, name: "Emily R.", cert: "RN License", days: 45, avatar: "", variant: "success" as const },
 ];
 
 export function CredentialTracker() {

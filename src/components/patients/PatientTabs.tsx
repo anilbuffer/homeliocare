@@ -12,6 +12,7 @@ import { DocumentsTab } from "@/components/patients/tabs/DocumentsTab";
 import { BillingTab } from "@/components/patients/tabs/BillingTab";
 import { CommunicationTab } from "@/components/patients/tabs/CommunicationTab";
 import { ChronologyTab } from "./tabs/ChronologyTab";
+import { AssessmentsTab } from "@/components/patients/tabs/AssessmentsTab";
 
 const tabs = [
   { id: "overview", label: "Overview" },
@@ -22,6 +23,7 @@ const tabs = [
   { id: "billing", label: "Billing" },
   { id: "communication", label: "Communication" },
   { id: "chronology", label: "Chronology" },
+  { id: "assessments", label: "Assessments" },
 ];
 
 function PatientTabsContent({ patient }: { patient: Patient }) {
@@ -89,6 +91,7 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
             {activeTab === "billing" && <BillingTab patient={patient} />}
             {activeTab === "communication" && <CommunicationTab patient={patient} />}
             {activeTab === "chronology" && <ChronologyTab patient={patient} />}
+            {activeTab === "assessments" && <AssessmentsTab patient={patient} />}
           </motion.div>
         </AnimatePresence>
       </div>

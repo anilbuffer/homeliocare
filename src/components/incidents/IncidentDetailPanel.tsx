@@ -167,8 +167,14 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 <div className="space-y-4">
                   {incident.peopleInvolved.map((person, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-slate-100 overflow-hidden flex items-center justify-center text-slate-500 font-bold border border-slate-200">
-                        {person.avatar ? <img src={person.avatar} alt={person.name} /> : person.name.charAt(0)}
+                      <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
+                        {person.avatar ? (
+                          <img src={person.avatar} alt={person.name} className="w-full h-full object-cover bg-slate-100" />
+                        ) : (
+                          <div className="w-full h-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm border border-slate-200">
+                            {person.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                          </div>
+                        )}
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-slate-800">{person.name}</div>

@@ -5,6 +5,7 @@ import { Caregiver } from "@/lib/caregivers/mockData";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Phone, Mail, MapPin, Activity, CalendarCheck, ShieldAlert, FileText, CheckCircle2 } from "lucide-react";
+import { BackgroundCheckWidget } from "@/components/caregivers/recruiting/BackgroundCheckWidget";
 
 export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
   return (
@@ -183,6 +184,8 @@ export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
             )}
           </div>
         </Card>
+        
+        <BackgroundCheckWidget />
       </div>
     </div>
   );

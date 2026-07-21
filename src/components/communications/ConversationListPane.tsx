@@ -107,11 +107,17 @@ export function ConversationListPane({
                   {/* Premium Avatar */}
                   <div className="relative shrink-0">
                     <div className="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-slate-200 to-slate-100 group-hover:from-brand-teal/20 group-hover:to-brand-teal/10 transition-colors">
-                      <img
-                        src={primaryParticipant.avatar}
-                        alt={primaryParticipant.name}
-                        className="w-full h-full rounded-full object-cover border border-white"
-                      />
+                      {primaryParticipant.avatar ? (
+                        <img
+                          src={primaryParticipant.avatar}
+                          alt={primaryParticipant.name}
+                          className="w-full h-full rounded-full object-cover border border-white"
+                        />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm border border-white">
+                          {primaryParticipant.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                        </div>
+                      )}
                     </div>
                     <div className={clsx(
                       "absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-[2.5px] border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]",

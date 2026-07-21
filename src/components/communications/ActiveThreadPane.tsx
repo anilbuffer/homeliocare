@@ -86,7 +86,13 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
                 {selectedRecipient ? (
                   <div className="w-full flex items-center justify-between px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl">
                     <div className="flex items-center gap-3">
-                      <img src={selectedRecipient.avatar} alt={selectedRecipient.name} className="w-7 h-7 rounded-full object-cover border border-slate-200" />
+                      {selectedRecipient.avatar ? (
+                        <img src={selectedRecipient.avatar} alt={selectedRecipient.name} className="w-7 h-7 rounded-full object-cover border border-slate-200" />
+                      ) : (
+                        <div className="w-7 h-7 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs border border-slate-200 shrink-0">
+                          {selectedRecipient.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                        </div>
+                      )}
                       <div>
                         <span className="text-sm font-medium text-slate-800">{selectedRecipient.name}</span>
                         <span className="text-xs text-slate-500 ml-2 bg-slate-200/50 px-1.5 py-0.5 rounded">{selectedRecipient.role}</span>
@@ -125,7 +131,13 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
                             }}
                             className="w-full flex items-center gap-3 px-3 py-2 hover:bg-slate-50 rounded-lg text-left transition-colors"
                           >
-                            <img src={contact.avatar} alt={contact.name} className="w-8 h-8 rounded-full object-cover" />
+                            {contact.avatar ? (
+                              <img src={contact.avatar} alt={contact.name} className="w-8 h-8 rounded-full object-cover" />
+                            ) : (
+                              <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs shrink-0">
+                                {contact.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                              </div>
+                            )}
                             <div>
                               <div className="text-sm font-medium text-slate-800">{contact.name}</div>
                               <div className="text-xs text-slate-500">{contact.role}</div>
@@ -287,7 +299,13 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
             </button>
           )}
           <div className="relative">
-            <img src={primaryParticipant.avatar} alt="Avatar" className="w-10 h-10 rounded-full" />
+            {primaryParticipant.avatar ? (
+              <img src={primaryParticipant.avatar} alt="Avatar" className="w-10 h-10 rounded-full" />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">
+                {primaryParticipant.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+              </div>
+            )}
             <div className={clsx(
               "absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white",
               primaryParticipant.status === "online" ? "bg-brand-teal" :
@@ -378,7 +396,13 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
           return (
             <div key={msg.id} className={clsx("flex gap-3", isMe ? "justify-end" : "justify-start")}>
               {!isMe && (
-                <img src={sender?.avatar} alt="" className="w-8 h-8 rounded-full mt-auto" />
+                sender?.avatar ? (
+                  <img src={sender.avatar} alt="" className="w-8 h-8 rounded-full mt-auto shrink-0" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs mt-auto shrink-0">
+                    {sender?.name?.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                  </div>
+                )
               )}
 
               <div className={clsx(

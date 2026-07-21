@@ -96,9 +96,9 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
                         title={`${person.role}: ${person.name}`}
                       >
                         {person.avatar ? (
-                          <img src={person.avatar} alt={person.name} className="w-full h-full object-cover" />
+                          <img src={person.avatar} alt={person.name} className="w-full h-full object-cover bg-slate-100" />
                         ) : (
-                          person.name.charAt(0)
+                          person.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
                         )}
                       </div>
                     ))}

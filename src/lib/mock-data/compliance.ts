@@ -36,7 +36,7 @@ export const mockKpiSummary: KpiSummaryData = {
 export const mockComplianceItems: ComplianceItem[] = [
   {
     id: "ci-1",
-    caregiver: { id: "cg-1", name: "Sarah Jenkins", role: "RN", avatarUrl: "https://i.pravatar.cc/150?u=sarah" },
+    caregiver: { id: "cg-1", name: "Sarah Jenkins", role: "RN", avatarUrl: "" },
     itemName: "CPR Certification",
     category: "License Monitoring",
     issueDate: "2024-01-15",
@@ -45,7 +45,7 @@ export const mockComplianceItems: ComplianceItem[] = [
   },
   {
     id: "ci-2",
-    caregiver: { id: "cg-2", name: "Michael Chen", role: "HHA", avatarUrl: "https://i.pravatar.cc/150?u=michael" },
+    caregiver: { id: "cg-2", name: "Michael Chen", role: "HHA", avatarUrl: "" },
     itemName: "TB Test",
     category: "Vaccinations",
     issueDate: "2025-07-20",
@@ -54,7 +54,7 @@ export const mockComplianceItems: ComplianceItem[] = [
   },
   {
     id: "ci-3",
-    caregiver: { id: "cg-3", name: "Elena Rodriguez", role: "LPN", avatarUrl: "https://i.pravatar.cc/150?u=elena" },
+    caregiver: { id: "cg-3", name: "Elena Rodriguez", role: "LPN", avatarUrl: "" },
     itemName: "HIPAA Training",
     category: "HIPAA",
     issueDate: "2023-05-10",
@@ -63,7 +63,7 @@ export const mockComplianceItems: ComplianceItem[] = [
   },
   {
     id: "ci-4",
-    caregiver: { id: "cg-4", name: "David Kim", role: "PT", avatarUrl: "https://i.pravatar.cc/150?u=david" },
+    caregiver: { id: "cg-4", name: "David Kim", role: "PT", avatarUrl: "" },
     itemName: "State Background Check",
     category: "Background Checks",
     issueDate: "2026-07-10",
@@ -72,7 +72,7 @@ export const mockComplianceItems: ComplianceItem[] = [
   },
   {
     id: "ci-5",
-    caregiver: { id: "cg-5", name: "Jessica Davis", role: "RN", avatarUrl: "https://i.pravatar.cc/150?u=jessica" },
+    caregiver: { id: "cg-5", name: "Jessica Davis", role: "RN", avatarUrl: "" },
     itemName: "Driver's License",
     category: "License Monitoring",
     issueDate: "2020-03-12",
@@ -103,13 +103,13 @@ export const mockReminderLogs: ReminderLogEntry[] = [
 export const mockVerificationQueue: VerificationQueueItem[] = [
   {
     id: "vq-1",
-    caregiver: { id: "cg-4", name: "David Kim", role: "PT", avatarUrl: "https://i.pravatar.cc/150?u=david" },
+    caregiver: { id: "cg-4", name: "David Kim", role: "PT", avatarUrl: "" },
     documentType: "State Background Check Result",
     uploadDate: "2026-07-16T08:15:00Z",
   },
   {
     id: "vq-2",
-    caregiver: { id: "cg-6", name: "Amanda Lee", role: "HHA", avatarUrl: "https://i.pravatar.cc/150?u=amanda" },
+    caregiver: { id: "cg-6", name: "Amanda Lee", role: "HHA", avatarUrl: "" },
     documentType: "COVID-19 Vaccination Card",
     uploadDate: "2026-07-15T14:45:00Z",
   }
