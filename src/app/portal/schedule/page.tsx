@@ -79,11 +79,17 @@ export default function PortalSchedulePage() {
               </div>
 
               <div className="flex items-center gap-4 bg-slate-50 px-4 py-3 rounded-xl border border-border-subtle group-hover:bg-white transition-colors">
-                <img
-                  src={todaysVisit.caregiver.photo}
-                  alt={todaysVisit.caregiver.name}
-                  className="w-12 h-12 rounded-full object-cover shadow-sm border-2 border-white"
-                />
+                {todaysVisit.caregiver.photo ? (
+                  <img
+                    src={todaysVisit.caregiver.photo}
+                    alt={todaysVisit.caregiver.name}
+                    className="w-12 h-12 rounded-full object-cover shadow-sm border-2 border-white"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-medium text-slate-600 shadow-sm border-2 border-white shrink-0">
+                    {todaysVisit.caregiver.name.charAt(0)}
+                  </div>
+                )}
                 <div>
                   <div className="font-medium text-text-primary text-sm">{todaysVisit.caregiver.name}</div>
                   <div className="text-xs text-text-secondary">Primary Caregiver</div>
@@ -125,11 +131,17 @@ export default function PortalSchedulePage() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <img
-                        src={getCaregiverPhoto(visit.caregiverName)}
-                        alt={visit.caregiverName}
-                        className="w-8 h-8 rounded-full object-cover border border-slate-200"
-                      />
+                      {getCaregiverPhoto(visit.caregiverName) ? (
+                        <img
+                          src={getCaregiverPhoto(visit.caregiverName)}
+                          alt={visit.caregiverName}
+                          className="w-8 h-8 rounded-full object-cover border border-slate-200"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-medium text-slate-600 border border-slate-200 text-xs shrink-0">
+                          {visit.caregiverName.charAt(0)}
+                        </div>
+                      )}
                       <span className="text-sm font-medium text-slate-700">{visit.caregiverName}</span>
                     </div>
                   </div>
@@ -195,11 +207,17 @@ export default function PortalSchedulePage() {
                     <div>
                       <h3 className="text-sm font-medium text-text-primary mb-3">Caregiver</h3>
                       <div className="flex items-center gap-4 p-4 rounded-2xl border border-border-subtle bg-white">
-                        <img
-                          src={selectedItem.isToday ? selectedItem.caregiver.photo : getCaregiverPhoto(selectedItem.caregiverName)}
-                          alt={selectedItem.isToday ? selectedItem.caregiver.name : selectedItem.caregiverName}
-                          className="w-12 h-12 rounded-full object-cover shadow-sm"
-                        />
+                        {(selectedItem.isToday ? selectedItem.caregiver.photo : getCaregiverPhoto(selectedItem.caregiverName)) ? (
+                          <img
+                            src={selectedItem.isToday ? selectedItem.caregiver.photo : getCaregiverPhoto(selectedItem.caregiverName)}
+                            alt={selectedItem.isToday ? selectedItem.caregiver.name : selectedItem.caregiverName}
+                            className="w-12 h-12 rounded-full object-cover shadow-sm"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center font-medium text-slate-600 shadow-sm shrink-0 text-lg">
+                            {(selectedItem.isToday ? selectedItem.caregiver.name : selectedItem.caregiverName).charAt(0)}
+                          </div>
+                        )}
                         <div>
                           <div className="font-medium text-text-primary">
                             {selectedItem.isToday ? selectedItem.caregiver.name : selectedItem.caregiverName}

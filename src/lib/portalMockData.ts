@@ -9,7 +9,8 @@ export const todaysVisit = {
   id: "visit-1",
   date: "Today",
   timeWindow: "9:00 AM - 1:00 PM",
-  status: "In progress", // Scheduled, On the way, In progress, Completed
+  status: "On the way", // Scheduled, On the way, In progress, Completed
+  eta: "12 mins", // Live ETA tracker
   caregiver: {
     name: "Sarah Jenkins",
     photo: "",
@@ -86,6 +87,8 @@ export const visitHistory = [
     shortNote: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
     tasksCompleted: ["Medication reminders", "Tidy living room", "Reading aloud or conversation"],
     photos: [],
+    rating: 5,
+    feedback: "Marcus was very patient and engaging today.",
   },
   {
     id: "hist-2",
@@ -95,6 +98,8 @@ export const visitHistory = [
     shortNote: "Good morning overall. Assisted with bathing and dressing.",
     tasksCompleted: ["Help with getting dressed and bathing", "Breakfast preparation", "20-minute walk"],
     photos: [],
+    rating: null,
+    feedback: null,
   },
 ];
 
@@ -230,3 +235,14 @@ export const portalActivities = [
 ];
 
 export const statusBanner = null; // e.g. { type: 'warning', message: "Today's visit hasn't been confirmed yet" }
+
+export const familyMembers = [
+  { id: "fam-1", name: "Linda Alvarez", relationship: "Daughter", accessLevel: "Full Access", email: "linda.a@example.com", lastActive: "Today" },
+  { id: "fam-2", name: "Michael Alvarez", relationship: "Son", accessLevel: "Read Only", email: "mike.alvarez@example.com", lastActive: "2 days ago" },
+  { id: "fam-3", name: "Susan Smith", relationship: "Niece", accessLevel: "Billing Only", email: "susan.s@example.com", lastActive: "1 week ago" },
+];
+
+export const carePlanChangeRequests = [
+  { id: "req-1", date: "Jul 20, 2026", description: "Increase companionship hours on weekends.", status: "Pending Review" },
+  { id: "req-2", date: "Jun 15, 2026", description: "Add morning medication reminders.", status: "Approved" },
+];

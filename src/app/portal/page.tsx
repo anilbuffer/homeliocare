@@ -23,7 +23,8 @@ import {
   Activity,
   CheckCircle,
   FileEdit,
-  AlertCircle
+  AlertCircle,
+  MapPin
 } from "lucide-react";
 
 const fadeUpVariant: Variants = {
@@ -81,10 +82,16 @@ export default function PortalOverviewPage() {
                   <Clock className="w-4 h-4 text-brand-teal" />
                   <span>Today's Visit • {todaysVisit.timeWindow}</span>
                 </div>
-                <div className={`px-3 py-1.5 rounded-full text-xs font-medium border backdrop-blur-md flex items-center gap-2 ${todaysVisit.status === 'In progress' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-white/10 text-white border-white/10'
+                <div className={`px-3 py-1.5 rounded-full text-xs font-medium border backdrop-blur-md flex items-center gap-2 ${todaysVisit.status === 'In progress' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 
+                  todaysVisit.status === 'On the way' ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' :
+                  'bg-white/10 text-white border-white/10'
                   }`}>
                   {todaysVisit.status === "In progress" && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />}
+                  {todaysVisit.status === "On the way" && <MapPin className="w-3.5 h-3.5 animate-bounce" />}
                   {todaysVisit.status}
+                  {todaysVisit.status === "On the way" && todaysVisit.eta && (
+                    <span className="opacity-90 ml-1">• ETA: {todaysVisit.eta}</span>
+                  )}
                 </div>
               </div>
 
@@ -106,7 +113,13 @@ export default function PortalOverviewPage() {
               </div>
               <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 hover:bg-white/10 transition-colors w-fit">
                 <div className="relative">
-                  <img src={todaysVisit.caregiver.photo} alt={todaysVisit.caregiver.name} className="w-12 h-12 rounded-full object-cover border-2 border-white/20" />
+                  {todaysVisit.caregiver.photo ? (
+                    <img src={todaysVisit.caregiver.photo} alt={todaysVisit.caregiver.name} className="w-12 h-12 rounded-full object-cover border-2 border-white/20" />
+                  ) : (
+                    <div className="w-12 h-12 rounded-full bg-white/20 text-white flex items-center justify-center font-medium border-2 border-white/20">
+                      {todaysVisit.caregiver.name.charAt(0)}
+                    </div>
+                  )}
                   <div className="absolute -bottom-1 -right-1 bg-brand-teal text-white w-4 h-4 rounded-full border-2 border-[var(--color-sidebar-bg)] flex items-center justify-center">
                     <Star className="w-2.5 h-2.5 fill-current" />
                   </div>
@@ -256,7 +269,13 @@ export default function PortalOverviewPage() {
                 <Link href="/portal/messages" key={member.id} className="block group bg-white p-4 rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle flex items-center justify-between hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:border-slate-200 transition-all duration-200 cursor-pointer">
                   <div className="flex items-center gap-3">
                     <div className="relative">
-                      <img src={member.photo} alt={member.name} className="w-10 h-10 rounded-full object-cover transition-transform duration-200 group-hover:scale-105" />
+                      {member.photo ? (
+                        <img src={member.photo} alt={member.name} className="w-10 h-10 rounded-full object-cover transition-transform duration-200 group-hover:scale-105" />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-medium transition-transform duration-200 group-hover:scale-105 border border-slate-200">
+                          {member.name.charAt(0)}
+                        </div>
+                      )}
                       {member.isPrimaryContact && (
                         <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-brand-teal rounded-full border-2 border-white flex items-center justify-center">
                           <Star className="w-2 h-2 text-white fill-current" />

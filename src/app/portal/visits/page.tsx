@@ -2,11 +2,17 @@
 
 import React, { useState } from "react";
 import { visitHistory } from "@/lib/portalMockData";
-import { CalendarDays, Clock, CheckCircle2, ChevronRight, Image as ImageIcon, MapPin } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, ChevronRight, Image as ImageIcon, MapPin, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PortalVisitsPage() {
   const [selectedVisit, setSelectedVisit] = useState<string | null>(null);
+  const [ratings, setRatings] = useState<Record<string, number>>({});
+  const [feedbackText, setFeedbackText] = useState<Record<string, string>>({});
+
+  const handleRate = (visitId: string, rating: number) => {
+    setRatings(prev => ({ ...prev, [visitId]: rating }));
+  };
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
@@ -79,25 +85,59 @@ export default function PortalVisitsPage() {
                         </div>
                       </div>
 
-                      {visit.photos && visit.photos.length > 0 && (
-                        <div>
-                          <h4 className="text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
-                            <ImageIcon className="w-4 h-4 text-slate-400" />
-                            Shared Photos
-                          </h4>
-                          <div className="flex gap-2">
-                            {visit.photos.map((photo, idx) => (
-                              <div key={idx} className="w-20 h-20 rounded-lg overflow-hidden bg-slate-200">
-                                <img src={photo} alt="Visit detail" className="w-full h-full object-cover" />
-                              </div>
-                            ))}
+                        {visit.photos && visit.photos.length > 0 && (
+                          <div>
+                            <h4 className="text-sm font-semibold text-text-primary mb-2 flex items-center gap-2">
+                              <ImageIcon className="w-4 h-4 text-slate-400" />
+                              Shared Photos
+                            </h4>
+                            <div className="flex gap-2">
+                              {visit.photos.map((photo, idx) => (
+                                <div key={idx} className="w-20 h-20 rounded-lg overflow-hidden bg-slate-200">
+                                  <img src={photo} alt="Visit detail" className="w-full h-full object-cover" />
+                                </div>
+                              ))}
+                            </div>
                           </div>
+                        )}
+
+                        <div className="pt-4 border-t border-slate-200">
+                          <h4 className="text-sm font-semibold text-text-primary mb-2">Visit Feedback</h4>
+                          {(visit.rating || ratings[visit.id]) ? (
+                            <div className="bg-white p-3 rounded-xl border border-border-subtle inline-block">
+                              <div className="flex items-center gap-1 mb-1">
+                                {[1, 2, 3, 4, 5].map(star => (
+                                  <Star 
+                                    key={star} 
+                                    className={`w-4 h-4 ${(visit.rating || ratings[visit.id]) >= star ? 'text-amber-400 fill-amber-400' : 'text-slate-200'}`} 
+                                  />
+                                ))}
+                              </div>
+                              <p className="text-sm text-text-secondary">
+                                {visit.feedback || "Thank you for rating this visit."}
+                              </p>
+                            </div>
+                          ) : (
+                            <div className="bg-white p-4 rounded-xl border border-border-subtle">
+                              <p className="text-sm text-text-secondary mb-3">How was {visit.caregiver}'s visit?</p>
+                              <div className="flex items-center gap-2">
+                                {[1, 2, 3, 4, 5].map(star => (
+                                  <button 
+                                    key={star}
+                                    onClick={() => handleRate(visit.id, star)}
+                                    className="p-1 hover:scale-110 transition-transform focus:outline-none"
+                                  >
+                                    <Star className="w-6 h-6 text-slate-300 hover:text-amber-400 hover:fill-amber-400 transition-colors" />
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
             </div>
           );
         })}

@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { carePlanSummary, medicationsData, todosData } from "@/lib/portalMockData";
+import { carePlanSummary, medicationsData, todosData, carePlanChangeRequests } from "@/lib/portalMockData";
 import {
   Heart, Target, CheckCircle2, ClipboardList,
-  Pill, AlertCircle, Clock, Info, Check, MessageSquare
+  Pill, AlertCircle, Clock, Info, Check, MessageSquare, Plus, FileText
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
@@ -179,6 +179,43 @@ export default function PortalCarePlanPage() {
               <p className="text-sm text-blue-800">
                 This is a simplified summary of the active care plan. For full clinical details or to request changes, please message your Care Coordinator.
               </p>
+            </div>
+
+            {/* Change Requests Section */}
+            <div className="bg-white rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle mt-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-semibold text-text-primary flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-brand-teal" />
+                  Change Requests
+                </h2>
+                <button className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 active:scale-95 transition-all text-slate-700 px-3 py-1.5 rounded-lg text-sm font-medium">
+                  <Plus className="w-4 h-4" />
+                  New Request
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {carePlanChangeRequests.map(request => (
+                  <div key={request.id} className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                      <h3 className="font-medium text-text-primary text-sm mb-1">{request.description}</h3>
+                      <p className="text-xs text-text-secondary flex items-center gap-2">
+                        <Clock className="w-3.5 h-3.5" /> Requested on {request.date}
+                      </p>
+                    </div>
+                    <div>
+                      <span className={clsx(
+                        "px-2.5 py-1 text-xs font-medium rounded-full",
+                        request.status === "Approved" ? "bg-emerald-100 text-emerald-700" :
+                        request.status === "Pending Review" ? "bg-amber-100 text-amber-700" :
+                        "bg-slate-100 text-slate-700"
+                      )}>
+                        {request.status}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}

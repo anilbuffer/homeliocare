@@ -1,19 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
-import { Bell, Lock, Shield, User, Globe, Save, Mail, Phone, Briefcase, Camera, Edit2 } from "lucide-react";
+import { Bell, Lock, Shield, User, Globe, Save, Mail, Phone, Briefcase, Camera, Edit2, Users, MoreVertical, Plus, Check } from "lucide-react";
+import { familyMembers } from "@/lib/portalMockData";
 import { useAuth } from "@/hooks/useAuth";
 import { Card } from "@/components/ui/Card";
 
 export default function SettingsPage() {
   const { currentUser } = useAuth();
   const [activeTab, setActiveTab] = useState("profile");
+  const [saveStatus, setSaveStatus] = useState<Record<string, boolean>>({});
+
+  const handleSave = (section: string) => {
+    setSaveStatus(prev => ({ ...prev, [section]: true }));
+    setTimeout(() => {
+      setSaveStatus(prev => ({ ...prev, [section]: false }));
+    }, 2000);
+  };
 
   const tabs = [
     { id: "profile", label: "Profile", icon: User },
     { id: "general", label: "General Settings", icon: Save },
     { id: "security", label: "Security", icon: Lock },
     { id: "notifications", label: "Notifications", icon: Bell },
+    { id: "family", label: "Family Access", icon: Users },
     { id: "preferences", label: "Preferences", icon: Globe },
   ];
 
@@ -48,7 +58,7 @@ export default function SettingsPage() {
             {activeTab === "profile" && (
               <div className="w-full h-full pb-8">
                 {/* Header Cover */}
-                <div className="h-32 bg-gradient-to-r from-brand-teal/80 to-blue-600/80"></div>
+                <div className="h-32 bg-gradient-to-r from-brand-teal/80 to-teal-600/80"></div>
         
                 {/* Profile Info */}
                 <div className="px-4 sm:px-8">
@@ -69,9 +79,9 @@ export default function SettingsPage() {
                         </div>
                       </div>
                     </div>
-                    <button className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                      <Edit2 className="w-4 h-4" />
-                      Edit Profile
+                    <button onClick={() => handleSave('profile')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+                      {saveStatus['profile'] ? <Check className="w-4 h-4" /> : <Edit2 className="w-4 h-4" />}
+                      {saveStatus['profile'] ? 'Saved!' : 'Edit Profile'}
                     </button>
                   </div>
         
@@ -93,7 +103,7 @@ export default function SettingsPage() {
                       </div>
         
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
                           <Phone className="w-5 h-5" />
                         </div>
                         <div>
@@ -166,19 +176,181 @@ export default function SettingsPage() {
                     <button type="button" className="px-4 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                       Cancel
                     </button>
-                    <button type="button" className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                      <Save className="w-4 h-4" />
-                      Save Changes
+                    <button type="button" onClick={() => handleSave('general')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+                      {saveStatus['general'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                      {saveStatus['general'] ? 'Saved!' : 'Save Changes'}
                     </button>
                   </div>
                 </form>
               </div>
             )}
 
-            {activeTab !== "profile" && activeTab !== "general" && (
-              <div className="p-4 sm:p-6 h-full flex flex-col items-center justify-center text-text-secondary space-y-4 pt-12">
-                <Shield className="w-12 h-12 text-slate-200" />
-                <p>This section is under construction.</p>
+            {activeTab === "family" && (
+              <div className="p-4 sm:p-6 space-y-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold text-text-primary">Family Access</h3>
+                    <p className="text-xs text-text-secondary mt-1">Manage who can view the care plan, schedule, and billing.</p>
+                  </div>
+                  <button onClick={() => handleSave('family')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium">
+                    {saveStatus['family'] ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    {saveStatus['family'] ? 'Sent!' : 'Invite Member'}
+                  </button>
+                </div>
+                
+                <div className="space-y-4">
+                  {familyMembers.map(member => (
+                    <div key={member.id} className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-semibold">
+                          {member.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="font-semibold text-text-primary">{member.name}</span>
+                            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{member.relationship}</span>
+                          </div>
+                          <div className="text-xs text-text-secondary flex gap-3">
+                            <span>{member.email}</span>
+                            <span>•</span>
+                            <span>Last active: {member.lastActive}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-4">
+                        <select 
+                          className="text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+                          defaultValue={member.accessLevel}
+                        >
+                          <option value="Full Access">Full Access</option>
+                          <option value="Read Only">Read Only</option>
+                          <option value="Billing Only">Billing Only</option>
+                        </select>
+                        <button className="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors">
+                          <MoreVertical className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activeTab === "security" && (
+              <div className="p-4 sm:p-6 space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-text-primary">Security Settings</h3>
+                  <p className="text-xs text-text-secondary mt-1">Manage your password and authentication methods.</p>
+                </div>
+                
+                <div className="space-y-4 max-w-lg">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-text-primary">Current Password</label>
+                    <input type="password" placeholder="••••••••" className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-text-primary">New Password</label>
+                    <input type="password" placeholder="••••••••" className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" />
+                  </div>
+                  
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-medium text-text-primary">Two-Factor Authentication</h4>
+                      <p className="text-xs text-text-secondary mt-0.5">Add an extra layer of security to your account.</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" defaultChecked />
+                      <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-teal"></div>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="pt-5 border-t border-slate-100 flex justify-end gap-3 max-w-lg">
+                  <button type="button" onClick={() => handleSave('security')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+                    {saveStatus['security'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                    {saveStatus['security'] ? 'Saved!' : 'Save Changes'}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "notifications" && (
+              <div className="p-4 sm:p-6 space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-text-primary">Notification Preferences</h3>
+                  <p className="text-xs text-text-secondary mt-1">Choose what updates you want to receive and how.</p>
+                </div>
+
+                <div className="space-y-6 max-w-2xl">
+                  {[
+                    { title: 'Visit Reminders', desc: 'Get notified before a scheduled visit starts.' },
+                    { title: 'Care Plan Updates', desc: 'Alerts when the care team updates the active plan.' },
+                    { title: 'Billing & Invoices', desc: 'Monthly statements and payment confirmations.' }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 bg-white">
+                      <div>
+                        <h4 className="text-sm font-medium text-text-primary">{item.title}</h4>
+                        <p className="text-xs text-text-secondary mt-0.5">{item.desc}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                          <input type="checkbox" defaultChecked className="w-4 h-4 text-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
+                          Email
+                        </label>
+                        <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                          <input type="checkbox" defaultChecked={i === 0} className="w-4 h-4 text-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
+                          SMS
+                        </label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-5 border-t border-slate-100 flex justify-end gap-3 max-w-2xl">
+                  <button type="button" onClick={() => handleSave('notifications')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+                    {saveStatus['notifications'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                    {saveStatus['notifications'] ? 'Saved!' : 'Save Changes'}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "preferences" && (
+              <div className="p-4 sm:p-6 space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-text-primary">System Preferences</h3>
+                  <p className="text-xs text-text-secondary mt-1">Customize your portal experience.</p>
+                </div>
+
+                <div className="space-y-4 max-w-lg">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-text-primary">Language</label>
+                    <select className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors appearance-none text-sm">
+                      <option>English (US)</option>
+                      <option>Spanish (ES)</option>
+                      <option>French (FR)</option>
+                    </select>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-sm font-medium text-text-primary">High Contrast Mode</h4>
+                      <p className="text-xs text-text-secondary mt-0.5">Increase UI contrast for better readability.</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" />
+                      <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-teal"></div>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="pt-5 border-t border-slate-100 flex justify-end gap-3 max-w-lg">
+                  <button type="button" onClick={() => handleSave('preferences')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
+                    {saveStatus['preferences'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                    {saveStatus['preferences'] ? 'Saved!' : 'Save Changes'}
+                  </button>
+                </div>
               </div>
             )}
           </div>
