@@ -76,8 +76,8 @@ export default function EVVMonitoringPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="mb-0">
             <h1 className="text-xl font-bold text-slate-900 tracking-tight">EVV Monitoring</h1>
-            <p className="text-sm text-slate-500 font-medium mt-1">
-              <span className="text-amber-600 font-semibold bg-amber-50 px-1.5 py-0.5 rounded-full text-xs mr-1">
+            <p className="text-xs text-slate-500 font-medium mt-2">
+              <span className="text-amber-600 font-semibold bg-amber-100 px-2 py-1 rounded-full text-xs mr-1">
                 {exceptions.filter(e => e.status !== "Resolved").length} visits
               </span> need review today
             </p>

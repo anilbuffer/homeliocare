@@ -94,7 +94,7 @@ export default function PayrollPage() {
             <div className="relative">
               <button
                 onClick={() => setIsPayPeriodOpen(!isPayPeriodOpen)}
-                className="flex items-center gap-2 bg-white border border-slate-100 text-sm font-medium text-slate-700 px-4 py-2 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
+                className="flex items-center gap-2 bg-white border border-slate-200 text-sm font-medium text-slate-700 px-4 py-2 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
               >
                 <CalendarIcon className="w-4 h-4 text-slate-400" />
                 Pay Period: {selectedPayPeriod}
@@ -107,7 +107,7 @@ export default function PayrollPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden z-20"
+                    className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-slate-200 overflow-hidden z-20"
                   >
                     {["Jul 1 - Jul 14", "Jun 15 - Jun 30", "Jun 1 - Jun 14"].map(period => (
                       <button
@@ -132,7 +132,7 @@ export default function PayrollPage() {
 
             <button
               onClick={() => setIsRulesOpen(true)}
-              className="flex items-center gap-2 bg-white border border-slate-100 text-sm font-medium text-slate-700 px-4 py-2 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
+              className="flex items-center gap-2 bg-white border border-slate-200 text-sm font-medium text-slate-700 px-4 py-2 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
             >
               <Settings className="w-4 h-4 text-slate-400" />
               Rule Configuration
@@ -148,18 +148,18 @@ export default function PayrollPage() {
         </div>
 
         {/* Reconciliation Pipeline Visual */}
-        <Card className="p-6">
+        <Card className="p-4">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-bold text-slate-900">Reconciliation Pipeline</h2>
-            <div className="text-xs font-semibold text-brand-teal bg-teal-50 px-3 py-1 rounded-full flex items-center gap-1.5">
+            <h2 className="text-sm font-medium text-slate-900">Reconciliation Pipeline</h2>
+            <div className="text-xs font-semibold text-brand-teal bg-teal-100 px-3 py-1 rounded-full flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" /> All Exceptions Cleared
             </div>
           </div>
 
           <div className="flex items-center gap-4">
             {/* Step 1 */}
-            <div className="flex-1 bg-slate-50 rounded-xl p-4 border border-slate-100 relative">
-              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Step 1: Scheduling</div>
+            <div className="flex-1 bg-slate-100 rounded-xl p-4 border border-slate-200 relative">
+              <div className="text-xs font-medium text-slate-400 mb-1">Step 1: Scheduling</div>
               <div className="text-2xl font-bold text-slate-900">128.5 <span className="text-sm font-medium text-slate-500">Scheduled Hrs</span></div>
               <div className="absolute top-1/2 -right-6 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400 shadow-sm">
                 <ArrowRight className="w-4 h-4" />
@@ -167,8 +167,8 @@ export default function PayrollPage() {
             </div>
 
             {/* Step 2 */}
-            <div className="flex-1 bg-slate-50 rounded-xl p-4 border border-slate-100 relative">
-              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Step 2: EVV Verified</div>
+            <div className="flex-1 bg-slate-100 rounded-xl p-4 border border-slate-200 relative">
+              <div className="text-xs font-medium text-slate-400 mb-1">Step 2: EVV Verified</div>
               <div className="text-2xl font-bold text-slate-900">125.0 <span className="text-sm font-medium text-slate-500">Actual Hrs</span></div>
               <div className="absolute top-1/2 -right-6 -translate-y-1/2 z-10 w-8 h-8 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400 shadow-sm">
                 <ArrowRight className="w-4 h-4" />
@@ -176,12 +176,12 @@ export default function PayrollPage() {
             </div>
 
             {/* Step 3 */}
-            <div className="flex-1 bg-brand-teal/5 rounded-xl p-4 border border-brand-teal/20 relative">
-              <div className="text-xs font-bold text-brand-teal uppercase tracking-wider mb-1">Step 3: Payroll Rules Applied</div>
+            <div className="flex-1 bg-brand-teal/5 rounded-xl p-4 border border-brand-teal relative">
+              <div className="text-xs font-medium text-brand-teal mb-1">Step 3: Payroll Rules Applied</div>
               <div className="text-2xl font-bold text-brand-teal">${totalPayroll.toLocaleString(undefined, { minimumFractionDigits: 2 })} <span className="text-sm font-medium text-brand-teal/70">Est. Payout</span></div>
-              <div className="mt-2 flex gap-2">
-                <span className="text-[10px] font-bold bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 shadow-sm">CA Overtime Included</span>
-                <span className="text-[10px] font-bold bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 shadow-sm">Shift Differentials</span>
+              <div className="mt-2 gap-2">
+                <span className="text-[10px] font-medium bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)]">CA Overtime Included</span>
+                <span className="text-[10px] font-medium bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)]">Shift Differentials</span>
               </div>
             </div>
           </div>
@@ -189,43 +189,43 @@ export default function PayrollPage() {
 
         {/* KPI Row */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="p-5 flex items-center gap-4">
-            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center shrink-0">
+          <Card className="p-4 flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shrink-0">
               <Clock className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Total EVV Hours</p>
+              <p className="text-xs font-medium text-slate-500">Total EVV Hours</p>
               <p className="text-2xl font-bold text-slate-900">{totalEvvHours}</p>
             </div>
           </Card>
-          <Card className="p-5 flex items-center gap-4">
-            <div className="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center shrink-0">
+          <Card className="p-4 flex items-center gap-4">
+            <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center shrink-0">
               <Calculator className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Overtime / Double</p>
+              <p className="text-xs font-medium text-slate-500">Overtime / Double</p>
               <p className="text-2xl font-bold text-slate-900">
                 {payrollData.reduce((acc, curr) => acc + curr.otHours, 0)} / {payrollData.reduce((acc, curr) => acc + curr.dtHours, 0)}
               </p>
             </div>
           </Card>
-          <Card className="p-5 flex items-center gap-4">
-            <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center shrink-0">
+          <Card className="p-4 flex items-center gap-4">
+            <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center shrink-0">
               <AlertTriangle className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Shift Differentials</p>
+              <p className="text-xs font-medium text-slate-500">Shift Differentials</p>
               <p className="text-2xl font-bold text-slate-900">
                 ${payrollData.reduce((acc, curr) => acc + curr.shiftDiff, 0).toLocaleString()}
               </p>
             </div>
           </Card>
-          <Card className="p-5 flex items-center gap-4">
-            <div className="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center shrink-0">
+          <Card className="p-4 flex items-center gap-4">
+            <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center shrink-0">
               <DollarSign className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Est. Payroll</p>
+              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Est. Payroll</p>
               <p className="text-2xl font-bold text-slate-900">${totalPayroll.toLocaleString(undefined, { minimumFractionDigits: 2 })}</p>
             </div>
           </Card>
@@ -233,21 +233,20 @@ export default function PayrollPage() {
 
         {/* Main Table Area */}
         <Card noPadding className="flex flex-col">
-          <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+          <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-100">
             <h3 className="font-bold text-slate-900">Pay Period Reconciliation</h3>
           </div>
-
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                  <th className="p-4 w-8"></th>
-                  <th className="p-4">Caregiver</th>
-                  <th className="p-4 text-right">Base Hrs</th>
-                  <th className="p-4 text-right">OT / DT</th>
-                  <th className="p-4 text-right">Base Rate</th>
-                  <th className="p-4 text-right">Total Est. Pay</th>
-                  <th className="p-4 text-center">Status</th>
+                  <th className="px-4 py-3 w-8"></th>
+                  <th className="px-4 py-3">Caregiver</th>
+                  <th className="px-4 py-3 text-right">Base Hrs</th>
+                  <th className="px-4 py-3 text-right">OT / DT</th>
+                  <th className="px-4 py-3 text-right">Base Rate</th>
+                  <th className="px-4 py-3 text-right">Total Est. Pay</th>
+                  <th className="px-4 py-3 text-center">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-sm">
@@ -257,37 +256,37 @@ export default function PayrollPage() {
                       className={clsx("hover:bg-slate-50 transition-colors cursor-pointer", expandedRow === row.id && "bg-slate-50")}
                       onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
                     >
-                      <td className="p-4 text-center text-slate-400">
+                      <td className="px-4 py-3 text-center text-slate-400">
                         <ChevronRight className={clsx("w-5 h-5 transition-transform", expandedRow === row.id && "rotate-90 text-brand-teal")} />
                       </td>
-                      <td className="p-4">
+                      <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
                             <User className="w-4 h-4" />
                           </div>
                           <div>
                             <div className="font-bold text-slate-900">{row.name}</div>
-                            <div className="text-[10px] font-mono text-slate-400 mt-0.5">{row.id}</div>
+                            <div className="text-[10px] text-slate-400 mt-0.5">{row.id}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="p-4 text-right font-medium text-slate-700">{row.baseHours}h</td>
-                      <td className="p-4 text-right">
+                      <td className="px-4 py-3 text-right font-medium text-slate-700">{row.baseHours}h</td>
+                      <td className="px-4 py-3 text-right">
                         {(row.otHours > 0 || row.dtHours > 0) ? (
                           <div className="flex flex-col items-end gap-1">
-                            {row.otHours > 0 && <span className="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md text-xs">{row.otHours}h OT (1.5x)</span>}
-                            {row.dtHours > 0 && <span className="font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md text-xs">{row.dtHours}h DT (2.0x)</span>}
+                            {row.otHours > 0 && <span className="font-medium text-amber-600 bg-amber-100 px-2 py-0.5 rounded-md text-xs">{row.otHours}h OT (1.5x)</span>}
+                            {row.dtHours > 0 && <span className="font-medium text-rose-600 bg-rose-100 px-2 py-0.5 rounded-md text-xs">{row.dtHours}h DT (2.0x)</span>}
                           </div>
                         ) : (
                           <span className="text-slate-400">-</span>
                         )}
                       </td>
-                      <td className="p-4 text-right text-slate-600">${row.rate}/hr</td>
-                      <td className="p-4 text-right font-bold text-slate-900">
+                      <td className="px-4 py-3 text-right text-slate-600">${row.rate}/hr</td>
+                      <td className="px-4 py-3 text-right font-medium text-slate-900">
                         ${row.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                       </td>
-                      <td className="p-4 text-center">
-                        <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                      <td className="px-4 py-3 text-center">
+                        <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           Ready
                         </span>
@@ -297,7 +296,7 @@ export default function PayrollPage() {
                     {/* Expandable Detail View */}
                     <AnimatePresence>
                       {expandedRow === row.id && (
-                        <tr className="bg-slate-50/80 border-b-2 border-slate-200">
+                        <tr className="bg-slate-100 border-b-1 border-t-1 border-slate-200">
                           <td colSpan={7} className="p-0">
                             <motion.div
                               initial={{ height: 0, opacity: 0 }}
@@ -305,7 +304,7 @@ export default function PayrollPage() {
                               exit={{ height: 0, opacity: 0 }}
                               className="overflow-hidden"
                             >
-                              <div className="p-6 ml-12 mr-6 border-l-4 border-brand-teal">
+                              <div className="p-4 ml-12 mr-6 border-l-4 border-brand-teal">
                                 <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Earnings Breakdown</h4>
                                 <div className="grid grid-cols-5 gap-6">
                                   <div>

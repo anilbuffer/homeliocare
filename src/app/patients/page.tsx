@@ -4,20 +4,20 @@ import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Users, 
-  Search, 
-  Filter, 
-  MoreVertical, 
-  ArrowRight, 
-  LayoutGrid, 
-  List, 
-  X, 
-  HeartPulse, 
-  AlertTriangle, 
-  Building2, 
-  CheckCircle2, 
-  Plus, 
+import {
+  Users,
+  Search,
+  Filter,
+  MoreVertical,
+  ArrowRight,
+  LayoutGrid,
+  List,
+  X,
+  HeartPulse,
+  AlertTriangle,
+  Building2,
+  CheckCircle2,
+  Plus,
   ChevronRight,
   UserPlus
 } from "lucide-react";
@@ -162,9 +162,8 @@ export default function PatientsPage() {
             <div
               key={item.id}
               onClick={() => setActiveFilter(item.id)}
-              className={`group cursor-pointer bg-white rounded-2xl p-3.5 sm:p-4 border transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] relative overflow-hidden ${
-                isActive ? item.activeBorder : "border-slate-200/80 hover:border-slate-300"
-              }`}
+              className={`group cursor-pointer bg-white rounded-2xl p-3.5 sm:p-4 border transition-all duration-200 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] relative overflow-hidden ${isActive ? item.activeBorder : "border-slate-200/80 hover:border-slate-300"
+                }`}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
                 <span className="text-xs sm:text-sm font-semibold text-slate-600 group-hover:text-slate-900 transition-colors truncate">
@@ -221,11 +220,10 @@ export default function PatientsPage() {
             {/* Filter Toggle Button */}
             <button
               onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
-                activeFilter !== "ALL" || isFilterPanelOpen
-                  ? "bg-brand-teal/10 text-brand-teal border-brand-teal/30 shadow-sm"
-                  : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
-              }`}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${activeFilter !== "ALL" || isFilterPanelOpen
+                ? "bg-brand-teal/10 text-brand-teal border-brand-teal/30 shadow-sm"
+                : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+                }`}
             >
               <Filter className="w-3.5 h-3.5" />
               <span>Filters</span>
@@ -238,11 +236,10 @@ export default function PatientsPage() {
             <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/70">
               <button
                 onClick={() => handleViewChange("list")}
-                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  viewMode === "list"
-                    ? "bg-white text-brand-teal shadow-sm font-bold"
-                    : "text-slate-500 hover:text-slate-800"
-                }`}
+                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${viewMode === "list"
+                  ? "bg-white text-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.04)] font-bold"
+                  : "text-slate-500 hover:text-slate-800"
+                  }`}
                 title="List View"
               >
                 <List className="w-4 h-4" />
@@ -250,11 +247,10 @@ export default function PatientsPage() {
               </button>
               <button
                 onClick={() => handleViewChange("grid")}
-                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  viewMode === "grid"
-                    ? "bg-white text-brand-teal shadow-sm font-bold"
-                    : "text-slate-500 hover:text-slate-800"
-                }`}
+                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${viewMode === "grid"
+                  ? "bg-white text-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.04)] font-bold"
+                  : "text-slate-500 hover:text-slate-800"
+                  }`}
                 title="Card Grid View"
               >
                 <LayoutGrid className="w-4 h-4" />
@@ -273,11 +269,10 @@ export default function PatientsPage() {
               <button
                 key={filterVal}
                 onClick={() => setActiveFilter(filterVal)}
-                className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                  isSelected
-                    ? "bg-slate-900 text-white shadow-sm font-semibold"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200/70"
-                }`}
+                className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all ${isSelected
+                  ? "bg-slate-900 text-white shadow-[0_6px_32px_rgba(0,0,0,0.04)] font-semibold"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200/70"
+                  }`}
               >
                 {filterVal === "ALL" ? "All Patients" : filterVal}
               </button>
@@ -368,10 +363,10 @@ export default function PatientsPage() {
                               patient.status === "Active"
                                 ? "success"
                                 : patient.status === "Hospitalized"
-                                ? "warning"
-                                : patient.status === "Discharged"
-                                ? "default"
-                                : "error"
+                                  ? "warning"
+                                  : patient.status === "Discharged"
+                                    ? "default"
+                                    : "error"
                             }
                           >
                             {patient.status}
@@ -383,8 +378,8 @@ export default function PatientsPage() {
                               patient.riskLevel === "Low"
                                 ? "success"
                                 : patient.riskLevel === "Medium"
-                                ? "warning"
-                                : "error"
+                                  ? "warning"
+                                  : "error"
                             }
                           >
                             {patient.riskLevel} Risk
@@ -452,10 +447,10 @@ export default function PatientsPage() {
                           patient.status === "Active"
                             ? "success"
                             : patient.status === "Hospitalized"
-                            ? "warning"
-                            : patient.status === "Discharged"
-                            ? "default"
-                            : "error"
+                              ? "warning"
+                              : patient.status === "Discharged"
+                                ? "default"
+                                : "error"
                         }
                       >
                         {patient.status}
@@ -465,8 +460,8 @@ export default function PatientsPage() {
                           patient.riskLevel === "Low"
                             ? "success"
                             : patient.riskLevel === "Medium"
-                            ? "warning"
-                            : "error"
+                              ? "warning"
+                              : "error"
                         }
                       >
                         {patient.riskLevel} Risk
@@ -532,10 +527,10 @@ export default function PatientsPage() {
                                 patient.status === "Active"
                                   ? "success"
                                   : patient.status === "Hospitalized"
-                                  ? "warning"
-                                  : patient.status === "Discharged"
-                                  ? "default"
-                                  : "error"
+                                    ? "warning"
+                                    : patient.status === "Discharged"
+                                      ? "default"
+                                      : "error"
                               }
                             >
                               {patient.status}
@@ -549,8 +544,8 @@ export default function PatientsPage() {
                                 patient.riskLevel === "Low"
                                   ? "success"
                                   : patient.riskLevel === "Medium"
-                                  ? "warning"
-                                  : "error"
+                                    ? "warning"
+                                    : "error"
                               }
                             >
                               {patient.riskLevel} Risk

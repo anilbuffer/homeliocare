@@ -26,8 +26,8 @@ export default function SettingsPage() {
 
   return (
     <div className="w-full max-w-full mx-auto">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">Settings & Configuration</h1>
+      <div className="mb-4">
+        <h1 className="text-xl font-bold text-slate-900">Settings & Configuration</h1>
         <p className="text-xs text-slate-500 mt-1">Manage agency-wide preferences, compliance configurations, and security policies.</p>
       </div>
 

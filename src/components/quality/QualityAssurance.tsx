@@ -34,12 +34,12 @@ export function QualityAssurance() {
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-6 full-width space-y-6">
+    <div className="p-4 sm:p-6 lg:p-6 full-width space-y-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-slate-900">Quality Assurance</h1>
-          <p className="text-sm text-slate-500 font-medium mt-0.5 flex items-center gap-2">
+          <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-teal"></span>
             15 audits due this month
           </p>
@@ -91,7 +91,7 @@ export function QualityAssurance() {
       </div>
 
       {/* Row 4: Audit Types Breakdown (Tabs & Checklist) */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 min-h-[500px]">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 min-h-[500px]">
         {/* Tabs */}
         <div className="lg:col-span-1 bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col gap-2">
           <h3 className="text-lg font-medium text-text-primary mb-2 px-2">Audit Instruments</h3>
@@ -122,7 +122,7 @@ export function QualityAssurance() {
       </div>
 
       {/* Row 6 & 7: Supervisor Evals & Trends */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
         <SupervisorEvalCard />
         <TrendsChart />
       </div>

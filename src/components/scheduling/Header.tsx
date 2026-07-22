@@ -22,7 +22,7 @@ export function Header({ viewMode, setViewMode, openShiftsCount, onCreateShift }
             </span>
           )}
         </div>
-        <p className="text-xs sm:text-sm text-slate-500 mt-1">
+        <p className="text-xs text-slate-500 mt-1">
           Real-time dispatch, caregiver coverage, and shift shift tracking.
         </p>
       </div>
