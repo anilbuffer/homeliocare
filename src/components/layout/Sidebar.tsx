@@ -141,7 +141,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
       <aside
         className={clsx(
-          "bg-sidebar-bg text-white flex flex-col h-screen fixed top-0 left-0 z-50 transition-all duration-300 ease-in-out min-[1120px]:translate-x-0 min-[1120px]:sticky shadow-[4px_0_24px_rgba(0,0,0,0.15)] min-[1120px]:shadow-none select-none relative",
+          "bg-sidebar-bg text-white flex flex-col h-screen fixed top-0 left-0 z-50 transition-all duration-300 ease-in-out min-[1120px]:translate-x-0 min-[1120px]:sticky min-[1120px]:top-0 shadow-[4px_0_24px_rgba(0,0,0,0.15)] min-[1120px]:shadow-none select-none",
           isOpen ? "translate-x-0" : "-translate-x-full",
           isCollapsed ? "min-[1120px]:w-[76px] w-[240px]" : "w-[240px]"
         )}

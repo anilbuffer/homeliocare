@@ -46,7 +46,7 @@ export function VerificationQueue({ items }: VerificationQueueProps) {
                 <div className="flex-1 min-w-0 mt-0.5">
                   <div className="text-sm font-medium text-slate-900 truncate">{item.caregiver.name}</div>
                   <div className="text-xs text-brand-teal truncate mb-1">{item.documentType}</div>
-                  <div className="text-xs text-slate-500 flex items-center gap-1">
+                  <div className="text-xs text-slate-500 flex items-center gap-1" suppressHydrationWarning>
                     Uploaded {new Date(item.uploadDate).toLocaleDateString('en-US')}
                   </div>
                 </div>

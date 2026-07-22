@@ -49,23 +49,23 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
   return (
     <div className="w-full">
       {/* Tab Navigation */}
-      <div className="flex items-center p-1.5 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl mb-6 overflow-x-auto [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300 border border-slate-200 w-full sm:w-max max-w-full">
+      <div className="flex items-center gap-1 p-1 sm:p-1.5 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-2xl mb-6 overflow-x-auto no-scrollbar border border-slate-200/90 w-full max-w-full">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => handleTabChange(tab.id)}
-              className={`relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+              className={`relative px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap rounded-xl shrink-0 ${isActive ? "text-brand-teal font-bold" : "text-slate-500 hover:text-slate-800 hover:bg-slate-100/60"
                 }`}
             >
               <span className="relative z-10">{tab.label}</span>
               {isActive && (
                 <motion.div
                   layoutId="patient-tab-indicator"
-                  className="absolute inset-0 bg-brand-teal/10 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.06)] border border-brand-teal/20"
+                  className="absolute inset-0 bg-brand-teal/10 rounded-xl border border-brand-teal/20 shadow-sm"
                   initial={false}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                 />
               )}
             </button>

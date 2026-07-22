@@ -17,6 +17,23 @@ export function AuditLog({ logs }: AuditLogProps) {
     log.details.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const formatLogDate = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr);
+      return d.toLocaleString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-[400px]">
       <div className="pb-4 border-b border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/50">
@@ -57,7 +74,9 @@ export function AuditLog({ logs }: AuditLogProps) {
               <div className="flex-1">
                 <div className="flex items-start justify-between gap-2 mb-1.5">
                   <span className="font-semibold text-slate-900">{log.action}</span>
-                  <span className="text-[11px] font-medium text-slate-500 whitespace-nowrap bg-slate-50 px-2 py-0.5 rounded-full border border-slate-100">{new Date(log.timestamp).toLocaleString()}</span>
+                  <span className="text-[11px] font-medium text-slate-500 whitespace-nowrap bg-slate-50 px-2 py-0.5 rounded-full border border-slate-100" suppressHydrationWarning>
+                    {formatLogDate(log.timestamp)}
+                  </span>
                 </div>
                 <div className="text-sm text-slate-600 mb-2">{log.details}</div>
                 <div className="text-xs font-medium text-brand-teal bg-brand-teal/5 inline-block px-2 py-1 rounded-md">By: {log.user}</div>

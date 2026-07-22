@@ -20,6 +20,16 @@ export interface Shift {
   status: "Completed" | "Upcoming" | "Missed";
 }
 
+export interface CaregiverPolicyAck {
+  id: string;
+  policyName: string;
+  category: string;
+  version: string;
+  status: "Signed" | "Pending" | "Overdue";
+  signedDate?: string;
+  dueDate?: string;
+}
+
 export interface Caregiver {
   id: string;
   name: string;
@@ -42,6 +52,7 @@ export interface Caregiver {
   lastActiveDate: string;
   certifications: Certification[];
   recentShifts: Shift[];
+  policyAcknowledgments?: CaregiverPolicyAck[];
 }
 
 export const mockCaregivers: Record<string, Caregiver> = {
@@ -72,6 +83,13 @@ export const mockCaregivers: Record<string, Caregiver> = {
     recentShifts: [
       { id: "s-1", patientId: "c-001", patientName: "Robert Hayes", date: "2026-07-14", startTime: "09:00", endTime: "13:00", status: "Completed" },
       { id: "s-2", patientId: "c-002", patientName: "Mary Johnson", date: "2026-07-15", startTime: "14:00", endTime: "18:00", status: "Upcoming" },
+    ],
+    policyAcknowledgments: [
+      { id: "pa-1", policyName: "Agency Code of Conduct", category: "Corporate Governance", version: "v3.2", status: "Pending", dueDate: "2026-07-30" },
+      { id: "pa-2", policyName: "HIPAA Privacy & Security Policy", category: "Regulatory Compliance", version: "v4.1", status: "Signed", signedDate: "2025-07-21" },
+      { id: "pa-3", policyName: "Emergency Response & Evacuation Plan", category: "Safety & Emergency", version: "v2.0", status: "Overdue", dueDate: "2026-07-10" },
+      { id: "pa-4", policyName: "Infection Prevention & PPE Protocol", category: "Clinical Protocols", version: "v3.0", status: "Signed", signedDate: "2025-05-06" },
+      { id: "pa-5", policyName: "Workplace Violence & Safety Policy", category: "Employee Safety", version: "v1.8", status: "Signed", signedDate: "2025-06-03" }
     ]
   },
   "cg-002": {
@@ -100,6 +118,13 @@ export const mockCaregivers: Record<string, Caregiver> = {
     ],
     recentShifts: [
       { id: "s-3", patientId: "c-003", patientName: "John Doe", date: "2026-07-13", startTime: "08:00", endTime: "16:00", status: "Completed" }
+    ],
+    policyAcknowledgments: [
+      { id: "pa-1", policyName: "Agency Code of Conduct", category: "Corporate Governance", version: "v3.2", status: "Signed", signedDate: "2025-07-21" },
+      { id: "pa-2", policyName: "HIPAA Privacy & Security Policy", category: "Regulatory Compliance", version: "v4.1", status: "Signed", signedDate: "2025-07-21" },
+      { id: "pa-3", policyName: "Emergency Response & Evacuation Plan", category: "Safety & Emergency", version: "v2.0", status: "Signed", signedDate: "2025-06-12" },
+      { id: "pa-4", policyName: "Infection Prevention & PPE Protocol", category: "Clinical Protocols", version: "v3.0", status: "Signed", signedDate: "2025-05-05" },
+      { id: "pa-5", policyName: "Workplace Violence & Safety Policy", category: "Employee Safety", version: "v1.8", status: "Signed", signedDate: "2025-06-02" }
     ]
   },
   "cg-003": {
@@ -126,7 +151,14 @@ export const mockCaregivers: Record<string, Caregiver> = {
       { id: "cert-5", name: "CNA License", issueDate: "2026-05-20", expiryDate: "2028-05-20", status: "Active", issuer: "State Nursing Board" },
       { id: "cert-6", name: "CPR", issueDate: "2024-07-01", expiryDate: "2026-07-01", status: "Expiring Soon", issuer: "American Heart Association" }
     ],
-    recentShifts: []
+    recentShifts: [],
+    policyAcknowledgments: [
+      { id: "pa-1", policyName: "Agency Code of Conduct", category: "Corporate Governance", version: "v3.2", status: "Signed", signedDate: "2025-07-21" },
+      { id: "pa-2", policyName: "HIPAA Privacy & Security Policy", category: "Regulatory Compliance", version: "v4.1", status: "Signed", signedDate: "2025-07-21" },
+      { id: "pa-3", policyName: "Emergency Response & Evacuation Plan", category: "Safety & Emergency", version: "v2.0", status: "Signed", signedDate: "2025-06-10" },
+      { id: "pa-4", policyName: "Infection Prevention & PPE Protocol", category: "Clinical Protocols", version: "v3.0", status: "Signed", signedDate: "2025-05-04" },
+      { id: "pa-5", policyName: "Workplace Violence & Safety Policy", category: "Employee Safety", version: "v1.8", status: "Signed", signedDate: "2025-06-01" }
+    ]
   },
   "cg-004": {
     id: "cg-004",
@@ -151,6 +183,12 @@ export const mockCaregivers: Record<string, Caregiver> = {
     certifications: [
       { id: "cert-7", name: "PT License", issueDate: "2020-09-01", expiryDate: "2030-09-01", status: "Active", issuer: "State PT Board" }
     ],
-    recentShifts: []
+    recentShifts: [],
+    policyAcknowledgments: [
+      { id: "pa-1", policyName: "Agency Code of Conduct", category: "Corporate Governance", version: "v3.2", status: "Signed", signedDate: "2025-07-18" },
+      { id: "pa-2", policyName: "HIPAA Privacy & Security Policy", category: "Regulatory Compliance", version: "v4.1", status: "Signed", signedDate: "2025-07-18" },
+      { id: "pa-3", policyName: "Emergency Response & Evacuation Plan", category: "Safety & Emergency", version: "v2.0", status: "Overdue", dueDate: "2026-07-05" },
+      { id: "pa-5", policyName: "Workplace Violence & Safety Policy", category: "Employee Safety", version: "v1.8", status: "Signed", signedDate: "2025-06-03" }
+    ]
   }
 };

@@ -79,10 +79,30 @@ export interface AuditLogEntry {
   details: string;
 }
 
+export interface PolicySignerRecord {
+  caregiverId: string;
+  caregiverName: string;
+  role: string;
+  avatarUrl?: string;
+  email?: string;
+  status: "Signed" | "Pending" | "Overdue";
+  signedAt?: string;
+  dueDate?: string;
+}
+
 export interface PolicyAcknowledgment {
   id: string;
   policyName: string;
+  category?: string;
+  version?: string;
+  effectiveDate?: string;
   requiredForRoles: string[];
+  totalRequired: number;
+  signedCount: number;
+  overdueCount?: number;
+  status?: "Fully Signed" | "In Progress" | "Overdue";
+  signers: PolicySignerRecord[];
+  // Kept for backward compatibility
   acknowledgments: {
     caregiverId: string;
     caregiverName: string;

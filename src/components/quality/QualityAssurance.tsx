@@ -103,7 +103,7 @@ export function QualityAssurance() {
                 "w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
                 activeTab === tab
                   ? "bg-brand-teal/10 text-brand-teal border-brand-teal/30 shadow-[0_0_15px_rgba(20,184,166,0.1)]"
-                  : "bg-transparent text-text-secondary border-transparent hover:bg-slate-50/50 hover:text-slate-200"
+                  : "bg-transparent text-text-secondary border-slate-100 hover:bg-slate-100 hover:text-slate-800"
               )}
             >
               {tab}

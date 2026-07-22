@@ -11,6 +11,23 @@ interface ReminderConfigPanelProps {
 export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
   const [enabled, setEnabled] = useState(true);
 
+  const formatLogDate = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr);
+      return d.toLocaleString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full">
       <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white/50">
@@ -54,7 +71,9 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
             <div className="flex-1 min-w-0">
               <div className="text-sm font-medium text-slate-900 truncate">{log.caregiverName}</div>
               <div className="text-xs text-slate-500 truncate">{log.itemName}</div>
-              <div className="text-xs text-slate-500 mt-1">{new Date(log.sentAt).toLocaleString()}</div>
+              <div className="text-xs text-slate-500 mt-1" suppressHydrationWarning>
+                {formatLogDate(log.sentAt)}
+              </div>
             </div>
             <div className="flex flex-col items-end gap-1.5">
               <span className={`text-[10px] uppercase font-bold tracking-wide px-2 py-0.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border ${log.status === "Sent" ? "bg-slate-50 border-slate-200 text-slate-500" :

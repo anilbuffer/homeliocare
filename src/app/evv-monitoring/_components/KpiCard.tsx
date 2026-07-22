@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import { ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface KpiCardProps {
   title: string;
@@ -23,50 +23,52 @@ export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={clsx(
-        "bg-white backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] hover:border-brand-teal/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between h-full group",
-        hero && "bg-gradient-to-br from-brand-teal/5 to-transparent border-brand-teal/20",
+        "bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-200 relative flex flex-col justify-between h-[135px]",
         className
       )}
     >
-      <div className="flex items-center justify-between mb-4">
-        <h3 className={clsx("text-sm font-medium", hero ? "text-brand-teal" : "text-slate-500")}>
+      <div className="flex items-center justify-between">
+        <h3 className={clsx("text-sm font-semibold tracking-tight", hero ? "text-emerald-600" : "text-slate-500")}>
           {title}
         </h3>
-        {icon && (
-          <div className={clsx("w-8 h-8 rounded-full flex items-center justify-center", hero ? "bg-brand-teal text-white" : "bg-slate-50 text-slate-400")}>
+        {hero ? (
+          <div className="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-sm">
+            <Check className="w-4 h-4 stroke-[3]" />
+          </div>
+        ) : icon ? (
+          <div className="w-7 h-7 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center">
             {icon}
           </div>
-        )}
+        ) : null}
       </div>
 
       <div>
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-baseline gap-2 mt-1">
           <motion.div
-            initial={{ scale: 0.8 }}
+            initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
-            transition={{ type: "spring", bounce: 0.4 }}
-            className={clsx("font-bold tracking-tight", hero ? "text-3xl text-brand-teal" : "text-2xl text-slate-900")}
+            className={clsx("font-bold tracking-tight", hero ? "text-3xl text-emerald-600" : "text-2xl text-slate-900")}
           >
             {value}
           </motion.div>
 
           {trend && trendValue && (
             <div className={clsx(
-              "flex items-center text-xs font-medium rounded-full px-2 py-0.5",
-              trend === "up" ? "text-emerald-700 bg-emerald-100" :
-                trend === "down" ? "text-amber-700 bg-amber-100" :
+              "flex items-center text-[11px] font-semibold rounded-full px-2 py-0.5 gap-0.5",
+              trend === "up" ? "text-emerald-700 bg-emerald-100/80" :
+                trend === "down" ? "text-amber-800 bg-amber-100/80" :
                   "text-slate-600 bg-slate-100"
             )}>
-              {trend === "up" && <ArrowUpRight className="w-3 h-3 mr-1" />}
-              {trend === "down" && <ArrowDownRight className="w-3 h-3 mr-1" />}
-              {trendValue}
+              <span>{trend === "up" ? "↗" : trend === "down" ? "↘" : "•"}</span>
+              <span>{trendValue}</span>
             </div>
           )}
         </div>
         {subtitle && (
-          <p className="text-xs text-slate-500 mt-2 font-medium">{subtitle}</p>
+          <p className="text-[11px] text-slate-400 mt-1 font-medium">{subtitle}</p>
         )}
       </div>
     </motion.div>
   );
 }
+
