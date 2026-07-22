@@ -70,12 +70,12 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
 
       {/* Required Training List */}
       <Card className="mt-8 overflow-hidden border border-slate-200">
-        <div className="border-b border-slate-200 bg-slate-50 pb-3 flex items-center justify-between">
+        <div className="border-b border-slate-200 bg-slate-50 p-3 flex items-center justify-between">
           <h4 className="font-semibold text-slate-800">Required Training Modules</h4>
           <Badge variant="brand">2 Pending</Badge>
         </div>
         <div className="divide-y divide-slate-200">
-          <div className="py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
+          <div className="p-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
             <div className="flex items-center gap-3">
               <CheckCircle2 className="w-5 h-5 text-emerald-500" />
               <div>
@@ -85,7 +85,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
             </div>
             <button className="text-sm text-brand-teal font-medium">View Certificate</button>
           </div>
-          <div className="py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
+          <div className="p-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
             <div className="flex items-center gap-3">
               <CheckCircle2 className="w-5 h-5 text-emerald-500" />
               <div>
@@ -95,7 +95,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
             </div>
             <button className="text-sm text-brand-teal font-medium">View Certificate</button>
           </div>
-          <div className="py-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
+          <div className="p-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
             <div className="flex items-center gap-3">
               <AlertTriangle className="w-5 h-5 text-amber-500" />
               <div>
