@@ -37,7 +37,7 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold text-text-primary mb-2">{patient.name}</h1>
+            <h1 className="text-xl font-bold text-text-primary mb-2">{patient.name}</h1>
             <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary mb-3">
               <span className="font-medium text-slate-700">{patient.age} years old</span>
               <span className="w-1 h-1 rounded-full bg-slate-300"></span>

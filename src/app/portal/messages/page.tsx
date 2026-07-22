@@ -114,7 +114,7 @@ export default function PortalMessagesPage() {
     <div className="max-w-7xl mx-auto h-[calc(100vh-10rem)] flex flex-col">
       <div className="flex items-center justify-between mb-4 lg:mb-6 shrink-0">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">Messages</h1>
+          <h1 className="text-xl font-bold text-text-primary">Messages</h1>
           <p className="text-xs text-text-secondary mt-1">Communicate directly with your care team.</p>
         </div>
         <a href="tel:555-123-4567" className="flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-xl font-medium text-sm transition-colors border border-amber-200 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">

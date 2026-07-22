@@ -30,7 +30,7 @@ export default function SettingsPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 relative">
       <div>
-        <h2 className="text-2xl font-bold text-text-primary">Settings</h2>
+        <h2 className="text-xl font-bold text-text-primary">Settings</h2>
         <p className="text-xs text-text-secondary mt-1">Manage your account preferences and personal information.</p>
       </div>
 
@@ -59,7 +59,7 @@ export default function SettingsPage() {
               <div className="w-full h-full pb-8">
                 {/* Header Cover */}
                 <div className="h-32 bg-gradient-to-r from-brand-teal/80 to-teal-600/80"></div>
-        
+
                 {/* Profile Info */}
                 <div className="px-4 sm:px-8">
                   <div className="relative flex justify-between items-end -mt-12 mb-6">
@@ -84,13 +84,13 @@ export default function SettingsPage() {
                       {saveStatus['profile'] ? 'Saved!' : 'Edit Profile'}
                     </button>
                   </div>
-        
+
                   <div className="space-y-6">
                     <div>
                       <h1 className="text-xl font-bold text-text-primary">{currentUser?.name || "Sarah Jenkins"}</h1>
                       <p className="text-sm text-text-secondary font-medium">{currentUser?.role || "Agency Admin"}</p>
                     </div>
-        
+
                     <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 pt-6 border-t border-slate-100">
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
@@ -101,7 +101,7 @@ export default function SettingsPage() {
                           <p className="text-sm font-medium text-text-primary">{currentUser?.email || "sarah.jenkins@example.com"}</p>
                         </div>
                       </div>
-        
+
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
                           <Phone className="w-5 h-5" />
@@ -111,7 +111,7 @@ export default function SettingsPage() {
                           <p className="text-sm font-medium text-text-primary">+1 (555) 123-4567</p>
                         </div>
                       </div>
-        
+
                       <div className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 shrink-0">
                           <Briefcase className="w-5 h-5" />
@@ -197,7 +197,7 @@ export default function SettingsPage() {
                     {saveStatus['family'] ? 'Sent!' : 'Invite Member'}
                   </button>
                 </div>
-                
+
                 <div className="space-y-4">
                   {familyMembers.map(member => (
                     <div key={member.id} className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between">
@@ -217,9 +217,9 @@ export default function SettingsPage() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-4">
-                        <select 
+                        <select
                           className="text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
                           defaultValue={member.accessLevel}
                         >
@@ -243,7 +243,7 @@ export default function SettingsPage() {
                   <h3 className="text-lg font-semibold text-text-primary">Security Settings</h3>
                   <p className="text-xs text-text-secondary mt-1">Manage your password and authentication methods.</p>
                 </div>
-                
+
                 <div className="space-y-4 max-w-lg">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-text-primary">Current Password</label>
@@ -253,7 +253,7 @@ export default function SettingsPage() {
                     <label className="text-sm font-medium text-text-primary">New Password</label>
                     <input type="password" placeholder="••••••••" className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" />
                   </div>
-                  
+
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <div>
                       <h4 className="text-sm font-medium text-text-primary">Two-Factor Authentication</h4>
@@ -332,7 +332,7 @@ export default function SettingsPage() {
                       <option>French (FR)</option>
                     </select>
                   </div>
-                  
+
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <div>
                       <h4 className="text-sm font-medium text-text-primary">High Contrast Mode</h4>

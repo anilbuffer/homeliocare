@@ -53,7 +53,7 @@ export function QualityAssurance() {
               <option className="bg-white">Q3 2026</option>
             </select>
           </div>
-          <button 
+          <button
             onClick={() => setIsScheduleModalOpen(true)}
             className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
             <Plus className="w-4 h-4" />
@@ -77,7 +77,7 @@ export function QualityAssurance() {
                 <div className="text-sm font-medium text-text-secondary line-clamp-1">{kpi.label}</div>
               </div>
               <div className="mt-2 flex items-end justify-between">
-                <div className="text-2xl font-bold text-text-primary">{kpi.value}</div>
+                <div className="text-xl font-bold text-text-primary">{kpi.value}</div>
                 <div className="text-xs text-slate-500">{kpi.subtext}</div>
               </div>
             </div>
@@ -134,13 +134,13 @@ export function QualityAssurance() {
         description="Select the type and subject for the new quality assurance audit."
         footer={
           <>
-            <button 
+            <button
               onClick={() => setIsScheduleModalOpen(false)}
               className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
             >
               Cancel
             </button>
-            <button 
+            <button
               onClick={() => setIsScheduleModalOpen(false)}
               className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
             >
@@ -160,16 +160,16 @@ export function QualityAssurance() {
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Subject (Caregiver / Patient)</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Search subject name..."
               className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Due Date</label>
-            <input 
-              type="date" 
+            <input
+              type="date"
               className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
             />
           </div>

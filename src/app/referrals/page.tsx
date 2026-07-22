@@ -37,7 +37,7 @@ export default function ReferralsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-text-primary">Referrals & Intake</h2>
+          <h2 className="text-xl font-bold text-text-primary">Referrals & Intake</h2>
           <p className="text-sm text-text-secondary mt-1">3 active referrals in pipeline</p>
         </div>
 

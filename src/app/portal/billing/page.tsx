@@ -39,7 +39,7 @@ export default function PortalBillingPage() {
             </div>
             <div>
               <div className="text-xs text-text-secondary font-medium">Current Balance</div>
-              <div className="text-2xl font-bold text-text-primary">${billingData.currentBalance.toFixed(2)}</div>
+              <div className="text-xl font-bold text-text-primary">${billingData.currentBalance.toFixed(2)}</div>
             </div>
           </div>
 

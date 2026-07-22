@@ -196,7 +196,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "compliance") href = "/compliance";
                   if (item.id === "referrals") href = "/referrals";
                   if (item.id === "communications") href = "/communications";
-                  if (pathname?.startsWith("/reports")) href = "/reports";
+                  if (item.id === "reports") href = "/reports";
                   if (item.id === "payroll") href = "/payroll";
                   if (item.id === "settings") href = "/settings";
 

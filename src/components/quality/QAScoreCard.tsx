@@ -69,7 +69,7 @@ export function QAScoreCard() {
           })}
         </svg>
         <div className="absolute inset-0 flex items-center justify-center flex-col">
-          <span className="text-2xl font-bold text-text-primary">{targetScore.toFixed(0)}</span>
+          <span className="text-xl font-bold text-text-primary">{targetScore.toFixed(0)}</span>
           <span className="text-xs text-text-secondary">Score</span>
         </div>
       </div>

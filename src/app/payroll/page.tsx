@@ -87,12 +87,12 @@ export default function PayrollPage() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Payroll Engine</h1>
-            <p className="text-sm text-slate-500 mt-1">Reconcile EVV-verified hours with CA state overtime rules.</p>
+            <h1 className="text-xl font-bold text-slate-900 tracking-tight">Payroll Engine</h1>
+            <p className="text-xs text-slate-500 mt-1">Reconcile EVV-verified hours with CA state overtime rules.</p>
           </div>
           <div className="flex items-center gap-3 relative">
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsPayPeriodOpen(!isPayPeriodOpen)}
                 className="flex items-center gap-2 bg-white border border-slate-100 text-sm font-medium text-slate-700 px-4 py-2 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
               >
@@ -130,7 +130,7 @@ export default function PayrollPage() {
               </AnimatePresence>
             </div>
 
-            <button 
+            <button
               onClick={() => setIsRulesOpen(true)}
               className="flex items-center gap-2 bg-white border border-slate-100 text-sm font-medium text-slate-700 px-4 py-2 rounded-xl hover:bg-slate-50 transition-colors shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]"
             >

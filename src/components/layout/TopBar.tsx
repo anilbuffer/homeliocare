@@ -24,6 +24,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/reports")) return "Reports";
     if (pathname.startsWith("/referrals")) return "Referrals & Intake";
     if (pathname.startsWith("/communications")) return "Communications";
+    if (pathname.startsWith("/payroll")) return "Payroll";
     if (pathname.startsWith("/settings")) return "Settings";
     if (pathname.startsWith("/profile")) return "Profile";
     return "Dashboard";
@@ -38,7 +39,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
         >
           <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
-        <h1 className="text-lg sm:text-xl font-semibold text-text-primary truncate max-w-[200px] sm:max-w-none">{getPageTitle()}</h1>
+        <h1 suppressHydrationWarning className="text-lg sm:text-xl font-semibold text-text-primary truncate max-w-[200px] sm:max-w-none">{getPageTitle()}</h1>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
