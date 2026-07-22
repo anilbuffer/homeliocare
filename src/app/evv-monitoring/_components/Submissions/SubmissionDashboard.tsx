@@ -87,7 +87,7 @@ export function SubmissionDashboard() {
       </div>
 
       {/* Main Table Area */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 overflow-hidden flex flex-col">
         <div className="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
           <h3 className="text-base font-bold text-slate-900">Recent Aggregator Submissions</h3>
           <div className="relative w-full sm:w-64">

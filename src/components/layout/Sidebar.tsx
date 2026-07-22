@@ -21,7 +21,6 @@ import {
   ChevronDown,
   LogOut,
   User,
-  HelpCircle
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -32,6 +31,7 @@ const navGroups = [
     label: "",
     items: [
       { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
+      { name: "User Management", icon: ShieldCheck, id: "users" },
       { name: "Patients", icon: Users, id: "patients" },
       { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
       { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
@@ -81,6 +81,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const [activeItem, setActiveItem] = useState(() => {
+    if (pathname?.startsWith("/users")) return "users";
     if (pathname?.startsWith("/training")) return "training";
     if (pathname?.startsWith("/billing")) return "billing";
     if (pathname?.startsWith("/scheduling")) return "scheduling";
@@ -102,7 +103,9 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
   // Sync active item when pathname changes (e.g. browser back/forward)
   React.useEffect(() => {
-    if (pathname.startsWith("/training")) {
+    if (pathname.startsWith("/users")) {
+      setActiveItem("users");
+    } else if (pathname.startsWith("/training")) {
       setActiveItem("training");
     } else if (pathname.startsWith("/billing")) {
       setActiveItem("billing");
@@ -165,7 +168,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-700/50 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-600/80">
+        <nav className="flex-1 overflow-y-auto px-4 py-2 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-700/50 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-600/80">
           {navGroups.map((group, index) => (
             <div key={index}>
               {group.label && (
@@ -181,6 +184,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   // Determine the correct href
                   let href = "#";
                   if (item.id === "dashboard") href = "/dashboard";
+                  if (item.id === "users") href = "/users";
                   if (item.id === "training") href = "/training";
                   if (item.id === "billing") href = "/billing";
                   if (item.id === "scheduling") href = "/scheduling";
@@ -217,7 +221,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                             isActive ? "text-white" : "text-slate-300 hover:text-white hover:bg-sidebar-active"
                           )}
                         >
-                          <Icon className="w-5 h-5" />
+                          <Icon className="w-4.5 h-4.5" />
                           {item.name}
                         </Link>
                       ) : (
@@ -228,7 +232,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                             isActive ? "text-white" : "text-slate-300 hover:text-white hover:bg-sidebar-active"
                           )}
                         >
-                          <Icon className="w-5 h-5" />
+                          <Icon className="w-4.5 h-4.5" />
                           {item.name}
                         </button>
                       )}
@@ -241,7 +245,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </nav>
 
         {/* HIPAA Card */}
-        <div className="px-4 mb-4">
+        <div className="px-4 mb-3">
           <div className="bg-[#0e354a] rounded-xl p-4 flex items-start gap-3 border border-sidebar-active">
             <ShieldCheck className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
             <div>
@@ -257,8 +261,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className="flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left"
           >
-            <div className="w-9 h-9 rounded-full bg-slate-600 shrink-0 overflow-hidden flex items-center justify-center">
-              <User className="w-5 h-5 text-slate-400" />
+            <div className="w-8 h-8 rounded-full bg-slate-600 shrink-0 overflow-hidden flex items-center justify-center">
+              <User className="w-4 h-4 text-slate-400" />
             </div>
             <div className="flex-1 overflow-hidden">
               <div className="text-sm font-medium text-white truncate">Sarah Jenkins</div>
@@ -282,7 +286,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-lg transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
-                    <Settings className="w-4 h-4" />
+                    <Settings className="w-3.5 h-3.5" />
                     Settings
                   </Link>
                   {/* <Link 

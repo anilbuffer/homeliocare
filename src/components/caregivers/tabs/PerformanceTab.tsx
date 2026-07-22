@@ -42,7 +42,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
 
         <Card className="p-5">
           <div className="text-slate-500 text-sm font-medium mb-1">Punctuality</div>
-          <div className="text-2xl font-bold text-slate-800 mb-2">98.5%</div>
+          <div className="text-xl font-bold text-slate-800 mb-2">98.5%</div>
           <div className="text-xs font-medium text-emerald-600 bg-emerald-50 w-fit px-2 py-0.5 rounded-full flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> +1.2% this month
           </div>
@@ -50,7 +50,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
 
         <Card className="p-5">
           <div className="text-slate-500 text-sm font-medium mb-1">Care Quality (Patient)</div>
-          <div className="text-2xl font-bold text-slate-800 mb-2">4.9/5</div>
+          <div className="text-xl font-bold text-slate-800 mb-2">4.9/5</div>
           <div className="text-xs font-medium text-emerald-600 bg-emerald-50 w-fit px-2 py-0.5 rounded-full flex items-center gap-1">
             <TrendingUp className="w-3 h-3" /> +0.1 vs agency avg
           </div>
@@ -58,7 +58,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
 
         <Card className="p-5">
           <div className="text-slate-500 text-sm font-medium mb-1">Communication</div>
-          <div className="text-2xl font-bold text-slate-800 mb-2">4.7/5</div>
+          <div className="text-xl font-bold text-slate-800 mb-2">4.7/5</div>
           <div className="text-xs font-medium text-slate-500 bg-slate-50 w-fit px-2 py-0.5 rounded-full flex items-center gap-1">
             Consistent with last month
           </div>
@@ -110,7 +110,7 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
             <h3 className="text-lg font-semibold text-slate-800">Recent Patient Feedback</h3>
             <button className="text-sm text-brand-teal font-medium">View All</button>
           </div>
-          
+
           <div className="space-y-4">
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
               <div className="flex items-start justify-between mb-2">

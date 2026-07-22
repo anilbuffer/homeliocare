@@ -29,7 +29,7 @@ export function KpiStrip() {
               </div>
             </div>
             <div className="mt-auto">
-              <div className="text-2xl font-bold text-slate-800 tracking-tight mb-1">
+              <div className="text-xl font-bold text-slate-800 tracking-tight mb-1">
                 {kpi.value}
               </div>
               <div className={cn("text-[11px] font-medium", kpi.trendColor)}>

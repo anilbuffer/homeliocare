@@ -81,7 +81,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
               )}
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-800 mb-1">{incident.type}</h2>
+            <h2 className="text-xl font-bold text-slate-800 mb-1">{incident.type}</h2>
             <div className="text-sm text-slate-500 flex items-center gap-2">
               <span>ID: {incident.id}</span>
               <span>•</span>

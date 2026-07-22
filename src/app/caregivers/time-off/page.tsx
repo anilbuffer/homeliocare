@@ -17,17 +17,17 @@ export default function TimeOffPage() {
             <Clock className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-slate-800">1</div>
+            <div className="text-xl font-bold text-slate-800">1</div>
             <div className="text-sm text-slate-500 font-medium">Pending Requests</div>
           </div>
         </div>
-        
+
         <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
             <CalendarCheck className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-slate-800">12</div>
+            <div className="text-xl font-bold text-slate-800">12</div>
             <div className="text-sm text-slate-500 font-medium">Approved this month</div>
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function TimeOffPage() {
             <CalendarX className="w-6 h-6" />
           </div>
           <div>
-            <div className="text-2xl font-bold text-slate-800">2</div>
+            <div className="text-xl font-bold text-slate-800">2</div>
             <div className="text-sm text-slate-500 font-medium">Caregivers on leave today</div>
           </div>
         </div>

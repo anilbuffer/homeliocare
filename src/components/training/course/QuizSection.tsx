@@ -64,11 +64,11 @@ export function QuizSection({ course, onPass }: QuizSectionProps) {
         </p>
         <div className="grid grid-cols-2 gap-4 mb-8 w-full max-w-sm">
           <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-            <div className="text-2xl font-bold text-slate-800">{quiz.questions.length}</div>
+            <div className="text-xl font-bold text-slate-800">{quiz.questions.length}</div>
             <div className="text-sm text-slate-500">Questions</div>
           </div>
           <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-            <div className="text-2xl font-bold text-slate-800">{quiz.passPercentage}%</div>
+            <div className="text-xl font-bold text-slate-800">{quiz.passPercentage}%</div>
             <div className="text-sm text-slate-500">To Pass</div>
           </div>
         </div>
@@ -101,7 +101,7 @@ export function QuizSection({ course, onPass }: QuizSectionProps) {
         </div>
 
         <div className="flex-1">
-          <h3 className="text-2xl font-bold text-slate-800 mb-8 leading-snug">
+          <h3 className="text-xl font-bold text-slate-800 mb-8 leading-snug">
             {currentQuestion.question}
           </h3>
 

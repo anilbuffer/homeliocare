@@ -77,13 +77,13 @@ export function Modal({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2, type: "spring", bounce: 0, damping: 20 }}
             className={cn(
-              "relative w-full bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]",
+              "relative w-full bg-white rounded-3xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col max-h-[90vh]",
               maxWidthClasses[maxWidth]
             )}
             onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing
           >
             {/* Header */}
-            <div className="flex items-start justify-between px-6 py-5 border-b border-slate-100 bg-white/50 backdrop-blur-md sticky top-0 z-10">
+            <div className="flex items-start justify-between px-4 py-3 border-b border-slate-100 bg-white/50 backdrop-blur-md sticky top-0 z-10">
               <div>
                 <h2 className="text-xl font-semibold text-slate-900">{title}</h2>
                 {description && (
@@ -100,13 +100,13 @@ export function Modal({
             </div>
 
             {/* Body */}
-            <div className="p-6 overflow-y-auto">
+            <div className="p-4 overflow-y-auto">
               {children}
             </div>
 
             {/* Footer */}
             {footer && (
-              <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex justify-end gap-3 sticky bottom-0 z-10">
+              <div className="px-4 py-3 border-t border-slate-100 bg-slate-50/50 flex justify-end gap-3 sticky bottom-0 z-10">
                 {footer}
               </div>
             )}
