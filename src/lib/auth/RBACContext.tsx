@@ -30,12 +30,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = (role: Role) => {
-    const mockUser: User = {
-      id: `mock-${role.toLowerCase()}-123`,
-      name: `Mock ${role.charAt(0) + role.slice(1).toLowerCase()} User`,
-      email: `${role.toLowerCase()}@homeliocare.com`,
-      role: role,
-    };
+    let mockUser: User;
+    if (role === "CAREGIVER") {
+      mockUser = {
+        id: "cg-101",
+        name: "Maria Santos, CNA",
+        email: "maria.santos@homeliocare.com",
+        role: "CAREGIVER",
+        avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
+      };
+    } else {
+      mockUser = {
+        id: `mock-${role.toLowerCase()}-123`,
+        name: `Mock ${role.charAt(0) + role.slice(1).toLowerCase()} User`,
+        email: `${role.toLowerCase()}@homeliocare.com`,
+        role: role,
+      };
+    }
     setCurrentUser(mockUser);
     localStorage.setItem("homeliocare_mock_user", JSON.stringify(mockUser));
   };

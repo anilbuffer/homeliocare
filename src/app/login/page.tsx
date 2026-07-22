@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { ShieldCheck, UserCircle, KeyRound, Loader2, ArrowRight } from "lucide-react";
+import { ShieldCheck, UserCircle, HeartHandshake, KeyRound, Loader2, ArrowRight } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
 
@@ -28,14 +28,17 @@ export default function LoginPage() {
         router.push("/dashboard");
       } else if (selectedRole === "CLIENT") {
         router.push("/portal");
+      } else if (selectedRole === "CAREGIVER") {
+        router.push("/caregiver");
       } else {
-        router.push("/dashboard"); // Fallback for Caregiver for now
+        router.push("/dashboard");
       }
     }, 800);
   };
 
   const roleOptions: { role: Role; icon: React.ReactNode; label: string; desc: string }[] = [
-    { role: "ADMIN", icon: <ShieldCheck className="w-5 h-5" />, label: "Admin", desc: "Access the agency dashboard" },
+    { role: "ADMIN", icon: <ShieldCheck className="w-5 h-5" />, label: "Admin", desc: "Access agency dashboard & staff tools" },
+    { role: "CAREGIVER", icon: <HeartHandshake className="w-5 h-5" />, label: "Caregiver (Field Staff)", desc: "Access visit EVV, schedule & tasks" },
     { role: "CLIENT", icon: <UserCircle className="w-5 h-5" />, label: "Family / Client", desc: "Access the family portal" },
   ];
 
