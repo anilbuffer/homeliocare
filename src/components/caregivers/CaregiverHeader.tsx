@@ -11,8 +11,8 @@ interface CaregiverHeaderProps {
 
 export function CaregiverHeader({ caregiver }: CaregiverHeaderProps) {
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-[0_6px_32px_rgba(0,0,0,0.06)] border border-slate-200 mb-6 flex flex-col md:flex-row md:items-start justify-between gap-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+    <div className="bg-white rounded-2xl p-4 shadow-[0_6px_32px_rgba(0,0,0,0.06)] border border-slate-200 mb-4 flex flex-col md:flex-row md:items-start justify-between gap-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="relative">
           <Avatar src={caregiver.avatarUrl} alt={caregiver.name} fallback={caregiver.name.substring(0, 2)} size="xl" className="w-24 h-24 text-2xl" />
           <div className="absolute -bottom-2 -right-2">
@@ -31,7 +31,7 @@ export function CaregiverHeader({ caregiver }: CaregiverHeaderProps) {
         </div>
 
         <div>
-          <h1 className="text-3xl font-bold text-text-primary mb-2">{caregiver.name}</h1>
+          <h1 className="text-2xl font-bold text-text-primary mb-2">{caregiver.name}</h1>
           <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary mb-3">
             <span className="font-medium text-slate-700">{caregiver.role}</span>
             <span className="w-1 h-1 rounded-full bg-slate-300"></span>

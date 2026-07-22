@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/Card";
 export function VisitCorrectionQueue() {
   const searchParams = useSearchParams();
   const initialVisitId = searchParams.get('visitId');
-  
+
   const [rejectedSubmissions] = useState(mockEvvSubmissions.filter(s => s.status === 'Rejected'));
   const [selectedSubmission, setSelectedSubmission] = useState(
     rejectedSubmissions.find(s => s.visitId === initialVisitId) || rejectedSubmissions[0]
@@ -43,11 +43,10 @@ export function VisitCorrectionQueue() {
             <button
               key={sub.id}
               onClick={() => setSelectedSubmission(sub)}
-              className={`w-full text-left p-3 rounded-xl transition-all border flex items-start gap-3 ${
-                selectedSubmission.id === sub.id
+              className={`w-full text-left p-3 rounded-xl transition-all border flex items-start gap-3 ${selectedSubmission.id === sub.id
                   ? "bg-rose-50 border-rose-200 shadow-sm"
                   : "bg-transparent border-transparent hover:bg-slate-50 hover:border-slate-200"
-              }`}
+                }`}
             >
               <div className="flex-1 min-w-0">
                 <div className="flex justify-between items-start mb-1">
@@ -77,7 +76,7 @@ export function VisitCorrectionQueue() {
             </div>
             <h2 className="text-xl font-bold text-slate-900">Visit {selectedSubmission.visitId}</h2>
           </div>
-          <button 
+          <button
             onClick={() => setIsResolving(true)}
             className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5"
           >
@@ -120,8 +119,8 @@ export function VisitCorrectionQueue() {
               </h3>
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-1">Date of Service</label>
-                <input 
-                  type="date" 
+                <input
+                  type="date"
                   className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
                   defaultValue={selectedSubmission.date}
                 />
@@ -129,16 +128,16 @@ export function VisitCorrectionQueue() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Clock In</label>
-                  <input 
-                    type="time" 
+                  <input
+                    type="time"
                     className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
                     defaultValue={selectedSubmission.beginTime.includes('AM') ? '08:00' : '09:00'} // Mocking standard time format
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Clock Out</label>
-                  <input 
-                    type="time" 
+                  <input
+                    type="time"
                     className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
                     defaultValue={selectedSubmission.endTime.includes('PM') ? '12:00' : '13:00'} // Mocking standard time format
                   />
@@ -152,7 +151,7 @@ export function VisitCorrectionQueue() {
             <h3 className="text-sm font-semibold text-brand-teal mb-4 flex items-center gap-2">
               <AlertCircle className="w-4 h-4" /> State Mandated Exception Resolution
             </h3>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-xs font-medium text-slate-700 mb-1">
@@ -171,7 +170,7 @@ export function VisitCorrectionQueue() {
                 <label className="block text-xs font-medium text-slate-700 mb-1">
                   Resolution Notes <span className="text-rose-500">*</span>
                 </label>
-                <textarea 
+                <textarea
                   rows={3}
                   className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-teal/50 resize-none"
                   placeholder="Provide additional details regarding this correction..."
@@ -179,15 +178,15 @@ export function VisitCorrectionQueue() {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-6 flex justify-end gap-3 pt-6 border-t border-slate-100/50">
-             <button className="px-5 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all">
-               Discard Changes
-             </button>
-             <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5">
-               <Save className="w-4 h-4" />
-               Save & Resubmit to Aggregator
-             </button>
+            <button className="px-4 py-2.5 text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all">
+              Discard Changes
+            </button>
+            <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5">
+              <Save className="w-4 h-4" />
+              Save & Resubmit to Aggregator
+            </button>
           </div>
         </div>
       </Card>

@@ -25,9 +25,8 @@ export function EVVNavigation() {
           <Link
             key={link.href}
             href={link.href}
-            className={`relative px-5 py-2.5 text-sm font-semibold transition-all rounded-xl flex items-center gap-2 z-10 ${
-              isActive ? "text-slate-900" : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
-            }`}
+            className={`relative px-4 py-2.5 text-sm font-semibold transition-all rounded-xl flex items-center gap-2 z-10 ${isActive ? "text-slate-900" : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
+              }`}
           >
             <span className="relative z-10 flex items-center gap-2">
               <Icon className={`w-4 h-4 ${isActive ? 'text-brand-teal' : ''}`} />

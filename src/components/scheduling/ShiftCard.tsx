@@ -45,7 +45,7 @@ export function ShiftCard({ shift, onClick }: ShiftCardProps) {
       {...listeners}
       onClick={onClick}
       className={clsx(
-        "bg-white border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-xl p-3 text-left cursor-grab active:cursor-grabbing hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all relative overflow-hidden group mb-3",
+        "bg-white border border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.04)] rounded-xl p-3 text-left cursor-grab active:cursor-grabbing hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all relative overflow-hidden group mb-3",
         isDragging && "opacity-50 border-brand-teal ring-2 ring-brand-teal/20",
         isUnfilled ? "border-dashed border-red-300 bg-red-50/50" : ""
       )}
@@ -110,7 +110,7 @@ export function ShiftCard({ shift, onClick }: ShiftCardProps) {
               </span>
             ))}
           </div>
-          
+
           <div className="flex items-center gap-2">
             {shift.assignedCaregiverName && (
               <div className="flex items-center gap-1.5 bg-brand-teal/5 pl-1 pr-2 py-0.5 rounded-full border border-brand-teal/10">

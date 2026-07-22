@@ -8,7 +8,7 @@ const KPI_DATA = [
     value: "2",
     icon: AlertCircle,
     color: "text-red-600",
-    bg: "bg-red-100",
+    bg: "bg-red-50 border-red-200/60",
     dot: "bg-red-500",
   },
   {
@@ -16,7 +16,7 @@ const KPI_DATA = [
     value: "1",
     icon: Clock,
     color: "text-amber-600",
-    bg: "bg-amber-100",
+    bg: "bg-amber-50 border-amber-200/60",
     dot: "bg-amber-500",
   },
   {
@@ -24,7 +24,7 @@ const KPI_DATA = [
     value: "3",
     icon: UserCheck,
     color: "text-brand-teal",
-    bg: "bg-brand-teal/20",
+    bg: "bg-teal-50 border-teal-200/60",
     dot: "bg-brand-teal",
   },
   {
@@ -32,38 +32,38 @@ const KPI_DATA = [
     value: "3",
     icon: PhoneOff,
     color: "text-orange-600",
-    bg: "bg-orange-100",
+    bg: "bg-orange-50 border-orange-200/60",
     dot: "bg-orange-500",
   },
   {
     label: "Avg Fill Time",
     value: "23m",
     icon: Sparkles,
-    color: "text-slate-600",
-    bg: "bg-slate-100",
+    color: "text-slate-700",
+    bg: "bg-slate-50 border-slate-200/60",
     dot: "bg-slate-400",
   },
 ];
 
 export function UrgencyStrip() {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+    <div className="grid grid-cols sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-4">
       {KPI_DATA.map((kpi, idx) => {
         const Icon = kpi.icon;
         return (
           <div
             key={idx}
-            className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden group flex items-center gap-4"
+            className="bg-white/80 backdrop-blur-xl rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden group flex items-center gap-3"
           >
-            <div className={clsx("p-3 rounded-full shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3", kpi.bg, kpi.color)}>
-              <Icon className="w-5 h-5" />
+            <div className={clsx("p-2.5 sm:p-3 rounded-xl border shrink-0 transition-transform duration-300 group-hover:scale-110", kpi.bg, kpi.color)}>
+              <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div className="flex-1 min-w-0 py-0.5">
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <div className={clsx("text-2xl font-bold tracking-tight leading-none", kpi.color)}>{kpi.value}</div>
-                <div className={clsx("w-2 h-2 rounded-full shrink-0 shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-transform duration-300 group-hover:scale-150", kpi.dot)} />
+              <div className="flex items-center justify-between gap-1 mb-0.5">
+                <div className={clsx("text-xl sm:text-2xl font-bold tracking-tight leading-none", kpi.color)}>{kpi.value}</div>
+                <div className={clsx("w-2 h-2 rounded-full shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-150", kpi.dot)} />
               </div>
-              <div className="text-[12px] font-medium text-slate-500 leading-tight line-clamp-2">{kpi.label}</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-slate-500 leading-tight truncate">{kpi.label}</div>
             </div>
 
             {/* Subtle background glow */}

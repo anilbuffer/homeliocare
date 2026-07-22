@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, LayoutDashboard, ChevronDown } from "lucide-react";
+import { Calendar, LayoutDashboard, ChevronDown, Filter } from "lucide-react";
 import clsx from "clsx";
 
 export type LayoutMode = "Calendar" | "Board";
@@ -45,97 +45,106 @@ export function FilterBar({
   uniqueRegions,
 }: FilterBarProps) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-y-3 gap-x-4 mb-4">
-      {/* Pill Filters */}
-      <div className="flex flex-wrap gap-2">
-        {SHIFT_FILTERS.map((filter) => (
-          <button
-            key={filter}
-            onClick={() => setActiveFilter(filter)}
-            className={clsx(
-              "px-3 py-1 rounded-full text-xs font-medium transition-colors border",
-              activeFilter === filter
-                ? "bg-brand-teal text-white border-brand-teal"
-                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
-            )}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex flex-wrap items-center gap-3">
-        {/* Dropdowns */}
-        <div className="flex flex-wrap gap-2">
-          <div className="relative">
-            <select
-              value={caregiverFilter}
-              onChange={(e) => setCaregiverFilter(e.target.value)}
-              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white backdrop-blur-sm border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] mb-4 space-y-3">
+      {/* Top row: Horizontal Filter Pills & Layout View Toggle */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        {/* Scrollable Status Pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {SHIFT_FILTERS.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={clsx(
+                "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap border shrink-0",
+                activeFilter === filter
+                  ? "bg-brand-teal text-white border-brand-teal shadow-sm"
+                  : "bg-slate-50/80 text-slate-600 border-slate-200/80 hover:bg-slate-100 hover:text-slate-900"
+              )}
             >
-              <option value="">Caregiver</option>
-              {uniqueCaregivers.map(cg => (
-                <option key={cg} value={cg}>{cg}</option>
-              ))}
-            </select>
-            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-          </div>
-
-          <div className="relative">
-            <select
-              value={patientFilter}
-              onChange={(e) => setPatientFilter(e.target.value)}
-              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white backdrop-blur-sm border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
-            >
-              <option value="">Patient</option>
-              {uniquePatients.map(cl => (
-                <option key={cl} value={cl}>{cl}</option>
-              ))}
-            </select>
-            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-          </div>
-
-          <div className="relative">
-            <select
-              value={regionFilter}
-              onChange={(e) => setRegionFilter(e.target.value)}
-              className="appearance-none flex items-center gap-2 pl-3 pr-7 py-1.5 bg-white backdrop-blur-sm border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_15px_rgba(0,0,0,0.06)] transition-all focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
-            >
-              <option value="">Region</option>
-              {uniqueRegions.map(reg => (
-                <option key={reg} value={reg}>{reg}</option>
-              ))}
-            </select>
-            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-          </div>
+              {filter}
+            </button>
+          ))}
         </div>
 
-        {/* View Toggle */}
-        <div className="flex bg-white backdrop-blur-md rounded-xl p-1 border border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.04)] ml-2">
-          <button
-            onClick={() => setLayoutMode("Calendar")}
-            className={clsx(
-              "flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-all",
-              layoutMode === "Calendar"
-                ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-                : "text-slate-500 hover:text-slate-800"
-            )}
+        {/* Calendar vs Board View Mode Switcher */}
+        <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-slate-100">
+          <div className="flex items-center p-1 bg-slate-100/80 rounded-xl border border-slate-200/60 w-full sm:w-auto">
+            <button
+              onClick={() => setLayoutMode("Calendar")}
+              className={clsx(
+                "flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
+                layoutMode === "Calendar"
+                  ? "bg-white text-brand-teal shadow-xs"
+                  : "text-slate-500 hover:text-slate-800"
+              )}
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Calendar</span>
+            </button>
+            <button
+              onClick={() => setLayoutMode("Board")}
+              className={clsx(
+                "flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all",
+                layoutMode === "Board"
+                  ? "bg-white text-brand-teal shadow-xs"
+                  : "text-slate-500 hover:text-slate-800"
+              )}
+            >
+              <LayoutDashboard className="w-3.5 h-3.5" />
+              <span>Board</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Dropdown Filters Row */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100">
+        <div className="relative">
+          <select
+            value={caregiverFilter}
+            onChange={(e) => setCaregiverFilter(e.target.value)}
+            className="w-full appearance-none flex items-center gap-2 pl-3.5 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
           >
-            <Calendar className="w-4 h-4" />
-            Calendar
-          </button>
-          <button
-            onClick={() => setLayoutMode("Board")}
-            className={clsx(
-              "flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-all",
-              layoutMode === "Board"
-                ? "bg-brand-teal text-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-                : "text-slate-500 hover:text-slate-800"
-            )}
+            <option value="">Filter by Caregiver...</option>
+            {uniqueCaregivers.map((cg) => (
+              <option key={cg} value={cg}>
+                {cg}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+        </div>
+
+        <div className="relative">
+          <select
+            value={patientFilter}
+            onChange={(e) => setPatientFilter(e.target.value)}
+            className="w-full appearance-none flex items-center gap-2 pl-3.5 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
           >
-            <LayoutDashboard className="w-4 h-4" />
-            Board
-          </button>
+            <option value="">Filter by Patient...</option>
+            {uniquePatients.map((cl) => (
+              <option key={cl} value={cl}>
+                {cl}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+        </div>
+
+        <div className="relative">
+          <select
+            value={regionFilter}
+            onChange={(e) => setRegionFilter(e.target.value)}
+            className="w-full appearance-none flex items-center gap-2 pl-3.5 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+          >
+            <option value="">Filter by Region...</option>
+            {uniqueRegions.map((reg) => (
+              <option key={reg} value={reg}>
+                {reg}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
       </div>
     </div>

@@ -43,7 +43,7 @@ export default function PortalCarePlanPage() {
         <button
           onClick={() => setActiveTab("overview")}
           className={clsx(
-            "relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
+            "relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
             activeTab === "overview" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
@@ -60,7 +60,7 @@ export default function PortalCarePlanPage() {
         <button
           onClick={() => setActiveTab("medications")}
           className={clsx(
-            "relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
+            "relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
             activeTab === "medications" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
@@ -77,7 +77,7 @@ export default function PortalCarePlanPage() {
         <button
           onClick={() => setActiveTab("todos")}
           className={clsx(
-            "relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
+            "relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
             activeTab === "todos" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
@@ -105,7 +105,7 @@ export default function PortalCarePlanPage() {
           >
             {/* Focus Areas */}
             <div className="bg-white rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle">
-              <h2 className="text-lg font-semibold text-text-primary mb-6 flex items-center gap-2">
+              <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
                 <Target className="w-5 h-5 text-brand-teal" />
                 Focus Areas
               </h2>
@@ -207,8 +207,8 @@ export default function PortalCarePlanPage() {
                       <span className={clsx(
                         "px-2.5 py-1 text-xs font-medium rounded-full",
                         request.status === "Approved" ? "bg-emerald-100 text-emerald-700" :
-                        request.status === "Pending Review" ? "bg-amber-100 text-amber-700" :
-                        "bg-slate-100 text-slate-700"
+                          request.status === "Pending Review" ? "bg-amber-100 text-amber-700" :
+                            "bg-slate-100 text-slate-700"
                       )}>
                         {request.status}
                       </span>

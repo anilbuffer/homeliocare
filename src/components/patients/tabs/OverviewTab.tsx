@@ -9,7 +9,7 @@ export function OverviewTab({ patient }: { patient: Patient }) {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div className="lg:col-span-2 flex flex-col gap-4">
         {/* Demographics & Insurance */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
             <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
               <Users className="w-5 h-5 text-brand-teal" /> Demographics
@@ -80,8 +80,8 @@ export function OverviewTab({ patient }: { patient: Patient }) {
 
         {/* Risk Summary */}
         <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
-          <h3 className="text-lg font-semibold text-text-primary mb-6">Risk Summary</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h3 className="text-lg font-semibold text-text-primary mb-4">Risk Summary</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { label: "Fall Risk", risk: patient.riskSummary.fallRisk, icon: Activity },
               { label: "Medication Risk", risk: patient.riskSummary.medicationRisk, icon: Pill },
@@ -136,7 +136,7 @@ export function OverviewTab({ patient }: { patient: Patient }) {
                     </div>
                   ))
                 ) : (
-                  <p className="text-sm text-slate-500">No primary caregivers assigned.</p>
+                  <p className="text-xs text-slate-500">No primary caregivers assigned.</p>
                 )}
               </div>
             </div>
@@ -145,7 +145,7 @@ export function OverviewTab({ patient }: { patient: Patient }) {
 
         {/* Recent Activity */}
         <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex-1">
-          <h3 className="text-lg font-semibold text-text-primary mb-6 flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
             <Clock className="w-5 h-5 text-brand-teal" /> Recent Activity
           </h3>
           <div className="relative border-l-2 border-slate-100 ml-3 space-y-6">

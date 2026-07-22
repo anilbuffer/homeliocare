@@ -117,7 +117,7 @@ export default function EVVMonitoringPage() {
         <div className="flex items-center p-1.5 bg-white/80 backdrop-blur-md shadow-[0_6px_32px_rgba(0,0,0,0.06)] rounded-2xl overflow-x-auto border border-slate-200 w-full max-w-full mb-4 no-scrollbar">
           <button
             onClick={() => setActiveTab("exceptions")}
-            className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${activeTab === "exceptions" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+            className={`relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${activeTab === "exceptions" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
               }`}
           >
             <span className="relative z-10">Exceptions Queue</span>
@@ -132,7 +132,7 @@ export default function EVVMonitoringPage() {
           </button>
           <button
             onClick={() => setActiveTab("submissions")}
-            className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${activeTab === "submissions" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+            className={`relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${activeTab === "submissions" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
               }`}
           >
             <span className="relative z-10">State Submissions</span>
@@ -147,7 +147,7 @@ export default function EVVMonitoringPage() {
           </button>
           <button
             onClick={() => setActiveTab("config")}
-            className={`relative px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${activeTab === "config" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
+            className={`relative px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl ${activeTab === "config" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
               }`}
           >
             <span className="relative z-10">State Config & Connectors</span>
