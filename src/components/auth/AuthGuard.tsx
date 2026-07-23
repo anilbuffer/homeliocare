@@ -24,6 +24,8 @@ export function AuthGuard({
         // Redirect to their default panel if they are trying to access an unauthorized route
         if (currentUser.role === "ADMIN") {
           router.push("/dashboard");
+        } else if (currentUser.role === "SCHEDULER") {
+          router.push("/scheduler");
         } else if (currentUser.role === "CLIENT") {
           router.push("/portal");
         } else if (currentUser.role === "CAREGIVER") {

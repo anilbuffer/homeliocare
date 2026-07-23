@@ -428,7 +428,7 @@ export function RolesPermissionsTab() {
                 {selectedRole.is_system_role ? (
                   <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                     {selectedRole.name}
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
                       <Lock className="w-3 h-3 text-slate-400" />
                       System Role
                     </span>

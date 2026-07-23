@@ -31,15 +31,18 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   };
 
   return (
-    <header className="h-16 sm:h-20 px-4 sm:px-6 flex items-center justify-between bg-page-bg/80 backdrop-blur-md sticky top-0 z-30 transition-all duration-300">
-      <div className="flex items-center gap-3 sm:gap-4">
+    <header className="h-16 sm:h-20 px-3 sm:px-6 flex items-center justify-between bg-page-bg/90 backdrop-blur-md sticky top-0 z-30 transition-all duration-300 border-b border-slate-200/50">
+      <div className="flex items-center gap-2 sm:gap-4 shrink-0">
         <button
           onClick={onMenuClick}
-          className="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 min-[1120px]:hidden transition-colors active:scale-95"
+          className="p-2 -ml-1 rounded-xl text-slate-600 hover:bg-slate-200/70 min-[1120px]:hidden transition-colors active:scale-95 min-h-[44px] min-w-[44px] flex items-center justify-center"
+          aria-label="Open Navigation Menu"
         >
           <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
-        <h1 suppressHydrationWarning className="text-lg sm:text-xl font-semibold text-text-primary truncate max-w-[200px] sm:max-w-none">{getPageTitle()}</h1>
+        <h1 suppressHydrationWarning className="text-base sm:text-xl font-bold text-text-primary truncate max-w-[120px] xs:max-w-[180px] sm:max-w-none">
+          {getPageTitle()}
+        </h1>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">

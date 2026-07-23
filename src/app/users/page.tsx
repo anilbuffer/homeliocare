@@ -43,7 +43,7 @@ function UserManagementContent() {
             <h1 className="text-xl font-bold text-slate-900 tracking-tight">
               User Management & Roles (RBAC)
             </h1>
-            <span className="bg-teal-50 text-brand-teal text-xs font-semibold px-2.5 py-0.5 rounded-full border border-teal-200/60 inline-flex items-center gap-1">
+            <span className="bg-teal-50 text-brand-teal text-xs font-semibold px-2 py-0.5 rounded-full border border-teal-200/60 inline-flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5" />
               HIPAA Compliant
             </span>

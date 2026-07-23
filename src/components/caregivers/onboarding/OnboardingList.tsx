@@ -4,21 +4,21 @@ import React, { useState, useRef, useEffect } from "react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
-import { 
-  FileCheck, 
-  FileWarning, 
-  Search, 
-  Filter, 
-  MoreVertical, 
-  Mail, 
-  Clock, 
-  Plus, 
-  Check, 
-  X, 
-  Upload, 
-  FileText, 
-  AlertCircle, 
-  ChevronDown, 
+import {
+  FileCheck,
+  FileWarning,
+  Search,
+  Filter,
+  MoreVertical,
+  Mail,
+  Clock,
+  Plus,
+  Check,
+  X,
+  Upload,
+  FileText,
+  AlertCircle,
+  ChevronDown,
   ExternalLink,
   Send,
   UserCheck,
@@ -559,7 +559,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
                           <button
                             key={docKey}
                             onClick={() => setDocModalInfo({ hire, docKey })}
-                            className="group/doc border border-transparent hover:border-slate-200 p-1.5 rounded-xl hover:bg-white hover:shadow-sm transition-all flex flex-col items-center gap-1 focus:outline-none"
+                            className="group/doc border border-transparent hover:border-slate-200 p-1.5 rounded-xl hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all flex flex-col items-center gap-1 focus:outline-none"
                             title={`Click to review ${docLabels[docKey]}`}
                           >
                             <div className="relative">
@@ -577,8 +577,8 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
                                 doc.status === "completed"
                                   ? "text-emerald-700"
                                   : doc.status === "missing"
-                                  ? "text-rose-600"
-                                  : "text-amber-600"
+                                    ? "text-rose-600"
+                                    : "text-amber-600"
                               )}
                             >
                               {label}
@@ -724,8 +724,8 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
                   docModalInfo.hire.documents[docModalInfo.docKey].status === "completed"
                     ? "success"
                     : docModalInfo.hire.documents[docModalInfo.docKey].status === "missing"
-                    ? "error"
-                    : "warning"
+                      ? "error"
+                      : "warning"
                 }
               >
                 {docModalInfo.hire.documents[docModalInfo.docKey].status.toUpperCase()}

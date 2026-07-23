@@ -1,361 +1,751 @@
 "use client";
 
 import React, { useState } from "react";
-import { Bell, Lock, Shield, User, Globe, Save, Mail, Phone, Briefcase, Camera, Edit2, Users, MoreVertical, Plus, Check } from "lucide-react";
+import {
+  User,
+  Users,
+  Bell,
+  Lock,
+  Globe,
+  Save,
+  Sliders,
+  CheckCircle2,
+  Upload,
+  ShieldCheck,
+  Key,
+  Eye,
+  EyeOff,
+  Smartphone,
+  Laptop,
+  Plus,
+  Trash2,
+  Mail,
+  Phone,
+  MapPin,
+  Heart,
+  MoreVertical,
+  Check,
+  X,
+} from "lucide-react";
 import { familyMembers } from "@/lib/portalMockData";
 import { useAuth } from "@/hooks/useAuth";
-import { Card } from "@/components/ui/Card";
+import { Avatar } from "@/components/ui/Avatar";
 
 export default function SettingsPage() {
   const { currentUser } = useAuth();
-  const [activeTab, setActiveTab] = useState("profile");
-  const [saveStatus, setSaveStatus] = useState<Record<string, boolean>>({});
 
-  const handleSave = (section: string) => {
-    setSaveStatus(prev => ({ ...prev, [section]: true }));
+  // Active Category Tab
+  const [activeTab, setActiveTab] = useState<"profile" | "family" | "notifications" | "security" | "preferences">("profile");
+
+  // Success Toast state
+  const [savedSuccess, setSavedSuccess] = useState(false);
+
+  // Profile Form State
+  const [name, setName] = useState(currentUser?.name || "Sarah Jenkins");
+  const [email, setEmail] = useState(currentUser?.email || "sarah.jenkins@example.com");
+  const [phone, setPhone] = useState("+1 (555) 123-4567");
+  const [address, setAddress] = useState("742 Evergreen Terrace, Springfield, IL 62704");
+  const [emergencyContact, setEmergencyContact] = useState("Mark Jenkins (Son) - (555) 987-6543");
+  const [primaryDoctor, setPrimaryDoctor] = useState("Dr. Aris Thorne, MD - (555) 234-5678");
+
+  // Family Members Access State
+  const [members, setMembers] = useState(familyMembers);
+  const [showInviteModal, setShowInviteModal] = useState(false);
+  const [inviteName, setInviteName] = useState("");
+  const [inviteEmail, setInviteEmail] = useState("");
+  const [inviteRelationship, setInviteRelationship] = useState("Daughter");
+  const [inviteAccess, setInviteAccess] = useState("Read Only");
+
+  // Notification Settings State
+  const [pushVisitReminders, setPushVisitReminders] = useState(true);
+  const [pushCarePlan, setPushCarePlan] = useState(true);
+  const [pushSupervisorNotes, setPushSupervisorNotes] = useState(true);
+  const [smsShiftAlerts, setSmsShiftAlerts] = useState(true);
+  const [smsEmergency, setSmsEmergency] = useState(true);
+  const [emailStatements, setEmailStatements] = useState(true);
+  const [emailCareSummary, setEmailCareSummary] = useState(true);
+
+  // Security Form State
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Active Device Sessions State
+  const [sessions, setSessions] = useState([
+    { id: "s-1", device: "Chrome / Windows 11 (This Device)", location: "Springfield, IL", lastActive: "Active Now", isCurrent: true },
+    { id: "s-2", device: "Homelio Client Portal App (iPad Air)", location: "Springfield West", lastActive: "4 hours ago", isCurrent: false },
+  ]);
+
+  // Preferences State
+  const [language, setLanguage] = useState("English (US)");
+  const [fontSize, setFontSize] = useState("Medium (Standard)");
+  const [highContrast, setHighContrast] = useState(false);
+  const [timezone, setTimezone] = useState("Central Time (CT)");
+
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavedSuccess(true);
     setTimeout(() => {
-      setSaveStatus(prev => ({ ...prev, [section]: false }));
-    }, 2000);
+      setSavedSuccess(false);
+    }, 3000);
   };
 
-  const tabs = [
-    { id: "profile", label: "Profile", icon: User },
-    { id: "general", label: "General Settings", icon: Save },
-    { id: "security", label: "Security", icon: Lock },
-    { id: "notifications", label: "Notifications", icon: Bell },
-    { id: "family", label: "Family Access", icon: Users },
-    { id: "preferences", label: "Preferences", icon: Globe },
-  ];
+  const handleRevokeSession = (id: string) => {
+    setSessions((prev) => prev.filter((s) => s.id !== id));
+  };
+
+  const handleAccessChange = (id: string, newAccess: string) => {
+    setMembers((prev) =>
+      prev.map((m) => (m.id === id ? { ...m, accessLevel: newAccess } : m))
+    );
+  };
+
+  const handleRemoveMember = (id: string) => {
+    setMembers((prev) => prev.filter((m) => m.id !== id));
+  };
+
+  const handleInviteSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inviteName || !inviteEmail) return;
+
+    const newMember = {
+      id: `fam-${Date.now()}`,
+      name: inviteName,
+      relationship: inviteRelationship,
+      email: inviteEmail,
+      accessLevel: inviteAccess,
+      lastActive: "Pending Invitation",
+    };
+
+    setMembers((prev) => [...prev, newMember]);
+    setInviteName("");
+    setInviteEmail("");
+    setShowInviteModal(false);
+    setSavedSuccess(true);
+    setTimeout(() => setSavedSuccess(false), 3000);
+  };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6 relative">
-      <div>
-        <h2 className="text-xl font-bold text-text-primary">Settings</h2>
-        <p className="text-xs text-text-secondary mt-1">Manage your account preferences and personal information.</p>
+    <div className="max-w-7xl mx-auto space-y-6">
+      {/* Top Header Banner matching Caregiver Settings style */}
+      <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
+            <Sliders className="w-4 h-4" /> Client & Family Portal Settings
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
+          <p className="text-xs text-gray-500 mt-1">
+            Manage your personal details, family access permissions, security credentials, and portal notification alerts.
+          </p>
+        </div>
+
+        {savedSuccess && (
+          <div className="flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-xl text-xs font-bold animate-fadeIn">
+            <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />
+            <span>Settings updated successfully!</span>
+          </div>
+        )}
       </div>
 
-      <Card noPadding className="overflow-hidden">
-        <div className="flex flex-col md:flex-row min-h-[600px]">
-          {/* Settings Sidebar */}
-          <div className="w-full md:w-64 p-4 border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/50 space-y-2 shrink-0">
-            {tabs.map((tab) => (
+      {/* Desktop 2-Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Left Vertical Tab Navigation (1/4 width) */}
+        <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-1 self-start">
+          {[
+            { id: "profile", label: "Personal Profile", icon: User, desc: "Avatar, contact info & address" },
+            { id: "family", label: "Family Access", icon: Users, desc: "Care plan permissions & members" },
+            { id: "notifications", label: "Notifications & Alerts", icon: Bell, desc: "SMS, push & email alerts" },
+            { id: "security", label: "Security & Password", icon: Lock, desc: "Password, 2FA & sessions" },
+            { id: "preferences", label: "Preferences & Display", icon: Globe, desc: "Language, font size & theme" },
+          ].map((t) => {
+            const Icon = t.icon;
+            const isActive = activeTab === t.id;
+            return (
               <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition-colors ${activeTab === tab.id
-                  ? "bg-brand-teal/10 text-brand-teal"
-                  : "text-slate-600 hover:bg-slate-100"
-                  }`}
+                key={t.id}
+                onClick={() => setActiveTab(t.id as any)}
+                className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-3 cursor-pointer ${
+                  isActive
+                    ? "bg-brand-teal text-white shadow-xs font-bold"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
+                }`}
               >
-                <tab.icon className="w-4 h-4" />
-                {tab.label}
+                <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${isActive ? "text-white" : "text-brand-teal"}`} />
+                <div>
+                  <div className="text-xs font-bold leading-tight">{t.label}</div>
+                  <div className={`text-[11px] mt-0.5 ${isActive ? "text-teal-100" : "text-gray-400 font-normal"}`}>
+                    {t.desc}
+                  </div>
+                </div>
               </button>
-            ))}
-          </div>
+            );
+          })}
+        </div>
 
-          {/* Settings Content */}
-          <div className="flex-1">
-            {activeTab === "profile" && (
-              <div className="w-full h-full pb-8">
-                {/* Header Cover */}
-                <div className="h-32 bg-gradient-to-r from-brand-teal/80 to-teal-600/80"></div>
+        {/* Right Main Form Container (3/4 width) */}
+        <div className="lg:col-span-3">
+          {/* TAB 1: PERSONAL PROFILE */}
+          {activeTab === "profile" && (
+            <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900">Client Profile Information</h3>
+                  <p className="text-xs text-gray-500 mt-0.5">Your official account profile registered with Homelio Care Team.</p>
+                </div>
+                <button
+                  type="submit"
+                  className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Save className="w-4 h-4" /> Save Profile
+                </button>
+              </div>
 
-                {/* Profile Info */}
-                <div className="px-4 sm:px-8">
-                  <div className="relative flex justify-between items-end -mt-12 mb-6">
-                    <div className="relative group">
-                      <div className="w-24 h-24 bg-white rounded-full p-1 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-                        <div className="w-full h-full rounded-full bg-slate-100 overflow-hidden relative">
-                          {currentUser?.avatarUrl ? (
-                            <img src={currentUser.avatarUrl} alt="Profile" className="w-full h-full object-cover" />
-                          ) : (
-                            <div className="w-full h-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-3xl">
-                              {currentUser?.name?.split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase() || 'U'}
-                            </div>
-                          )}
-                          <div className="absolute inset-0 bg-black/40 hidden group-hover:flex items-center justify-center cursor-pointer transition-all">
-                            <Camera className="w-6 h-6 text-white" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button onClick={() => handleSave('profile')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                      {saveStatus['profile'] ? <Check className="w-4 h-4" /> : <Edit2 className="w-4 h-4" />}
-                      {saveStatus['profile'] ? 'Saved!' : 'Edit Profile'}
-                    </button>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div>
-                      <h1 className="text-xl font-bold text-text-primary">{currentUser?.name || "Sarah Jenkins"}</h1>
-                      <p className="text-sm text-text-secondary font-medium">{currentUser?.role || "Agency Admin"}</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-6 pt-6 border-t border-slate-100">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
-                          <Mail className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <p className="text-xs font-medium text-text-secondary">Email Address</p>
-                          <p className="text-sm font-medium text-text-primary">{currentUser?.email || "sarah.jenkins@example.com"}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal shrink-0">
-                          <Phone className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <p className="text-xs font-medium text-text-secondary">Phone Number</p>
-                          <p className="text-sm font-medium text-text-primary">+1 (555) 123-4567</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 shrink-0">
-                          <Briefcase className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <p className="text-xs font-medium text-text-secondary">Department</p>
-                          <p className="text-sm font-medium text-text-primary">Administration</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              {/* Avatar Photo Section */}
+              <div className="flex items-center gap-5 p-4 rounded-xl bg-gray-50/70 border border-slate-200">
+                <Avatar src={currentUser?.avatarUrl} name={name} size="xl" className="w-16 h-16 rounded-2xl border-2 border-white shadow-md ring-2 ring-brand-teal/30" />
+                <div>
+                  <h4 className="font-bold text-sm text-gray-900">{name}</h4>
+                  <p className="text-xs text-gray-500 mt-0.5">Client ID: CLI-9042 • Active Care Plan: Level 3 Nursing</p>
+                  <button
+                    type="button"
+                    onClick={() => alert("Upload photo dialog opened. Please select a JPG or PNG file (Max 5MB).")}
+                    className="mt-2 text-xs text-brand-teal font-bold hover:underline inline-flex items-center gap-1 cursor-pointer"
+                  >
+                    <Upload className="w-3.5 h-3.5" /> Upload New Photo
+                  </button>
                 </div>
               </div>
-            )}
 
-            {activeTab === "general" && (
-              <div className="p-4 sm:p-6 space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary">General Information</h3>
-                  <p className="text-xs text-text-secondary mt-1">Update your basic profile details.</p>
+              {/* Form Fields Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Full Name</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                  />
                 </div>
-                <form className="space-y-4 max-w-full">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-text-primary">First Name</label>
-                      <input
-                        type="text"
-                        defaultValue={currentUser?.name?.split(' ')[0] || "Sarah"}
-                        className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm"
-                      />
+
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Email Address</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                  />
+                </div>
+
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Primary Contact Phone</label>
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                  />
+                </div>
+
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Primary Physician / Doctor</label>
+                  <input
+                    type="text"
+                    value={primaryDoctor}
+                    onChange={(e) => setPrimaryDoctor(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                  />
+                </div>
+
+                <div className="space-y-1.5 text-xs md:col-span-2">
+                  <label className="font-bold text-gray-800">Home Residence Address</label>
+                  <input
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                  />
+                </div>
+
+                <div className="space-y-1.5 text-xs md:col-span-2">
+                  <label className="font-bold text-gray-800">Emergency Contact Person & Phone</label>
+                  <input
+                    type="text"
+                    value={emergencyContact}
+                    onChange={(e) => setEmergencyContact(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                  />
+                </div>
+              </div>
+            </form>
+          )}
+
+          {/* TAB 2: FAMILY ACCESS */}
+          {activeTab === "family" && (
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900">Family & Caregiver Access Permissions</h3>
+                  <p className="text-xs text-gray-500 mt-0.5">Control who can view care notes, shift schedules, and billing statements.</p>
+                </div>
+                <button
+                  onClick={() => setShowInviteModal(true)}
+                  className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" /> Invite Family Member
+                </button>
+              </div>
+
+              {/* Family Members List Grid */}
+              <div className="space-y-3">
+                {members.map((member) => (
+                  <div key={member.id} className="p-4 rounded-xl border border-slate-200 bg-gray-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-3.5">
+                      <Avatar name={member.name} size="md" className="w-10 h-10 rounded-full font-bold shrink-0" />
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-xs text-gray-900">{member.name}</span>
+                          <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-200 text-slate-700 rounded-full">
+                            {member.relationship}
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-gray-500 flex items-center gap-2 mt-0.5">
+                          <span>{member.email}</span>
+                          <span>•</span>
+                          <span>Last active: {member.lastActive}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-text-primary">Last Name</label>
-                      <input
-                        type="text"
-                        defaultValue={currentUser?.name?.split(' ')[1] || "Jenkins"}
-                        className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm"
-                      />
+
+                    <div className="flex items-center gap-3 self-end sm:self-auto">
+                      <select
+                        value={member.accessLevel}
+                        onChange={(e) => handleAccessChange(member.id, e.target.value)}
+                        className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-teal cursor-pointer"
+                      >
+                        <option value="Full Access">Full Access</option>
+                        <option value="Read Only">Read Only</option>
+                        <option value="Billing Only">Billing Only</option>
+                      </select>
+
+                      <button
+                        onClick={() => handleRemoveMember(member.id)}
+                        className="p-1.5 text-gray-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                        title="Remove Access"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
+                ))}
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-text-primary">Email Address</label>
+              {/* Invite Family Member Modal */}
+              {showInviteModal && (
+                <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn">
+                  <div className="bg-white rounded-2xl p-6 max-w-md w-full border border-slate-200 shadow-2xl space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                      <h4 className="font-bold text-sm text-gray-900 flex items-center gap-2">
+                        <Users className="w-4 h-4 text-brand-teal" /> Invite Family Member
+                      </h4>
+                      <button onClick={() => setShowInviteModal(false)} className="text-gray-400 hover:text-gray-600 cursor-pointer">
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <form onSubmit={handleInviteSubmit} className="space-y-3 text-xs">
+                      <div className="space-y-1">
+                        <label className="font-bold text-gray-800">Full Name</label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Eleanor Vance"
+                          value={inviteName}
+                          onChange={(e) => setInviteName(e.target.value)}
+                          className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="font-bold text-gray-800">Email Address</label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="eleanor@example.com"
+                          value={inviteEmail}
+                          onChange={(e) => setInviteEmail(e.target.value)}
+                          className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="font-bold text-gray-800">Relationship</label>
+                        <select
+                          value={inviteRelationship}
+                          onChange={(e) => setInviteRelationship(e.target.value)}
+                          className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal font-medium cursor-pointer"
+                        >
+                          <option value="Daughter">Daughter</option>
+                          <option value="Son">Son</option>
+                          <option value="Spouse">Spouse</option>
+                          <option value="Sibling">Sibling</option>
+                          <option value="Legal Guardian">Legal Guardian</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="font-bold text-gray-800">Portal Access Level</label>
+                        <select
+                          value={inviteAccess}
+                          onChange={(e) => setInviteAccess(e.target.value)}
+                          className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal font-medium cursor-pointer"
+                        >
+                          <option value="Full Access">Full Access (Schedules, Notes & Billing)</option>
+                          <option value="Read Only">Read Only (View Care Notes & Schedule)</option>
+                          <option value="Billing Only">Billing Only (View & Pay Invoices)</option>
+                        </select>
+                      </div>
+
+                      <div className="pt-3 flex items-center justify-end gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setShowInviteModal(false)}
+                          className="px-4 py-2 text-xs font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors cursor-pointer"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-4 py-2 text-xs font-bold text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-xs cursor-pointer"
+                        >
+                          Send Invitation
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* TAB 3: NOTIFICATIONS & ALERTS */}
+          {activeTab === "notifications" && (
+            <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900">Notification & Alert Preferences</h3>
+                  <p className="text-xs text-gray-500 mt-0.5">Customize how you receive care updates, visit reminders, and billing receipts.</p>
+                </div>
+                <button
+                  type="submit"
+                  className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Save className="w-4 h-4" /> Save Preferences
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Browser & Mobile Push Notifications</h4>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Caregiver Visit Reminders</span>
+                    <span className="text-gray-500 text-[11px]">Receive push notification 30 minutes before a caregiver's scheduled arrival.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={pushVisitReminders}
+                    onChange={(e) => setPushVisitReminders(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Care Plan & Daily Visit Notes Updates</span>
+                    <span className="text-gray-500 text-[11px]">Instant alerts when the nurse or caregiver logs daily care notes.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={pushCarePlan}
+                    onChange={(e) => setPushCarePlan(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Nurse Supervisor Clinical Alerts</span>
+                    <span className="text-gray-500 text-[11px]">High priority notifications for vital sign flags or medication log updates.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={pushSupervisorNotes}
+                    onChange={(e) => setPushSupervisorNotes(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+
+                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">SMS Text Alerts</h4>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Schedule Changes & Shift Confirmations</span>
+                    <span className="text-gray-500 text-[11px]">Automated SMS alerts when a caregiver is reassigned or shift time changes.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={smsShiftAlerts}
+                    onChange={(e) => setSmsShiftAlerts(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Emergency & On-Call Nurse Dispatch Alerts</span>
+                    <span className="text-gray-500 text-[11px]">Urgent SMS notifications regarding immediate care adjustments.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={smsEmergency}
+                    onChange={(e) => setSmsEmergency(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+
+                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">Email Communications</h4>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Monthly Invoices & Billing Statements</span>
+                    <span className="text-gray-500 text-[11px]">Receive monthly PDF invoices and payment receipts directly via email.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={emailStatements}
+                    onChange={(e) => setEmailStatements(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">Weekly Caregiver Summary Digest</span>
+                    <span className="text-gray-500 text-[11px]">Weekly email digest summarizing all completed visits, tasks, and notes.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={emailCareSummary}
+                    onChange={(e) => setEmailCareSummary(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
+                </div>
+              </div>
+            </form>
+          )}
+
+          {/* TAB 4: SECURITY & PASSWORD */}
+          {activeTab === "security" && (
+            <div className="space-y-6">
+              <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+                  <div>
+                    <h3 className="text-base font-bold text-gray-900">Change Password</h3>
+                    <p className="text-xs text-gray-500 mt-0.5">Passwords must be at least 8 characters long with numbers and special symbols.</p>
+                  </div>
+                  <button
+                    type="submit"
+                    className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Key className="w-4 h-4" /> Update Password
+                  </button>
+                </div>
+
+                <div className="space-y-4 max-w-md">
+                  <div className="space-y-1.5 text-xs">
+                    <label className="font-bold text-gray-800">Current Password</label>
                     <input
-                      type="email"
-                      defaultValue={currentUser?.email || "sarah.jenkins@example.com"}
-                      className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm"
+                      type={showPassword ? "text" : "password"}
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      placeholder="••••••••••••"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-text-primary">Timezone</label>
-                    <select className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors appearance-none text-sm">
-                      <option>Pacific Time (PT)</option>
-                      <option>Eastern Time (ET)</option>
-                      <option>Central Time (CT)</option>
-                      <option>Mountain Time (MT)</option>
-                    </select>
+                  <div className="space-y-1.5 text-xs">
+                    <label className="font-bold text-gray-800">New Password</label>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="Enter new password"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                    />
                   </div>
 
-                  <div className="pt-5 border-t border-slate-100 flex justify-end gap-3">
-                    <button type="button" className="px-4 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
-                      Cancel
-                    </button>
-                    <button type="button" onClick={() => handleSave('general')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                      {saveStatus['general'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-                      {saveStatus['general'] ? 'Saved!' : 'Save Changes'}
-                    </button>
+                  <div className="space-y-1.5 text-xs">
+                    <label className="font-bold text-gray-800">Confirm New Password</label>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Confirm new password"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"
+                    />
                   </div>
-                </form>
-              </div>
-            )}
 
-            {activeTab === "family" && (
-              <div className="p-4 sm:p-6 space-y-6">
-                <div className="flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="text-xs text-gray-500 hover:text-gray-800 flex items-center gap-1.5 font-medium cursor-pointer"
+                  >
+                    {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                    {showPassword ? "Hide Passwords" : "Show Passwords"}
+                  </button>
+                </div>
+              </form>
+
+              {/* 2FA & Active Sessions Container */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div>
-                    <h3 className="text-lg font-semibold text-text-primary">Family Access</h3>
-                    <p className="text-xs text-text-secondary mt-1">Manage who can view the care plan, schedule, and billing.</p>
+                    <h3 className="text-base font-bold text-gray-900">Two-Factor Authentication (2FA) & Active Sessions</h3>
+                    <p className="text-xs text-gray-500 mt-0.5">Manage two-step verification codes and active device logins.</p>
                   </div>
-                  <button onClick={() => handleSave('family')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium">
-                    {saveStatus['family'] ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    {saveStatus['family'] ? 'Sent!' : 'Invite Member'}
-                  </button>
                 </div>
 
-                <div className="space-y-4">
-                  {familyMembers.map(member => (
-                    <div key={member.id} className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-semibold">
-                          {member.name.charAt(0)}
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <span className="font-semibold text-text-primary">{member.name}</span>
-                            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{member.relationship}</span>
-                          </div>
-                          <div className="text-xs text-text-secondary flex gap-3">
-                            <span>{member.email}</span>
-                            <span>•</span>
-                            <span>Last active: {member.lastActive}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <select
-                          className="text-sm bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
-                          defaultValue={member.accessLevel}
-                        >
-                          <option value="Full Access">Full Access</option>
-                          <option value="Read Only">Read Only</option>
-                          <option value="Billing Only">Billing Only</option>
-                        </select>
-                        <button className="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors">
-                          <MoreVertical className="w-5 h-5" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeTab === "security" && (
-              <div className="p-4 sm:p-6 space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary">Security Settings</h3>
-                  <p className="text-xs text-text-secondary mt-1">Manage your password and authentication methods.</p>
-                </div>
-
-                <div className="space-y-4 max-w-lg">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-text-primary">Current Password</label>
-                    <input type="password" placeholder="••••••••" className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-text-primary">New Password</label>
-                    <input type="password" placeholder="••••••••" className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors text-sm" />
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-between">
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-sm font-medium text-text-primary">Two-Factor Authentication</h4>
-                      <p className="text-xs text-text-secondary mt-0.5">Add an extra layer of security to your account.</p>
+                      <span className="font-bold text-xs text-emerald-950 block">2-Factor Authentication via SMS is Active</span>
+                      <span className="text-[11px] text-emerald-800">Verification code sent to {phone} when logging in from new devices.</span>
                     </div>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input type="checkbox" className="sr-only peer" defaultChecked />
-                      <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-teal"></div>
-                    </label>
                   </div>
-                </div>
-
-                <div className="pt-5 border-t border-slate-100 flex justify-end gap-3 max-w-lg">
-                  <button type="button" onClick={() => handleSave('security')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                    {saveStatus['security'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-                    {saveStatus['security'] ? 'Saved!' : 'Save Changes'}
+                  <button
+                    onClick={() => alert("2FA settings updated.")}
+                    className="px-3 py-1.5 bg-white border border-emerald-300 text-emerald-900 text-xs font-bold rounded-lg hover:bg-emerald-100/60 cursor-pointer"
+                  >
+                    Configure
                   </button>
                 </div>
-              </div>
-            )}
 
-            {activeTab === "notifications" && (
-              <div className="p-4 sm:p-6 space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-text-primary">Notification Preferences</h3>
-                  <p className="text-xs text-text-secondary mt-1">Choose what updates you want to receive and how.</p>
-                </div>
+                <div className="space-y-3">
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Active Device Sessions ({sessions.length})</h4>
+                  <div className="divide-y divide-gray-100 border border-slate-200 rounded-xl overflow-hidden">
+                    {sessions.map((s) => (
+                      <div key={s.id} className="p-3.5 bg-white flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-3">
+                          {s.device.includes("App") || s.device.includes("iPad") ? (
+                            <Smartphone className="w-4 h-4 text-brand-teal shrink-0" />
+                          ) : (
+                            <Laptop className="w-4 h-4 text-blue-600 shrink-0" />
+                          )}
+                          <div>
+                            <span className="font-bold text-gray-900 block">{s.device}</span>
+                            <span className="text-[11px] text-gray-500">{s.location} • {s.lastActive}</span>
+                          </div>
+                        </div>
 
-                <div className="space-y-6 max-w-2xl">
-                  {[
-                    { title: 'Visit Reminders', desc: 'Get notified before a scheduled visit starts.' },
-                    { title: 'Care Plan Updates', desc: 'Alerts when the care team updates the active plan.' },
-                    { title: 'Billing & Invoices', desc: 'Monthly statements and payment confirmations.' }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start sm:items-center justify-between gap-4 p-4 rounded-xl border border-slate-200 bg-white">
-                      <div>
-                        <h4 className="text-sm font-medium text-text-primary">{item.title}</h4>
-                        <p className="text-xs text-text-secondary mt-0.5">{item.desc}</p>
+                        {s.isCurrent ? (
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-brand-teal/10 text-brand-teal">
+                            Current Device
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => handleRevokeSession(s.id)}
+                            className="text-xs text-rose-600 font-bold hover:underline cursor-pointer"
+                          >
+                            Revoke Session
+                          </button>
+                        )}
                       </div>
-                      <div className="flex items-center gap-3">
-                        <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
-                          <input type="checkbox" defaultChecked className="w-4 h-4 text-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
-                          Email
-                        </label>
-                        <label className="flex items-center gap-2 text-xs font-medium text-slate-600">
-                          <input type="checkbox" defaultChecked={i === 0} className="w-4 h-4 text-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
-                          SMS
-                        </label>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-5 border-t border-slate-100 flex justify-end gap-3 max-w-2xl">
-                  <button type="button" onClick={() => handleSave('notifications')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                    {saveStatus['notifications'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-                    {saveStatus['notifications'] ? 'Saved!' : 'Save Changes'}
-                  </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            )}
+            </div>
+          )}
 
-            {activeTab === "preferences" && (
-              <div className="p-4 sm:p-6 space-y-6">
+          {/* TAB 5: PREFERENCES & DISPLAY */}
+          {activeTab === "preferences" && (
+            <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+              <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                 <div>
-                  <h3 className="text-lg font-semibold text-text-primary">System Preferences</h3>
-                  <p className="text-xs text-text-secondary mt-1">Customize your portal experience.</p>
+                  <h3 className="text-base font-bold text-gray-900">Display & Localization Preferences</h3>
+                  <p className="text-xs text-gray-500 mt-0.5">Customize interface language, font scaling, time zone, and contrast.</p>
+                </div>
+                <button
+                  type="submit"
+                  className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Save className="w-4 h-4" /> Save Preferences
+                </button>
+              </div>
+
+              <div className="space-y-4 max-w-lg">
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Preferred Interface Language</label>
+                  <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal font-medium cursor-pointer"
+                  >
+                    <option value="English (US)">English (United States)</option>
+                    <option value="Spanish (ES)">Español (Spanish)</option>
+                    <option value="French (FR)">Français (French)</option>
+                    <option value="Tagalog">Tagalog (Filipino)</option>
+                  </select>
                 </div>
 
-                <div className="space-y-4 max-w-lg">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-text-primary">Language</label>
-                    <select className="w-full px-4 py-2.5 bg-white rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors appearance-none text-sm">
-                      <option>English (US)</option>
-                      <option>Spanish (ES)</option>
-                      <option>French (FR)</option>
-                    </select>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-sm font-medium text-text-primary">High Contrast Mode</h4>
-                      <p className="text-xs text-text-secondary mt-0.5">Increase UI contrast for better readability.</p>
-                    </div>
-                    <label className="relative inline-flex items-center cursor-pointer">
-                      <input type="checkbox" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-teal"></div>
-                    </label>
-                  </div>
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Display Time Zone</label>
+                  <select
+                    value={timezone}
+                    onChange={(e) => setTimezone(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal font-medium cursor-pointer"
+                  >
+                    <option value="Central Time (CT)">Central Time (CT)</option>
+                    <option value="Eastern Time (ET)">Eastern Time (ET)</option>
+                    <option value="Pacific Time (PT)">Pacific Time (PT)</option>
+                    <option value="Mountain Time (MT)">Mountain Time (MT)</option>
+                  </select>
                 </div>
 
-                <div className="pt-5 border-t border-slate-100 flex justify-end gap-3 max-w-lg">
-                  <button type="button" onClick={() => handleSave('preferences')} className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 active:scale-95 transition-all text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]">
-                    {saveStatus['preferences'] ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
-                    {saveStatus['preferences'] ? 'Saved!' : 'Save Changes'}
-                  </button>
+                <div className="space-y-1.5 text-xs">
+                  <label className="font-bold text-gray-800">Interface Font Scaling</label>
+                  <select
+                    value={fontSize}
+                    onChange={(e) => setFontSize(e.target.value)}
+                    className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal font-medium cursor-pointer"
+                  >
+                    <option value="Medium (Standard)">Medium (Standard Desktop & Tablet)</option>
+                    <option value="Large (High Readability)">Large (High Readability)</option>
+                    <option value="Extra Large">Extra Large (Maximum Readability)</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div>
+                    <span className="font-bold text-gray-900 block">High Contrast Mode</span>
+                    <span className="text-gray-500 text-[11px]">Enhance outlines and contrast for higher legibility.</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={highContrast}
+                    onChange={(e) => setHighContrast(e.target.checked)}
+                    className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
+                  />
                 </div>
               </div>
-            )}
-          </div>
+            </form>
+          )}
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

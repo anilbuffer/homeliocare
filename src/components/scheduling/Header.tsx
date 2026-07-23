@@ -16,7 +16,7 @@ export function Header({ viewMode, setViewMode, openShiftsCount, onCreateShift }
         <div className="flex items-center gap-2.5">
           <h1 className="text-xl font-bold text-slate-900 tracking-tight">Scheduling & Shift Board</h1>
           {openShiftsCount > 0 && (
-            <span className="bg-red-50 text-red-600 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-red-200/60 inline-flex items-center gap-1">
+            <span className="bg-red-50 text-red-600 text-xs font-semibold px-2 py-0.5 rounded-full border border-red-200/60 inline-flex items-center gap-1">
               <AlertCircle className="w-3.5 h-3.5" />
               {openShiftsCount} Open
             </span>

@@ -55,15 +55,15 @@ export function UrgencyStrip() {
             key={idx}
             className="bg-white/80 backdrop-blur-xl rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden group flex items-center gap-3"
           >
-            <div className={clsx("p-2.5 sm:p-3 rounded-xl border shrink-0 transition-transform duration-300 group-hover:scale-110", kpi.bg, kpi.color)}>
-              <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+            <div className={clsx("p-2 sm:p-2.5 rounded-xl border shrink-0 transition-transform duration-300 group-hover:scale-110", kpi.bg, kpi.color)}>
+              <Icon className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
             </div>
             <div className="flex-1 min-w-0 py-0.5">
               <div className="flex items-center justify-between gap-1 mb-0.5">
                 <div className={clsx("text-xl sm:text-2xl font-bold tracking-tight leading-none", kpi.color)}>{kpi.value}</div>
                 <div className={clsx("w-2 h-2 rounded-full shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-150", kpi.dot)} />
               </div>
-              <div className="text-[11px] sm:text-xs font-semibold text-slate-500 leading-tight truncate">{kpi.label}</div>
+              <div className="text-[11px] sm:text-xs font-medium text-slate-500 leading-tight truncate">{kpi.label}</div>
             </div>
 
             {/* Subtle background glow */}

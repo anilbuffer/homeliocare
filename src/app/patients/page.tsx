@@ -135,7 +135,7 @@ export default function PatientsPage() {
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
             Patients Directory
-            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/20">
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/20">
               {filteredPatients.length} shown
             </span>
           </h1>

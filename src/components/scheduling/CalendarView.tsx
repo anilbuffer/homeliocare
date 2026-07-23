@@ -97,7 +97,7 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
           {/* Unfilled Row */}
           <div className="flex border-b border-slate-200 hover:bg-slate-50/60 transition-colors">
             <div className="w-36 sm:w-60 shrink-0 py-3.5 px-3 sm:px-4 border-r border-slate-200 flex items-center gap-2.5 sm:gap-3 sticky left-0 z-3 bg-white/95 backdrop-blur-md shadow-[2px_0_10px_rgba(0,0,0,0.03)]">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
                 !
               </div>
               <div className="overflow-hidden w-full">

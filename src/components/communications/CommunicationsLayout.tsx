@@ -11,8 +11,8 @@ import clsx from "clsx";
 
 export type FilterType = "All" | "Unread" | "Mentions" | "Muted" | "Archived";
 
-export function CommunicationsLayout() {
-  const [activeCategory, setActiveCategory] = useState<ConversationCategory | "All">("All");
+export function CommunicationsLayout({ initialCategory = "All" }: { initialCategory?: ConversationCategory | "All" }) {
+  const [activeCategory, setActiveCategory] = useState<ConversationCategory | "All">(initialCategory);
   const [activeFilter, setActiveFilter] = useState<FilterType>("All");
   const [searchQuery, setSearchQuery] = useState("");
 

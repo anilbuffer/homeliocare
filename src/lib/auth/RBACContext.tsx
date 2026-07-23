@@ -39,6 +39,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         role: "CAREGIVER",
         avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
       };
+    } else if (role === "SCHEDULER") {
+      mockUser = {
+        id: "sched-201",
+        name: "Alex Rivera",
+        email: "alex.rivera@homeliocare.com",
+        role: "SCHEDULER",
+        avatarUrl: "",
+      };
     } else {
       mockUser = {
         id: `mock-${role.toLowerCase()}-123`,
