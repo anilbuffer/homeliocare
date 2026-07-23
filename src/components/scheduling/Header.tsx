@@ -29,13 +29,13 @@ export function Header({ viewMode, setViewMode, openShiftsCount, onCreateShift }
 
       <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3">
         {/* Day / Week / Month Pill Switcher */}
-        <div className="flex bg-white backdrop-blur-xl rounded-2xl p-1 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:border-brand-teal/40 transition-all duration-300">
+        <div className="flex bg-white backdrop-blur-xl rounded-full p-1 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:border-brand-teal/40 transition-all duration-300">
           {(["Day", "Week", "Month"] as const).map((mode) => (
             <button
               key={mode}
               onClick={() => setViewMode(mode)}
               className={clsx(
-                "px-3.5 sm:px-5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200",
+                "px-3.5 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200",
                 viewMode === mode
                   ? "bg-brand-teal text-white shadow-md"
                   : "text-slate-500 hover:text-slate-800 hover:bg-slate-50"
@@ -49,7 +49,7 @@ export function Header({ viewMode, setViewMode, openShiftsCount, onCreateShift }
         {/* Create Shift Primary Button */}
         <button
           onClick={onCreateShift}
-          className="flex items-center justify-center gap-2 bg-brand-teal text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl hover:bg-teal-700 transition-all duration-200 shadow-[0_6px_32px_rgba(0,0,0,0.08)] active:scale-95 whitespace-nowrap"
+          className="flex items-center justify-center gap-2 bg-brand-teal text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full hover:bg-teal-700 transition-all duration-200 shadow-[0_6px_32px_rgba(0,0,0,0.08)] active:scale-95 whitespace-nowrap"
         >
           <Plus className="w-4 h-4" />
           <span>Create Shift</span>

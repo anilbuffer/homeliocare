@@ -19,7 +19,7 @@ export default function SchedulerLayout({ children }: { children: React.ReactNod
       <SchedulerSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col h-screen overflow-hidden relative">
         <TopBar onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-4 sm:py-6 pb-15 sm:pb-20 transition-all duration-300 ease-in-out">
+        <main className="flex-1 overflow-y-auto px-4 lg:px-6 py-4 sm:py-6 pb-10 sm:pb-15 transition-all duration-300 ease-in-out">
           {children}
         </main>
       </div>

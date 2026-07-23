@@ -249,7 +249,7 @@ export function SchedulerSidebar({ isOpen = false, onClose }: SchedulerSidebarPr
                 <div className="flex flex-col gap-1">
                   <Link
                     href="/scheduler/settings"
-                    className="flex items-center gap-3 w-full px-3 py-2.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-xl transition-colors"
+                    className="flex items-center gap-3 w-full px-3 py-2.5 font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-xl transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <Settings className="w-4 h-4 text-slate-400" />
@@ -258,7 +258,7 @@ export function SchedulerSidebar({ isOpen = false, onClose }: SchedulerSidebarPr
                   <div className="h-px w-full bg-sidebar-active/60 my-0.5" />
                   <Link
                     href="/login"
-                    className="flex items-center gap-3 w-full px-3 py-2 text-xs font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-colors"
+                    className="flex items-center gap-3 w-full px-3 py-2 font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >
                     <LogOut className="w-4 h-4" />

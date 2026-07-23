@@ -68,11 +68,11 @@ export default function SchedulerCaregiversPage() {
           </select>
         </div>
 
-        <div className="flex items-center bg-white p-1 rounded-xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="flex items-center bg-white p-1 rounded-full border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <button
             onClick={() => setViewMode("grid")}
             className={cn(
-              "p-2 rounded-lg transition-all cursor-pointer",
+              "p-2 rounded-full transition-all cursor-pointer",
               viewMode === "grid" ? "bg-brand-teal/20 text-brand-teal" : "text-slate-500 hover:text-slate-700"
             )}
             title="Grid View"
@@ -82,7 +82,7 @@ export default function SchedulerCaregiversPage() {
           <button
             onClick={() => setViewMode("table")}
             className={cn(
-              "p-2 rounded-lg transition-all cursor-pointer",
+              "p-2 rounded-full transition-all cursor-pointer",
               viewMode === "table" ? "bg-brand-teal/20 text-brand-teal" : "text-slate-500 hover:text-slate-700"
             )}
             title="Table View"
