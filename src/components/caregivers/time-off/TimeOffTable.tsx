@@ -71,10 +71,10 @@ export function TimeOffTable() {
             <input
               type="text"
               placeholder="Search requests..."
-              className="w-full pl-9 pr-4 py-2 bg-white rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all shadow-sm"
+              className="w-full pl-9 pr-4 py-2 bg-white rounded-full border border-slate-200 border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
             />
           </div>
-          <button className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-2 text-sm font-medium shadow-sm">
+          <button className="px-3.5 py-2 rounded-full bg-white border border-slate-200 border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-2 text-sm font-medium">
             <Filter className="w-4 h-4" />
             Filter
           </button>
@@ -122,8 +122,8 @@ export function TimeOffTable() {
                 </td>
                 <td className="px-6 py-4">
                   <Badge variant={
-                    req.status === "Approved" ? "success" : 
-                    req.status === "Denied" ? "error" : "warning"
+                    req.status === "Approved" ? "success" :
+                      req.status === "Denied" ? "error" : "warning"
                   }>
                     {req.status}
                   </Badge>
@@ -131,14 +131,14 @@ export function TimeOffTable() {
                 <td className="px-6 py-4 text-right">
                   {req.status === "Pending" ? (
                     <div className="flex items-center justify-end gap-2">
-                      <button 
+                      <button
                         onClick={() => handleAction(req.id, "Denied")}
-                        className="p-1.5 text-rose-500 hover:bg-rose-50 rounded-lg transition-colors border border-transparent hover:border-rose-100" 
+                        className="p-1.5 text-rose-500 hover:bg-rose-50 rounded-lg transition-colors border border-transparent hover:border-rose-100"
                         title="Deny"
                       >
                         <X className="w-4 h-4" />
                       </button>
-                      <button 
+                      <button
                         onClick={() => handleAction(req.id, "Approved")}
                         className="p-1.5 text-emerald-500 hover:bg-emerald-50 rounded-lg transition-colors border border-transparent hover:border-emerald-100"
                         title="Approve"

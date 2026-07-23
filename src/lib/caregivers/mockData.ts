@@ -56,6 +56,108 @@ export interface Caregiver {
 }
 
 export const mockCaregivers: Record<string, Caregiver> = {
+  "1": {
+    id: "1",
+    name: "Amanda Riley",
+    avatarUrl: "",
+    role: "Registered Nurse (RN)",
+    status: "Onboarding",
+    rating: 5.0,
+    yearsWithAgency: 0,
+    phone: "(555) 234-5678",
+    email: "amanda.riley@homeliocare.com",
+    address: "567 Health Blvd, Medical City, ST 12345",
+    emergencyContact: "John Riley (Spouse) - (555) 999-8888",
+    languages: ["English"],
+    skills: ["Wound Care", "Medication Administration", "Patient Assessment"],
+    hireDate: "2026-10-15",
+    employmentType: "W2",
+    payRate: 48.00,
+    complianceScore: 75,
+    assignedPatientsCount: 0,
+    lastActiveDate: "Today",
+    certifications: [
+      { id: "cert-a1", name: "RN License", issueDate: "2024-01-01", expiryDate: "2028-01-01", status: "Active", issuer: "State Nursing Board" },
+      { id: "cert-a2", name: "CPR Certification", issueDate: "2024-06-01", expiryDate: "2026-06-01", status: "Expiring Soon", issuer: "AHA" }
+    ],
+    recentShifts: []
+  },
+  "2": {
+    id: "2",
+    name: "James Wilson",
+    avatarUrl: "",
+    role: "Home Health Aide (HHA)",
+    status: "Onboarding",
+    rating: 4.5,
+    yearsWithAgency: 0,
+    phone: "(555) 876-5432",
+    email: "j.wilson@homeliocare.com",
+    address: "890 Care Ave, Health Town, ST 54321",
+    emergencyContact: "Mary Wilson (Mother) - (555) 777-6666",
+    languages: ["English", "Spanish"],
+    skills: ["Personal Care", "Bathing & Dressing", "Companion Care"],
+    hireDate: "2026-10-22",
+    employmentType: "W2",
+    payRate: 23.00,
+    complianceScore: 25,
+    assignedPatientsCount: 0,
+    lastActiveDate: "Today",
+    certifications: [
+      { id: "cert-j1", name: "HHA State Cert", issueDate: "2025-03-01", expiryDate: "2027-03-01", status: "Active", issuer: "Department of Health" }
+    ],
+    recentShifts: []
+  },
+  "3": {
+    id: "3",
+    name: "Elena Rodriguez",
+    avatarUrl: "",
+    role: "Certified Nursing Assistant",
+    status: "Active",
+    rating: 4.9,
+    yearsWithAgency: 3,
+    phone: "(555) 345-6789",
+    email: "elena.r@homeliocare.com",
+    address: "123 Healthcare Ave, Wellness City, ST 12345",
+    emergencyContact: "Carlos Rodriguez (Husband) - (555) 987-6543",
+    languages: ["English", "Spanish"],
+    skills: ["Wound Care", "Medication Management", "IV Therapy", "Dementia Care"],
+    hireDate: "2023-01-15",
+    employmentType: "W2",
+    payRate: 45.00,
+    complianceScore: 100,
+    assignedPatientsCount: 4,
+    lastActiveDate: "2026-07-15",
+    certifications: [
+      { id: "cert-e1", name: "CNA License", issueDate: "2022-05-01", expiryDate: "2027-05-01", status: "Active", issuer: "State Board of Nursing" },
+      { id: "cert-e2", name: "BLS/CPR", issueDate: "2025-01-10", expiryDate: "2027-01-10", status: "Active", issuer: "American Heart Association" }
+    ],
+    recentShifts: []
+  },
+  "4": {
+    id: "4",
+    name: "Marcus Vance",
+    avatarUrl: "",
+    role: "Physical Therapist",
+    status: "Onboarding",
+    rating: 4.8,
+    yearsWithAgency: 0,
+    phone: "(555) 901-2345",
+    email: "marcus.v@homeliocare.com",
+    address: "432 Rehab Road, Wellness City, ST 12345",
+    emergencyContact: "Lisa Vance (Wife) - (555) 444-3333",
+    languages: ["English"],
+    skills: ["Physical Therapy", "Post-op Recovery", "Mobility Rehab"],
+    hireDate: "2026-11-10",
+    employmentType: "W2",
+    payRate: 52.00,
+    complianceScore: 50,
+    assignedPatientsCount: 0,
+    lastActiveDate: "Today",
+    certifications: [
+      { id: "cert-m1", name: "PT License", issueDate: "2023-08-01", expiryDate: "2028-08-01", status: "Active", issuer: "PT Board" }
+    ],
+    recentShifts: []
+  },
   "cg-001": {
     id: "cg-001",
     name: "Elena Rodriguez",

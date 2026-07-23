@@ -5,7 +5,7 @@ import { Shield, ShieldAlert, CheckCircle, ExternalLink, Clock, RefreshCw } from
 
 export function BackgroundCheckWidget() {
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
       <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
         <h3 className="font-semibold text-slate-900 flex items-center gap-2">
           <Shield className="w-4 h-4 text-brand-teal" />
@@ -15,7 +15,7 @@ export function BackgroundCheckWidget() {
           <RefreshCw className="w-3 h-3" /> Run Checks
         </button>
       </div>
-      
+
       <div className="p-4 space-y-4">
         {/* Checkr / Sterling */}
         <div className="flex items-start justify-between border-b border-slate-100 pb-4">

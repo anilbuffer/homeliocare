@@ -13,7 +13,7 @@ export default function TimeOffPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+          <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600">
             <Clock className="w-6 h-6" />
           </div>
           <div>
@@ -23,7 +23,7 @@ export default function TimeOffPage() {
         </div>
 
         <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+          <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
             <CalendarCheck className="w-6 h-6" />
           </div>
           <div>
