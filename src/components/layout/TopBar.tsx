@@ -10,7 +10,12 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
 
   const getPageTitle = () => {
-    if (!pathname) return "Dashboard";
+    if (pathname.startsWith("/hr/recruiting")) return "HR Recruiting & Onboarding";
+    if (pathname.startsWith("/hr/caregivers")) return "HR Caregiver Roster";
+    if (pathname.startsWith("/hr/training")) return "HR Training & LMS";
+    if (pathname.startsWith("/hr/payroll")) return "HR Payroll";
+    if (pathname.startsWith("/hr/messages")) return "HR Messages";
+    if (pathname.startsWith("/hr/dashboard") || pathname === "/hr") return "HR Dashboard";
     if (pathname.startsWith("/users")) return "User Management";
     if (pathname.startsWith("/training")) return "Training (LMS)";
     if (pathname.startsWith("/patients")) return "Patients";

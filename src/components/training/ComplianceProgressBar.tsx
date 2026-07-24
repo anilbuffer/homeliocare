@@ -13,7 +13,7 @@ interface ProgressBarProps {
 export function ComplianceProgressBar({
   progress,
   colorClass = "bg-brand-teal",
-  heightClass = "h-2",
+  heightClass = "h-1.5",
   showText = false
 }: ProgressBarProps) {
   const [fill, setFill] = useState(0);

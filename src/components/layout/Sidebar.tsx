@@ -24,10 +24,11 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 import { useSidebarCollapse } from "@/hooks/useSidebarCollapse";
+import { useAuth } from "@/hooks/useAuth";
 
 const navGroups = [
   {
@@ -48,20 +49,15 @@ const navGroups = [
       { name: "Compliance Tracking", icon: CheckSquare, id: "compliance" },
       { name: "EVV Compliance", icon: Activity, id: "evv-monitoring" },
       { name: "Quality Assurance", icon: Award, id: "qa" },
-      { name: "Training (LMS)", icon: GraduationCap, id: "training" },
     ],
   },
   {
-    label: "BUSINESS",
+    label: "TALENT & GROWTH",
     items: [
-      { name: "Reports", icon: BarChart3, id: "reports" },
+      { name: "Training (LMS)", icon: GraduationCap, id: "training" },
       { name: "Referrals & Intake", icon: Inbox, id: "referrals" },
       { name: "Communications", icon: MessageSquare, id: "communications" },
-    ],
-  },
-  {
-    label: "FINANCE & PAYROLL",
-    items: [
+      { name: "Reports & BI", icon: BarChart3, id: "reports" },
       { name: "Payroll", icon: Receipt, id: "payroll" },
     ],
   },
@@ -80,9 +76,17 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { currentUser, logout } = useAuth();
   const { isCollapsed, toggleCollapse } = useSidebarCollapse();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [showHipaaTooltip, setShowHipaaTooltip] = useState(false);
+
+  const handleLogout = () => {
+    setIsProfileOpen(false);
+    logout();
+    router.push("/login");
+  };
 
   const [activeItem, setActiveItem] = useState(() => {
     if (pathname?.startsWith("/users")) return "users";
@@ -305,10 +309,10 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
           <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className={clsx(
-              "flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left",
+              "flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left cursor-pointer",
               isCollapsed && "justify-center"
             )}
-            title={isCollapsed ? "Sarah Jenkins (Agency Admin)" : undefined}
+            title={isCollapsed ? `${currentUser?.name || "Agency Admin"}` : undefined}
           >
             <div className="w-9 h-9 rounded-full bg-slate-600 shrink-0 overflow-hidden flex items-center justify-center ring-2 ring-brand-teal/40">
               <User className="w-4.5 h-4.5 text-slate-300" />
@@ -316,8 +320,12 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             {!isCollapsed && (
               <>
                 <div className="flex-1 overflow-hidden">
-                  <div className="text-sm font-medium text-white truncate">Sarah Jenkins</div>
-                  <div className="text-xs text-slate-400 truncate">Agency Admin</div>
+                  <div className="text-sm font-medium text-white truncate">
+                    {currentUser?.name || "Agency Executive"}
+                  </div>
+                  <div className="text-xs text-slate-400 truncate">
+                    {currentUser?.role || "ADMIN"} Portal
+                  </div>
                 </div>
                 <ChevronDown
                   className={clsx("w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200", isProfileOpen && "rotate-180")}
@@ -350,14 +358,14 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                     Settings
                   </Link>
                   <div className="h-px w-full bg-sidebar-active/60 my-0.5" />
-                  <Link
-                    href="/login"
-                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-colors"
-                    onClick={() => setIsProfileOpen(false)}
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-colors cursor-pointer text-left"
                   >
                     <LogOut className="w-4 h-4" />
                     Log out
-                  </Link>
+                  </button>
                 </div>
               </motion.div>
             )}

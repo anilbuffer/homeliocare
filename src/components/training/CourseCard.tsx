@@ -25,72 +25,85 @@ export function CourseCard({
   thumbnailColor = "bg-brand-teal",
   actionLabel = "Start",
   onAction,
-  required = false
+  required = false,
 }: CourseCardProps) {
-
   const getFormatIcon = () => {
     switch (format) {
-      case "Video": return <PlayCircle className="w-8 h-8 text-white/80" />;
-      case "Reading": return <FileText className="w-8 h-8 text-white/80" />;
-      case "PDF": return <File className="w-8 h-8 text-white/80" />;
-      case "PowerPoint": return <MonitorPlay className="w-8 h-8 text-white/80" />;
-      default: return <PlayCircle className="w-8 h-8 text-white/80" />;
+      case "Video":
+        return <PlayCircle className="w-9 h-9 text-white/90" />;
+      case "Reading":
+        return <FileText className="w-9 h-9 text-white/90" />;
+      case "PDF":
+        return <File className="w-9 h-9 text-white/90" />;
+      case "PowerPoint":
+        return <MonitorPlay className="w-9 h-9 text-white/90" />;
+      default:
+        return <PlayCircle className="w-9 h-9 text-white/90" />;
     }
   };
 
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer" onClick={onAction}>
+    <div
+      onClick={onAction}
+      className="bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] overflow-hidden hover:shadow-xl hover:border-brand-teal/50 hover:-translate-y-1 transition-all duration-300 flex flex-col group cursor-pointer"
+    >
       {/* Thumbnail */}
-      <div className={`h-32 ${thumbnailColor} relative flex items-center justify-center`}>
-        {/* Soft overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/20" />
+      <div className={`h-36 ${thumbnailColor} relative flex items-center justify-center overflow-hidden`}>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-slate-900/40" />
 
-        {/* Format Icon */}
         <div className="relative z-10 group-hover:scale-110 transition-transform duration-300">
           {getFormatIcon()}
         </div>
 
         {/* Badges */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start z-10">
-          <span className="bg-white/20 backdrop-blur-sm text-white text-[10px] font-semibold px-2 py-1 rounded">
+          <span className="bg-slate-900/40 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
             {format}
           </span>
-          <span className="bg-black/30 backdrop-blur-sm text-white text-[10px] font-semibold px-2 py-1 rounded">
+          <span className="bg-slate-900/50 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/20">
             {duration}
           </span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-4 flex-1 flex flex-col">
-        <div className="flex justify-between items-start gap-2 mb-2">
-          <h4 className="font-semibold text-slate-800 text-sm line-clamp-2 leading-tight flex-1">
-            {title}
-          </h4>
-          {required && (
-            <span className="bg-red-50 text-red-600 border border-red-100 text-[9px] font-bold uppercase px-1.5 py-0.5 rounded flex-shrink-0">
-              Required
-            </span>
-          )}
+      <div className="p-4.5 flex-1 flex flex-col justify-between space-y-3">
+        <div>
+          <div className="flex justify-between items-start gap-2 mb-1.5">
+            <h4 className="font-extrabold text-slate-900 text-sm line-clamp-2 leading-snug group-hover:text-brand-teal transition-colors flex-1">
+              {title}
+            </h4>
+            {required && (
+              <span className="bg-rose-100 text-rose-700 border border-rose-200 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full flex-shrink-0">
+                Mandatory
+              </span>
+            )}
+          </div>
+          <span className="text-[11px] font-bold text-slate-400 block">{category}</span>
         </div>
 
-        <div className="text-xs text-slate-500 mb-4">{category}</div>
-
-        <div className="mt-auto pt-2 space-y-3">
+        <div className="space-y-3 pt-1">
           {typeof progress === "number" && (
             <div className="space-y-1">
-              <div className="flex justify-between text-[10px] text-slate-500 font-medium">
-                <span>{progress}% complete</span>
+              <div className="flex justify-between text-[10px] text-slate-500 font-bold">
+                <span>Progress</span>
+                <span className="text-slate-900 font-extrabold">{progress}%</span>
               </div>
               <ComplianceProgressBar progress={progress} />
             </div>
           )}
 
           <button
-            className={`w-full py-2.5 sm:py-2 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${progress && progress > 0
-              ? "bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20"
-              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-              }`}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onAction?.();
+            }}
+            className={`w-full py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer shadow-sm ${
+              progress && progress > 0
+                ? "bg-brand-teal text-white hover:bg-[#0c8a6f]"
+                : "bg-slate-900 text-white hover:bg-slate-800"
+            }`}
           >
             {actionLabel}
           </button>
@@ -99,3 +112,4 @@ export function CourseCard({
     </div>
   );
 }
+

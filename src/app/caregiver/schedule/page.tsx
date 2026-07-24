@@ -289,7 +289,7 @@ export default function CaregiverSchedulePage() {
               </div>
               <button
                 onClick={() => alert("Availability preferences saved and synced to Admin Scheduler!")}
-                className="px-4 py-2 bg-brand-teal text-white font-bold rounded-xl text-xs shadow-xs hover:bg-brand-teal/90"
+                className="px-4 py-2 bg-brand-teal text-white font-bold rounded-xl text-xs shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:bg-brand-teal/90"
               >
                 Save Availability
               </button>
@@ -335,7 +335,7 @@ export default function CaregiverSchedulePage() {
               </div>
               <button
                 onClick={() => setShowTimeOffModal(true)}
-                className="px-4 py-2 bg-brand-teal text-white font-bold rounded-xl text-xs shadow-xs hover:bg-brand-teal/90 flex items-center gap-1.5"
+                className="px-4 py-2 bg-brand-teal text-white font-bold rounded-xl text-xs shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:bg-brand-teal/90 flex items-center gap-1.5"
               >
                 <Plus className="w-4 h-4" /> Request Time Off
               </button>

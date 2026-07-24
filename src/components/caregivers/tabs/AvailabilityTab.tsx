@@ -109,14 +109,14 @@ export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
         <Card className="p-6">
           <h3 className="text-lg font-semibold text-slate-800 mb-4">Time-Off Requests</h3>
           <div className="space-y-3">
-            <div className="p-3 border border-slate-100 rounded-lg flex items-center justify-between">
+            <div className="p-3 border border-slate-200 rounded-lg flex items-center justify-between">
               <div>
                 <div className="text-sm font-medium text-slate-800">Aug 15 - Aug 20, 2026</div>
                 <div className="text-xs text-slate-500">Vacation</div>
               </div>
               <Badge variant="warning">Pending</Badge>
             </div>
-            <div className="p-3 border border-slate-100 rounded-lg flex items-center justify-between">
+            <div className="p-3 border border-slate-200 rounded-lg flex items-center justify-between">
               <div>
                 <div className="text-sm font-medium text-slate-800">Jun 05, 2026</div>
                 <div className="text-xs text-slate-500">Personal Day</div>

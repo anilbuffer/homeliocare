@@ -24,7 +24,7 @@ export function BackgroundCheckWidget() {
               <CheckCircle className="w-4 h-4 text-emerald-600" />
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-slate-900">Criminal Background Check</h4>
+              <h4 className="text-xs font-semibold text-slate-900">Criminal Background Check</h4>
               <p className="text-xs text-slate-500 mt-0.5">Provider: Checkr • Last run: Jul 15, 2026</p>
             </div>
           </div>

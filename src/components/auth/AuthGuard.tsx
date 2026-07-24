@@ -26,6 +26,8 @@ export function AuthGuard({
           router.push("/dashboard");
         } else if (currentUser.role === "SCHEDULER") {
           router.push("/scheduler");
+        } else if (currentUser.role === "HR") {
+          router.push("/hr/dashboard");
         } else if (currentUser.role === "CLIENT") {
           router.push("/portal");
         } else if (currentUser.role === "CAREGIVER") {

@@ -1,4 +1,4 @@
-export type Role = "ADMIN" | "SCHEDULER" | "CLIENT" | "CAREGIVER";
+export type Role = "ADMIN" | "SCHEDULER" | "HR" | "CLIENT" | "CAREGIVER";
 
 export interface User {
   id: string;
@@ -7,3 +7,4 @@ export interface User {
   role: Role;
   avatarUrl?: string;
 }
+

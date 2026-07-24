@@ -44,8 +44,8 @@ export function VisitCorrectionQueue() {
               key={sub.id}
               onClick={() => setSelectedSubmission(sub)}
               className={`w-full text-left p-3 rounded-xl transition-all border flex items-start gap-3 ${selectedSubmission.id === sub.id
-                  ? "bg-rose-50 border-rose-200 shadow-sm"
-                  : "bg-transparent border-transparent hover:bg-slate-50 hover:border-slate-200"
+                ? "bg-rose-50 border-rose-200 shadow-sm"
+                : "bg-transparent border-transparent hover:bg-slate-50 hover:border-slate-200"
                 }`}
             >
               <div className="flex-1 min-w-0">
@@ -96,7 +96,7 @@ export function VisitCorrectionQueue() {
 
           <div className="grid grid-cols-2 gap-8 mb-8">
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 border-b pb-2">
+              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2">
                 <FileText className="w-4 h-4 text-slate-400" /> Visit Information
               </h3>
               <div>
@@ -114,7 +114,7 @@ export function VisitCorrectionQueue() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 border-b pb-2">
+              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2">
                 <Clock className="w-4 h-4 text-slate-400" /> Date & Time
               </h3>
               <div>
