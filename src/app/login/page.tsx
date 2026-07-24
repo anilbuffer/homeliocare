@@ -23,7 +23,8 @@ import {
   Cpu,
   Globe,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  UserPlus
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
@@ -112,6 +113,41 @@ const ROLE_DATA: Record<Role, RoleConfig> = {
         icon: Globe,
         title: "Multi-Branch Synchronization",
         desc: "Seamless live syncing across all regional dispatcher hubs."
+      }
+    ]
+  },
+  HR: {
+    role: "HR",
+    title: "HR Manager & Recruiter",
+    subtitle: "Staffing & Compliance Portal",
+    description: "Recruiting pipelines, candidate onboarding, caregiver roster management, credential watchlist, and training LMS.",
+    icon: UserPlus,
+    email: "sarah.jenkins@homelio.com",
+    badge: "HR & Recruiting Desk",
+    badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
+    metrics: [
+      { label: "Pipeline", value: "14 Candidates" },
+      { label: "Credential Alerts", value: "3 Expiring" },
+      { label: "Retention Rate", value: "94.2%" },
+    ],
+    highlights: ["Recruiting Pipeline Board", "Credential Watchlist", "Roster & Onboarding"],
+    spotlightTitle: "Caregiver Talent & Enterprise",
+    spotlightHighlight: "HR Management Hub",
+    features: [
+      {
+        icon: ScanEye,
+        title: "Automated Candidate Verification",
+        desc: "Instant background check tracking, OIG clearances, and license verification."
+      },
+      {
+        icon: Cpu,
+        title: "Credential Watchlist Alerts",
+        desc: "Proactive automated notifications for expiring CPR, TB, and driver licenses."
+      },
+      {
+        icon: Globe,
+        title: "Integrated LMS & Training Desk",
+        desc: "Assign required compliance modules and track staff certification completion."
       }
     ]
   },
@@ -225,6 +261,8 @@ export default function LoginPage() {
         router.push("/dashboard");
       } else if (selectedRole === "SCHEDULER") {
         router.push("/scheduler");
+      } else if (selectedRole === "HR") {
+        router.push("/hr/dashboard");
       } else if (selectedRole === "CLIENT") {
         router.push("/portal");
       } else if (selectedRole === "CAREGIVER") {
@@ -250,7 +288,7 @@ export default function LoginPage() {
           Auto-fills demo credentials
         </span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-3">
         {(Object.keys(ROLE_DATA) as Role[]).map((roleKey) => {
           const rItem = ROLE_DATA[roleKey];
           const isSel = selectedRole === roleKey;
@@ -261,7 +299,7 @@ export default function LoginPage() {
               key={roleKey}
               type="button"
               onClick={() => handleRoleSelect(roleKey)}
-              className={`p-2 sm:px-3 sm:py-2 rounded-xl border text-left transition-all duration-150 flex items-center space-x-2.5 cursor-pointer ${isSel
+              className={`p-2 sm:px-3 sm:py-2 rounded-xl border text-left transition-all duration-150 flex items-center space-x-2 cursor-pointer ${isSel
                 ? "bg-[#0e4d4c] border-[#2dd4bf] text-white shadow-md ring-1 ring-[#2dd4bf]/40"
                 : "bg-[#0a2f30]/60 hover:bg-[#0e4d4c]/50 border-[#144747] text-gray-300 hover:text-white"
                 }`}
@@ -403,18 +441,7 @@ export default function LoginPage() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Metrics Grid */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-4">
-                {currentRoleInfo.metrics.map((m, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-[#0a2f30]/60 border border-[#144747] rounded-xl p-2.5 sm:p-3 flex flex-col justify-center"
-                  >
-                    <span className="text-[10px] sm:text-xs text-emerald-200/70 truncate">{m.label}</span>
-                    <span className="text-xs sm:text-base font-bold text-[#2dd4bf] truncate">{m.value}</span>
-                  </div>
-                ))}
-              </div>
+
 
               {/* Capability Features Grid */}
               <AnimatePresence mode="wait">
