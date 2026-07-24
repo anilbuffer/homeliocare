@@ -46,9 +46,21 @@ export function CaregiverProfileModal({
       onClose={onClose}
       title="Caregiver Compliance & LMS Record"
       description={`Detailed training status for ${staff.name}`}
-      maxWidth="2xl"
+      icon={
+        <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] shrink-0">
+          <User className="w-5 h-5 text-brand-teal" />
+        </div>
+      }
+      footer={
+        <button
+          onClick={onClose}
+          className="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)] w-full sm:w-auto"
+        >
+          Close Profile
+        </button>
+      }
     >
-      <div className="space-y-5 pt-1">
+      <div className="space-y-5">
         {/* Header Profile Card */}
         <div className="p-4 bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
           <div className="flex items-center gap-3.5">
@@ -168,15 +180,6 @@ export function CaregiverProfileModal({
           </div>
         )}
 
-        {/* Footer */}
-        <div className="pt-3 border-t border-slate-100 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors cursor-pointer"
-          >
-            Close Profile
-          </button>
-        </div>
       </div>
     </Modal>
   );

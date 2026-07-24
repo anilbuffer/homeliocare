@@ -730,7 +730,7 @@ export default function HrPayrollPage() {
             <select
               value={selectedPayPeriod}
               onChange={(e) => setSelectedPayPeriod(e.target.value)}
-              className="bg-white border border-slate-200 hover:border-slate-300 text-slate-800 text-xs font-bold px-3.5 py-2.5 rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-brand-teal cursor-pointer pr-8 appearance-none"
+              className="bg-white border border-slate-200 hover:border-slate-300 text-slate-800 text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-brand-teal cursor-pointer pr-8 appearance-none"
             >
               {Object.keys(payrollDataByPeriod).map((period) => (
                 <option key={period} value={period}>
@@ -745,7 +745,7 @@ export default function HrPayrollPage() {
           <button
             onClick={handleSyncEvv}
             disabled={isSyncingEvv}
-            className="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-2xl border border-slate-200 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+            className="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl border border-slate-200 transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
             title="Sync latest EVV hours from aggregator"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-slate-600 ${isSyncingEvv ? "animate-spin text-brand-teal" : ""}`} />
@@ -755,7 +755,7 @@ export default function HrPayrollPage() {
           {/* Export Button */}
           <button
             onClick={() => setIsExportModalOpen(true)}
-            className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white text-xs font-semibold rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] shadow-brand-teal/20 transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
+            className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white text-xs font-semibold rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] shadow-brand-teal/20 transition-all flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export Payroll</span>
@@ -764,7 +764,7 @@ export default function HrPayrollPage() {
           {/* Read-Only HR Access Info Badge */}
           <button
             onClick={() => setIsRulesModalOpen(true)}
-            className="bg-amber-50 hover:bg-amber-100/80 text-amber-900 text-xs font-semibold px-3.5 py-2 rounded-2xl border border-amber-200/90 flex items-center gap-2 shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all cursor-pointer"
+            className="bg-amber-50 hover:bg-amber-100/80 text-amber-900 text-xs font-semibold px-3.5 py-2 rounded-xl border border-amber-200/90 flex items-center gap-2 shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all cursor-pointer"
           >
             <Lock className="w-3.5 h-3.5 text-amber-600 shrink-0" />
             <span className="hidden lg:inline">HR Read-Only &bull; View Rules</span>
@@ -956,10 +956,10 @@ export default function HrPayrollPage() {
       {/* Main Table Card */}
       <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.035)] overflow-hidden">
         {/* Table Header Summary */}
-        <div className="px-6 py-4 border-b border-slate-100 bg-slate-50 flex items-center justify-between flex-wrap gap-2">
+        <div className="px-4 py-3 border-b border-slate-100 bg-slate-50 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-2">
             <FileText className="w-4 h-4 text-brand-teal" />
-            <h2 className="text-xs font-extrabold text-slate-800 uppercase tracking-wider">
+            <h2 className="text-sm font-semibold text-slate-800 uppercase tracking-wider whitespace-nowrap">
               Caregiver Payroll Records ({filteredData.length})
             </h2>
           </div>
@@ -974,7 +974,7 @@ export default function HrPayrollPage() {
         <div className="overflow-x-auto custom-scrollbar">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-200/80 bg-slate-100/70 text-slate-500 font-semibold text-[10.5px]">
+              <tr className="border-b border-slate-200/80 bg-slate-100/70 text-slate-500 font-medium text-[12px]">
                 <th className="py-3 px-4 w-10 text-center"></th>
                 <th className="py-3 px-4">Caregiver & Role</th>
                 <th className="py-3 px-4">Pay Period</th>
@@ -1018,32 +1018,32 @@ export default function HrPayrollPage() {
                         {/* Caregiver Column */}
                         <td className="py-3 px-4 font-bold text-slate-900">
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-2xl bg-teal-50 text-brand-teal font-semibold flex items-center justify-center border border-brand-teal/20 shrink-0">
+                            <div className="w-9 h-9 rounded-xl bg-teal-50 text-brand-teal font-semibold flex items-center justify-center border border-brand-teal/20 shrink-0">
                               {row.name.charAt(0)}
                             </div>
                             <div>
                               <Link
                                 href="/hr/caregivers"
-                                className="font-bold text-slate-900 hover:text-brand-teal transition-colors flex items-center gap-1 group-hover:underline"
+                                className="font-bold text-slate-900 hover:text-brand-teal transition-colors flex items-center gap-1 whitespace-nowrap group-hover:underline"
                                 title="View Caregiver Profile"
                               >
                                 {row.name}
                                 <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-brand-teal opacity-0 group-hover:opacity-100 transition-opacity" />
                               </Link>
                               <div className="text-[10px] text-slate-400 font-semibold flex items-center gap-1.5 mt-0.5">
-                                <span className="bg-slate-100 text-slate-700 px-1.5 py-0.2 rounded font-bold">{row.role}</span>
+                                <span className="bg-slate-100 text-slate-700 px-1.5 py-0.2 rounded font-bold whitespace-nowrap">{row.role}</span>
                                 <span>&bull;</span>
-                                <span>{row.caregiverId}</span>
+                                <span className="whitespace-nowrap">{row.caregiverId}</span>
                               </div>
                             </div>
                           </div>
                         </td>
 
                         {/* Pay Period */}
-                        <td className="py-3 px-4 font-semibold text-slate-600">
+                        <td className="py-3 px-4 font-semibold text-slate-600 whitespace-nowrap">
                           <div className="flex items-center gap-1.5">
                             <Calendar className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                            <span>{row.payPeriod}</span>
+                            <span className="whitespace-nowrap">{row.payPeriod}</span>
                           </div>
                         </td>
 
@@ -1052,25 +1052,25 @@ export default function HrPayrollPage() {
                           <div>
                             <span>{row.baseHours}h Base</span>
                             {row.otHours > 0 && (
-                              <span className="text-blue-600 ml-1.5 bg-blue-50 px-1.5 py-0.5 rounded text-[10.5px]">
+                              <span className="text-blue-600 ml-1.5 bg-blue-50 px-1.5 py-0.5 rounded text-[10.5px] whitespace-nowrap">
                                 +{row.otHours}h OT
                               </span>
                             )}
                             {row.dtHours > 0 && (
-                              <span className="text-rose-600 ml-1.5 bg-rose-50 px-1.5 py-0.5 rounded text-[10.5px]">
+                              <span className="text-rose-600 ml-1.5 bg-rose-50 px-1.5 py-0.5 rounded text-[10.5px] whitespace-nowrap">
                                 +{row.dtHours}h DT
                               </span>
                             )}
                           </div>
-                          <div className="text-[10px] font-normal text-slate-400 mt-0.5">
+                          <div className="text-[10px] font-normal text-slate-400 mt-0.5 whitespace-nowrap">
                             Total EVV: {(row.baseHours + row.otHours + row.dtHours).toFixed(1)} hrs
                           </div>
                         </td>
 
                         {/* Travel & Mileage */}
                         <td className="py-3 px-4 font-semibold text-slate-700">
-                          <div>{row.travelMiles} mi ({row.travelTime}h travel)</div>
-                          <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">
+                          <div className="whitespace-nowrap">{row.travelMiles} mi ({row.travelTime}h travel)</div>
+                          <div className="text-[10px] text-emerald-600 font-semibold mt-0.5 whitespace-nowrap">
                             +${(row.travelMiles * 0.65).toFixed(2)} reimbursed
                           </div>
                         </td>
@@ -1079,7 +1079,7 @@ export default function HrPayrollPage() {
                         <td className="py-3 px-4 font-semibold text-slate-700">
                           <div>${row.rate.toFixed(2)}/hr</div>
                           {row.shiftDiff > 0 ? (
-                            <div className="text-[10px] text-purple-600 font-semibold mt-0.5">
+                            <div className="text-[10px] text-purple-600 font-semibold mt-0.5 whitespace-nowrap">
                               +${row.shiftDiff.toFixed(2)} diff
                             </div>
                           ) : (
@@ -1090,7 +1090,7 @@ export default function HrPayrollPage() {
                         {/* Gross Pay */}
                         <td className="py-3 px-4 font-bold text-brand-teal text-sm">
                           <div>${row.grossTotal.toFixed(2)}</div>
-                          <div className="text-[10px] font-semibold text-slate-400 font-sans">
+                          <div className="text-[10px] font-semibold text-slate-400 whitespace-nowrap">
                             Est. Net: ${row.netPay.toFixed(2)}
                           </div>
                         </td>
@@ -1098,7 +1098,7 @@ export default function HrPayrollPage() {
                         {/* Status */}
                         <td className="py-3 px-4 text-center">
                           <span
-                            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold border ${row.status === "Processed & Verified"
+                            className={`inline-flex items-center gap-1 whitespace-nowrap px-2.5 py-1 rounded-full text-[10px] font-semibold border ${row.status === "Processed & Verified"
                               ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                               : row.status === "Pending Verification"
                                 ? "bg-amber-50 text-amber-700 border-amber-200"
@@ -1121,7 +1121,7 @@ export default function HrPayrollPage() {
                                 setSelectedPaystub(row);
                                 setActiveStubTab("statement");
                               }}
-                              className="px-3 py-1.5 bg-slate-100 hover:bg-brand-teal hover:text-white text-slate-800 font-semibold rounded-xl transition-all active:scale-95 flex items-center gap-1 border border-slate-200/80 cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.04)]"
+                              className="px-3 py-1.5 bg-slate-100 hover:bg-brand-teal hover:text-white text-slate-800 font-semibold rounded-xl transition-all active:scale-95 flex items-center gap-1 border border-slate-200 cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.04)] whitespace-nowrap"
                               title="View Paystub Statement"
                             >
                               <FileText className="w-3.5 h-3.5" /> View Stub
@@ -1151,7 +1151,7 @@ export default function HrPayrollPage() {
                       {/* Expandable Itemized Earnings Row */}
                       <AnimatePresence>
                         {isExpanded && (
-                          <tr className="bg-slate-50/90 border-b border-slate-200">
+                          <tr className="bg-slate-100 border-b border-slate-200">
                             <td colSpan={9} className="p-0">
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
@@ -1266,32 +1266,34 @@ export default function HrPayrollPage() {
 
       {/* Paystub Statement Preview Modal */}
       {selectedPaystub && (
-        <div className="fixed inset-0 bg-slate-900 backdrop-blur-xs z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white rounded-3xl p-4 sm:p-6 max-w-2xl w-full shadow-2xl border border-slate-200 space-y-4 my-2"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="bg-white rounded-[24px] max-w-2xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-start justify-between border-b border-slate-200 pb-4">
+            <div className="flex items-start justify-between border-b border-slate-200 p-3 sm:p-4 shrink-0 bg-white z-10">
               <div>
-                <div className="flex items-center gap-2">
-                  <Receipt className="w-5 h-5 text-brand-teal" />
-                  <h3 className="font-bold text-slate-900 text-lg">Official Pay Stub Statement</h3>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-teal-100 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                    <Receipt className="w-4 h-4 text-brand-teal" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900 text-base tracking-tight">Official Pay Stub Statement</h3>
                 </div>
-                <p className="text-xs text-slate-500 mt-1">
-                  Caregiver: <strong className="text-slate-800">{selectedPaystub.name}</strong> ({selectedPaystub.caregiverId}) &bull; Pay Period: {selectedPaystub.payPeriod}
+                <p className="text-[12px] text-slate-500 font-medium mt-2 flex items-center gap-1.5 ml-1">
+                  Caregiver: <strong className="text-slate-800">{selectedPaystub.name}</strong> ({selectedPaystub.caregiverId}) <span className="text-slate-300">&bull;</span> Pay Period: {selectedPaystub.payPeriod}
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
-                <span className="bg-emerald-50 text-emerald-700 text-xs font-medium px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1 whitespace-nowrap">
+              <div className="flex items-center gap-3">
+                <span className="bg-emerald-50 text-emerald-700 text-[11px] font-semibold px-3 py-1.5 rounded-full border border-emerald-200 flex items-center gap-1.5 whitespace-nowrap shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
                   <CheckCircle2 className="w-3.5 h-3.5" /> {selectedPaystub.status}
                 </span>
                 <button
                   onClick={() => setSelectedPaystub(null)}
-                  className="p-1.5 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1299,197 +1301,210 @@ export default function HrPayrollPage() {
             </div>
 
             {/* Stub Modal Navigation Tabs */}
-            <div className="flex items-center gap-2 border-b border-slate-200 pb-2">
+            <div className="flex items-center gap-2 border-b border-slate-100 px-3 sm:px-4 py-3 shrink-0 bg-slate-50/50 z-10">
               <button
                 onClick={() => setActiveStubTab("statement")}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeStubTab === "statement"
-                  ? "bg-brand-teal text-white shadow-sm"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${activeStubTab === "statement"
+                  ? "bg-brand-teal/10 text-brand-teal shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-brand-teal/30"
+                  : "text-slate-500 hover:text-slate-700 hover:bg-slate-100 border border-transparent"
                   }`}
               >
                 Earnings Breakdown
               </button>
               <button
                 onClick={() => setActiveStubTab("evv")}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeStubTab === "evv"
-                  ? "bg-brand-teal text-white shadow-sm"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${activeStubTab === "evv"
+                  ? "bg-brand-teal/10 text-brand-teal shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-brand-teal/30"
+                  : "text-slate-500 hover:text-slate-700 hover:bg-slate-100 border border-transparent"
                   }`}
               >
-                EVV Shift Logs ({selectedPaystub.evvShifts.length})
+                EVV Shift Logs <span className={`px-1.5 py-0.5 rounded-md text-[10px] ${activeStubTab === "evv" ? "bg-teal-100 text-brand-teal" : "bg-slate-100 text-slate-500"}`}>{selectedPaystub.evvShifts.length}</span>
               </button>
               <button
                 onClick={() => setActiveStubTab("deposit")}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeStubTab === "deposit"
-                  ? "bg-brand-teal text-white shadow-sm"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${activeStubTab === "deposit"
+                  ? "bg-brand-teal/10 text-brand-teal shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-brand-teal/30"
+                  : "text-slate-500 hover:text-slate-700 hover:bg-slate-100 border border-transparent"
                   }`}
               >
                 Direct Deposit & Tax
               </button>
             </div>
 
-            {/* Tab 1: Statement */}
-            {activeStubTab === "statement" && (
-              <div className="space-y-4">
-                <div className="bg-slate-50/90 p-4.5 rounded-2xl border border-slate-200 space-y-2.5 text-xs">
-                  <div className="flex justify-between font-medium text-slate-600">
-                    <span>Base Hours ({selectedPaystub.baseHours} hrs @ ${selectedPaystub.rate.toFixed(2)}/hr)</span>
-                    <span className="font-bold text-slate-900">${(selectedPaystub.baseHours * selectedPaystub.rate).toFixed(2)}</span>
-                  </div>
-
-                  {selectedPaystub.otHours > 0 && (
-                    <div className="flex justify-between font-medium text-slate-600">
-                      <span>Overtime 1.5x ({selectedPaystub.otHours} hrs @ ${(selectedPaystub.rate * 1.5).toFixed(2)}/hr)</span>
-                      <span className="font-bold text-blue-700">${(selectedPaystub.otHours * selectedPaystub.rate * 1.5).toFixed(2)}</span>
+            {/* Scrollable Body */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-4 bg-white">
+              {/* Tab 1: Statement */}
+              {activeStubTab === "statement" && (
+                <div className="space-y-4">
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3 text-xs shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                    <div className="flex justify-between font-regular text-slate-600">
+                      <span>Base Hours ({selectedPaystub.baseHours} hrs @ ${selectedPaystub.rate.toFixed(2)}/hr)</span>
+                      <span className="font-bold text-slate-900">${(selectedPaystub.baseHours * selectedPaystub.rate).toFixed(2)}</span>
                     </div>
-                  )}
 
-                  {selectedPaystub.dtHours > 0 && (
-                    <div className="flex justify-between font-medium text-slate-600">
-                      <span>Double Time 2.0x ({selectedPaystub.dtHours} hrs @ ${(selectedPaystub.rate * 2.0).toFixed(2)}/hr)</span>
-                      <span className="font-bold text-rose-700">${(selectedPaystub.dtHours * selectedPaystub.rate * 2.0).toFixed(2)}</span>
-                    </div>
-                  )}
-
-                  <div className="flex justify-between font-medium text-slate-600">
-                    <span>Travel Mileage Reimbursement ({selectedPaystub.travelMiles} mi @ $0.65/mi)</span>
-                    <span className="font-bold text-slate-900">${(selectedPaystub.travelMiles * 0.65).toFixed(2)}</span>
-                  </div>
-
-                  {selectedPaystub.shiftDiff > 0 && (
-                    <div className="flex justify-between font-medium text-slate-600">
-                      <span>Shift Differentials (Night / Weekend)</span>
-                      <span className="font-bold text-purple-700">${selectedPaystub.shiftDiff.toFixed(2)}</span>
-                    </div>
-                  )}
-
-                  <div className="border-t border-slate-200 pt-2 flex justify-between font-bold text-sm text-slate-900">
-                    <span>Total Gross Earnings</span>
-                    <span className="text-brand-teal">${selectedPaystub.grossTotal.toFixed(2)}</span>
-                  </div>
-
-                  <div className="flex justify-between font-medium text-slate-500 pt-1">
-                    <span>Estimated Tax Withholdings (Fed/State/FICA)</span>
-                    <span className="font-semibold text-rose-600">-${selectedPaystub.taxWithholding.toFixed(2)}</span>
-                  </div>
-
-                  <div className="border-t border-slate-200 pt-2 flex justify-between font-bold text-base text-slate-900">
-                    <span>Estimated Net Deposit</span>
-                    <span className="text-emerald-600">${selectedPaystub.netPay.toFixed(2)}</span>
-                  </div>
-                </div>
-
-                <div className="bg-amber-50/80 p-3 rounded-xl border border-amber-200/80 flex items-start gap-2.5 text-xs text-amber-900 font-medium">
-                  <Lock className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                  <span>
-                    This statement is generated for HR reference only. Rates and hour adjustments must be requested via Billing Administration.
-                  </span>
-                </div>
-              </div>
-            )}
-
-            {/* Tab 2: EVV Shift Logs */}
-            {activeStubTab === "evv" && (
-              <div className="space-y-3 max-h-72 overflow-y-auto custom-scrollbar">
-                {selectedPaystub.evvShifts.length === 0 ? (
-                  <p className="text-xs text-slate-500 text-center py-6">No individual shift logs uploaded for this archived pay period.</p>
-                ) : (
-                  selectedPaystub.evvShifts.map((shift) => (
-                    <div key={shift.id} className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-xs">
-                      <div>
-                        <div className="font-bold text-slate-900">{shift.date} &bull; {shift.clientName}</div>
-                        <div className="text-[11px] text-slate-500 mt-0.5">
-                          Clock In: {shift.clockIn} | Clock Out: {shift.clockOut} ({shift.actualHours} hrs)
-                        </div>
+                    {selectedPaystub.otHours > 0 && (
+                      <div className="flex justify-between font-regular text-slate-600">
+                        <span>Overtime 1.5x ({selectedPaystub.otHours} hrs @ ${(selectedPaystub.rate * 1.5).toFixed(2)}/hr)</span>
+                        <span className="font-bold text-blue-700">${(selectedPaystub.otHours * selectedPaystub.rate * 1.5).toFixed(2)}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        {shift.gpsVerified && (
-                          <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
-                            <MapPin className="w-3 h-3" /> GPS Verified
-                          </span>
-                        )}
-                        <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md">
-                          {shift.status}
-                        </span>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
+                    )}
 
-            {/* Tab 3: Direct Deposit & Tax */}
-            {activeStubTab === "deposit" && (
-              <div className="space-y-3 text-xs">
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-                  <div className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                    <CreditCard className="w-4 h-4 text-brand-teal" /> Direct Deposit Information
+                    {selectedPaystub.dtHours > 0 && (
+                      <div className="flex justify-between font-regular text-slate-600">
+                        <span>Double Time 2.0x ({selectedPaystub.dtHours} hrs @ ${(selectedPaystub.rate * 2.0).toFixed(2)}/hr)</span>
+                        <span className="font-bold text-rose-700">${(selectedPaystub.dtHours * selectedPaystub.rate * 2.0).toFixed(2)}</span>
+                      </div>
+                    )}
+
+                    <div className="flex justify-between font-regular text-slate-600">
+                      <span>Travel Mileage Reimbursement ({selectedPaystub.travelMiles} mi @ $0.65/mi)</span>
+                      <span className="font-bold text-slate-900">${(selectedPaystub.travelMiles * 0.65).toFixed(2)}</span>
+                    </div>
+
+                    {selectedPaystub.shiftDiff > 0 && (
+                      <div className="flex justify-between font-regular text-slate-600">
+                        <span>Shift Differentials (Night / Weekend)</span>
+                        <span className="font-bold text-purple-700">${selectedPaystub.shiftDiff.toFixed(2)}</span>
+                      </div>
+                    )}
+
+                    <div className="border-t border-slate-200 pt-3 flex justify-between font-semibold text-sm text-slate-900">
+                      <span>Total Gross Earnings</span>
+                      <span className="text-brand-teal">${selectedPaystub.grossTotal.toFixed(2)}</span>
+                    </div>
+
+                    <div className="flex justify-between font-regular text-slate-500 pt-1">
+                      <span>Estimated Tax Withholdings (Fed/State/FICA)</span>
+                      <span className="font-bold text-rose-600">-${selectedPaystub.taxWithholding.toFixed(2)}</span>
+                    </div>
+
+                    <div className="border-t border-slate-200 pt-3 flex justify-between font-semibold text-base text-slate-900">
+                      <span>Estimated Net Deposit</span>
+                      <span className="text-emerald-600">${selectedPaystub.netPay.toFixed(2)}</span>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-slate-600">
-                    <span>Financial Institution:</span>
-                    <strong className="text-slate-900">{selectedPaystub.directDeposit.bankName}</strong>
-                  </div>
-                  <div className="flex justify-between text-slate-600">
-                    <span>Account Number:</span>
-                    <strong className="text-slate-900">********{selectedPaystub.directDeposit.accountLast4}</strong>
-                  </div>
-                  <div className="flex justify-between text-slate-600">
-                    <span>Routing Number:</span>
-                    <strong className="text-slate-900">*****{selectedPaystub.directDeposit.routingLast4}</strong>
-                  </div>
-                  <div className="flex justify-between text-slate-600">
-                    <span>Verification Status:</span>
-                    <span className="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full text-[10px]">
-                      {selectedPaystub.directDeposit.status}
+
+                  <div className="bg-amber-50 p-4 rounded-2xl border border-amber-200 flex items-start gap-3 text-[13px] text-amber-900 font-medium shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                    <div className="w-8 h-8 rounded-full bg-amber-200 flex items-center justify-center shrink-0">
+                      <Lock className="w-4 h-4 text-amber-800" />
+                    </div>
+                    <span className="mt-1">
+                      This statement is generated for HR reference only. Rates and hour adjustments must be requested via Billing Administration.
                     </span>
                   </div>
                 </div>
+              )}
 
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
-                  <div className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-brand-teal" /> Tax Withholding Parameters
+              {/* Tab 2: EVV Shift Logs */}
+              {activeStubTab === "evv" && (
+                <div className="space-y-3">
+                  {selectedPaystub.evvShifts.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                      <Clock className="w-10 h-10 text-slate-300 mb-3" />
+                      <p className="text-sm font-semibold text-slate-600">No shift logs found</p>
+                      <p className="text-xs text-slate-400 mt-1">No individual shift logs uploaded for this archived pay period.</p>
+                    </div>
+                  ) : (
+                    selectedPaystub.evvShifts.map((shift) => (
+                      <div key={shift.id} className="px-4 py-3 bg-white hover:bg-slate-50 transition-colors rounded-xl border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[13px]">
+                        <div>
+                          <div className="font-semibold text-slate-900 text-sm">{shift.date} &bull; {shift.clientName}</div>
+                          <div className="text-xs text-slate-500 font-regular mt-1">
+                            Clock In: {shift.clockIn} | Clock Out: {shift.clockOut} ({shift.actualHours} hrs)
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {shift.gpsVerified && (
+                            <span className="bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-semibold px-2 py-1 rounded-lg flex items-center gap-1 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                              <MapPin className="w-3.5 h-3.5" /> GPS Verified
+                            </span>
+                          )}
+                          <span className="bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-semibold px-2.5 py-1 rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                            {shift.status}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+
+              {/* Tab 3: Direct Deposit & Tax */}
+              {activeStubTab === "deposit" && (
+                <div className="space-y-4 text-[12px]">
+                  <div className="px-4 py-3 bg-white rounded-xl border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] space-y-3">
+                    <div className="font-semibold text-slate-900 text-sm flex items-center gap-2.5 pb-2 border-b border-slate-200">
+                      <div className="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center">
+                        <CreditCard className="w-4 h-4 text-brand-teal" />
+                      </div>
+                      Direct Deposit Information
+                    </div>
+                    <div className="flex justify-between text-slate-600 font-medium text-xs">
+                      <span>Financial Institution:</span>
+                      <strong className="text-slate-900">{selectedPaystub.directDeposit.bankName}</strong>
+                    </div>
+                    <div className="flex justify-between text-slate-600 font-medium text-xs">
+                      <span>Account Number:</span>
+                      <strong className="text-slate-900">********{selectedPaystub.directDeposit.accountLast4}</strong>
+                    </div>
+                    <div className="flex justify-between text-slate-600 font-medium text-xs">
+                      <span>Routing Number:</span>
+                      <strong className="text-slate-900">*****{selectedPaystub.directDeposit.routingLast4}</strong>
+                    </div>
+                    <div className="flex justify-between text-slate-600 font-medium items-center text-xs">
+                      <span>Verification Status:</span>
+                      <span className="bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold px-2.5 py-1 rounded-lg text-[11px] shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                        {selectedPaystub.directDeposit.status}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex justify-between text-slate-600">
-                    <span>Federal W-4 Filing Status:</span>
-                    <strong className="text-slate-900">Single / Married Filing Separately</strong>
-                  </div>
-                  <div className="flex justify-between text-slate-600">
-                    <span>State Tax Withholding:</span>
-                    <strong className="text-slate-900">CA State Tax (DE-4 Active)</strong>
+
+                  <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] space-y-3">
+                    <div className="font-semibold text-slate-900 text-sm flex items-center gap-2.5 pb-2 border-b border-slate-200">
+                      <div className="w-7 h-7 rounded-lg bg-teal-100 flex items-center justify-center">
+                        <Building2 className="w-4 h-4 text-brand-teal" />
+                      </div>
+                      Tax Withholding Parameters
+                    </div>
+                    <div className="flex justify-between text-slate-600 font-medium text-xs">
+                      <span>Federal W-4 Filing Status:</span>
+                      <strong className="text-slate-900">Single / Married Filing Separately</strong>
+                    </div>
+                    <div className="flex justify-between text-slate-600 font-medium text-xs">
+                      <span>State Tax Withholding:</span>
+                      <strong className="text-slate-900">CA State Tax (DE-4 Active)</strong>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
 
             {/* Actions Footer */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-slate-200">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 sm:p-4 border-t border-slate-200 shrink-0 bg-slate-100 rounded-b-[24px] z-10">
               <button
                 onClick={() => {
                   setEmailTarget(selectedPaystub);
                   setIsEmailModalOpen(true);
                 }}
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-2xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer w-full sm:w-auto"
+                className="px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 text-[13px] font-semibold rounded-xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
               >
-                <Mail className="w-3.5 h-3.5" /> Email to Caregiver
+                <Mail className="w-4 h-4 text-slate-400" /> Email to Caregiver
               </button>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                 <button
                   onClick={() => window.print()}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-2xl transition-colors flex items-center justify-center gap-1.5 cursor-pointer w-full sm:w-auto"
+                  className="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 text-[13px] font-semibold rounded-xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
                 >
-                  <Printer className="w-3.5 h-3.5" /> Print Statement
+                  <Printer className="w-4 h-4 text-slate-400" /> Print Statement
                 </button>
-
                 <button
                   onClick={() => {
                     triggerToast(`Downloading official PDF paystub statement for ${selectedPaystub.name}...`);
                     setSelectedPaystub(null);
                   }}
-                  className="px-5 py-2 bg-brand-teal text-white text-xs font-semibold rounded-2xl hover:bg-brand-teal shadow-[0_4px_24px_rgba(0,0,0,0.04)] shadow-brand-teal/20 transition-all flex items-center justify-center gap-1.5 cursor-pointer w-full sm:w-auto"
+                  className="px-4 py-2.5 bg-brand-teal text-white text-[13px] font-semibold rounded-xl hover:bg-brand-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] shadow-brand-teal/30 transition-all flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
                 >
-                  <Download className="w-3.5 h-3.5" /> Download PDF
+                  <Download className="w-4 h-4" /> Download PDF
                 </button>
               </div>
             </div>
@@ -1499,41 +1514,49 @@ export default function HrPayrollPage() {
 
       {/* EVV Shift Audit Modal */}
       {auditingEvvRecord && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-3xl p-4 sm:p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 my-4"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="bg-white rounded-[24px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div>
-                <h3 className="font-bold text-slate-900 text-base">EVV Shift Verification Logs</h3>
-                <p className="text-xs text-slate-500">{auditingEvvRecord.name} ({auditingEvvRecord.caregiverId})</p>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                  <Clock className="w-5 h-5 text-brand-teal" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-base tracking-tight">EVV Shift Verification Logs</h3>
+                  <p className="text-[12px] text-slate-500 font-regular mt-0.5">{auditingEvvRecord.name} ({auditingEvvRecord.caregiverId})</p>
+                </div>
               </div>
               <button
                 onClick={() => setAuditingEvvRecord(null)}
-                className="p-1 rounded-full hover:bg-slate-100 text-slate-400"
+                className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-2.5 max-h-80 overflow-y-auto custom-scrollbar">
+            {/* Scrollable Body */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-3 bg-white">
               {auditingEvvRecord.evvShifts.map((shift) => (
-                <div key={shift.id} className="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1 text-xs">
-                  <div className="flex justify-between font-bold text-slate-900">
+                <div key={shift.id} className="p-3 bg-white hover:bg-slate-50 transition-colors rounded-xl border border-slate-200 shadow-[0_2px_12px_rgba(0,0,0,0.03)] space-y-2 text-[13px]">
+                  <div className="flex justify-between font-bold text-slate-900 text-xs">
                     <span>{shift.date} — {shift.clientName}</span>
                     <span className="text-brand-teal font-extrabold">{shift.actualHours} hrs</span>
                   </div>
-                  <div className="flex justify-between text-slate-500 text-[11px]">
+                  <div className="flex justify-between text-slate-500 font-medium text-xs">
                     <span>Clock-In: {shift.clockIn} | Clock-Out: {shift.clockOut}</span>
                     <span>Sched: {shift.scheduledHours}h</span>
                   </div>
-                  <div className="flex items-center gap-2 pt-1">
-                    <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
-                      <MapPin className="w-3 h-3" /> GPS Location Verified
+                  <div className="flex items-center gap-2 pt-2 border-t border-slate-100 mt-2">
+                    <span className="bg-purple-50 text-purple-700 border border-purple-100 text-[11px] font-medium px-2.5 py-1 rounded-lg flex items-center gap-1.5 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                      <MapPin className="w-3.5 h-3.5" /> GPS Location Verified
                     </span>
-                    <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md">
+                    <span className="bg-emerald-50 text-emerald-700 border border-emerald-100 text-[11px] font-medium px-2.5 py-1 rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
                       21st Century Cures Act Compliant
                     </span>
                   </div>
@@ -1541,10 +1564,11 @@ export default function HrPayrollPage() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-end pt-2">
+            {/* Actions Footer */}
+            <div className="flex flex-col sm:flex-row justify-end gap-3 p-3 sm:p-4 border-t border-slate-100 shrink-0 bg-slate-50 rounded-b-[24px] z-10">
               <button
                 onClick={() => setAuditingEvvRecord(null)}
-                className="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-2xl cursor-pointer w-full sm:w-auto text-center"
+                className="px-4 py-2 bg-white hover:bg-slate-100 text-slate-700 text-[12px] font-semibold rounded-xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 cursor-pointer w-full sm:w-auto text-center"
               >
                 Close Audit Log
               </button>
@@ -1555,29 +1579,37 @@ export default function HrPayrollPage() {
 
       {/* Payroll Inquiry Modal */}
       {inquiryRecord && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-2xl p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 my-4"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="bg-white rounded-[24px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div>
-                <h3 className="font-bold text-slate-900 text-base">Flag Payroll Inquiry for Billing</h3>
-                <p className="text-xs text-slate-500">Employee: {inquiryRecord.name} ({inquiryRecord.caregiverId})</p>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-200 p-3 sm:p-4 shrink-0 bg-white z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center border border-amber-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                  <MessageSquare className="w-5 h-5 text-amber-600" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-900 text-base tracking-tight">Flag Payroll Inquiry</h3>
+                  <p className="text-[12px] text-slate-500 font-medium mt-0.5">Employee: {inquiryRecord.name} ({inquiryRecord.caregiverId})</p>
+                </div>
               </div>
-              <button onClick={() => setInquiryRecord(null)} className="p-1 rounded-full hover:bg-slate-100">
-                <X className="w-5 h-5 text-slate-400" />
+              <button onClick={() => setInquiryRecord(null)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSendInquiry} className="space-y-4 text-xs">
-              <div>
-                <label className="block font-bold text-slate-700 mb-1">Inquiry Category</label>
+            {/* Scrollable Body */}
+            <form id="inquiryForm" onSubmit={handleSendInquiry} className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-3 bg-white text-[12px]">
+              <div className="space-y-1.5">
+                <label className="block font-semibold text-slate-700">Inquiry Category</label>
                 <select
                   value={inquiryCategory}
                   onChange={(e) => setInquiryCategory(e.target.value)}
-                  className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none"
+                  className="w-full p-3 bg-slate-50 border border-slate-200/80 rounded-xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none transition-shadow shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                 >
                   <option value="Overtime Rate Adjustment">Overtime Rate Adjustment</option>
                   <option value="EVV Clock Discrepancy">EVV Clock Discrepancy</option>
@@ -1587,57 +1619,67 @@ export default function HrPayrollPage() {
                 </select>
               </div>
 
-              <div>
-                <label className="block font-bold text-slate-700 mb-1">HR Note / Reason for Billing Team</label>
+              <div className="space-y-1.5">
+                <label className="block font-semibold text-slate-700">HR Note / Reason for Billing Team</label>
                 <textarea
                   required
-                  rows={3}
+                  rows={4}
                   value={inquiryNotes}
                   onChange={(e) => setInquiryNotes(e.target.value)}
                   placeholder="Explain the inquiry or discrepancy to be investigated by Payroll/Billing..."
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none"
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none transition-shadow shadow-[0_2px_8px_rgba(0,0,0,0.04)] resize-none"
                 />
               </div>
-
-              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setInquiryRecord(null)}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl w-full sm:w-auto text-center"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2 bg-brand-teal text-white font-semibold rounded-xl hover:bg-brand-teal/90 shadow-md shadow-brand-teal/20 flex items-center justify-center gap-1.5 w-full sm:w-auto"
-                >
-                  <Send className="w-3.5 h-3.5" /> Submit to Billing
-                </button>
-              </div>
             </form>
+
+            {/* Actions Footer */}
+            <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 p-3 sm:p-4 border-t border-slate-100 shrink-0 bg-slate-50 rounded-b-[24px] z-10">
+              <button
+                type="button"
+                onClick={() => setInquiryRecord(null)}
+                className="px-4 py-2 bg-white bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[12px] rounded-xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 w-full sm:w-auto text-center cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                form="inquiryForm"
+                type="submit"
+                className="px-4 py-2 bg-brand-teal text-white font-semibold text-[12px] rounded-xl hover:bg-brand-teal shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 flex items-center justify-center gap-2 w-full sm:w-auto transition-all cursor-pointer"
+              >
+                <Send className="w-4 h-4" /> Submit to Billing
+              </button>
+            </div>
           </motion.div>
         </div>
       )}
 
       {/* Export Payroll Modal */}
       {isExportModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-3xl p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 my-4"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="bg-white rounded-[24px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div>
-                <h3 className="font-extrabold text-slate-900 text-lg">Export Payroll Report</h3>
-                <p className="text-xs text-slate-500">Period: {selectedPayPeriod}</p>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 p-4 sm:p-6 shrink-0 bg-white z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-teal-50 flex items-center justify-center border border-teal-100/50 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                  <Download className="w-5 h-5 text-brand-teal" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-lg tracking-tight">Export Payroll Report</h3>
+                  <p className="text-[12px] text-slate-500 font-medium mt-0.5">Period: {selectedPayPeriod}</p>
+                </div>
               </div>
-              <button onClick={() => setIsExportModalOpen(false)} className="p-1 rounded-full hover:bg-slate-100">
-                <X className="w-5 h-5 text-slate-400" />
+              <button onClick={() => setIsExportModalOpen(false)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-3 text-xs">
+            {/* Scrollable Body */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-3 bg-white text-[12px]">
               {[
                 { name: "ADP Run Format", code: "ADP", desc: "Standard ADP Run CSV mapping with OT codes" },
                 { name: "Gusto API Format", code: "GUSTO", desc: "Compatible with Gusto API batch sync" },
@@ -1647,39 +1689,40 @@ export default function HrPayrollPage() {
                 <button
                   key={fmt.code}
                   onClick={() => setSelectedExportFormat(fmt.code)}
-                  className={`w-full p-3.5 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${selectedExportFormat === fmt.code
-                    ? "border-brand-teal bg-teal-50/50 text-brand-teal font-bold shadow-2xs"
-                    : "border-slate-200 hover:border-slate-300 text-slate-700 bg-white"
+                  className={`w-full p-4 rounded-2xl border text-left flex items-center justify-between transition-all cursor-pointer ${selectedExportFormat === fmt.code
+                    ? "border-brand-teal bg-teal-50 text-brand-teal font-semibold shadow-[0_4px_24px_rgba(0,0,0,0.04)] ring-1 ring-brand-teal"
+                    : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 bg-white"
                     }`}
                 >
                   <div>
-                    <div className="font-bold">{fmt.name}</div>
-                    <div className="text-[11px] text-slate-500 font-normal mt-0.5">{fmt.desc}</div>
+                    <div className="font-bold text-[13px]">{fmt.name}</div>
+                    <div className="text-xs text-slate-500 font-medium mt-1">{fmt.desc}</div>
                   </div>
-                  {selectedExportFormat === fmt.code && <CheckCircle2 className="w-4 h-4 text-brand-teal shrink-0" />}
+                  {selectedExportFormat === fmt.code && <CheckCircle2 className="w-5 h-5 text-brand-teal shrink-0" />}
                 </button>
               ))}
             </div>
 
-            <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-2">
+            {/* Actions Footer */}
+            <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 p-3 sm:p-4 border-t border-slate-100 shrink-0 bg-slate-50/80 rounded-b-[24px] z-10">
               <button
                 onClick={() => setIsExportModalOpen(false)}
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl cursor-pointer w-full sm:w-auto text-center"
+                className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[13px] rounded-2xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 w-full sm:w-auto text-center cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleExportDownload}
                 disabled={isExporting}
-                className="px-5 py-2 bg-brand-teal text-white font-bold rounded-2xl hover:bg-brand-teal/90 shadow-md shadow-brand-teal/20 flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 w-full sm:w-auto"
+                className="px-4 py-2.5 bg-brand-teal text-white font-semibold text-[13px] rounded-2xl hover:bg-brand-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] shadow-brand-teal/30 flex items-center justify-center gap-2 w-full sm:w-auto transition-all cursor-pointer disabled:opacity-70"
               >
                 {isExporting ? (
                   <>
-                    <RefreshCw className="w-3.5 h-3.5 animate-spin" /> Generating...
+                    <RefreshCw className="w-4 h-4 animate-spin" /> Generating...
                   </>
                 ) : (
                   <>
-                    <Download className="w-3.5 h-3.5" /> Download Export File
+                    <Download className="w-4 h-4" /> Download Export File
                   </>
                 )}
               </button>
@@ -1690,52 +1733,58 @@ export default function HrPayrollPage() {
 
       {/* HR Read-Only Access & Rules Info Modal */}
       {isRulesModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-3xl p-4 sm:p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 my-4"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="bg-white rounded-[24px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200/80 flex flex-col max-h-[90vh] overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-amber-600" />
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-100 flex items-center justify-center border border-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                  <Shield className="w-5 h-5 text-amber-600" />
+                </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">HR Read-Only Access Rules</h3>
-                  <p className="text-xs text-slate-500">Security Policy & Overtime Calculation Guidelines</p>
+                  <h3 className="font-bold text-slate-900 text-lg tracking-tight">HR Read-Only Access Rules</h3>
+                  <p className="text-[12px] text-slate-500 font-regular mt-0.5">Security Policy & Overtime Calculation Guidelines</p>
                 </div>
               </div>
-              <button onClick={() => setIsRulesModalOpen(false)} className="p-1 rounded-full hover:bg-slate-100">
-                <X className="w-5 h-5 text-slate-400" />
+              <button onClick={() => setIsRulesModalOpen(false)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-3.5 text-xs text-slate-700">
-              <div className="p-3.5 bg-amber-50 rounded-2xl border border-amber-200/80 space-y-1">
-                <div className="font-bold text-amber-900 flex items-center gap-1.5">
+            {/* Scrollable Body */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-3 bg-white text-[12px]">
+              <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200/60 space-y-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                <div className="font-bold text-amber-900 flex items-center gap-2">
                   <Lock className="w-4 h-4 text-amber-600" /> Separation of Duties Policy
                 </div>
-                <p className="text-amber-800 text-[11px]">
+                <p className="text-amber-800 text-[13px] leading-relaxed">
                   HR managers have read-only access to caregiver payroll records for inquiry resolution, paystub distribution, and EVV compliance checks. Rate edits and manual payout adjustments are restricted to the Billing Administration module.
                 </p>
               </div>
 
-              <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
-                <div className="font-bold text-slate-900 uppercase text-[11px] tracking-wider">
+              <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-3">
+                <div className="font-extrabold text-slate-900 uppercase text-xs tracking-wider border-b border-slate-100 pb-2">
                   California Overtime Calculation Rules
                 </div>
-                <ul className="space-y-1 text-slate-600 list-disc pl-4">
-                  <li><strong>Daily Overtime (1.5x):</strong> Hours worked over 8.0 in a single workday.</li>
-                  <li><strong>Daily Double Time (2.0x):</strong> Hours worked over 12.0 in a single workday.</li>
-                  <li><strong>Weekly Overtime (1.5x):</strong> Hours worked over 40.0 in a single workweek.</li>
-                  <li><strong>IRS Mileage Rate:</strong> Reimbursed at standard $0.65/mile for travel between clients.</li>
+                <ul className="space-y-2.5 text-slate-600 list-disc pl-4">
+                  <li><strong className="text-slate-800">Daily Overtime (1.5x):</strong> Hours worked over 8.0 in a single workday.</li>
+                  <li><strong className="text-slate-800">Daily Double Time (2.0x):</strong> Hours worked over 12.0 in a single workday.</li>
+                  <li><strong className="text-slate-800">Weekly Overtime (1.5x):</strong> Hours worked over 40.0 in a single workweek.</li>
+                  <li><strong className="text-slate-800">IRS Mileage Rate:</strong> Reimbursed at standard $0.65/mile for travel between clients.</li>
                 </ul>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-end pt-2">
+            {/* Actions Footer */}
+            <div className="flex flex-col sm:flex-row justify-end gap-3 p-3 sm:p-4 border-t border-slate-200 shrink-0 bg-slate-50 rounded-b-[24px] z-10">
               <button
                 onClick={() => setIsRulesModalOpen(false)}
-                className="px-5 py-2 bg-brand-teal text-white text-xs font-bold rounded-2xl hover:bg-brand-teal/90 shadow-md shadow-brand-teal/20 cursor-pointer w-full sm:w-auto text-center"
+                className="px-4 py-2.5 bg-brand-teal text-white text-[13px] font-semibold rounded-xl hover:bg-brand-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.04)] shadow-brand-teal/30 cursor-pointer w-full sm:w-auto text-center transition-all"
               >
                 Got It
               </button>
@@ -1746,57 +1795,68 @@ export default function HrPayrollPage() {
 
       {/* Email Paystub Modal */}
       {isEmailModalOpen && emailTarget && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-3xl p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 space-y-4 my-4"
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            className="bg-white rounded-[24px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div>
-                <h3 className="font-extrabold text-slate-900 text-lg">Email Pay Stub Statement</h3>
-                <p className="text-xs text-slate-500">Recipient: {emailTarget.name}</p>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-teal-50 flex items-center justify-center border border-teal-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                  <Mail className="w-5 h-5 text-brand-teal" />
+                </div>
+                <div>
+                  <h3 className="font-extrabold text-slate-900 text-lg tracking-tight">Email Pay Stub Statement</h3>
+                  <p className="text-[13px] text-slate-500 font-medium mt-0.5">Recipient: {emailTarget.name}</p>
+                </div>
               </div>
-              <button onClick={() => setIsEmailModalOpen(false)} className="p-1 rounded-full hover:bg-slate-100">
-                <X className="w-5 h-5 text-slate-400" />
+              <button onClick={() => setIsEmailModalOpen(false)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSendEmailPaystub} className="space-y-4 text-xs">
-              <div>
-                <label className="block font-bold text-slate-700 mb-1">Caregiver Email Address</label>
+            {/* Scrollable Body */}
+            <form id="emailForm" onSubmit={handleSendEmailPaystub} className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-5 bg-white text-[13px]">
+              <div className="space-y-1.5">
+                <label className="block font-bold text-slate-700">Caregiver Email Address</label>
                 <input
                   type="email"
                   required
                   value={emailTarget.email}
                   onChange={(e) => setEmailTarget({ ...emailTarget, email: e.target.value })}
-                  className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none"
+                  className="w-full p-3 bg-slate-50 border border-slate-200/80 rounded-2xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none transition-shadow shadow-sm"
                 />
               </div>
 
-              <div>
-                <label className="block font-bold text-slate-700 mb-1">Pay Period Statement</label>
-                <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-600 font-medium">
-                  {emailTarget.payPeriod} &bull; Gross Total: ${emailTarget.grossTotal.toFixed(2)}
+              <div className="space-y-1.5">
+                <label className="block font-semibold text-slate-700">Pay Period Statement</label>
+                <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-2xl text-slate-700 font-semibold flex flex-col gap-1 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                  <span>{emailTarget.payPeriod}</span>
+                  <span className="text-brand-teal text-sm">Gross Total: ${emailTarget.grossTotal.toFixed(2)}</span>
                 </div>
               </div>
-
-              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsEmailModalOpen(false)}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl w-full sm:w-auto text-center"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2 bg-brand-teal text-white font-bold rounded-2xl hover:bg-brand-teal/90 shadow-md shadow-brand-teal/20 flex items-center justify-center gap-1.5 w-full sm:w-auto"
-                >
-                  <Mail className="w-3.5 h-3.5" /> Send Email Statement
-                </button>
-              </div>
             </form>
+
+            {/* Actions Footer */}
+            <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 p-3 sm:p-4 border-t border-slate-100 shrink-0 bg-slate-50/80 rounded-b-[24px] z-10">
+              <button
+                type="button"
+                onClick={() => setIsEmailModalOpen(false)}
+                className="px-4 py-2.5 bg-white bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[13px] rounded-2xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 w-full sm:w-auto text-center cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                form="emailForm"
+                type="submit"
+                className="px-4 py-2.5 bg-brand-teal text-white font-bold text-[13px] rounded-2xl hover:bg-brand-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] shadow-brand-teal/30 flex items-center justify-center gap-2 w-full sm:w-auto transition-all cursor-pointer"
+              >
+                <Send className="w-4 h-4" /> Send Email
+              </button>
+            </div>
           </motion.div>
         </div>
       )}

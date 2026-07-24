@@ -28,9 +28,21 @@ export function SurveyResultsModal({ isOpen, onClose, survey }: SurveyResultsMod
       onClose={onClose}
       title={`${survey.name} - Results & Feedback`}
       description={`Caregiver pulse survey breakdown • ${survey.responseRate}% response rate`}
-      maxWidth="xl"
+      icon={
+        <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] shrink-0">
+          <Star className="w-5 h-5 text-brand-teal" />
+        </div>
+      }
+      footer={
+        <button
+          onClick={onClose}
+          className="px-4 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)] w-full sm:w-auto"
+        >
+          Close Survey
+        </button>
+      }
     >
-      <div className="space-y-4 pt-1">
+      <div className="space-y-4">
         {/* Overview banner */}
         <div className="p-4 bg-gradient-to-r from-teal-900 to-slate-900 text-white rounded-2xl flex items-center justify-between shadow-sm">
           <div>
@@ -75,15 +87,6 @@ export function SurveyResultsModal({ isOpen, onClose, survey }: SurveyResultsMod
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="pt-3 border-t border-slate-100 flex justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors cursor-pointer"
-          >
-            Close Survey
-          </button>
-        </div>
       </div>
     </Modal>
   );

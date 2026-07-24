@@ -31,7 +31,7 @@ export default function HrTrainingPage() {
               <GraduationCap className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
+              <h1 className="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
                 HR Training & LMS Management
                 <span className="px-2 py-0.5 text-[10px] font-medium bg-brand-teal/10 text-brand-teal rounded-full border border-brand-teal/20">
                   LMS v2.4
@@ -45,12 +45,12 @@ export default function HrTrainingPage() {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex bg-slate-100/90 p-1.5 gap-1 rounded-2xl relative self-start lg:self-auto border border-slate-200/80">
+        <div className="flex bg-slate-100/90 p-1.5 gap-1 rounded-2xl relative self-start lg:self-auto border border-slate-200/80 w-full sm:w-auto overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setView(tab.id)}
-              className={`relative px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${view === tab.id ? "text-slate-900 shadow-[0_4px_24px_rgba(0,0,0,0.04)]" : "text-slate-500 hover:text-slate-800"
+              className={`relative px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer flex-1 sm:flex-none ${view === tab.id ? "text-slate-900 shadow-[0_4px_24px_rgba(0,0,0,0.04)]" : "text-slate-500 hover:text-slate-800"
                 }`}
             >
               {view === tab.id && (
@@ -61,7 +61,7 @@ export default function HrTrainingPage() {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 {tab.label}
               </span>
             </button>
@@ -72,32 +72,32 @@ export default function HrTrainingPage() {
       {/* Top Quick Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white/90 backdrop-blur-xl p-4.5 rounded-2xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:border-brand-teal/40 transition-all flex items-center gap-4 group">
-          <div className="w-12 h-12 rounded-2xl bg-brand-teal/10 text-brand-teal flex items-center justify-center font-bold border border-brand-teal/20 shrink-0 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center font-bold border border-brand-teal/20 shrink-0 group-hover:scale-105 transition-transform">
             <BookOpen className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[10px] font-medium text-slate-400 block">Active LMS Modules</span>
-            <span className="text-xl font-bold text-slate-900">17 Courses</span>
+            <span className="text-[10px] font-regular text-slate-400 block">Active LMS Modules</span>
+            <span className="text-lg font-bold text-slate-900">17 Courses</span>
           </div>
         </div>
 
         <div className="bg-white/90 backdrop-blur-xl p-4.5 rounded-2xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:border-emerald-300 transition-all flex items-center gap-4 group">
-          <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold border border-emerald-200 shrink-0 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold border border-emerald-200 shrink-0 group-hover:scale-105 transition-transform">
             <CheckCircle2 className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[10px] font-medium text-emerald-700 block">30-Day Completion Rate</span>
-            <span className="text-xl font-bold text-emerald-950">94.2%</span>
+            <span className="text-[10px] font-regular text-emerald-700 block">30-Day Completion Rate</span>
+            <span className="text-lg font-bold text-emerald-950">94.2%</span>
           </div>
         </div>
 
         <div className="bg-white/90 backdrop-blur-xl p-4.5 rounded-2xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:border-blue-300 transition-all flex items-center gap-4 group">
-          <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold border border-blue-200 shrink-0 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold border border-blue-200 shrink-0 group-hover:scale-105 transition-transform">
             <Award className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[10px] font-medium text-blue-700 block">Pending Certifications</span>
-            <span className="text-xl font-bold text-blue-950">5 Caregivers</span>
+            <span className="text-[10px] font-regular text-blue-700 block">Pending Certifications</span>
+            <span className="text-lg font-bold text-blue-950">5 Caregivers</span>
           </div>
         </div>
       </div>

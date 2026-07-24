@@ -86,7 +86,7 @@ export function RequiredTraining() {
 
           <button
             onClick={() => setRuleModalOpen(true)}
-            className="px-4 py-2.5 bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-2xl text-xs font-bold shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-2 shrink-0 cursor-pointer self-start sm:self-auto"
+            className="w-full sm:w-auto px-4 py-2.5 bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-2xl text-xs font-bold shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center justify-center gap-2 shrink-0 cursor-pointer"
           >
             <Plus className="w-4 h-4" /> Configure New Rule
           </button>

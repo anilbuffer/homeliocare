@@ -20,34 +20,35 @@ function RecruitingContent() {
       className="w-full mx-auto space-y-6"
     >
       {/* Header & Quick Metrics */}
-      <div className="bg-white/80 backdrop-blur-xl p-4 rounded-2xl border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.06)] flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2.5">
-            <h1 className="text-xl font-bold text-slate-900 tracking-tight">Recruiting & Onboarding Pipeline</h1>
-            <span className="bg-brand-teal/10 text-brand-teal text-xs font-medium px-3 py-1 rounded-full border border-brand-teal/20">
+      <div className="bg-white backdrop-blur-2xl p-4 lg:p-6 rounded-xl border border-slate-200 shadow-[0_8px_32px_rgba(0,0,0,0.04)] flex flex-col xl:flex-row xl:items-center justify-between gap-6 transition-all duration-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.06)]">
+        <div className="space-y-2 flex-1">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-xl font-bold text-slate-900 tracking-tight">Recruiting Pipeline</h1>
+            <span className="bg-brand-teal/10 text-brand-teal text-xs font-medium px-3 py-1.5 rounded-full border border-brand-teal/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
               Live Kanban
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1 font-regular">
+          <p className="text-xs text-slate-500 font-regular max-w-2xl leading-relaxed">
             Caregiver applicant tracking, pre-employment compliance, Checkr/Sterling background checks & e-sign onboarding.
           </p>
         </div>
 
         {/* Mini stats */}
-        <div className="flex items-center gap-3 flex-wrap">
-          <div className="bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-center min-w-[100px]">
-            <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider block">Total Active</span>
-            <span className="text-lg font-bold text-slate-900">{initialCandidates.length}</span>
+        <div className="grid grid-cols-2 sm:flex sm:items-center gap-3 w-full xl:w-auto">
+          <div className="bg-slate-50 backdrop-blur-md p-3 lg:px-4 rounded-xl border border-slate-200 shadow-[0_8px_24px_rgba(0,0,0,0.04)] text-center flex-1 min-w-[120px] transition-transform hover:-translate-y-1 duration-300">
+            <span className="text-[10px] sm:text-xs font-medium text-slate-500 block mb-1">Total Active</span>
+            <span className="text-xl font-bold text-slate-900">{initialCandidates.length}</span>
           </div>
-          <div className="bg-blue-50/70 px-3.5 py-2 rounded-xl border border-blue-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-center min-w-[100px]">
-            <span className="text-[10px] font-medium text-blue-600 uppercase tracking-wider block">Background</span>
-            <span className="text-lg font-bold text-blue-700">
+          <div className="bg-blue-50 backdrop-blur-md p-3 lg:px-4 rounded-xl border border-blue-200 shadow-[0_8px_24px_rgba(0,0,0,0.04)] text-center flex-1 min-w-[120px] transition-transform hover:-translate-y-1 duration-300">
+            <span className="text-[10px] sm:text-xs font-medium text-blue-600 block mb-1">Background</span>
+            <span className="text-xl font-bold text-blue-700">
               {initialCandidates.filter(c => c.stage === "Background Check").length}
             </span>
           </div>
-          <div className="bg-emerald-50/70 px-3.5 py-2 rounded-xl border border-emerald-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-center min-w-[100px]">
-            <span className="text-[10px] font-medium text-emerald-600 uppercase tracking-wider block">Hired 30d</span>
-            <span className="text-lg font-bold text-emerald-700">
+          <div className="bg-emerald-50 backdrop-blur-md p-3 lg:px-4 rounded-xl border border-emerald-200 shadow-[0_8px_24px_rgba(0,0,0,0.04)] text-center flex-1 min-w-[120px] col-span-2 sm:col-span-1 transition-transform hover:-translate-y-1 duration-300">
+            <span className="text-[10px] sm:text-xs font-medium text-emerald-600 block mb-1">Hired 30d</span>
+            <span className="text-xl font-bold text-emerald-700">
               {initialCandidates.filter(c => c.stage === "Hired").length}
             </span>
           </div>

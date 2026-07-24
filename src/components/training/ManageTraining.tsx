@@ -142,7 +142,7 @@ export function ManageTraining() {
           <div className="text-[10px] font-extrabold text-teal-400 tracking-wider uppercase mb-1">
             AGENCY COMPLIANCE INDEX
           </div>
-          <div className="text-3xl font-extrabold text-white flex items-end gap-3">
+          <div className="text-2xl font-bold text-white flex items-end gap-3">
             82%
             <span className="text-xs font-bold text-teal-400 flex items-center mb-1 bg-white/10 px-2 py-0.5 rounded-full border border-white/10">
               <TrendingUp className="w-3 h-3 mr-1" /> +4.2% MoM
@@ -187,7 +187,7 @@ export function ManageTraining() {
                 <AlertCircle className="w-4 h-4 text-rose-600" />
               </div>
             </div>
-            <div className="text-2xl font-bold text-rose-950">2 Overdue</div>
+            <div className="text-xl font-bold text-rose-950">2 Overdue</div>
             <div className="text-[10px] text-rose-600/80 font-medium">Click to filter table</div>
           </div>
 
@@ -205,7 +205,7 @@ export function ManageTraining() {
                 <AlertTriangle className="w-4 h-4 text-amber-600" />
               </div>
             </div>
-            <div className="text-2xl font-extrabold text-amber-950">4 Caregivers</div>
+            <div className="text-xl font-bold text-amber-950">4 Caregivers</div>
             <div className="text-[10px] text-amber-700/80 font-medium">Click to filter table</div>
           </div>
 
@@ -213,8 +213,8 @@ export function ManageTraining() {
           <div
             onClick={() => setStaffFilter("all")}
             className={`rounded-2xl p-4 border transition-all duration-300 relative overflow-hidden cursor-pointer ${staffFilter === "all"
-              ? "bg-slate-50 border-slate-300 shadow-sm"
-              : "bg-white border-slate-200 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:-translate-y-1"
+              ? "bg-slate-50 border-slate-300 shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+              : "bg-white border-slate-200 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:-translate-y-1"
               }`}
           >
             <div className="flex justify-between items-start mb-2">
@@ -223,7 +223,7 @@ export function ManageTraining() {
                 <BarChart3 className="w-4 h-4 text-blue-700" />
               </div>
             </div>
-            <div className="text-xl font-extrabold text-slate-900">8 Total</div>
+            <div className="text-xl font-bold text-slate-900">8 Total</div>
             <div className="text-[10px] text-slate-400 font-medium">Show all caregivers</div>
           </div>
         </div>
@@ -243,7 +243,7 @@ export function ManageTraining() {
                 setCourseCategoryFilter(cat.name);
                 showToast(`Filtered Course Library by category "${cat.name}".`);
               }}
-              className="p-3 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-slate-300 transition-all cursor-pointer space-y-2"
+              className="p-3 rounded-xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-slate-300 transition-all cursor-pointer space-y-2"
             >
               <div className="flex justify-between items-end text-xs">
                 <span className="font-bold text-slate-800 truncate pr-2">{cat.name}</span>
@@ -272,9 +272,9 @@ export function ManageTraining() {
             <p className="text-xs text-slate-500">Click any row to open full caregiver compliance record & credentials</p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 w-full md:w-auto mt-3 md:mt-0">
             {/* Search Input */}
-            <div className="relative min-w-[200px]">
+            <div className="relative w-full sm:w-auto sm:min-w-[240px]">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
@@ -315,7 +315,7 @@ export function ManageTraining() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs whitespace-nowrap">
-            <thead className="bg-slate-50/70 text-[10px] text-slate-500 font-semibold border-b border-slate-200">
+            <thead className="bg-slate-50 text-xs text-slate-500 border-b border-slate-200">
               <tr>
                 <th className="px-4 py-3">Caregiver</th>
                 <th className="px-4 py-3">Role</th>
@@ -335,7 +335,7 @@ export function ManageTraining() {
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-xs font-extrabold shrink-0 shadow-sm">
+                      <div className="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center text-xs font-extrabold shrink-0 shadow-sm">
                         {staff.avatar}
                       </div>
                       <div>
@@ -346,15 +346,15 @@ export function ManageTraining() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3 font-semibold text-slate-700">{staff.role}</td>
-                  <td className="px-4 py-3 font-bold text-slate-800">
+                  <td className="px-4 py-3 font-medium text-slate-700">{staff.role}</td>
+                  <td className="px-4 py-3 font-medium text-slate-800">
                     {staff.coursesCompleted} / {staff.coursesTotal}
                   </td>
                   <td className="px-4 py-3">
                     <div className="space-y-1">
                       <div className="flex justify-between items-center text-xs">
                         <span
-                          className={`font-bold ${staff.status === "On track" ? "text-brand-teal" : staff.status === "At risk" ? "text-amber-600" : "text-rose-600"
+                          className={`font-medium ${staff.status === "On track" ? "text-brand-teal" : staff.status === "At risk" ? "text-amber-600" : "text-rose-600"
                             }`}
                         >
                           {staff.status}
@@ -369,7 +369,7 @@ export function ManageTraining() {
                   </td>
                   <td className="px-4 py-3 text-center">
                     {staff.certificationsExpiring > 0 ? (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-extrabold text-[11px] border border-amber-200">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-bold text-[11px] border border-amber-200">
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-600" /> {staff.certificationsExpiring}
                       </span>
                     ) : (
@@ -396,12 +396,12 @@ export function ManageTraining() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Expiring & Overdue Items */}
         <section className="lg:col-span-2 bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col">
-          <div className="p-4 border-b border-slate-100 flex justify-between items-center">
+          <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h3 className="text-base font-bold text-slate-900">Expiring & Overdue Alerts</h3>
               <p className="text-xs text-slate-500">Caregivers requiring immediate compliance attention</p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 self-start sm:self-auto">
               <span className="text-xs font-bold text-slate-600">Auto Reminders:</span>
               <button
                 onClick={() => {
@@ -504,9 +504,9 @@ export function ManageTraining() {
             <h3 className="text-base font-extrabold text-slate-900">Course Library Catalog</h3>
             <p className="text-xs text-slate-500">Author, edit, and publish LMS modules for caregiver training</p>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3 w-full md:w-auto mt-3 md:mt-0">
             {/* Search */}
-            <div className="relative min-w-[200px]">
+            <div className="relative w-full sm:w-auto sm:min-w-[240px]">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
@@ -522,7 +522,7 @@ export function ManageTraining() {
                 setEditingCourse(null);
                 setCourseModalOpen(true);
               }}
-              className="inline-flex items-center gap-2 bg-brand-teal hover:bg-[#0c8a6f] text-white px-4 py-2 rounded-xl text-xs font-bold shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all cursor-pointer"
+              className="inline-flex justify-center items-center gap-2 bg-brand-teal hover:bg-[#0c8a6f] text-white px-4 py-2 rounded-xl text-xs font-bold shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all cursor-pointer w-full sm:w-auto"
             >
               <Plus className="w-4 h-4" /> Create Course
             </button>

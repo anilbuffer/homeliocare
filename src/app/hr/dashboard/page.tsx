@@ -56,25 +56,25 @@ export default function HrDashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/80 backdrop-blur-xl p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Good morning, Sarah</h1>
-            <span className="inline-flex items-center gap-1 bg-brand-teal/10 text-brand-teal text-xs font-medium px-3 py-1 rounded-full border border-brand-teal/20 shadow-xs">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Good morning, Sarah</h1>
+            <span className="inline-flex items-center gap-1 bg-brand-teal/10 text-brand-teal text-xs font-medium px-3 py-1 rounded-full border border-brand-teal/20 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
               <ShieldCheck className="w-3.5 h-3.5" />
               HR Recruiter Portal
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1.5 flex items-center gap-2 font-medium flex-wrap">
+          <p className="text-xs text-slate-500 mt-1.5 flex items-center gap-2 font-regular flex-wrap">
             <span>{today}</span>
             <span>&bull;</span>
             <button
               onClick={() => document.getElementById("action-queue")?.scrollIntoView({ behavior: "smooth" })}
-              className="text-slate-700 hover:text-brand-teal font-medium hover:underline cursor-pointer transition-colors"
+              className="text-slate-700 hover:text-brand-teal font-regular hover:underline cursor-pointer transition-colors"
             >
               5 candidates awaiting action
             </button>
             <span>&bull;</span>
             <button
               onClick={() => document.getElementById("credential-watchlist")?.scrollIntoView({ behavior: "smooth" })}
-              className="text-amber-600 hover:text-amber-700 font-medium hover:underline cursor-pointer transition-colors"
+              className="text-amber-600 hover:text-amber-700 font-regular hover:underline cursor-pointer transition-colors"
             >
               3 compliance items due
             </button>
@@ -84,7 +84,7 @@ export default function HrDashboardPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsAddModalOpen(true)}
-            className="inline-flex items-center gap-2 bg-brand-teal text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-teal/90 transition-all shadow-[0_6px_24px_rgba(14,163,131,0.28)] hover:shadow-[0_8px_30px_rgba(14,163,131,0.38)] active:scale-95 whitespace-nowrap cursor-pointer"
+            className="inline-flex items-center gap-2 bg-brand-teal text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-all shadow-[0_6px_24px_rgba(14,163,131,0.28)] hover:shadow-[0_8px_30px_rgba(14,163,131,0.38)] active:scale-95 whitespace-nowrap cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             Add Candidate

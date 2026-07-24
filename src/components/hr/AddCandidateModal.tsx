@@ -673,7 +673,7 @@ export function AddCandidateModal({
                         <div
                           onClick={() => setCprCertified(!cprCertified)}
                           className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${cprCertified
-                            ? "bg-teal-50/80 border-teal-300 text-teal-900 shadow-sm"
+                            ? "bg-teal-50/80 border-teal-300 text-teal-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                             : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
                             }`}
                         >
@@ -703,7 +703,7 @@ export function AddCandidateModal({
                         <div
                           onClick={() => setHasDriverLicense(!hasDriverLicense)}
                           className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${hasDriverLicense
-                            ? "bg-teal-50/80 border-teal-300 text-teal-900 shadow-sm"
+                            ? "bg-teal-50/80 border-teal-300 text-teal-900 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                             : "bg-white border-slate-200 text-slate-600 hover:border-slate-300"
                             }`}
                         >
@@ -846,7 +846,7 @@ export function AddCandidateModal({
                     <button
                       type="button"
                       onClick={onClose}
-                      className="px-4 py-2 text-slate-600 font-bold hover:bg-slate-200/60 rounded-xl transition-colors text-xs"
+                      className="px-4 py-2 text-slate-600 font-semibold bg-slate-100 hover:bg-slate-200/60 rounded-xl transition-colors text-xs"
                     >
                       Cancel
                     </button>
@@ -859,7 +859,7 @@ export function AddCandidateModal({
                           if (activeTab === "role") setActiveTab("credentials");
                           if (activeTab === "credentials") setActiveTab("pipeline");
                         }}
-                        className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-all shadow-md flex items-center gap-1.5 text-xs"
+                        className="px-4 py-2 bg-brand-teal hover:bg-brand-teal/100 text-white font-semibold rounded-xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] flex items-center gap-1.5 text-xs"
                       >
                         Next Step <ChevronRight className="w-4 h-4" />
                       </button>
@@ -867,7 +867,7 @@ export function AddCandidateModal({
                       <button
                         type="submit"
                         disabled={Boolean(duplicateMatch && !overrideDuplicate)}
-                        className="px-6 py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-teal-600/25 active:scale-95 flex items-center gap-2 text-xs"
+                        className="px-4 py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_16px_rgba(0,0,0,0.06)] shadow-teal-600/25 active:scale-95 flex items-center gap-2 text-xs"
                       >
                         <BadgeCheck className="w-4 h-4" /> Create Candidate Profile
                       </button>

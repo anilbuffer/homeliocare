@@ -62,21 +62,20 @@ function KpiCard({ title, value, suffix = "", decimals = 0, subtext, icon: Icon,
         }
       }}
       className={clsx(
-        "group bg-white/80 backdrop-blur-xl p-4.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-200/80 hover:border-brand-teal/50 hover:shadow-[0_8px_30px_rgba(14,163,131,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between select-none",
+        "group bg-white/80 backdrop-blur-xl p-4 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-slate-200 hover:border-brand-teal hover:shadow-[0_8px_30px_rgba(14,163,131,0.12)] hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between select-none",
         onClick && "cursor-pointer active:scale-[0.98]"
       )}
     >
       <div className="flex items-start justify-between gap-2 mb-3">
-        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider line-clamp-1">{title}</span>
+        <span className="text-[11px] font-bold text-slate-500 line-clamp-1">{title}</span>
         <div className={clsx("p-2 rounded-xl border shrink-0 transition-all duration-300 group-hover:scale-110", colorStyles[colorTheme])}>
           <Icon className="w-4 h-4" />
         </div>
       </div>
-
       <div>
-        <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <div className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
           {decimals > 0 ? displayValue.toFixed(decimals) : Math.round(displayValue)}
-          <span className="text-sm sm:text-base font-bold text-slate-500 ml-0.5">{suffix}</span>
+          <span className="text-sm sm:text-base font-medium text-slate-500 ml-0.5">{suffix}</span>
         </div>
         <p className="text-xs font-medium text-slate-500 mt-1.5 flex items-center gap-1">{subtext}</p>
       </div>
@@ -95,7 +94,7 @@ export function HrKpiStrip() {
   };
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 xl:gap-5">
       <KpiCard
         title="Open Requisitions"
         value={12}

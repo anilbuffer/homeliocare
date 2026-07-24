@@ -54,7 +54,7 @@ export function CredentialWatchlist({ initialItems }: CredentialWatchlistProps) 
         <div>
           <div className="flex items-center gap-2">
             <ShieldAlert className="w-5 h-5 text-amber-500" />
-            <h3 className="font-bold text-slate-900 text-base sm:text-lg tracking-tight">Credential & Compliance Watchlist</h3>
+            <h3 className="font-semibold text-slate-900 text-base tracking-tight">Credential & Compliance Watchlist</h3>
           </div>
           <p className="text-xs text-slate-500 mt-0.5">Surfacing expiring certs before they block shift scheduling.</p>
         </div>
@@ -101,7 +101,7 @@ export function CredentialWatchlist({ initialItems }: CredentialWatchlistProps) 
       <div className="overflow-x-auto custom-scrollbar">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-200 text-slate-500 uppercase tracking-wider font-semibold">
+            <tr className="border-b border-slate-200 text-slate-500">
               <th className="py-3 px-4">Caregiver</th>
               <th className="py-3 px-4">Credential Type</th>
               <th className="py-3 px-4">Expiration Date</th>
@@ -109,44 +109,44 @@ export function CredentialWatchlist({ initialItems }: CredentialWatchlistProps) 
               <th className="py-3 px-4 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-200">
             {sortedItems.map((item) => {
               const isNotified = notifiedIds.includes(item.id);
               const isExpired = item.daysRemaining <= 0;
               const isUrgentRed = item.daysRemaining <= 7;
 
               return (
-                <tr key={item.id} className="hover:bg-slate-50/80 transition-colors">
+                <tr key={item.id} className="hover:bg-slate-50 transition-colors">
                   <td className="py-3 px-4">
                     <Link
                       href={`/hr/caregivers/${item.caregiverId}`}
-                      className="font-medium text-slate-900 hover:text-brand-teal hover:underline transition-colors"
+                      className="font-medium text-slate-900 hover:text-brand-teal hover:underline transition-colors whitespace-nowrap"
                     >
                       {item.caregiverName}
                     </Link>
-                    <div className="text-[11px] text-slate-400 font-regular">{item.role}</div>
+                    <div className="text-[11px] text-slate-400 font-regular whitespace-nowrap">{item.role}</div>
                   </td>
                   <td className="py-3 px-4">
-                    <span className="font-medium text-slate-800 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200/60">
+                    <span className="font-medium text-xs text-slate-800 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200 whitespace-nowrap">
                       {item.credentialType}
                     </span>
                   </td>
-                  <td className="py-3 px-4 font-medium text-slate-700">
+                  <td className="py-3 px-4 font-medium text-xs text-slate-700 whitespace-nowrap">
                     {item.expiryDate}
                   </td>
                   <td className="py-3 px-4">
                     {isExpired ? (
-                      <span className="bg-red-100 text-red-700 font-medium px-3 py-1 rounded-full inline-flex items-center gap-1">
+                      <span className="bg-red-100 text-red-700 font-medium px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap">
                         <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
                         Expired ({Math.abs(item.daysRemaining)}d ago)
                       </span>
                     ) : isUrgentRed ? (
-                      <span className="bg-red-100 text-red-700 font-medium px-3 py-1 rounded-full inline-flex items-center gap-1">
+                      <span className="bg-red-100 text-red-700 font-medium px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap">
                         <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
                         Expires in {item.daysRemaining} days (Critical)
                       </span>
                     ) : (
-                      <span className="bg-amber-100 text-amber-800 font-medium px-3 py-1 rounded-full inline-flex items-center gap-1">
+                      <span className="bg-amber-100 text-amber-800 font-medium px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap">
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
                         Expires in {item.daysRemaining} days
                       </span>
@@ -154,13 +154,13 @@ export function CredentialWatchlist({ initialItems }: CredentialWatchlistProps) 
                   </td>
                   <td className="py-3 px-4 text-right">
                     {isNotified ? (
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 whitespace-nowrap">
                         <Check className="w-3.5 h-3.5" /> Reminded
                       </span>
                     ) : (
                       <button
                         onClick={() => handleNotify(item)}
-                        className="px-3 py-1.5 text-xs font-medium text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-full transition-all active:scale-95 flex items-center gap-1.5 ml-auto border border-amber-200"
+                        className="px-3 py-1.5 text-xs font-medium text-amber-900 bg-amber-100 hover:bg-amber-200 rounded-full transition-all active:scale-95 flex items-center gap-1.5 ml-auto border border-amber-200 whitespace-nowrap"
                       >
                         <BellRing className="w-3.5 h-3.5" />
                         Notify Caregiver

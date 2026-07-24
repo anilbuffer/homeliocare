@@ -45,7 +45,7 @@ export function RecruitingPipelineSnapshot() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3 lg:gap-4 xl:gap-6">
         {stageData.map((item, index) => {
           const Icon = item.icon;
           return (
@@ -53,26 +53,26 @@ export function RecruitingPipelineSnapshot() {
               key={item.stage}
               onClick={() => handleStageClick(item.stage)}
               className={clsx(
-                "group p-3.5 rounded-2xl border text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] relative flex flex-col justify-between h-28",
+                "group p-3 rounded-xl border text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] relative flex flex-col justify-between h-24",
                 item.color
               )}
             >
               <div className="flex items-center justify-between w-full">
-                <span className="text-[11px] font-bold uppercase tracking-wider line-clamp-1">{item.stage}</span>
-                <div className="p-1.5 rounded-xl bg-white/80 shadow-xs group-hover:scale-110 transition-transform">
+                <span className="text-[11px] font-bold line-clamp-1 pr-1">{item.stage}</span>
+                <div className="p-1.5 rounded-xl bg-white shadow-xs group-hover:scale-110 transition-transform shrink-0">
                   <Icon className="w-4 h-4 opacity-80 group-hover:opacity-100" />
                 </div>
               </div>
               <div className="flex items-baseline justify-between mt-2">
-                <span className="text-2xl sm:text-3xl font-black">{item.count}</span>
-                <span className="text-[11px] font-bold flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-xl sm:text-2xl font-bold">{item.count}</span>
+                <span className="text-[11px] font-semibold flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
                   View <ChevronRight className="w-3.5 h-3.5" />
                 </span>
               </div>
 
               {/* Step indicator arrow */}
               {index < stageData.length - 1 && (
-                <div className="hidden lg:block absolute -right-5.5 top-1/2 -translate-y-1/2 z-10 text-slate-300 pointer-events-none">
+                <div className="hidden xl:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 text-slate-300 pointer-events-none">
                   <ChevronRight className="w-4 h-4" />
                 </div>
               )}

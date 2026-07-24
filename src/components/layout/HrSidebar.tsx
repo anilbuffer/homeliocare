@@ -171,13 +171,13 @@ export function HrSidebar({ isOpen = false, onClose }: HrSidebarProps) {
               isCollapsed && "justify-center"
             )}
           >
-            <div className="w-8 h-8 rounded-full bg-purple-600 text-white font-semibold flex items-center justify-center text-xs shrink-0 ring-2 ring-purple-400/30">
+            <div className="w-8 h-8 rounded-full bg-purple-600 text-white font-semibold flex items-center justify-center text-sm shrink-0 ring-2 ring-purple-400/30">
               {currentUser?.name ? currentUser.name.split(" ").map(n => n[0]).join("").slice(0, 2) : "SJ"}
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-white truncate">{currentUser?.name || "Sarah Jenkins"}</p>
-                <p className="text-[11px] text-slate-400 truncate flex items-center gap-1">
+                <p className="text-sm font-semibold text-white truncate">{currentUser?.name || "Sarah Jenkins"}</p>
+                <p className="text-xs text-slate-400 truncate flex items-center gap-1">
                   <ShieldCheck className="w-3 h-3 text-brand-teal" />
                   {currentUser?.role === "HR" ? "HR Recruiter" : currentUser?.role || "HR Staff"}
                 </p>
@@ -202,16 +202,12 @@ export function HrSidebar({ isOpen = false, onClose }: HrSidebarProps) {
                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
                 className={clsx(
-                  "absolute bottom-16 bg-slate-800 border border-slate-700 rounded-xl shadow-xl p-2 text-xs text-slate-200 z-50 space-y-1",
+                  "absolute bottom-16 bg-slate-800 border border-slate-700 rounded-xl shadow-xl p-2 text-sm text-slate-200 z-50 space-y-1",
                   isCollapsed ? "left-14 w-44" : "left-3 right-3"
                 )}
               >
-                <div className="px-2 py-1.5 border-b border-slate-700/60">
-                  <p className="font-semibold text-white">{currentUser?.name || "Sarah Jenkins"}</p>
-                  <p className="text-[10px] text-slate-400 truncate">{currentUser?.email || "sarah.jenkins@homelio.com"}</p>
-                </div>
                 <Link
-                  href="/settings"
+                  href="/hr/settings"
                   className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-slate-700/60 transition-colors"
                 >
                   <User className="w-3.5 h-3.5 text-slate-400" />

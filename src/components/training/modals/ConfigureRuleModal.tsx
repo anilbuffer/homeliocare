@@ -33,9 +33,31 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
       onClose={onClose}
       title="Configure Required Training Rule"
       description="Define mandatory compliance courses & onboarding timelines by caregiver role"
-      maxWidth="xl"
+      icon={
+        <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] shrink-0">
+          <Sliders className="w-5 h-5 text-brand-teal" />
+        </div>
+      }
+      footer={
+        <div className="flex items-center justify-end gap-2 w-full">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            form="configure-rule-form"
+            className="px-4 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            <ShieldCheck className="w-3.5 h-3.5" /> Save Rule Configuration
+          </button>
+        </div>
+      }
     >
-      <form onSubmit={handleSubmit} className="space-y-4 pt-1">
+      <form id="configure-rule-form" onSubmit={handleSubmit} className="space-y-4">
         {/* Target Role */}
         <div>
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -107,22 +129,6 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
           </button>
         </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-200">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-1.5 cursor-pointer"
-          >
-            <ShieldCheck className="w-3.5 h-3.5" /> Save Rule Configuration
-          </button>
-        </div>
       </form>
     </Modal>
   );

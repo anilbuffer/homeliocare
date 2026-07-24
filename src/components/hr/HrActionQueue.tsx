@@ -51,8 +51,8 @@ export function HrActionQueue({ initialItems, onOpenCandidateDetail }: HrActionQ
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2.5">
           <div className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse ring-4 ring-amber-500/20" />
-          <h3 className="font-bold text-slate-900 text-base sm:text-lg tracking-tight">HR Urgent Action Queue</h3>
-          <span className="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-0.5 rounded-full">
+          <h3 className="font-semibold text-slate-900 text-base tracking-tight">HR Urgent Action Queue</h3>
+          <span className="bg-slate-100 text-slate-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
             {items.length} Pending
           </span>
         </div>
@@ -89,23 +89,23 @@ export function HrActionQueue({ initialItems, onOpenCandidateDetail }: HrActionQ
                 }}
                 className={clsx(
                   "flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-2xl border transition-all gap-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] cursor-pointer group",
-                  isCompleted ? "bg-emerald-50/80 border-emerald-300 text-emerald-900" : "bg-slate-50/60 border-slate-200/80 hover:border-brand-teal/40 hover:bg-slate-50"
+                  isCompleted ? "bg-emerald-50 border-emerald-300 text-emerald-900" : "bg-slate-50/60 border-slate-200/80 hover:border-brand-teal/40 hover:bg-slate-50"
                 )}
               >
                 <div className="flex items-start gap-3.5 min-w-0 flex-1">
-                  <div className="mt-0.5 p-2.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.04)] shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="mt-0.5 p-2.5 rounded-xl bg-white border border-slate-200 shadow-[0_2px_12px_rgba(0,0,0,0.04)] shrink-0 group-hover:scale-105 transition-transform">
                     {getIcon(item.category)}
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-slate-900 text-sm tracking-tight group-hover:text-brand-teal transition-colors">{item.title}</span>
+                      <span className="font-semibold text-slate-900 text-sm tracking-tight group-hover:text-brand-teal transition-colors">{item.title}</span>
                       {item.priority === "urgent" && (
-                        <span className="bg-red-100 text-red-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                        <span className="bg-red-100 text-red-700 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
                           URGENT
                         </span>
                       )}
                       {item.priority === "high" && (
-                        <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                        <span className="bg-amber-100 text-amber-800 text-[10px] font-semibold px-2.5 py-0.5 rounded-full">
                           HIGH
                         </span>
                       )}

@@ -154,8 +154,8 @@ export function RecruitingPipelineBoard({ initialCandidates, initialStageFilter 
   return (
     <div className="space-y-4">
       {/* Header and Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-2">
-        <div className="flex flex-wrap items-center gap-3 flex-1">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 py-2">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 flex-1">
           {/* Search */}
           <div className="relative flex-1 min-w-[240px]">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -164,42 +164,44 @@ export function RecruitingPipelineBoard({ initialCandidates, initialStageFilter 
               placeholder="Search candidate by name, role, email..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 text-xs bg-white rounded-full border border-slate-200 shadow-[0_4px_16px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-brand-teal transition-all"
+              className="w-full pl-10 pr-4 py-2.5 text-xs bg-white rounded-xl sm:rounded-full border border-slate-200 shadow-[0_4px_16px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-brand-teal transition-all"
             />
           </div>
 
-          {/* Position Filter */}
-          <select
-            value={positionFilter}
-            onChange={(e) => setPositionFilter(e.target.value)}
-            className="px-4 py-2.5 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-700 outline-none shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-          >
-            <option value="All">All Positions</option>
-            <option value="CNA">CNA</option>
-            <option value="HHA">HHA</option>
-            <option value="RN">RN</option>
-            <option value="Companion">Companion</option>
-          </select>
+          <div className="flex gap-3">
+            {/* Position Filter */}
+            <select
+              value={positionFilter}
+              onChange={(e) => setPositionFilter(e.target.value)}
+              className="flex-1 sm:flex-none px-4 py-2.5 bg-white border border-slate-200 rounded-xl sm:rounded-full text-xs font-bold text-slate-700 outline-none shadow-[0_4px_16px_rgba(0,0,0,0.06)] appearance-none"
+            >
+              <option value="All">All Positions</option>
+              <option value="CNA">CNA</option>
+              <option value="HHA">HHA</option>
+              <option value="RN">RN</option>
+              <option value="Companion">Companion</option>
+            </select>
 
-          {/* Source Filter */}
-          <select
-            value={sourceFilter}
-            onChange={(e) => setSourceFilter(e.target.value)}
-            className="px-4 py-2.5 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-700 outline-none shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-          >
-            <option value="All">All Sources</option>
-            <option value="Indeed">Indeed</option>
-            <option value="ZipRecruiter">ZipRecruiter</option>
-            <option value="Employee Referral">Employee Referral</option>
-            <option value="CNA Program">CNA Program</option>
-          </select>
+            {/* Source Filter */}
+            <select
+              value={sourceFilter}
+              onChange={(e) => setSourceFilter(e.target.value)}
+              className="flex-1 sm:flex-none px-4 py-2.5 bg-white border border-slate-200 rounded-xl sm:rounded-full text-xs font-bold text-slate-700 outline-none shadow-[0_4px_16px_rgba(0,0,0,0.06)] appearance-none"
+            >
+              <option value="All">All Sources</option>
+              <option value="Indeed">Indeed</option>
+              <option value="ZipRecruiter">ZipRecruiter</option>
+              <option value="Employee Referral">Employee Referral</option>
+              <option value="CNA Program">CNA Program</option>
+            </select>
+          </div>
         </div>
 
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="inline-flex items-center gap-2 bg-brand-teal hover:bg-brand-teal/90 active:scale-95 transition-all text-white px-5 py-2.5 rounded-full text-xs font-bold shadow-[0_6px_24px_rgba(14,163,131,0.6)]"
+          className="w-full xl:w-auto inline-flex items-center justify-center gap-2 bg-brand-teal hover:bg-brand-teal/90 active:scale-95 transition-all text-white px-6 py-3 xl:py-2.5 rounded-xl xl:rounded-full text-sm xl:text-xs font-bold shadow-[0_6px_24px_rgba(14,163,131,0.4)] hover:shadow-[0_8px_32px_rgba(14,163,131,0.6)]"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-5 h-5 xl:w-4 xl:h-4" />
           Add Candidate
         </button>
       </div>
@@ -209,7 +211,7 @@ export function RecruitingPipelineBoard({ initialCandidates, initialStageFilter 
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-3.5 bg-slate-900 text-white rounded-2xl flex items-center justify-between text-xs gap-3 shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
+          className="p-3.5 bg-slate-900 text-white rounded-2xl flex items-center justify-between text-xs gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
         >
           <span className="font-bold">{selectedCandidateIds.length} Candidate(s) Selected</span>
           <div className="flex items-center gap-2">
@@ -231,14 +233,14 @@ export function RecruitingPipelineBoard({ initialCandidates, initialStageFilter 
       )}
 
       {bulkActionMessage && (
-        <div className="bg-emerald-50 text-emerald-800 text-xs font-bold p-3 rounded-full border border-emerald-200 flex items-center gap-2 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+        <div className="bg-emerald-50 text-emerald-800 text-xs font-bold p-3 rounded-full border border-emerald-200 flex items-center gap-2 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
           <Sparkles className="w-4 h-4 text-emerald-600 shrink-0" />
           {bulkActionMessage}
         </div>
       )}
 
       {/* Kanban Board Container */}
-      <div className="flex gap-4 overflow-x-auto pb-6 pt-1 w-full min-h-[600px] custom-scrollbar">
+      <div className="flex gap-4 overflow-x-auto pb-6 pt-2 px-1 w-full min-h-[600px] xl:min-h-[700px] custom-scrollbar snap-x snap-mandatory">
         {STAGES.map((stage) => {
           const list = candidatesByStage[stage] || [];
           return (
@@ -246,13 +248,13 @@ export function RecruitingPipelineBoard({ initialCandidates, initialStageFilter 
               key={stage}
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => handleDrop(stage)}
-              className="flex flex-col min-w-[310px] max-w-[310px] bg-slate-100/70 backdrop-blur-md rounded-2xl border border-slate-200/80 h-full overflow-hidden"
+              className="snap-start sm:snap-center flex flex-col min-w-[85vw] sm:min-w-[320px] max-w-[85vw] sm:max-w-[320px] shrink-0 bg-slate-50/80 backdrop-blur-xl h-full overflow-hidden border border-slate-200 rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300"
             >
               {/* Column Header */}
-              <div className="p-4 border-b border-slate-200 bg-white/80 backdrop-blur-md flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-bold text-slate-800 text-sm">{stage}</h3>
-                  <span className="bg-slate-200 text-slate-700 text-xs font-bold px-2.5 py-0.5 rounded-full">
+              <div className="px-4 py-3 border-b border-slate-200 bg-white backdrop-blur-md flex items-center justify-between sticky top-0 z-10">
+                <div className="flex items-center gap-2.5">
+                  <h3 className="font-semibold text-slate-800 text-sm">{stage}</h3>
+                  <span className="bg-white shadow-[0_6px_32px_rgba(0,0,0,0.04)] border border-slate-200 text-slate-700 text-xs font-semibold px-1.5 py-1 rounded-full">
                     {list.length}
                   </span>
                 </div>
@@ -272,7 +274,7 @@ export function RecruitingPipelineBoard({ initialCandidates, initialStageFilter 
                       onDragStart={() => handleDragStart(cand.id)}
                       onClick={() => setSelectedCandidate(cand)}
                       className={clsx(
-                        "bg-white rounded-2xl p-4 border transition-all duration-200 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 relative space-y-2.5 group",
+                        "bg-white rounded-xl p-4 border transition-all duration-200 cursor-pointer shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 relative space-y-2.5 group",
                         isSelected ? "border-brand-teal ring-2 ring-brand-teal/20" : "border-slate-200/80 hover:border-brand-teal/40"
                       )}
                     >

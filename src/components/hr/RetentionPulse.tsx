@@ -102,24 +102,22 @@ export function RetentionPulse({ data }: RetentionPulseProps) {
             </div>
           </div>
         </div>
-
         <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
           <span className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-xs">
             <TrendingDown className="w-4 h-4 text-emerald-600" /> {latestRate}% Rolling Turnover ({change12Mo}% YoY)
           </span>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
         {/* Column 1 (lg:col-span-6): 12-Month Turnover Trend Chart */}
-        <div className="lg:col-span-6 space-y-3 bg-slate-50/70 p-4 sm:p-5 rounded-2xl border border-slate-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+        <div className="md:col-span-2 lg:col-span-6 space-y-3 bg-slate-50/70 p-4 sm:p-5 rounded-2xl border border-slate-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col justify-between">
           <div className="flex items-center justify-between gap-2 flex-wrap">
             <div className="flex items-center gap-2">
               <span className="text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
                 <BarChart2 className="w-4 h-4 text-brand-teal" />
                 12-Month Turnover Trend
               </span>
-              <span className="text-[11px] font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded-full">
+              <span className="text-[11px] font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded-full whitespace-nowrap">
                 Target: &lt;15%
               </span>
             </div>
@@ -284,7 +282,7 @@ export function RetentionPulse({ data }: RetentionPulseProps) {
         </div>
 
         {/* Column 2 (lg:col-span-3): Top Exit Reasons */}
-        <div className="lg:col-span-3 space-y-3 bg-slate-50/70 p-4 rounded-2xl border border-slate-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+        <div className="md:col-span-1 lg:col-span-3 space-y-3 bg-slate-50/70 p-4 rounded-2xl border border-slate-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
@@ -342,7 +340,7 @@ export function RetentionPulse({ data }: RetentionPulseProps) {
         </div>
 
         {/* Column 3 (lg:col-span-3): Recent Separations Log */}
-        <div className="lg:col-span-3 space-y-3 bg-slate-50/70 p-4 rounded-2xl border border-slate-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+        <div className="md:col-span-1 lg:col-span-3 space-y-3 bg-slate-50/70 p-4 rounded-2xl border border-slate-200/70 shadow-[0_4px_24px_rgba(0,0,0,0.02)] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-extrabold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
@@ -352,7 +350,7 @@ export function RetentionPulse({ data }: RetentionPulseProps) {
               <span className="text-[11px] font-semibold text-slate-400">Last 30 Days</span>
             </div>
 
-            <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1 custom-scrollbar">
+            <div className="space-y-2.5 max-h-60 overflow-y-auto pr-1 custom-scrollbar">
               {data.recentSeparations.map((sep) => (
                 <div
                   key={sep.id}

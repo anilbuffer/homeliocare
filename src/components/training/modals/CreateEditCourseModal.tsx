@@ -79,9 +79,32 @@ export function CreateEditCourseModal({
       onClose={onClose}
       title={courseToEdit ? "Edit LMS Course" : "Create New LMS Course"}
       description={courseToEdit ? "Update training module specs and requirements" : "Author and publish a new mandatory or elective course"}
-      maxWidth="lg"
+      icon={
+        <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] shrink-0">
+          <BookOpen className="w-5 h-5 text-brand-teal" />
+        </div>
+      }
+      footer={
+        <div className="flex items-center justify-end gap-2 w-full">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            form="create-course-form"
+            className="px-4 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            {courseToEdit ? <Save className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+            {courseToEdit ? "Save Course Changes" : "Publish Course Catalog"}
+          </button>
+        </div>
+      }
     >
-      <form onSubmit={handleSubmit} className="space-y-4 pt-1">
+      <form id="create-course-form" onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}
         <div>
           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -196,23 +219,6 @@ export function CreateEditCourseModal({
           </button>
         </div>
 
-        {/* Submit Actions */}
-        <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-1.5 cursor-pointer"
-          >
-            {courseToEdit ? <Save className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-            {courseToEdit ? "Save Course Changes" : "Publish Course Catalog"}
-          </button>
-        </div>
       </form>
     </Modal>
   );

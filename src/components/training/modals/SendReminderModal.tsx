@@ -54,8 +54,33 @@ export function SendReminderModal({ isOpen, onClose, staff, onSend }: SendRemind
       isOpen={isOpen}
       onClose={onClose}
       title="Send Compliance Reminder"
-      description={`Send a priority alert to ${staff.name} (${staff.role})`}
-      maxWidth="xl"
+      icon={
+        <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)] shrink-0">
+          <BellRing className="w-5 h-5 text-brand-teal" />
+        </div>
+      }
+      footer={
+        !sentSuccess && (
+          <div className="flex items-center justify-end gap-2 w-full">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleSend}
+              disabled={isSending}
+              className="px-4 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+            >
+              <BellRing className="w-3.5 h-3.5" />
+              {isSending ? "Dispatching..." : "Send Reminder Now"}
+            </button>
+          </div>
+        )
+      }
     >
       {sentSuccess ? (
         <div className="py-6 text-center space-y-3">
@@ -68,7 +93,7 @@ export function SendReminderModal({ isOpen, onClose, staff, onSend }: SendRemind
           </p>
         </div>
       ) : (
-        <div className="space-y-4 pt-1">
+        <div className="space-y-4">
           {/* Target Info */}
           <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl flex items-center justify-between">
             <div>
@@ -138,25 +163,6 @@ export function SendReminderModal({ isOpen, onClose, staff, onSend }: SendRemind
             />
           </div>
 
-          {/* Buttons */}
-          <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-3 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={handleSend}
-              disabled={isSending}
-              className="px-3 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-lg shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
-            >
-              <BellRing className="w-3.5 h-3.5" />
-              {isSending ? "Dispatching..." : "Send Reminder Now"}
-            </button>
-          </div>
         </div>
       )}
     </Modal>
