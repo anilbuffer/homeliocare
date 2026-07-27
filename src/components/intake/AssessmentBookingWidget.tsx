@@ -136,7 +136,7 @@ export function AssessmentBookingWidget() {
                       </div>
                     </div>
 
-                    <div className="flex items-end justify-end mt-2 sm:mt-0">
+                    <div className="flex items-end justify-end mt-2 sm:mt-0 w-full sm:w-auto">
                       <button
                         onClick={() => handleMarkComplete(a.id)}
                         disabled={isCompleting}

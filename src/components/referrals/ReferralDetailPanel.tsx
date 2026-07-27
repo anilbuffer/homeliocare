@@ -105,7 +105,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
             )}
 
             {/* Info Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white border border-slate-200 rounded-xl p-4">
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Referral Details</h3>
                 <div className="space-y-3">

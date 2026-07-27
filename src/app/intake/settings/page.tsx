@@ -148,7 +148,7 @@ export default function IntakeSettingsPage() {
 
               <div className="space-y-4">
                 <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <span className="font-bold text-xs text-gray-900 block">Automated Referral Triage</span>
                       <span className="text-[11px] text-gray-500 leading-tight inline-block">Automatically classify referral urgency based on source and diagnosis.</span>
@@ -165,7 +165,7 @@ export default function IntakeSettingsPage() {
                 </div>
 
                 <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <span className="font-bold text-xs text-gray-900 block">Default Referral Assignee</span>
                       <span className="text-[11px] text-gray-500 leading-tight inline-block">Determine who gets assigned to new inbound referrals by default.</span>
@@ -183,7 +183,7 @@ export default function IntakeSettingsPage() {
                 </div>
 
                 <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <span className="font-bold text-xs text-gray-900 block">Pipeline Urgency SLA Window</span>
                       <span className="text-[11px] text-gray-500 leading-tight inline-block">Highlight referrals that haven't been contacted within this timeframe.</span>
@@ -224,7 +224,7 @@ export default function IntakeSettingsPage() {
                 <div className="space-y-4">
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Referral & Document Alerts</h4>
 
-                  <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs gap-3 sm:gap-0">
                     <div>
                       <span className="font-bold text-gray-900 block">Instant SMS for VIP / Urgent Referrals</span>
                       <span className="text-gray-500 text-[11px]">Receive an SMS immediately when a high-priority referral is submitted.</span>
@@ -237,7 +237,7 @@ export default function IntakeSettingsPage() {
                     />
                   </div>
 
-                  <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs gap-3 sm:gap-0">
                     <div>
                       <span className="font-bold text-gray-900 block">Missing Documentation Alerts</span>
                       <span className="text-gray-500 text-[11px]">Show persistent dashboard banners for patients with pending Medicaid authorizations.</span>
@@ -253,7 +253,7 @@ export default function IntakeSettingsPage() {
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">Assessment Reminders</h4>
 
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                    <div className="flex items-center justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div>
                         <span className="font-bold text-xs text-gray-900 block">Assessment Follow-Up Reminder</span>
                         <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Alert me if an RN assessment is completed but intake is not finalized after X hours.</span>
@@ -293,7 +293,7 @@ export default function IntakeSettingsPage() {
 
                 <div className="space-y-4">
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                    <div className="flex items-center justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div>
                         <span className="font-bold text-xs text-gray-900 block">Default Assessment Duration</span>
                         <span className="text-[11px] text-gray-500 lh-0.6 inline-block">The standard calendar block booked for an initial RN assessment.</span>
@@ -311,7 +311,7 @@ export default function IntakeSettingsPage() {
                   </div>
 
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                    <div className="flex items-center justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div>
                         <span className="font-bold text-xs text-gray-900 block">Auto-Assign RN by Territory</span>
                         <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Automatically map the patient's zip code to the nearest available RN.</span>
@@ -480,7 +480,7 @@ export default function IntakeSettingsPage() {
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-center justify-between">
+                  <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0">
                     <div className="flex items-start gap-3">
                       <ShieldCheck className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
                       <div>

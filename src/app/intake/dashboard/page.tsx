@@ -39,7 +39,7 @@ export default function IntakeDashboard() {
 
         <button 
           onClick={() => setIsNewPatientModalOpen(true)}
-          className="flex items-center gap-2 bg-brand-teal hover:bg-brand-teal/90 text-white px-4 py-2 rounded-full font-bold text-sm shadow-[0_6px_32px_rgba(0,0,0,0.04)] shadow-brand-teal/20 transition-all active:scale-95 cursor-pointer">
+          className="flex items-center justify-center gap-2 bg-brand-teal hover:bg-brand-teal/90 text-white px-4 py-2 rounded-full font-bold text-sm shadow-[0_6px_32px_rgba(0,0,0,0.04)] shadow-brand-teal/20 transition-all active:scale-95 cursor-pointer w-full md:w-auto">
           <Plus className="w-4 h-4" />
           Log New Inquiry
         </button>

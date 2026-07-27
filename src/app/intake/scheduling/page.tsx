@@ -31,7 +31,7 @@ export default function IntakeSchedulingPage() {
 
         <button
           onClick={() => router.push('/intake/patients')}
-          className="flex items-center gap-2 bg-brand-teal hover:bg-brand-teal/90 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-sm shadow-brand-teal/20 transition-all active:scale-95 cursor-pointer">
+          className="flex items-center justify-center gap-2 bg-brand-teal hover:bg-brand-teal/90 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-sm shadow-brand-teal/20 transition-all active:scale-95 cursor-pointer w-full md:w-auto">
           <Plus className="w-4 h-4" />
           Book Assessment
         </button>
@@ -47,18 +47,18 @@ export default function IntakeSchedulingPage() {
             className="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-50 border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
           />
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700">
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 whitespace-nowrap">
             <Calendar className="w-3.5 h-3.5 text-slate-500" />
             {date}
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-1 w-full sm:w-auto">
             <button
               onClick={() => handleSetDate(0)}
-              className="px-3 py-1.5 bg-brand-teal text-white text-xs font-semibold rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.04)]">Today</button>
+              className="flex-1 sm:flex-none px-3 py-1.5 bg-brand-teal text-white text-xs font-semibold rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.04)] whitespace-nowrap">Today</button>
             <button
               onClick={() => handleSetDate(1)}
-              className="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-semibold rounded-full hover:bg-slate-50">Tomorrow</button>
+              className="flex-1 sm:flex-none px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-semibold rounded-full hover:bg-slate-50 whitespace-nowrap">Tomorrow</button>
           </div>
         </div>
       </div>
@@ -76,18 +76,18 @@ export default function IntakeSchedulingPage() {
             <div
               key={patient.id}
               onClick={() => router.push(`/intake/patients/${patient.id}?tab=care-plan`)}
-              className="p-4 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 font-bold rounded-xl flex flex-col items-center justify-center border border-blue-100">
+              className="p-4 hover:bg-slate-50 transition-colors flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 group cursor-pointer">
+              <div className="flex items-start sm:items-center gap-4">
+                <div className="w-12 h-12 bg-blue-50 text-blue-600 font-bold rounded-xl flex flex-col items-center justify-center border border-blue-100 shrink-0">
                   <span className="text-[10px] uppercase leading-none">Oct</span>
                   <span className="text-lg leading-tight">2{i + 1}</span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-sm group-hover:text-brand-teal transition-colors">{patient.name} Initial Assessment</h4>
-                  <p className="text-xs text-slate-500 mt-1">Assigned to: {patient.careTeam.caseManager.name || "RN Assessor"}</p>
+                  <h4 className="font-bold text-slate-900 text-sm group-hover:text-brand-teal transition-colors leading-tight mb-0.5">{patient.name} Initial Assessment</h4>
+                  <p className="text-xs text-slate-500">Assigned to: {patient.careTeam.caseManager.name || "RN Assessor"}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto border-t border-slate-100 sm:border-0 pt-3 sm:pt-0">
                 <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full border border-emerald-200">
                   Confirmed
                 </span>

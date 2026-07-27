@@ -40,7 +40,7 @@ export default function IntakeReferralsPage() {
           <h2 className="text-xl font-bold text-text-primary">Referrals & Intake Pipeline</h2>
           <p className="text-xs text-text-secondary mt-1">Manage incoming inquiries and admissions</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
           {/* View Toggles */}
           <div className="flex items-center gap-2 bg-white p-1 rounded-full border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
             <button
