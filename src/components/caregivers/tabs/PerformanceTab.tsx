@@ -15,7 +15,12 @@ const performanceData = [
   { month: 'Jun', score: 4.9 },
 ];
 
-export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
+interface PerformanceTabProps {
+  caregiver: Caregiver;
+  onViewFeedback?: () => void;
+}
+
+export function PerformanceTab({ caregiver, onViewFeedback }: PerformanceTabProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -108,7 +113,12 @@ export function PerformanceTab({ caregiver }: { caregiver: Caregiver }) {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-slate-800">Recent Patient Feedback</h3>
-            <button className="text-sm text-brand-teal font-medium">View All</button>
+            <button
+              onClick={onViewFeedback}
+              className="text-sm text-brand-teal font-medium hover:underline cursor-pointer"
+            >
+              View All
+            </button>
           </div>
 
           <div className="space-y-4">

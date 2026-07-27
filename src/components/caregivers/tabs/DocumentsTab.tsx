@@ -30,19 +30,44 @@ const documentGroups = [
   }
 ];
 
-export function DocumentsTab({ caregiver }: { caregiver: Caregiver }) {
+interface DocumentsTabProps {
+  caregiver: Caregiver;
+  onUploadDocument?: () => void;
+  onViewDocument?: (title: string, category?: string, date?: string) => void;
+  onDownloadDocument?: (title: string) => void;
+  extraDocuments?: Array<{ name: string; category: string; date: string; size: string }>;
+}
+
+export function DocumentsTab({
+  caregiver,
+  onUploadDocument,
+  onViewDocument,
+  onDownloadDocument,
+  extraDocuments = [],
+}: DocumentsTabProps) {
+  const mergedGroups = documentGroups.map((grp) => {
+    const extraForGrp = extraDocuments.filter((d) => d.category === grp.title);
+    return {
+      ...grp,
+      files: [...grp.files, ...extraForGrp],
+    };
+  });
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-slate-800">Caregiver Documents</h3>
-        <button className="text-sm font-medium bg-brand-teal text-white hover:bg-emerald-600 px-4 py-2 rounded-xl transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-center gap-2">
+        <button
+          onClick={onUploadDocument}
+          className="text-sm font-medium bg-brand-teal text-white hover:bg-emerald-600 px-4 py-2 rounded-xl transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-center gap-2 cursor-pointer active:scale-95"
+        >
           <UploadCloud className="w-4 h-4" />
           Upload Document
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {documentGroups.map((group, idx) => (
+        {mergedGroups.map((group, idx) => (
           <Card key={idx} className="p-0 overflow-hidden flex flex-col h-full">
             <div className="px-5 py-4 border-b border-slate-100 bg-slate-50 flex items-center gap-3">
               <Folder className="w-5 h-5 text-brand-teal" />
@@ -51,7 +76,10 @@ export function DocumentsTab({ caregiver }: { caregiver: Caregiver }) {
             <div className="flex-1">
               {group.files.map((file, fIdx) => (
                 <div key={fIdx} className="flex items-center justify-between p-3 hover:bg-slate-50 rounded-xl transition-colors group/file">
-                  <div className="flex items-start gap-3">
+                  <div
+                    onClick={() => onViewDocument?.(file.name, group.title, file.date)}
+                    className="flex items-start gap-3 cursor-pointer flex-1"
+                  >
                     <div className={cn(
                       "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
                       file.name.endsWith('.pdf') ? "bg-red-50 text-red-500" : "bg-blue-50 text-blue-500"
@@ -68,10 +96,18 @@ export function DocumentsTab({ caregiver }: { caregiver: Caregiver }) {
                     </div>
                   </div>
                   <div className="flex items-center gap-1 opacity-0 group-hover/file:opacity-100 transition-opacity">
-                    <button className="p-2 text-slate-400 hover:text-brand-teal hover:bg-teal-50 rounded-lg transition-colors" title="View">
+                    <button
+                      onClick={() => onViewDocument?.(file.name, group.title, file.date)}
+                      className="p-2 text-slate-400 hover:text-brand-teal hover:bg-teal-50 rounded-lg transition-colors cursor-pointer"
+                      title="View"
+                    >
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="p-2 text-slate-400 hover:text-brand-teal hover:bg-teal-50 rounded-lg transition-colors" title="Download">
+                    <button
+                      onClick={() => onDownloadDocument?.(file.name)}
+                      className="p-2 text-slate-400 hover:text-brand-teal hover:bg-teal-50 rounded-lg transition-colors cursor-pointer"
+                      title="Download"
+                    >
                       <Download className="w-4 h-4" />
                     </button>
                   </div>

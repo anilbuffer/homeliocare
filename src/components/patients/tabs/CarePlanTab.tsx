@@ -66,7 +66,7 @@ export function CarePlanTab({ patient }: { patient: Patient }) {
         <h3 className="text-sm lg:text-lg font-semibold text-slate-700 mb-3">Tasks</h3>
         <Card className="overflow-hidden bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm text-slate-600">
+            <table className="w-full text-left text-xs text-slate-600">
               <thead className="bg-slate-50 text-xs text-slate-500 font-semibold uppercase tracking-wider">
                 <tr>
                   <th className="px-4 py-3 border-b border-slate-100">Task</th>

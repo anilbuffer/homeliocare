@@ -3,7 +3,12 @@
 import React from "react";
 import { Shield, ShieldAlert, CheckCircle, ExternalLink, Clock, RefreshCw } from "lucide-react";
 
-export function BackgroundCheckWidget() {
+interface BackgroundCheckWidgetProps {
+  onRunChecks?: () => void;
+  onViewDetails?: () => void;
+}
+
+export function BackgroundCheckWidget({ onRunChecks, onViewDetails }: BackgroundCheckWidgetProps = {}) {
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
       <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
@@ -11,7 +16,10 @@ export function BackgroundCheckWidget() {
           <Shield className="w-4 h-4 text-brand-teal" />
           Background & Screening
         </h3>
-        <button className="text-xs font-medium text-brand-teal hover:text-teal-700 flex items-center gap-1">
+        <button
+          onClick={onRunChecks}
+          className="text-xs font-medium text-brand-teal hover:text-teal-700 flex items-center gap-1 active:scale-95 transition-all"
+        >
           <RefreshCw className="w-3 h-3" /> Run Checks
         </button>
       </div>
@@ -64,7 +72,10 @@ export function BackgroundCheckWidget() {
             <span className="px-2 py-1 bg-red-50 text-red-700 text-xs font-medium rounded border border-red-200">
               Flagged
             </span>
-            <button className="text-[10px] text-slate-400 hover:text-brand-teal flex items-center gap-1">
+            <button
+              onClick={onViewDetails}
+              className="text-[10px] text-slate-400 hover:text-brand-teal flex items-center gap-1 font-semibold hover:underline"
+            >
               View Details <ExternalLink className="w-3 h-3" />
             </button>
           </div>

@@ -7,7 +7,13 @@ import { Badge } from "@/components/ui/Badge";
 import { Phone, Mail, MapPin, Activity, CalendarCheck, ShieldAlert, FileText, CheckCircle2 } from "lucide-react";
 import { BackgroundCheckWidget } from "@/components/caregivers/recruiting/BackgroundCheckWidget";
 
-export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
+interface OverviewTabProps {
+  caregiver: Caregiver;
+  onRunChecks?: () => void;
+  onViewScreeningDetails?: () => void;
+}
+
+export function OverviewTab({ caregiver, onRunChecks, onViewScreeningDetails }: OverviewTabProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 space-y-6">
@@ -185,7 +191,7 @@ export function OverviewTab({ caregiver }: { caregiver: Caregiver }) {
           </div>
         </Card>
         
-        <BackgroundCheckWidget />
+        <BackgroundCheckWidget onRunChecks={onRunChecks} onViewDetails={onViewScreeningDetails} />
       </div>
     </div>
   );

@@ -9,16 +9,23 @@ import { Badge } from "@/components/ui/Badge";
 import { Users, Calendar, ArrowRight, Activity } from "lucide-react";
 import { mockPatients } from "@/lib/patients/mockData";
 
-export function AssignedPatientsTab({ caregiver }: { caregiver: Caregiver }) {
+interface AssignedPatientsTabProps {
+  caregiver: Caregiver;
+  onAssignPatient?: () => void;
+}
+
+export function AssignedPatientsTab({ caregiver, onAssignPatient }: AssignedPatientsTabProps) {
   // Mock grabbing assigned patients from the existing patient mock data
-  // In a real app, this would be a filtered array based on assignments
   const assignedPatients = Object.values(mockPatients).slice(0, caregiver.assignedPatientsCount || 2);
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-slate-800">Assigned Patients ({assignedPatients.length})</h3>
-        <button className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-brand-teal/90 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 whitespace-nowrap">
+        <button
+          onClick={onAssignPatient}
+          className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-4 py-2 rounded-xl hover:bg-emerald-600 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)] cursor-pointer active:scale-95"
+        >
           Assign New Patient
         </button>
       </div>
@@ -70,7 +77,10 @@ export function AssignedPatientsTab({ caregiver }: { caregiver: Caregiver }) {
           <p className="text-slate-500 max-w-md">
             This caregiver does not currently have any active patient assignments. They are ready for scheduling.
           </p>
-          <button className="mt-6 bg-brand-teal text-white px-6 py-2.5 rounded-xl font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all active:scale-95">
+          <button
+            onClick={onAssignPatient}
+            className="mt-6 bg-brand-teal text-white px-6 py-2.5 rounded-xl font-medium shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] transition-all active:scale-95 cursor-pointer"
+          >
             Find Matching Patients
           </button>
         </Card>

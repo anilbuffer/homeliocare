@@ -1,4 +1,4 @@
-export type CaregiverStatus = "Active" | "Onboarding" | "Inactive" | "On Leave";
+export type CaregiverStatus = "Active" | "Onboarding" | "Inactive" | "On Leave" | "Leave of Absence" | "Terminated";
 export type EmploymentType = "W2" | "1099";
 
 export interface Certification {

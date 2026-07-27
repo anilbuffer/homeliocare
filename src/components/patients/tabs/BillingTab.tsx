@@ -50,24 +50,24 @@ export function BillingTab({ patient }: { patient: Patient }) {
           </button>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-600">
+          <table className="w-full text-left text-xs text-slate-600">
             <thead className="bg-slate-50 text-xs text-slate-500 font-semibold uppercase tracking-wider border-y border-slate-100">
               <tr>
-                <th className="px-6 py-4">Claim</th>
-                <th className="px-6 py-4">Service Dates</th>
-                <th className="px-6 py-4">Payer</th>
-                <th className="px-6 py-4">Amount</th>
-                <th className="px-6 py-4">Status</th>
+                <th className="px-4 py-3">Claim</th>
+                <th className="px-4 py-3">Service Dates</th>
+                <th className="px-4 py-3">Payer</th>
+                <th className="px-4 py-3">Amount</th>
+                <th className="px-4 py-3">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {billing.claims.map((claim) => (
                 <tr key={claim.id} className="hover:bg-slate-50/50">
-                  <td className="px-6 py-4 font-medium text-slate-800">{claim.id}</td>
-                  <td className="px-6 py-4">{claim.serviceDates}</td>
-                  <td className="px-6 py-4">{claim.payer}</td>
-                  <td className="px-6 py-4 font-medium text-slate-800">{claim.amount}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-4 py-3 font-medium text-slate-800">{claim.id}</td>
+                  <td className="px-4 py-3">{claim.serviceDates}</td>
+                  <td className="px-4 py-3">{claim.payer}</td>
+                  <td className="px-4 py-3 font-medium text-slate-800">{claim.amount}</td>
+                  <td className="px-4 py-3">
                     {claim.status === "Draft" && <Badge variant="default" className="text-slate-500"><span className="w-1.5 h-1.5 rounded-full bg-slate-400 mr-1.5"></span>Draft</Badge>}
                     {claim.status === "Pending" && <Badge variant="warning" className="bg-amber-50 text-amber-600"><span className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>Pending</Badge>}
                     {claim.status === "Paid" && <Badge variant="success" className="bg-emerald-50 text-emerald-600"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>Paid</Badge>}

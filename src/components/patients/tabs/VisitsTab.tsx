@@ -52,10 +52,10 @@ export function VisitsTab({ patient }: { patient: Patient }) {
                   className="p-4 flex items-center justify-between w-full hover:bg-slate-50 transition-colors text-left"
                 >
                   <div className="flex items-center w-1/4">
-                    <span className="font-semibold text-slate-800">{visit.date}</span>
-                    <span className="text-slate-500 ml-2">{visit.time}</span>
+                    <span className="font-semibold text-sm text-slate-800">{visit.date}</span>
+                    <span className="text-slate-500 ml-2 text-sm">{visit.time}</span>
                   </div>
-                  <div className="w-1/4 text-slate-700 font-medium">{visit.staff}</div>
+                  <div className="w-1/4 text-slate-700 text-sm font-medium">{visit.staff}</div>
                   <div className="w-1/6 text-slate-500 text-sm">{visit.duration}</div>
                   <div className="w-1/6 flex items-center text-sm">{getVerificationIcon(visit.status)}</div>
                   <div className="w-1/6 flex items-center justify-end gap-3">
@@ -93,13 +93,13 @@ export function VisitsTab({ patient }: { patient: Patient }) {
                   className="p-4 flex items-center justify-between w-full hover:bg-slate-50 transition-colors text-left"
                 >
                   <div className="flex items-center w-1/4">
-                    <span className="font-semibold text-slate-800">{visit.date}</span>
-                    <span className="text-slate-500 ml-2">{visit.time}</span>
+                    <span className="font-semibold text-sm text-slate-800">{visit.date}</span>
+                    <span className="text-slate-500 text-sm ml-2">{visit.time}</span>
                   </div>
-                  <div className="w-1/4 text-slate-700 font-medium">{visit.staff}</div>
+                  <div className="w-1/4 text-slate-700 text-sm font-medium">{visit.staff}</div>
                   <div className="w-1/6 text-slate-500 text-sm">{visit.duration}</div>
                   <div className="w-1/6 flex items-center text-sm">{getVerificationIcon(visit.status)}</div>
-                  <div className="w-1/6 flex items-center justify-end gap-3">
+                  <div className="w-1/6 flex items-center text-sm justify-end gap-3">
                     {getStatusBadge(visit.type)}
                     <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
                   </div>

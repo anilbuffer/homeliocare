@@ -61,7 +61,22 @@ const defaultCaregiverPolicies: CaregiverPolicyAck[] = [
   },
 ];
 
-export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
+import { useRouter } from "next/navigation";
+
+interface CertificationsTabProps {
+  caregiver: Caregiver;
+  onViewDocument?: (title: string, category?: string, signedDate?: string) => void;
+  onViewCertificate?: (cert: { name: string; issuer: string; issueDate: string; expiryDate: string; status: string }) => void;
+  onTriggerToast?: (msg: string) => void;
+}
+
+export function CertificationsTab({
+  caregiver,
+  onViewDocument,
+  onViewCertificate,
+  onTriggerToast,
+}: CertificationsTabProps) {
+  const router = useRouter();
   const policiesList = caregiver.policyAcknowledgments && caregiver.policyAcknowledgments.length > 0
     ? caregiver.policyAcknowledgments
     : defaultCaregiverPolicies;
@@ -71,9 +86,13 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
   const pendingCount = policiesList.filter((p) => p.status === "Pending").length;
 
   const [remindedItems, setRemindedItems] = useState<Record<string, boolean>>({});
+  const [trainingReminded, setTrainingReminded] = useState(false);
 
-  const handleSendReminder = (policyId: string) => {
+  const handleSendReminder = (policyId: string, policyName: string) => {
     setRemindedItems((prev) => ({ ...prev, [policyId]: true }));
+    if (onTriggerToast) {
+      onTriggerToast(`Signature reminder sent for "${policyName}"!`);
+    }
   };
 
   return (
@@ -84,7 +103,10 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
           <h3 className="text-lg font-bold text-slate-800">Certifications & Credentials</h3>
           <p className="text-xs text-slate-500 mt-0.5">Active licenses, CPR cards, and clinical credentials.</p>
         </div>
-        <button className="text-sm font-semibold text-brand-teal hover:text-emerald-700 flex items-center gap-1 transition-colors self-start sm:self-auto">
+        <button
+          onClick={() => router.push("/hr/training")}
+          className="text-sm font-semibold text-brand-teal hover:text-emerald-700 flex items-center gap-1 transition-colors self-start sm:self-auto cursor-pointer"
+        >
           <span>View Training Center</span>
           <ArrowRight className="w-4 h-4" />
         </button>
@@ -95,7 +117,14 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
         {caregiver.certifications.map((cert) => (
           <Card
             key={cert.id}
-            className="p-4 sm:p-5 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all"
+            onClick={() => onViewCertificate?.({
+              name: cert.name,
+              issuer: cert.issuer,
+              issueDate: cert.issueDate,
+              expiryDate: cert.expiryDate,
+              status: cert.status,
+            })}
+            className="p-4 sm:p-5 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all cursor-pointer"
           >
             <div className="flex justify-between items-start mb-4">
               <div
@@ -104,8 +133,8 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                   cert.status === "Active"
                     ? "bg-emerald-50 text-emerald-600 border-emerald-200"
                     : cert.status === "Expiring Soon"
-                    ? "bg-amber-50 text-amber-600 border-amber-200"
-                    : "bg-rose-50 text-rose-600 border-rose-200"
+                      ? "bg-amber-50 text-amber-600 border-amber-200"
+                      : "bg-rose-50 text-rose-600 border-rose-200"
                 )}
               >
                 <Award className="w-5 h-5" />
@@ -115,8 +144,8 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                   cert.status === "Active"
                     ? "success"
                     : cert.status === "Expiring Soon"
-                    ? "warning"
-                    : "error"
+                      ? "warning"
+                      : "error"
                 }
               >
                 {cert.status}
@@ -141,8 +170,8 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                     cert.status === "Expiring Soon"
                       ? "text-amber-600 font-bold"
                       : cert.status === "Expired"
-                      ? "text-rose-600 font-bold"
-                      : "text-slate-700"
+                        ? "text-rose-600 font-bold"
+                        : "text-slate-700"
                   )}
                 >
                   {cert.expiryDate}
@@ -228,20 +257,20 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                   {/* Policy Title & Metadata */}
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-slate-800 text-sm sm:text-base">{item.policyName}</span>
+                      <span className="font-semibold text-slate-800 text-sm">{item.policyName}</span>
                       {item.version && (
-                        <span className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded border border-slate-200 shrink-0">
+                        <span className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full border border-slate-200 shrink-0">
                           {item.version}
                         </span>
                       )}
                       {item.category && (
-                        <span className="text-[10px] font-medium bg-slate-50 text-slate-500 px-2 py-0.5 rounded border border-slate-100 shrink-0">
+                        <span className="text-[10px] font-normal bg-slate-50 text-slate-500 px-2 py-0.5 rounded border border-slate-100 shrink-0">
                           {item.category}
                         </span>
                       )}
                     </div>
 
-                    {/* Simple Checklist Format: "Agency Code of Conduct ✓ Jul 21" */}
+                    {/* Simple Checklist Format */}
                     <div className="text-xs text-slate-500 mt-1 flex items-center gap-1.5 flex-wrap">
                       {item.status === "Signed" ? (
                         <span className="text-emerald-700 font-semibold flex items-center gap-1">
@@ -266,19 +295,21 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                 {/* Actions */}
                 <div className="flex items-center gap-2 self-start md:self-center shrink-0 w-full sm:w-auto">
                   {item.status === "Signed" ? (
-                    <button className="w-full sm:w-auto text-xs text-slate-700 hover:text-brand-teal font-semibold border border-slate-200 px-3.5 py-2 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-1.5 min-h-[38px] active:scale-95 touch-manipulation">
+                    <button
+                      onClick={() => onViewDocument?.(item.policyName, item.category, item.signedDate)}
+                      className="w-full sm:w-auto text-xs text-slate-700 hover:text-brand-teal font-semibold border border-slate-200 px-3.5 py-2 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-1.5 min-h-[38px] active:scale-95 touch-manipulation cursor-pointer"
+                    >
                       <FileCheck2 className="w-3.5 h-3.5 text-emerald-600" />
                       <span>View Signed Copy</span>
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleSendReminder(item.id)}
+                      onClick={() => handleSendReminder(item.id, item.policyName)}
                       disabled={isReminded}
-                      className={`w-full sm:w-auto text-xs font-semibold px-3.5 py-2 rounded-xl border transition-colors flex items-center justify-center gap-1.5 min-h-[38px] active:scale-95 touch-manipulation ${
-                        isReminded
-                          ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
-                          : "bg-brand-teal text-white border-brand-teal hover:bg-brand-teal/90 shadow-sm"
-                      }`}
+                      className={`w-full sm:w-auto text-xs font-semibold px-3.5 py-2 rounded-xl border transition-colors flex items-center justify-center gap-1.5 min-h-[38px] active:scale-95 touch-manipulation ${isReminded
+                        ? "bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed"
+                        : "bg-brand-teal text-white border-brand-teal hover:bg-brand-teal/90 shadow-sm cursor-pointer"
+                        }`}
                     >
                       {isReminded ? (
                         <>
@@ -304,7 +335,7 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
       <Card className="mt-6 overflow-hidden border border-slate-200">
         <div className="border-b border-slate-200 bg-slate-50 p-4 flex items-center justify-between">
           <h4 className="font-bold text-slate-800 text-sm sm:text-base">Required Training Modules</h4>
-          <Badge variant="brand">2 Pending</Badge>
+          <Badge variant="brand">{trainingReminded ? "1 Pending" : "2 Pending"}</Badge>
         </div>
         <div className="divide-y divide-slate-200">
           <div className="p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-slate-50 transition-colors">
@@ -315,7 +346,16 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                 <div className="text-xs text-slate-500">Completed on Jan 15, 2026</div>
               </div>
             </div>
-            <button className="text-xs sm:text-sm text-brand-teal font-semibold hover:underline self-end sm:self-center">
+            <button
+              onClick={() => onViewCertificate?.({
+                name: "HIPAA Compliance Certificate 2026",
+                issuer: "HomelioCare Compliance Academy",
+                issueDate: "Jan 15, 2026",
+                expiryDate: "Jan 15, 2027",
+                status: "Active",
+              })}
+              className="text-xs sm:text-sm text-brand-teal font-semibold hover:underline self-end sm:self-center cursor-pointer"
+            >
               View Certificate
             </button>
           </div>
@@ -327,7 +367,16 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                 <div className="text-xs text-slate-500">Completed on Feb 02, 2026</div>
               </div>
             </div>
-            <button className="text-xs sm:text-sm text-brand-teal font-semibold hover:underline self-end sm:self-center">
+            <button
+              onClick={() => onViewCertificate?.({
+                name: "Infection Control & PPE Certification",
+                issuer: "National Safety Board",
+                issueDate: "Feb 02, 2026",
+                expiryDate: "Feb 02, 2027",
+                status: "Active",
+              })}
+              className="text-xs sm:text-sm text-brand-teal font-semibold hover:underline self-end sm:self-center cursor-pointer"
+            >
               View Certificate
             </button>
           </div>
@@ -339,8 +388,18 @@ export function CertificationsTab({ caregiver }: { caregiver: Caregiver }) {
                 <div className="text-xs text-amber-600 font-medium">Due by Jul 30, 2026</div>
               </div>
             </div>
-            <button className="text-xs font-semibold text-slate-600 border border-slate-200 px-3 py-1.5 rounded-xl hover:bg-slate-100 self-end sm:self-center">
-              Send Reminder
+            <button
+              onClick={() => {
+                setTrainingReminded(true);
+                onTriggerToast?.("Training reminder sent to caregiver for Advanced Dementia Care!");
+              }}
+              disabled={trainingReminded}
+              className={`text-xs font-semibold px-3 py-1.5 rounded-xl border transition-colors self-end sm:self-center ${trainingReminded
+                ? "bg-slate-100 text-slate-400 border-slate-200"
+                : "text-slate-600 border-slate-200 hover:bg-slate-100 cursor-pointer"
+                }`}
+            >
+              {trainingReminded ? "Reminder Sent" : "Send Reminder"}
             </button>
           </div>
         </div>

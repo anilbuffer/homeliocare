@@ -10,14 +10,31 @@ import { cn } from "@/components/ui/Card";
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const TIMES = ["Morning (6am-2pm)", "Afternoon (2pm-10pm)", "Night (10pm-6am)"];
 
-export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
+interface AvailabilityTabProps {
+  caregiver: Caregiver;
+  onEditAvailability?: () => void;
+  onAddRegion?: () => void;
+  onScheduleShift?: () => void;
+  regions?: string[];
+}
+
+export function AvailabilityTab({
+  caregiver,
+  onEditAvailability,
+  onAddRegion,
+  onScheduleShift,
+  regions = ["North District", "Downtown"],
+}: AvailabilityTabProps) {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
       <div className="xl:col-span-2 space-y-6">
         <Card className="p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-slate-800">Weekly Availability Grid</h3>
-            <button className="text-sm font-medium text-brand-teal hover:text-emerald-700 bg-brand-teal/10 px-3 py-1.5 rounded-lg transition-colors">
+            <button
+              onClick={onEditAvailability}
+              className="text-sm font-medium text-brand-teal hover:text-emerald-700 bg-brand-teal/10 px-3 py-1.5 rounded-lg transition-colors cursor-pointer active:scale-95"
+            >
               Edit Availability
             </button>
           </div>
@@ -41,10 +58,13 @@ export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
                       const isAvailable = (tIdx < 2 && dIdx < 5) || (tIdx === 2 && dIdx === 5);
                       return (
                         <td key={`${time}-${day}`} className="p-1">
-                          <div className={cn(
-                            "w-full h-12 rounded-lg flex items-center justify-center transition-colors cursor-pointer border border-transparent",
-                            isAvailable ? "bg-emerald-50 hover:bg-emerald-100 text-emerald-600 hover:border-emerald-200" : "bg-slate-50 hover:bg-slate-100 text-slate-300 hover:border-slate-200"
-                          )}>
+                          <div
+                            onClick={onEditAvailability}
+                            className={cn(
+                              "w-full h-12 rounded-lg flex items-center justify-center transition-colors cursor-pointer border border-transparent",
+                              isAvailable ? "bg-emerald-50 hover:bg-emerald-100 text-emerald-600 hover:border-emerald-200" : "bg-slate-50 hover:bg-slate-100 text-slate-300 hover:border-slate-200"
+                            )}
+                          >
                             {isAvailable ? <CheckIcon /> : <DashIcon />}
                           </div>
                         </td>
@@ -65,11 +85,17 @@ export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
         <Card className="p-6">
           <h3 className="text-lg font-semibold text-slate-800 mb-4">Preferred Zones & Regions</h3>
           <div className="flex flex-wrap gap-3">
-            <Badge variant="brand" className="px-3 py-1.5 text-sm rounded-lg flex items-center gap-1.5"><MapPin className="w-4 h-4" /> North District</Badge>
-            <Badge variant="brand" className="px-3 py-1.5 text-sm rounded-lg flex items-center gap-1.5"><MapPin className="w-4 h-4" /> Downtown</Badge>
-            <Badge variant="neutral" className="px-3 py-1.5 text-sm rounded-lg flex items-center gap-1.5 border-dashed bg-transparent text-slate-500">
+            {regions.map((reg, idx) => (
+              <Badge key={idx} variant="brand" className="px-3 py-1.5 text-sm rounded-lg flex items-center gap-1.5">
+                <MapPin className="w-4 h-4" /> {reg}
+              </Badge>
+            ))}
+            <button
+              onClick={onAddRegion}
+              className="px-3 py-1.5 text-sm rounded-lg flex items-center gap-1.5 border border-dashed border-slate-300 bg-transparent text-slate-600 hover:border-brand-teal hover:text-brand-teal transition-colors cursor-pointer font-medium"
+            >
               + Add Region
-            </Badge>
+            </button>
           </div>
         </Card>
       </div>
@@ -78,7 +104,9 @@ export function AvailabilityTab({ caregiver }: { caregiver: Caregiver }) {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-slate-800">Upcoming Shifts</h3>
-            <button className="text-sm font-medium text-brand-teal">View All</button>
+            <button onClick={onScheduleShift} className="text-sm font-medium text-brand-teal hover:underline cursor-pointer">
+              Schedule New
+            </button>
           </div>
 
           <div className="space-y-4">

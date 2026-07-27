@@ -6,7 +6,13 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { DollarSign, Clock, FileText, Download, TrendingUp, CalendarDays } from "lucide-react";
 
-export function PayrollTab({ caregiver }: { caregiver: Caregiver }) {
+interface PayrollTabProps {
+  caregiver: Caregiver;
+  onViewPayStubs?: () => void;
+  onDownloadPayStub?: (period: string) => void;
+}
+
+export function PayrollTab({ caregiver, onViewPayStubs, onDownloadPayStub }: PayrollTabProps) {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -53,7 +59,10 @@ export function PayrollTab({ caregiver }: { caregiver: Caregiver }) {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-semibold text-slate-800">Recent Pay Stubs</h3>
-            <button className="text-sm font-medium text-brand-teal hover:text-emerald-700 transition-colors">
+            <button
+              onClick={onViewPayStubs}
+              className="text-sm font-medium text-brand-teal hover:text-emerald-700 transition-colors cursor-pointer"
+            >
               View All
             </button>
           </div>
@@ -85,7 +94,11 @@ export function PayrollTab({ caregiver }: { caregiver: Caregiver }) {
                       {stub.status}
                     </Badge>
                   </div>
-                  <button className="p-2 text-slate-400 hover:text-brand-teal hover:bg-teal-50 rounded-lg transition-colors" title="Download Pay Stub">
+                  <button
+                    onClick={() => onDownloadPayStub?.(stub.period)}
+                    className="p-2 text-slate-400 hover:text-brand-teal hover:bg-teal-50 rounded-lg transition-colors cursor-pointer"
+                    title="Download Pay Stub"
+                  >
                     <Download className="w-4 h-4" />
                   </button>
                 </div>

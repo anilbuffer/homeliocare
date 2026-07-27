@@ -1,7 +1,6 @@
 import React from "react";
 import { mockCaregivers, Caregiver } from "@/lib/caregivers/mockData";
-import { CaregiverHeader } from "@/components/caregivers/CaregiverHeader";
-import { CaregiverTabs } from "@/components/caregivers/CaregiverTabs";
+import { CaregiverProfileClient } from "@/components/caregivers/CaregiverProfileClient";
 
 export default async function HrCaregiverProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -26,15 +25,5 @@ export default async function HrCaregiverProfilePage({ params }: { params: Promi
     }
   }
 
-  return (
-    <div className="w-full space-y-6">
-      <div className="bg-brand-teal/10 border border-brand-teal/20 text-brand-teal text-xs font-bold px-3.5 py-2 rounded-xl flex items-center justify-between">
-        <span>HR Personnel File & Credentials View</span>
-        <span className="text-[11px] text-slate-500 font-normal">Scoped HR Access Layer</span>
-      </div>
-
-      <CaregiverHeader caregiver={caregiver} />
-      <CaregiverTabs caregiver={caregiver} />
-    </div>
-  );
+  return <CaregiverProfileClient initialCaregiver={caregiver} />;
 }

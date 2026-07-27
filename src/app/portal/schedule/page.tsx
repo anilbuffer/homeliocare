@@ -114,7 +114,7 @@ export default function PortalSchedulePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => handleOpenVisit(visit)}
-                  className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 transition-colors cursor-pointer group"
+                  className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 transition-colors cursor-pointer group"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
                     <div className="flex items-center gap-3 w-48">

@@ -82,9 +82,9 @@ export default function PortalOverviewPage() {
                   <Clock className="w-4 h-4 text-brand-teal" />
                   <span>Today's Visit • {todaysVisit.timeWindow}</span>
                 </div>
-                <div className={`px-3 py-1.5 rounded-full text-xs font-medium border backdrop-blur-md flex items-center gap-2 ${todaysVisit.status === 'In progress' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 
+                <div className={`px-3 py-1.5 rounded-full text-xs font-medium border backdrop-blur-md flex items-center gap-2 ${todaysVisit.status === 'In progress' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' :
                   todaysVisit.status === 'On the way' ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' :
-                  'bg-white/10 text-white border-white/10'
+                    'bg-white/10 text-white border-white/10'
                   }`}>
                   {todaysVisit.status === "In progress" && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />}
                   {todaysVisit.status === "On the way" && <MapPin className="w-3.5 h-3.5 animate-bounce" />}
@@ -242,15 +242,15 @@ export default function PortalOverviewPage() {
                 <Link href="/portal/schedule" key={visit.id} className={`block group p-4 transition-colors duration-200 hover:bg-slate-50 cursor-pointer ${idx !== upcomingVisits.length - 1 ? 'border-b border-slate-200' : ''}`}>
                   <div className="flex items-center justify-between">
                     <div className="space-y-2">
-                      <div className="text-[16px] font-medium text-slate-800 transition-colors">{visit.date}</div>
-                      <div className="text-[13px] text-slate-500 flex items-center gap-2">
+                      <div className="text-[14px] font-medium text-slate-800 transition-colors">{visit.date}</div>
+                      <div className="text-[12px] text-slate-500 flex items-center gap-2">
                         <Clock className="w-[14px] h-[14px]" /> {visit.time}
                       </div>
                       <div className="flex items-center gap-2 pt-1">
-                        <div className="w-8 h-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-[13px] font-medium border border-slate-100">
+                        <div className="w-8 h-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-[12px] font-medium border border-slate-100">
                           {visit.caregiverName.charAt(0)}
                         </div>
-                        <span className="text-[14px] text-slate-700">{visit.caregiverName}</span>
+                        <span className="text-[12px] text-slate-700">{visit.caregiverName}</span>
                       </div>
                     </div>
                   </div>
