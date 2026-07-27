@@ -242,7 +242,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "communications") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/communications" : "/communications";
                   if (item.id === "reports") href = "/reports";
                   if (item.id === "payroll") href = "/payroll";
-                  if (item.id === "settings") href = "/settings";
+                  if (item.id === "settings") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : "/settings";
 
                   return (
                     <li key={item.id} className="relative group">

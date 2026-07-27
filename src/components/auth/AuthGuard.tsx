@@ -32,6 +32,8 @@ export function AuthGuard({
           router.push("/portal");
         } else if (currentUser.role === "CAREGIVER") {
           router.push("/caregiver");
+        } else if (currentUser.role === "INTAKE_COORDINATOR") {
+          router.push("/intake/dashboard");
         } else {
           router.push("/login");
         }

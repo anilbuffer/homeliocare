@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
 
 const navItems = [
   { name: "Home", href: "/dashboard", icon: LayoutDashboard, pattern: ["/dashboard", "/"] },
@@ -23,16 +24,32 @@ const navItems = [
 
 export function MobileBottomNav() {
   const pathname = usePathname();
+  const { currentUser } = useAuth();
 
   const isItemActive = (patterns: string[]) => {
     if (!pathname) return false;
     return patterns.some((p) => (p === "/" ? pathname === "/" : pathname.startsWith(p)));
   };
 
+  const getNavItems = () => {
+    if (currentUser?.role === "INTAKE_COORDINATOR") {
+      return [
+        { name: "Home", href: "/intake/dashboard", icon: LayoutDashboard, pattern: ["/intake/dashboard"] },
+        { name: "Scheduler", href: "/intake/scheduling", icon: CalendarDays, pattern: ["/intake/scheduling"] },
+        { name: "Patients", href: "/intake/patients", icon: HeartHandshake, pattern: ["/intake/patients"] },
+        { name: "Referrals", href: "/intake/referrals", icon: Receipt, pattern: ["/intake/referrals"] },
+        { name: "Settings", href: "/intake/settings", icon: Settings, pattern: ["/intake/settings"] },
+      ];
+    }
+    return navItems;
+  };
+
+  const currentNavItems = getNavItems();
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 min-[1120px]:hidden bg-slate-900/90 backdrop-blur-lg border-t border-slate-800 px-3 py-2 text-white shadow-2xl">
       <div className="flex items-center justify-around max-w-lg mx-auto">
-        {navItems.map((item) => {
+        {currentNavItems.map((item) => {
           const active = isItemActive(item.pattern);
           const Icon = item.icon;
 
