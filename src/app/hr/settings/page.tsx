@@ -75,7 +75,7 @@ export default function HrSettingsPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Top Header Banner */}
-      <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white/80 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
             <Sliders className="w-4 h-4" /> HR Portal Settings
@@ -95,7 +95,7 @@ export default function HrSettingsPage() {
       </div>
 
       {/* Desktop 2-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
         {/* Left Vertical Tab Navigation (1/4 width) */}
         <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-1 self-start">
           {[
@@ -110,11 +110,10 @@ export default function HrSettingsPage() {
               <button
                 key={t.id}
                 onClick={() => setActiveTab(t.id as any)}
-                className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-3 cursor-pointer ${
-                  isActive
-                    ? "bg-brand-teal text-white shadow-xs font-bold"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
-                }`}
+                className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-3 cursor-pointer ${isActive
+                  ? "bg-brand-teal text-white shadow-xs font-bold"
+                  : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
+                  }`}
               >
                 <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${isActive ? "text-white" : "text-brand-teal"}`} />
                 <div>
@@ -132,7 +131,7 @@ export default function HrSettingsPage() {
         <div className="lg:col-span-3">
           {/* TAB 1: PERSONAL PROFILE */}
           {activeTab === "profile" && (
-            <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+            <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                 <div>
                   <h3 className="text-base font-bold text-gray-900">HR Profile Information</h3>
@@ -229,7 +228,7 @@ export default function HrSettingsPage() {
 
           {/* TAB 2: NOTIFICATIONS & ALERTS */}
           {activeTab === "notifications" && (
-            <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+            <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                 <div>
                   <h3 className="text-base font-bold text-gray-900">Notification Preferences</h3>
@@ -306,7 +305,7 @@ export default function HrSettingsPage() {
           {/* TAB 3: SECURITY & PASSWORD */}
           {activeTab === "security" && (
             <div className="space-y-6">
-              <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+              <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div>
                     <h3 className="text-base font-bold text-gray-900">Change Password</h3>
@@ -366,7 +365,7 @@ export default function HrSettingsPage() {
               </form>
 
               {/* 2FA & Active Sessions Container */}
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+              <div className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div>
                     <h3 className="text-base font-bold text-gray-900">Two-Factor Authentication (2FA) & Active Sessions</h3>
@@ -403,22 +402,24 @@ export default function HrSettingsPage() {
                           )}
                           <div>
                             <span className="font-bold text-gray-900 block">{s.device}</span>
-                            <span className="text-[11px] text-gray-500">{s.location} • {s.lastActive}</span>
+                            <span className="text-[11px] text-gray-500 lh-0.6 inline-block">{s.location} • {s.lastActive}</span>
                           </div>
                         </div>
 
-                        {s.isCurrent ? (
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-brand-teal/10 text-brand-teal">
-                            Current Device
-                          </span>
-                        ) : (
-                          <button
-                            onClick={() => handleRevokeSession(s.id)}
-                            className="text-xs text-rose-600 font-bold hover:underline cursor-pointer"
-                          >
-                            Revoke Session
-                          </button>
-                        )}
+                        {
+                          s.isCurrent ? (
+                            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-brand-teal/10 text-brand-teal">
+                              Current Device
+                            </span>
+                          ) : (
+                            <button
+                              onClick={() => handleRevokeSession(s.id)}
+                              className="text-xs text-rose-600 font-bold hover:underline cursor-pointer"
+                            >
+                              Revoke Session
+                            </button>
+                          )
+                        }
                       </div>
                     ))}
                   </div>
@@ -429,7 +430,7 @@ export default function HrSettingsPage() {
 
           {/* TAB 4: PREFERENCES */}
           {activeTab === "preferences" && (
-            <form onSubmit={handleSave} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+            <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                 <div>
                   <h3 className="text-base font-bold text-gray-900">Display & Regional Preferences</h3>
@@ -469,7 +470,7 @@ export default function HrSettingsPage() {
                     <option value="Pacific Time (US & Canada)">Pacific Time (US & Canada)</option>
                   </select>
                 </div>
-                
+
                 <div className="space-y-1.5 text-xs">
                   <label className="font-bold text-gray-800">Theme</label>
                   <select
@@ -487,6 +488,6 @@ export default function HrSettingsPage() {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }

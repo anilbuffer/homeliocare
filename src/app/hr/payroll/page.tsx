@@ -781,7 +781,7 @@ export default function HrPayrollPage() {
             <DollarSign className="w-6 h-6 text-brand-teal" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <span className="text-[10px] font-regular text-slate-400 uppercase tracking-wider block">
                 Period Gross Spend
               </span>
@@ -808,7 +808,7 @@ export default function HrPayrollPage() {
             <Clock className="w-6 h-6 text-blue-600" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <span className="text-[10px] font-regular text-blue-700 uppercase tracking-wider block">
                 Overtime / Double
               </span>
@@ -833,7 +833,7 @@ export default function HrPayrollPage() {
             <MapPin className="w-6 h-6 text-emerald-600" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <span className="text-[10px] font-regular text-emerald-700 block">
                 Travel Mileage
               </span>
@@ -854,7 +854,7 @@ export default function HrPayrollPage() {
             <CheckCircle2 className="w-6 h-6 text-purple-600" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <span className="text-[10px] font-regular text-purple-700 uppercase tracking-wider block">
                 EVV Match Rate
               </span>

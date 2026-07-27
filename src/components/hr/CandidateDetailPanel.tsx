@@ -222,7 +222,7 @@ export function CandidateDetailPanel({ candidate, isOpen, onClose, onUpdateCandi
                   "p-4 rounded-2xl border space-y-3 shadow-[0_4px_24px_rgba(0,0,0,0.04)]",
                   isOigFlagged ? "bg-red-50/80 border-red-300" : candidate.oigSamCheck.status === "Clear" ? "bg-emerald-50/60 border-emerald-200" : "bg-slate-50 border-slate-200"
                 )}>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5">
                       <AlertOctagon className={clsx("w-5 h-5 shrink-0", isOigFlagged ? "text-red-600" : "text-emerald-600")} />
                       <div>
@@ -266,7 +266,7 @@ export function CandidateDetailPanel({ candidate, isOpen, onClose, onUpdateCandi
 
                 {/* Background Check State Machine */}
                 <div className="p-4 rounded-2xl border border-slate-200 bg-slate-50/70 space-y-3 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <div>
                       <div className="font-semibold text-slate-900 text-xs">Background Check ({candidate.backgroundCheck.provider})</div>
                       <div className="text-[11px] text-slate-500 font-medium">Last updated: {candidate.backgroundCheck.lastCheckedDate || "N/A"}</div>
@@ -381,7 +381,7 @@ export function CandidateDetailPanel({ candidate, isOpen, onClose, onUpdateCandi
             {activeTab === "notes" && (
               <div className="space-y-4">
                 <form onSubmit={handleAddNote} className="space-y-3 bg-slate-50/80 p-4 rounded-2xl border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <span className="font-semibold text-slate-800 text-xs">Add Interviewer Note</span>
                     <div className="flex items-center gap-1.5 text-xs">
                       <span className="text-slate-500 font-medium">Rating:</span>

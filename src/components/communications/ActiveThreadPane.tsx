@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { Conversation, mockMessages, Message, mockContacts, Contact } from "./mockData";
 import clsx from "clsx";
+import { toast } from "sonner";
 
 interface ActiveThreadPaneProps {
   conversation: Conversation | null;
@@ -326,7 +327,9 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg">
+          <button 
+            onClick={() => toast.info("Calling feature coming soon")}
+            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg">
             <Phone className="w-5 h-5" />
           </button>
           <button
@@ -351,20 +354,28 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
 
             {isOptionsMenuOpen && (
               <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-[0_8px_30px_-6px_rgba(0,0,0,0.12)] border border-slate-100 py-2 z-50 animate-in fade-in zoom-in-95 duration-200">
-                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
+                <button 
+                  onClick={() => toast.success("Conversation archived")}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
                   <Archive className="w-4 h-4" />
                   Archive conversation
                 </button>
-                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
+                <button 
+                  onClick={() => toast.success("Conversation marked as unread")}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
                   <EyeOff className="w-4 h-4" />
                   Mark as unread
                 </button>
-                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
+                <button 
+                  onClick={() => toast.success("Notifications muted")}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
                   <BellOff className="w-4 h-4" />
                   Mute notifications
                 </button>
                 <div className="h-px bg-slate-100 my-1"></div>
-                <button className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
+                <button 
+                  onClick={() => toast.success("Conversation deleted")}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
                   <Trash2 className="w-4 h-4" />
                   Delete conversation
                 </button>
@@ -381,7 +392,9 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
             <AlertCircle className="w-4 h-4" />
             Escalated — awaiting response
           </div>
-          <button className="text-sm text-red-600 hover:text-red-800 font-semibold">
+          <button 
+            onClick={() => toast.success("Issue resolved")}
+            className="text-sm text-red-600 hover:text-red-800 font-semibold">
             Resolve
           </button>
         </div>

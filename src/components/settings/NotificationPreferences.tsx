@@ -24,7 +24,7 @@ export function NotificationPreferences() {
           <h3 className="text-lg font-semibold text-text-primary">Notification Preferences</h3>
           <p className="text-xs text-text-secondary mt-1">Configure how and when you receive operational alerts.</p>
         </div>
-        <button 
+        <button
           onClick={handleSave}
           disabled={isSaving || isSaved}
           className="inline-flex items-center gap-2 bg-[#1e293b] hover:bg-[#0f172a] disabled:opacity-70 text-white px-5 py-2 rounded-xl text-sm font-medium shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all"
@@ -49,13 +49,13 @@ export function NotificationPreferences() {
             </div>
           </div>
         </div>
-        
+
         <div className="divide-y divide-slate-100">
           {/* Scheduling */}
           <div className="p-6">
             <h5 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider text-brand-teal">Scheduling & Visits</h5>
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-medium text-slate-800">Late Clock-In Alerts</div>
                   <div className="text-xs text-slate-500 mt-0.5">Notify when a caregiver is late by more than 15 minutes.</div>
@@ -65,7 +65,7 @@ export function NotificationPreferences() {
                   <input type="checkbox" defaultChecked className="w-4 h-4 text-brand-teal accent-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
                 </div>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-medium text-slate-800">Missed Visits</div>
                   <div className="text-xs text-slate-500 mt-0.5">Notify when a scheduled visit is missed entirely.</div>
@@ -75,7 +75,7 @@ export function NotificationPreferences() {
                   <input type="checkbox" defaultChecked className="w-4 h-4 text-brand-teal accent-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
                 </div>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-medium text-slate-800">Overtime Warning</div>
                   <div className="text-xs text-slate-500 mt-0.5">Notify when a caregiver approaches 40 hours/week.</div>
@@ -92,7 +92,7 @@ export function NotificationPreferences() {
           <div className="p-6">
             <h5 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider text-purple-600">Compliance & Authorizations</h5>
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-medium text-slate-800">Authorization Expiry</div>
                   <div className="text-xs text-slate-500 mt-0.5">Notify 30 days before a patient's prior authorization expires.</div>
@@ -102,7 +102,7 @@ export function NotificationPreferences() {
                   <input type="checkbox" className="w-4 h-4 text-brand-teal accent-brand-teal rounded border-slate-300 focus:ring-brand-teal" />
                 </div>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-sm font-medium text-slate-800">Caregiver Credentials</div>
                   <div className="text-xs text-slate-500 mt-0.5">Notify when a caregiver's license or certification is expiring soon.</div>

@@ -294,7 +294,7 @@ export function RolesPermissionsTab() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Panel: 15 Roles List (Desktop visible lg+) */}
         <Card className="hidden lg:block lg:col-span-4 p-4 space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <div>
               <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
                 <Shield className="w-4 h-4 text-brand-teal" />

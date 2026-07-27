@@ -30,44 +30,68 @@ import clsx from "clsx";
 import { useSidebarCollapse } from "@/hooks/useSidebarCollapse";
 import { useAuth } from "@/hooks/useAuth";
 
-const navGroups = [
-  {
-    label: "",
-    items: [
-      { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
-      { name: "User Management", icon: ShieldCheck, id: "users" },
-      { name: "Patients", icon: Users, id: "patients" },
-      { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
-      { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
-      { name: "Billing & Claims", icon: Receipt, id: "billing" },
-    ],
-  },
-  {
-    label: "COMPLIANCE & QUALITY",
-    items: [
-      { name: "Incident & Risk", icon: ShieldAlert, id: "incidents" },
-      { name: "Compliance Tracking", icon: CheckSquare, id: "compliance" },
-      { name: "EVV Compliance", icon: Activity, id: "evv-monitoring" },
-      { name: "Quality Assurance", icon: Award, id: "qa" },
-    ],
-  },
-  {
-    label: "TALENT & GROWTH",
-    items: [
-      { name: "Training (LMS)", icon: GraduationCap, id: "training" },
-      { name: "Referrals & Intake", icon: Inbox, id: "referrals" },
-      { name: "Communications", icon: MessageSquare, id: "communications" },
-      { name: "Reports & BI", icon: BarChart3, id: "reports" },
-      { name: "Payroll", icon: Receipt, id: "payroll" },
-    ],
-  },
-  {
-    label: "",
-    items: [
-      { name: "Settings", icon: Settings, id: "settings" },
-    ],
-  },
-];
+const getNavGroups = (role?: string) => {
+  if (role === "INTAKE_COORDINATOR") {
+    return [
+      {
+        label: "",
+        items: [
+          { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
+          { name: "Referral & Intake", icon: Inbox, id: "referrals" },
+          { name: "Patients", icon: Users, id: "patients" },
+          { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
+          { name: "Communications", icon: MessageSquare, id: "communications" },
+        ],
+      },
+      {
+        label: "",
+        items: [
+          { name: "Settings", icon: Settings, id: "settings" },
+        ],
+      },
+    ];
+  }
+
+  // Default ADMIN / other roles
+  return [
+    {
+      label: "",
+      items: [
+        { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
+        { name: "User Management", icon: ShieldCheck, id: "users" },
+        { name: "Patients", icon: Users, id: "patients" },
+        { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
+        { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
+        { name: "Billing & Claims", icon: Receipt, id: "billing" },
+      ],
+    },
+    {
+      label: "COMPLIANCE & QUALITY",
+      items: [
+        { name: "Incident & Risk", icon: ShieldAlert, id: "incidents" },
+        { name: "Compliance Tracking", icon: CheckSquare, id: "compliance" },
+        { name: "EVV Compliance", icon: Activity, id: "evv-monitoring" },
+        { name: "Quality Assurance", icon: Award, id: "qa" },
+      ],
+    },
+    {
+      label: "TALENT & GROWTH",
+      items: [
+        { name: "Training (LMS)", icon: GraduationCap, id: "training" },
+        { name: "Referrals & Intake", icon: Inbox, id: "referrals" },
+        { name: "Communications", icon: MessageSquare, id: "communications" },
+        { name: "Reports & BI", icon: BarChart3, id: "reports" },
+        { name: "Payroll", icon: Receipt, id: "payroll" },
+      ],
+    },
+    {
+      label: "",
+      items: [
+        { name: "Settings", icon: Settings, id: "settings" },
+      ],
+    },
+  ];
+};
 
 interface SidebarProps {
   isOpen?: boolean;
@@ -92,19 +116,19 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/users")) return "users";
     if (pathname?.startsWith("/training")) return "training";
     if (pathname?.startsWith("/billing")) return "billing";
-    if (pathname?.startsWith("/scheduling")) return "scheduling";
-    if (pathname?.startsWith("/patients")) return "patients";
+    if (pathname?.startsWith("/scheduling") || pathname?.startsWith("/intake/scheduling")) return "scheduling";
+    if (pathname?.startsWith("/patients") || pathname?.startsWith("/intake/patients")) return "patients";
     if (pathname?.startsWith("/caregivers")) return "caregivers";
     if (pathname?.startsWith("/evv-monitoring")) return "evv-monitoring";
     if (pathname?.startsWith("/quality-assurance")) return "qa";
     if (pathname?.startsWith("/incidents")) return "incidents";
     if (pathname?.startsWith("/compliance")) return "compliance";
-    if (pathname?.startsWith("/referrals")) return "referrals";
-    if (pathname?.startsWith("/communications")) return "communications";
+    if (pathname?.startsWith("/referrals") || pathname?.startsWith("/intake/referrals")) return "referrals";
+    if (pathname?.startsWith("/communications") || pathname?.startsWith("/intake/communications")) return "communications";
     if (pathname?.startsWith("/reports")) return "reports";
     if (pathname?.startsWith("/payroll")) return "payroll";
     if (pathname?.startsWith("/settings")) return "settings";
-    if (pathname === "/dashboard" || pathname === "/") return "dashboard";
+    if (pathname === "/dashboard" || pathname === "/" || pathname?.startsWith("/intake/dashboard")) return "dashboard";
     return "dashboard";
   });
 
@@ -112,19 +136,19 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname.startsWith("/users")) setActiveItem("users");
     else if (pathname.startsWith("/training")) setActiveItem("training");
     else if (pathname.startsWith("/billing")) setActiveItem("billing");
-    else if (pathname.startsWith("/scheduling")) setActiveItem("scheduling");
-    else if (pathname.startsWith("/patients")) setActiveItem("patients");
+    else if (pathname.startsWith("/scheduling") || pathname.startsWith("/intake/scheduling")) setActiveItem("scheduling");
+    else if (pathname.startsWith("/patients") || pathname.startsWith("/intake/patients")) setActiveItem("patients");
     else if (pathname.startsWith("/caregivers")) setActiveItem("caregivers");
     else if (pathname.startsWith("/evv-monitoring")) setActiveItem("evv-monitoring");
     else if (pathname.startsWith("/quality-assurance")) setActiveItem("qa");
     else if (pathname.startsWith("/incidents")) setActiveItem("incidents");
     else if (pathname.startsWith("/compliance")) setActiveItem("compliance");
-    else if (pathname.startsWith("/referrals")) setActiveItem("referrals");
-    else if (pathname.startsWith("/communications")) setActiveItem("communications");
+    else if (pathname.startsWith("/referrals") || pathname.startsWith("/intake/referrals")) setActiveItem("referrals");
+    else if (pathname.startsWith("/communications") || pathname.startsWith("/intake/communications")) setActiveItem("communications");
     else if (pathname.startsWith("/reports")) setActiveItem("reports");
     else if (pathname.startsWith("/payroll")) setActiveItem("payroll");
     else if (pathname.startsWith("/settings")) setActiveItem("settings");
-    else if (pathname === "/dashboard" || pathname === "/") setActiveItem("dashboard");
+    else if (pathname === "/dashboard" || pathname === "/" || pathname.startsWith("/intake/dashboard")) setActiveItem("dashboard");
   }, [pathname]);
 
   return (
@@ -171,7 +195,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             isCollapsed ? "px-3 justify-center" : "px-5 justify-start"
           )}
         >
-          <Link href="/dashboard" className="flex items-center gap-3 overflow-hidden group">
+          <Link href={currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
             <div className="w-9 h-9 rounded-xl bg-brand-teal flex items-center justify-center font-bold text-lg text-white shadow-md shadow-brand-teal/30 shrink-0 group-hover:scale-105 transition-transform">
               H
             </div>
@@ -185,7 +209,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-700/50 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-600/80">
-          {navGroups.map((group, index) => (
+          {getNavGroups(currentUser?.role).map((group, index) => (
             <div key={index}>
               {group.label ? (
                 !isCollapsed ? (
@@ -203,19 +227,19 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   const Icon = item.icon;
 
                   let href = "#";
-                  if (item.id === "dashboard") href = "/dashboard";
+                  if (item.id === "dashboard") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : "/dashboard";
                   if (item.id === "users") href = "/users";
                   if (item.id === "training") href = "/training";
                   if (item.id === "billing") href = "/billing";
-                  if (item.id === "scheduling") href = "/scheduling";
-                  if (item.id === "patients") href = "/patients";
+                  if (item.id === "scheduling") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
+                  if (item.id === "patients") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : "/patients";
                   if (item.id === "caregivers") href = "/caregivers";
                   if (item.id === "evv-monitoring") href = "/evv-monitoring";
                   if (item.id === "qa") href = "/quality-assurance";
                   if (item.id === "incidents") href = "/incidents";
                   if (item.id === "compliance") href = "/compliance";
-                  if (item.id === "referrals") href = "/referrals";
-                  if (item.id === "communications") href = "/communications";
+                  if (item.id === "referrals") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/referrals" : "/referrals";
+                  if (item.id === "communications") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/communications" : "/communications";
                   if (item.id === "reports") href = "/reports";
                   if (item.id === "payroll") href = "/payroll";
                   if (item.id === "settings") href = "/settings";
@@ -350,7 +374,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               >
                 <div className="flex flex-col gap-1">
                   <Link
-                    href="/settings"
+                    href={currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : "/settings"}
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-xl transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >

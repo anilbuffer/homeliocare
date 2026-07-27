@@ -24,7 +24,8 @@ import {
   Globe,
   Sparkles,
   ArrowRight,
-  UserPlus
+  UserPlus,
+  PhoneCall
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
@@ -221,6 +222,41 @@ const ROLE_DATA: Record<Role, RoleConfig> = {
       }
     ]
   },
+  INTAKE_COORDINATOR: {
+    role: "INTAKE_COORDINATOR",
+    title: "Intake Coordinator",
+    subtitle: "Referrals & New Inquiries",
+    description: "Manage incoming inquiries, schedule initial assessments, and guide families through the onboarding process.",
+    icon: PhoneCall,
+    email: "intake@homeliocare.com",
+    badge: "Intake Desk",
+    badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
+    metrics: [
+      { label: "New Inquiries", value: "12 Today" },
+      { label: "Avg Wait", value: "14 mins" },
+      { label: "Conv. Rate", value: "76%" },
+    ],
+    highlights: ["Urgency Queue", "Pipeline Kanban", "Quick Assessment Booking"],
+    spotlightTitle: "First Contact & Family",
+    spotlightHighlight: "Onboarding Experience",
+    features: [
+      {
+        icon: Activity,
+        title: "Real-time Urgency Queue",
+        desc: "Prioritize hospital discharges and critical leads instantly."
+      },
+      {
+        icon: Globe,
+        title: "Integrated Intake Pipeline",
+        desc: "Seamless handoff from inquiry to signed care plan."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Quick Assessment Booking",
+        desc: "Book available RN assessors while on the phone with families."
+      }
+    ]
+  },
 };
 
 export default function LoginPage() {
@@ -267,6 +303,8 @@ export default function LoginPage() {
         router.push("/portal");
       } else if (selectedRole === "CAREGIVER") {
         router.push("/caregiver");
+      } else if (selectedRole === "INTAKE_COORDINATOR") {
+        router.push("/intake/dashboard");
       } else {
         router.push("/dashboard");
       }
@@ -279,7 +317,7 @@ export default function LoginPage() {
   // Reusable Role Selector Pill Grid Component
   const RoleSelectorGrid = () => (
     <div className="flex flex-col space-y-2.5">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <span className="text-xs font-semibold uppercase tracking-wider text-emerald-200/90 flex items-center gap-1.5">
           <Sparkles className="w-3.5 h-3.5 text-[#2dd4bf]" />
           Select Workspace Role:
@@ -288,7 +326,7 @@ export default function LoginPage() {
           Auto-fills demo credentials
         </span>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2 sm:gap-3">
         {(Object.keys(ROLE_DATA) as Role[]).map((roleKey) => {
           const rItem = ROLE_DATA[roleKey];
           const isSel = selectedRole === roleKey;
@@ -497,7 +535,7 @@ export default function LoginPage() {
             <div className="flex flex-col h-full justify-between">
               {/* Form Header */}
               <div className="mb-3 sm:mb-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#0EA383]/10 text-[#0EA383] border border-[#0EA383]/20">
                     <CurrentRoleIcon className="w-3.5 h-3.5" />
                     <span>{currentRoleInfo.title}</span>
@@ -547,7 +585,7 @@ export default function LoginPage() {
 
                   {/* Password Field */}
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-3">
                       <label className="text-xs font-semibold text-gray-700 block">
                         Password
                       </label>

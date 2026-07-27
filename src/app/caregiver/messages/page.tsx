@@ -102,7 +102,7 @@ export default function CaregiverMessagesPage() {
           {/* LEFT PANE: Conversation List (1/3 width) */}
           <div className="w-full md:w-80 lg:w-96 border-r border-gray-100 flex flex-col bg-gray-50/50">
             <div className="p-4 border-b border-gray-100 space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <h2 className="text-base font-bold text-gray-900">Caregiver Messaging</h2>
                 <span className="text-xs font-semibold bg-brand-teal/10 text-brand-teal px-2 py-0.5 rounded-full">
                   HIPAA Secure
@@ -144,7 +144,7 @@ export default function CaregiverMessagesPage() {
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-3">
                         <h4 className="text-xs font-bold text-gray-900 truncate">{t.title}</h4>
                         <span className="text-[10px] text-gray-400 font-medium shrink-0">{t.lastMessageTime}</span>
                       </div>

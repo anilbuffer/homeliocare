@@ -240,7 +240,7 @@ export default function PortalOverviewPage() {
             <div className="bg-white rounded-[16px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-slate-200 overflow-hidden">
               {upcomingVisits.map((visit, idx) => (
                 <Link href="/portal/schedule" key={visit.id} className={`block group p-4 transition-colors duration-200 hover:bg-slate-50 cursor-pointer ${idx !== upcomingVisits.length - 1 ? 'border-b border-slate-200' : ''}`}>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <div className="space-y-2">
                       <div className="text-[14px] font-medium text-slate-800 transition-colors">{visit.date}</div>
                       <div className="text-[12px] text-slate-500 flex items-center gap-2">

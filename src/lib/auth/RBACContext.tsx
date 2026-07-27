@@ -63,6 +63,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         role: "ADMIN",
         avatarUrl: "",
       };
+    } else if (role === "INTAKE_COORDINATOR") {
+      mockUser = {
+        id: "intake-401",
+        name: "Jessica Miller",
+        email: "intake@homeliocare.com",
+        role: "INTAKE_COORDINATOR",
+        avatarUrl: "",
+      };
     } else {
       mockUser = {
         id: `mock-${role.toLowerCase()}-123`,

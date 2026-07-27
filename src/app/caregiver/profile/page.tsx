@@ -46,7 +46,7 @@ export default function CaregiverProfilePage() {
     <CaregiverLayout>
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Top Caregiver Identity Banner */}
-        <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="bg-white/80 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <Avatar
               src={profile.avatarUrl}
@@ -183,7 +183,7 @@ export default function CaregiverProfilePage() {
 
         {/* TAB 2: PERFORMANCE */}
         {activeTab === "performance" && (
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+          <div className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
             <h3 className="text-base font-bold text-gray-900">Caregiver Performance Analytics</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -271,12 +271,12 @@ export default function CaregiverProfilePage() {
 
         {/* TAB 4: COMPLIANCE */}
         {activeTab === "compliance" && (
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+          <div className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
             <h3 className="text-base font-bold text-gray-900">Background Checks & Document Clearance</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="p-4 rounded-xl border border-slate-200 space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <span className="font-bold text-xs text-gray-900">State & Federal FBI Background Check</span>
                   <span className="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">CLEARED</span>
                 </div>
@@ -284,7 +284,7 @@ export default function CaregiverProfilePage() {
               </div>
 
               <div className="p-4 rounded-xl border border-amber-200 bg-amber-50/50 space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <span className="font-bold text-xs text-amber-950">Annual TB Screening Clear Clearance</span>
                   <span className="text-xs bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-bold">ACTION REQUIRED</span>
                 </div>
@@ -302,7 +302,7 @@ export default function CaregiverProfilePage() {
 
         {/* TAB 5: SETTINGS */}
         {activeTab === "settings" && (
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-6">
+          <div className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
             <h3 className="text-base font-bold text-gray-900">Caregiver Account Settings</h3>
 
             <div className="space-y-4 max-w-lg">

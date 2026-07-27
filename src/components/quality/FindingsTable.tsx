@@ -78,11 +78,11 @@ export function FindingsTable() {
                   </div>
                 </td>
                 <td className="px-5 py-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border whitespace-nowrap", getStatusColor(finding.status))}>
                       {finding.status}
                     </span>
-                    <button 
+                    <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setFindingToResolve(finding);
@@ -112,13 +112,13 @@ export function FindingsTable() {
         description={`Are you sure you want to mark ${findingToResolve?.id} as resolved?`}
         footer={
           <>
-            <button 
+            <button
               onClick={() => setFindingToResolve(null)}
               className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
             >
               Cancel
             </button>
-            <button 
+            <button
               onClick={() => setFindingToResolve(null)}
               className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
             >

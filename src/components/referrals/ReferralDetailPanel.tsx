@@ -1,7 +1,9 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, AlertCircle, Phone, Mail, Calendar, FileText, CheckCircle2, ChevronRight, MessageSquarePlus, Stethoscope, Copy, ShieldCheck, AlertTriangle } from "lucide-react";
+import { X, AlertCircle, Phone, Mail, Calendar, FileText, CheckCircle2, ChevronRight, MessageSquarePlus, Stethoscope, Copy, ShieldCheck, AlertTriangle, ExternalLink, CalendarCheck, Clock } from "lucide-react";
 import clsx from "clsx";
+import { useAuth } from "@/hooks/useAuth";
+import { ReferredOutModal } from "../intake/ReferredOutModal";
 
 import { Referral } from "./types";
 
@@ -12,11 +14,16 @@ interface ReferralDetailPanelProps {
 }
 
 export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDetailPanelProps) {
+  const { currentUser } = useAuth();
+  const [isReferredOutModalOpen, setIsReferredOutModalOpen] = React.useState(false);
+  const isIntakeCoordinator = currentUser?.role === "INTAKE_COORDINATOR";
+
   if (!referral) return null;
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex justify-end">
+    <>
+      <AnimatePresence>
+        <div className="fixed inset-0 z-50 flex justify-end">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -242,16 +249,51 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
           </div>
 
           {/* Footer Actions */}
-          <div className="flex-shrink-0 p-4 bg-white border-t border-slate-200 flex gap-3">
-            <button className="flex-1 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium py-2.5 rounded-xl transition-colors">
-              Decline
-            </button>
-            <button className="flex-1 bg-brand-teal hover:bg-teal-600 text-white font-medium py-2.5 rounded-xl shadow-md transition-colors">
-              Move to Next Stage
-            </button>
-          </div>
+          {isIntakeCoordinator ? (
+            <div className="flex-shrink-0 p-4 bg-white border-t border-slate-200 flex flex-col gap-3">
+              <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider px-1">Intake Outcome</div>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button className="flex-1 flex items-center justify-center gap-2 bg-brand-teal hover:bg-teal-600 text-white font-medium py-2.5 rounded-xl shadow-md transition-colors cursor-pointer">
+                  <CalendarCheck className="w-4 h-4" />
+                  Qualified - Book Assessment
+                </button>
+                <button 
+                  onClick={() => setIsReferredOutModalOpen(true)}
+                  className="flex-1 flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-900 text-white font-medium py-2.5 rounded-xl transition-colors cursor-pointer"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Not Qualified - Refer Out
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium py-2.5 rounded-xl transition-colors cursor-pointer">
+                  <Clock className="w-4 h-4 text-amber-500" />
+                  Follow-Up Needed
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex-shrink-0 p-4 bg-white border-t border-slate-200 flex gap-3">
+              <button className="flex-1 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-medium py-2.5 rounded-xl transition-colors">
+                Decline
+              </button>
+              <button className="flex-1 bg-brand-teal hover:bg-teal-600 text-white font-medium py-2.5 rounded-xl shadow-md transition-colors">
+                Move to Next Stage
+              </button>
+            </div>
+          )}
         </motion.div>
       </div>
-    </AnimatePresence>
+      </AnimatePresence>
+
+      <ReferredOutModal 
+        isOpen={isReferredOutModalOpen}
+        onClose={() => setIsReferredOutModalOpen(false)}
+        onConfirm={(reason, agency) => {
+          // In a real app, this would update the referral status
+          console.log("Referred out", { reason, agency });
+          onClose();
+        }}
+        clientName={referral?.clientName}
+      />
+    </>
   );
 }

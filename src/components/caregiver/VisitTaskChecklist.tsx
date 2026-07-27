@@ -61,7 +61,7 @@ export function VisitTaskChecklist({
       {/* Inline Medication Reminders Banner / Card */}
       {medications && medications.length > 0 && (
         <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50/60 border border-blue-200 space-y-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-blue-900 font-bold text-sm">
               <Pill className="w-4 h-4 text-blue-600" />
               <span>Inline Medication Reminders (Observe & Prompt)</span>
@@ -78,7 +78,7 @@ export function VisitTaskChecklist({
                 className="bg-white p-3.5 rounded-xl border border-blue-100 shadow-xs flex flex-col justify-between space-y-2.5"
               >
                 <div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <span className="font-bold text-xs text-gray-900">{med.medicationName} ({med.dosage})</span>
                     <span className="text-[10px] font-mono font-semibold bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded">
                       Due {med.scheduleTime}
@@ -190,7 +190,7 @@ export function VisitTaskChecklist({
                     </button>
 
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-3">
                         <span
                           className={`text-sm font-semibold transition-colors ${t.completed ? "line-through text-gray-400" : "text-gray-900"
                             }`}

@@ -90,11 +90,10 @@ export function PatientFeedbackModal({ isOpen, onClose, caregiverName }: Patient
                 key={String(val)}
                 type="button"
                 onClick={() => setFilterRating(val as any)}
-                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                  filterRating === val
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${filterRating === val
                     ? "bg-brand-teal text-white shadow-sm"
                     : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-100"
-                }`}
+                  }`}
               >
                 {val === "All" ? "All Reviews" : `${val} Stars`}
               </button>
@@ -105,14 +104,13 @@ export function PatientFeedbackModal({ isOpen, onClose, caregiverName }: Patient
         <div className="space-y-3 max-h-[400px] overflow-y-auto pr-1">
           {filteredReviews.map((rev) => (
             <div key={rev.id} className="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-2">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-1.5">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < rev.rating ? "fill-amber-400 text-amber-400" : "text-slate-200 fill-slate-100"
-                      }`}
+                      className={`w-4 h-4 ${i < rev.rating ? "fill-amber-400 text-amber-400" : "text-slate-200 fill-slate-100"
+                        }`}
                     />
                   ))}
                   <span className="text-xs font-bold text-slate-700 ml-1">{rev.rating}.0</span>

@@ -8,6 +8,7 @@ import { DetailsPane } from "./DetailsPane";
 import { AnnouncementsPane } from "./AnnouncementsPane";
 import { ChevronLeft, Search, Inbox, AtSign, BellOff, Archive, Users, Heart, Users2, Shield, Megaphone } from "lucide-react";
 import clsx from "clsx";
+import { useAuth } from "@/hooks/useAuth";
 
 export type FilterType = "All" | "Unread" | "Mentions" | "Muted" | "Archived";
 
@@ -54,13 +55,18 @@ export function CommunicationsLayout({ initialCategory = "All" }: { initialCateg
     setMobileView("thread");
   };
 
-  const CATEGORIES: { id: ConversationCategory, icon: React.ReactNode }[] = [
+  let CATEGORIES: { id: ConversationCategory, icon: React.ReactNode }[] = [
     { id: "Clients", icon: <Users className="w-4 h-4" /> },
     { id: "Family Members", icon: <Heart className="w-4 h-4" /> },
     { id: "Staff & Caregivers", icon: <Users2 className="w-4 h-4" /> },
     { id: "Care Team Channels", icon: <Shield className="w-4 h-4" /> },
     { id: "Announcements", icon: <Megaphone className="w-4 h-4" /> }
   ];
+
+  const { currentUser } = useAuth();
+  if (currentUser?.role === "INTAKE_COORDINATOR") {
+    CATEGORIES = CATEGORIES.filter(c => ["Clients", "Family Members", "Announcements"].includes(c.id));
+  }
 
   const FILTERS: { id: FilterType, label: string, icon: React.ReactNode }[] = [
     { id: "All", label: "Home", icon: <Inbox className="w-4 h-4" /> },
@@ -71,7 +77,7 @@ export function CommunicationsLayout({ initialCategory = "All" }: { initialCateg
   ];
 
   return (
-    <div className="flex h-full overflow-hidden bg-white/50 backdrop-blur-xl rounded-2xl border border-white/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] relative">
+    <div className="flex h-full overflow-hidden bg-white/50 backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] relative">
 
       {/* MOBILE SIDEBAR BACKDROP */}
       {isMobileSidebarOpen && (

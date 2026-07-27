@@ -220,18 +220,18 @@ export function EndVisitModal({
               <div
                 key={s.num}
                 className={`flex items-center gap-1.5 ${isCurrent
-                    ? "text-brand-teal font-bold"
-                    : isDone
-                      ? "text-gray-700"
-                      : "text-gray-400"
+                  ? "text-brand-teal font-bold"
+                  : isDone
+                    ? "text-gray-700"
+                    : "text-gray-400"
                   }`}
               >
                 <div
                   className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isCurrent
-                      ? "bg-brand-teal text-white shadow-xs"
-                      : isDone
-                        ? "bg-emerald-100 text-emerald-800"
-                        : "bg-gray-100 text-gray-400"
+                    ? "bg-brand-teal text-white shadow-xs"
+                    : isDone
+                      ? "bg-emerald-100 text-emerald-800"
+                      : "bg-gray-100 text-gray-400"
                     }`}
                 >
                   {isDone ? "✓" : s.num}
@@ -247,7 +247,7 @@ export function EndVisitModal({
           {/* STEP 1: VISIT NOTE COMPOSER */}
           {step === 1 && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <label className="text-sm font-bold text-gray-900 block">
                   Structured Clinical & Daily Visit Note <span className="text-rose-500">*</span>
                 </label>
@@ -257,8 +257,8 @@ export function EndVisitModal({
                   type="button"
                   onClick={handleToggleVoice}
                   className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border transition-all ${isRecording
-                      ? "bg-rose-500 text-white border-rose-600 animate-pulse"
-                      : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
+                    ? "bg-rose-500 text-white border-rose-600 animate-pulse"
+                    : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100"
                     }`}
                 >
                   {isRecording ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5 text-brand-teal" />}
@@ -305,7 +305,7 @@ export function EndVisitModal({
           {/* STEP 2: PHOTO ATTACHMENT */}
           {step === 2 && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <h3 className="text-sm font-bold text-gray-900">Visit Photos & Documentation (Optional)</h3>
                   <p className="text-xs text-gray-500">Upload wound care, meal prep, or safety hazard photos.</p>
@@ -366,7 +366,7 @@ export function EndVisitModal({
           {/* STEP 3: CLIENT SIGNATURE CAPTURE */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <div>
                   <h3 className="text-sm font-bold text-gray-900">Client / Patient Signature Verification</h3>
                   <p className="text-xs text-gray-500">Confirming visit completion & service delivery.</p>

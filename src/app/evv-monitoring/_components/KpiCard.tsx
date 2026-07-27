@@ -27,7 +27,7 @@ export function KpiCard({ title, value, subtitle, trend, trendValue, icon, hero 
         className
       )}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <h3 className={clsx("text-sm font-semibold tracking-tight", hero ? "text-emerald-600" : "text-slate-500")}>
           {title}
         </h3>

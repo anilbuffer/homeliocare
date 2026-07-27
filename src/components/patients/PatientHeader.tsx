@@ -97,8 +97,8 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
         description={`Schedule a new visit for ${patient.name}`}
         footer={
           <>
-            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-brand-teal text-white rounded-lg hover:bg-emerald-600 transition-colors">Confirm Schedule</button>
+            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200/90 hover:bg-slate-50 rounded-xl transition-colors">Cancel</button>
+            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-brand-teal text-white rounded-xl hover:bg-emerald-600 transition-colors">Confirm Schedule</button>
           </>
         }
       >
@@ -133,8 +133,8 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
         description="Log a new incident or adverse event."
         footer={
           <>
-            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition-colors">Submit Report</button>
+            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200/90 hover:bg-slate-50 rounded-xl transition-colors">Cancel</button>
+            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-rose-600 text-white rounded-xl hover:bg-rose-700 transition-colors">Submit Report</button>
           </>
         }
       >
@@ -170,7 +170,7 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
         description="Send a secure message to the primary contacts."
         footer={
           <>
-            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
+            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200/90 hover:bg-slate-50 rounded-xl transition-colors">Cancel</button>
             <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-brand-teal text-white rounded-lg hover:bg-emerald-600 transition-colors flex items-center gap-2">
               Send Message
             </button>

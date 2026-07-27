@@ -26,6 +26,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
 import { NewPatientModal } from "@/components/patients/NewPatientModal";
+import { toast } from "sonner";
 
 type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged";
 
@@ -337,7 +338,7 @@ export default function PatientsPage() {
                       <tr
                         key={patient.id}
                         className="hover:bg-slate-50/80 transition-colors group cursor-pointer"
-                        onClick={() => router.push(`/patients/${patient.id}`)}
+                        onClick={() => router.push(`/intake/patients/${patient.id}`)}
                       >
                         <td className="px-4 sm:px-6 py-3.5">
                           <div className="flex items-center gap-3">
@@ -399,7 +400,7 @@ export default function PatientsPage() {
                               className="inline-flex items-center gap-1 text-xs font-semibold text-brand-teal hover:text-emerald-700 bg-brand-teal/10 hover:bg-brand-teal/20 px-3 py-1.5 rounded-lg transition-colors"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                router.push(`/patients/${patient.id}`);
+                                router.push(`/intake/patients/${patient.id}`);
                               }}
                             >
                               View Profile
@@ -419,7 +420,7 @@ export default function PatientsPage() {
                   <div
                     key={patient.id}
                     className="p-4 hover:bg-slate-50/80 transition-colors cursor-pointer active:bg-slate-100/60"
-                    onClick={() => router.push(`/patients/${patient.id}`)}
+                    onClick={() => router.push(`/intake/patients/${patient.id}`)}
                   >
                     <div className="flex items-start justify-between gap-3 mb-2.5">
                       <div className="flex items-center gap-3">
@@ -488,7 +489,7 @@ export default function PatientsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.25, delay: index * 0.04 }}
                 >
-                  <Link href={`/patients/${patient.id}`} className="block h-full group">
+                  <Link href={`/intake/patients/${patient.id}`} className="block h-full group">
                     <Card className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] hover:border-brand-teal/50 transition-all duration-200 relative overflow-hidden flex flex-col justify-between h-full">
                       <div>
                         {/* Top Row: Avatar & Name */}
@@ -512,7 +513,11 @@ export default function PatientsPage() {
                           </div>
                           <button
                             className="p-1 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition-colors shrink-0"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              toast.info("Patient options coming soon");
+                            }}
                           >
                             <MoreVertical className="w-4 h-4" />
                           </button>

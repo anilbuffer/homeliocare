@@ -1,59 +1,52 @@
 "use client";
 
 import React, { useState } from "react";
-import { Avatar } from "@/components/ui/Avatar";
 import {
-  User,
-  ShieldCheck,
   Bell,
   Lock,
-  Globe,
   CheckCircle2,
   Save,
   Key,
   Smartphone,
-  MapPin,
-  Clock,
   Eye,
   EyeOff,
-  AlertTriangle,
-  Upload,
-  Sliders,
   Laptop,
   UserCheck,
+  Settings,
+  Filter,
+  CalendarCheck,
+  ShieldCheck
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
-export default function SchedulerSettingsPage() {
+export default function IntakeSettingsPage() {
   const { currentUser } = useAuth();
 
   // Active Category Tab
-  const [activeTab, setActiveTab] = useState<"dispatch" | "alerts" | "regional" | "profile" | "security">("dispatch");
+  const [activeTab, setActiveTab] = useState<"pipeline" | "alerts" | "assessments" | "profile" | "security">("pipeline");
 
   // Success Toast state
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  // Dispatch & Smart-Match Rules Form State
-  const [maxTravelRadius, setMaxTravelRadius] = useState("10");
-  const [skillWeight, setSkillWeight] = useState("Strict");
-  const [rankingWeight, setRankingWeight] = useState("Proximity");
-  const [overtimeWarning, setOvertimeWarning] = useState("38");
+  // Pipeline & Triage Form State
+  const [autoTriage, setAutoTriage] = useState("Enabled");
+  const [defaultAssignee, setDefaultAssignee] = useState("Round Robin");
+  const [pipelineUrgency, setPipelineUrgency] = useState("24");
 
   // Alerts & Notifications Form State
-  const [callOffSms, setCallOffSms] = useState(true);
-  const [callOffSound, setCallOffSound] = useState(true);
-  const [unfilledUrgencyHours, setUnfilledUrgencyHours] = useState("4");
-  const [availabilityReminders, setAvailabilityReminders] = useState(true);
+  const [newReferralSms, setNewReferralSms] = useState(true);
+  const [missingDocAlert, setMissingDocAlert] = useState(true);
+  const [assessmentReminderHours, setAssessmentReminderHours] = useState("24");
 
-  // Regional Form State
-  const [primaryRegion, setPrimaryRegion] = useState("All Regions");
-  const [crossTerritoryApproval, setCrossTerritoryApproval] = useState("Auto-Approve");
+  // Assessments Form State
+  const [defaultAssessmentDuration, setDefaultAssessmentDuration] = useState("60");
+  const [autoAssignRN, setAutoAssignRN] = useState("Yes");
 
   // Profile Form State
-  const [name, setName] = useState("Alex Rivera");
-  const [title, setTitle] = useState("Lead Scheduler / Dispatcher");
-  const [email, setEmail] = useState("alex.rivera@homeliocare.com");
-  const [phone, setPhone] = useState("(555) 492-1088");
+  const [name, setName] = useState("Sarah Jenkins");
+  const [title, setTitle] = useState("Lead Intake Coordinator");
+  const [email, setEmail] = useState("sarah.jenkins@homeliocare.com");
+  const [phone, setPhone] = useState("(555) 321-9876");
 
   // Security Form State
   const [currentPassword, setCurrentPassword] = useState("");
@@ -63,8 +56,8 @@ export default function SchedulerSettingsPage() {
 
   // Sessions State
   const [sessions, setSessions] = useState([
-    { id: "s-1", device: "Chrome / Windows 11 (Dispatch Station)", location: "New York HQ", lastActive: "Active Now", isCurrent: true },
-    { id: "s-2", device: "Homelio Dispatch Mobile (iPad Pro)", location: "Queens Branch", lastActive: "1 hour ago", isCurrent: false },
+    { id: "s-1", device: "Chrome / Windows 11 (Intake Station)", location: "New York HQ", lastActive: "Active Now", isCurrent: true },
+    { id: "s-2", device: "Homelio Mobile (iPhone 14)", location: "Brooklyn Branch", lastActive: "2 hours ago", isCurrent: false },
   ]);
 
   const handleSave = (e: React.FormEvent) => {
@@ -84,12 +77,12 @@ export default function SchedulerSettingsPage() {
       {/* Top Header Banner */}
       <div className="bg-white/80 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
-            <Sliders className="w-4 h-4" /> Scheduler Portal Settings
+          <div className="flex items-center gap-2 text-brand-teal text-xs font-semibold uppercase">
+            <Settings className="w-4 h-4" /> Intake Coordinator Portal Settings
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mt-0.5">Account & Dispatch Preferences</h1>
+          <h1 className="text-xl font-bold text-gray-900 mt-0.5">Workflow & Account Preferences</h1>
           <p className="text-xs text-gray-500 mt-1">
-            Manage your smart-match algorithms, call-off urgency alerts, territory coverage, and security credentials.
+            Manage your referral pipelines, triage workflows, assessment defaults, and account security.
           </p>
         </div>
 
@@ -106,10 +99,10 @@ export default function SchedulerSettingsPage() {
         {/* Left Vertical Tab Navigation (1/4 width) */}
         <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-1 self-start">
           {[
-            { id: "dispatch", label: "Smart-Match & Dispatch", icon: Sliders, desc: "Proximity, skill strictness & auto-rank" },
-            { id: "alerts", label: "Notifications & Alerts", icon: Bell, desc: "Call-off SMS, push & urgency alerts" },
-            { id: "regional", label: "Territory Coverage", icon: MapPin, desc: "Primary dispatch zones & region scope" },
-            { id: "profile", label: "Dispatcher Profile", icon: UserCheck, desc: "Personal info & contact details" },
+            { id: "pipeline", label: "Pipeline & Triage", icon: Filter, desc: "Auto-assign & referral routing" },
+            { id: "alerts", label: "Notifications & Alerts", icon: Bell, desc: "New referrals & missing docs" },
+            { id: "assessments", label: "Clinical Assessments", icon: CalendarCheck, desc: "Default durations & RN matching" },
+            { id: "profile", label: "Coordinator Profile", icon: UserCheck, desc: "Personal info & contact details" },
             { id: "security", label: "Security & Passwords", icon: Lock, desc: "Password, 2FA & active sessions" },
           ].map((t) => {
             const Icon = t.icon;
@@ -137,19 +130,19 @@ export default function SchedulerSettingsPage() {
 
         {/* Right Main Form Container (3/4 width) */}
         <div className="lg:col-span-3">
-          {/* TAB 1: SMART-MATCH & DISPATCH RULES */}
-          {activeTab === "dispatch" && (
+          {/* TAB 1: PIPELINE & TRIAGE RULES */}
+          {activeTab === "pipeline" && (
             <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                 <div>
-                  <h3 className="text-base font-bold text-gray-900">Smart-Match & Dispatch Parameters</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">Controls how caregivers are ranked in the inline assignment queue on your dashboard.</p>
+                  <h3 className="text-base font-bold text-gray-900">Pipeline & Triage Preferences</h3>
+                  <p className="text-xs text-gray-500 mt-0.5">Controls how new incoming referrals are routed and prioritized.</p>
                 </div>
                 <button
                   type="submit"
                   className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
                 >
-                  <Save className="w-4 h-4" /> Save Dispatch Config
+                  <Save className="w-4 h-4" /> Save Preferences
                 </button>
               </div>
 
@@ -157,18 +150,16 @@ export default function SchedulerSettingsPage() {
                 <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <span className="font-bold text-xs text-gray-900 block">Maximum Caregiver Travel Radius Limit</span>
-                      <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Maximum distance allowed when matching caregivers to open shifts.</span>
+                      <span className="font-bold text-xs text-gray-900 block">Automated Referral Triage</span>
+                      <span className="text-[11px] text-gray-500 leading-tight inline-block">Automatically classify referral urgency based on source and diagnosis.</span>
                     </div>
                     <select
-                      value={maxTravelRadius}
-                      onChange={(e) => setMaxTravelRadius(e.target.value)}
+                      value={autoTriage}
+                      onChange={(e) => setAutoTriage(e.target.value)}
                       className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
                     >
-                      <option value="5">Within 5 Miles (Strict Proximity)</option>
-                      <option value="10">Within 10 Miles (Recommended)</option>
-                      <option value="15">Within 15 Miles (Extended)</option>
-                      <option value="25">Within 25 Miles (Any Region)</option>
+                      <option value="Enabled">Enabled (Smart Triage)</option>
+                      <option value="Disabled">Disabled (Manual Review Only)</option>
                     </select>
                   </div>
                 </div>
@@ -176,16 +167,17 @@ export default function SchedulerSettingsPage() {
                 <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <span className="font-bold text-xs text-gray-900 block">Required Skill Matching Strictness</span>
-                      <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Strict mode requires 100% skill overlap (Hoyer, Dementia, Post-op) before suggesting assignment.</span>
+                      <span className="font-bold text-xs text-gray-900 block">Default Referral Assignee</span>
+                      <span className="text-[11px] text-gray-500 leading-tight inline-block">Determine who gets assigned to new inbound referrals by default.</span>
                     </div>
                     <select
-                      value={skillWeight}
-                      onChange={(e) => setSkillWeight(e.target.value)}
+                      value={defaultAssignee}
+                      onChange={(e) => setDefaultAssignee(e.target.value)}
                       className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
                     >
-                      <option value="Strict">Strict (Must match 100% required skills)</option>
-                      <option value="Flexible">Flexible (Match primary credential CNA/HHA)</option>
+                      <option value="Round Robin">Round Robin (Distribute Evenly)</option>
+                      <option value="Assign to Me">Assign to Me</option>
+                      <option value="Unassigned">Leave Unassigned (Queue)</option>
                     </select>
                   </div>
                 </div>
@@ -193,39 +185,22 @@ export default function SchedulerSettingsPage() {
                 <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <span className="font-bold text-xs text-gray-900 block">Smart-Rank Sorting Algorithm Focus</span>
-                      <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Determines which caregiver appears at the top of the 1-click inline assign panel.</span>
+                      <span className="font-bold text-xs text-gray-900 block">Pipeline Urgency SLA Window</span>
+                      <span className="text-[11px] text-gray-500 leading-tight inline-block">Highlight referrals that haven't been contacted within this timeframe.</span>
                     </div>
                     <select
-                      value={rankingWeight}
-                      onChange={(e) => setRankingWeight(e.target.value)}
+                      value={pipelineUrgency}
+                      onChange={(e) => setPipelineUrgency(e.target.value)}
                       className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
                     >
-                      <option value="Proximity">Proximity First (Closest distance)</option>
-                      <option value="Rating">Rating First (Highest patient rating ★)</option>
-                      <option value="Balanced">Balanced (Equal Proximity & Rating)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <span className="font-bold text-xs text-gray-900 block">Caregiver Weekly Overtime Alert Buffer</span>
-                      <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Flag assignment warnings when assigning a shift puts a caregiver above weekly hours limit.</span>
-                    </div>
-                    <select
-                      value={overtimeWarning}
-                      onChange={(e) => setOvertimeWarning(e.target.value)}
-                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
-                    >
-                      <option value="38">Alert at 38 Hours/Week</option>
-                      <option value="40">Alert at 40 Hours/Week (Standard Overtime)</option>
+                      <option value="12">12 Hours</option>
+                      <option value="24">24 Hours (Standard)</option>
+                      <option value="48">48 Hours</option>
                     </select>
                   </div>
                 </div>
               </div>
-            </form >
+            </form>
           )
           }
 
@@ -235,8 +210,8 @@ export default function SchedulerSettingsPage() {
               <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Real-Time Dispatch & Urgency Alerts</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Configure desktop audio chimes and SMS broadcasts for open shifts and call-offs.</p>
+                    <h3 className="text-base font-bold text-gray-900">Intake Notifications & Alerts</h3>
+                    <p className="text-xs text-gray-500 mt-0.5">Configure desktop and SMS alerts for new referrals and missing documents.</p>
                   </div>
                   <button
                     type="submit"
@@ -247,85 +222,72 @@ export default function SchedulerSettingsPage() {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Call-Off & Urgent Dispatch Alerts</h4>
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Referral & Document Alerts</h4>
 
                   <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                     <div>
-                      <span className="font-bold text-gray-900 block">Instant Call-Off Desktop Push & SMS Alerts</span>
-                      <span className="text-gray-500 text-[11px]">Receive real-time pop-ups the moment a field caregiver submits a call-off.</span>
+                      <span className="font-bold text-gray-900 block">Instant SMS for VIP / Urgent Referrals</span>
+                      <span className="text-gray-500 text-[11px]">Receive an SMS immediately when a high-priority referral is submitted.</span>
                     </div>
                     <input
                       type="checkbox"
-                      checked={callOffSms}
-                      onChange={(e) => setCallOffSms(e.target.checked)}
+                      checked={newReferralSms}
+                      onChange={(e) => setNewReferralSms(e.target.checked)}
                       className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                     />
                   </div>
 
                   <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                     <div>
-                      <span className="font-bold text-gray-900 block">High-Priority Audio Chime for Call-Off Queue</span>
-                      <span className="text-gray-500 text-[11px]">Play audio alert when a new call-off arrives in your dispatch queue.</span>
+                      <span className="font-bold text-gray-900 block">Missing Documentation Alerts</span>
+                      <span className="text-gray-500 text-[11px]">Show persistent dashboard banners for patients with pending Medicaid authorizations.</span>
                     </div>
                     <input
                       type="checkbox"
-                      checked={callOffSound}
-                      onChange={(e) => setCallOffSound(e.target.checked)}
+                      checked={missingDocAlert}
+                      onChange={(e) => setMissingDocAlert(e.target.checked)}
                       className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                     />
                   </div>
 
-                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">Unfilled Shift Thresholds</h4>
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">Assessment Reminders</h4>
 
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <div>
-                        <span className="font-bold text-xs text-gray-900 block">Unfilled Shift Urgency Window (Hours)</span>
-                        <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Shifts starting within this window get highlighted in red with priority badge.</span>
+                        <span className="font-bold text-xs text-gray-900 block">Assessment Follow-Up Reminder</span>
+                        <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Alert me if an RN assessment is completed but intake is not finalized after X hours.</span>
                       </div>
                       <select
-                        value={unfilledUrgencyHours}
-                        onChange={(e) => setUnfilledUrgencyHours(e.target.value)}
+                        value={assessmentReminderHours}
+                        onChange={(e) => setAssessmentReminderHours(e.target.value)}
                         className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
                       >
-                        <option value="2">&lt; 2 Hours (Urgent Red Alert)</option>
-                        <option value="4">&lt; 4 Hours (Standard Amber Alert)</option>
-                        <option value="6">&lt; 6 Hours (Early Warning)</option>
+                        <option value="12">12 Hours</option>
+                        <option value="24">24 Hours</option>
+                        <option value="48">48 Hours</option>
                       </select>
                     </div>
-                  </div>
-
-                  <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
-                    <div>
-                      <span className="font-bold text-gray-900 block">Automated Caregiver Availability Response Reminders</span>
-                      <span className="text-gray-500 text-[11px]">Send automated SMS pings to under-scheduled caregivers for unassigned shifts.</span>
-                    </div>
-                    <input
-                      type="checkbox"
-                      checked={availabilityReminders}
-                      onChange={(e) => setAvailabilityReminders(e.target.checked)}
-                      className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
-                    />
                   </div>
                 </div>
               </form >
             )
           }
 
-          {/* TAB 3: REGIONAL COVERAGE */}
+          {/* TAB 3: CLINICAL ASSESSMENTS */}
           {
-            activeTab === "regional" && (
+            activeTab === "assessments" && (
               <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Regional Coverage & Territory Scope</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Filter dashboard queues and caregiver matches by your assigned dispatch territory.</p>
+                    <h3 className="text-base font-bold text-gray-900">Clinical Assessment Setup</h3>
+                    <p className="text-xs text-gray-500 mt-0.5">Configure defaults for RN assessments and scheduling buffers.</p>
                   </div>
                   <button
                     type="submit"
                     className="px-4 py-2.5 bg-brand-teal hover:bg-brand-teal/90 text-white font-bold text-xs rounded-xl shadow-xs transition-all hover:scale-[1.01] active:scale-[0.99] flex items-center gap-1.5 cursor-pointer"
                   >
-                    <Save className="w-4 h-4" /> Save Territory
+                    <Save className="w-4 h-4" /> Save Defaults
                   </button>
                 </div>
 
@@ -333,18 +295,17 @@ export default function SchedulerSettingsPage() {
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <div>
-                        <span className="font-bold text-xs text-gray-900 block">Primary Territory Focus</span>
-                        <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Your primary dispatch zone for shift queue filtering.</span>
+                        <span className="font-bold text-xs text-gray-900 block">Default Assessment Duration</span>
+                        <span className="text-[11px] text-gray-500 lh-0.6 inline-block">The standard calendar block booked for an initial RN assessment.</span>
                       </div>
                       <select
-                        value={primaryRegion}
-                        onChange={(e) => setPrimaryRegion(e.target.value)}
+                        value={defaultAssessmentDuration}
+                        onChange={(e) => setDefaultAssessmentDuration(e.target.value)}
                         className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
                       >
-                        <option value="All Regions">All Agency Regions (Queens, Brooklyn, Manhattan, Bronx)</option>
-                        <option value="Queens">Queens Division</option>
-                        <option value="Brooklyn">Brooklyn Division</option>
-                        <option value="Manhattan">Manhattan Division</option>
+                        <option value="45">45 Minutes</option>
+                        <option value="60">60 Minutes</option>
+                        <option value="90">90 Minutes</option>
                       </select>
                     </div>
                   </div>
@@ -352,16 +313,16 @@ export default function SchedulerSettingsPage() {
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <div>
-                        <span className="font-bold text-xs text-gray-900 block">Cross-Territory Dispatch Assignment</span>
-                        <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Allow assigning caregivers across adjacent borough boundaries for urgent call-offs.</span>
+                        <span className="font-bold text-xs text-gray-900 block">Auto-Assign RN by Territory</span>
+                        <span className="text-[11px] text-gray-500 lh-0.6 inline-block">Automatically map the patient's zip code to the nearest available RN.</span>
                       </div>
                       <select
-                        value={crossTerritoryApproval}
-                        onChange={(e) => setCrossTerritoryApproval(e.target.value)}
+                        value={autoAssignRN}
+                        onChange={(e) => setAutoAssignRN(e.target.value)}
                         className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-800"
                       >
-                        <option value="Auto-Approve">Auto-Approve Cross-Territory</option>
-                        <option value="Require Sign-off">Require Supervisor Approval</option>
+                        <option value="Yes">Yes (Smart Map)</option>
+                        <option value="No">No (Manual Assignment)</option>
                       </select>
                     </div>
                   </div>
@@ -370,14 +331,14 @@ export default function SchedulerSettingsPage() {
             )
           }
 
-          {/* TAB 4: DISPATCHER PROFILE */}
+          {/* TAB 4: COORDINATOR PROFILE */}
           {
             activeTab === "profile" && (
               <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">Dispatcher Profile Information</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Your official employee profile registered with Homelio Regional Operations.</p>
+                    <h3 className="text-base font-bold text-gray-900">Coordinator Profile Information</h3>
+                    <p className="text-xs text-gray-500 mt-0.5">Your official employee profile registered with Homelio Intake Operations.</p>
                   </div>
                   <button
                     type="submit"
@@ -390,13 +351,13 @@ export default function SchedulerSettingsPage() {
                 {/* Avatar Photo Section */}
                 <div className="flex items-center gap-5 p-4 rounded-xl bg-gray-50/70 border border-slate-200">
                   <div className="w-16 h-16 rounded-2xl bg-teal-600 border-2 border-white shadow-md ring-2 ring-brand-teal/30 text-white font-black text-xl flex items-center justify-center">
-                    AR
+                    SJ
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-gray-900">{name}</h4>
-                    <p className="text-xs text-gray-500 mt-0.5">Employee ID: SCH-4091 • Role: Scheduler / Dispatcher</p>
+                    <p className="text-xs text-gray-500 mt-0.5">Employee ID: INT-2088 • Role: Lead Intake Coordinator</p>
                     <span className="mt-1.5 inline-block text-[10px] font-bold text-brand-teal bg-teal-50 border border-teal-200 px-2 py-0.5 rounded-md">
-                      Morning Dispatch Shift (07:00 - 15:30)
+                      Full-Time Intake (09:00 - 17:30)
                     </span>
                   </div>
                 </div>
@@ -424,7 +385,7 @@ export default function SchedulerSettingsPage() {
                   </div>
 
                   <div className="space-y-1.5 text-xs">
-                    <label className="font-bold text-gray-800">Direct Dispatch Phone</label>
+                    <label className="font-bold text-gray-800">Direct Phone</label>
                     <input
                       type="text"
                       value={phone}
@@ -524,7 +485,7 @@ export default function SchedulerSettingsPage() {
                       <ShieldCheck className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
                       <div>
                         <span className="font-bold text-xs text-emerald-950 block">2-Factor Authentication via SMS is Active</span>
-                        <span className="text-[11px] text-emerald-800">Verification code sent to (555) 492-1088 when logging in from new devices.</span>
+                        <span className="text-[11px] text-emerald-800">Verification code sent to (555) 321-9876 when logging in from new devices.</span>
                       </div>
                     </div>
                     <button
@@ -541,7 +502,7 @@ export default function SchedulerSettingsPage() {
                       {sessions.map((s) => (
                         <div key={s.id} className="p-3.5 bg-white flex items-center justify-between text-xs">
                           <div className="flex items-center gap-3">
-                            {s.device.includes("Mobile") || s.device.includes("iPad") ? (
+                            {s.device.includes("Mobile") || s.device.includes("iPad") || s.device.includes("iPhone") ? (
                               <Smartphone className="w-4 h-4 text-brand-teal shrink-0" />
                             ) : (
                               <Laptop className="w-4 h-4 text-blue-600 shrink-0" />

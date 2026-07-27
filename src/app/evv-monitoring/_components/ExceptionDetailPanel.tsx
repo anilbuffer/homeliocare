@@ -93,7 +93,7 @@ export function ExceptionDetailPanel({ exception, onClose, onResolve }: Exceptio
                   <span className="text-slate-500 text-xs font-medium">Date</span>
                   <span className="text-xs font-semibold text-slate-900">{exception.visitDate}</span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <span className="text-slate-500 text-xs font-medium">Exception Type</span>
                   <span className="text-xs font-semibold text-slate-900">{exception.type}</span>
                 </div>

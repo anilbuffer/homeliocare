@@ -238,7 +238,7 @@ export function AddCandidateModal({
             {/* LEFT COLUMN: Real-Time Candidate ID Preview Sidebar (5 cols) */}
             <div className="lg:col-span-4 bg-slate-900 text-white p-6 flex flex-col justify-between overflow-y-auto border-r border-slate-800 space-y-4">
               <div className="space-y-5">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <span className="text-[11px] font-bold tracking-wider uppercase text-teal-400 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5" /> Live Profile Card
                   </span>

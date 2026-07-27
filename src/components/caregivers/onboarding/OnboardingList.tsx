@@ -734,7 +734,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
 
             {/* Document Preview / File Info */}
             <div className="border border-dashed border-slate-200 rounded-xl p-4 bg-white space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
                   Uploaded Document File
                 </span>

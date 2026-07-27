@@ -13,8 +13,9 @@ import { BillingTab } from "@/components/patients/tabs/BillingTab";
 import { CommunicationTab } from "@/components/patients/tabs/CommunicationTab";
 import { ChronologyTab } from "./tabs/ChronologyTab";
 import { AssessmentsTab } from "@/components/patients/tabs/AssessmentsTab";
+import { useAuth } from "@/hooks/useAuth";
 
-const tabs = [
+const allTabs = [
   { id: "overview", label: "Overview" },
   { id: "careplan", label: "Care Plan" },
   { id: "visits", label: "Visits" },
@@ -30,6 +31,11 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { currentUser } = useAuth();
+
+  const tabs = currentUser?.role === "INTAKE_COORDINATOR" 
+    ? allTabs.filter(t => ["overview", "billing", "assessments", "careplan"].includes(t.id))
+    : allTabs;
 
   const tabFromUrl = searchParams.get("tab");
   const initialTab = tabFromUrl && tabs.some(t => t.id === tabFromUrl) ? tabFromUrl : "overview";

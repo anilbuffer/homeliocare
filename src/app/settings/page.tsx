@@ -71,7 +71,7 @@ export default function SettingsPage() {
   return (
     <div className="max-w-full mx-auto space-y-6">
       {/* Top Header Banner matching Caregiver & Portal Settings layout */}
-      <div className="bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white/80 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
             <Sliders className="w-4 h-4" /> Agency Master Settings
@@ -84,7 +84,7 @@ export default function SettingsPage() {
       </div>
 
       {/* 2-Column Desktop Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
         {/* Left Vertical Tab Navigation (1/4 width) */}
         <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-1 self-start">
           {tabs.map((t) => {
@@ -95,8 +95,8 @@ export default function SettingsPage() {
                 key={t.id}
                 onClick={() => setActiveTab(t.id)}
                 className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-3 cursor-pointer ${isActive
-                    ? "bg-brand-teal text-white shadow-xs font-bold"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
+                  ? "bg-brand-teal text-white shadow-xs font-bold"
+                  : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
                   }`}
               >
                 <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${isActive ? "text-white" : "text-brand-teal"}`} />
