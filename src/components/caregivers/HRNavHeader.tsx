@@ -19,7 +19,7 @@ export function HRNavHeader({ activeTab }: HRNavHeaderProps) {
   ];
 
   return (
-    <div className="flex flex-col gap-6 mb-6">
+    <div className="flex flex-col gap-4 mb-4">
       <div>
         <h1 className="text-xl font-bold text-text-primary">Caregivers & HR</h1>
         <p className="text-sm text-text-secondary mt-1">Manage your caregiver roster, recruiting pipeline, and HR requests.</p>

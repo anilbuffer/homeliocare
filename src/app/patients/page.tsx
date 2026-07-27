@@ -129,11 +129,11 @@ export default function PatientsPage() {
   }, [allPatientsList]);
 
   return (
-    <div className="w-full space-y-5 sm:space-y-6">
+    <div className="w-full space-y-4">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
+          <h1 className="text-xl font-semibold text-slate-900 tracking-tight flex items-center gap-2.5">
             Patients Directory
             <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/20">
               {filteredPatients.length} shown
@@ -146,7 +146,7 @@ export default function PatientsPage() {
 
         <button
           onClick={() => setIsNewPatientModalOpen(true)}
-          className="flex items-center justify-center gap-2 bg-brand-teal hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-[0_6px_20px_rgba(13,148,136,0.25)] transition-all active:scale-95 whitespace-nowrap self-start sm:self-auto"
+          className="flex items-center justify-center gap-2 bg-brand-teal hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(13,148,136,0.25)] transition-all active:scale-95 whitespace-nowrap self-start sm:self-auto"
         >
           <UserPlus className="w-4 h-4" />
           <span>New Patient</span>
@@ -221,7 +221,7 @@ export default function PatientsPage() {
             <button
               onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${activeFilter !== "ALL" || isFilterPanelOpen
-                ? "bg-brand-teal/10 text-brand-teal border-brand-teal/30 shadow-sm"
+                ? "bg-brand-teal/10 text-brand-teal border-brand-teal/30 shadow-[0_6px_32px_rgba(0,0,0,0.04)]"
                 : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
                 }`}
             >
@@ -237,7 +237,7 @@ export default function PatientsPage() {
               <button
                 onClick={() => handleViewChange("list")}
                 className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${viewMode === "list"
-                  ? "bg-white text-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.04)] font-bold"
+                  ? "bg-white text-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.04)] font-semibold"
                   : "text-slate-500 hover:text-slate-800"
                   }`}
                 title="List View"

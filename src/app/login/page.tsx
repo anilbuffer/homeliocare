@@ -349,7 +349,7 @@ export default function LoginPage() {
         {/* Main Header (Visible on Mobile & Tablet above split, hidden on Desktop left panel) */}
         <div className="lg:hidden w-full bg-gradient-to-r from-[#062425] via-[#0b3336] to-[#041d1f] rounded-xl sm:rounded-2xl p-4 sm:p-5 text-white mb-3 sm:mb-4 border border-teal-200/40 flex items-center justify-between shadow-xs">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-teal text-xl sm:text-2xl font-bold text-white flex items-center justify-center border border-[#166361] shadow-brand-teal/30 shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-teal text-xl font-bold text-white flex items-center justify-center border border-[#166361] shadow-brand-teal/30 shrink-0">
               H
             </div>
             <div className="flex flex-col">

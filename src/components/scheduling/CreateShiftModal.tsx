@@ -22,12 +22,12 @@ export function CreateShiftModal({ isOpen, onClose, onCreate }: CreateShiftModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Create an ISO string for today if date is empty, otherwise use date
     const shiftDate = date || new Date().toISOString().split('T')[0];
     const startIso = `${shiftDate}T${startTime}:00Z`;
     const endIso = `${shiftDate}T${endTime}:00Z`;
-    
+
     const newShift: Shift = {
       id: `s-new-${Math.random().toString(36).substring(7)}`,
       patientId: `p-${Math.random().toString(36).substring(7)}`,
@@ -42,10 +42,10 @@ export function CreateShiftModal({ isOpen, onClose, onCreate }: CreateShiftModal
       shiftNumber: `#${Math.floor(Math.random() * 1000)}`,
       notes: notes,
     };
-    
+
     onCreate(newShift);
     onClose();
-    
+
     // Reset form
     setPatientName("");
     setAddress("");
@@ -71,21 +71,21 @@ export function CreateShiftModal({ isOpen, onClose, onCreate }: CreateShiftModal
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92vw] sm:w-full max-w-lg bg-white rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[88vh]"
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[92vw] sm:w-full max-w-lg bg-white rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[60vh]"
           >
-            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-100 bg-slate-50/50">
-              <h2 className="text-lg sm:text-xl font-bold text-slate-800">Create New Shift</h2>
+            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-slate-50">
+              <h2 className="text-lg font-semibold text-slate-800">Create New Shift</h2>
               <button
                 onClick={onClose}
-                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-200 rounded-full transition-colors min-h-[40px] min-w-[40px] flex items-center justify-center"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+            <div className="flex-1 overflow-y-auto px-4 py-3">
               <form id="create-shift-form" onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-3.5 sm:space-y-4">
+                <div className="space-y-3">
                   <div>
                     <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Patient Name</label>
                     <div className="relative">
@@ -115,7 +115,7 @@ export function CreateShiftModal({ isOpen, onClose, onCreate }: CreateShiftModal
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Region</label>
                     <select
@@ -185,18 +185,18 @@ export function CreateShiftModal({ isOpen, onClose, onCreate }: CreateShiftModal
               </form>
             </div>
 
-            <div className="p-4 sm:p-6 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+            <div className="px-4 py-3 border-t border-slate-200 bg-slate-50 flex justify-end gap-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-5 py-2.5 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition-colors"
+                className="px-4 py-2 rounded-xl font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-200 transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 form="create-shift-form"
-                className="px-5 py-2.5 rounded-xl font-medium text-white bg-brand-teal hover:bg-brand-teal/90 shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 transition-all"
+                className="px-4 py-2 rounded-xl font-semibold text-white bg-brand-teal hover:bg-brand-teal/90 shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20 transition-all"
               >
                 Create Shift
               </button>

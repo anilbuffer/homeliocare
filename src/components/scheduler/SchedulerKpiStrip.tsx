@@ -83,7 +83,7 @@ export function SchedulerKpiStrip({
           </div>
         </div>
         <div className="flex items-baseline gap-1 sm:gap-1.5">
-          <Counter value={fillingSoonCount} className="text-xl sm:text-2xl font-bold text-amber-600" />
+          <Counter value={fillingSoonCount} className="text-xl font-bold text-amber-600" />
           <span className="text-[10px] text-amber-700 font-medium">&lt; 4 hrs</span>
         </div>
         <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 truncate">Approaching start</p>
@@ -105,7 +105,7 @@ export function SchedulerKpiStrip({
           </div>
         </div>
         <div className="flex items-baseline gap-1 sm:gap-1.5">
-          <Counter value={callOffsCount} className="text-xl sm:text-2xl font-bold text-red-600" />
+          <Counter value={callOffsCount} className="text-xl font-bold text-red-600" />
           <span className="text-[10px] text-red-500 font-semibold truncate">Action req.</span>
         </div>
         <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 truncate">Reassignment queue</p>
@@ -127,7 +127,7 @@ export function SchedulerKpiStrip({
           </div>
         </div>
         <div className="flex items-baseline gap-1 sm:gap-1.5">
-          <Counter value={confirmedCount} className="text-xl sm:text-2xl font-bold text-brand-teal" />
+          <Counter value={confirmedCount} className="text-xl font-bold text-brand-teal" />
           <span className="text-[10px] text-emerald-600 font-medium truncate">Covered</span>
         </div>
         <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 truncate">86% shift fill rate</p>
@@ -149,7 +149,7 @@ export function SchedulerKpiStrip({
           </div>
         </div>
         <div className="flex items-baseline gap-1">
-          <Counter value={avgFillTimeMins} className="text-xl sm:text-2xl font-bold text-blue-600" />
+          <Counter value={avgFillTimeMins} className="text-xl font-bold text-blue-600" />
           <span className="text-xs font-semibold text-blue-600">min</span>
         </div>
         <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 truncate">This week speed</p>

@@ -60,7 +60,7 @@ export function UrgencyStrip() {
             </div>
             <div className="flex-1 min-w-0 py-0.5">
               <div className="flex items-center justify-between gap-1 mb-0.5">
-                <div className={clsx("text-xl sm:text-2xl font-bold tracking-tight leading-none", kpi.color)}>{kpi.value}</div>
+                <div className={clsx("text-xl font-bold tracking-tight leading-none", kpi.color)}>{kpi.value}</div>
                 <div className={clsx("w-2 h-2 rounded-full shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-150", kpi.dot)} />
               </div>
               <div className="text-[11px] sm:text-xs font-medium text-slate-500 leading-tight truncate">{kpi.label}</div>

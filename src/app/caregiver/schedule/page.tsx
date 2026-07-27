@@ -397,7 +397,6 @@ export default function CaregiverSchedulePage() {
               <p className="text-xs text-gray-600 mt-1">
                 Immediately notifies the Dispatcher and triggers the smart-replacement shift board on Admin.
               </p>
-
               <form onSubmit={handleCallOffSubmit} className="my-4 space-y-3">
                 <div>
                   <label className="text-xs font-semibold text-gray-700 block mb-1">Select Shift to Call Off</label>
@@ -406,7 +405,6 @@ export default function CaregiverSchedulePage() {
                     <option>Today: Arthur Pendelton (01:30 PM - 04:30 PM)</option>
                   </select>
                 </div>
-
                 <div>
                   <label className="text-xs font-semibold text-gray-700 block mb-1">Call-off Reason *</label>
                   <select
@@ -419,7 +417,6 @@ export default function CaregiverSchedulePage() {
                     <option value="Vehicle Breakdown">Vehicle Breakdown</option>
                   </select>
                 </div>
-
                 <div className="flex items-center justify-end gap-3 pt-2">
                   <button
                     type="button"
@@ -430,7 +427,7 @@ export default function CaregiverSchedulePage() {
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 bg-rose-600 text-white rounded-xl text-xs font-bold shadow-xs hover:bg-rose-700"
+                    className="px-4 py-2 bg-rose-600 text-white rounded-xl text-xs font-bold shadow-xs hover:bg-rose-700"
                   >
                     {callOffSubmitted ? "Notifying Dispatcher..." : "Submit Call-off"}
                   </button>

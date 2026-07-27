@@ -73,7 +73,7 @@ function KpiCard({ title, value, suffix = "", decimals = 0, subtext, icon: Icon,
         </div>
       </div>
       <div>
-        <div className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+        <div className="text-xl font-bold text-slate-900 tracking-tight">
           {decimals > 0 ? displayValue.toFixed(decimals) : Math.round(displayValue)}
           <span className="text-sm sm:text-base font-medium text-slate-500 ml-0.5">{suffix}</span>
         </div>
