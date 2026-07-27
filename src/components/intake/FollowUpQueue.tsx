@@ -61,7 +61,7 @@ export function FollowUpQueue() {
   const handleAction = (id: string, actionType: 'email' | 'sms') => {
     const lead = leads.find(l => l.id === id);
     if (!lead) return;
-    
+
     setCompletedIds((prev) => new Set(prev).add(id));
     setTimeout(() => {
       setLeads((prev) => prev.filter((l) => l.id !== id));
@@ -137,9 +137,13 @@ export function FollowUpQueue() {
                   <div className="flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-bold text-slate-900 text-sm truncate">{lead.name}</span>
+                        <span className={cn("font-bold text-sm truncate",
+                          isVeryStale ? "text-amber-700 " : "text-slate-900  "
+                        )}>{lead.name}</span>
                       </div>
-                      <div className="text-xs text-slate-500 line-clamp-1 mb-2">
+                      <div className={cn("text-xs text-slate-500 line-clamp-1 mb-2",
+                        isVeryStale ? "text-amber-700 " : "text-slate-600 "
+                      )}>
                         {lead.note}
                       </div>
                       <div className="flex items-center gap-2">
@@ -152,7 +156,6 @@ export function FollowUpQueue() {
                         </span>
                       </div>
                     </div>
-
                     <div className="flex items-center gap-2 w-full sm:w-auto mt-2 sm:mt-0">
                       <button
                         onClick={() => handleAction(lead.id, 'email')}

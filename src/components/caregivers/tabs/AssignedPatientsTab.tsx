@@ -46,17 +46,17 @@ export function AssignedPatientsTab({ caregiver, onAssignPatient }: AssignedPati
                 </div>
 
                 <div className="space-y-3 pt-4 border-t border-slate-100">
-                  <div className="flex justify-between items-center text-sm">
+                  <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500 flex items-center gap-1.5"><Calendar className="w-4 h-4" /> Schedule</span>
                     <span className="font-medium text-slate-700">3x / week</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
+                  <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500 flex items-center gap-1.5"><Activity className="w-4 h-4" /> Risk Level</span>
                     <Badge variant={patient.riskLevel === "High" ? "error" : patient.riskLevel === "Medium" ? "warning" : "success"}>
                       {patient.riskLevel}
                     </Badge>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
+                  <div className="flex justify-between items-center text-xs">
                     <span className="text-slate-500">Since</span>
                     <span className="font-medium text-slate-700">Jan 2026</span>
                   </div>

@@ -71,7 +71,7 @@ export function VisitTaskChecklist({
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {medications.map((med) => (
               <div
                 key={med.id}

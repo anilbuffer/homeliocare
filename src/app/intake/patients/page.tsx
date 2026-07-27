@@ -221,7 +221,7 @@ export default function PatientsPage() {
             {/* Filter Toggle Button */}
             <button
               onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${activeFilter !== "ALL" || isFilterPanelOpen
+              className={`flex items-center gap-2 px-3 py-2 md:py-3 rounded-xl text-xs font-semibold border transition-all ${activeFilter !== "ALL" || isFilterPanelOpen
                 ? "bg-brand-teal/10 text-brand-teal border-brand-teal/30 shadow-[0_6px_32px_rgba(0,0,0,0.04)]"
                 : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
                 }`}
@@ -323,14 +323,14 @@ export default function PatientsPage() {
             <div className="w-full bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.03)]">
               {/* Desktop / Tablet Table View (sm and up) */}
               <div className="hidden sm:block overflow-x-auto">
-                <table className="w-full text-sm text-left border-collapse">
+                <table className="w-full text-xs text-left border-collapse">
                   <thead className="bg-slate-50/80 text-slate-500 border-b border-slate-200/80 sticky top-0 z-10 font-semibold text-xs uppercase tracking-wider">
                     <tr>
-                      <th className="px-4 sm:px-6 py-3.5">Patient Details</th>
-                      <th className="px-4 py-3.5">Status</th>
-                      <th className="px-4 py-3.5">Risk Level</th>
-                      <th className="px-4 py-3.5">Primary Diagnosis</th>
-                      <th className="px-4 sm:px-6 py-3.5 text-right">Actions</th>
+                      <th className="px-4 sm:px-6 py-3">Patient Details</th>
+                      <th className="px-4 py-3">Status</th>
+                      <th className="px-4 py-3">Risk Level</th>
+                      <th className="px-4 py-3">Primary Diagnosis</th>
+                      <th className="px-4 sm:px-6 py-3 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 text-slate-700">
@@ -340,7 +340,7 @@ export default function PatientsPage() {
                         className="hover:bg-slate-50/80 transition-colors group cursor-pointer"
                         onClick={() => router.push(`/intake/patients/${patient.id}`)}
                       >
-                        <td className="px-4 sm:px-6 py-3.5">
+                        <td className="px-4 sm:px-6 py-3">
                           <div className="flex items-center gap-3">
                             <Avatar
                               src={patient.avatarUrl}
@@ -358,8 +358,9 @@ export default function PatientsPage() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-3.5">
+                        <td className="px-4 py-3">
                           <Badge
+                            className="text-xs"
                             variant={
                               patient.status === "Active"
                                 ? "success"
@@ -373,8 +374,9 @@ export default function PatientsPage() {
                             {patient.status}
                           </Badge>
                         </td>
-                        <td className="px-4 py-3.5">
+                        <td className="px-4 py-3">
                           <Badge
+                            className="text-xs"
                             variant={
                               patient.riskLevel === "Low"
                                 ? "success"
@@ -386,18 +388,18 @@ export default function PatientsPage() {
                             {patient.riskLevel} Risk
                           </Badge>
                         </td>
-                        <td className="px-4 py-3.5">
+                        <td className="px-4 py-3">
                           <span
-                            className="font-medium text-slate-800 max-w-[240px] truncate block"
+                            className="font-medium text-slate-800 text-xs max-w-[240px] truncate block"
                             title={patient.primaryDiagnosis}
                           >
                             {patient.primaryDiagnosis}
                           </span>
                         </td>
-                        <td className="px-4 sm:px-6 py-3.5 text-right">
+                        <td className="px-4 sm:px-6 py-3 text-right">
                           <div className="flex items-center justify-end gap-2">
                             <button
-                              className="inline-flex items-center gap-1 text-xs font-semibold text-brand-teal hover:text-emerald-700 bg-brand-teal/10 hover:bg-brand-teal/20 px-3 py-1.5 rounded-lg transition-colors"
+                              className="inline-flex items-center gap-1 text-xs font-semibold text-brand-teal hover:text-emerald-700 bg-brand-teal/10 hover:bg-brand-teal/20 px-3 py-2 rounded-full transition-colors"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 router.push(`/intake/patients/${patient.id}`);

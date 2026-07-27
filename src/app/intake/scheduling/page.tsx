@@ -44,21 +44,21 @@ export default function IntakeSchedulingPage() {
           <input
             type="text"
             placeholder="Search by client or assessor..."
-            className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
+            className="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-50 border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
           />
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700">
-            <Calendar className="w-4 h-4 text-slate-500" />
+          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700">
+            <Calendar className="w-3.5 h-3.5 text-slate-500" />
             {date}
           </div>
           <div className="flex gap-1">
             <button
               onClick={() => handleSetDate(0)}
-              className="px-3 py-1.5 bg-brand-teal text-white text-xs font-semibold rounded-lg shadow-sm">Today</button>
+              className="px-3 py-1.5 bg-brand-teal text-white text-xs font-semibold rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.04)]">Today</button>
             <button
               onClick={() => handleSetDate(1)}
-              className="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-semibold rounded-lg hover:bg-slate-50">Tomorrow</button>
+              className="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-semibold rounded-full hover:bg-slate-50">Tomorrow</button>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default function IntakeSchedulingPage() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md border border-emerald-200">
+                <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full border border-emerald-200">
                   Confirmed
                 </span>
                 <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition-transform" />

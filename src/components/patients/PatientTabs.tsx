@@ -33,7 +33,7 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
   const pathname = usePathname();
   const { currentUser } = useAuth();
 
-  const tabs = currentUser?.role === "INTAKE_COORDINATOR" 
+  const tabs = currentUser?.role === "INTAKE_COORDINATOR"
     ? allTabs.filter(t => ["overview", "billing", "assessments", "careplan"].includes(t.id))
     : allTabs;
 
@@ -55,7 +55,7 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
   return (
     <div className="w-full">
       {/* Tab Navigation */}
-      <div className="flex items-center gap-1 p-1 sm:p-1.5 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] rounded-2xl mb-6 overflow-x-auto no-scrollbar border border-slate-200/90 w-full max-w-full">
+      <div className="flex items-center gap-1 p-1 sm:p-1.5 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.04)] rounded-2xl mb-4 overflow-x-auto no-scrollbar border border-slate-200/90 w-full max-w-full">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
@@ -69,7 +69,7 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
               {isActive && (
                 <motion.div
                   layoutId="patient-tab-indicator"
-                  className="absolute inset-0 bg-brand-teal/10 rounded-xl border border-brand-teal/20 shadow-sm"
+                  className="absolute inset-0 bg-brand-teal/10 rounded-xl border border-brand-teal/20 shadow-[0_6px_32px_rgba(0,0,0,0.04)]"
                   initial={false}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                 />

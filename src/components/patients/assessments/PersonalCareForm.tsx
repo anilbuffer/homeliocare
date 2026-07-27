@@ -75,7 +75,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                 {step === 1 && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
                     <h4 className="font-semibold text-slate-800 border-b border-slate-200 pb-2">Activities of Daily Living (ADLs)</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {["Bathing", "Dressing", "Toileting", "Transferring", "Continence", "Feeding"].map((adl) => (
                         <div key={adl} className="bg-white p-4 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                           <label className="block text-sm font-medium text-slate-700 mb-2">{adl} Support Required</label>

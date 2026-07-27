@@ -52,11 +52,11 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
 
         <div className="flex flex-col items-start md:items-end justify-between gap-3 w-full md:w-auto">
           <div className="flex items-center gap-3">
-            <span className="text-xs sm:text-sm font-semibold text-slate-500">Risk Level</span>
+            <span className="text-xs font-semibold text-slate-500">Risk Level</span>
             <Badge variant={
               patient.riskLevel === "Low" ? "success" :
                 patient.riskLevel === "Medium" ? "warning" : "error"
-            } className="text-xs sm:text-sm px-3 py-1 bg-rose-50 text-rose-600 border-rose-100 font-semibold">
+            } className="text-xs px-3 py-1 bg-rose-100 text-rose-700 border-rose-100 font-semibold">
               {patient.riskLevel} Risk
             </Badge>
           </div>
