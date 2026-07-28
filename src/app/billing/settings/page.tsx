@@ -60,7 +60,7 @@ export default function BillingSettingsPage() {
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       {/* Top Header Banner */}
       <div className="bg-white/80 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -99,8 +99,8 @@ export default function BillingSettingsPage() {
                 key={t.id}
                 onClick={() => setActiveTab(t.id as any)}
                 className={`w-full text-left p-3 rounded-xl transition-all flex items-start gap-3 cursor-pointer ${isActive
-                    ? "bg-brand-teal text-white shadow-xs font-bold"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
+                  ? "bg-brand-teal text-white shadow-xs font-bold"
+                  : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 font-medium"
                   }`}
               >
                 <Icon className={`w-5 h-5 shrink-0 mt-0.5 ${isActive ? "text-white" : "text-brand-teal"}`} />
