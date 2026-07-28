@@ -32,21 +32,21 @@ export function NewClaimModal({ isOpen, onClose }: NewClaimModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-full hover:bg-slate-50 transition-colors"
+            className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="px-4 py-2 text-sm font-medium text-white bg-brand-teal rounded-full hover:bg-brand-teal/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+            className="px-4 py-2 text-base font-semibold text-white bg-brand-teal rounded-xl hover:bg-brand-teal/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {isSubmitting ? "Generating..." : "Generate Claim"}
           </button>
         </>
       }
     >
-      <form id="new-claim-form" onSubmit={handleSubmit} className="space-y-6">
+      <form id="new-claim-form" onSubmit={handleSubmit} className="space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <label className="text-sm font-medium text-slate-700">Patient <span className="text-red-500">*</span></label>

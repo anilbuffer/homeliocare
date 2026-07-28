@@ -31,12 +31,10 @@ export function ClaimBatchManager() {
 
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-full">
-      <CardHeader 
-        title="837 Generation & 835 ERA" 
+      <CardHeader
+        title="837 Generation & 835 ERA"
       />
-      
-      <div className="mt-4 grid grid-cols-1 xl:grid-cols-2 gap-6">
-        
+      <div className="mt-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
         {/* Outbound 837 */}
         <div>
           <div className="flex items-center justify-between mb-3">
@@ -44,7 +42,7 @@ export function ClaimBatchManager() {
               <FileUp className="w-4 h-4 text-blue-500" />
               Outbound Claims (837)
             </h3>
-            <button 
+            <button
               onClick={handleGenerate}
               disabled={isGenerating}
               className="flex items-center gap-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-full transition-colors disabled:opacity-50"
@@ -61,7 +59,7 @@ export function ClaimBatchManager() {
           <div className="space-y-3">
             <AnimatePresence initial={false}>
               {batches.map((batch) => (
-                <motion.div 
+                <motion.div
                   key={batch.id}
                   initial={{ opacity: 0, height: 0, scale: 0.95 }}
                   animate={{ opacity: 1, height: "auto", scale: 1 }}
@@ -73,7 +71,7 @@ export function ClaimBatchManager() {
                       <div className="text-xs text-slate-500">{batch.type} • {batch.count} claims</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm font-bold text-slate-800">${batch.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                      <div className="text-sm font-bold text-slate-800">${batch.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
                       <div className="text-[10px] text-slate-400">{batch.date}</div>
                     </div>
                   </div>
@@ -98,7 +96,6 @@ export function ClaimBatchManager() {
               Inbound Remittance (835)
             </h3>
           </div>
-
           <div className="space-y-3">
             {eras.map((era) => (
               <div key={era.id} className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-2">
@@ -108,7 +105,7 @@ export function ClaimBatchManager() {
                     <div className="text-xs text-slate-500">Remittance Advice</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-bold text-slate-800">${era.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                    <div className="text-sm font-bold text-slate-800">${era.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
                     <div className="text-[10px] text-slate-400">{era.date}</div>
                   </div>
                 </div>

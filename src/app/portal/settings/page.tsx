@@ -134,7 +134,7 @@ export default function SettingsPage() {
           <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
             <Sliders className="w-4 h-4" /> Client & Family Portal Settings
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
+          <h1 className="text-xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
           <p className="text-xs text-gray-500 mt-1">
             Manage your personal details, family access permissions, security credentials, and portal notification alerts.
           </p>
@@ -444,10 +444,8 @@ export default function SettingsPage() {
                   <Save className="w-4 h-4" /> Save Preferences
                 </button>
               </div>
-
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Browser & Mobile Push Notifications</h4>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Caregiver Visit Reminders</span>
@@ -460,7 +458,6 @@ export default function SettingsPage() {
                     className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
                   />
                 </div>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Care Plan & Daily Visit Notes Updates</span>
@@ -473,7 +470,6 @@ export default function SettingsPage() {
                     className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
                   />
                 </div>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Nurse Supervisor Clinical Alerts</span>
@@ -486,9 +482,7 @@ export default function SettingsPage() {
                     className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
                   />
                 </div>
-
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">SMS Text Alerts</h4>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Schedule Changes & Shift Confirmations</span>
@@ -501,7 +495,6 @@ export default function SettingsPage() {
                     className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
                   />
                 </div>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Emergency & On-Call Nurse Dispatch Alerts</span>
@@ -514,9 +507,7 @@ export default function SettingsPage() {
                     className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
                   />
                 </div>
-
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">Email Communications</h4>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Monthly Invoices & Billing Statements</span>
@@ -529,7 +520,6 @@ export default function SettingsPage() {
                     className="w-4 h-4 text-brand-teal rounded accent-brand-teal cursor-pointer"
                   />
                 </div>
-
                 <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                   <div>
                     <span className="font-bold text-gray-900 block">Weekly Caregiver Summary Digest</span>

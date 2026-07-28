@@ -60,7 +60,6 @@ export function PaymentRemittance() {
           </tbody>
         </table>
       </div>
-
       <div className="mt-4 pt-4 border-t border-slate-100">
         <button className="flex items-center gap-1 text-xs font-medium text-brand-teal hover:text-brand-teal/80 transition-colors">
           View full remittance log

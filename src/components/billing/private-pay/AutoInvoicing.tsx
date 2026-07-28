@@ -18,7 +18,7 @@ export function AutoInvoicing() {
     setIsProcessing(true);
     setTimeout(() => {
       setIsProcessing(false);
-      setInvoices(invoices.map(inv => 
+      setInvoices(invoices.map(inv =>
         inv.status === "Draft" ? { ...inv, status: "Sent", autoSendDate: "Just now" } : inv
       ));
     }, 1500);
@@ -26,10 +26,10 @@ export function AutoInvoicing() {
 
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-full">
-      <CardHeader 
-        title="Auto-Invoicing Pipeline" 
+      <CardHeader
+        title="Auto-Invoicing Pipeline"
         action={
-          <button 
+          <button
             onClick={handleProcess}
             disabled={isProcessing}
             className="flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-1.5 rounded-full transition-colors disabled:opacity-50"
@@ -43,7 +43,7 @@ export function AutoInvoicing() {
           </button>
         }
       />
-      
+
       <div className="mt-4 space-y-3">
         <div className="bg-indigo-50 border border-indigo-100 p-3 rounded-xl flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
@@ -54,12 +54,12 @@ export function AutoInvoicing() {
 
         <AnimatePresence>
           {invoices.map((inv) => (
-            <motion.div 
+            <motion.div
               key={inv.id}
               layout
               className={clsx(
                 "p-3 rounded-xl border flex flex-col gap-3",
-                inv.status === "Draft" ? "bg-white border-slate-200 shadow-sm" : "bg-slate-50 border-slate-100"
+                inv.status === "Draft" ? "bg-white border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]" : "bg-slate-50 border-slate-200"
               )}
             >
               <div className="flex justify-between items-start">
@@ -76,7 +76,7 @@ export function AutoInvoicing() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-bold text-slate-900">${inv.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+                  <div className="text-sm font-bold text-slate-900">${inv.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</div>
                   <div className={clsx(
                     "flex items-center justify-end gap-1 text-[10px] font-bold mt-1",
                     inv.status === "Draft" ? "text-amber-600" : (inv.status === "Paid" ? "text-green-600" : "text-blue-600")

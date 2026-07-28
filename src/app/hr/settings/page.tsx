@@ -80,7 +80,7 @@ export default function HrSettingsPage() {
           <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
             <Sliders className="w-4 h-4" /> HR Portal Settings
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
+          <h1 className="text-xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
           <p className="text-xs text-gray-500 mt-1">
             Manage your personal details, security credentials, notification alerts, and display preferences.
           </p>

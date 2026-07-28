@@ -78,9 +78,9 @@ export function VisitCorrectionQueue() {
           </div>
           <button
             onClick={() => setIsResolving(true)}
-            className="flex items-center gap-2 bg-brand-teal text-white text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5"
+            className="flex items-center gap-2 bg-brand-teal text-white font-medium px-4 py-2 rounded-xl hover:bg-brand-teal/90 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.08)] shadow-brand-teal/20 hover:-translate-y-0.5"
           >
-            <CornerDownRight className="w-4 h-4" />
+            <CornerDownRight className="w-3.5 h-3.5" />
             Correct & Resubmit
           </button>
         </div>

@@ -14,8 +14,8 @@ export function StripeOverview() {
 
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-full">
-      <CardHeader 
-        title="Stripe Payment Gateway" 
+      <CardHeader
+        title="Stripe Payment Gateway"
         action={
           <div className="flex items-center gap-2 bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold border border-indigo-200">
             <Activity className="w-3.5 h-3.5" />
@@ -23,8 +23,7 @@ export function StripeOverview() {
           </div>
         }
       />
-      
-      <div className="mt-4 grid grid-cols-2 gap-4 mb-6">
+      <div className="mt-4 grid grid-cols-2 gap-4 mb-4">
         <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col gap-1">
           <div className="flex items-center gap-2 text-slate-500 text-sm font-medium mb-1">
             <Wallet className="w-4 h-4 text-indigo-500" />
@@ -50,7 +49,7 @@ export function StripeOverview() {
         {recentTransactions.map((tx) => (
           <div key={tx.id} className={clsx(
             "p-3 rounded-xl border flex items-center justify-between",
-            tx.error ? "bg-rose-50 border-rose-200" : "bg-white border-slate-100 shadow-sm"
+            tx.error ? "bg-rose-50 border-rose-200" : "bg-white border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
           )}>
             <div className="flex items-center gap-3">
               <div className={clsx(
@@ -70,7 +69,7 @@ export function StripeOverview() {
             </div>
             <div className="text-right">
               <div className="text-sm font-bold text-slate-900">
-                ${tx.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                ${tx.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
               </div>
               <div className={clsx(
                 "text-[10px] font-bold mt-1 px-1.5 py-0.5 rounded uppercase inline-block",

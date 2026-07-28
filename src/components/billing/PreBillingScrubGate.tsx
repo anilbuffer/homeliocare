@@ -144,7 +144,7 @@ export function PreBillingScrubGate() {
             <p className="text-sm font-medium text-slate-500">
               Requires attention in the <span className="font-bold text-slate-700">EVV Monitoring</span> and <span className="font-bold text-slate-700">QA</span> modules.
             </p>
-            <button className="flex items-center gap-2 text-brand-teal hover:text-teal-700 font-bold mt-3 md:mt-0 text-sm bg-teal-50 hover:bg-teal-100 px-4 py-2 rounded-xl transition-colors">
+            <button className="flex items-center gap-2 text-brand-teal hover:text-teal-700 font-semibold mt-3 md:mt-0 text-sm bg-teal-100 hover:bg-teal-100 px-4 py-2 rounded-xl transition-colors">
               Review Blocked Visits
               <ArrowRight className="w-4 h-4" />
             </button>

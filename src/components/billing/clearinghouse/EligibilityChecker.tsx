@@ -15,16 +15,16 @@ export function EligibilityChecker() {
 
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-full">
-      <CardHeader 
-        title="Eligibility & Benefits (270/271)" 
+      <CardHeader
+        title="Eligibility & Benefits (270/271)"
         action={
-          <button className="flex items-center gap-1.5 text-xs font-semibold text-brand-teal hover:text-teal-700 bg-teal-50 px-3 py-1.5 rounded-full transition-colors">
+          <button className="flex items-center gap-1.5 text-xs font-semibold text-brand-teal hover:text-teal-700 bg-teal-100 px-3 py-1.5 rounded-full transition-colors">
             <RefreshCw className="w-3.5 h-3.5" />
             Run Batch Check
           </button>
         }
       />
-      
+
       <div className="mt-4 space-y-3">
         {checks.map((check, i) => (
           <div key={i} className={clsx("p-3 rounded-xl border flex items-center justify-between", check.alert ? "bg-rose-50 border-rose-200" : "bg-slate-50 border-slate-100")}>

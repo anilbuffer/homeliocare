@@ -66,6 +66,8 @@ export function CommunicationsLayout({ initialCategory = "All" }: { initialCateg
   const { currentUser } = useAuth();
   if (currentUser?.role === "INTAKE_COORDINATOR") {
     CATEGORIES = CATEGORIES.filter(c => ["Clients", "Family Members", "Announcements"].includes(c.id));
+  } else if (currentUser?.role === "BILLING_FINANCE_STAFF") {
+    CATEGORIES = CATEGORIES.filter(c => ["Staff & Caregivers", "Care Team Channels", "Announcements"].includes(c.id));
   }
 
   const FILTERS: { id: FilterType, label: string, icon: React.ReactNode }[] = [

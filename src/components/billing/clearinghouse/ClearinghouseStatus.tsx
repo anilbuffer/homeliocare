@@ -15,8 +15,8 @@ export function ClearinghouseStatus() {
 
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:border-brand-teal/60 transition-all">
-      <CardHeader 
-        title="Clearinghouse Connections" 
+      <CardHeader
+        title="Clearinghouse Connections"
         action={
           <div className="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold border border-green-200">
             <Activity className="w-3.5 h-3.5" />
@@ -24,17 +24,17 @@ export function ClearinghouseStatus() {
           </div>
         }
       />
-      
+
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         {providers.map((provider, i) => (
-          <motion.div 
+          <motion.div
             key={i}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
             className={clsx(
-              "p-4 rounded-xl border flex flex-col gap-3 relative overflow-hidden",
-              provider.active ? (provider.degraded ? "bg-amber-50/50 border-amber-200" : "bg-white border-slate-200 shadow-sm") : "bg-slate-50 border-slate-100 opacity-60 grayscale"
+              "p-4 rounded-xl border flex flex-col gap-3 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden",
+              provider.active ? (provider.degraded ? "bg-amber-50/50 border-amber-200" : "bg-white border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]") : "bg-slate-50 border-slate-200 opacity-60 grayscale"
             )}
           >
             {provider.active && !provider.degraded && (
@@ -54,7 +54,7 @@ export function ClearinghouseStatus() {
               {provider.degraded && <AlertCircle className="w-5 h-5 text-amber-500" />}
             </div>
 
-            <div className="flex items-center gap-4 mt-2 pt-3 border-t border-slate-100/60">
+            <div className="flex items-center gap-4 mt-2 pt-3 border-t border-slate-200/50">
               <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                 <ArrowRightLeft className="w-3.5 h-3.5" />
                 {provider.ping}

@@ -52,6 +52,28 @@ const getNavGroups = (role?: string) => {
     ];
   }
 
+  if (role === "BILLING_FINANCE_STAFF") {
+    return [
+      {
+        label: "",
+        items: [
+          { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
+          { name: "Billing & Claims Workspace", icon: Receipt, id: "billing-workspace" },
+          { name: "Authorizations", icon: ShieldCheck, id: "authorizations" },
+          { name: "Payroll", icon: Receipt, id: "payroll" },
+          { name: "Reports (Financial)", icon: BarChart3, id: "reports" },
+          { name: "Messages", icon: MessageSquare, id: "messages" },
+        ],
+      },
+      {
+        label: "",
+        items: [
+          { name: "Settings", icon: Settings, id: "settings" },
+        ],
+      },
+    ];
+  }
+
   // Default ADMIN / other roles
   return [
     {
@@ -62,7 +84,7 @@ const getNavGroups = (role?: string) => {
         { name: "Patients", icon: Users, id: "patients" },
         { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
         { name: "Caregivers & HR", icon: HeartHandshake, id: "caregivers" },
-        { name: "Billing & Claims", icon: Receipt, id: "billing" },
+        { name: "Billing & Claims", icon: Receipt, id: "billing-admin" },
       ],
     },
     {
@@ -115,7 +137,13 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const [activeItem, setActiveItem] = useState(() => {
     if (pathname?.startsWith("/users")) return "users";
     if (pathname?.startsWith("/training")) return "training";
-    if (pathname?.startsWith("/billing")) return "billing";
+    if (pathname?.startsWith("/billing/workspace") || pathname === "/billing/workspace") return "billing-workspace";
+    if (pathname?.startsWith("/billing/authorizations")) return "authorizations";
+    if (pathname?.startsWith("/billing/payroll")) return "payroll";
+    if (pathname?.startsWith("/billing/reports")) return "reports";
+    if (pathname?.startsWith("/billing/messages")) return "messages";
+    if (pathname?.startsWith("/billing") && !pathname?.startsWith("/billing/workspace") && currentUser?.role === "ADMIN") return "billing-admin";
+    if (pathname?.startsWith("/billing") && !pathname?.startsWith("/billing/workspace") && currentUser?.role !== "ADMIN") return "dashboard";
     if (pathname?.startsWith("/scheduling") || pathname?.startsWith("/intake/scheduling")) return "scheduling";
     if (pathname?.startsWith("/patients") || pathname?.startsWith("/intake/patients")) return "patients";
     if (pathname?.startsWith("/caregivers")) return "caregivers";
@@ -135,7 +163,13 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   React.useEffect(() => {
     if (pathname.startsWith("/users")) setActiveItem("users");
     else if (pathname.startsWith("/training")) setActiveItem("training");
-    else if (pathname.startsWith("/billing")) setActiveItem("billing");
+    else if (pathname.startsWith("/billing/workspace") || pathname === "/billing/workspace") setActiveItem("billing-workspace");
+    else if (pathname.startsWith("/billing/authorizations")) setActiveItem("authorizations");
+    else if (pathname.startsWith("/billing/payroll")) setActiveItem("payroll");
+    else if (pathname.startsWith("/billing/reports")) setActiveItem("reports");
+    else if (pathname.startsWith("/billing/messages")) setActiveItem("messages");
+    else if (pathname.startsWith("/billing") && !pathname.startsWith("/billing/workspace") && currentUser?.role === "ADMIN") setActiveItem("billing-admin");
+    else if (pathname.startsWith("/billing") && !pathname.startsWith("/billing/workspace") && currentUser?.role !== "ADMIN") setActiveItem("dashboard");
     else if (pathname.startsWith("/scheduling") || pathname.startsWith("/intake/scheduling")) setActiveItem("scheduling");
     else if (pathname.startsWith("/patients") || pathname.startsWith("/intake/patients")) setActiveItem("patients");
     else if (pathname.startsWith("/caregivers")) setActiveItem("caregivers");
@@ -149,7 +183,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     else if (pathname.startsWith("/payroll")) setActiveItem("payroll");
     else if (pathname.startsWith("/settings")) setActiveItem("settings");
     else if (pathname === "/dashboard" || pathname === "/" || pathname.startsWith("/intake/dashboard")) setActiveItem("dashboard");
-  }, [pathname]);
+  }, [pathname, currentUser?.role]);
 
   return (
     <>
@@ -195,7 +229,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             isCollapsed ? "px-3 justify-center" : "px-5 justify-start"
           )}
         >
-          <Link href={currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
+          <Link href={currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
             <div className="w-9 h-9 rounded-xl bg-brand-teal flex items-center justify-center font-bold text-lg text-white shadow-md shadow-brand-teal/30 shrink-0 group-hover:scale-105 transition-transform">
               H
             </div>
@@ -227,10 +261,17 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   const Icon = item.icon;
 
                   let href = "#";
-                  if (item.id === "dashboard") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : "/dashboard";
+                  if (item.id === "dashboard") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : "/dashboard";
                   if (item.id === "users") href = "/users";
                   if (item.id === "training") href = "/training";
-                  if (item.id === "billing") href = "/billing";
+                  if (item.id === "billing-admin") href = "/billing/workspace";
+                  if (item.id === "billing-workspace") href = "/billing/workspace";
+                  if (item.id === "authorizations") href = "/billing/authorizations";
+                  if (item.id === "payroll" && currentUser?.role === "BILLING_FINANCE_STAFF") href = "/billing/payroll";
+                  if (item.id === "payroll" && currentUser?.role !== "BILLING_FINANCE_STAFF") href = "/payroll";
+                  if (item.id === "reports" && currentUser?.role === "BILLING_FINANCE_STAFF") href = "/billing/reports";
+                  if (item.id === "reports" && currentUser?.role !== "BILLING_FINANCE_STAFF") href = "/reports";
+                  if (item.id === "messages") href = "/billing/messages";
                   if (item.id === "scheduling") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
                   if (item.id === "patients") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : "/patients";
                   if (item.id === "caregivers") href = "/caregivers";
@@ -240,9 +281,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "compliance") href = "/compliance";
                   if (item.id === "referrals") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/referrals" : "/referrals";
                   if (item.id === "communications") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/communications" : "/communications";
-                  if (item.id === "reports") href = "/reports";
-                  if (item.id === "payroll") href = "/payroll";
-                  if (item.id === "settings") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : "/settings";
+                  if (item.id === "settings") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/settings" : "/settings";
 
                   return (
                     <li key={item.id} className="relative group">
@@ -374,7 +413,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               >
                 <div className="flex flex-col gap-1">
                   <Link
-                    href={currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : "/settings"}
+                    href={currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/settings" : "/settings"}
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-xl transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >

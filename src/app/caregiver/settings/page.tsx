@@ -103,7 +103,7 @@ export default function CaregiverSettingsPage() {
             <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
               <Sliders className="w-4 h-4" /> Caregiver Portal Settings
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
+            <h1 className="text-xl font-bold text-gray-900 mt-0.5">Account & Preferences</h1>
             <p className="text-xs text-gray-500 mt-1">
               Manage your personal details, EVV location preferences, security credentials, and mobile notification alerts.
             </p>
@@ -280,7 +280,6 @@ export default function CaregiverSettingsPage() {
                     <Save className="w-4 h-4" /> Save EVV Config
                   </button>
                 </div>
-
                 <div className="space-y-4">
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                     <div className="flex items-center justify-between gap-3">
@@ -298,7 +297,6 @@ export default function CaregiverSettingsPage() {
                       </select>
                     </div>
                   </div>
-
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <div>
@@ -316,7 +314,6 @@ export default function CaregiverSettingsPage() {
                       </select>
                     </div>
                   </div>
-
                   <div className="p-4 rounded-xl border border-slate-200 bg-gray-50/50 flex items-center justify-between">
                     <div>
                       <span className="font-bold text-xs text-gray-900 block">Automatic Offline Queue Synchronization</span>
@@ -329,7 +326,6 @@ export default function CaregiverSettingsPage() {
                       className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                     />
                   </div>
-
                   <div className="p-4 gap-3 rounded-xl border border-slate-200 bg-gray-50/50 space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <div>
@@ -366,10 +362,8 @@ export default function CaregiverSettingsPage() {
                       <Save className="w-4 h-4" /> Save Preferences
                     </button>
                   </div>
-
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Browser & Mobile Push Notifications</h4>
-
                     <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <span className="font-bold text-gray-900 block">Urgent Supervisor Care Plan & Vital Sign Alerts</span>
@@ -382,7 +376,6 @@ export default function CaregiverSettingsPage() {
                         className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                       />
                     </div>
-
                     <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <span className="font-bold text-gray-900 block">Caregiver Team Chat Messages</span>
@@ -395,9 +388,7 @@ export default function CaregiverSettingsPage() {
                         className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                       />
                     </div>
-
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">SMS Text Message Alerts</h4>
-
                     <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <span className="font-bold text-gray-900 block">Visit Shift Reminders (1 Hour Prior)</span>
@@ -410,7 +401,6 @@ export default function CaregiverSettingsPage() {
                         className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                       />
                     </div>
-
                     <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <span className="font-bold text-gray-900 block">Open Shift Pickup Bonus Broadcasts</span>
@@ -423,9 +413,7 @@ export default function CaregiverSettingsPage() {
                         className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                       />
                     </div>
-
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider pt-3">Email Communications</h4>
-
                     <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <span className="font-bold text-gray-900 block">Bi-Weekly Pay Stub PDFs & Payroll Summaries</span>
@@ -438,7 +426,6 @@ export default function CaregiverSettingsPage() {
                         className="w-4 h-4 text-brand-teal rounded accent-brand-teal"
                       />
                     </div>
-
                     <div className="flex items-center justify-between p-3.5 bg-gray-50/70 rounded-xl border border-slate-200 text-xs">
                       <div>
                         <span className="font-bold text-gray-900 block">LMS Course & CPR License Expiry Alerts</span>
@@ -459,7 +446,7 @@ export default function CaregiverSettingsPage() {
             {/* TAB 4: SECURITY & PASSWORD */}
             {
               activeTab === "security" && (
-                <div className="space-y-6">
+                <div className="space-y-4">
                   <form onSubmit={handleSave} className="bg-white p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-4 lg:space-y-6">
                     <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                       <div>

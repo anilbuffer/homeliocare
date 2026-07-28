@@ -32,7 +32,7 @@ export function RevenueByPayer() {
 
       <div className="flex flex-col md:flex-row items-center gap-12 mt-4">
         {/* Donut Chart */}
-        <div className="relative w-64 h-64 shrink-0 flex items-center justify-center">
+        <div className="relative w-48 h-48 shrink-0 flex items-center justify-center">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 200 200">
             {payers.map((payer, i) => {
               const dashArray = (payer.percentage / 100) * circumference;
@@ -49,7 +49,7 @@ export function RevenueByPayer() {
                   r={radius}
                   fill="transparent"
                   stroke={payer.color}
-                  strokeWidth="24"
+                  strokeWidth="16"
                   strokeDasharray={`${dashArray} ${circumference}`}
                   strokeDashoffset={dashOffset}
                   strokeLinecap="round"
@@ -64,13 +64,13 @@ export function RevenueByPayer() {
           </svg>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <span className="text-sm text-slate-500 font-medium">Total Revenue</span>
-            <span className="text-3xl font-bold text-slate-900">${totalValue.toLocaleString("en-US")}</span>
+            <span className="text-xs text-slate-500 font-medium">Total Revenue</span>
+            <span className="text-2xl font-bold text-slate-900">${totalValue.toLocaleString("en-US")}</span>
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex-1 grid w-full grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 md:gap-y-6">
+        <div className="flex-1 grid w-full grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 md:gap-y-4">
           {payers.map((payer) => {
             const isActive = activePayer === payer.name || activePayer === null;
 
@@ -88,7 +88,7 @@ export function RevenueByPayer() {
                   <div>
                     <div className="font-base text-slate-900">{payer.name}</div>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-base font-bold text-slate-700">${payer.value.toLocaleString("en-US")}</span>
+                      <span className="text-sm font-semibold text-slate-700">${payer.value.toLocaleString("en-US")}</span>
                       <span className="flex items-center text-xs font-medium text-brand-teal">
                         <ArrowUp className="w-3 h-3 mr-0.5" />
                         {payer.trend}
@@ -96,7 +96,7 @@ export function RevenueByPayer() {
                     </div>
                   </div>
                 </div>
-                <div className="text-base font-medium text-slate-400">{payer.percentage}%</div>
+                <div className="text-sm font-medium text-slate-400">{payer.percentage}%</div>
               </div>
             );
           })}

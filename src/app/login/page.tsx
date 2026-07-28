@@ -257,6 +257,41 @@ const ROLE_DATA: Record<Role, RoleConfig> = {
       }
     ]
   },
+  BILLING_FINANCE_STAFF: {
+    role: "BILLING_FINANCE_STAFF",
+    title: "Billing & Finance Staff",
+    subtitle: "Financial Operations & Claims",
+    description: "Manage pre-billing scrubs, claim submissions, accounts receivable, and financial reporting.",
+    icon: Activity,
+    email: "billing@homeliocare.com",
+    badge: "Billing Desk",
+    badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
+    metrics: [
+      { label: "Pending Claims", value: "45" },
+      { label: "Scrub Error Rate", value: "2.1%" },
+      { label: "AR Days", value: "34 Days" },
+    ],
+    highlights: ["Automated Scrubbing", "Denial Management", "Clean Claim Rate"],
+    spotlightTitle: "Financial Hub &",
+    spotlightHighlight: "Revenue Cycle",
+    features: [
+      {
+        icon: Activity,
+        title: "Pre-Billing Scrubbing",
+        desc: "Automated validation rules catch errors before submission."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Denial Work Queue",
+        desc: "Integrated workflow for appealing and correcting denied claims."
+      },
+      {
+        icon: Globe,
+        title: "AR Aging Analysis",
+        desc: "Real-time visibility into outstanding accounts receivable."
+      }
+    ]
+  }
 };
 
 export default function LoginPage() {
@@ -305,6 +340,8 @@ export default function LoginPage() {
         router.push("/caregiver");
       } else if (selectedRole === "INTAKE_COORDINATOR") {
         router.push("/intake/dashboard");
+      } else if (selectedRole === "BILLING_FINANCE_STAFF") {
+        router.push("/billing");
       } else {
         router.push("/dashboard");
       }

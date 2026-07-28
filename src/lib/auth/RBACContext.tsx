@@ -71,6 +71,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         role: "INTAKE_COORDINATOR",
         avatarUrl: "",
       };
+    } else if (role === "BILLING_FINANCE_STAFF") {
+      mockUser = {
+        id: "finance-501",
+        name: "Marcus Vance",
+        email: "finance@homeliocare.com",
+        role: "BILLING_FINANCE_STAFF",
+        avatarUrl: "",
+      };
     } else {
       mockUser = {
         id: `mock-${role.toLowerCase()}-123`,

@@ -85,8 +85,8 @@ export function FinancialSummaryStrip() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1 }}
         >
-          <div className="text-sm font-medium text-slate-500 mb-2">{metric.title}</div>
-          <div className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+          <div className="text-xs font-medium text-slate-500 mb-2">{metric.title}</div>
+          <div className="text-xl font-semibold text-slate-900 mb-1 tracking-tight">
             <AnimatedNumber value={metric.value} prefix={metric.prefix} suffix={metric.suffix} />
           </div>
           <div className="flex items-center gap-1 text-xs mt-auto">
