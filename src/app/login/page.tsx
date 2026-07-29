@@ -31,6 +31,8 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
 
+type LoginRole = Exclude<Role, "QA_COMPLIANCE_OFFICER">;
+
 interface RoleConfig {
   role: Role;
   title: string;
@@ -47,7 +49,7 @@ interface RoleConfig {
   features: { icon: React.ComponentType<{ className?: string }>; title: string; desc: string }[];
 }
 
-const ROLE_DATA: Record<Role, RoleConfig> = {
+const ROLE_DATA: Record<LoginRole, RoleConfig> = {
   ADMIN: {
     role: "ADMIN",
     title: "Agency Executive & Admin",
@@ -328,48 +330,48 @@ const ROLE_DATA: Record<Role, RoleConfig> = {
       }
     ]
   },
-  QA_COMPLIANCE_OFFICER: {
-    role: "QA_COMPLIANCE_OFFICER",
-    title: "QA & Compliance",
-    subtitle: "Audits & Regulatory Oversight",
-    description: "Agency-wide audits, restricted incident visibility, state reporting, and compliance verification.",
-    icon: ShieldCheck,
-    email: "david.chen@homeliocare.com",
-    badge: "Compliance Hub",
-    badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    metrics: [
-      { label: "Survey Score", value: "99%" },
-      { label: "Restricted", value: "0 Open" },
-      { label: "Deadlines", value: "2 Due" },
-    ],
-    highlights: ["State Reporting Tracker", "Unscoped Incident Queue", "Mock Surveys"],
-    spotlightTitle: "Quality Assurance &",
-    spotlightHighlight: "Regulatory Compliance",
-    features: [
-      {
-        icon: Activity,
-        title: "State Reporting Deadline Tracker",
-        desc: "Proactive countdowns for serious incidents to prevent state citations."
-      },
-      {
-        icon: ShieldCheck,
-        title: "Agency-Wide Incident Visibility",
-        desc: "Full unscoped access to restricted incidents for thorough investigation."
-      },
-      {
-        icon: Globe,
-        title: "Compliance Verification Queue",
-        desc: "Monitor all 9 tracked compliance categories to maintain survey readiness."
-      }
-    ]
-  }
+  // QA_COMPLIANCE_OFFICER: {
+  //   role: "QA_COMPLIANCE_OFFICER",
+  //   title: "QA & Compliance",
+  //   subtitle: "Audits & Regulatory Oversight",
+  //   description: "Agency-wide audits, restricted incident visibility, state reporting, and compliance verification.",
+  //   icon: ShieldCheck,
+  //   email: "david.chen@homeliocare.com",
+  //   badge: "Compliance Hub",
+  //   badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  //   metrics: [
+  //     { label: "Survey Score", value: "99%" },
+  //     { label: "Restricted", value: "0 Open" },
+  //     { label: "Deadlines", value: "2 Due" },
+  //   ],
+  //   highlights: ["State Reporting Tracker", "Unscoped Incident Queue", "Mock Surveys"],
+  //   spotlightTitle: "Quality Assurance &",
+  //   spotlightHighlight: "Regulatory Compliance",
+  //   features: [
+  //     {
+  //       icon: Activity,
+  //       title: "State Reporting Deadline Tracker",
+  //       desc: "Proactive countdowns for serious incidents to prevent state citations."
+  //     },
+  //     {
+  //       icon: ShieldCheck,
+  //       title: "Agency-Wide Incident Visibility",
+  //       desc: "Full unscoped access to restricted incidents for thorough investigation."
+  //     },
+  //     {
+  //       icon: Globe,
+  //       title: "Compliance Verification Queue",
+  //       desc: "Monitor all 9 tracked compliance categories to maintain survey readiness."
+  //     }
+  //   ]
+  // }
 };
 
 export default function LoginPage() {
   const router = useRouter();
   const { login } = useAuth();
 
-  const [selectedRole, setSelectedRole] = useState<Role>("ADMIN");
+  const [selectedRole, setSelectedRole] = useState<LoginRole>("ADMIN");
   const [email, setEmail] = useState<string>(ROLE_DATA.ADMIN.email);
   const [password, setPassword] = useState<string>("••••••••••••");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -379,7 +381,7 @@ export default function LoginPage() {
   const [resetSent, setResetSent] = useState<boolean>(false);
 
   // Auto update form credentials when a role is selected
-  const handleRoleSelect = (role: Role) => {
+  const handleRoleSelect = (role: LoginRole) => {
     setSelectedRole(role);
     setEmail(ROLE_DATA[role].email);
     setPassword("••••••••••••");
@@ -439,7 +441,7 @@ export default function LoginPage() {
         </span>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2 sm:gap-3">
-        {(Object.keys(ROLE_DATA) as Role[]).map((roleKey) => {
+        {(Object.keys(ROLE_DATA) as LoginRole[]).map((roleKey) => {
           const rItem = ROLE_DATA[roleKey];
           const isSel = selectedRole === roleKey;
           const RIcon = rItem.icon;
