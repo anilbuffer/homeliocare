@@ -9,6 +9,9 @@ import {
   HeartHandshake,
   Receipt,
   Settings,
+  Users,
+  CheckSquare,
+  Award,
 } from "lucide-react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -41,13 +44,22 @@ export function MobileBottomNav() {
         { name: "Settings", href: "/intake/settings", icon: Settings, pattern: ["/intake/settings"] },
       ];
     }
+    if (currentUser?.role === "CLINICAL_SUPERVISOR_RN") {
+      return [
+        { name: "Home", href: "/clinical", icon: LayoutDashboard, pattern: ["/clinical", "/clinical/dashboard"] },
+        { name: "Patients", href: "/clinical/patients", icon: Users, pattern: ["/clinical/patients"] },
+        { name: "Assessments", href: "/clinical/assessments", icon: CheckSquare, pattern: ["/clinical/assessments"] },
+        { name: "QA", href: "/clinical/qa", icon: Award, pattern: ["/clinical/qa"] },
+        { name: "Settings", href: "/clinical/settings", icon: Settings, pattern: ["/clinical/settings"] },
+      ];
+    }
     return navItems;
   };
 
   const currentNavItems = getNavItems();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 min-[1120px]:hidden bg-slate-900/90 backdrop-blur-lg border-t border-slate-800 px-3 py-2 text-white shadow-2xl">
+    <div className="fixed bottom-0 left-0 right-0 z-40 min-[1120px]:hidden bg-slate-900/90 backdrop-blur-lg border-t border-slate-800 px-3 pt-2 pb-[max(8px,env(safe-area-inset-bottom))] text-white shadow-2xl">
       <div className="flex items-center justify-around max-w-lg mx-auto">
         {currentNavItems.map((item) => {
           const active = isItemActive(item.pattern);

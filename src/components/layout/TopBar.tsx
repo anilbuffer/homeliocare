@@ -30,6 +30,13 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/referrals")) return "Referrals & Intake";
     if (pathname.startsWith("/communications")) return "Communications";
     if (pathname.startsWith("/payroll")) return "Payroll";
+    if (pathname.startsWith("/clinical/patients")) return "Clinical Patients";
+    if (pathname.startsWith("/clinical/assessments")) return "Assessments & Care Plan";
+    if (pathname.startsWith("/clinical/qa")) return "Quality Assurance";
+    if (pathname.startsWith("/clinical/incidents")) return "Incident Reports";
+    if (pathname.startsWith("/clinical/messages")) return "Clinical Messages";
+    if (pathname.startsWith("/clinical/settings")) return "Settings";
+    if (pathname === "/clinical" || pathname.startsWith("/clinical/dashboard")) return "Clinical Dashboard";
     if (pathname.startsWith("/settings")) return "Settings";
     if (pathname.startsWith("/profile")) return "Profile";
     return "Dashboard";

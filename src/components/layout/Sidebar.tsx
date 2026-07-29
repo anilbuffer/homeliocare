@@ -203,7 +203,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         {/* Header / Logo Area */}
         <div
           className={clsx(
-            "flex items-center h-20 border-b border-sidebar-active/40 transition-all duration-300",
+            "flex items-center h-20 border-b border-sidebar-active/40 transition-all duration-300 relative",
             isCollapsed ? "px-3 justify-center" : "px-5 justify-start"
           )}
         >
@@ -212,11 +212,22 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               H
             </div>
             {!isCollapsed && (
-              <span className="font-bold text-base tracking-wide text-white truncate">
+              <span className="font-bold text-base tracking-wide text-white truncate pr-8">
                 Homelio Care
               </span>
             )}
           </Link>
+
+          {/* Mobile Close Button */}
+          {!isCollapsed && (
+            <button
+              onClick={onClose}
+              className="absolute right-4 min-[1120px]:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              aria-label="Close sidebar"
+            >
+              <PanelLeftClose className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         {/* Navigation */}
