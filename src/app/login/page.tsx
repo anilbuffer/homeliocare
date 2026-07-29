@@ -415,8 +415,8 @@ export default function LoginPage() {
         router.push("/billing");
       } else if (selectedRole === "CLINICAL_SUPERVISOR_RN") {
         router.push("/clinical");
-      } else if (selectedRole === "QA_COMPLIANCE_OFFICER") {
-        router.push("/compliance");
+        // } else if (selectedRole === "QA_COMPLIANCE_OFFICER") {
+        //   router.push("/compliance");
       } else {
         router.push("/dashboard");
       }
