@@ -13,7 +13,8 @@ import {
   FileSignature,
   Settings,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  User
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -22,6 +23,7 @@ type FormSection = "physical" | "environment" | "social" | "careplan" | "signoff
 export function AssessmentForm() {
   const [activeSection, setActiveSection] = useState<FormSection>("physical");
   const [stateConfig, setStateConfig] = useState("generic"); // e.g., "generic", "NY", "CA"
+  const [selectedPatient, setSelectedPatient] = useState("p1");
 
   // Minimal mock state for form handling to demonstrate UI
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,17 +60,35 @@ export function AssessmentForm() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 self-start sm:self-auto">
-          <Settings className="w-4 h-4 text-slate-400" />
-          <select
-            value={stateConfig}
-            onChange={(e) => setStateConfig(e.target.value)}
-            className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal"
-          >
-            <option value="generic">Generic Template</option>
-            <option value="NY">New York (DOH-xxxx)</option>
-            <option value="CA">California (CDSS)</option>
-          </select>
+        <div className="flex items-center gap-4 self-start sm:self-auto">
+          <div className="flex items-center gap-2">
+            <User className="w-4 h-4 text-slate-400" />
+            <select
+              value={selectedPatient}
+              onChange={(e) => setSelectedPatient(e.target.value)}
+              className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal font-medium text-slate-700"
+            >
+              <option value="">Select Patient...</option>
+              <option value="p1">Evelyn Harper</option>
+              <option value="p2">Robert Chen</option>
+              <option value="p3">Marcus Johnson</option>
+            </select>
+          </div>
+          
+          <div className="h-4 w-px bg-slate-200 hidden sm:block"></div>
+
+          <div className="flex items-center gap-2">
+            <Settings className="w-4 h-4 text-slate-400" />
+            <select
+              value={stateConfig}
+              onChange={(e) => setStateConfig(e.target.value)}
+              className="text-xs border border-slate-200 rounded-lg px-2 py-1 bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal"
+            >
+              <option value="generic">Generic Template</option>
+              <option value="NY">New York (DOH-xxxx)</option>
+              <option value="CA">California (CDSS)</option>
+            </select>
+          </div>
         </div>
       </div>
 
