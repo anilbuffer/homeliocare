@@ -87,6 +87,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         role: "CLINICAL_SUPERVISOR_RN",
         avatarUrl: "",
       };
+    } else if (role === "QA_COMPLIANCE_OFFICER") {
+      mockUser = {
+        id: "qa-701",
+        name: "David Chen",
+        email: "david.chen@homeliocare.com",
+        role: "QA_COMPLIANCE_OFFICER",
+        avatarUrl: "",
+      };
     } else {
       mockUser = {
         id: `mock-${role.toLowerCase()}-123`,

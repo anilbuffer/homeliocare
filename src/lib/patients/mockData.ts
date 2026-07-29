@@ -367,5 +367,46 @@ export const mockPatients: Record<string, Patient> = {
       { id: "a1", type: "incident", title: "Transferred to St. Jude Hospital", timestamp: "2026-07-07T18:30:00Z" },
       { id: "a2", type: "visit", title: "Visit missed (Hospitalized)", timestamp: "2026-07-08T09:00:00Z" }
     ]
+  },
+  "c-3": {
+    id: "c-3",
+    name: "John Smith",
+    status: "Inactive",
+    age: 65,
+    address: "123 Main St, Anytown, CA 12345",
+    primaryDiagnosis: "Routine Checkup",
+    riskLevel: "Low",
+    avatarUrl: "/avatars/placeholder.png",
+    
+    demographics: {
+      dob: "1961-01-01",
+      gender: "Male",
+      phone: "(555) 123-4567",
+      email: "john.smith@email.com",
+      preferredLanguage: "English",
+      emergencyContacts: []
+    },
+    
+    insurance: {
+      primary: "Medicare",
+      policyNumber: "MCR-123456",
+      groupNumber: "GRP-001",
+      authorizationStatus: "Expired"
+    },
+
+    careTeam: {
+      pcp: "Dr. Jane Doe",
+      specialists: [],
+      caseManager: { name: "John Doe, RN", avatarUrl: "" },
+      primaryCaregivers: []
+    },
+
+    riskSummary: {
+      fallRisk: { level: "Low", lastAssessment: "2025-01-01" },
+      medicationRisk: { level: "Low", lastAssessment: "2025-01-01" },
+      cognitiveStatus: { level: "Low", lastAssessment: "2025-01-01" }
+    },
+
+    recentActivity: []
   }
 };
