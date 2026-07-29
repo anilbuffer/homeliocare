@@ -43,12 +43,6 @@ const getNavGroups = (role?: string) => {
           { name: "Communications", icon: MessageSquare, id: "communications" },
         ],
       },
-      {
-        label: "",
-        items: [
-          { name: "Settings", icon: Settings, id: "settings" },
-        ],
-      },
     ];
   }
 
@@ -65,12 +59,6 @@ const getNavGroups = (role?: string) => {
           { name: "Messages", icon: MessageSquare, id: "messages" },
         ],
       },
-      {
-        label: "",
-        items: [
-          { name: "Settings", icon: Settings, id: "settings" },
-        ],
-      },
     ];
   }
 
@@ -85,12 +73,6 @@ const getNavGroups = (role?: string) => {
           { name: "QA (Audits)", icon: Award, id: "qa" },
           { name: "Incident Reports", icon: ShieldAlert, id: "incidents" },
           { name: "Messages", icon: MessageSquare, id: "messages" },
-        ],
-      },
-      {
-        label: "",
-        items: [
-          { name: "Settings", icon: Settings, id: "settings" },
         ],
       },
     ];
@@ -126,12 +108,6 @@ const getNavGroups = (role?: string) => {
         { name: "Communications", icon: MessageSquare, id: "communications" },
         { name: "Reports & BI", icon: BarChart3, id: "reports" },
         { name: "Payroll", icon: Receipt, id: "payroll" },
-      ],
-    },
-    {
-      label: "",
-      items: [
-        { name: "Settings", icon: Settings, id: "settings" },
       ],
     },
   ];
