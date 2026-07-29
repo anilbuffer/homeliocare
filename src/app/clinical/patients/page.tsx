@@ -19,7 +19,8 @@ import {
   CheckCircle2,
   Plus,
   ChevronRight,
-  UserPlus
+  UserPlus,
+  UserMinus
 } from "lucide-react";
 import { mockPatients, Patient } from "@/lib/patients/mockData";
 import { Badge } from "@/components/ui/Badge";
@@ -27,7 +28,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
 import { NewPatientModal } from "@/components/patients/NewPatientModal";
 
-type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged";
+type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged" | "Inactive";
 
 export default function PatientsPage() {
   const router = useRouter();
@@ -72,6 +73,7 @@ export default function PatientsPage() {
       else if (activeFilter === "High Risk") matchesFilter = patient.riskLevel === "High";
       else if (activeFilter === "Hospitalized") matchesFilter = patient.status === "Hospitalized";
       else if (activeFilter === "Discharged") matchesFilter = patient.status === "Discharged";
+      else if (activeFilter === "Inactive") matchesFilter = patient.status === "Inactive";
 
       return matchesSearch && matchesFilter;
     });
@@ -83,6 +85,7 @@ export default function PatientsPage() {
     const activeCount = allPatientsList.filter((p: any) => p.status === "Active").length;
     const highRiskCount = allPatientsList.filter((p: any) => p.riskLevel === "High").length;
     const hospitalizedCount = allPatientsList.filter((p: any) => p.status === "Hospitalized").length;
+    const inactiveCount = allPatientsList.filter((p: any) => p.status === "Inactive").length;
 
     return [
       {
@@ -99,7 +102,7 @@ export default function PatientsPage() {
         id: "Active" as FilterStatus,
         title: "Active Care",
         count: activeCount,
-        subtitle: "Receiving daily/weekly care",
+        subtitle: "On active service, not discharged.",
         icon: HeartPulse,
         badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
         activeBorder: "border-emerald-500 ring-2 ring-emerald-500/20",
@@ -124,6 +127,16 @@ export default function PatientsPage() {
         badgeBg: "bg-amber-50 text-amber-700 border-amber-200",
         activeBorder: "border-amber-500 ring-2 ring-amber-500/20",
         accentGlow: "group-hover:border-amber-300"
+      },
+      {
+        id: "Inactive" as FilterStatus,
+        title: "Inactive",
+        count: inactiveCount,
+        subtitle: "No longer on active service",
+        icon: UserMinus,
+        badgeBg: "bg-slate-50 text-slate-700 border-slate-200",
+        activeBorder: "border-slate-500 ring-2 ring-slate-500/20",
+        accentGlow: "group-hover:border-slate-300"
       }
     ];
   }, [allPatientsList]);
@@ -154,7 +167,7 @@ export default function PatientsPage() {
       </div>
 
       {/* KPI Stats Strip - Clickable Quick Filters */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
         {stats.map((item) => {
           const Icon = item.icon;
           const isActive = activeFilter === item.id;
@@ -263,7 +276,7 @@ export default function PatientsPage() {
         {/* Quick Filter Pills Row */}
         <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-0.5 no-scrollbar">
           <span className="text-xs font-medium text-slate-400 shrink-0 mr-1">Status:</span>
-          {(["ALL", "Active", "High Risk", "Hospitalized", "Discharged"] as FilterStatus[]).map((filterVal) => {
+          {(["ALL", "Active", "High Risk", "Hospitalized", "Discharged", "Inactive"] as FilterStatus[]).map((filterVal) => {
             const isSelected = activeFilter === filterVal;
             return (
               <button
@@ -366,7 +379,9 @@ export default function PatientsPage() {
                                   ? "warning"
                                   : patient.status === "Discharged"
                                     ? "default"
-                                    : "error"
+                                    : patient.status === "Inactive"
+                                      ? "neutral"
+                                      : "error"
                             }
                           >
                             {patient.status}

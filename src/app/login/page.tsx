@@ -327,6 +327,41 @@ const ROLE_DATA: Record<Role, RoleConfig> = {
         desc: "High-priority clinical review for falls, medication errors, and restricted incidents."
       }
     ]
+  },
+  QA_COMPLIANCE_OFFICER: {
+    role: "QA_COMPLIANCE_OFFICER",
+    title: "QA & Compliance",
+    subtitle: "Audits & Regulatory Oversight",
+    description: "Agency-wide audits, restricted incident visibility, state reporting, and compliance verification.",
+    icon: ShieldCheck,
+    email: "david.chen@homeliocare.com",
+    badge: "Compliance Hub",
+    badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    metrics: [
+      { label: "Survey Score", value: "99%" },
+      { label: "Restricted", value: "0 Open" },
+      { label: "Deadlines", value: "2 Due" },
+    ],
+    highlights: ["State Reporting Tracker", "Unscoped Incident Queue", "Mock Surveys"],
+    spotlightTitle: "Quality Assurance &",
+    spotlightHighlight: "Regulatory Compliance",
+    features: [
+      {
+        icon: Activity,
+        title: "State Reporting Deadline Tracker",
+        desc: "Proactive countdowns for serious incidents to prevent state citations."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Agency-Wide Incident Visibility",
+        desc: "Full unscoped access to restricted incidents for thorough investigation."
+      },
+      {
+        icon: Globe,
+        title: "Compliance Verification Queue",
+        desc: "Monitor all 9 tracked compliance categories to maintain survey readiness."
+      }
+    ]
   }
 };
 
@@ -380,6 +415,8 @@ export default function LoginPage() {
         router.push("/billing");
       } else if (selectedRole === "CLINICAL_SUPERVISOR_RN") {
         router.push("/clinical");
+      } else if (selectedRole === "QA_COMPLIANCE_OFFICER") {
+        router.push("/compliance");
       } else {
         router.push("/dashboard");
       }
