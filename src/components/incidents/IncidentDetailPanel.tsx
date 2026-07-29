@@ -57,14 +57,13 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
           className="relative w-full max-w-2xl bg-slate-50 h-full shadow-2xl flex flex-col border-l border-slate-200"
         >
           {/* Header */}
-          <div className="bg-white border-b border-slate-200 p-6 flex-shrink-0 relative z-10">
+          <div className="bg-white border-b border-slate-200 p-4 flex-shrink-0 relative z-10">
             <button
               onClick={onClose}
               className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
-
             <div className="flex items-center gap-3 mb-3 pr-12">
               <Badge variant={incident.severity === "Critical" ? "error" : incident.severity === "High" ? "warning" : "default"}>
                 {incident.severity} Severity
@@ -80,20 +79,17 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 </div>
               )}
             </div>
-
-            <h2 className="text-xl font-bold text-slate-800 mb-1">{incident.type}</h2>
-            <div className="text-sm text-slate-500 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-slate-800 mb-1">{incident.type}</h2>
+            <div className="text-xs text-slate-500 flex items-center gap-2">
               <span>ID: {incident.id}</span>
               <span>•</span>
               <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {incident.location}</span>
             </div>
-
-            <div className="flex items-center gap-3 mt-6">
+            <div className="flex items-center gap-3 mt-4">
               <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 hover:border-brand-teal text-slate-700 hover:text-brand-teal text-sm font-medium rounded-xl shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-colors">
                 <Download className="w-4 h-4" />
                 Generate PDF
               </button>
-
               {isClosed && (
                 <button
                   onClick={() => setIsReopening(!isReopening)}
@@ -107,7 +103,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
           </div>
 
           {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
 
             {/* Reopen Form Overlay/Section */}
             <AnimatePresence>
@@ -118,8 +114,8 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl mb-6">
-                    <h4 className="text-sm font-bold text-amber-900 mb-2">Reopen Incident</h4>
+                  <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl mb-4">
+                    <h4 className="text-sm font-semibold text-amber-900 mb-2">Reopen Incident</h4>
                     <textarea
                       className="w-full text-sm p-3 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 mb-3"
                       placeholder="Reason for reopening (required)..."
@@ -145,7 +141,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
               >
                 <AlertTriangle className="w-5 h-5 text-accent-amber shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-amber-900">Pattern Detected</h4>
+                  <h4 className="text-sm font-semibold text-amber-900">Pattern Detected</h4>
                   <p className="text-xs text-amber-800 mt-1 mb-2">{incident.patternDetected}</p>
                   <button className="text-xs font-semibold bg-white text-accent-amber px-3 py-1.5 rounded-lg border border-accent-amber/30 hover:bg-accent-amber hover:text-white transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                     Flag on Patient Profile
@@ -155,16 +151,16 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             )}
 
             {/* Workflow Tracker */}
-            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-              <h3 className="text-sm font-bold text-slate-800 mb-2">Workflow Status</h3>
+            <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+              <h3 className="text-sm font-semibold text-slate-800 mb-2">Workflow Status</h3>
               <WorkflowStepper workflow={incident.workflow} />
             </div>
 
             {/* Details Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-                <h3 className="text-sm font-bold text-slate-800 mb-4">People Involved</h3>
-                <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                <h3 className="text-sm font-semibold text-slate-800 mb-3">People Involved</h3>
+                <div className="space-y-3">
                   {incident.peopleInvolved.map((person, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
@@ -185,7 +181,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col gap-4">
+              <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col gap-3">
                 <div>
                   <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> Incident Time</div>
                   <div className="text-sm font-medium text-slate-800">{format(new Date(incident.incidentDate), "MMM d, yyyy - h:mm a")}</div>
@@ -204,17 +200,17 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-              <h3 className="text-sm font-bold text-slate-800 mb-3">Incident Description</h3>
-              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap bg-slate-50 p-4 rounded-lg border border-slate-100">
+            <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+              <h3 className="text-sm font-semibold text-slate-800 mb-2">Incident Description</h3>
+              <p className="text-xs text-slate-700 leading-relaxed whitespace-pre-wrap bg-slate-50 px-3 py-2 rounded-lg border border-slate-100">
                 {incident.description}
               </p>
             </div>
 
             {/* Regulatory Reporting */}
-            <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2">
+            <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-brand-teal" />
                   Regulatory Reporting
                 </h3>
@@ -228,7 +224,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
               </div>
 
               {incident.regulatoryReport.required ? (
-                <div className="grid grid-cols-2 gap-4 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                <div className="grid grid-cols-2 gap-3 bg-slate-50 px-4 py-3 rounded-lg border border-slate-100">
                   <div>
                     <div className="text-xs font-medium text-slate-500 mb-1">Agency</div>
                     <div className="text-sm font-semibold text-slate-800">{incident.regulatoryReport.agency}</div>
@@ -262,9 +258,9 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Linked Visit */}
             {incident.linkedVisit && (
-              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-start justify-between group cursor-pointer hover:border-brand-teal/50 transition-colors">
+              <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex items-start justify-between group cursor-pointer hover:border-brand-teal/50 transition-colors">
                 <div>
-                  <h3 className="text-sm font-bold text-slate-800 flex items-center gap-2 mb-2">
+                  <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2 mb-2">
                     <Link2 className="w-4 h-4 text-brand-teal" />
                     Linked Visit Record
                   </h3>
@@ -293,8 +289,8 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
 
             {/* Corrective Actions */}
             {incident.correctiveActions && incident.correctiveActions.length > 0 && (
-              <div className="bg-white rounded-xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-                <h3 className="text-sm font-bold text-slate-800 mb-4">Corrective Action Plan</h3>
+              <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+                <h3 className="text-sm font-semibold text-slate-800 mb-3">Corrective Action Plan</h3>
                 <CorrectiveActionList actions={incident.correctiveActions} />
               </div>
             )}

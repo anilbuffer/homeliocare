@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Bell, Mail, Smartphone, BellRing, Settings } from "lucide-react";
+import { toast } from "sonner";
 import { ReminderLogEntry } from "@/types/compliance";
 
 interface ReminderConfigPanelProps {
@@ -31,14 +32,17 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full">
       <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-white/50">
-        <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+        <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
           <Bell className="w-5 h-5 text-brand-teal" />
           Automated Reminders
         </h3>
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-slate-600">{enabled ? "ON" : "OFF"}</span>
           <button
-            onClick={() => setEnabled(!enabled)}
+            onClick={() => {
+              setEnabled(!enabled);
+              toast.success(`Automated reminders ${!enabled ? 'enabled' : 'disabled'}`);
+            }}
             className={`w-11 h-6 rounded-full transition-colors relative ${enabled ? "bg-brand-teal" : "bg-slate-300"}`}
           >
             <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? "translate-x-5.5 left-[2px]" : "translate-x-0.5"}`} />
@@ -51,7 +55,7 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
           <div className="text-sm font-medium text-slate-900">Schedule Configuration</div>
           <div className="text-xs text-slate-500">60, 30, 14, and 1 days before expiry</div>
         </div>
-        <button className="p-2 text-slate-500 hover:text-slate-900 bg-slate-100 rounded-lg transition-colors border border-slate-200">
+        <button onClick={() => toast.info("Opening schedule configuration...")} className="p-2 text-slate-500 hover:text-slate-900 bg-slate-100 rounded-lg transition-colors border border-slate-200">
           <Settings className="w-4 h-4" />
         </button>
       </div>

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search, Filter, ChevronDown, CheckCircle2, AlertTriangle,
   XCircle, Clock, Upload, Mail, MoreVertical, Calendar, FileText
 } from "lucide-react";
+import { toast } from "sonner";
 import { ComplianceItem, ComplianceStatus } from "@/types/compliance";
 
 interface ComplianceItemTrackerProps {
@@ -16,6 +17,19 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<ComplianceStatus | "All">("All");
   const [selectedItem, setSelectedItem] = useState<ComplianceItem | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const filteredItems = items.filter(item => {
     const matchesSearch = item.caregiver.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -56,9 +70,20 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
 
   return (
     <>
+      <input 
+        type="file" 
+        ref={fileInputRef} 
+        className="hidden" 
+        onChange={(e) => { 
+          if (e.target.files?.length) { 
+            toast.success("Document uploaded successfully"); 
+            e.target.value = ''; 
+          } 
+        }} 
+      />
       <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-200 flex flex-col md:flex-row items-start sm:items-center justify-between gap-4 bg-white/50">
-          <h3 className="text-lg font-bold text-slate-900">Compliance Item Tracker</h3>
+          <h3 className="text-base font-semibold text-slate-900">Compliance Item Tracker</h3>
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <div className="relative flex-1 sm:w-64">
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
@@ -84,7 +109,10 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
               </select>
               <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
             </div>
-            <button className="p-2 border border-slate-200 rounded-full bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-50 text-slate-500 hover:text-brand-teal transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal/20">
+            <button
+              onClick={() => toast.info("Filter options opened")}
+              className="p-2 border border-slate-200 rounded-full bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-50 text-slate-500 hover:text-brand-teal transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal/20"
+            >
               <Filter className="w-4 h-4" />
             </button>
           </div>
@@ -147,16 +175,52 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-2" onClick={e => e.stopPropagation()}>
                         {item.status === "Expiring" || item.status === "Expired" ? (
-                          <button className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded transition-colors" title="Send Reminder">
+                          <button
+                            onClick={() => toast.success(`Reminder sent to ${item.caregiver.name}`)}
+                            className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded transition-colors"
+                            title="Send Reminder"
+                          >
                             <Mail className="w-4 h-4" />
                           </button>
                         ) : null}
-                        <button className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors" title="Upload Document">
+                        <button
+                          onClick={() => fileInputRef.current?.click()}
+                          className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors"
+                          title="Upload Document"
+                        >
                           <Upload className="w-4 h-4" />
                         </button>
-                        <button className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors" title="More Actions">
-                          <MoreVertical className="w-4 h-4" />
-                        </button>
+                        <div className="relative" ref={activeDropdown === item.id ? dropdownRef : null}>
+                          <button
+                            onClick={() => setActiveDropdown(activeDropdown === item.id ? null : item.id)}
+                            className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors"
+                            title="More Actions"
+                          >
+                            <MoreVertical className="w-4 h-4" />
+                          </button>
+                          {activeDropdown === item.id && (
+                            <div className="absolute right-0 top-full mt-1 w-48 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden z-50 py-1 text-left">
+                              <button
+                                onClick={() => { setSelectedItem(item); setActiveDropdown(null); }}
+                                className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors text-slate-700"
+                              >
+                                View Details
+                              </button>
+                              <button
+                                onClick={() => { toast.success(`Reminder sent to ${item.caregiver.name}`); setActiveDropdown(null); }}
+                                className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors text-slate-700"
+                              >
+                                Send Reminder
+                              </button>
+                              <button
+                                onClick={() => { toast.success(`Document for ${item.itemName} downloaded`); setActiveDropdown(null); }}
+                                className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors text-slate-700"
+                              >
+                                Download Document
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </td>
                   </motion.tr>
@@ -264,7 +328,12 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                         <div className="w-16 h-20 bg-slate-100 rounded-lg mb-3 flex items-center justify-center shadow-inner">
                           <FileText className="w-8 h-8 text-slate-500" />
                         </div>
-                        <div className="text-sm font-medium text-brand-teal hover:underline cursor-pointer">View_Document.pdf</div>
+                        <div
+                          onClick={() => toast.success(`Document downloaded successfully`)}
+                          className="text-sm font-medium text-brand-teal hover:underline cursor-pointer"
+                        >
+                          View_Document.pdf
+                        </div>
                         <div className="text-xs text-slate-500 mt-1">Uploaded on {selectedItem.issueDate}</div>
                       </>
                     )}
@@ -288,12 +357,20 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                 </div>
               </div>
 
-              {/* Footer Actions */}
               <div className="p-4 border-t border-slate-200 bg-slate-50 grid grid-cols-2 gap-3 mt-auto">
-                <button className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-200 text-slate-900 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-200 text-slate-900 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                >
                   <Upload className="w-4 h-4" /> Replace
                 </button>
-                <button className="px-4 py-2 border border-brand-teal-200 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,180,216,0.3)] hover:shadow-[0_0_20px_rgba(0,180,216,0.5)]">
+                <button
+                  onClick={() => {
+                    toast.success(`${selectedItem.itemName} marked as renewed`);
+                    setSelectedItem(null);
+                  }}
+                  className="px-4 py-2 border border-brand-teal-200 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,180,216,0.3)] hover:shadow-[0_0_20px_rgba(0,180,216,0.5)]"
+                >
                   <CheckCircle2 className="w-4 h-4" /> Mark Renewed
                 </button>
               </div>

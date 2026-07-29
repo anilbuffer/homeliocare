@@ -21,6 +21,7 @@ import {
   Check
 } from "lucide-react";
 import { PolicyAcknowledgment, PolicySignerRecord } from "@/types/compliance";
+import { toast } from "sonner";
 
 interface PolicyAcknowledgmentMatrixProps {
   policies: PolicyAcknowledgment[];
@@ -32,7 +33,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
   const [statusFilter, setStatusFilter] = useState<"all" | "unsigned" | "overdue" | "pending" | "signed">("all");
   const [roleFilter, setRoleFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [remindedSigners, setRemindedSigners] = useState<Record<string, boolean>>({});
   const [mounted, setMounted] = useState(false);
 
@@ -42,13 +42,7 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
 
   const itemsPerPage = 6;
 
-  // Show Toast Message helper
-  const triggerToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 3500);
-  };
+
 
   // Open modal with pre-configured policy & optional default filter
   const handleOpenDrillDown = (policy: PolicyAcknowledgment, defaultUnsigned = false) => {
@@ -105,35 +99,29 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
   // Send Individual Reminder
   const handleSendReminder = (signerId: string, signerName: string) => {
     setRemindedSigners((prev) => ({ ...prev, [`${selectedPolicy?.id}-${signerId}`]: true }));
-    triggerToast(`Signature reminder sent to ${signerName}`);
+    toast.success(`Signature reminder sent to ${signerName}`);
   };
 
   // Send Bulk Reminder
   const handleSendBulkReminder = () => {
     if (!selectedPolicy) return;
     const unsignedCount = selectedPolicy.signers.filter((s) => s.status !== "Signed").length;
-    triggerToast(`Bulk signature reminder dispatched to all ${unsignedCount} unsigned staff members!`);
+    toast.success(`Bulk signature reminder dispatched to all ${unsignedCount} unsigned staff members!`);
   };
 
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 relative flex flex-col">
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100000] bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 border border-slate-700 animate-in fade-in slide-in-from-bottom-3 duration-200 max-w-[90vw] sm:max-w-md">
-          <Sparkles className="w-4 h-4 text-brand-teal animate-pulse shrink-0" />
-          <span className="truncate">{toastMessage}</span>
-        </div>
-      )}
+
 
       {/* Header Area */}
-      <div className="p-4 sm:p-5 border-b border-slate-200 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="p-4 border-b border-slate-200 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start sm:items-center gap-3">
           <div className="p-2.5 rounded-xl bg-brand-teal/10 text-brand-teal border border-brand-teal/20 shrink-0">
-            <FileSignature className="w-5 h-5 sm:w-6 sm:h-6" />
+            <FileSignature className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="text-base sm:text-lg font-bold text-slate-900">
+              <h3 className="text-base font-semibold text-slate-900">
                 Regulatory & Policy Acknowledgment Matrix
               </h3>
               <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-200/80 text-slate-600 border border-slate-300/60">
@@ -192,21 +180,21 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
             <div
               key={policy.id}
               onClick={() => handleOpenDrillDown(policy)}
-              className="pt-3 group hover:bg-slate-50/90 p-3.5 sm:p-4 rounded-xl border border-slate-100 hover:border-brand-teal/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] active:scale-[0.99] transition-all duration-200 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 sm:gap-4"
+              className="pt-3 group hover:bg-slate-50/90 p-3 sm:p-4 rounded-xl border border-slate-200 hover:border-brand-teal/30 hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] active:scale-[0.99] transition-all duration-200 cursor-pointer flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4"
             >
               {/* Left Column: Policy Details & Badges */}
               <div className="space-y-1.5 flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-bold text-slate-900 text-sm sm:text-base group-hover:text-brand-teal transition-colors">
+                  <span className="font-semibold text-slate-900 text-sm group-hover:text-brand-teal transition-colors">
                     {policy.policyName}
                   </span>
                   {policy.version && (
-                    <span className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 shrink-0">
+                    <span className="text-[10px] font-normal bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 shrink-0">
                       {policy.version}
                     </span>
                   )}
                   {policy.category && (
-                    <span className="text-[10px] font-medium bg-slate-50 text-slate-500 px-2 py-0.5 rounded border border-slate-100 shrink-0">
+                    <span className="text-[10px] font-normal bg-slate-50 text-slate-500 px-2 py-0.5 rounded border border-slate-100 shrink-0">
                       {policy.category}
                     </span>
                   )}
@@ -218,7 +206,7 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                   {policy.requiredForRoles.map((role) => (
                     <span
                       key={role}
-                      className="text-[10px] font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-600 px-1.5 py-0.5 rounded shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+                      className="text-[10px] font-medium bg-white border border-slate-200 text-slate-600 px-1.5 py-0.5 rounded shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                     >
                       {role}
                     </span>
@@ -294,10 +282,10 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
           <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl w-full max-w-4xl max-h-[90vh] sm:max-h-[85vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 relative z-10">
 
             {/* Modal Header */}
-            <div className="p-4 sm:p-5 border-b border-slate-200 bg-slate-50/90 flex items-start justify-between gap-3 shrink-0">
+            <div className="p-4 border-b border-slate-200 bg-slate-50/90 flex items-start justify-between gap-3 shrink-0">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-teal bg-brand-teal/10 px-2 py-0.5 rounded border border-brand-teal/20">
+                  <span className="text-[10px] sm:text-xs font-semibold text-brand-teal bg-brand-teal/10 px-2 py-0.5 rounded-full border border-brand-teal/20">
                     Policy Drill-Down Audit
                   </span>
                   {selectedPolicy.version && (
@@ -311,7 +299,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                   Staff log ({selectedPolicy.signedCount} of {selectedPolicy.totalRequired} signed)
                 </p>
               </div>
-
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={handleSendBulkReminder}
@@ -378,13 +365,11 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                   </select>
                 </div>
               </div>
-
               {/* Status Filter Chips (Exceptions-First "Show only unsigned") */}
               <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 sm:pb-0 [&::-webkit-scrollbar]:hidden flex-nowrap sm:flex-wrap">
                 <span className="text-[11px] font-semibold text-slate-400 shrink-0 hidden md:inline-block">
                   View:
                 </span>
-
                 {/* Exceptions-First Primary Toggle */}
                 <button
                   onClick={() => {
@@ -399,7 +384,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                   <UserX className="w-3.5 h-3.5" />
                   Show Only Unsigned ({selectedPolicy.totalRequired - selectedPolicy.signedCount})
                 </button>
-
                 <button
                   onClick={() => {
                     setStatusFilter("all");
@@ -412,7 +396,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                 >
                   All ({selectedPolicy.totalRequired})
                 </button>
-
                 <button
                   onClick={() => {
                     setStatusFilter("overdue");
@@ -425,7 +408,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                 >
                   Overdue ({selectedPolicy.overdueCount || 0})
                 </button>
-
                 <button
                   onClick={() => {
                     setStatusFilter("signed");
@@ -440,7 +422,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                 </button>
               </div>
             </div>
-
             {/* Drill-down Table Area (Responsive Table + Mobile Fallback Cards) */}
             <div className="flex-1 overflow-y-auto p-3 sm:p-4">
               {filteredSigners.length === 0 ? (

@@ -232,7 +232,7 @@ export function ManageTraining() {
       {/* 2. Compliance by Category */}
       <section className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] space-y-4">
         <div>
-          <h3 className="text-base font-bold text-slate-900">Compliance by Category</h3>
+          <h3 className="text-base font-semibold text-slate-900">Compliance by Category</h3>
           <p className="text-xs text-slate-500">Percent of active staff fully up to date by compliance module</p>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-4">
@@ -398,7 +398,7 @@ export function ManageTraining() {
         <section className="lg:col-span-2 bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h3 className="text-base font-bold text-slate-900">Expiring & Overdue Alerts</h3>
+              <h3 className="text-base font-semibold text-slate-900">Expiring & Overdue Alerts</h3>
               <p className="text-xs text-slate-500">Caregivers requiring immediate compliance attention</p>
             </div>
             <div className="flex items-center gap-3 self-start sm:self-auto">
