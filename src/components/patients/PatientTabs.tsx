@@ -35,7 +35,9 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
 
   const tabs = currentUser?.role === "INTAKE_COORDINATOR"
     ? allTabs.filter(t => ["overview", "billing", "assessments", "careplan"].includes(t.id))
-    : allTabs;
+    : currentUser?.role === "CLINICAL_SUPERVISOR_RN"
+      ? allTabs.filter(t => t.id !== "billing")
+      : allTabs;
 
   const tabFromUrl = searchParams.get("tab");
   const initialTab = tabFromUrl && tabs.some(t => t.id === tabFromUrl) ? tabFromUrl : "overview";

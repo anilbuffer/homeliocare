@@ -45,7 +45,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                 <ClipboardList className="w-5 h-5 text-brand-teal" />
               </div>
               <div>
-                <h3 className="font-bold text-slate-900">Personal Care Assessment Form</h3>
+                <h3 className="font-semibold text-slate-900">Personal Care Assessment Form</h3>
                 <p className="text-xs text-slate-500 font-medium">State-Specific Non-Medical Evaluation • {patientName}</p>
               </div>
             </div>
@@ -79,7 +79,7 @@ export function PersonalCareForm({ isOpen, onClose, patientName }: PersonalCareF
                       {["Bathing", "Dressing", "Toileting", "Transferring", "Continence", "Feeding"].map((adl) => (
                         <div key={adl} className="bg-white p-4 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
                           <label className="block text-sm font-medium text-slate-700 mb-2">{adl} Support Required</label>
-                          <select className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-brand-teal focus:border-brand-teal">
+                          <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:ring-brand-teal focus:border-brand-teal">
                             <option>Independent</option>
                             <option>Needs Setup</option>
                             <option>Needs Physical Assist</option>

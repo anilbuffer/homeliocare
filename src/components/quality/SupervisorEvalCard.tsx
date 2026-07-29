@@ -13,7 +13,7 @@ export function SupervisorEvalCard() {
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
       <div className="flex items-center justify-between mb-4 p-4 border-b border-border-subtle">
         <h3 className="text-lg font-medium text-text-primary">Recent Supervisor Home Visits</h3>
-        <button 
+        <button
           onClick={() => setIsViewAllModalOpen(true)}
           className="text-sm font-medium text-brand-teal hover:text-brand-teal-hover transition-colors">
           View All
@@ -48,14 +48,14 @@ export function SupervisorEvalCard() {
             </div>
           </div>
 
-          <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-border-subtle">
+          <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 px-3 py-2 rounded-lg border border-border-subtle">
             <FileText className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
             <p>Excellent bedside manner. Followed safety protocols for transfer exactly as per care plan. Patient expressed high satisfaction.</p>
           </div>
         </div>
 
         {/* Sample Eval 2 */}
-        <div className="p-4 bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-colors">
+        <div className="py-4 px-4 bg-white backdrop-blur-xl rounded-2xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-colors">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
               <Avatar fallback="S" className="w-10 h-10 rounded-full bg-slate-100" />
@@ -81,7 +81,7 @@ export function SupervisorEvalCard() {
             </div>
           </div>
 
-          <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-border-subtle shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+          <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 px-3 py-2 rounded-lg border border-border-subtle shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <FileText className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
             <p>Needs improvement on documentation timeliness. Discussed best practices for charting at the end of the shift.</p>
           </div>
@@ -94,7 +94,7 @@ export function SupervisorEvalCard() {
         title="All Supervisor Evaluations"
         description="A complete history of recent supervisor home visit evaluations."
         footer={
-          <button 
+          <button
             onClick={() => setIsViewAllModalOpen(false)}
             className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
           >
@@ -128,7 +128,7 @@ export function SupervisorEvalCard() {
                 Jul 14, 2026
               </div>
             </div>
-            <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-border-subtle">
+            <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 px-3 py-2 rounded-lg border border-border-subtle">
               <FileText className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
               <p>Excellent bedside manner. Followed safety protocols for transfer exactly as per care plan. Patient expressed high satisfaction.</p>
             </div>
@@ -157,7 +157,7 @@ export function SupervisorEvalCard() {
                 Jul 12, 2026
               </div>
             </div>
-            <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-border-subtle">
+            <div className="text-xs text-text-secondary flex items-start gap-2 bg-slate-50 px-3 py-2 rounded-lg border border-border-subtle">
               <FileText className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
               <p>Needs improvement on documentation timeliness. Discussed best practices for charting at the end of the shift.</p>
             </div>

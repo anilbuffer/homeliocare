@@ -95,8 +95,8 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
             </div>
           ) : (
             <>
-              <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                <h2 className="text-lg font-bold text-slate-800">Report Incident</h2>
+              <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                <h2 className="text-lg font-semibold text-slate-800">Report Incident</h2>
                 <button
                   onClick={onClose}
                   className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
@@ -105,8 +105,8 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
-                <form id="incident-form" onSubmit={handleSubmit} className="space-y-5">
+              <div className="flex-1 overflow-y-auto p-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+                <form id="incident-form" onSubmit={handleSubmit} className="space-y-3">
 
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Incident Type *</label>
@@ -160,7 +160,6 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                       />
                     </div>
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Location</label>
                     <input
@@ -169,7 +168,6 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                       className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
                     />
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Description *</label>
                     <textarea
@@ -179,10 +177,9 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                       className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all resize-none"
                     />
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Evidence / Attachments</label>
-                    <div className="border-2 border-dashed border-slate-200 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                    <div className="border-1 border-dashed border-slate-200 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors cursor-pointer">
                       <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 mb-3">
                         <Upload className="w-5 h-5" />
                       </div>
@@ -190,9 +187,8 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                       <p className="text-xs text-slate-400">PDF, JPG, PNG up to 10MB</p>
                     </div>
                   </div>
-
                   <div className={cn(
-                    "p-4 rounded-xl border flex gap-3 transition-colors duration-300",
+                    "px-3 py-2 rounded-xl border flex gap-3 transition-colors duration-300",
                     notifySupervisor ? "bg-accent-red/5 border-accent-red/20" : "bg-slate-50 border-slate-200"
                   )}>
                     <input
@@ -203,7 +199,7 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                       onChange={(e) => setNotifySupervisor(e.target.checked)}
                     />
                     <div>
-                      <label htmlFor="notify-supervisor" className="text-sm font-bold text-slate-800 cursor-pointer flex items-center gap-1.5">
+                      <label htmlFor="notify-supervisor" className="text-sm font-semibold text-slate-800 cursor-pointer flex items-center gap-1.5">
                         Notify Supervisor Immediately
                         {HIGH_SEVERITY_TYPES.includes(incidentType) && (
                           <AlertTriangle className="w-4 h-4 text-accent-amber" />
@@ -216,15 +212,14 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                       </p>
                     </div>
                   </div>
-
                 </form>
               </div>
 
-              <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex justify-end gap-3">
+              <div className="px-4 py-3 border-t border-slate-100 bg-slate-50/50 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-5 py-2.5 text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 rounded-xl transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 rounded-xl transition-colors"
                 >
                   Cancel
                 </button>
@@ -232,7 +227,7 @@ export function ReportIncidentForm({ isOpen, onClose }: ReportIncidentFormProps)
                   form="incident-form"
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-5 py-2.5 text-sm font-medium bg-brand-teal border border-brand-teal hover:bg-brand-teal/90 text-white rounded-xl transition-colors flex items-center gap-2 disabled:opacity-70"
+                  className="px-4 py-2 text-sm font-medium bg-brand-teal border border-brand-teal hover:bg-brand-teal/90 text-white rounded-xl transition-colors flex items-center gap-2 disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>

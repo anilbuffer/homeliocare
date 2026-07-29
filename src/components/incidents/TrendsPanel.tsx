@@ -67,7 +67,7 @@ export function TrendsPanel() {
 
         {/* Patterns List */}
         <div className="flex-1 space-y-3 mt-2">
-          <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 px-1">Detected Patterns</h4>
+          <h4 className="text-[10px] font-semibold text-slate-400 mb-2 px-1">Detected Patterns</h4>
           {patternsData.map((pattern, i) => {
             const isError = pattern.type === "error";
             const Icon = isError ? AlertCircle : AlertTriangle;
@@ -79,7 +79,7 @@ export function TrendsPanel() {
                 transition={{ delay: i * 0.1 }}
                 key={i}
                 className={cn(
-                  "p-3 rounded-xl text-sm border relative overflow-hidden group",
+                  "px-3 py-2 rounded-xl text-sm border relative overflow-hidden group",
                   isError
                     ? "bg-red-50/50 border-red-100 text-red-900"
                     : "bg-amber-50/50 border-amber-100 text-amber-900"
@@ -94,14 +94,14 @@ export function TrendsPanel() {
                 <div className="flex items-start gap-3 relative z-10">
                   <div className={cn(
                     "p-2 rounded-xl shrink-0 mt-0.5",
-                    isError ? "bg-red-100 text-red-600 shadow-inner shadow-red-200" : "bg-amber-100 text-amber-600 shadow-inner shadow-amber-200"
+                    isError ? "bg-red-100 text-red-600 shadow-red-200" : "bg-amber-100 text-amber-600 shadow-amber-200"
                   )}>
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
                     <div className="font-medium leading-snug">{pattern.text}</div>
                     <div className={cn(
-                      "text-[10px] font-bold uppercase tracking-wider mt-1.5 inline-block px-2 py-0.5 rounded-md",
+                      "text-[10px] font-semibold uppercase tracking-wider mt-1.5 inline-block px-2 py-0.5 rounded-lg",
                       isError ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"
                     )}>
                       {pattern.highlight}

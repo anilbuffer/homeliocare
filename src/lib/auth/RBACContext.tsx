@@ -79,6 +79,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         role: "BILLING_FINANCE_STAFF",
         avatarUrl: "",
       };
+    } else if (role === "CLINICAL_SUPERVISOR_RN") {
+      mockUser = {
+        id: "clin-601",
+        name: "Rachel Miller, RN",
+        email: "rachel.miller@homeliocare.com",
+        role: "CLINICAL_SUPERVISOR_RN",
+        avatarUrl: "",
+      };
     } else {
       mockUser = {
         id: `mock-${role.toLowerCase()}-123`,

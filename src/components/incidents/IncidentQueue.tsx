@@ -26,10 +26,9 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
   });
 
   return (
-    <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full" noPadding>
-      <div className="p-5 border-b border-slate-100 flex items-center justify-between gap-4">
+    <Card className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full" noPadding>
+      <div className="px-4 py-2 border-b border-slate-100 flex items-center justify-between gap-4">
         <h2 className="font-semibold text-slate-800">Incident Queue</h2>
-
         <div className="flex items-center gap-2 flex-1 max-w-md">
           <div className="relative flex-1">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />

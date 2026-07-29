@@ -11,14 +11,24 @@ import { IncidentDetailPanel } from "./IncidentDetailPanel";
 import { ReportIncidentForm } from "./ReportIncidentForm";
 import { mockIncidents } from "@/lib/mockIncidentData";
 import { Incident } from "@/types/incidents";
+import { useAuth } from "@/hooks/useAuth";
 
 export function IncidentsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedIncident, setSelectedIncident] = useState<Incident | null>(null);
   const [isReportFormOpen, setIsReportFormOpen] = useState(false);
+  const { currentUser } = useAuth();
 
   // In a real app, you would fetch this data
-  const incidents = mockIncidents;
+  const incidents = currentUser?.role === "CLINICAL_SUPERVISOR_RN"
+    ? mockIncidents.filter(inc =>
+      inc.type === "Fall" ||
+      inc.type === "Medication Error" ||
+      inc.type === "Emergency" ||
+      inc.type === "Hospital Transfer" ||
+      inc.isRestricted
+    )
+    : mockIncidents;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,18 +57,18 @@ export function IncidentsPage() {
           <IncidentsKpiStrip />
         </motion.div>
 
-        <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[800px]">
+        <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-auto lg:h-full">
           {/* Left Column: Charts */}
           <div className="flex flex-col gap-6 lg:col-span-1 h-full">
-            <IncidentTypeChart 
-              onSelectCategory={(category) => setSelectedCategory(category === selectedCategory ? null : category)} 
+            <IncidentTypeChart
+              onSelectCategory={(category) => setSelectedCategory(category === selectedCategory ? null : category)}
             />
             <TrendsPanel />
           </div>
 
           {/* Right Column: Queue */}
           <div className="lg:col-span-2 h-full min-h-[500px]">
-            <IncidentQueue 
+            <IncidentQueue
               incidents={incidents}
               selectedCategory={selectedCategory}
               onRowClick={setSelectedIncident}
@@ -69,13 +79,13 @@ export function IncidentsPage() {
 
       {/* Modals & Panels */}
       {selectedIncident && (
-        <IncidentDetailPanel 
-          incident={selectedIncident} 
-          onClose={() => setSelectedIncident(null)} 
+        <IncidentDetailPanel
+          incident={selectedIncident}
+          onClose={() => setSelectedIncident(null)}
         />
       )}
 
-      <ReportIncidentForm 
+      <ReportIncidentForm
         isOpen={isReportFormOpen}
         onClose={() => setIsReportFormOpen(false)}
       />

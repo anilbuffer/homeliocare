@@ -25,7 +25,8 @@ import {
   Sparkles,
   ArrowRight,
   UserPlus,
-  PhoneCall
+  PhoneCall,
+  Stethoscope
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
@@ -291,6 +292,41 @@ const ROLE_DATA: Record<Role, RoleConfig> = {
         desc: "Real-time visibility into outstanding accounts receivable."
       }
     ]
+  },
+  CLINICAL_SUPERVISOR_RN: {
+    role: "CLINICAL_SUPERVISOR_RN",
+    title: "Clinical Supervisor / RN",
+    subtitle: "Clinical Oversight & Compliance",
+    description: "Full chart access, care plan authorship, medication oversight, and clinical incident review.",
+    icon: Stethoscope,
+    email: "rachel.miller@homeliocare.com",
+    badge: "Clinical Hub",
+    badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
+    metrics: [
+      { label: "Plans Due", value: "8" },
+      { label: "Incidents", value: "2 Open" },
+      { label: "Visits", value: "4 This Week" },
+    ],
+    highlights: ["Clinical Escalation Queue", "Care Plan Review", "Incident Sign-off"],
+    spotlightTitle: "Clinical Command Center &",
+    spotlightHighlight: "Patient Health Oversight",
+    features: [
+      {
+        icon: Activity,
+        title: "Clinical Escalation Queue",
+        desc: "Real-time condition change reports and urgent clinical questions from the field."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Care Plan Review Queue",
+        desc: "Automated tracking for periodic reviews, post-hospitalization, and incident-triggered updates."
+      },
+      {
+        icon: Globe,
+        title: "Restricted Incident Review",
+        desc: "High-priority clinical review for falls, medication errors, and restricted incidents."
+      }
+    ]
   }
 };
 
@@ -342,6 +378,8 @@ export default function LoginPage() {
         router.push("/intake/dashboard");
       } else if (selectedRole === "BILLING_FINANCE_STAFF") {
         router.push("/billing");
+      } else if (selectedRole === "CLINICAL_SUPERVISOR_RN") {
+        router.push("/clinical");
       } else {
         router.push("/dashboard");
       }

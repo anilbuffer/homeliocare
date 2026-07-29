@@ -81,7 +81,7 @@ export function Modal({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2, type: "spring", bounce: 0, damping: 20 }}
             className={cn(
-              "relative w-full bg-white rounded-[24px] shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden",
+              "relative w-full bg-white rounded-[16px] shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden",
               maxWidthClasses[maxWidth]
             )}
             onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing

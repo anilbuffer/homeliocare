@@ -4,20 +4,22 @@ import {
   Paperclip, Send, Smile, Info, ShieldAlert, Check, CheckCheck, Mic, ChevronLeft, Edit,
   Archive, BellOff, EyeOff, Trash2, X
 } from "lucide-react";
-import { Conversation, mockMessages, Message, mockContacts, Contact } from "./mockData";
+import { Conversation, mockMessages, mockContacts, Contact, Message } from "./mockData";
 import clsx from "clsx";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ActiveThreadPaneProps {
   conversation: Conversation | null;
   onToggleDetails: () => void;
   showDetails: boolean;
   onBack?: () => void;
-  isCreatingNew?: boolean;
+  isCreatingNew: boolean;
   onStartNew?: () => void;
 }
 
 export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, onBack, isCreatingNew, onStartNew }: ActiveThreadPaneProps) {
+  const { currentUser } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isUploading, setIsUploading] = useState(false);
@@ -284,12 +286,12 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
     }, 1500);
   };
 
-  const isPHIWarningVisible = selectedChannel === "sms" && inputValue.toLowerCase().includes("clinical");
+  const isPHIWarningVisible = currentUser?.role !== "CLINICAL_SUPERVISOR_RN" && selectedChannel === "sms" && inputValue.toLowerCase().includes("clinical");
 
   return (
     <div className="flex-1 flex flex-col h-full bg-[#f8fafd] min-w-0 relative">
       {/* Header */}
-      <div className="h-14 flex items-center justify-between px-2 lg:px-6 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
+      <div className="h-14 flex items-center justify-between px-2 lg:px-4 border-b border-slate-200/50 bg-[#fcfdfd]/80 backdrop-blur-md sticky top-0 z-20 shrink-0">
         <div className="flex items-center gap-2 lg:gap-4">
           {onBack && (
             <button
@@ -327,7 +329,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button 
+          <button
             onClick={() => toast.info("Calling feature coming soon")}
             className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg">
             <Phone className="w-5 h-5" />
@@ -354,26 +356,26 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
 
             {isOptionsMenuOpen && (
               <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-[0_8px_30px_-6px_rgba(0,0,0,0.12)] border border-slate-100 py-2 z-50 animate-in fade-in zoom-in-95 duration-200">
-                <button 
+                <button
                   onClick={() => toast.success("Conversation archived")}
                   className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
                   <Archive className="w-4 h-4" />
                   Archive conversation
                 </button>
-                <button 
+                <button
                   onClick={() => toast.success("Conversation marked as unread")}
                   className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
                   <EyeOff className="w-4 h-4" />
                   Mark as unread
                 </button>
-                <button 
+                <button
                   onClick={() => toast.success("Notifications muted")}
                   className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-teal transition-colors text-left">
                   <BellOff className="w-4 h-4" />
                   Mute notifications
                 </button>
                 <div className="h-px bg-slate-100 my-1"></div>
-                <button 
+                <button
                   onClick={() => toast.success("Conversation deleted")}
                   className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
                   <Trash2 className="w-4 h-4" />
@@ -387,12 +389,12 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
 
       {/* Escalation Banner */}
       {conversation.isUrgent && (
-        <div className="bg-red-50 border-b border-red-100 p-3 px-6 flex items-center justify-between shrink-0">
+        <div className="bg-red-50 border-b border-red-100 p-3 px-4 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2 text-red-700 text-sm font-medium">
             <AlertCircle className="w-4 h-4" />
             Escalated — awaiting response
           </div>
-          <button 
+          <button
             onClick={() => toast.success("Issue resolved")}
             className="text-sm text-red-600 hover:text-red-800 font-semibold">
             Resolve
@@ -401,7 +403,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
       )}
 
       {/* Message Stream */}
-      <div className="flex-1 overflow-y-auto p-6 pb-30 space-y-6 custom-scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 pb-30 space-y-4 custom-scrollbar">
         {messages.map((msg, idx) => {
           const isMe = msg.senderId === "me";
           const sender = isMe ? null : mockContacts[msg.senderId] || primaryParticipant;
@@ -532,7 +534,7 @@ export function ActiveThreadPane({ conversation, onToggleDetails, showDetails, o
           </div>
 
           {/* Controls row (Desktop view inline, Mobile view bottom row) */}
-          <div className="flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-0 border-t sm:border-none border-slate-100 sm:pb-1">
+          <div className="flex items-center justify-between sm:justify-end gap-2 pt-2 sm:pt-0 border-t sm:border-none border-slate-100">
 
             <div className="flex items-center gap-2 px-2 sm:px-0">
               <span className="text-[10px] font-semibold text-slate-400 uppercase sm:hidden tracking-wider">Channel:</span>

@@ -34,6 +34,10 @@ export function AuthGuard({
           router.push("/caregiver");
         } else if (currentUser.role === "INTAKE_COORDINATOR") {
           router.push("/intake/dashboard");
+        } else if (currentUser.role === "BILLING_FINANCE_STAFF") {
+          router.push("/billing");
+        } else if (currentUser.role === "CLINICAL_SUPERVISOR_RN") {
+          router.push("/clinical");
         } else {
           router.push("/login");
         }

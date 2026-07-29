@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Calendar as CalendarIcon, FileCheck, AlertTriangle, CheckSquare, Clock, ShieldAlert } from "lucide-react";
+import { Plus, Calendar as CalendarIcon, FileCheck, AlertTriangle, CheckSquare, Clock, ShieldAlert, ChevronDown, Search } from "lucide-react";
 import { QAScoreCard } from "./QAScoreCard";
 import { AuditList } from "./AuditList";
 import { AuditChecklist } from "./AuditChecklist";
@@ -11,6 +11,7 @@ import { TrendsChart } from "./TrendsChart";
 import { AuditType } from "./mockData";
 import clsx from "clsx";
 import { Modal } from "@/components/ui/Modal";
+import { useAuth } from "@/hooks/useAuth";
 
 const KPI_DATA = [
   { label: "Audits Completed", value: "24", subtext: "This Month", icon: FileCheck, color: "text-brand-teal", bg: "bg-brand-teal/20" },
@@ -30,15 +31,21 @@ const AUDIT_TABS: AuditType[] = [
 ];
 
 export function QualityAssurance() {
-  const [activeTab, setActiveTab] = useState<AuditType>("Chart Audit");
+  const { currentUser } = useAuth();
+
+  const allowedTabs = currentUser?.role === "CLINICAL_SUPERVISOR_RN"
+    ? (["Care Plan Audit", "Medication Audit"] as AuditType[])
+    : AUDIT_TABS;
+
+  const [activeTab, setActiveTab] = useState<AuditType>(allowedTabs[0]);
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-6 full-width space-y-4">
+    <div className="full-width space-y-4">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900">Quality Assurance</h1>
+          <h1 className="text-lg font-semibold text-slate-900">Quality Assurance</h1>
           <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-teal"></span>
             15 audits due this month
@@ -94,8 +101,8 @@ export function QualityAssurance() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 min-h-[500px]">
         {/* Tabs */}
         <div className="lg:col-span-1 bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col gap-2">
-          <h3 className="text-lg font-medium text-text-primary mb-2 px-2">Audit Instruments</h3>
-          {AUDIT_TABS.map((tab) => (
+          <h3 className="text-base font-medium text-text-primary mb-2">Audit Instruments</h3>
+          {allowedTabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -133,45 +140,72 @@ export function QualityAssurance() {
         title="Schedule New Audit"
         description="Select the type and subject for the new quality assurance audit."
         footer={
-          <>
+          <div className="flex items-center justify-end gap-3 w-full">
             <button
               onClick={() => setIsScheduleModalOpen(false)}
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+              className="px-5 py-2.5 text-sm font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-all duration-200"
             >
               Cancel
             </button>
             <button
               onClick={() => setIsScheduleModalOpen(false)}
-              className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-brand-teal to-brand-teal/90 hover:from-brand-teal/90 hover:to-brand-teal shadow-[0_4px_14px_0_rgba(20,184,166,0.39)] hover:shadow-[0_6px_20px_rgba(20,184,166,0.23)] hover:-translate-y-0.5 rounded-xl transition-all duration-200 flex items-center gap-2"
             >
+              <CalendarIcon className="w-4 h-4" />
               Confirm Schedule
             </button>
-          </>
+          </div>
         }
       >
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Audit Type</label>
-            <select className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
-              {AUDIT_TABS.map(tab => (
-                <option key={tab}>{tab}</option>
-              ))}
-            </select>
+        <div className="space-y-5 py-2">
+          {/* Audit Type */}
+          <div className="space-y-1.5">
+            <label className="block text-sm font-medium text-slate-700">Audit Type</label>
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-brand-teal transition-colors">
+                <ShieldAlert className="w-[18px] h-[18px]" />
+              </div>
+              <select className="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-10 py-3 text-sm text-slate-700 focus:bg-white focus:outline-none focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/10 transition-all appearance-none cursor-pointer">
+                {AUDIT_TABS.map(tab => (
+                  <option key={tab}>{tab}</option>
+                ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
+                <ChevronDown className="w-4 h-4" />
+              </div>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Subject (Caregiver / Patient)</label>
-            <input
-              type="text"
-              placeholder="Search subject name..."
-              className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
-            />
+
+          {/* Subject */}
+          <div className="space-y-1.5">
+            <label className="block text-sm font-medium text-slate-700">Subject (Caregiver / Patient)</label>
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-brand-teal transition-colors">
+                <Search className="w-[18px] h-[18px]" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search subject name..."
+                className="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/10 transition-all"
+              />
+              <div className="absolute inset-y-0 right-0 pr-2 flex items-center">
+                <div className="bg-white text-slate-400 text-[10px] font-semibold px-2 py-1 rounded-md border border-slate-200/60 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">⌘K</div>
+              </div>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Due Date</label>
-            <input
-              type="date"
-              className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal"
-            />
+
+          {/* Due Date */}
+          <div className="space-y-1.5">
+            <label className="block text-sm font-medium text-slate-700">Due Date</label>
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-brand-teal transition-colors">
+                <CalendarIcon className="w-[18px] h-[18px]" />
+              </div>
+              <input
+                type="date"
+                className="w-full bg-slate-50/50 border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-700 focus:bg-white focus:outline-none focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/10 transition-all"
+              />
+            </div>
           </div>
         </div>
       </Modal>

@@ -134,7 +134,7 @@ export function WorkflowStepper({ workflow }: WorkflowStepperProps) {
                 
                 {isCompleted && data?.completedAt && (
                   <div className="text-[10px] text-slate-400">
-                    {new Date(data.completedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {new Date(data.completedAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 )}
               </div>

@@ -39,36 +39,36 @@ export function FindingsTable() {
         <table className="w-full text-left border-collapse min-w-[800px]">
           <thead>
             <tr className="border-b border-border-subtle bg-slate-50/50">
-              <th className="px-5 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Description</th>
-              <th className="px-5 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Severity</th>
-              <th className="px-5 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Source Audit</th>
-              <th className="px-5 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Owner</th>
-              <th className="px-5 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Due Date</th>
-              <th className="px-5 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
+              <th className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Description</th>
+              <th className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Severity</th>
+              <th className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Source Audit</th>
+              <th className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Owner</th>
+              <th className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Due Date</th>
+              <th className="px-4 py-3 text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border-subtle">
             {findings.map((finding) => (
               <tr key={finding.id} className="hover:bg-slate-50/30 transition-colors cursor-pointer group">
-                <td className="px-5 py-4">
+                <td className="px-4 py-3">
                   <div className="text-sm font-medium text-text-primary max-w-[300px] truncate">{finding.description}</div>
                   <div className="text-xs text-text-secondary mt-0.5">{finding.id}</div>
                 </td>
-                <td className="px-5 py-4">
+                <td className="px-4 py-3">
                   <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border whitespace-nowrap", getSeverityColor(finding.severity))}>
                     {finding.severity}
                   </span>
                 </td>
-                <td className="px-5 py-4">
+                <td className="px-4 py-3">
                   <div className="flex items-center gap-2 text-sm text-text-primary hover:text-brand-teal transition-colors">
                     <FileText className="w-4 h-4 opacity-70" />
                     {finding.sourceAuditType}
                   </div>
                 </td>
-                <td className="px-5 py-4">
+                <td className="px-4 py-3">
                   <span className="text-sm text-text-primary whitespace-nowrap">{finding.owner}</span>
                 </td>
-                <td className="px-5 py-4">
+                <td className="px-4 py-3">
                   <div className={clsx(
                     "flex items-center gap-2 text-sm whitespace-nowrap",
                     (finding.status !== "Closed" && new Date(finding.dueDate) < new Date('2026-07-16')) ? "text-red-400 font-medium" : "text-text-primary"
@@ -77,7 +77,7 @@ export function FindingsTable() {
                     {finding.dueDate}
                   </div>
                 </td>
-                <td className="px-5 py-4">
+                <td className="px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
                     <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border whitespace-nowrap", getStatusColor(finding.status))}>
                       {finding.status}
@@ -114,7 +114,7 @@ export function FindingsTable() {
           <>
             <button
               onClick={() => setFindingToResolve(null)}
-              className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+              className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-100 rounded-xl transition-colors"
             >
               Cancel
             </button>
@@ -128,12 +128,12 @@ export function FindingsTable() {
         }
       >
         <div className="py-2">
-          <p className="text-sm text-slate-600 mb-4">
+          <p className="text-xs text-slate-600 mb-3">
             This action will update the status of the finding and notify the assignee.
           </p>
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div className="bg-slate-50 px-4 py-3 rounded-xl border border-slate-100">
             <div className="font-semibold text-sm text-slate-900 mb-1">Finding Description:</div>
-            <div className="text-sm text-slate-700">{findingToResolve?.description}</div>
+            <div className="text-xs text-slate-700">{findingToResolve?.description}</div>
           </div>
         </div>
       </Modal>

@@ -46,7 +46,7 @@ export function AuditChecklist({ activeTab }: Props) {
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
       <div className="flex items-center justify-between mb-6 p-4 border-b border-border-subtle">
         <div>
-          <h3 className="text-lg font-medium text-text-primary">{activeTab} Checklist</h3>
+          <h3 className="text-base font-medium text-text-primary">{activeTab} Checklist</h3>
           <p className="text-xs text-text-secondary mt-1">Complete all items to finalize audit</p>
         </div>
         <div className="flex items-center gap-4">
@@ -54,7 +54,7 @@ export function AuditChecklist({ activeTab }: Props) {
             <div className="text-2xl font-bold text-brand-teal tabular-nums">{score}%</div>
             <div className="text-xs text-text-secondary font-medium">Current Score</div>
           </div>
-          <button 
+          <button
             onClick={() => setIsSaveModalOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-brand-teal hover:bg-brand-teal-hover text-white rounded-xl transition-colors font-medium text-sm">
             <Save className="w-4 h-4" />
@@ -124,8 +124,8 @@ export function AuditChecklist({ activeTab }: Props) {
                   exit={{ opacity: 0, height: 0 }}
                   className="mt-3"
                 >
-                  <div className="flex items-center gap-2 text-red-400 bg-red-400/10 px-3 py-2 rounded-lg text-sm border border-red-400/20">
-                    <AlertCircle className="w-4 h-4 shrink-0" />
+                  <div className="flex items-center gap-2 text-red-400 bg-red-400/10 px-3 py-2 rounded-lg text-xs border border-red-400/20">
+                    <AlertCircle className="w-3 h-3 shrink-0" />
                     This will automatically generate a Finding and require a Corrective Action.
                   </div>
                 </motion.div>
@@ -169,7 +169,7 @@ export function AuditChecklist({ activeTab }: Props) {
         title="Draft Saved"
         description={`Your progress on the ${activeTab} has been saved.`}
         footer={
-          <button 
+          <button
             onClick={() => setIsSaveModalOpen(false)}
             className="px-4 py-2 text-sm font-medium text-white bg-brand-teal hover:bg-brand-teal/90 rounded-xl transition-colors shadow-lg shadow-brand-teal/20"
           >

@@ -1271,7 +1271,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[24px] max-w-2xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-2xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-start justify-between border-b border-slate-200 p-3 sm:p-4 shrink-0 bg-white z-10">
@@ -1519,7 +1519,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[24px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
@@ -1584,7 +1584,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[24px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-200 p-3 sm:p-4 shrink-0 bg-white z-10">
@@ -1660,7 +1660,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[24px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 p-4 sm:p-6 shrink-0 bg-white z-10">
@@ -1738,7 +1738,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[24px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200/80 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200/80 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
@@ -1800,7 +1800,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[24px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">

@@ -124,9 +124,9 @@ export function CertificationsTab({
               expiryDate: cert.expiryDate,
               status: cert.status,
             })}
-            className="p-4 sm:p-5 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all cursor-pointer"
+            className="p-4 flex flex-col h-full group hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all cursor-pointer"
           >
-            <div className="flex justify-between items-start mb-4">
+            <div className="flex justify-between items-start mb-3">
               <div
                 className={cn(
                   "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border",
@@ -152,25 +152,25 @@ export function CertificationsTab({
               </Badge>
             </div>
 
-            <div className="mb-4 flex-1">
-              <h4 className="font-bold text-slate-800 mb-1 group-hover:text-brand-teal transition-colors">{cert.name}</h4>
-              <p className="text-xs sm:text-sm text-slate-500">{cert.issuer}</p>
+            <div className="mb-3 flex-1">
+              <h4 className="font-semibold text-slate-800 mb-1 group-hover:text-brand-teal transition-colors">{cert.name}</h4>
+              <p className="text-[12px] sm:text-sm text-slate-500">{cert.issuer}</p>
             </div>
 
             <div className="space-y-2 pt-4 border-t border-slate-100">
-              <div className="flex justify-between text-xs sm:text-sm">
+              <div className="flex justify-between text-[12px] sm:text-sm">
                 <span className="text-slate-500">Issued</span>
                 <span className="font-medium text-slate-700">{cert.issueDate}</span>
               </div>
-              <div className="flex justify-between text-xs sm:text-sm">
+              <div className="flex justify-between text-[12px] sm:text-sm">
                 <span className="text-slate-500">Expires</span>
                 <span
                   className={cn(
                     "font-medium",
                     cert.status === "Expiring Soon"
-                      ? "text-amber-600 font-bold"
+                      ? "text-amber-600"
                       : cert.status === "Expired"
-                        ? "text-rose-600 font-bold"
+                        ? "text-rose-600"
                         : "text-slate-700"
                   )}
                 >
