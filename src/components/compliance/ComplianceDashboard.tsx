@@ -83,20 +83,29 @@ export function ComplianceDashboard() {
         <KpiCardStrip data={mockKpiSummary} />
       </div>
 
-      {/* Row 2: Restricted Incident Queue */}
-      <div className="w-full h-80">
-        <RestrictedIncidentQueue incidents={mockRestrictedIncidents} />
-      </div>
+      {/* Main Grid Layout for better responsiveness */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 pb-8">
+        
+        {/* Restricted Incident Queue */}
+        <div className="col-span-1 lg:col-span-2 xl:col-span-2 h-auto lg:h-[450px]">
+          <RestrictedIncidentQueue incidents={mockRestrictedIncidents} />
+        </div>
 
-      {/* Row 3 & 4: Deadline Tracker and Verification Queue */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-4 h-80">
-        <StateReportingDeadlineTracker deadlines={mockStateDeadlines} />
-        <VerificationQueue items={mockVerificationQueue} />
-      </div>
+        {/* Verification Queue */}
+        <div className="col-span-1 h-auto lg:h-[450px]">
+          <VerificationQueue items={mockVerificationQueue} />
+        </div>
 
-      {/* Row 5: Quality Trends */}
-      <div className="w-full pb-8">
-        <QualityTrends />
+        {/* State Reporting Deadline Tracker */}
+        <div className="col-span-1 h-auto lg:h-[450px]">
+          <StateReportingDeadlineTracker deadlines={mockStateDeadlines} />
+        </div>
+
+        {/* Quality Trends */}
+        <div className="col-span-1 lg:col-span-2 xl:col-span-2 h-auto lg:h-[450px]">
+          <QualityTrends />
+        </div>
+
       </div>
     </div>
   );

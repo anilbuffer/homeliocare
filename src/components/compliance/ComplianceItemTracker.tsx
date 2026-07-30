@@ -70,16 +70,16 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
 
   return (
     <>
-      <input 
-        type="file" 
-        ref={fileInputRef} 
-        className="hidden" 
-        onChange={(e) => { 
-          if (e.target.files?.length) { 
-            toast.success("Document uploaded successfully"); 
-            e.target.value = ''; 
-          } 
-        }} 
+      <input
+        type="file"
+        ref={fileInputRef}
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files?.length) {
+            toast.success("Document uploaded successfully");
+            e.target.value = '';
+          }
+        }}
       />
       <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-200 flex flex-col md:flex-row items-start sm:items-center justify-between gap-4 bg-white/50">
@@ -259,8 +259,8 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 h-screen w-full max-w-md bg-white border-l border-slate-200 z-50 shadow-2xl overflow-y-auto flex flex-col"
             >
-              <div className="p-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm z-10">
-                <h3 className="text-lg font-bold text-slate-900">Item Details</h3>
+              <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm z-10">
+                <h3 className="text-base font-bold text-slate-900">Item Details</h3>
                 <button
                   onClick={() => setSelectedItem(null)}
                   className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
@@ -269,7 +269,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                 </button>
               </div>
 
-              <div className="p-4 flex-1 space-y-6">
+              <div className="px-4 py-3 flex-1 space-y-3">
                 {/* Header */}
                 <div className="flex items-start gap-4">
                   {selectedItem.caregiver.avatarUrl ? (
@@ -280,16 +280,16 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                     </div>
                   )}
                   <div>
-                    <h4 className="text-xl font-bold text-slate-900">{selectedItem.caregiver.name}</h4>
-                    <p className="text-sm text-brand-teal">{selectedItem.caregiver.role}</p>
+                    <h4 className="text-base font-semibold text-slate-900">{selectedItem.caregiver.name}</h4>
+                    <p className="text-xs text-brand-teal">{selectedItem.caregiver.role}</p>
                   </div>
                 </div>
 
                 {/* Item Info */}
-                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-3">
+                <div className="bg-slate-50 rounded-xl px-4 py-3 border border-slate-200 space-y-3">
                   <div>
                     <div className="text-xs text-slate-500 mb-1">Item Name</div>
-                    <div className="text-base font-medium text-slate-900">{selectedItem.itemName}</div>
+                    <div className="text-sm font-medium text-slate-900">{selectedItem.itemName}</div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -316,7 +316,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                   <h4 className="text-sm font-semibold text-slate-900 mb-3 flex items-center gap-2">
                     <FileText className="w-4 h-4 text-slate-500" /> Current Document
                   </h4>
-                  <div className="border border-slate-200 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center bg-slate-50">
+                  <div className="border border-slate-300 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center bg-slate-50">
                     {selectedItem.status === "Pending" ? (
                       <>
                         <Upload className="w-8 h-8 text-slate-500 mb-3" />
@@ -325,7 +325,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                       </>
                     ) : (
                       <>
-                        <div className="w-16 h-20 bg-slate-100 rounded-lg mb-3 flex items-center justify-center shadow-inner">
+                        <div className="w-16 h-18 bg-slate-100 rounded-lg mb-3 flex items-center justify-center shadow-inner">
                           <FileText className="w-8 h-8 text-slate-500" />
                         </div>
                         <div
@@ -356,11 +356,10 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                   </div>
                 </div>
               </div>
-
               <div className="p-4 border-t border-slate-200 bg-slate-50 grid grid-cols-2 gap-3 mt-auto">
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-200 text-slate-900 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                  className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-200 text-slate-900 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2"
                 >
                   <Upload className="w-4 h-4" /> Replace
                 </button>
@@ -369,7 +368,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                     toast.success(`${selectedItem.itemName} marked as renewed`);
                     setSelectedItem(null);
                   }}
-                  className="px-4 py-2 border border-brand-teal-200 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,180,216,0.3)] hover:shadow-[0_0_20px_rgba(0,180,216,0.5)]"
+                  className="px-4 py-2 border border-brand-teal-200 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,180,216,0.3)] hover:shadow-[0_0_20px_rgba(0,180,216,0.5)]"
                 >
                   <CheckCircle2 className="w-4 h-4" /> Mark Renewed
                 </button>

@@ -33,8 +33,8 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
       <CardHeader title="Incidents by Category" subtitle="Last 30 days" />
-      <div className="flex-1 flex flex-row items-center min-h-0">
-        <div className="relative w-[55%] h-full min-h-[220px]">
+      <div className="flex-1 flex flex-col sm:flex-row items-center min-h-0 gap-4 sm:gap-0">
+        <div className="relative w-full sm:w-[55%] h-[220px] sm:h-full min-h-[220px]">
           {/* Inner Text Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0">
             <motion.div
@@ -98,15 +98,15 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
           </div>
         </div>
 
-        {/* Custom Legend (Right side, single column, small) */}
-        <div className="w-[45%] flex flex-col gap-1 pr-2">
+        {/* Custom Legend */}
+        <div className="w-full sm:w-[45%] flex flex-row flex-wrap sm:flex-col justify-center sm:justify-start gap-2 sm:gap-1 sm:pr-2">
           {data.map((item, i) => (
             <button
               key={i}
               onClick={() => handleClick(item)}
               onMouseEnter={() => setActiveIndex(i)}
               onMouseLeave={() => setActiveIndex(null)}
-              className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-left group"
+              className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-left group w-[48%] sm:w-full"
             >
               <div className="flex items-center gap-2">
                 <div

@@ -111,8 +111,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
 
   return (
     <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 relative flex flex-col">
-
-
       {/* Header Area */}
       <div className="p-4 border-b border-slate-200 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start sm:items-center gap-3">
@@ -133,7 +131,6 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
             </p>
           </div>
         </div>
-
         <div className="flex items-center gap-2 self-start md:self-center shrink-0">
           <span className="text-xs text-slate-600 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full font-medium flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -189,12 +186,12 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                     {policy.policyName}
                   </span>
                   {policy.version && (
-                    <span className="text-[10px] font-normal bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200 shrink-0">
+                    <span className="text-[10px] font-normal bg-slate-100 text-slate-600 px-2 py-0.5 rounded-lg border border-slate-200 shrink-0">
                       {policy.version}
                     </span>
                   )}
                   {policy.category && (
-                    <span className="text-[10px] font-normal bg-slate-50 text-slate-500 px-2 py-0.5 rounded border border-slate-100 shrink-0">
+                    <span className="text-[10px] font-normal bg-slate-50 text-slate-500 px-2 py-0.5 rounded-lg border border-slate-100 shrink-0">
                       {policy.category}
                     </span>
                   )}
@@ -206,7 +203,7 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
                   {policy.requiredForRoles.map((role) => (
                     <span
                       key={role}
-                      className="text-[10px] font-medium bg-white border border-slate-200 text-slate-600 px-1.5 py-0.5 rounded shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
+                      className="text-[10px] font-medium bg-white border border-slate-200 text-slate-600 px-1.5 py-0.5 rounded-lg shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
                     >
                       {role}
                     </span>
@@ -218,13 +215,13 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
               <div className="w-full lg:w-64 space-y-1.5 shrink-0 bg-slate-50/50 p-2.5 sm:p-3 lg:bg-transparent lg:p-0 rounded-xl border border-slate-100 lg:border-none">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium text-slate-600">
-                    <strong className="text-slate-900 font-bold">{signed}</strong> / {total} signed
+                    <strong className="text-slate-900 font-semibold">{signed}</strong> / {total} signed
                   </span>
-                  <span className="font-bold text-slate-800">{percentage}%</span>
+                  <span className="font-semibold text-slate-800">{percentage}%</span>
                 </div>
 
                 {/* Progress Bar Container */}
-                <div className="w-full h-2.5 bg-slate-200/60 rounded-full overflow-hidden p-0.5 border border-slate-200/80">
+                <div className="w-full h-1.5 bg-slate-200/60 rounded-lg overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${statusTheme.barColor}`}
                     style={{ width: `${percentage}%` }}
@@ -252,7 +249,7 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
               </div>
 
               {/* Right Column: Status & Drill-down Button */}
-              <div className="flex items-center gap-3 shrink-0 justify-between lg:justify-end border-t border-slate-100 lg:border-t-0 pt-2 lg:pt-0">
+              <div className="flex items-center gap-4 shrink-0 justify-between lg:justify-end border-t border-slate-100 lg:border-t-0 pt-2 lg:pt-0">
                 <span
                   className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border ${statusTheme.badgeBg}`}
                 >
@@ -285,14 +282,14 @@ export function PolicyAcknowledgmentMatrix({ policies }: PolicyAcknowledgmentMat
             <div className="p-4 border-b border-slate-200 bg-slate-50/90 flex items-start justify-between gap-3 shrink-0">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[10px] sm:text-xs font-semibold text-brand-teal bg-brand-teal/10 px-2 py-0.5 rounded-full border border-brand-teal/20">
+                  <span className="text-[10px] font-semibold text-brand-teal bg-brand-teal/10 px-2 py-0.5 rounded-full border border-brand-teal/20">
                     Policy Drill-Down Audit
                   </span>
                   {selectedPolicy.version && (
                     <span className="text-xs font-medium text-slate-500">Version {selectedPolicy.version}</span>
                   )}
                 </div>
-                <h2 className="text-base sm:text-lg font-bold text-slate-900 mt-1 truncate">
+                <h2 className="text-base sm:text-lg font-semibold text-slate-900 mt-1 truncate">
                   {selectedPolicy.policyName}
                 </h2>
                 <p className="text-xs text-slate-500 mt-0.5 truncate">

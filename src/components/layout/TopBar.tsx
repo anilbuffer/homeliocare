@@ -24,6 +24,13 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/caregivers")) return "Caregivers & HR";
     if (pathname.startsWith("/billing")) return "Billing & Claims";
     if (pathname.startsWith("/incidents")) return "Incident & Risk";
+    if (pathname.startsWith("/compliance/qa")) return "Quality Assurance";
+    if (pathname.startsWith("/compliance/incidents")) return "Incident Reports";
+    if (pathname.startsWith("/compliance/reports")) return "Reports";
+    if (pathname.startsWith("/compliance/messages")) return "Messages";
+    if (pathname.startsWith("/compliance/settings")) return "Settings";
+    if (pathname.startsWith("/compliance/tracking")) return "Compliance Tracking";
+    if (pathname === "/compliance" || pathname.startsWith("/compliance/dashboard")) return "Compliance Dashboard";
     if (pathname.startsWith("/compliance")) return "Compliance Tracking";
     if (pathname.startsWith("/qa") || pathname.startsWith("/quality-assurance")) return "Quality Assurance";
     if (pathname.startsWith("/reports")) return "Reports";

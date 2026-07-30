@@ -141,6 +141,13 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const { isCollapsed, toggleCollapse } = useSidebarCollapse();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [showHipaaTooltip, setShowHipaaTooltip] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const safeUser = mounted ? currentUser : null;
 
   const handleLogout = () => {
     setIsProfileOpen(false);
@@ -164,9 +171,9 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/compliance/qa")) return "qa";
     if (pathname?.startsWith("/clinical/incidents")) return "incidents";
     if (pathname?.startsWith("/compliance/incidents")) return "incidents";
-    if (pathname?.startsWith("/compliance/tracking") || (pathname === "/compliance" && currentUser?.role !== "QA_COMPLIANCE_OFFICER")) return "compliance";
-    if (pathname?.startsWith("/billing") && !pathname?.startsWith("/billing/workspace") && currentUser?.role === "ADMIN") return "billing-admin";
-    if (pathname?.startsWith("/billing") && !pathname?.startsWith("/billing/workspace") && currentUser?.role !== "ADMIN") return "dashboard";
+    if (pathname?.startsWith("/compliance/tracking") || (pathname === "/compliance" && safeUser?.role !== "QA_COMPLIANCE_OFFICER")) return "compliance";
+    if (pathname?.startsWith("/billing") && !pathname?.startsWith("/billing/workspace") && safeUser?.role === "ADMIN") return "billing-admin";
+    if (pathname?.startsWith("/billing") && !pathname?.startsWith("/billing/workspace") && safeUser?.role !== "ADMIN") return "dashboard";
     if (pathname?.startsWith("/scheduling") || pathname?.startsWith("/intake/scheduling")) return "scheduling";
     if (pathname?.startsWith("/patients") || pathname?.startsWith("/intake/patients")) return "patients";
     if (pathname?.startsWith("/caregivers")) return "caregivers";
@@ -181,7 +188,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/clinical/settings") || pathname?.startsWith("/billing/settings") || pathname?.startsWith("/intake/settings") || pathname?.startsWith("/compliance/settings") || pathname?.startsWith("/settings")) return "settings";
     if (pathname === "/dashboard" || pathname === "/" || pathname?.startsWith("/intake/dashboard") || pathname === "/clinical" || pathname === "/compliance") return "dashboard";
     return "dashboard";
-  }, [pathname, currentUser?.role]);
+  }, [pathname, safeUser?.role]);
 
   return (
     <>
@@ -227,7 +234,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             isCollapsed ? "px-3 justify-center" : "px-5 justify-start"
           )}
         >
-          <Link href={currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
+          <Link href={safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
             <div className="w-9 h-9 rounded-xl bg-brand-teal flex items-center justify-center font-bold text-lg text-white shadow-md shadow-brand-teal/30 shrink-0 group-hover:scale-105 transition-transform">
               H
             </div>
@@ -252,7 +259,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-700/50 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-600/80">
-          {getNavGroups(currentUser?.role).map((group, index) => (
+          {getNavGroups(safeUser?.role).map((group, index) => (
             <div key={index}>
               {group.label ? (
                 !isCollapsed ? (
@@ -270,29 +277,29 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   const Icon = item.icon;
 
                   let href = "#";
-                  if (item.id === "dashboard") href = currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : "/dashboard";
+                  if (item.id === "dashboard") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : "/dashboard";
                   if (item.id === "users") href = "/users";
                   if (item.id === "training") href = "/training";
                   if (item.id === "billing-admin") href = "/billing/workspace";
                   if (item.id === "billing-workspace") href = "/billing/workspace";
                   if (item.id === "authorizations") href = "/billing/authorizations";
-                  if (item.id === "payroll" && currentUser?.role === "BILLING_FINANCE_STAFF") href = "/billing/payroll";
-                  if (item.id === "payroll" && currentUser?.role !== "BILLING_FINANCE_STAFF") href = "/payroll";
-                  if (item.id === "reports" && currentUser?.role === "BILLING_FINANCE_STAFF") href = "/billing/reports";
-                  if (item.id === "reports" && currentUser?.role === "QA_COMPLIANCE_OFFICER") href = "/compliance/reports";
-                  if (item.id === "reports" && currentUser?.role !== "BILLING_FINANCE_STAFF" && currentUser?.role !== "QA_COMPLIANCE_OFFICER") href = "/reports";
-                  if (item.id === "messages") href = currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/messages" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/messages" : "/billing/messages";
-                  if (item.id === "scheduling") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
-                  if (item.id === "patients") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/patients" : "/patients";
+                  if (item.id === "payroll" && safeUser?.role === "BILLING_FINANCE_STAFF") href = "/billing/payroll";
+                  if (item.id === "payroll" && safeUser?.role !== "BILLING_FINANCE_STAFF") href = "/payroll";
+                  if (item.id === "reports" && safeUser?.role === "BILLING_FINANCE_STAFF") href = "/billing/reports";
+                  if (item.id === "reports" && safeUser?.role === "QA_COMPLIANCE_OFFICER") href = "/compliance/reports";
+                  if (item.id === "reports" && safeUser?.role !== "BILLING_FINANCE_STAFF" && safeUser?.role !== "QA_COMPLIANCE_OFFICER") href = "/reports";
+                  if (item.id === "messages") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/messages" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/messages" : "/billing/messages";
+                  if (item.id === "scheduling") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
+                  if (item.id === "patients") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/patients" : "/patients";
                   if (item.id === "caregivers") href = "/caregivers";
                   if (item.id === "evv-monitoring") href = "/evv-monitoring";
-                  if (item.id === "qa") href = currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/qa" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/qa" : "/quality-assurance";
-                  if (item.id === "incidents") href = currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/incidents" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/incidents" : "/incidents";
+                  if (item.id === "qa") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/qa" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/qa" : "/quality-assurance";
+                  if (item.id === "incidents") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/incidents" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/incidents" : "/incidents";
                   if (item.id === "assessments") href = "/clinical/assessments";
-                  if (item.id === "compliance") href = currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/tracking" : "/compliance";
-                  if (item.id === "referrals") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/referrals" : "/referrals";
-                  if (item.id === "communications") href = currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/communications" : "/communications";
-                  if (item.id === "settings") href = currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/settings" : currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/settings" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/settings" : "/settings";
+                  if (item.id === "compliance") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/tracking" : "/compliance";
+                  if (item.id === "referrals") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/referrals" : "/referrals";
+                  if (item.id === "communications") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/communications" : "/communications";
+                  if (item.id === "settings") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/settings" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/settings" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/settings" : "/settings";
 
                   return (
                     <li key={item.id} className="relative group">
@@ -386,7 +393,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               "flex items-center gap-3 w-full hover:bg-sidebar-active p-2 rounded-xl transition-colors text-left cursor-pointer",
               isCollapsed && "justify-center"
             )}
-            title={isCollapsed ? `${currentUser?.name || "Agency Admin"}` : undefined}
+            title={isCollapsed ? `${safeUser?.name || "Agency Admin"}` : undefined}
           >
             <div className="w-9 h-9 rounded-full bg-slate-600 shrink-0 overflow-hidden flex items-center justify-center ring-2 ring-brand-teal/40">
               <User className="w-4.5 h-4.5 text-slate-300" />
@@ -395,10 +402,10 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               <>
                 <div className="flex-1 overflow-hidden">
                   <div className="text-sm font-medium text-white truncate">
-                    {currentUser?.name || "Agency Executive"}
+                    {safeUser?.name || "Agency Executive"}
                   </div>
                   <div className="text-xs text-slate-400 truncate">
-                    {currentUser?.role || "ADMIN"} Portal
+                    {safeUser?.role || "ADMIN"} Portal
                   </div>
                 </div>
                 <ChevronDown
@@ -424,7 +431,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
               >
                 <div className="flex flex-col gap-1">
                   <Link
-                    href={currentUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/settings" : currentUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : currentUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/settings" : currentUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/settings" : "/settings"}
+                    href={safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/settings" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/settings" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/settings" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/settings" : "/settings"}
                     className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-sidebar-active rounded-xl transition-colors"
                     onClick={() => setIsProfileOpen(false)}
                   >

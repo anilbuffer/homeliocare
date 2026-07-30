@@ -76,7 +76,8 @@ export function TrendsPanel() {
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.1, type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.02, x: 4, transition: { type: "spring", stiffness: 400, damping: 25 } }}
                 key={i}
                 className={cn(
                   "px-3 py-2 rounded-xl text-sm border relative overflow-hidden group",

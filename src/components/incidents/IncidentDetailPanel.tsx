@@ -37,7 +37,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
   };
 
   return (
-    <AnimatePresence>
+    <>
       <div className="fixed inset-0 z-50 flex justify-end">
         {/* Backdrop */}
         <motion.div
@@ -81,7 +81,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
             </div>
             <h2 className="text-lg font-semibold text-slate-800 mb-1">{incident.type}</h2>
             <div className="text-xs text-slate-500 flex items-center gap-2">
-              <span>ID: {incident.id}</span>
+               <span>ID: {incident.id}</span>
               <span>•</span>
               <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {incident.location}</span>
             </div>
@@ -180,7 +180,6 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                   ))}
                 </div>
               </div>
-
               <div className="bg-white rounded-xl px-4 py-3 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col gap-3">
                 <div>
                   <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> Incident Time</div>
@@ -218,7 +217,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                   incident.regulatoryReport.status === "Overdue" ? "error" :
                     incident.regulatoryReport.status === "Submitted" ? "success" :
                       incident.regulatoryReport.status === "Pending" ? "warning" : "default"
-                }>
+                } className="text-xs">
                   {incident.regulatoryReport.status}
                 </Badge>
               </div>
@@ -252,7 +251,7 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
                   )}
                 </div>
               ) : (
-                <p className="text-sm text-slate-500 italic">No external regulatory reporting required for this incident type.</p>
+                <p className="text-xs text-slate-500 italic">No external regulatory reporting required for this incident type.</p>
               )}
             </div>
 
@@ -311,6 +310,6 @@ export function IncidentDetailPanel({ incident, onClose }: IncidentDetailPanelPr
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </>
   );
 }

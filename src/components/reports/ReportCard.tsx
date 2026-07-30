@@ -17,7 +17,7 @@ export function ReportCard({ report, onView }: ReportCardProps) {
     >
       <div className="mb-4">
         <h3 className="text-slate-900 font-semibold mb-1">{report.title}</h3>
-        <p className="text-sm text-slate-500 line-clamp-2">{report.description}</p>
+        <p className="text-xs text-slate-500 line-clamp-2">{report.description}</p>
       </div>
 
       <div className="h-40 pointer-events-none relative overflow-hidden mb-4">

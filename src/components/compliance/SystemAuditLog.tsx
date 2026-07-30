@@ -49,11 +49,11 @@ export function SystemAuditLog() {
         <table className="w-full text-sm text-left">
           <thead className="text-xs text-slate-500 uppercase bg-slate-50/50 border-b border-slate-100">
             <tr>
-              <th className="px-4 py-3 font-semibold">Timestamp</th>
-              <th className="px-4 py-3 font-semibold">Action & Status</th>
-              <th className="px-4 py-3 font-semibold">User / Actor</th>
-              <th className="px-4 py-3 font-semibold">Target Resource</th>
-              <th className="px-4 py-3 font-semibold">IP Address</th>
+              <th className="px-4 py-3 whitespace-nowrap">Timestamp</th>
+              <th className="px-4 py-3 whitespace-nowrap">Action & Status</th>
+              <th className="px-4 py-3 whitespace-nowrap">User / Actor</th>
+              <th className="px-4 py-3 whitespace-nowrap">Target Resource</th>
+              <th className="px-4 py-3 whitespace-nowrap">IP Address</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 text-slate-700">
@@ -63,13 +63,13 @@ export function SystemAuditLog() {
                   <div className="flex items-center gap-2">
                     <History className="w-4 h-4 text-slate-400" />
                     <div>
-                      <div className="font-medium text-slate-900">{log.time}</div>
-                      <div className="text-xs text-slate-500">{log.date}</div>
+                      <div className="font-sm text-slate-900">{log.time}</div>
+                      <div className="text-[10px] text-slate-500">{log.date}</div>
                     </div>
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-xs whitespace-nowrap">
                     {log.status === "Success" ? (
                       <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
                     ) : (
@@ -79,17 +79,17 @@ export function SystemAuditLog() {
                   </div>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-xs">
                     <UserCheck className="w-4 h-4 text-slate-400" />
                     {log.user}
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium border border-slate-200">
+                  <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full text-xs whitespace-nowrap">
                     {log.target}
                   </span>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap font-mono text-xs text-slate-500">
+                <td className="px-4 py-3 whitespace-nowrap text-xs text-slate-500">
                   {log.ip}
                 </td>
               </tr>
@@ -98,7 +98,7 @@ export function SystemAuditLog() {
         </table>
       </div>
       <div className="p-4 border-t border-slate-100 bg-slate-50/50 text-center">
-        <button onClick={() => toast.info("Loading older logs...")} className="text-sm font-medium text-brand-teal hover:text-teal-700 transition-colors">
+        <button onClick={() => toast.info("Loading older logs...")} className="text-sm font-semibold text-brand-teal hover:text-teal-700 transition-colors">
           View Older Logs
         </button>
       </div>

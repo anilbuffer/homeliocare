@@ -5,13 +5,16 @@ import { useState, useEffect, useCallback } from "react";
 const STORAGE_KEY = "homeliocare_sidebar_collapsed";
 
 export function useSidebarCollapse() {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(() => {
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : false;
+      if (stored) {
+        setIsCollapsed(JSON.parse(stored));
+      }
     }
-    return false;
-  });
+  }, []);
 
   const toggleCollapse = useCallback(() => {
     setIsCollapsed((prev) => {

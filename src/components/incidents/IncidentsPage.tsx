@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { IncidentsHeader } from "./IncidentsHeader";
 import { IncidentsKpiStrip } from "./IncidentsKpiStrip";
 import { IncidentTypeChart } from "./IncidentTypeChart";
@@ -34,7 +34,7 @@ export function IncidentsPage() {
       )
     : mockIncidents;
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -42,7 +42,7 @@ export function IncidentsPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { duration: 0.3 } }
   };
@@ -82,12 +82,14 @@ export function IncidentsPage() {
       </motion.div>
 
       {/* Modals & Panels */}
-      {selectedIncident && (
-        <IncidentDetailPanel
-          incident={selectedIncident}
-          onClose={() => setSelectedIncident(null)}
-        />
-      )}
+      <AnimatePresence>
+        {selectedIncident && (
+          <IncidentDetailPanel
+            incident={selectedIncident}
+            onClose={() => setSelectedIncident(null)}
+          />
+        )}
+      </AnimatePresence>
 
       <ReportIncidentForm
         isOpen={isReportFormOpen}

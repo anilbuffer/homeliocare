@@ -776,19 +776,19 @@ export default function HrCaregiversRosterPage() {
 
                 {/* Policy Acknowledgments */}
                 <div>
-                  <h4 className="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2.5">
+                  <h4 className="text-xs font-semibold uppercase text-slate-400 tracking-wider mb-2.5">
                     HR Policy Acknowledgments
                   </h4>
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-50">
                       <span className="font-medium text-slate-700">HIPAA Privacy & Security Policy</span>
-                      <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-1">
+                      <span className="text-[10px] font-semibold text-emerald-700 flex items-center gap-1">
                         <Check className="w-3 h-3 text-emerald-600" /> Signed
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-50">
                       <span className="font-medium text-slate-700">Agency Code of Conduct</span>
-                      <span className="text-[10px] font-bold text-emerald-700 flex items-center gap-1">
+                      <span className="text-[10px] font-semibold text-emerald-700 flex items-center gap-1">
                         <Check className="w-3 h-3 text-emerald-600" /> Signed
                       </span>
                     </div>

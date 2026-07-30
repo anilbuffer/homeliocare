@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Incident } from "@/types/incidents";
 import { cn } from "@/components/ui/Card";
 import { format } from "date-fns";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface IncidentQueueProps {
   incidents: Incident[];
@@ -48,28 +49,41 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
 
       <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3">
         {filteredIncidents.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-40 text-slate-500 text-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center justify-center h-40 text-slate-500 text-sm"
+          >
             <ShieldAlert className="w-8 h-8 text-slate-300 mb-2" />
             <p>No open incidents match your filters.</p>
             <p className="text-xs mt-1">Great work!</p>
-          </div>
+          </motion.div>
         ) : (
-          filteredIncidents.map((incident) => {
-            const isHighSeverity = incident.severity === "High" || incident.severity === "Critical";
-            const needsSupervisorAlert = incident.supervisorAlert;
+          <AnimatePresence mode="popLayout">
+            {filteredIncidents.map((incident) => {
+              const isHighSeverity = incident.severity === "High" || incident.severity === "Critical";
+              const needsSupervisorAlert = incident.supervisorAlert;
 
-            return (
-              <div
-                key={incident.id}
-                onClick={() => onRowClick(incident)}
+              return (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                  whileHover={{ scale: 1.01, transition: { type: "spring", stiffness: 400, damping: 25 } }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  key={incident.id}
+                  onClick={() => onRowClick(incident)}
                 className={cn(
-                  "group flex items-center gap-4 p-4 rounded-xl border border-slate-200 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)] hover:border-brand-teal/40 transition-all cursor-pointer relative overflow-hidden",
+                  "group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-xl border border-slate-200 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)] hover:border-brand-teal/40 transition-all cursor-pointer relative overflow-hidden",
                   (isHighSeverity || needsSupervisorAlert) && "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1.5 before:bg-accent-red before:shadow-[0_0_8px_rgba(239,68,68,0.5)]"
                 )}
               >
-                {/* ID & Type */}
-                <div className="w-[140px] shrink-0">
-                  <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1">
+                {/* Header (Mobile) / ID & Type (Desktop) */}
+                <div className="flex justify-between items-start w-full sm:w-[140px] sm:shrink-0 sm:block">
+                  <div className="w-full sm:w-auto">
+                    <div className="text-xs font-medium text-slate-500 mb-1 flex items-center gap-1">
                     {incident.id}
                     {incident.isRestricted && (
                       <div className="group/lock relative">
@@ -84,9 +98,20 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
                     {incident.type}
                   </div>
                 </div>
+                {/* Status Badge (Mobile Only) */}
+                <div className="sm:hidden shrink-0 ml-2 mt-0.5">
+                  <Badge variant={
+                    incident.status === "Closed" ? "success" :
+                      incident.status === "Corrective Action" ? "warning" :
+                        incident.status === "Reported" ? "error" : "default"
+                  }>
+                    {incident.status}
+                  </Badge>
+                </div>
+              </div>
 
                 {/* People */}
-                <div className="flex-1 min-w-0 flex items-center gap-3">
+                <div className="w-full sm:flex-1 min-w-0 flex items-center gap-3">
                   <div className="flex -space-x-2">
                     {incident.peopleInvolved.slice(0, 3).map((person, i) => (
                       <div
@@ -117,8 +142,8 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
                   {format(new Date(incident.reportedDate), "MMM d, h:mm a")}
                 </div>
 
-                {/* Status Badge */}
-                <div className="w-[130px] shrink-0 flex justify-end">
+                {/* Status Badge (Desktop Only) */}
+                <div className="w-[130px] shrink-0 hidden sm:flex justify-end">
                   <Badge variant={
                     incident.status === "Closed" ? "success" :
                       incident.status === "Corrective Action" ? "warning" :
@@ -127,9 +152,10 @@ export function IncidentQueue({ incidents, onRowClick, selectedCategory }: Incid
                     {incident.status}
                   </Badge>
                 </div>
-              </div>
+              </motion.div>
             );
-          })
+          })}
+          </AnimatePresence>
         )}
       </div>
     </Card>

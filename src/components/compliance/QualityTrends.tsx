@@ -7,7 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 export function QualityTrends() {
   return (
-    <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-full flex flex-col">
+    <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] h-auto lg:h-full flex flex-col">
       <div className="pb-3 border-b border-slate-100 flex items-center justify-between mb-3">
         <div>
           <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">

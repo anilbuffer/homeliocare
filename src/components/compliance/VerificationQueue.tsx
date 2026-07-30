@@ -24,7 +24,7 @@ export function VerificationQueue({ items: initialItems }: VerificationQueueProp
   };
 
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-full">
+    <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col h-auto lg:h-full">
       <div className="pb-4 border-b border-slate-200 flex items-center justify-between bg-white/50">
         <h3 className="text-base font-semibold text-slate-900 flex items-center gap-2">
           <Clock className="w-5 h-5 text-brand-teal" />
@@ -34,7 +34,7 @@ export function VerificationQueue({ items: initialItems }: VerificationQueueProp
           {items.length} Pending
         </span>
       </div>
-      <div className="flex-1 overflow-auto divide-y divide-slate-200 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <div className="flex-1 overflow-visible lg:overflow-auto divide-y divide-slate-200 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
         <AnimatePresence>
           {items.length === 0 ? (
             <motion.div

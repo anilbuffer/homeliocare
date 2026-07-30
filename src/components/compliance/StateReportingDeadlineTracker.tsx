@@ -19,7 +19,7 @@ export function StateReportingDeadlineTracker({ deadlines: initialDeadlines }: P
   };
 
   return (
-    <div className="bg-white rounded-2xl px-4 py-3 border border-amber-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden h-full flex flex-col">
+    <div className="bg-white rounded-2xl px-4 py-3 border border-amber-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden h-auto lg:h-full flex flex-col">
       <div className="absolute top-0 left-0 w-1 h-full bg-amber-500" />
       <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
         <div>
@@ -33,7 +33,7 @@ export function StateReportingDeadlineTracker({ deadlines: initialDeadlines }: P
           {deadlines.length} Pending
         </span>
       </div>
-      <div className="flex-1 overflow-auto mt-3 pr-1 space-y-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <div className="flex-1 overflow-visible lg:overflow-auto mt-3 pr-1 space-y-3 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
         <AnimatePresence>
           {deadlines.length === 0 ? (
             <motion.div

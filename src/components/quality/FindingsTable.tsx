@@ -31,10 +31,9 @@ export function FindingsTable() {
       <div className="p-4 border-b border-border-subtle flex items-center justify-between">
         <div className="flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-brand-teal" />
-          <h3 className="text-lg font-medium text-text-primary">Findings & Corrective Actions</h3>
+          <h3 className="text-base font-medium text-text-primary">Findings & Corrective Actions</h3>
         </div>
       </div>
-
       <div className="overflow-x-auto flex-1">
         <table className="w-full text-left border-collapse min-w-[800px]">
           <thead>
@@ -51,35 +50,35 @@ export function FindingsTable() {
             {findings.map((finding) => (
               <tr key={finding.id} className="hover:bg-slate-50/30 transition-colors cursor-pointer group">
                 <td className="px-4 py-3">
-                  <div className="text-sm font-medium text-text-primary max-w-[300px] truncate">{finding.description}</div>
-                  <div className="text-xs text-text-secondary mt-0.5">{finding.id}</div>
+                  <div className="text-xs font-medium text-text-primary max-w-[300px] truncate">{finding.description}</div>
+                  <div className="text-[10px] text-text-secondary mt-0.5">{finding.id}</div>
                 </td>
                 <td className="px-4 py-3">
-                  <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border whitespace-nowrap", getSeverityColor(finding.severity))}>
+                  <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border border-slate-100 whitespace-nowrap", getSeverityColor(finding.severity))}>
                     {finding.severity}
                   </span>
                 </td>
                 <td className="px-4 py-3">
-                  <div className="flex items-center gap-2 text-sm text-text-primary hover:text-brand-teal transition-colors">
-                    <FileText className="w-4 h-4 opacity-70" />
+                  <div className="flex items-center gap-2 text-xs text-text-primary hover:text-brand-teal transition-colors">
+                    <FileText className="w-3.5 h-3.5 opacity-70" />
                     {finding.sourceAuditType}
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <span className="text-sm text-text-primary whitespace-nowrap">{finding.owner}</span>
+                  <span className="text-xs text-text-primary whitespace-nowrap">{finding.owner}</span>
                 </td>
                 <td className="px-4 py-3">
                   <div className={clsx(
-                    "flex items-center gap-2 text-sm whitespace-nowrap",
+                    "flex items-center gap-2 text-xs whitespace-nowrap",
                     (finding.status !== "Closed" && new Date(finding.dueDate) < new Date('2026-07-16')) ? "text-red-400 font-medium" : "text-text-primary"
                   )}>
-                    <CalendarDays className="w-4 h-4 opacity-70" />
+                    <CalendarDays className="w-3.5 h-3.5 opacity-70" />
                     {finding.dueDate}
                   </div>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center justify-between gap-3">
-                    <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border whitespace-nowrap", getStatusColor(finding.status))}>
+                    <span className={clsx("px-2.5 py-1 text-xs font-medium rounded-full border border-slate-200 whitespace-nowrap", getStatusColor(finding.status))}>
                       {finding.status}
                     </span>
                     <button
@@ -88,7 +87,7 @@ export function FindingsTable() {
                         setFindingToResolve(finding);
                       }}
                       className="text-brand-teal opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-brand-teal/20 rounded">
-                      <CheckCircle2 className="w-4 h-4" />
+                      <CheckCircle2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </td>
