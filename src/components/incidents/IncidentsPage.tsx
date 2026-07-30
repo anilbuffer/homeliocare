@@ -24,14 +24,14 @@ export function IncidentsPage() {
   // CLINICAL_SUPERVISOR_RN sees incidents scoped to their assigned caseload only.
   const incidents = currentUser?.role === "CLINICAL_SUPERVISOR_RN"
     ? mockIncidents.filter(inc =>
-        // Simulating caseload scope: assume only specific clients are in their caseload
-        (inc.peopleInvolved.some(p => p.role === "Patient" && (p.name === "Evelyn Carter" || p.name === "Marcus Vance" || p.name === "Helen S." || p.name === "Robert M."))) &&
-        (inc.type === "Fall" ||
+      // Simulating caseload scope: assume only specific clients are in their caseload
+      (inc.peopleInvolved.some(p => p.role === "Patient" && (p.name === "Evelyn Carter" || p.name === "Marcus Vance" || p.name === "Helen S." || p.name === "Robert M."))) &&
+      (inc.type === "Fall" ||
         inc.type === "Medication Error" ||
         inc.type === "Emergency" ||
         inc.type === "Hospital Transfer" ||
         inc.isRestricted)
-      )
+    )
     : mockIncidents;
 
   const containerVariants: Variants = {
@@ -53,7 +53,7 @@ export function IncidentsPage() {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="w-full space-y-6"
+        className="w-full space-y-4"
       >
         <IncidentsHeader onReportIncident={() => setIsReportFormOpen(true)} />
 
@@ -63,7 +63,7 @@ export function IncidentsPage() {
 
         <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-auto lg:h-full">
           {/* Left Column: Charts */}
-          <div className="flex flex-col gap-6 lg:col-span-1 h-full">
+          <div className="flex flex-col gap-4 lg:col-span-1 h-full">
             <IncidentTypeChart
               onSelectCategory={(category) => setSelectedCategory(category === selectedCategory ? null : category)}
             />

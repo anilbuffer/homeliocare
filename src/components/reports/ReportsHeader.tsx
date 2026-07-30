@@ -9,10 +9,10 @@ interface ReportsHeaderProps {
 
 export function ReportsHeader({ savedCount, scheduledCount, onBuildCustom }: ReportsHeaderProps) {
   return (
-    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
       <div>
-        <h1 className="text-lg font-semibold text-slate-900 mb-1">Reports & Analytics</h1>
-        <p className="text-sm text-slate-500">
+        <h1 className="text-base font-semibold text-slate-900 mb-1">Reports & Analytics</h1>
+        <p className="text-xs text-slate-500">
           {savedCount} saved reports · {scheduledCount} scheduled
         </p>
       </div>

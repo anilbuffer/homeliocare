@@ -45,7 +45,7 @@ export function QualityAssurance() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <h1 className="text-lg font-semibold text-slate-900">Quality Assurance</h1>
+          <h1 className="text-base font-semibold text-slate-900">Quality Assurance</h1>
           <p className="text-xs text-slate-500 font-medium mt-0.5 flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-brand-teal"></span>
             15 audits due this month
