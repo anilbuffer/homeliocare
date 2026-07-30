@@ -119,7 +119,7 @@ export default function ComplianceTrackingPage() {
         </div>
 
         {/* Row 5 & 6: Reminders and Verification Queue */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
           <div>
             <ReminderConfigPanel logs={mockReminderLogs} />
           </div>

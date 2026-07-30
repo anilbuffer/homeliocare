@@ -45,7 +45,7 @@ export function ReminderConfigPanel({ logs }: ReminderConfigPanelProps) {
             }}
             className={`w-11 h-6 rounded-full transition-colors relative ${enabled ? "bg-brand-teal" : "bg-slate-300"}`}
           >
-            <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? "translate-x-5.5 left-[2px]" : "translate-x-0.5"}`} />
+            <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${enabled ? "translate-x-5.5 left-[1px]" : "translate-x-0.5"}`} />
           </button>
         </div>
       </div>

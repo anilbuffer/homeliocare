@@ -51,7 +51,7 @@ export default function ComplianceReportsPage() {
           className="w-full"
         >
           {activeCategory === "Custom Reports" ? (
-            <div className="space-y-12">
+            <div className="space-y-4">
               <section>
                 <CustomReportBuilder />
               </section>

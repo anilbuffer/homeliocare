@@ -48,12 +48,12 @@ export function CustomReportBuilder() {
   ];
 
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col md:flex-row min-h-[600px]">
+    <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] overflow-hidden mb-3 lg:mb-4 flex flex-col md:flex-row min-h-[600px]">
 
       {/* Left Column: Builder Steps */}
       <div className="w-full md:w-1/3 lg:w-1/4 border-b md:border-b-0 md:border-r border-slate-100 bg-slate-50/50 flex flex-col">
-        <div className="p-5 border-b border-slate-100">
-          <h2 className="text-lg font-semibold text-slate-900">Report Builder</h2>
+        <div className="px-4 py-3 border-b border-slate-100">
+          <h2 className="text-base font-semibold text-slate-900">Report Builder</h2>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4">
@@ -89,7 +89,7 @@ export function CustomReportBuilder() {
 
       {/* Middle/Right Column: Active Step Content & Preview */}
       <div className="flex-1 flex flex-col bg-white">
-        <div className="p-6 flex-1 overflow-y-auto border-b border-slate-100">
+        <div className="px-4 py-3 flex-1 overflow-y-auto border-b border-slate-100">
           <AnimatePresence mode="wait">
 
             {currentStep === 1 && (
@@ -99,11 +99,11 @@ export function CustomReportBuilder() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">Choose Data Sources</h3>
-                <p className="text-slate-500 mb-6 text-sm">Select one or more data domains to include in this report.</p>
+                <h3 className="text-base font-semibold text-slate-900 mb-1">Choose Data Sources</h3>
+                <p className="text-slate-500 mb-3 lg:mb-6 text-xs">Select one or more data domains to include in this report.</p>
                 <div className="space-y-3">
                   {availableSources.map(source => (
-                    <label key={source.id} className={`flex items-start gap-4 p-4 rounded-xl border shadow-[0_6px_32px_rgba(0,0,0,0.06)] cursor-pointer transition-colors hover:-translate-y-0.5
+                    <label key={source.id} className={`flex items-start gap-4 px-4 py-3 rounded-xl border shadow-[0_6px_32px_rgba(0,0,0,0.06)] cursor-pointer transition-colors hover:-translate-y-0.5
                       ${sources.includes(source.id) ? "border-brand-teal bg-brand-teal/5" : "border-slate-200 bg-white hover:border-brand-teal/30 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]"}
                     `}>
                       <input
@@ -113,8 +113,8 @@ export function CustomReportBuilder() {
                         onChange={() => toggleSource(source.id)}
                       />
                       <div>
-                        <div className="text-slate-900 font-semibold mb-0.5">{source.name}</div>
-                        <div className="text-sm text-slate-500">{source.desc}</div>
+                        <div className="text-sm text-slate-900 font-semibold mb-0.5">{source.name}</div>
+                        <div className="text-xs text-slate-500">{source.desc}</div>
                       </div>
                     </label>
                   ))}
@@ -129,7 +129,7 @@ export function CustomReportBuilder() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">Select Fields & Metrics</h3>
+                <h3 className="text-base font-semibold text-slate-900 mb-3 lg:mb-6">Select Fields & Metrics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {availableFields.map(field => (
                     <label key={field.id} className="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] bg-white cursor-pointer hover:border-brand-teal/30 hover:-translate-y-0.5 transition-all">
@@ -153,7 +153,7 @@ export function CustomReportBuilder() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">Add Filters</h3>
+                <h3 className="text-base font-semibold text-slate-900 mb-3 lg:mb-6">Add Filters</h3>
                 <div className="p-8 border-2 border-dashed border-slate-200 bg-slate-50 rounded-2xl text-center text-slate-500 hover:border-brand-teal/30 hover:bg-brand-teal/5 transition-colors cursor-pointer group">
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-[0_6px_32px_rgba(0,0,0,0.06)] group-hover:scale-110 transition-transform">
                     <Filter className="w-6 h-6 text-slate-400 group-hover:text-brand-teal" />
@@ -174,13 +174,13 @@ export function CustomReportBuilder() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">Choose Visualization</h3>
-                <div className="flex flex-wrap gap-3 mb-8">
+                <h3 className="text-base font-semibold text-slate-900 mb-3 lg:mb-6">Choose Visualization</h3>
+                <div className="flex flex-wrap gap-4 mb-4 lg:mb-5">
                   {["table", "bar", "line", "donut", "kpi"].map(type => (
                     <button
                       key={type}
                       onClick={() => setChartType(type as any)}
-                      className={`px-5 py-2.5 rounded-xl border font-medium text-sm capitalize transition-all hover:-translate-y-0.5
+                      className={`px-3 py-1.5 rounded-lg border font-medium text-sm capitalize transition-all hover:-translate-y-0.5
                         ${chartType === type ? "border-brand-teal bg-brand-teal text-white shadow-md shadow-brand-teal/20" : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)]"}
                       `}
                     >
@@ -189,7 +189,7 @@ export function CustomReportBuilder() {
                   ))}
                 </div>
 
-                <div className="p-6 bg-slate-50/50 border border-slate-200 rounded-2xl relative">
+                <div className="px-4 py-3 bg-slate-50/50 border border-slate-200 rounded-xl relative">
                   <div className="absolute top-4 right-4 px-2 py-1 bg-white border border-slate-200 rounded-md shadow-[0_6px_32px_rgba(0,0,0,0.06)] text-xs font-semibold text-slate-500 uppercase tracking-wider">Live Preview</div>
                   <ChartRenderer
                     type={chartType}

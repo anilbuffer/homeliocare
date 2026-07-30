@@ -41,20 +41,20 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
   const getStatusBadge = (status: ComplianceStatus) => {
     switch (status) {
       case "Compliant":
-        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 whitespace-nowrap"><CheckCircle2 className="w-3.5 h-3.5" /> Compliant</span>;
+        return <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-normal bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 whitespace-nowrap"><CheckCircle2 className="w-3.5 h-3.5" /> Compliant</span>;
       case "Expiring":
-        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-400/10 text-amber-400 border border-amber-400/20 whitespace-nowrap"><AlertTriangle className="w-3.5 h-3.5" /> Expiring</span>;
+        return <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-normal bg-amber-400/10 text-amber-400 border border-amber-400/20 whitespace-nowrap"><AlertTriangle className="w-3.5 h-3.5" /> Expiring</span>;
       case "Expired":
-        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-red-400/10 text-red-400 border border-red-400/20 whitespace-nowrap"><XCircle className="w-3.5 h-3.5" /> Expired</span>;
+        return <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-normal bg-red-400/10 text-red-400 border border-red-400/20 whitespace-nowrap"><XCircle className="w-3.5 h-3.5" /> Expired</span>;
       case "Pending":
-        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-400/10 text-blue-400 border border-blue-400/20 whitespace-nowrap"><Clock className="w-3.5 h-3.5" /> Pending</span>;
+        return <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-normal bg-blue-400/10 text-blue-400 border border-blue-400/20 whitespace-nowrap"><Clock className="w-3.5 h-3.5" /> Pending</span>;
     }
   };
 
   const getDaysRemainingPill = (expiryDate?: string, status?: ComplianceStatus) => {
     if (!expiryDate) return null;
-    if (status === "Expired") return <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-red-400/20 text-red-400 whitespace-nowrap">Expired</span>;
-    if (status === "Pending") return <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-slate-400/20 text-slate-500 whitespace-nowrap">N/A</span>;
+    if (status === "Expired") return <span className="px-2 py-0.5 rounded-full text-xs font-normal bg-red-400/20 text-red-400 whitespace-nowrap">Expired</span>;
+    if (status === "Pending") return <span className="px-2 py-0.5 rounded-full text-xs font-normal bg-slate-400/20 text-slate-500 whitespace-nowrap">N/A</span>;
 
     // Naive calculation for demo purposes
     const expiry = new Date(expiryDate);
@@ -63,9 +63,9 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays <= 30) {
-      return <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-400/20 text-amber-400 whitespace-nowrap">{diffDays} days left</span>;
+      return <span className="px-2 py-0.5 rounded-full text-xs font-normal bg-amber-400/20 text-amber-400 whitespace-nowrap">{diffDays} days left</span>;
     }
-    return <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-400/20 text-emerald-400 whitespace-nowrap">{diffDays} days left</span>;
+    return <span className="px-2 py-0.5 rounded-full text-xs font-normal bg-emerald-400/20 text-emerald-400 whitespace-nowrap">{diffDays} days left</span>;
   };
 
   return (
@@ -158,7 +158,7 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                     </td>
                     <td className="px-4 py-3">
                       <div className="text-xs font-semibold text-slate-800 whitespace-nowrap">{item.itemName}</div>
-                      <div className="text-[10px] font-bold text-slate-500 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 inline-block mt-1.5 whitespace-nowrap">{item.category}</div>
+                      <div className="text-[10px] font-medium text-slate-500 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 inline-block mt-1.5 whitespace-nowrap">{item.category}</div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="text-xs font-medium text-slate-600 flex items-center gap-2 whitespace-nowrap">

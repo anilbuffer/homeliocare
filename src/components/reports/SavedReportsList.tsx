@@ -8,12 +8,12 @@ interface SavedReportsListProps {
 
 export function SavedReportsList({ reports }: SavedReportsListProps) {
   return (
-    <div className="bg-white backdrop-blur-xl rounded-2xl p-5 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] mb-8 overflow-hidden">
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold text-slate-900">Saved Reports</h2>
+    <div className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] mb-3 lg:mb-4 overflow-hidden">
+      <div className="px-4 pt-3 pb-3">
+        <h2 className="text-base font-semibold text-slate-900">Saved Reports</h2>
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm text-slate-700">
+        <table className="w-full text-left text-xs text-slate-700">
           <thead className="text-xs text-slate-500 uppercase border-b border-slate-100">
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
@@ -26,13 +26,13 @@ export function SavedReportsList({ reports }: SavedReportsListProps) {
           <tbody>
             {reports.map((report) => (
               <tr key={report.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors last:border-0">
-                <td className="px-4 py-4 font-medium text-slate-900">{report.name}</td>
-                <td className="px-4 py-4">{report.creator}</td>
-                <td className="px-4 py-4">{report.dataSource}</td>
-                <td className="px-4 py-4">
+                <td className="px-4 py-3 font-medium text-slate-900">{report.name}</td>
+                <td className="px-4 py-3">{report.creator}</td>
+                <td className="px-4 py-3">{report.dataSource}</td>
+                <td className="px-4 py-3">
                   {new Date(report.lastRunDate).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-4">
+                <td className="px-4 py-3">
                   <div className="flex items-center justify-end gap-2">
                     <button className="p-1.5 text-brand-teal hover:bg-brand-teal/10 rounded-lg transition-colors" title="Run">
                       <Play className="w-4 h-4" />

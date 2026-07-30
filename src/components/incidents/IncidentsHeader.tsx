@@ -17,10 +17,9 @@ export function IncidentsHeader({ onReportIncident }: IncidentsHeaderProps) {
   return (
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
       <div className="mb-2">
-        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Incident Reports</h1>
+        <h1 className="text-lg font-semibold text-slate-900 tracking-tight">Incident Reports</h1>
         <p className="text-xs text-slate-500 mt-1">Manage and track incident reports, regulatory compliance, and corrective actions.</p>
       </div>
-
       <div className="flex items-center gap-3 w-full sm:w-auto">
         <div className="relative">
           <motion.button
@@ -35,7 +34,7 @@ export function IncidentsHeader({ onReportIncident }: IncidentsHeaderProps) {
 
           <AnimatePresence>
             {isOpen && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: -10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
