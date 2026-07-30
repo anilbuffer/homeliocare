@@ -69,14 +69,14 @@ export default function ComplianceSettingsPage() {
   ];
 
   return (
-    <div className="max-w-full mx-auto space-y-6">
+    <div className="max-w-full mx-auto space-y-4">
       {/* Top Header Banner matching Caregiver & Portal Settings layout */}
-      <div className="bg-white/80 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white/80 backdrop-blur-xl p-4 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-brand-teal text-xs font-bold uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-brand-teal text-xs font-semibold uppercase tracking-wider">
             <Sliders className="w-4 h-4" /> Agency Master Settings
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mt-0.5">Settings & Configuration</h1>
+          <h1 className="text-xl font-bold text-gray-900 mt-0.5">Settings & Configuration</h1>
           <p className="text-xs text-gray-500 mt-1">
             Manage agency-wide preferences, compliance configurations, service offerings, EVV parameters, and RBAC security policies.
           </p>
@@ -84,7 +84,7 @@ export default function ComplianceSettingsPage() {
       </div>
 
       {/* 2-Column Desktop Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Left Vertical Tab Navigation (1/4 width) */}
         <div className="bg-white p-3 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] space-y-1 self-start">
           {tabs.map((t) => {

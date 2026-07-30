@@ -26,7 +26,7 @@ export function AgencyProfile() {
       </div>
 
       <form className="space-y-4 max-w-full">
-        <Card className="p-4 space-y-4">
+        <Card className="p-4 space-y-3">
           <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
             <div className="w-10 h-10 bg-brand-teal/10 rounded-xl flex items-center justify-center">
               <Building2 className="w-5 h-5 text-brand-teal" />
@@ -34,7 +34,7 @@ export function AgencyProfile() {
             <h4 className="font-semibold text-slate-800">Basic Information</h4>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Agency Legal Name</label>
               <input type="text" defaultValue="Homelio Care LLC" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal text-sm transition-colors" />
@@ -59,12 +59,12 @@ export function AgencyProfile() {
             <h4 className="font-semibold text-slate-800">Primary Location</h4>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Street Address</label>
               <input type="text" defaultValue="100 Healthcare Blvd, Suite 200" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal text-sm transition-colors" />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700">City</label>
                 <input type="text" defaultValue="Seattle" className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal text-sm transition-colors" />

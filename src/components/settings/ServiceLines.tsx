@@ -27,9 +27,9 @@ export function ServiceLines() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold text-text-primary">Service Lines & Rates</h3>
-          <p className="text-xs text-text-secondary mt-1">Configure billable services, HCPCS codes, and default pay/bill rates.</p>
+          <p className="text-xs text-text-secondary mt-0.5">Configure billable services, HCPCS codes, and default pay/bill rates.</p>
         </div>
-        <button 
+        <button
           onClick={handleAdd}
           disabled={isAdding}
           className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-700 disabled:opacity-70 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all"
@@ -67,9 +67,8 @@ export function ServiceLines() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-full border ${
-                      svc.type === "Medical" ? "bg-rose-50 text-rose-700 border-rose-200" : "bg-blue-50 text-blue-700 border-blue-200"
-                    }`}>
+                    <span className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold rounded-full border ${svc.type === "Medical" ? "bg-rose-50 text-rose-700 border-rose-200" : "bg-blue-50 text-blue-700 border-blue-200"
+                      }`}>
                       {svc.type}
                     </span>
                   </td>
