@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { ComplianceItem, ComplianceStatus } from "@/types/compliance";
+import { useAuth } from "@/hooks/useAuth";
 
 interface ComplianceItemTrackerProps {
   items: ComplianceItem[];
@@ -20,6 +21,8 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { currentUser } = useAuth();
+  const isQA = currentUser?.role === "QA_COMPLIANCE_OFFICER";
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -183,13 +186,15 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                             <Mail className="w-4 h-4" />
                           </button>
                         ) : null}
-                        <button
-                          onClick={() => fileInputRef.current?.click()}
-                          className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors"
-                          title="Upload Document"
-                        >
-                          <Upload className="w-4 h-4" />
-                        </button>
+                        {!isQA && (
+                          <button
+                            onClick={() => fileInputRef.current?.click()}
+                            className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors"
+                            title="Upload Document"
+                          >
+                            <Upload className="w-4 h-4" />
+                          </button>
+                        )}
                         <div className="relative" ref={activeDropdown === item.id ? dropdownRef : null}>
                           <button
                             onClick={() => setActiveDropdown(activeDropdown === item.id ? null : item.id)}
@@ -357,21 +362,46 @@ export function ComplianceItemTracker({ items }: ComplianceItemTrackerProps) {
                 </div>
               </div>
               <div className="p-4 border-t border-slate-200 bg-slate-50 grid grid-cols-2 gap-3 mt-auto">
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-200 text-slate-900 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2"
-                >
-                  <Upload className="w-4 h-4" /> Replace
-                </button>
-                <button
-                  onClick={() => {
-                    toast.success(`${selectedItem.itemName} marked as renewed`);
-                    setSelectedItem(null);
-                  }}
-                  className="px-4 py-2 border border-brand-teal-200 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,180,216,0.3)] hover:shadow-[0_0_20px_rgba(0,180,216,0.5)]"
-                >
-                  <CheckCircle2 className="w-4 h-4" /> Mark Renewed
-                </button>
+                {!isQA ? (
+                  <>
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-200 text-slate-900 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                    >
+                      <Upload className="w-4 h-4" /> Replace
+                    </button>
+                    <button
+                      onClick={() => {
+                        toast.success(`${selectedItem.itemName} marked as renewed`);
+                        setSelectedItem(null);
+                      }}
+                      className="px-4 py-2 border border-brand-teal-200 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,180,216,0.3)] hover:shadow-[0_0_20px_rgba(0,180,216,0.5)]"
+                    >
+                      <CheckCircle2 className="w-4 h-4" /> Mark Renewed
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => {
+                        toast.error(`Flagged ${selectedItem.itemName} for review`);
+                        setSelectedItem(null);
+                      }}
+                      className="px-4 py-2 bg-white border border-red-200 hover:bg-red-50 text-red-600 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                    >
+                      <AlertTriangle className="w-4 h-4" /> Flag Issue
+                    </button>
+                    <button
+                      onClick={() => {
+                        toast.success(`${selectedItem.itemName} approved by QA`);
+                        setSelectedItem(null);
+                      }}
+                      className="px-4 py-2 border border-emerald-200 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]"
+                    >
+                      <CheckCircle2 className="w-4 h-4" /> Approve
+                    </button>
+                  </>
+                )}
               </div>
             </motion.div>
           </React.Fragment>

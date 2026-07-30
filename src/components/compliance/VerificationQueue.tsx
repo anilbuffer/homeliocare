@@ -5,6 +5,7 @@ import { Check, X, FileText, Clock } from "lucide-react";
 import { VerificationQueueItem } from "@/types/compliance";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
 
 interface VerificationQueueProps {
   items: VerificationQueueItem[];
@@ -12,6 +13,8 @@ interface VerificationQueueProps {
 
 export function VerificationQueue({ items: initialItems }: VerificationQueueProps) {
   const [items, setItems] = useState(initialItems);
+  const { currentUser } = useAuth();
+  const isQA = currentUser?.role === "QA_COMPLIANCE_OFFICER";
 
   const handleApprove = (id: string, name: string) => {
     setItems(prev => prev.filter(item => item.id !== id));
@@ -75,16 +78,24 @@ export function VerificationQueue({ items: initialItems }: VerificationQueueProp
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 shrink-0 ml-3">
-                    <button
-                      onClick={() => handleApprove(item.id, item.caregiver.name)}
-                      className="w-8 h-8 rounded-full bg-slate-50 hover:bg-emerald-50 text-slate-400 hover:text-emerald-500 border border-slate-200 hover:border-emerald-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-200 flex items-center justify-center active:scale-95" title="Approve">
-                      <Check className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleReject(item.id, item.caregiver.name)}
-                      className="w-8 h-8 rounded-full bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 border border-slate-200 hover:border-red-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-200 flex items-center justify-center active:scale-95" title="Reject">
-                      <X className="w-4 h-4" />
-                    </button>
+                    {isQA ? (
+                      <>
+                        <button
+                          onClick={() => handleApprove(item.id, item.caregiver.name)}
+                          className="w-8 h-8 rounded-full bg-slate-50 hover:bg-emerald-50 text-slate-400 hover:text-emerald-500 border border-slate-200 hover:border-emerald-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-200 flex items-center justify-center active:scale-95" title="Approve">
+                          <Check className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleReject(item.id, item.caregiver.name)}
+                          className="w-8 h-8 rounded-full bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 border border-slate-200 hover:border-red-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-200 flex items-center justify-center active:scale-95" title="Reject">
+                          <X className="w-4 h-4" />
+                        </button>
+                      </>
+                    ) : (
+                      <span className="text-[10px] font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-full border border-slate-200">
+                        Pending QA
+                      </span>
+                    )}
                   </div>
                 </div>
               </motion.div>
