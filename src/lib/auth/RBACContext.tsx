@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { User, Role } from "@/types/rbac";
+import { useRBAC } from "@/lib/rbac/rbacStore";
 
 interface AuthContextType {
   currentUser: User | null;
@@ -13,104 +14,56 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const { users } = useRBAC();
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check localStorage for an existing session on mount
-    const storedUser = localStorage.getItem("homeliocare_mock_user");
-    if (storedUser) {
-      try {
-        setCurrentUser(JSON.parse(storedUser));
-      } catch (e) {
-        console.error("Failed to parse user from local storage");
-      }
+    const storedUserId = localStorage.getItem("homeliocare_mock_user_id");
+    if (storedUserId) {
+      setCurrentUserId(storedUserId);
     }
     setIsLoading(false);
   }, []);
 
   const login = (role: Role) => {
-    let mockUser: User;
-    if (role === "CAREGIVER") {
-      mockUser = {
-        id: "cg-101",
-        name: "Maria Santos, CNA",
-        email: "maria.santos@homeliocare.com",
-        role: "CAREGIVER",
-        avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
-      };
-    } else if (role === "SCHEDULER") {
-      mockUser = {
-        id: "sched-201",
-        name: "Alex Rivera",
-        email: "alex.rivera@homeliocare.com",
-        role: "SCHEDULER",
-        avatarUrl: "",
-      };
-    } else if (role === "HR") {
-      mockUser = {
-        id: "hr-301",
-        name: "Sarah Jenkins",
-        email: "sarah.jenkins@homelio.com",
-        role: "HR",
-        avatarUrl: "",
-      };
-    } else if (role === "ADMIN") {
-      mockUser = {
-        id: "admin-[#1]",
-        name: "Eleanor Vance, Executive Director",
-        email: "admin@homeliocare.com",
-        role: "ADMIN",
-        avatarUrl: "",
-      };
-    } else if (role === "INTAKE_COORDINATOR") {
-      mockUser = {
-        id: "intake-401",
-        name: "Jessica Miller",
-        email: "intake@homeliocare.com",
-        role: "INTAKE_COORDINATOR",
-        avatarUrl: "",
-      };
-    } else if (role === "BILLING_FINANCE_STAFF") {
-      mockUser = {
-        id: "finance-501",
-        name: "Marcus Vance",
-        email: "finance@homeliocare.com",
-        role: "BILLING_FINANCE_STAFF",
-        avatarUrl: "",
-      };
-    } else if (role === "CLINICAL_SUPERVISOR_RN") {
-      mockUser = {
-        id: "clin-601",
-        name: "Rachel Miller, RN",
-        email: "rachel.miller@homeliocare.com",
-        role: "CLINICAL_SUPERVISOR_RN",
-        avatarUrl: "",
-      };
-    } else if (role === "QA_COMPLIANCE_OFFICER") {
-      mockUser = {
-        id: "qa-701",
-        name: "David Chen",
-        email: "david.chen@homeliocare.com",
-        role: "QA_COMPLIANCE_OFFICER",
-        avatarUrl: "",
-      };
-    } else {
-      mockUser = {
-        id: `mock-${role.toLowerCase()}-123`,
-        name: `Mock ${role.charAt(0) + role.slice(1).toLowerCase()} User`,
-        email: `${role.toLowerCase()}@homeliocare.com`,
-        role: role,
-      };
+    let targetRoleId = "super_admin";
+    if (role === "SCHEDULER") targetRoleId = "scheduler_dispatcher";
+    else if (role === "HR") targetRoleId = "hr_mgr_recruiter";
+    else if (role === "CAREGIVER") targetRoleId = "caregiver_field";
+    else if (role === "CLIENT") targetRoleId = "portal_client";
+    else if (role === "INTAKE_COORDINATOR") targetRoleId = "care_intake_coord";
+    else if (role === "BILLING_FINANCE_STAFF") targetRoleId = "billing_finance_staff";
+    else if (role === "CLINICAL_SUPERVISOR_RN") targetRoleId = "clinical_supervisor_rn";
+    else if (role === "QA_COMPLIANCE_OFFICER") targetRoleId = "qa_compliance_officer";
+
+    const matchingUser = users.find(u => u.role_id === targetRoleId);
+    
+    if (matchingUser) {
+      setCurrentUserId(matchingUser.id);
+      localStorage.setItem("homeliocare_mock_user_id", matchingUser.id);
+      localStorage.setItem("homeliocare_mock_user_role", role);
     }
-    setCurrentUser(mockUser);
-    localStorage.setItem("homeliocare_mock_user", JSON.stringify(mockUser));
   };
 
   const logout = () => {
-    setCurrentUser(null);
-    localStorage.removeItem("homeliocare_mock_user");
+    setCurrentUserId(null);
+    localStorage.removeItem("homeliocare_mock_user_id");
+    localStorage.removeItem("homeliocare_mock_user_role");
   };
+
+  const matchedUser = users.find(u => u.id === currentUserId);
+  const roleFromStorage = (typeof window !== 'undefined' ? localStorage.getItem("homeliocare_mock_user_role") : "ADMIN") as Role || "ADMIN";
+  
+  const currentUser: User | null = matchedUser ? {
+    id: matchedUser.id,
+    name: matchedUser.name,
+    email: matchedUser.email,
+    role: roleFromStorage,
+    role_id: matchedUser.role_id,
+    avatarUrl: ""
+  } : null;
 
   return (
     <AuthContext.Provider value={{ currentUser, login, logout, isLoading }}>

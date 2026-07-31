@@ -4,12 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { ShieldCheck, ArrowRight, Lock, Users, ShieldAlert } from "lucide-react";
 import { UsersTab } from "@/components/rbac/UsersTab";
-import { RBACProvider } from "@/lib/rbac/rbacStore";
 
 export function UserManagement() {
   return (
-    <RBACProvider>
-      <div className="space-y-6">
+    <div className="space-y-6">
         <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-lg border border-slate-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
@@ -33,6 +31,5 @@ export function UserManagement() {
         {/* Embedded Users Tab */}
         <UsersTab />
       </div>
-    </RBACProvider>
   );
 }

@@ -45,7 +45,6 @@ interface RBACContextType {
   auditLogs: AuditLog[];
   branches: Branch[];
   clientOptions: ClientOption[];
-  currentUser: User;
   
   // User Operations
   inviteUser: (
@@ -99,8 +98,7 @@ export function RBACProvider({ children }: { children: React.ReactNode }) {
   const [branches] = useState<Branch[]>(SEED_BRANCHES);
   const [clientOptions] = useState<ClientOption[]>(SEED_CLIENT_OPTIONS);
 
-  // Current active user simulation (Sarah Jenkins - Super Admin)
-  const currentUser = users.find((u) => u.role_id === "super_admin") || users[0];
+  // Removed hardcoded currentUser simulation
 
   // Load state from localStorage on mount
   useEffect(() => {
@@ -156,11 +154,14 @@ export function RBACProvider({ children }: { children: React.ReactNode }) {
     details: string,
     diff?: AuditLog["diff"]
   ) => {
+    const activeUserId = typeof window !== 'undefined' ? localStorage.getItem("homeliocare_mock_user_id") : null;
+    const activeUser = users.find(u => u.id === activeUserId) || users[0] || { name: "System", email: "system@homeliocare.com" };
+
     const newLog: AuditLog = {
       id: `log-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
       timestamp: new Date().toISOString(),
-      actor_name: currentUser.name,
-      actor_email: currentUser.email,
+      actor_name: activeUser.name,
+      actor_email: activeUser.email,
       action,
       target_type: targetType,
       target_id: targetId,
@@ -235,7 +236,7 @@ export function RBACProvider({ children }: { children: React.ReactNode }) {
       status: "invited",
       last_login_at: null,
       invited_at: new Date().toISOString(),
-      invited_by: currentUser.email,
+      invited_by: "System",
     };
 
     const roleObj = roles.find((r) => r.id === data.role_id);
@@ -554,7 +555,6 @@ export function RBACProvider({ children }: { children: React.ReactNode }) {
         auditLogs,
         branches,
         clientOptions,
-        currentUser,
         inviteUser,
         updateUser,
         deactivateUser,
