@@ -164,7 +164,7 @@ export function SupervisoryVisitSchedule() {
                         <span>Type: {formatVisitType(item.visitType)}</span>
                       </div>
                     </div>
-                    <div className="flex shrink-0">
+                    <div className="flex shrink-0 w-full sm:w-auto mt-3 sm:mt-0">
                       <Link
                         href={`/clinical/patients/${item.clientId}`}
                         className="w-full sm:w-auto px-3 py-2 bg-white text-text-primary border border-slate-200 rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-1.5 hover:bg-slate-50 shadow-[0_6px_32px_rgba(0,0,0,0.06)]"

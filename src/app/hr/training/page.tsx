@@ -70,7 +70,7 @@ export default function HrTrainingPage() {
       </div>
 
       {/* Top Quick Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
         <div className="bg-white/90 backdrop-blur-xl p-4.5 rounded-2xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:border-brand-teal/40 transition-all flex items-center gap-4 group">
           <div className="w-10 h-10 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center font-bold border border-brand-teal/20 shrink-0 group-hover:scale-105 transition-transform">
             <BookOpen className="w-5 h-5" />

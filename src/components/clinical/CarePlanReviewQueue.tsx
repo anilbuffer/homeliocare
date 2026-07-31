@@ -167,7 +167,7 @@ export function CarePlanReviewQueue() {
                       </div>
                     </div>
 
-                    <div className="flex shrink-0">
+                    <div className="flex shrink-0 w-full sm:w-auto mt-3 sm:mt-0">
                       <button
                         onClick={() => handleStartReview(item.id)}
                         className="w-full sm:w-auto px-4 py-2 bg-brand-teal text-xs text-white border border-brand-teal/20 rounded-full font-normal transition-colors flex items-center justify-center gap-1.5 cursor-pointer hover:bg-brand-teal/90 shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20"

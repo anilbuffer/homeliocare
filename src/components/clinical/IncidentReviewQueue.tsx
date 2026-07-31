@@ -163,7 +163,7 @@ export function IncidentReviewQueue() {
                       </div>
                     </div>
 
-                    <div className="flex sm:flex-col items-center gap-2 shrink-0">
+                    <div className="flex sm:flex-col items-center gap-2 shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
                       <button
                         onClick={() => handleSignOff(item.id, item.isRestricted)}
                         className={clsx(

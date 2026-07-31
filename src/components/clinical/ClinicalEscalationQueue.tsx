@@ -179,7 +179,7 @@ export function ClinicalEscalationQueue() {
                       </div>
                     </div>
 
-                    <div className="flex sm:flex-col items-center gap-2 sm:mt-0 mt-2 shrink-0">
+                    <div className="flex sm:flex-col items-center gap-2 sm:mt-0 mt-2 shrink-0 w-full sm:w-auto">
                       <button
                         onClick={() => handleAcknowledge(item.id)}
                         className="flex-1 sm:flex-none w-full sm:w-auto px-4 py-2 bg-brand-teal text-white border border-brand-teal/20 rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-1.5 cursor-pointer hover:bg-brand-teal/90 shadow-[0_6px_32px_rgba(0,0,0,0.06)] shadow-brand-teal/20"

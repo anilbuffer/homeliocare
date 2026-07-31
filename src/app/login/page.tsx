@@ -537,7 +537,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-[1560px] min-h-0 lg:min-h-[calc(100vh-3rem)] rounded-2xl sm:rounded-3xl lg:rounded-[36px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-teal-500/10 overflow-hidden flex flex-col justify-between">
 
         {/* Main Header (Visible on Mobile & Tablet above split, hidden on Desktop left panel) */}
-        <div className="lg:hidden w-full bg-gradient-to-r from-[#062425] via-[#0b3336] to-[#041d1f] rounded-xl sm:rounded-2xl p-4 sm:p-5 text-white mb-3 sm:mb-4 border border-teal-200/40 flex items-center justify-between shadow-xs">
+        <div className="lg:hidden w-full bg-gradient-to-r from-[#062425] via-[#0b3336] to-[#041d1f] rounded-xl sm:rounded-2xl p-3 sm:p-3 text-white mb-3 sm:mb-3 border border-teal-200/40 flex items-center justify-between shadow-xs">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-teal text-xl font-bold text-white flex items-center justify-center border border-[#166361] shadow-brand-teal/30 shrink-0">
               H
@@ -570,7 +570,7 @@ export default function LoginPage() {
           {/* ========================================================================= */}
           {/* LEFT PANEL: Enterprise Spotlight & Details (Desktop 70% | Tablet 50% | Mobile Stacked) */}
           {/* ========================================================================= */}
-          <div className="order-2 md:order-1 w-full md:w-1/2 lg:w-[67%] xl:w-[70%] bg-gradient-to-br from-[#062425] via-[#0b3336] to-[#041d1f] rounded-xl sm:rounded-2xl lg:rounded-[32px] p-5 sm:p-6 lg:p-10 flex flex-col justify-between text-white relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-teal-200/80">
+          <div className="order-2 md:order-1 w-full md:w-1/2 lg:w-[67%] xl:w-[70%] bg-gradient-to-br from-[#062425] via-[#0b3336] to-[#041d1f] rounded-xl sm:rounded-2xl lg:rounded-[32px] p-4 sm:p-6 lg:p-10 flex flex-col justify-between text-white relative overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-teal-200/80">
             {/* Background Ambient Spotlight Glow */}
             <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#22d3ee]/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#0EA383]/10 rounded-full blur-2xl pointer-events-none" />
@@ -619,7 +619,7 @@ export default function LoginPage() {
                     <span>{currentRoleInfo.title}</span>
                   </div>
 
-                  <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-3 sm:mb-4">
+                  <h1 className="text-xl sm:text-3xl lg:text-5xl font-bold text-white tracking-tight leading-[1.15] mb-2 sm:mb-4">
                     {currentRoleInfo.spotlightTitle}{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0EA383] via-[#2dd4bf] to-[#38bdf8]">
                       {currentRoleInfo.spotlightHighlight}
@@ -631,8 +631,6 @@ export default function LoginPage() {
                 </motion.div>
               </AnimatePresence>
 
-
-
               {/* Capability Features Grid */}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -641,14 +639,14 @@ export default function LoginPage() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                  className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4"
                 >
                   {currentRoleInfo.features.map((feat, idx) => {
                     const FeatIcon = feat.icon;
                     return (
                       <div
                         key={idx}
-                        className="bg-[#0a2f30]/50 border border-[#144747]/70 p-3 rounded-xl flex flex-col lg:flex-row gap-4 justify-between space-y-1.5"
+                        className="bg-[#0a2f30]/50 border border-[#144747]/70 p-3 rounded-xl flex flex-col lg:flex-row gap-3 lg:gap-4 justify-between space-y-1.5"
                       >
                         <div className="w-7 h-7 rounded-lg bg-[#0e4d4c] text-[#2dd4bf] flex items-center justify-center shrink-0 border border-[#166361]">
                           <FeatIcon className="w-4 h-4" />
@@ -703,9 +701,9 @@ export default function LoginPage() {
                   </button>
                 </div>
               </div>
-              <div className="flex-1 flex flex-col justify-center gap-4 lg:gap-6">
+              <div className="flex-1 flex flex-col justify-center gap-3 lg:gap-4">
                 {/* Header Text */}
-                <div className="flex flex-col mb-4">
+                <div className="flex flex-col mb-3">
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
                     Welcome Back
                   </h2>

@@ -32,14 +32,14 @@ export default function ClinicalDashboardPage() {
   const headerSubtext = "8 care plans due for review, 3 clinical incidents need review, 4 supervisory visits due this week.";
 
   return (
-    <div className="w-full mx-auto space-y-6">
+    <div className="w-full mx-auto space-y-3 sm:space-y-4 lg:space-y-6">
       {/* Greeting Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-2 sm:mb-4">
         <div>
-          <h2 className="text-xl font-semibold text-slate-900">
+          <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
             Good morning, {currentUser?.name?.split(",")[0] || "Rachel"}!
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5 font-medium">{headerSubtext}</p>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1 font-medium">{headerSubtext}</p>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ export default function ClinicalDashboardPage() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="space-y-6"
+        className="space-y-3 sm:space-y-4 lg:space-y-6"
       >
         {/* Row 1: KPI Strip */}
         <motion.div variants={item}>
@@ -60,7 +60,7 @@ export default function ClinicalDashboardPage() {
         </motion.div>
 
         {/* Rows 3 & 4: Incident Review & Care Plan Review Queue side-by-side or stacked on smaller screens */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 min-h-0">
           <motion.div variants={item} className="h-full">
             <IncidentReviewQueue />
           </motion.div>
@@ -70,7 +70,7 @@ export default function ClinicalDashboardPage() {
         </div>
 
         {/* Row 5: Supervisory Visit Schedule */}
-        <motion.div variants={item} className="h-[350px]">
+        <motion.div variants={item} className="h-[300px] sm:h-[350px] lg:h-[400px]">
           <SupervisoryVisitSchedule />
         </motion.div>
 
