@@ -40,13 +40,7 @@ export const SEED_ROLES: Role[] = [
     is_system_role: true,
     description: "Agency leadership oversight with comprehensive view of dashboard analytics, financial billing, compliance, and QA.",
   },
-  {
-    id: "branch_regional_mgr",
-    name: "Branch / Regional Manager",
-    tier: "internal",
-    is_system_role: true,
-    description: "Multi-location manager with executive-level visibility scoped to their assigned regional branch.",
-  },
+
   {
     id: "care_intake_coord",
     name: "Care Coordinator / Intake Coordinator",
@@ -345,7 +339,6 @@ export function buildSeedPermissions(): RolePermission[] {
       if (
         [
           "exec_ops_director",
-          "branch_regional_mgr",
           "care_intake_coord",
           "clinical_supervisor_rn",
           "qa_compliance_officer",
@@ -411,20 +404,6 @@ export function buildSeedPermissions(): RolePermission[] {
                 ? "full"
                 : "view";
               scopeType = "unscoped";
-              break;
-
-            case "branch_regional_mgr":
-              accessLevel = [
-                "mod_dashboard",
-                "mod_patients",
-                "mod_scheduling",
-                "mod_caregivers",
-                "mod_reports",
-                "mod_compliance",
-              ].includes(mod.id)
-                ? "full"
-                : "view";
-              scopeType = "branch";
               break;
 
             case "care_intake_coord":
@@ -751,7 +730,7 @@ export const SEED_USERS: User[] = [
     id: "usr-006",
     name: "James Wilson",
     email: "jwilson@homeliocare.com",
-    role_id: "branch_regional_mgr",
+    role_id: "care_intake_coord",
     status: "active",
     branch_id: "branch-north",
     assigned_clients: null,

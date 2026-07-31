@@ -59,7 +59,7 @@ export function UsersTab() {
   const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
   const [inviteName, setInviteName] = useState("");
   const [inviteEmail, setInviteEmail] = useState("");
-  const [inviteRoleId, setInviteRoleId] = useState("branch_regional_mgr");
+  const [inviteRoleId, setInviteRoleId] = useState("care_intake_coord");
   const [inviteBranchId, setInviteBranchId] = useState("branch-north");
   const [inviteLinkedClientIds, setInviteLinkedClientIds] = useState<string[]>(["cli-101"]);
   const [inviteBillingVisibility, setInviteBillingVisibility] = useState(true);
