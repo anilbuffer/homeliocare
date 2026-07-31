@@ -68,6 +68,8 @@ export function CommunicationsLayout({ initialCategory = "All" }: { initialCateg
     CATEGORIES = CATEGORIES.filter(c => ["Clients", "Family Members", "Announcements"].includes(c.id));
   } else if (currentUser?.role === "BILLING_FINANCE_STAFF") {
     CATEGORIES = CATEGORIES.filter(c => ["Staff & Caregivers", "Care Team Channels", "Announcements"].includes(c.id));
+  } else if (currentUser?.role === "FIELD_SUPERVISOR") {
+    CATEGORIES = CATEGORIES.filter(c => ["Staff & Caregivers", "Care Team Channels", "Announcements"].includes(c.id));
   }
 
   const FILTERS: { id: FilterType, label: string, icon: React.ReactNode }[] = [

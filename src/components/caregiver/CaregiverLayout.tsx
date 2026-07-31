@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CaregiverSidebar } from "./CaregiverSidebar";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { CaregiverTopBar } from "./CaregiverTopBar";
 import { OfflineSyncBanner } from "./OfflineSyncBanner";
 
@@ -24,7 +24,7 @@ export function CaregiverLayout({
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#F4F6F8]">
-      <CaregiverSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col h-screen overflow-hidden relative">
         <CaregiverTopBar
           onMenuClick={() => setSidebarOpen(true)}

@@ -26,7 +26,8 @@ import {
   ArrowRight,
   UserPlus,
   PhoneCall,
-  Stethoscope
+  Stethoscope,
+  ClipboardCheck
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
@@ -330,6 +331,41 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
       }
     ]
   },
+  FIELD_SUPERVISOR: {
+    role: "FIELD_SUPERVISOR",
+    title: "Field Supervisor",
+    subtitle: "On-Site Assessments & Support",
+    description: "Conduct supervisory visits, evaluate caregivers in the field, handle on-site incidents, and ensure care quality.",
+    icon: ClipboardCheck,
+    email: "supervisor@homeliocare.com",
+    badge: "Field Ops",
+    badgeColor: "bg-orange-50 text-orange-700 border-orange-200",
+    metrics: [
+      { label: "Visits Today", value: "4" },
+      { label: "Caregivers", value: "12" },
+      { label: "Incidents", value: "0" },
+    ],
+    highlights: ["Supervisory Visits", "On-site Evaluations", "Incident Reporting"],
+    spotlightTitle: "Field Operations &",
+    spotlightHighlight: "Quality Assurance",
+    features: [
+      {
+        icon: ScanEye,
+        title: "On-Site Caregiver Evaluations",
+        desc: "Document and review caregiver performance during actual client visits."
+      },
+      {
+        icon: Activity,
+        title: "Supervisory Visit Logs",
+        desc: "Complete required supervisory visits and update care plans from the field."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Field Incident Management",
+        desc: "Respond to and document critical incidents happening at client homes."
+      }
+    ]
+  },
   QA_COMPLIANCE_OFFICER: {
     role: "QA_COMPLIANCE_OFFICER",
     title: "QA & Compliance",
@@ -419,6 +455,8 @@ export default function LoginPage() {
         router.push("/clinical");
       } else if (selectedRole === "QA_COMPLIANCE_OFFICER") {
         router.push("/compliance");
+      } else if (selectedRole === "FIELD_SUPERVISOR") {
+        router.push("/field-supervisor");
       } else {
         router.push("/dashboard");
       }

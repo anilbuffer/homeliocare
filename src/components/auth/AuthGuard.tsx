@@ -38,6 +38,8 @@ export function AuthGuard({
           router.push("/billing");
         } else if (currentUser.role === "CLINICAL_SUPERVISOR_RN") {
           router.push("/clinical");
+        } else if (currentUser.role === "FIELD_SUPERVISOR") {
+          router.push("/field-supervisor");
         } else {
           router.push("/login");
         }
