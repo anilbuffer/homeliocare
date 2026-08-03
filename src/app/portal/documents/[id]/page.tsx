@@ -28,7 +28,7 @@ export default function DocumentDetailsPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-4">
       <Link href="/portal/documents" className="inline-flex items-center text-sm font-medium text-text-secondary hover:text-brand-teal transition-colors">
         <ArrowLeft className="w-4 h-4 mr-1.5" />
         Back to Documents
@@ -77,8 +77,7 @@ export default function DocumentDetailsPage() {
             </div>
           </div>
         </div>
-
-        <div className="p-6 sm:p-8 min-h-[500px] flex items-center justify-center bg-slate-50">
+        <div className="p-4 sm:p-8 min-h-[500px] flex items-center justify-center bg-slate-50">
           <div className="text-center">
             <FileText className="w-16 h-16 text-slate-300 mx-auto mb-4" />
             <p className="text-slate-500 font-medium">Document Preview Content</p>
@@ -86,9 +85,9 @@ export default function DocumentDetailsPage() {
           </div>
         </div>
       </div>
-      <ESignatureFlow 
-        isOpen={isSignModalOpen} 
-        onClose={() => setIsSignModalOpen(false)} 
+      <ESignatureFlow
+        isOpen={isSignModalOpen}
+        onClose={() => setIsSignModalOpen(false)}
         documentName={document.name}
         onSuccess={() => {
           setIsSignModalOpen(false);

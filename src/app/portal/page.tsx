@@ -24,7 +24,10 @@ import {
   CheckCircle,
   FileEdit,
   AlertCircle,
-  MapPin
+  MapPin,
+  Users,
+  FileSignature,
+  BellRing
 } from "lucide-react";
 
 import { useAuth } from "@/hooks/useAuth";
@@ -60,17 +63,42 @@ export default function PortalOverviewPage() {
       variants={staggerContainer}
       className="max-w-7xl mx-auto space-y-4 pb-6"
     >
-      {/* Warm Greeting */}
-      <motion.div variants={fadeUpVariant} className="relative z-10">
-        <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-text-primary mb-1">
-          Good morning, <span className="text-brand-teal">{isClient ? portalUser.clientName.split(' ')[0] : portalUser.name.split(' ')[0]}</span>
-        </h1>
-        <p className="text-text-secondary text-sm max-w-2xl">
-          {isClient 
-            ? "Here's what's happening today." 
-            : `Here is the latest on how ${portalUser.relationship === "Daughter" ? "your dad" : portalUser.clientName} is doing today. Everything is looking great.`}
-        </p>
-      </motion.div>
+      {/* Header Area with Role-Specific Actions */}
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+        <motion.div variants={fadeUpVariant} className="relative z-10">
+          <div className="flex items-center gap-3 mb-1">
+            <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-text-primary">
+              Good morning, <span className="text-brand-teal">{isClient ? portalUser.clientName.split(' ')[0] : portalUser.name.split(' ')[0]}</span>
+            </h1>
+            {!isClient && (
+              <span className="bg-brand-teal/10 text-brand-teal text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-brand-teal/20 flex items-center gap-1">
+                <Users className="w-3 h-3" />
+                Proxy Access
+              </span>
+            )}
+          </div>
+          <p className="text-text-secondary text-sm max-w-2xl">
+            {isClient 
+              ? "Here's what's happening today." 
+              : `Viewing care details for ${portalUser.relationship === "Daughter" ? "your dad" : portalUser.clientName}.`}
+          </p>
+        </motion.div>
+
+        {/* Role-Specific Quick Actions */}
+        <motion.div variants={fadeUpVariant} className="flex gap-2">
+          {isClient ? (
+            <Link href="/portal/documents" className="bg-rose-50 text-rose-600 hover:bg-rose-100 px-4 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2 border border-rose-100">
+              <FileSignature className="w-4 h-4" />
+              1 Document Needs Signature
+            </Link>
+          ) : (
+            <button className="bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2 border border-slate-200">
+              <BellRing className="w-4 h-4" />
+              Manage SMS Alerts
+            </button>
+          )}
+        </motion.div>
+      </div>
 
       {/* Hero: Today's Visit Card */}
       <Link href="/portal/visits" className="block">

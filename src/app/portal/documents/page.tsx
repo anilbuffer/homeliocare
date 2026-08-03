@@ -23,7 +23,7 @@ export default function PortalDocumentsPage() {
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-text-primary">{isClient ? "My Documents" : "Documents"}</h1>
+          <h1 className="text-lg font-semibold text-text-primary">{isClient ? "My Documents" : "Documents"}</h1>
           <p className="text-xs text-text-secondary mt-1">{isClient ? "View and download my important care plans, agreements, and agency documents." : "View and download important care plans, agreements, and agency documents."}</p>
         </div>
         <Link href="/portal/documents/upload" className="flex items-center justify-center gap-2 px-4 py-2 bg-brand-teal hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors shadow-sm w-full sm:w-auto">
@@ -32,7 +32,7 @@ export default function PortalDocumentsPage() {
         </Link>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {categories.map((category) => {
           const docsInCategory = documentsData.filter(d => d.category === category);
 
@@ -40,7 +40,7 @@ export default function PortalDocumentsPage() {
 
           return (
             <div key={category}>
-              <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4 pl-1 border-b border-border-subtle pb-2">
+              <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-3 pl-1 border-b border-border-subtle pb-2">
                 {category}
               </h2>
               <div className="bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle overflow-hidden">

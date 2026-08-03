@@ -27,10 +27,10 @@ export default function PortalCarePlanPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-4">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-text-primary flex items-center gap-2">
+          <h1 className="text-lg font-semibold text-text-primary flex items-center gap-2">
             {isClient ? "My Care Plan" : "Care Plan"}
           </h1>
           <p className="text-xs text-text-secondary mt-1">
@@ -182,8 +182,8 @@ export default function PortalCarePlanPage() {
               <div className="flex gap-3 items-start">
                 <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
                 <p className="text-sm text-blue-800">
-                  {isClient 
-                    ? "This is a simplified summary of my active care plan." 
+                  {isClient
+                    ? "This is a simplified summary of my active care plan."
                     : "This is a simplified summary of the active care plan. For full clinical details or to request changes, please message your Care Coordinator."}
                 </p>
               </div>

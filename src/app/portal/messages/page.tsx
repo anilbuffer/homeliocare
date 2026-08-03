@@ -116,21 +116,21 @@ export default function PortalMessagesPage() {
 
   return (
     <div className="max-w-7xl mx-auto h-[calc(100vh-10rem)] flex flex-col">
-      <div className="flex items-center justify-between mb-4 lg:mb-6 shrink-0">
+      <div className="flex items-center justify-between mb-3 lg:mb-6 shrink-0">
         <div>
-          <h1 className="text-xl font-bold text-text-primary">{isClient ? "My Messages" : "Messages"}</h1>
+          <h1 className="text-lg font-semibold text-text-primary">{isClient ? "My Messages" : "Messages"}</h1>
           <p className="text-xs text-text-secondary mt-1">{isClient ? "Communicate directly with my care team." : "Communicate directly with your care team."}</p>
         </div>
-        <a href="tel:555-123-4567" className="flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-xl font-medium text-sm transition-colors border border-amber-200 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+        <a href="tel:555-123-4567" className="flex items-center gap-2 px-3 py-1.5 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-lg font-medium text-xs transition-colors border border-amber-200 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
           <Phone className="w-4 h-4" />
           Need urgent help?
         </a>
       </div>
 
       {/* Out of hours notice */}
-      <div className="bg-blue-50/80 backdrop-blur-sm text-blue-700 p-3 rounded-xl flex items-center gap-3 text-sm mb-6 shrink-0 border border-blue-100/50 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+      <div className="bg-blue-50/80 backdrop-blur-sm text-blue-700 p-3 rounded-xl flex items-center gap-3 text-sm mb-4 shrink-0 border border-blue-100/50 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
         <Info className="w-5 h-5 shrink-0 text-blue-500" />
-        <p>{isClient ? "My care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567." : "Your care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567."}</p>
+        <p className="text-xs">{isClient ? "My care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567." : "Your care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567."}</p>
       </div>
 
       <div className="flex-1 backdrop-blur-xl bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle flex overflow-hidden relative">
@@ -244,7 +244,7 @@ export default function PortalMessagesPage() {
 
             <div className="flex-1 flex overflow-hidden">
               <div className="flex-1 flex flex-col min-w-0 relative">
-                <div ref={chatScrollRef} className="flex-1 overflow-y-auto p-6 pb-30 space-y-6 custom-scrollbar">
+                <div ref={chatScrollRef} className="flex-1 overflow-y-auto p-6 pb-20 space-y-6 custom-scrollbar">
                   {activeThread.messages.map((msg, idx) => (
                     <div key={idx} className={clsx("flex gap-3", msg.isOwn ? "justify-end" : "justify-start")}>
                       {!msg.isOwn && (

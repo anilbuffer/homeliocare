@@ -24,15 +24,15 @@ export default function UploadDocumentPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-3xl mx-auto space-y-4">
       <Link href="/portal/documents" className="inline-flex items-center text-sm font-medium text-text-secondary hover:text-brand-teal transition-colors">
         <ArrowLeft className="w-4 h-4 mr-1.5" />
         Back to Documents
       </Link>
 
       <div>
-        <h1 className="text-xl font-semibold text-text-primary">Upload Document</h1>
-        <p className="text-xs text-text-secondary mt-1">Share files securely with your care team.</p>
+        <h1 className="text-lg font-semibold text-text-primary">Upload Document</h1>
+        <p className="text-xs text-text-secondary">Share files securely with your care team.</p>
       </div>
 
       <div className="bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle overflow-hidden p-4">
@@ -41,16 +41,16 @@ export default function UploadDocumentPage() {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-xl p-12 text-center transition-colors ${isDragging ? "border-brand-teal bg-brand-teal/5" : "border-slate-300 hover:border-brand-teal hover:bg-slate-50"
+            className={`border-2 border-dashed rounded-xl p-4 lg:p-8 text-center transition-colors ${isDragging ? "border-brand-teal bg-brand-teal/5" : "border-slate-300 hover:border-brand-teal hover:bg-slate-50"
               }`}
           >
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <UploadCloud className={`w-8 h-8 ${isDragging ? "text-brand-teal" : "text-slate-400"}`} />
             </div>
-            <h3 className="text-lg font-medium text-text-primary mb-2">
+            <h3 className="text-sm font-medium text-text-primary mb-2">
               Drag and drop your files here
             </h3>
-            <p className="text-sm text-slate-500 mb-6">
+            <p className="text-xs text-slate-500 mb-6">
               Supported formats: PDF, JPG, PNG, DOCX (Max size: 10MB)
             </p>
             <button
@@ -85,19 +85,19 @@ export default function UploadDocumentPage() {
         )}
 
         {!isUploaded && (
-          <div className="mt-8 pt-8 border-t border-border-subtle">
+          <div className="mt-4 pt-4 border-t border-border-subtle">
             <h4 className="text-sm font-medium text-text-primary mb-4">Upload Guidelines</h4>
-            <ul className="space-y-3 text-sm text-text-secondary">
+            <ul className="space-y-3 text-xs text-text-secondary">
               <li className="flex items-start gap-2">
-                <File className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                <File className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
                 <span>Ensure documents are clear and legible before uploading.</span>
               </li>
               <li className="flex items-start gap-2">
-                <File className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                <File className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
                 <span>Do not upload documents containing highly sensitive financial information unless requested.</span>
               </li>
               <li className="flex items-start gap-2">
-                <File className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                <File className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
                 <span>Files are automatically encrypted and securely stored.</span>
               </li>
             </ul>

@@ -25,7 +25,7 @@ export function DocumentsTab({ patient }: { patient: Patient }) {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {sections.map((section, idx) => (
         section.items && section.items.length > 0 && (
           <div key={idx}>

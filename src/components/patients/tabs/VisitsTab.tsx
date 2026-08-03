@@ -38,7 +38,7 @@ export function VisitsTab({ patient }: { patient: Patient }) {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Upcoming visits */}
       <div>
         <h3 className="text-sm font-semibold text-slate-700 mb-3">Upcoming visits</h3>

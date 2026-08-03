@@ -28,9 +28,9 @@ export default function PortalBillingPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6 relative">
+    <div className="max-w-7xl mx-auto space-y-4 relative">
       <div>
-        <h1 className="text-2xl font-semibold text-text-primary">{isClient ? "My Billing" : "Billing & Payments"}</h1>
+        <h1 className="text-lg font-semibold text-text-primary">{isClient ? "My Billing" : "Billing & Payments"}</h1>
         <p className="text-xs text-text-secondary mt-1">{isClient ? "Manage my invoices and payment methods safely and securely." : "Manage your invoices and payment methods safely and securely."}</p>
       </div>
 

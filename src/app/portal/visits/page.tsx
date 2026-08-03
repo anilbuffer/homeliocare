@@ -22,7 +22,7 @@ export default function PortalVisitsPage() {
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-text-primary">{isClient ? "My Visits" : "Visit History"}</h1>
+          <h1 className="text-lg font-semibold text-text-primary">{isClient ? "My Visits" : "Visit History"}</h1>
           <p className="text-xs text-text-secondary mt-1">Review past care visits and notes from the care team.</p>
         </div>
       </div>

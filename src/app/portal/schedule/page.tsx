@@ -9,7 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 export default function PortalSchedulePage() {
   const { currentUser } = useAuth();
   const isClient = currentUser?.role === "CLIENT";
-  
+
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [panelType, setPanelType] = useState<'visit' | 'change-request' | null>(null);
 
@@ -30,10 +30,10 @@ export default function PortalSchedulePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6 relative">
+    <div className="max-w-7xl mx-auto space-y-4 relative">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-text-primary">{isClient ? "My Schedule" : "Schedule"}</h1>
+          <h1 className="text-lg font-semibold text-text-primary">{isClient ? "My Schedule" : "Schedule"}</h1>
           <p className="text-xs text-text-secondary mt-1">
             View upcoming care visits and coordinate with the care team.
           </p>
@@ -52,7 +52,7 @@ export default function PortalSchedulePage() {
       <div className="space-y-6">
         {/* Today's Visit (if applicable) */}
         <section>
-          <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4 pl-1 border-b border-border-subtle pb-2">
+          <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-3 pl-1 border-b border-border-subtle pb-2">
             Today
           </h2>
 
@@ -60,11 +60,11 @@ export default function PortalSchedulePage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             onClick={() => handleOpenVisit(todaysVisit, true)}
-            className="relative overflow-hidden bg-white rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-brand-teal/20 cursor-pointer hover:border-brand-teal/50 transition-colors group"
+            className="relative overflow-hidden bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-brand-teal/20 cursor-pointer hover:border-brand-teal/50 transition-colors group"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 rounded-full -mr-10 -mt-10 blur-xl group-hover:bg-brand-teal/10 transition-colors"></div>
 
-            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 lg:gap-4">
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="px-2.5 py-1 bg-[#E6F7F1] text-brand-teal text-xs font-semibold rounded-full flex items-center gap-1.5">
@@ -105,7 +105,7 @@ export default function PortalSchedulePage() {
 
         {/* Upcoming Visits */}
         <section>
-          <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-4 pl-1 border-b border-border-subtle pb-2 mt-8">
+          <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wider mb-3 pl-1 border-b border-border-subtle pb-2 mt-4 lg:mt-8">
             Upcoming
           </h2>
 
@@ -120,7 +120,7 @@ export default function PortalSchedulePage() {
                   onClick={() => handleOpenVisit(visit)}
                   className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 transition-colors cursor-pointer group"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                     <div className="flex items-center gap-3 w-48">
                       <div className="w-10 h-10 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center shrink-0">
                         <CalendarDays className="w-5 h-5" />
@@ -195,9 +195,9 @@ export default function PortalSchedulePage() {
                 </button>
               </div>
 
-              <div className="p-6 flex-1 overflow-y-auto">
+              <div className="p-4 lg:p-6 flex-1 overflow-y-auto">
                 {panelType === 'visit' && selectedItem && (
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-border-subtle">
                       <div className="w-12 h-12 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center shrink-0">
                         <CalendarDays className="w-6 h-6" />
