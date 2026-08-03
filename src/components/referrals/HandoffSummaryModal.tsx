@@ -41,7 +41,7 @@ export function HandoffSummaryModal({ isOpen, onClose, referral, onConfirm }: Ha
             </button>
           </div>
 
-          <div className="p-6 space-y-6">
+          <div className="px-4 py-4 lg:p-6 space-y-3 lg:space-y-5">
             <p className="text-sm text-slate-600">
               You are about to admit <strong>{referral.clientName}</strong>. This will create a new Client Profile and transfer all collected information. Please review the summary below.
             </p>

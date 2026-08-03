@@ -48,23 +48,22 @@ export function ConversationListPane({
 
   return (
     <div className="flex flex-col h-full bg-[#fcfdfd] border-r border-slate-200/50 w-full sm:w-[320px] shrink-0">
-
       {/* Dynamic Header */}
       <div className="px-4 py-3 bg-[#fcfdfd]/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-10 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {onOpenSidebar && (
             <button
               onClick={onOpenSidebar}
-              className="xl:hidden p-2 -ml-2 text-slate-500 hover:text-brand-teal hover:bg-slate-100 rounded-lg transition-colors"
+              className="xl:hidden p-2 -ml-2 text-slate-500 hover:text-brand-teal hover:bg-slate-100 rounded-full transition-colors"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
               </svg>
             </button>
           )}
-          <h2 className="text-[17px] font-semibold text-slate-800">
+          <h2 className="text-[16px] font-semibold text-slate-800">
             {activeCategory !== "All" ? activeCategory : activeFilter === "All" ? "Home" : activeFilter}
           </h2>
         </div>
@@ -92,7 +91,7 @@ export function ConversationListPane({
                 key={conv.id}
                 onClick={() => onSelectConversation(conv.id)}
                 className={clsx(
-                  "w-full text-left p-3.5 rounded-2xl transition-all duration-300 relative group border",
+                  "w-full text-left p-3.5 rounded-xl transition-all duration-300 relative group border",
                   isActive
                     ? "bg-white border-brand-teal/20 shadow-[0_8px_30px_-6px_rgba(20,184,166,0.12)] scale-[1.02] z-10"
                     : "bg-transparent border-transparent hover:bg-white hover:border-slate-100 hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)]"

@@ -73,16 +73,16 @@ export function ReferredOutModal({ isOpen, onClose, onConfirm, clientName }: Ref
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
-            <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="px-4 py-4 lg:p-6 space-y-3 lg:space-y-5">
+            <div className="space-y-3 lg:space-y-5">
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-2">Reason for Referring Out</label>
                 <div className="space-y-2">
                   {reasons.map(r => (
                     <label key={r} className="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
-                      <input 
-                        type="radio" 
-                        name="reason" 
+                      <input
+                        type="radio"
+                        name="reason"
                         value={r}
                         checked={selectedReason === r}
                         onChange={(e) => setSelectedReason(e.target.value)}

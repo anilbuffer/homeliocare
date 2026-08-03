@@ -39,6 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     else if (role === "BILLING_FINANCE_STAFF") targetRoleId = "billing_finance_staff";
     else if (role === "CLINICAL_SUPERVISOR_RN") targetRoleId = "clinical_supervisor_rn";
     else if (role === "QA_COMPLIANCE_OFFICER") targetRoleId = "qa_compliance_officer";
+    else if (role === "PARTNER") targetRoleId = "portal_client"; // Temporarily use portal_client or similar for mock user
 
     let matchingUser = users.find(u => u.role_id === targetRoleId);
     if (!matchingUser) {

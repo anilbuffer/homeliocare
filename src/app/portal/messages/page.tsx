@@ -140,7 +140,7 @@ export default function PortalMessagesPage() {
           !showListOnMobile && "hidden sm:flex"
         )}>
           <div className="px-4 py-3 bg-[#fcfdfd]/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-10 flex items-center justify-between">
-            <h2 className="text-[17px] font-semibold text-slate-800">Recent</h2>
+            <h2 className="text-[16px] font-semibold text-slate-800">Recent</h2>
             <button onClick={() => setShowNewMessageModal(true)} className="p-2 text-brand-teal hover:bg-brand-teal/10 rounded-full transition-colors flex items-center justify-center group relative" title="New Message">
               <Edit className="w-4 h-4" />
             </button>
@@ -156,7 +156,7 @@ export default function PortalMessagesPage() {
                     setShowListOnMobile(false);
                   }}
                   className={clsx(
-                    "w-full text-left p-3.5 rounded-2xl transition-all duration-300 relative group border",
+                    "w-full text-left p-3.5 rounded-xl transition-all duration-300 relative group border",
                     isActive
                       ? "bg-white border-brand-teal/20 shadow-[0_8px_30px_-6px_rgba(20,184,166,0.12)] scale-[1.02] z-10"
                       : "bg-transparent border-transparent hover:bg-white hover:border-slate-100 hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)]"

@@ -435,6 +435,41 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
         desc: "Monitor all 9 tracked compliance categories to maintain survey readiness."
       }
     ]
+  },
+  PARTNER: {
+    role: "PARTNER",
+    title: "Partner Portal",
+    subtitle: "Referral & Patient Management",
+    description: "Manage referrals, track patient admissions, and communicate securely with our intake team.",
+    icon: HeartHandshake,
+    email: "partner@organization.com",
+    badge: "Partner Portal",
+    badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
+    metrics: [
+      { label: "Referrals", value: "14" },
+      { label: "Active", value: "8" },
+      { label: "Messages", value: "2 New" },
+    ],
+    highlights: ["Submit Referrals", "Track Admissions", "Direct Messaging"],
+    spotlightTitle: "Collaborative Care &",
+    spotlightHighlight: "Partner Management",
+    features: [
+      {
+        icon: Zap,
+        title: "Fast Referral Submission",
+        desc: "Streamlined process for submitting new patient referrals securely."
+      },
+      {
+        icon: Activity,
+        title: "Real-time Status Tracking",
+        desc: "Monitor the admission progress of your referred patients instantly."
+      },
+      {
+        icon: Globe,
+        title: "Secure Communication Hub",
+        desc: "Direct and encrypted messaging with our intake and care teams."
+      }
+    ]
   }
 };
 
@@ -492,6 +527,8 @@ export default function LoginPage() {
         router.push("/compliance");
       } else if (selectedRole === "FIELD_SUPERVISOR") {
         router.push("/field-supervisor");
+      } else if (selectedRole === "PARTNER") {
+        router.push("/partner");
       } else {
         router.push("/dashboard");
       }

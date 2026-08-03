@@ -26,7 +26,6 @@ export function DetailsPane({ conversation, onClose, isOpen }: DetailsPaneProps)
           <X className="w-5 h-5" />
         </button>
       </div>
-
       <div className="flex-1 overflow-y-auto">
         {/* Contact Profile Info */}
         <div className="p-6 text-center border-b border-slate-100">
