@@ -9,10 +9,14 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
+import { useAuth } from "@/hooks/useAuth";
 
 type Tab = "overview" | "medications" | "todos";
 
 export default function PortalCarePlanPage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+
   const [activeTab, setActiveTab] = useState<Tab>("overview");
   const [completedTodos, setCompletedTodos] = useState<string[]>([]);
 
@@ -27,10 +31,10 @@ export default function PortalCarePlanPage() {
       <div className="flex items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold text-text-primary flex items-center gap-2">
-            Care Plan
+            {isClient ? "My Care Plan" : "Care Plan"}
           </h1>
           <p className="text-xs text-text-secondary mt-1">
-            Current goals, daily tasks, and how you can help.
+            {isClient ? "My current goals and what my caregivers help me with." : "Current goals, daily tasks, and how you can help."}
           </p>
         </div>
         <div className="w-10 h-10 bg-[#b8e1d3] rounded-full flex items-center justify-center text-brand-teal shrink-0">
@@ -81,7 +85,7 @@ export default function PortalCarePlanPage() {
             activeTab === "todos" ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"
           )}
         >
-          <span className="relative z-10">Things You Can Help With</span>
+          <span className="relative z-10">{isClient ? "My Reminders" : "Things You Can Help With"}</span>
           {activeTab === "todos" && (
             <motion.div
               layoutId="careplan-tab-indicator"
@@ -149,10 +153,10 @@ export default function PortalCarePlanPage() {
             <div className="bg-white rounded-2xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle">
               <h2 className="text-lg font-semibold text-text-primary mb-2 flex items-center gap-2">
                 <ClipboardList className="w-5 h-5 text-brand-teal" />
-                What to expect during visits
+                {isClient ? "What my caregivers help me with" : "What to expect during visits"}
               </h2>
               <p className="text-xs text-text-secondary mb-6">
-                A summary of the everyday tasks our caregivers perform during scheduled visits.
+                {isClient ? "A summary of the everyday tasks my caregivers perform during my scheduled visits." : "A summary of the everyday tasks our caregivers perform during scheduled visits."}
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -174,11 +178,23 @@ export default function PortalCarePlanPage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mt-6 flex gap-3 items-start">
-              <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-              <p className="text-sm text-blue-800">
-                This is a simplified summary of the active care plan. For full clinical details or to request changes, please message your Care Coordinator.
-              </p>
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mt-6 flex flex-col gap-3">
+              <div className="flex gap-3 items-start">
+                <Info className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                <p className="text-sm text-blue-800">
+                  {isClient 
+                    ? "This is a simplified summary of my active care plan." 
+                    : "This is a simplified summary of the active care plan. For full clinical details or to request changes, please message your Care Coordinator."}
+                </p>
+              </div>
+              {isClient && (
+                <div className="ml-8">
+                  <Link href="/portal/messages?subject=Question%20about%20my%20care%20plan" className="inline-flex items-center gap-2 bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">
+                    <AlertCircle className="w-4 h-4" />
+                    This doesn't look right
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Change Requests Section */}

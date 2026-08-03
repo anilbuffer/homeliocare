@@ -4,8 +4,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { messageThreads, careTeam } from "@/lib/portalMockData";
 import { Send, Phone, Info, Image as ImageIcon, Paperclip, Mic, Check, CheckCheck, Edit, ChevronLeft, X, User } from "lucide-react";
 import clsx from "clsx";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function PortalMessagesPage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+
   const [threads, setThreads] = useState(messageThreads);
   const [activeThreadId, setActiveThreadId] = useState(threads[0]?.id);
   const [showListOnMobile, setShowListOnMobile] = useState(true);
@@ -35,7 +39,7 @@ export default function PortalMessagesPage() {
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           messages: [
             ...t.messages,
-            { sender: "Linda Alvarez", text: inputValue.trim(), time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isOwn: true }
+            { sender: currentUser?.name || "Me", text: inputValue.trim(), time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isOwn: true }
           ]
         };
       }
@@ -55,7 +59,7 @@ export default function PortalMessagesPage() {
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             messages: [
               ...t.messages,
-              { sender: "Linda Alvarez", text: `[File attached: ${file.name}]`, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isOwn: true }
+              { sender: currentUser?.name || "Me", text: `[File attached: ${file.name}]`, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isOwn: true }
             ]
           };
         }
@@ -76,7 +80,7 @@ export default function PortalMessagesPage() {
               time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
               messages: [
                 ...t.messages,
-                { sender: "Linda Alvarez", text: `[Voice Message - 0:05]`, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isOwn: true }
+                { sender: currentUser?.name || "Me", text: `[Voice Message - 0:05]`, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isOwn: true }
               ]
             };
           }
@@ -114,8 +118,8 @@ export default function PortalMessagesPage() {
     <div className="max-w-7xl mx-auto h-[calc(100vh-10rem)] flex flex-col">
       <div className="flex items-center justify-between mb-4 lg:mb-6 shrink-0">
         <div>
-          <h1 className="text-xl font-bold text-text-primary">Messages</h1>
-          <p className="text-xs text-text-secondary mt-1">Communicate directly with your care team.</p>
+          <h1 className="text-xl font-bold text-text-primary">{isClient ? "My Messages" : "Messages"}</h1>
+          <p className="text-xs text-text-secondary mt-1">{isClient ? "Communicate directly with my care team." : "Communicate directly with your care team."}</p>
         </div>
         <a href="tel:555-123-4567" className="flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 hover:bg-amber-100 rounded-xl font-medium text-sm transition-colors border border-amber-200 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
           <Phone className="w-4 h-4" />
@@ -126,7 +130,7 @@ export default function PortalMessagesPage() {
       {/* Out of hours notice */}
       <div className="bg-blue-50/80 backdrop-blur-sm text-blue-700 p-3 rounded-xl flex items-center gap-3 text-sm mb-6 shrink-0 border border-blue-100/50 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
         <Info className="w-5 h-5 shrink-0 text-blue-500" />
-        <p>Your care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567.</p>
+        <p>{isClient ? "My care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567." : "Your care team typically responds within 2 hours during business hours (9am-5pm). For urgent needs, call (555) 123-4567."}</p>
       </div>
 
       <div className="flex-1 backdrop-blur-xl bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle flex overflow-hidden relative">

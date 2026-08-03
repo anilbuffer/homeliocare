@@ -2,18 +2,22 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { Menu, Bell } from "lucide-react";
+import { Menu, Bell, ChevronDown } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 export function PortalTopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
 
   const getPageTitle = () => {
     if (!pathname || pathname === "/portal") return "Overview";
-    if (pathname.startsWith("/portal/visits")) return "Visit History";
+    if (pathname.startsWith("/portal/visits")) return isClient ? "My Visits" : "Visit History";
+    if (pathname.startsWith("/portal/schedule")) return isClient ? "My Schedule" : "Scheduling";
     if (pathname.startsWith("/portal/messages")) return "Messages";
-    if (pathname.startsWith("/portal/billing")) return "Billing & Payments";
-    if (pathname.startsWith("/portal/documents")) return "Documents";
-    if (pathname.startsWith("/portal/care-plan")) return "Care Plan Summary";
+    if (pathname.startsWith("/portal/billing")) return isClient ? "My Billing" : "Billing & Payments";
+    if (pathname.startsWith("/portal/documents")) return isClient ? "My Documents" : "Documents";
+    if (pathname.startsWith("/portal/care-plan")) return isClient ? "My Care Plan" : "Care Plan Summary";
     if (pathname.startsWith("/portal/settings")) return "Settings";
     return "Overview";
   };
@@ -31,10 +35,15 @@ export function PortalTopBar({ onMenuClick }: { onMenuClick?: () => void }) {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
-        <div className="hidden sm:flex flex-col items-end mr-4">
-           <span className="text-sm font-medium text-text-primary">Viewing: Robert Alvarez</span>
-           <span className="text-xs text-text-secondary">You are his daughter</span>
-        </div>
+        {currentUser?.role === "FAMILY" && (
+          <button className="hidden sm:flex flex-col items-end mr-4 hover:bg-slate-50 px-3 py-1.5 rounded-xl transition-colors cursor-pointer group border border-transparent hover:border-slate-200">
+             <span className="text-sm font-medium text-text-primary flex items-center gap-1.5">
+               Viewing: Robert Alvarez
+               <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-brand-teal transition-colors" />
+             </span>
+             <span className="text-xs text-text-secondary mr-5">You are his daughter</span>
+          </button>
+        )}
         
         <button className="relative p-2 rounded-full bg-white border border-border-subtle text-slate-500 hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
           <Bell className="w-5 h-5" />

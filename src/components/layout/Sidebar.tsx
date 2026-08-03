@@ -39,6 +39,23 @@ const getNavGroups = (role?: string) => {
         label: "",
         items: [
           { name: "Overview", icon: LayoutDashboard, id: "overview" },
+          { name: "My Schedule", icon: CalendarDays, id: "scheduling" },
+          { name: "My Care Plan", icon: HeartHandshake, id: "care-plan" },
+          { name: "My Visits", icon: CalendarDays, id: "visits" },
+          { name: "My Billing", icon: Receipt, id: "billing" },
+          { name: "Messages", icon: MessageSquare, id: "messages" },
+          { name: "My Documents", icon: FileText, id: "documents" },
+        ],
+      },
+    ];
+  }
+
+  if (role === "FAMILY") {
+    return [
+      {
+        label: "",
+        items: [
+          { name: "Overview", icon: LayoutDashboard, id: "overview" },
           { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
           { name: "Care Plan", icon: HeartHandshake, id: "care-plan" },
           { name: "Visit History", icon: CalendarDays, id: "visits" },
@@ -347,7 +364,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
             isCollapsed ? "px-3 justify-center" : "px-5 justify-start"
           )}
         >
-          <Link href={safeUser?.role === "CLIENT" ? "/portal" : safeUser?.role === "CAREGIVER" ? "/caregiver" : safeUser?.role === "HR" ? "/hr/dashboard" : safeUser?.role === "SCHEDULER" ? "/scheduler" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
+          <Link href={safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal" : safeUser?.role === "CAREGIVER" ? "/caregiver" : safeUser?.role === "HR" ? "/hr/dashboard" : safeUser?.role === "SCHEDULER" ? "/scheduler" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor" : "/dashboard"} className="flex items-center gap-3 overflow-hidden group">
             <div className="w-9 h-9 rounded-xl bg-brand-teal flex items-center justify-center font-bold text-lg text-white shadow-md shadow-brand-teal/30 shrink-0 group-hover:scale-105 transition-transform">
               H
             </div>
@@ -415,13 +432,13 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "authorizations") href = "/billing/authorizations";
                   if (item.id === "payroll") href = safeUser?.role === "HR" ? "/hr/payroll" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/payroll" : "/payroll";
                   if (item.id === "reports") href = safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/reports" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/reports" : "/reports";
-                  if (item.id === "messages") href = safeUser?.role === "CLIENT" ? "/portal/messages" : safeUser?.role === "CAREGIVER" ? "/caregiver/messages" : safeUser?.role === "HR" ? "/hr/messages" : safeUser?.role === "SCHEDULER" ? "/scheduler/messages" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/messages" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/messages" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/messages" : "/billing/messages";
-                  if (item.id === "scheduling") href = safeUser?.role === "CLIENT" ? "/portal/schedule" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
+                  if (item.id === "messages") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/messages" : safeUser?.role === "CAREGIVER" ? "/caregiver/messages" : safeUser?.role === "HR" ? "/hr/messages" : safeUser?.role === "SCHEDULER" ? "/scheduler/messages" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/messages" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/messages" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/messages" : "/billing/messages";
+                  if (item.id === "scheduling") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/schedule" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
                   if (item.id === "patients") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/patients" : "/patients";
                   if (item.id === "caregivers") href = safeUser?.role === "HR" ? "/hr/caregivers" : safeUser?.role === "SCHEDULER" ? "/scheduler/caregivers" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/caregivers" : "/caregivers";
                   if (item.id === "evv-monitoring") href = "/evv-monitoring";
                   if (item.id === "qa") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/qa" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/qa" : "/quality-assurance";
-                  if (item.id === "visits") href = safeUser?.role === "CLIENT" ? "/portal/visits" : "/field-supervisor/visits";
+                  if (item.id === "visits") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/visits" : "/field-supervisor/visits";
                   if (item.id === "incidents") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/incidents" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/incidents" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/incidents" : "/incidents";
                   if (item.id === "assessments") href = "/clinical/assessments";
                   if (item.id === "compliance") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/tracking" : "/compliance";
@@ -502,7 +519,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         </nav>
 
         {/* HIPAA Card */}
-        {safeUser?.role !== "CLIENT" && (
+        {safeUser?.role !== "CLIENT" && safeUser?.role !== "FAMILY" && (
           <div className="px-3 mb-3 relative group">
             {isCollapsed ? (
               <div
@@ -571,7 +588,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                     {safeUser?.name || "Agency Executive"}
                   </div>
                   <div className="text-xs text-slate-400 truncate">
-                    {safeUser?.role === "CLIENT" ? "Family Member" : safeUser?.role === "CAREGIVER" ? "Caregiver (Field Staff)" : safeUser?.role === "SCHEDULER" ? "Scheduler / Dispatcher" : safeUser?.role === "HR" ? "HR Recruiter" : safeUser?.role || "ADMIN"}
+                    {safeUser?.role === "CLIENT" ? "Patient" : safeUser?.role === "FAMILY" ? "Family Member" : safeUser?.role === "CAREGIVER" ? "Caregiver (Field Staff)" : safeUser?.role === "SCHEDULER" ? "Scheduler / Dispatcher" : safeUser?.role === "HR" ? "HR Recruiter" : safeUser?.role || "ADMIN"}
                   </div>
                 </div>
                 <ChevronDown

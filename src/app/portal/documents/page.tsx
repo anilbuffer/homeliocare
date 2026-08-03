@@ -5,8 +5,12 @@ import { documentsData } from "@/lib/portalMockData";
 import { FileText, Download, ExternalLink, Upload, PenTool, Image as ImageIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function PortalDocumentsPage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+
   const categories = [
     "Care Plan Summary",
     "Signed Agreements",
@@ -19,8 +23,8 @@ export default function PortalDocumentsPage() {
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-text-primary">Documents</h1>
-          <p className="text-xs text-text-secondary mt-1">View and download important care plans, agreements, and agency documents.</p>
+          <h1 className="text-xl font-semibold text-text-primary">{isClient ? "My Documents" : "Documents"}</h1>
+          <p className="text-xs text-text-secondary mt-1">{isClient ? "View and download my important care plans, agreements, and agency documents." : "View and download important care plans, agreements, and agency documents."}</p>
         </div>
         <Link href="/portal/documents/upload" className="flex items-center justify-center gap-2 px-4 py-2 bg-brand-teal hover:bg-teal-700 text-white rounded-xl text-sm font-medium transition-colors shadow-sm w-full sm:w-auto">
           <Upload className="w-4 h-4" />
@@ -91,7 +95,7 @@ export default function PortalDocumentsPage() {
         {documentsData.length === 0 && (
           <div className="bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-border-subtle p-8 text-center text-text-secondary">
             <FileText className="w-8 h-8 mx-auto mb-3 text-slate-300" />
-            <p>No documents yet — anything your care team shares will appear here.</p>
+            <p>{isClient ? "No documents yet — anything my care team shares will appear here." : "No documents yet — anything your care team shares will appear here."}</p>
           </div>
         )}
       </div>

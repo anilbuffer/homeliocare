@@ -193,11 +193,46 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
   },
   CLIENT: {
     role: "CLIENT",
-    title: "Family & Patient Portal",
+    title: "Patient Portal",
+    subtitle: "Self-Service Care Portal",
+    description: "View your schedule, manage your care plan, and communicate directly with your care team.",
+    icon: UserCircle,
+    email: "patient@homeliocare.com",
+    badge: "Patient Desk",
+    badgeColor: "bg-pink-50 text-pink-700 border-pink-200",
+    metrics: [
+      { label: "Next Visit", value: "Today, 2pm" },
+      { label: "Care Team", value: "3 Members" },
+      { label: "Messages", value: "1 Unread" },
+    ],
+    highlights: ["My Schedule", "My Care Plan", "Direct Messaging"],
+    spotlightTitle: "Personalized Care &",
+    spotlightHighlight: "Patient Self-Service",
+    features: [
+      {
+        icon: CalendarDays,
+        title: "My Schedule & Visits",
+        desc: "View upcoming visits and request changes to your schedule directly."
+      },
+      {
+        icon: HeartHandshake,
+        title: "My Active Care Plan",
+        desc: "Review your goals and tasks that your caregivers help you with."
+      },
+      {
+        icon: Globe,
+        title: "Direct Care Team Access",
+        desc: "Securely message your caregivers and coordinators anytime."
+      }
+    ]
+  },
+  FAMILY: {
+    role: "FAMILY",
+    title: "Family Portal",
     subtitle: "Transparent Care Monitoring",
     description: "Live caregiver arrival tracking, visit notes, shift schedules, and direct family communications.",
     icon: UserCircle,
-    email: "family.client@homeliocare.com",
+    email: "family@homeliocare.com",
     badge: "Family Desk",
     badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
     metrics: [
@@ -443,7 +478,7 @@ export default function LoginPage() {
         router.push("/scheduler");
       } else if (selectedRole === "HR") {
         router.push("/hr/dashboard");
-      } else if (selectedRole === "CLIENT") {
+      } else if (selectedRole === "CLIENT" || selectedRole === "FAMILY") {
         router.push("/portal");
       } else if (selectedRole === "CAREGIVER") {
         router.push("/caregiver");

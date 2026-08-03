@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { User, Role } from "@/types/rbac";
 import { useRBAC } from "@/lib/rbac/rbacStore";
+import { SEED_USERS } from "@/lib/rbac/seedData";
 
 interface AuthContextType {
   currentUser: User | null;
@@ -33,12 +34,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     else if (role === "HR") targetRoleId = "hr_mgr_recruiter";
     else if (role === "CAREGIVER") targetRoleId = "caregiver_field";
     else if (role === "CLIENT") targetRoleId = "portal_client";
+    else if (role === "FAMILY") targetRoleId = "portal_client"; // Same backend mock user for now, but UI will diverge
     else if (role === "INTAKE_COORDINATOR") targetRoleId = "care_intake_coord";
     else if (role === "BILLING_FINANCE_STAFF") targetRoleId = "billing_finance_staff";
     else if (role === "CLINICAL_SUPERVISOR_RN") targetRoleId = "clinical_supervisor_rn";
     else if (role === "QA_COMPLIANCE_OFFICER") targetRoleId = "qa_compliance_officer";
 
-    const matchingUser = users.find(u => u.role_id === targetRoleId);
+    let matchingUser = users.find(u => u.role_id === targetRoleId);
+    if (!matchingUser) {
+      matchingUser = SEED_USERS.find(u => u.role_id === targetRoleId);
+    }
     
     if (matchingUser) {
       setCurrentUserId(matchingUser.id);
@@ -53,7 +58,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("homeliocare_mock_user_role");
   };
 
-  const matchedUser = users.find(u => u.id === currentUserId);
+  let matchedUser = users.find(u => u.id === currentUserId);
+  if (!matchedUser && currentUserId) {
+    matchedUser = SEED_USERS.find(u => u.id === currentUserId);
+  }
   const roleFromStorage = (typeof window !== 'undefined' ? localStorage.getItem("homeliocare_mock_user_role") : "ADMIN") as Role || "ADMIN";
   
   const currentUser: User | null = matchedUser ? {

@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import { visitHistory } from "@/lib/portalMockData";
 import { CalendarDays, Clock, CheckCircle2, ChevronRight, Image as ImageIcon, MapPin, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function PortalVisitsPage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+
   const [selectedVisit, setSelectedVisit] = useState<string | null>(null);
   const [ratings, setRatings] = useState<Record<string, number>>({});
   const [feedbackText, setFeedbackText] = useState<Record<string, string>>({});
@@ -18,7 +22,7 @@ export default function PortalVisitsPage() {
     <div className="max-w-7xl mx-auto space-y-6">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold text-text-primary">Visit History</h1>
+          <h1 className="text-2xl font-semibold text-text-primary">{isClient ? "My Visits" : "Visit History"}</h1>
           <p className="text-xs text-text-secondary mt-1">Review past care visits and notes from the care team.</p>
         </div>
       </div>
@@ -69,7 +73,7 @@ export default function PortalVisitsPage() {
                       <div>
                         <h4 className="text-sm font-semibold text-text-primary mb-2">Caregiver Note</h4>
                         <p className="text-sm text-text-secondary leading-relaxed bg-white px-3 py-2 rounded-xl border border-border-subtle">
-                          "{visit.shortNote}"
+                          "{isClient && (visit as any).firstPersonShortNote ? (visit as any).firstPersonShortNote : visit.shortNote}"
                         </p>
                       </div>
 

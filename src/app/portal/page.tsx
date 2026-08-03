@@ -27,6 +27,8 @@ import {
   MapPin
 } from "lucide-react";
 
+import { useAuth } from "@/hooks/useAuth";
+
 const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
@@ -38,6 +40,9 @@ const staggerContainer: Variants = {
 };
 
 export default function PortalOverviewPage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+
   const getStatusProgress = (status: string) => {
     switch (status) {
       case "Scheduled": return 25;
@@ -58,10 +63,12 @@ export default function PortalOverviewPage() {
       {/* Warm Greeting */}
       <motion.div variants={fadeUpVariant} className="relative z-10">
         <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-text-primary mb-1">
-          Good morning, <span className="text-brand-teal">{portalUser.name.split(' ')[0]}</span>
+          Good morning, <span className="text-brand-teal">{isClient ? portalUser.clientName.split(' ')[0] : portalUser.name.split(' ')[0]}</span>
         </h1>
         <p className="text-text-secondary text-sm max-w-2xl">
-          Here is the latest on how {portalUser.relationship === "Daughter" ? "your dad" : portalUser.clientName} is doing today. Everything is looking great.
+          {isClient 
+            ? "Here's what's happening today." 
+            : `Here is the latest on how ${portalUser.relationship === "Daughter" ? "your dad" : portalUser.clientName} is doing today. Everything is looking great.`}
         </p>
       </motion.div>
 
@@ -208,7 +215,9 @@ export default function PortalOverviewPage() {
                         <span className="font-semibold text-text-primary">{activity.title}</span>
                         <span className="text-xs font-medium text-text-secondary">{activity.timestamp}</span>
                       </div>
-                      <p className="text-xs text-text-secondary leading-relaxed">{activity.description}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {isClient && activity.firstPersonNote ? activity.firstPersonNote : activity.description}
+                      </p>
                       {activity.link && (
                         <div className="mt-3 flex items-center text-sm font-medium text-brand-teal">
                           View details <ChevronRight className="w-4 h-4 ml-0.5 group-hover:translate-x-1 transition-transform" />
@@ -262,7 +271,7 @@ export default function PortalOverviewPage() {
           {/* Care Team */}
           <motion.section variants={fadeUpVariant}>
             <div className="flex items-center justify-between mb-3 px-1">
-              <h2 className="text-lg font-semibold text-text-primary">Care Team</h2>
+              <h2 className="text-lg font-semibold text-text-primary">{isClient ? "My Care Team" : "Care Team"}</h2>
             </div>
             <div className="space-y-3">
               {careTeam.map(member => (

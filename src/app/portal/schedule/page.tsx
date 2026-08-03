@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import { upcomingVisits, todaysVisit, careTeam } from "@/lib/portalMockData";
 import { CalendarDays, Clock, User, MessageSquare, Plus, ChevronRight, CalendarCheck, X, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function PortalSchedulePage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+  
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [panelType, setPanelType] = useState<'visit' | 'change-request' | null>(null);
 
@@ -29,7 +33,7 @@ export default function PortalSchedulePage() {
     <div className="max-w-7xl mx-auto space-y-6 relative">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-text-primary">Schedule</h1>
+          <h1 className="text-2xl font-semibold text-text-primary">{isClient ? "My Schedule" : "Schedule"}</h1>
           <p className="text-xs text-text-secondary mt-1">
             View upcoming care visits and coordinate with the care team.
           </p>

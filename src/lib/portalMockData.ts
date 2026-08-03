@@ -30,6 +30,7 @@ export const recentUpdates = [
     caregiverName: "Sarah Jenkins",
     caregiverPhoto: "",
     note: "Robert had a good morning! He ate all of his breakfast and we just finished our walk around the neighborhood. He's in good spirits today.",
+    firstPersonNote: "I had a good morning! I ate all of my breakfast and we just finished our walk around the neighborhood. I'm in good spirits today.",
     photos: ["https://images.unsplash.com/photo-1516307365426-bea591f05011?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"],
   },
   {
@@ -38,6 +39,7 @@ export const recentUpdates = [
     caregiverName: "Marcus Thorne",
     caregiverPhoto: "",
     note: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
+    firstPersonNote: "Marcus helped me with my afternoon medication. We played a few hands of cards after lunch.",
   },
 ];
 
@@ -85,6 +87,7 @@ export const visitHistory = [
     caregiver: "Marcus Thorne",
     duration: "4 hours",
     shortNote: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
+    firstPersonShortNote: "Marcus helped me with my afternoon medication. We played a few hands of cards after lunch.",
     tasksCompleted: ["Medication reminders", "Tidy living room", "Reading aloud or conversation"],
     photos: [],
     rating: 5,
@@ -96,6 +99,7 @@ export const visitHistory = [
     caregiver: "Sarah Jenkins",
     duration: "4 hours",
     shortNote: "Good morning overall. Assisted with bathing and dressing.",
+    firstPersonShortNote: "Good morning overall. Sarah assisted me with bathing and dressing.",
     tasksCompleted: ["Help with getting dressed and bathing", "Breakfast preparation", "20-minute walk"],
     photos: [],
     rating: null,
@@ -197,6 +201,7 @@ export const portalActivities = [
     type: "visit_completed",
     title: "Visit completed",
     description: "Good morning overall. Assisted with bathing and dressing.",
+    firstPersonNote: "Good morning overall. I was assisted with bathing and dressing.",
     timestamp: "Today at 1:00 PM",
     link: "/portal/visits", // links into Visit Notes page for detail
   },
@@ -205,6 +210,7 @@ export const portalActivities = [
     type: "care_plan_updated",
     title: "Care plan updated",
     description: "Added focus on fall prevention.",
+    firstPersonNote: "Added focus on fall prevention.",
     timestamp: "Yesterday",
     link: "/portal/care-plan",
   },
@@ -213,6 +219,7 @@ export const portalActivities = [
     type: "incident_reported",
     title: "Incident reported",
     description: "Minor skin tear on arm, cleaned and bandaged.",
+    firstPersonNote: "Minor skin tear on arm, cleaned and bandaged.",
     timestamp: "Jul 21",
     link: null,
   },
@@ -221,6 +228,7 @@ export const portalActivities = [
     type: "visit_completed",
     title: "Visit completed",
     description: "Helped Robert with his afternoon medication. We played a few hands of cards after lunch.",
+    firstPersonNote: "Helped me with my afternoon medication. We played a few hands of cards after lunch.",
     timestamp: "Jul 21 at 5:00 PM",
     link: "/portal/visits",
   },
@@ -229,6 +237,7 @@ export const portalActivities = [
     type: "care_plan_updated",
     title: "Care plan updated",
     description: "Adjusted medication schedule.",
+    firstPersonNote: "Adjusted medication schedule.",
     timestamp: "Jul 20",
     link: "/portal/care-plan",
   }

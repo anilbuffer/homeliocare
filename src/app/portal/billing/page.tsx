@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import { billingData } from "@/lib/portalMockData";
 import { Receipt, CreditCard, Download, ExternalLink, ShieldCheck, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function PortalBillingPage() {
+  const { currentUser } = useAuth();
+  const isClient = currentUser?.role === "CLIENT";
+
   const [panelType, setPanelType] = useState<'pay-balance' | 'view-details' | 'add-payment' | null>(null);
   const [selectedInvoice, setSelectedInvoice] = useState<any>(null);
 
@@ -26,8 +30,8 @@ export default function PortalBillingPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 relative">
       <div>
-        <h1 className="text-2xl font-semibold text-text-primary">Billing & Payments</h1>
-        <p className="text-xs text-text-secondary mt-1">Manage your invoices and payment methods safely and securely.</p>
+        <h1 className="text-2xl font-semibold text-text-primary">{isClient ? "My Billing" : "Billing & Payments"}</h1>
+        <p className="text-xs text-text-secondary mt-1">{isClient ? "Manage my invoices and payment methods safely and securely." : "Manage your invoices and payment methods safely and securely."}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -85,7 +89,7 @@ export default function PortalBillingPage() {
         <ShieldCheck className="w-5 h-5 text-brand-teal shrink-0 mt-0.5" />
         <div>
           <div className="text-sm font-semibold text-teal-900">Coverage Information</div>
-          <p className="text-sm text-teal-800 mt-1">Your current authorization covers up to 20 hours per week of personal care services. You are responsible for any hours scheduled beyond this amount.</p>
+          <p className="text-sm text-teal-800 mt-1">{isClient ? "My current authorization covers up to 20 hours per week of personal care services. I am responsible for any hours scheduled beyond this amount." : "Your current authorization covers up to 20 hours per week of personal care services. You are responsible for any hours scheduled beyond this amount."}</p>
         </div>
       </div>
 
@@ -211,7 +215,7 @@ export default function PortalBillingPage() {
                 {panelType === 'view-details' && (
                   <div className="space-y-6">
                     <p className="text-sm text-text-secondary">
-                      Your current balance is composed of the following items.
+                      {isClient ? "My current balance is composed of the following items." : "Your current balance is composed of the following items."}
                     </p>
 
                     <div className="space-y-4">
