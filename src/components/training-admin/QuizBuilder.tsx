@@ -150,7 +150,7 @@ export function QuizBuilder() {
               {questions.map((q, index) => {
                 const isExpanded = expandedQuestion === q.id;
                 return (
-                  <div key={q.id} className={`border ${isExpanded ? 'border-brand-teal shadow-sm' : 'border-slate-200 hover:border-slate-300'} rounded-xl bg-white transition-all overflow-hidden`}>
+                  <div key={q.id} className={`border ${isExpanded ? 'border-brand-teal shadow-[0_6px_32px_rgba(0,0,0,0.06)]' : 'border-slate-200 hover:border-slate-300'} rounded-xl bg-white transition-all overflow-hidden`}>
 
                     {/* Header */}
                     <div

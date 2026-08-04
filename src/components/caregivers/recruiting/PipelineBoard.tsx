@@ -2,7 +2,20 @@
 
 import React, { useState } from "react";
 import { ApplicantCard, Applicant } from "./ApplicantCard";
-import { Plus } from "lucide-react";
+import { PipelineColumn } from "./PipelineColumn";
+import {
+  DndContext,
+  DragOverlay,
+  closestCorners,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragStartEvent,
+  DragOverEvent,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import { sortableKeyboardCoordinates, arrayMove } from "@dnd-kit/sortable";
 
 type Stage = "New" | "Interviewing" | "Background Check" | "Offer" | "Hired";
 
@@ -25,40 +38,149 @@ const mockApplicants: Record<Stage, Applicant[]> = {
 
 export function PipelineBoard() {
   const [pipeline, setPipeline] = useState(mockApplicants);
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5, // minimum drag distance before activation
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const findContainer = (id: string) => {
+    if (id in pipeline) {
+      return id as Stage;
+    }
+    const container = (Object.keys(pipeline) as Stage[]).find((key) =>
+      pipeline[key].some((item) => item.id === id)
+    );
+    return container;
+  };
+
+  const handleDragStart = (event: DragStartEvent) => {
+    const { active } = event;
+    setActiveId(active.id as string);
+  };
+
+  const handleDragOver = (event: DragOverEvent) => {
+    const { active, over } = event;
+    if (!over) return;
+
+    const activeId = active.id;
+    const overId = over.id;
+
+    if (activeId === overId) return;
+
+    const activeContainer = findContainer(activeId as string);
+    const overContainer = findContainer(overId as string);
+
+    if (!activeContainer || !overContainer || activeContainer === overContainer) {
+      return;
+    }
+
+    setPipeline((prev) => {
+      const activeItems = prev[activeContainer];
+      const overItems = prev[overContainer];
+
+      const activeIndex = activeItems.findIndex((i) => i.id === activeId);
+      const overIndex = overItems.findIndex((i) => i.id === overId);
+
+      let newIndex;
+      if (overId in prev) {
+        // Dropping over a column itself (likely empty)
+        newIndex = overItems.length + 1;
+      } else {
+        const isBelowOverItem =
+          over &&
+          active.rect.current.translated &&
+          active.rect.current.translated.top > over.rect.top + over.rect.height;
+        const modifier = isBelowOverItem ? 1 : 0;
+        newIndex = overIndex >= 0 ? overIndex + modifier : overItems.length + 1;
+      }
+
+      return {
+        ...prev,
+        [activeContainer]: [
+          ...prev[activeContainer].filter((item) => item.id !== activeId),
+        ],
+        [overContainer]: [
+          ...prev[overContainer].slice(0, newIndex),
+          activeItems[activeIndex],
+          ...prev[overContainer].slice(newIndex, prev[overContainer].length),
+        ],
+      };
+    });
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    
+    if (!over) {
+      setActiveId(null);
+      return;
+    }
+
+    const activeId = active.id;
+    const overId = over.id;
+
+    const activeContainer = findContainer(activeId as string);
+    const overContainer = findContainer(overId as string);
+
+    if (
+      !activeContainer ||
+      !overContainer ||
+      activeContainer !== overContainer
+    ) {
+      setActiveId(null);
+      return;
+    }
+
+    const activeIndex = pipeline[activeContainer].findIndex(
+      (item) => item.id === activeId
+    );
+    const overIndex = pipeline[overContainer].findIndex(
+      (item) => item.id === overId
+    );
+
+    if (activeIndex !== overIndex) {
+      setPipeline((items) => ({
+        ...items,
+        [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex),
+      }));
+    }
+
+    setActiveId(null);
+  };
+
+  const activeApplicant = activeId 
+    ? (Object.values(pipeline).flat().find(a => a.id === activeId) as Applicant) 
+    : null;
 
   return (
-    <div className="flex gap-6 overflow-x-auto pb-6 w-full h-[calc(100vh-280px)] min-h-[500px] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
-      {(Object.keys(pipeline) as Stage[]).map((stage) => (
-        <div key={stage} className="flex flex-col min-w-[320px] max-w-[320px] bg-slate-50/50 rounded-2xl border border-slate-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] h-full overflow-hidden">
-          {/* Column Header */}
-          <div className="p-4 border-b border-slate-200 bg-white/50 backdrop-blur-md flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-slate-800">{stage}</h3>
-              <span className="bg-slate-200 text-slate-600 text-xs font-medium px-2 py-0.5 rounded-full">
-                {pipeline[stage].length}
-              </span>
-            </div>
-            {stage === "New" && (
-              <button className="p-1 text-slate-400 hover:text-brand-teal hover:bg-brand-teal/10 rounded-md transition-colors">
-                <Plus className="w-4 h-4" />
-              </button>
-            )}
-          </div>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCorners}
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="flex gap-6 overflow-x-auto pb-6 w-full h-[calc(100vh-280px)] min-h-[500px] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
+        {(Object.keys(pipeline) as Stage[]).map((stage) => (
+          <PipelineColumn key={stage} id={stage} applicants={pipeline[stage]} />
+        ))}
+      </div>
 
-          {/* Column Content */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300/80 hover:[&::-webkit-scrollbar-thumb]:bg-slate-400 [&::-webkit-scrollbar-thumb]:rounded-full">
-            {pipeline[stage].map((applicant) => (
-              <ApplicantCard key={applicant.id} applicant={applicant} />
-            ))}
-            
-            {pipeline[stage].length === 0 && (
-              <div className="h-24 flex items-center justify-center border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-sm">
-                No applicants
-              </div>
-            )}
+      <DragOverlay>
+        {activeApplicant ? (
+          <div className="rotate-2 scale-105 shadow-xl opacity-80 cursor-grabbing">
+            <ApplicantCard applicant={activeApplicant} />
           </div>
-        </div>
-      ))}
-    </div>
+        ) : null}
+      </DragOverlay>
+    </DndContext>
   );
 }

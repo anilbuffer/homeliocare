@@ -87,38 +87,38 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
       }
     ]
   },
-  SCHEDULER: {
-    role: "SCHEDULER",
-    title: "Scheduler & Dispatcher",
-    subtitle: "AI Shift Matching & Call-Off Queue",
-    description: "Real-time dispatch, call-off coverage resolution, OT prevention, and automated caregiver matching.",
-    icon: CalendarDays,
-    email: "alex.rivera@homeliocare.com",
-    badge: "Live Dispatcher Hub",
-    badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
+  INTAKE_COORDINATOR: {
+    role: "INTAKE_COORDINATOR",
+    title: "Intake Coordinator",
+    subtitle: "Referrals & New Inquiries",
+    description: "Manage incoming inquiries, schedule initial assessments, and guide families through the onboarding process.",
+    icon: PhoneCall,
+    email: "intake@homeliocare.com",
+    badge: "Intake Desk",
+    badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
     metrics: [
-      { label: "Fill Rate", value: "98.6%" },
-      { label: "Open Call-offs", value: "2 Pending" },
-      { label: "Avg Dispatch", value: "< 4 mins" },
+      { label: "New Inquiries", value: "12 Today" },
+      { label: "Avg Wait", value: "14 mins" },
+      { label: "Conv. Rate", value: "76%" },
     ],
-    highlights: ["Interactive Drag & Drop Calendar", "Automated Coverage", "Smart Caregiver Match"],
-    spotlightTitle: "Intelligent Shift Dispatch &",
-    spotlightHighlight: "AI Route Optimizer",
+    highlights: ["Urgency Queue", "Pipeline Kanban", "Quick Assessment Booking"],
+    spotlightTitle: "First Contact & Family",
+    spotlightHighlight: "Onboarding Experience",
     features: [
       {
-        icon: Zap,
-        title: "Instant Shift Coverage Engine",
-        desc: "Predictive call-off fill suggestions with distance-aware matching."
-      },
-      {
-        icon: Cpu,
-        title: "Overtime Prevention Guard",
-        desc: "Real-time scheduling telemetry to eliminate unauthorized OT costs."
+        icon: Activity,
+        title: "Real-time Urgency Queue",
+        desc: "Prioritize hospital discharges and critical leads instantly."
       },
       {
         icon: Globe,
-        title: "Multi-Branch Synchronization",
-        desc: "Seamless live syncing across all regional dispatcher hubs."
+        title: "Integrated Intake Pipeline",
+        desc: "Seamless handoff from inquiry to signed care plan."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Quick Assessment Booking",
+        desc: "Book available RN assessors while on the phone with families."
       }
     ]
   },
@@ -154,6 +154,41 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
         icon: Globe,
         title: "Integrated LMS & Training Desk",
         desc: "Assign required compliance modules and track staff certification completion."
+      }
+    ]
+  },
+  SCHEDULER: {
+    role: "SCHEDULER",
+    title: "Scheduler & Dispatcher",
+    subtitle: "AI Shift Matching & Call-Off Queue",
+    description: "Real-time dispatch, call-off coverage resolution, OT prevention, and automated caregiver matching.",
+    icon: CalendarDays,
+    email: "alex.rivera@homeliocare.com",
+    badge: "Live Dispatcher Hub",
+    badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
+    metrics: [
+      { label: "Fill Rate", value: "98.6%" },
+      { label: "Open Call-offs", value: "2 Pending" },
+      { label: "Avg Dispatch", value: "< 4 mins" },
+    ],
+    highlights: ["Interactive Drag & Drop Calendar", "Automated Coverage", "Smart Caregiver Match"],
+    spotlightTitle: "Intelligent Shift Dispatch &",
+    spotlightHighlight: "AI Route Optimizer",
+    features: [
+      {
+        icon: Zap,
+        title: "Instant Shift Coverage Engine",
+        desc: "Predictive call-off fill suggestions with distance-aware matching."
+      },
+      {
+        icon: Cpu,
+        title: "Overtime Prevention Guard",
+        desc: "Real-time scheduling telemetry to eliminate unauthorized OT costs."
+      },
+      {
+        icon: Globe,
+        title: "Multi-Branch Synchronization",
+        desc: "Seamless live syncing across all regional dispatcher hubs."
       }
     ]
   },
@@ -259,41 +294,6 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
         icon: Globe,
         title: "Direct Agency Concierge Line",
         desc: "Encrypted messaging with care coordinators and nursing leads."
-      }
-    ]
-  },
-  INTAKE_COORDINATOR: {
-    role: "INTAKE_COORDINATOR",
-    title: "Intake Coordinator",
-    subtitle: "Referrals & New Inquiries",
-    description: "Manage incoming inquiries, schedule initial assessments, and guide families through the onboarding process.",
-    icon: PhoneCall,
-    email: "intake@homeliocare.com",
-    badge: "Intake Desk",
-    badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
-    metrics: [
-      { label: "New Inquiries", value: "12 Today" },
-      { label: "Avg Wait", value: "14 mins" },
-      { label: "Conv. Rate", value: "76%" },
-    ],
-    highlights: ["Urgency Queue", "Pipeline Kanban", "Quick Assessment Booking"],
-    spotlightTitle: "First Contact & Family",
-    spotlightHighlight: "Onboarding Experience",
-    features: [
-      {
-        icon: Activity,
-        title: "Real-time Urgency Queue",
-        desc: "Prioritize hospital discharges and critical leads instantly."
-      },
-      {
-        icon: Globe,
-        title: "Integrated Intake Pipeline",
-        desc: "Seamless handoff from inquiry to signed care plan."
-      },
-      {
-        icon: ShieldCheck,
-        title: "Quick Assessment Booking",
-        desc: "Book available RN assessors while on the phone with families."
       }
     ]
   },

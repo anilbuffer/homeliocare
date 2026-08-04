@@ -64,7 +64,7 @@ export function FeedbackFAB() {
   return (
     <>
       <motion.button
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-brand-teal to-teal-500 text-white p-4 md:px-6 md:py-4 rounded-full shadow-[0_8px_30px_rgb(13,148,136,0.3)] hover:shadow-[0_8px_30px_rgb(13,148,136,0.5)] transition-all duration-300 flex items-center gap-3 group"
+        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-brand-teal to-teal-500 text-white p-2 lg:p-3 md:px-6 md:py-3 rounded-full shadow-[0_8px_30px_rgb(13,148,136,0.3)] hover:shadow-[0_8px_30px_rgb(13,148,136,0.5)] transition-all duration-300 flex items-center gap-3 group"
         onClick={() => setIsOpen(true)}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

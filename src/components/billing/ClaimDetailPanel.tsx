@@ -5,11 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, FileText, Calendar, DollarSign, Activity, Paperclip } from "lucide-react";
 
 interface ClaimDetailPanelProps {
-  claimId: string;
+  claim: any;
   onClose: () => void;
 }
 
-export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
+export function ClaimDetailPanel({ claim, onClose }: ClaimDetailPanelProps) {
+  const patientName = claim?.patient || "Margaret Chen";
+  const initials = patientName.split(" ").map((n: string) => n[0]).join("").substring(0, 2);
+  const amount = claim?.amount != null ? "$" + claim.amount.toLocaleString("en-US") + (claim.amount % 1 === 0 ? ".00" : "") : "$2,450.00";
+  const status = claim?.status || "Draft";
+  const claimId = claim?.id || "CLM-10201";
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex justify-end">
@@ -47,12 +53,12 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
             <div>
               <div className="text-xs font-medium text-slate-400 mb-2">Patient Information</div>
               <div className="bg-slate-50 px-4 py-3 rounded-xl border border-slate-100 flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal font-bold text-sm">
-                  MC
+                <div className="w-10 h-10 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal font-bold text-sm uppercase">
+                  {initials}
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-slate-900 text-base">Margaret Chen</div>
-                  <div className="text-xs text-slate-500">ID: PAT-84920</div>
+                  <div className="text-sm font-medium text-slate-900 text-base">{patientName}</div>
+                  <div className="text-xs text-slate-500">ID: PAT-{claimId.split("-")[1] || "84920"}</div>
                 </div>
               </div>
             </div>
@@ -65,13 +71,13 @@ export function ClaimDetailPanel({ claimId, onClose }: ClaimDetailPanelProps) {
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium">
                     <DollarSign className="w-3.5 h-3.5" /> Amount
                   </div>
-                  <div className="font-semibold text-slate-900 text-base">$2,450.00</div>
+                  <div className="font-semibold text-slate-900 text-base">{amount}</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-xl p-3 flex flex-col gap-1">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium">
                     <Activity className="w-3.5 h-3.5" /> Status
                   </div>
-                  <div className="font-semibold text-slate-900 text-base">Draft</div>
+                  <div className="font-semibold text-slate-900 text-base">{status}</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-xl p-3 flex flex-col gap-1 col-span-2">
                   <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium">

@@ -13,7 +13,7 @@ import { PaymentRemittance } from "@/components/billing/PaymentRemittance";
 import { ClaimDetailPanel } from "@/components/billing/ClaimDetailPanel";
 
 export default function BillingWorkspace() {
-  const [selectedClaimId, setSelectedClaimId] = React.useState<string | null>(null);
+  const [selectedClaim, setSelectedClaim] = React.useState<any | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,20 +39,20 @@ export default function BillingWorkspace() {
 
         <RevenueByPayer />
 
-        <ClaimsPipeline onClaimClick={setSelectedClaimId} />
+        <ClaimsPipeline onClaimClick={setSelectedClaim} />
 
-        <ARAging onClaimClick={setSelectedClaimId} />
+        <ARAging onClaimClick={setSelectedClaim} />
 
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          <DeniedClaims onClaimClick={setSelectedClaimId} />
+          <DeniedClaims onClaimClick={setSelectedClaim} />
           <PaymentRemittance />
         </div>
       </motion.div>
 
-      {selectedClaimId && (
+      {selectedClaim && (
         <ClaimDetailPanel 
-          claimId={selectedClaimId} 
-          onClose={() => setSelectedClaimId(null)} 
+          claim={selectedClaim} 
+          onClose={() => setSelectedClaim(null)} 
         />
       )}
     </>

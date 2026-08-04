@@ -51,7 +51,7 @@ const payerColors = {
   "Commercial": { bg: "bg-orange-500/10", text: "text-orange-600", dot: "bg-orange-500" },
 };
 
-export function ClaimsPipeline({ onClaimClick }: { onClaimClick?: (id: string) => void }) {
+export function ClaimsPipeline({ onClaimClick }: { onClaimClick?: (claim: any) => void }) {
   const [claims, setClaims] = useState(initialClaims);
   const [draggedClaimId, setDraggedClaimId] = useState<string | null>(null);
 
@@ -68,9 +68,20 @@ export function ClaimsPipeline({ onClaimClick }: { onClaimClick?: (id: string) =
 
   const handleDrop = (e: React.DragEvent, status: ClaimStatus) => {
     e.preventDefault();
-    const id = e.dataTransfer.getData("text/plain");
+    const id = draggedClaimId || e.dataTransfer.getData("text/plain");
     if (id) {
-      setClaims(claims.map(c => c.id === id ? { ...c, status } : c));
+      setClaims(claims.map(c => {
+        if (c.id === id) {
+          let updatedAge = c.age;
+          if (updatedAge) {
+            updatedAge = updatedAge.replace(/in \w+/i, `in ${status.toLowerCase()}`);
+          } else if (c.date && (status === "Submitted" || status === "Pending")) {
+            updatedAge = `0d in ${status.toLowerCase()}`;
+          }
+          return { ...c, status, age: updatedAge, date: updatedAge ? "" : c.date };
+        }
+        return c;
+      }));
     }
     setDraggedClaimId(null);
   };
@@ -120,7 +131,7 @@ export function ClaimsPipeline({ onClaimClick }: { onClaimClick?: (id: string) =
                       draggable
                       onDragStart={(e: any) => handleDragStart(e, claim.id)}
                       onDragEnd={() => setDraggedClaimId(null)}
-                      onClick={() => onClaimClick?.(claim.id)}
+                      onClick={() => onClaimClick?.(claim)}
                       className={clsx(
                         "bg-white p-4 rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.04)] border border-slate-200/60 cursor-grab active:cursor-grabbing hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-slate-300 transition-all",
                         draggedClaimId === claim.id && "opacity-50 scale-95 shadow-none"

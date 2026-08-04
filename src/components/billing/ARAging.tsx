@@ -30,7 +30,7 @@ const payerColors = {
   "Commercial": { bg: "bg-orange-500/10", text: "text-orange-600", dot: "bg-orange-500" },
 };
 
-export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void }) {
+export function ARAging({ onClaimClick }: { onClaimClick?: (claim: any) => void }) {
   return (
     <Card className="bg-white backdrop-blur-xl rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden h-full flex flex-col">
       <CardHeader
@@ -84,7 +84,7 @@ export function ARAging({ onClaimClick }: { onClaimClick?: (id: string) => void 
                   "hover:bg-slate-50/50 transition-colors group cursor-pointer",
                   record.urgent ? "bg-red-50/30 hover:bg-red-50/60" : ""
                 )}
-                onClick={() => onClaimClick?.(record.id)}
+                onClick={() => onClaimClick?.(record)}
               >
                 <td className="px-3 py-2 font-medium text-slate-900 whitespace-nowrap">{record.patient}</td>
                 <td className="px-3 py-2">

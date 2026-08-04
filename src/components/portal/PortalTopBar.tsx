@@ -33,7 +33,7 @@ export function PortalTopBar({ onMenuClick }: { onMenuClick?: () => void }) {
       <div className="flex items-center gap-3 sm:gap-4">
         <button
           onClick={onMenuClick}
-          className="p-2 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 min-[1120px]:hidden transition-colors active:scale-95"
+          className="p-1 -ml-2 rounded-lg text-slate-500 hover:bg-slate-200 min-[1120px]:hidden transition-colors active:scale-95"
         >
           <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
@@ -43,14 +43,14 @@ export function PortalTopBar({ onMenuClick }: { onMenuClick?: () => void }) {
       <div className="flex items-center gap-2 sm:gap-4">
         {currentUser?.role === "FAMILY" && (
           <button className="hidden sm:flex flex-col items-end mr-4 hover:bg-slate-50 px-3 py-1.5 rounded-xl transition-colors cursor-pointer group border border-transparent hover:border-slate-200">
-             <span className="text-sm font-medium text-text-primary flex items-center gap-1.5">
-               Viewing: Robert Alvarez
-               <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-brand-teal transition-colors" />
-             </span>
-             <span className="text-xs text-text-secondary mr-5">You are his daughter</span>
+            <span className="text-sm font-medium text-text-primary flex items-center gap-1.5">
+              Viewing: Robert Alvarez
+              <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-brand-teal transition-colors" />
+            </span>
+            <span className="text-xs text-text-secondary mr-5">You are his daughter</span>
           </button>
         )}
-        
+
         <button className="relative p-2 rounded-full bg-white border border-border-subtle text-slate-500 hover:bg-slate-50 transition-colors shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
           <Bell className="w-5 h-5" />
         </button>
