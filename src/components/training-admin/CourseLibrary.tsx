@@ -94,6 +94,24 @@ export function CourseLibrary() {
     setArchiveModalOpen(null);
   };
 
+  const handleBulkTagCompliance = () => {
+    setCourses(prev => prev.map(c =>
+      selectedCourses.includes(c.id) ? { ...c, complianceLinked: true } : c
+    ));
+    setSelectedCourses([]);
+  };
+
+  const handleBulkDuplicate = () => {
+    const duplicates = courses.filter(c => selectedCourses.includes(c.id)).map(c => ({
+      ...c,
+      id: `c_${Math.random().toString(36).substring(2, 9)}`,
+      title: `${c.title} (Copy)`,
+      status: "draft",
+    }));
+    setCourses(prev => [...prev, ...duplicates]);
+    setSelectedCourses([]);
+  };
+
   return (
     <div className="max-w-7xl mx-auto space-y-4">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -150,10 +168,10 @@ export function CourseLibrary() {
               <span className="text-xs font-semibold text-slate-500 mr-2">
                 {selectedCourses.length} Selected
               </span>
-              <button className="p-1.5 text-slate-400 hover:text-brand-teal transition-colors rounded-md hover:bg-white tooltip-trigger" title="Bulk tag compliance">
+              <button onClick={handleBulkTagCompliance} className="p-1.5 text-slate-400 hover:text-brand-teal transition-colors rounded-md hover:bg-white tooltip-trigger" title="Bulk tag compliance">
                 <Tag className="w-4 h-4" />
               </button>
-              <button className="p-1.5 text-slate-400 hover:text-blue-500 transition-colors rounded-md hover:bg-white tooltip-trigger" title="Duplicate selected">
+              <button onClick={handleBulkDuplicate} className="p-1.5 text-slate-400 hover:text-blue-500 transition-colors rounded-md hover:bg-white tooltip-trigger" title="Duplicate selected">
                 <Copy className="w-4 h-4" />
               </button>
             </motion.div>
@@ -181,18 +199,18 @@ export function CourseLibrary() {
                     checked={selectedCourses.length === filteredCourses.length && filteredCourses.length > 0}
                   />
                 </th>
-                <th className="px-4 py-3">Course Name</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Compliance</th>
-                <th className="px-4 py-3">Enrollments</th>
-                <th className="px-4 py-3">Last Updated</th>
-                <th className="px-4 py-2 text-right">Actions</th>
+                <th className="px-4 py-3 whitespace-nowrap">Course Name</th>
+                <th className="px-4 py-3 whitespace-nowrap">Status</th>
+                <th className="px-4 py-3 whitespace-nowrap">Compliance</th>
+                <th className="px-4 py-3 whitespace-nowrap">Enrollments</th>
+                <th className="px-4 py-3 whitespace-nowrap">Last Updated</th>
+                <th className="px-4 py-2 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm">
               {filteredCourses.map((course) => (
                 <tr key={course.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="px-4 py-2 text-center">
+                  <td className="px-4 py-2 text-center whitespace-nowrap">
                     <input
                       type="checkbox"
                       className="rounded border-slate-300 text-brand-teal focus:ring-brand-teal"
@@ -202,7 +220,7 @@ export function CourseLibrary() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="font-medium text-slate-800">{course.title}</div>
-                    <div className="text-xs text-slate-500 mt-0.5">{course.category} • {course.version}</div>
+                    <div className="text-xs text-slate-500 mt-0.5 whitespace-nowrap">{course.category} • {course.version}</div>
                   </td>
                   <td className="px-4 py-3">
                     <span className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium ${course.status === "published" ? "bg-brand-teal/10 text-brand-teal" :
@@ -214,24 +232,24 @@ export function CourseLibrary() {
                   </td>
                   <td className="px-4 py-3">
                     {course.complianceLinked ? (
-                      <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 bg-emerald-100 px-3 py-1.5 rounded-full w-fit">
+                      <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 bg-emerald-100 px-3 py-1.5 rounded-full whitespace-nowrap w-fit">
                         <ShieldCheck className="w-3.5 h-3.5" /> Linked
                       </span>
                     ) : (
-                      <span className="text-xs text-slate-400">None</span>
+                      <span className="text-xs text-slate-400 whitespace-nowrap">None</span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-slate-600 font-medium">
+                  <td className="px-4 py-3 text-slate-600 font-medium whitespace-nowrap">
                     {course.enrollments}
                   </td>
-                  <td className="px-4 py-3 text-slate-500 text-xs">
+                  <td className="px-4 py-3 text-slate-500 text-xs whitespace-nowrap">
                     {course.lastUpdated}
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-4">
                       <Link
                         href={`/training-admin/courses/builder?id=${course.id}`}
-                        className="text-slate-400 hover:text-brand-teal transition-colors"
+                        className="text-slate-400 hover:text-brand-teal transition-colors whitespace-nowrap"
                         title="Edit Course"
                       >
                         <FileEdit className="w-4 h-4" />
@@ -239,7 +257,7 @@ export function CourseLibrary() {
                       {course.status !== "archived" && (
                         <button
                           onClick={() => handleArchiveRequest(course.id)}
-                          className="text-slate-400 hover:text-red-500 transition-colors"
+                          className="text-slate-400 hover:text-red-500 transition-colors whitespace-nowrap"
                           title="Archive Course"
                         >
                           <Archive className="w-4 h-4" />

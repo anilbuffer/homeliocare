@@ -145,7 +145,7 @@ export function FeedbackFAB() {
                     >
                       {/* Rating */}
                       <div className="flex flex-col items-center gap-2">
-                        <span className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Rate your experience</span>
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Rate your experience</span>
                         <div className="flex gap-1" onMouseLeave={() => setHoveredStar(0)}>
                           {[1, 2, 3, 4, 5].map((star) => (
                             <motion.button
@@ -159,7 +159,7 @@ export function FeedbackFAB() {
                             >
                               <Star
                                 className={clsx(
-                                  "w-10 h-10 transition-all duration-300",
+                                  "w-6 h-6 transition-all duration-300",
                                   (hoveredStar || rating) >= star
                                     ? "fill-amber-400 text-amber-400 drop-shadow-[0_4px_12px_rgba(251,191,36,0.5)]"
                                     : "fill-slate-100 text-slate-200"
@@ -171,7 +171,7 @@ export function FeedbackFAB() {
                       </div>
                       <div className="space-y-3">
                         {/* Category */}
-                        <div className="space-y-2">
+                        <div className="space-y-1.5">
                           <label className="block text-sm font-semibold text-slate-700">What is this regarding?</label>
                           <div className="relative group">
                             <select
@@ -190,7 +190,7 @@ export function FeedbackFAB() {
                         </div>
 
                         {/* Description */}
-                        <div className="space-y-2">
+                        <div className="space-y-1.5">
                           <label className="block text-sm font-semibold text-slate-700">Details</label>
                           <textarea
                             required
