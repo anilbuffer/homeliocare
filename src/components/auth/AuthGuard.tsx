@@ -42,6 +42,12 @@ export function AuthGuard({
           router.push("/field-supervisor");
         } else if (currentUser.role === "PARTNER") {
           router.push("/partner");
+        } else if (currentUser.role === "TRAINER") {
+          router.push("/training-admin");
+        } else if (currentUser.role === "QA_COMPLIANCE_OFFICER") {
+          router.push("/compliance");
+        } else if (currentUser.role === "FAMILY") {
+          router.push("/portal");
         } else {
           router.push("/login");
         }

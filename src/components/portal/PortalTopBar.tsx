@@ -19,6 +19,12 @@ export function PortalTopBar({ onMenuClick }: { onMenuClick?: () => void }) {
     if (pathname.startsWith("/portal/documents")) return isClient ? "My Documents" : "Documents";
     if (pathname.startsWith("/portal/care-plan")) return isClient ? "My Care Plan" : "Care Plan Summary";
     if (pathname.startsWith("/portal/settings")) return "Settings";
+    if (pathname.startsWith("/training-admin/settings")) return "Settings";
+    if (pathname.startsWith("/training-admin/compliance")) return "Compliance Tracking";
+    if (pathname.startsWith("/training-admin/courses")) return "Course Management";
+    if (pathname.startsWith("/training-admin/quizzes")) return "Quiz Management";
+    if (pathname.startsWith("/training-admin/messages")) return "Messages";
+    if (pathname === "/training-admin" || pathname.startsWith("/training-admin/dashboard")) return "Training Center Dashboard";
     return "Overview";
   };
 

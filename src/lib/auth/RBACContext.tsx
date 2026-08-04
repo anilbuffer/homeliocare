@@ -40,7 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     else if (role === "CLINICAL_SUPERVISOR_RN") targetRoleId = "clinical_supervisor_rn";
     else if (role === "QA_COMPLIANCE_OFFICER") targetRoleId = "qa_compliance_officer";
     else if (role === "PARTNER") targetRoleId = "portal_client"; // Temporarily use portal_client or similar for mock user
-
+    else if (role === "TRAINER") targetRoleId = "super_admin"; // Fallback to super_admin for trainer demo
     let matchingUser = users.find(u => u.role_id === targetRoleId);
     if (!matchingUser) {
       matchingUser = SEED_USERS.find(u => u.role_id === targetRoleId);

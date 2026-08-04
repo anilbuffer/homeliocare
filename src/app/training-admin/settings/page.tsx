@@ -12,13 +12,13 @@ import { SecuritySettings } from "@/components/settings/SecuritySettings";
 import { NotificationPreferences } from "@/components/settings/NotificationPreferences";
 import { UserProfile } from "@/components/settings/UserProfile";
 
-export default function SettingsPage() {
+export default function TrainerAdminSettingsPage() {
   const [activeTab, setActiveTab] = useState("user-profile");
 
   const tabs = [
     {
       id: "user-profile",
-      label: "Personal Profile",
+      label: "Trainer Profile",
       icon: User,
       desc: "Manage your personal details",
     },
@@ -42,11 +42,11 @@ export default function SettingsPage() {
       <div className="bg-white/80 backdrop-blur-xl p-4 rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
         <div>
           <div className="flex items-center gap-2 text-brand-teal text-xs font-semibold uppercase tracking-wider mb-1">
-            <Sliders className="w-4 h-4" /> Personal Settings
+            <Sliders className="w-4 h-4" /> Trainer Administrator Settings
           </div>
-          <h1 className="text-lg font-semibold text-slate-900 tracking-tight mt-0.5">Settings & Configuration</h1>
+          <h1 className="text-lg font-semibold text-slate-900 tracking-tight mt-0.5">Trainer Profile & Configuration</h1>
           <p className="text-xs text-slate-500 font-medium mt-1">
-            Manage your personal profile, notification preferences, and account security.
+            Manage your trainer profile, course notification preferences, and account security.
           </p>
         </div>
       </div>

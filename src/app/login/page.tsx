@@ -27,7 +27,8 @@ import {
   UserPlus,
   PhoneCall,
   Stethoscope,
-  ClipboardCheck
+  ClipboardCheck,
+  GraduationCap
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Role } from "@/types/rbac";
@@ -470,6 +471,41 @@ const ROLE_DATA: Record<LoginRole, RoleConfig> = {
         desc: "Direct and encrypted messaging with our intake and care teams."
       }
     ]
+  },
+  TRAINER: {
+    role: "TRAINER",
+    title: "Training Administrator",
+    subtitle: "LMS & Content Management",
+    description: "Manage the learning management system, build courses, track quiz performance, and map compliance requirements.",
+    icon: GraduationCap,
+    email: "trainer@homeliocare.com",
+    badge: "LMS Admin",
+    badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
+    metrics: [
+      { label: "Courses", value: "42" },
+      { label: "Enrollments", value: "1,248" },
+      { label: "Reviews", value: "3 Pending" },
+    ],
+    highlights: ["Course Builder", "Quiz Analytics", "Compliance Mapping"],
+    spotlightTitle: "Training & Development",
+    spotlightHighlight: "LMS Portal",
+    features: [
+      {
+        icon: Globe,
+        title: "Advanced Course Builder",
+        desc: "Easily author interactive content with video, PDF, and quizzes."
+      },
+      {
+        icon: Activity,
+        title: "Quiz Analytics",
+        desc: "Track learner performance and identify ambiguous content."
+      },
+      {
+        icon: ShieldCheck,
+        title: "Compliance Linked",
+        desc: "Map courses directly to state and federal compliance requirements."
+      }
+    ]
   }
 };
 
@@ -529,6 +565,8 @@ export default function LoginPage() {
         router.push("/field-supervisor");
       } else if (selectedRole === "PARTNER") {
         router.push("/partner");
+      } else if (selectedRole === "TRAINER") {
+        router.push("/training-admin");
       } else {
         router.push("/dashboard");
       }
