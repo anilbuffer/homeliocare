@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { CaregiverLayout } from "@/components/caregiver/CaregiverLayout";
 import { INITIAL_TRAINING_COURSES, TrainingCourse } from "@/lib/caregiver/caregiverPortalData";
 import {
@@ -18,30 +19,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function CaregiverTrainingPage() {
   const [courses, setCourses] = useState<TrainingCourse[]>(INITIAL_TRAINING_COURSES);
-  const [selectedCourse, setSelectedCourse] = useState<TrainingCourse | null>(null);
-  const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
-  const [quizSubmitted, setQuizSubmitted] = useState(false);
-
-  const handleLaunchCourse = (course: TrainingCourse) => {
-    setSelectedCourse(course);
-    setQuizAnswer(null);
-    setQuizSubmitted(false);
-  };
-
-  const handleCompleteQuiz = () => {
-    setQuizSubmitted(true);
-    setTimeout(() => {
-      if (selectedCourse) {
-        setCourses((prev) =>
-          prev.map((c) =>
-            c.id === selectedCourse.id
-              ? { ...c, progressPercent: 100, status: "Completed" }
-              : c
-          )
-        );
-      }
-    }, 800);
-  };
 
   return (
     <CaregiverLayout>
@@ -137,13 +114,13 @@ export default function CaregiverTrainingPage() {
                 </div>
 
                 <div className="p-4 pt-0">
-                  <button
-                    onClick={() => handleLaunchCourse(course)}
+                  <Link
+                    href={`/caregiver/training/${course.id}`}
                     className="w-full py-2.5 px-4 bg-brand-teal hover:bg-brand-teal/90 text-white rounded-xl text-xs font-bold shadow-xs flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <PlayCircle className="w-4 h-4" />
                     <span>{isCompleted ? "Review Course Content" : "Launch Course & Quiz"}</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             );
@@ -151,105 +128,7 @@ export default function CaregiverTrainingPage() {
         </div>
       </div>
 
-      {/* Interactive Course Player & Quiz Simulator Modal */}
-      <AnimatePresence>
-        {selectedCourse && (
-          <div className="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-gray-100 flex flex-col max-h-[90vh]"
-            >
-              <div className="p-5 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
-                <div>
-                  <span className="text-xs font-bold text-brand-teal uppercase tracking-wider">
-                    {selectedCourse.category} Module
-                  </span>
-                  <h2 className="text-lg font-bold text-gray-900">{selectedCourse.title}</h2>
-                </div>
-                <button
-                  onClick={() => setSelectedCourse(null)}
-                  className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-200"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
 
-              <div className="p-6 overflow-y-auto space-y-5">
-                {/* Simulated Video Player Box */}
-                <div className="h-56 bg-slate-900 rounded-2xl relative flex items-center justify-center border border-gray-800 shadow-inner overflow-hidden">
-                  <img
-                    src={selectedCourse.thumbnail}
-                    alt={selectedCourse.title}
-                    className="w-full h-full object-cover opacity-40"
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white space-y-2">
-                    <PlayCircle className="w-16 h-16 text-brand-teal animate-pulse" />
-                    <span className="text-xs font-bold bg-slate-900/80 px-3 py-1 rounded-full border border-white/20">
-                      Module Video Stream (45 mins)
-                    </span>
-                  </div>
-                </div>
-
-                {/* Knowledge Check Quiz Section */}
-                <div className="space-y-3 p-4 bg-gray-50 border border-slate-200 rounded-2xl">
-                  <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider flex items-center gap-1.5">
-                    <BookOpen className="w-4 h-4 text-brand-teal" /> Interactive Knowledge Check Quiz
-                  </h4>
-                  <p className="text-xs text-gray-800 font-semibold">
-                    Question 1: When assisting a client with mobility transfer using a gait belt, where should the caregiver position themselves?
-                  </p>
-
-                  <div className="space-y-2 pt-1 text-xs">
-                    {[
-                      "Slightly behind and to the client's weaker side, holding the belt with an underhand grip",
-                      "Directly in front of the client, pulling by their arms",
-                      "Beside the client's stronger side only",
-                    ].map((opt, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setQuizAnswer(idx)}
-                        className={`w-full text-left p-3 rounded-xl border font-medium transition-all ${quizAnswer === idx
-                          ? "bg-brand-teal/10 border-brand-teal text-brand-teal font-bold shadow-2xs"
-                          : "bg-white border-gray-200 text-gray-700 hover:bg-gray-100"
-                          }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-
-                  {quizSubmitted && (
-                    <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-900 flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-teal" /> Quiz Passed with 100%! Course completed & CE credit logged.
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="p-4 bg-gray-50 border-t border-gray-100 flex justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setSelectedCourse(null)}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl text-xs font-semibold hover:bg-gray-200"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  onClick={handleCompleteQuiz}
-                  disabled={quizAnswer === null || quizSubmitted}
-                  className="px-5 py-2 bg-brand-teal text-white rounded-xl text-xs font-bold shadow-xs hover:bg-brand-teal/90 disabled:opacity-50"
-                >
-                  {quizSubmitted ? "Completed ✓" : "Submit Quiz Answer"}
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </CaregiverLayout>
   );
 }

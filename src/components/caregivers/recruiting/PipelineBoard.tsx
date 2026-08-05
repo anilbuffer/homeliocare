@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ApplicantCard, Applicant } from "./ApplicantCard";
 import { PipelineColumn } from "./PipelineColumn";
+import { ApplicantDetailsModal } from "./ApplicantDetailsModal";
 import {
   DndContext,
   DragOverlay,
@@ -36,9 +37,14 @@ const mockApplicants: Record<Stage, Applicant[]> = {
   "Hired": []
 };
 
-export function PipelineBoard() {
+interface PipelineBoardProps {
+  onAddApplicant?: () => void;
+}
+
+export function PipelineBoard({ onAddApplicant }: PipelineBoardProps) {
   const [pipeline, setPipeline] = useState(mockApplicants);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [selectedApplicant, setSelectedApplicant] = useState<Applicant | null>(null);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -170,17 +176,28 @@ export function PipelineBoard() {
     >
       <div className="flex gap-6 overflow-x-auto pb-6 w-full h-[calc(100vh-280px)] min-h-[500px] [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-400">
         {(Object.keys(pipeline) as Stage[]).map((stage) => (
-          <PipelineColumn key={stage} id={stage} applicants={pipeline[stage]} />
+          <PipelineColumn 
+            key={stage} 
+            id={stage} 
+            applicants={pipeline[stage]} 
+            onAddApplicant={onAddApplicant}
+            onApplicantClick={setSelectedApplicant}
+          />
         ))}
       </div>
 
       <DragOverlay>
         {activeApplicant ? (
           <div className="rotate-2 scale-105 shadow-xl opacity-80 cursor-grabbing">
-            <ApplicantCard applicant={activeApplicant} />
+            <ApplicantCard applicant={activeApplicant} onClick={() => {}} />
           </div>
         ) : null}
       </DragOverlay>
+
+      <ApplicantDetailsModal
+        applicant={selectedApplicant}
+        onClose={() => setSelectedApplicant(null)}
+      />
     </DndContext>
   );
 }

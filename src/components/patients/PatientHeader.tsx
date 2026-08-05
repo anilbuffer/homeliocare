@@ -23,15 +23,15 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
             <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="xl" className="w-24 h-24 text-2xl" />
             <div className="absolute -bottom-2 -right-2">
               <Badge variant={
-                patient.status === "Active" ? "success" :
+                patient.status === "Active" || patient.status === "Care Completed" ? "success" :
                   patient.status === "Hospitalized" ? "warning" :
                     patient.status === "Discharged" ? "neutral" : "error"
               } className={cn(
-                "border-2 border-white shadow-md font-bold text-white px-3 py-1",
+                "border-2 border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] font-semibold text-white whitespace-nowrap px-3 py-1",
                 patient.status === "Active" && "bg-emerald-500",
                 patient.status === "Hospitalized" && "bg-amber-500",
                 patient.status === "Discharged" && "bg-slate-500",
-                patient.status === "Inactive" && "bg-rose-500"
+                patient.status === "Care Completed" && "bg-teal-500"
               )}>{patient.status}</Badge>
             </div>
           </div>

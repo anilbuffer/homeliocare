@@ -34,6 +34,7 @@ export function HRNavHeader({ activeTab }: HRNavHeaderProps) {
             <Link
               key={tab.id}
               href={tab.href}
+              prefetch={true}
               className={cn(
                 "relative flex items-center gap-2 px-4 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap rounded-xl",
                 isActive ? "text-brand-teal" : "text-slate-500 hover:text-slate-800 hover:bg-slate-200/50"

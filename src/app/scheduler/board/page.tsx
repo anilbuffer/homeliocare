@@ -52,11 +52,11 @@ export default function SchedulerBoardPage() {
       prev.map((shift) =>
         shift.id === shiftId
           ? {
-              ...shift,
-              status: "Pending Confirmation",
-              assignedCaregiverId: caregiverId,
-              assignedCaregiverName: cg.name,
-            }
+            ...shift,
+            status: "Pending Confirmation",
+            assignedCaregiverId: caregiverId,
+            assignedCaregiverName: cg.name,
+          }
           : shift
       )
     );
@@ -88,7 +88,7 @@ export default function SchedulerBoardPage() {
   const uniqueRegions = Array.from(new Set(shifts.map((s) => s.region).filter(Boolean)));
 
   return (
-    <div className="w-full h-full animate-in fade-in duration-500">
+    <div className="w-full animate-in fade-in duration-500">
       <Header
         viewMode={viewMode}
         setViewMode={setViewMode}

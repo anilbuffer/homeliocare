@@ -96,7 +96,7 @@ export function CertificationsTab({
   };
 
   return (
-    <div className="space-y-6 sm:space-y-8">
+    <div className="space-y-4">
       {/* Certifications & Training Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -195,14 +195,14 @@ export function CertificationsTab({
       {/* ========================================================================= */}
       {/* REVERSE LOOKUP: Policy & Regulatory Acknowledgment Checklist */}
       {/* ========================================================================= */}
-      <Card className="overflow-hidden border border-slate-200 shadow-sm">
-        <div className="border-b border-slate-200 bg-slate-50/80 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <Card className="overflow-hidden border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+        <div className="border-b border-slate-200 bg-slate-50/80 px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex items-start sm:items-center gap-3">
             <div className="p-2.5 rounded-xl bg-brand-teal/10 text-brand-teal border border-brand-teal/20 shrink-0">
-              <FileSignature className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FileSignature className="w-4 h-4" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 text-base sm:text-lg">
+              <h4 className="font-semibold text-slate-900 text-base">
                 Policy & Regulatory Acknowledgments
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">

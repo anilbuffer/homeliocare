@@ -5,6 +5,7 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Clock, Briefcase, FileText } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/components/ui/Card";
+import { toast } from "sonner";
 
 export interface Applicant {
   id: string;
@@ -18,11 +19,15 @@ export interface Applicant {
 
 interface ApplicantCardProps {
   applicant: Applicant;
+  onClick?: () => void;
 }
 
-export function ApplicantCard({ applicant }: ApplicantCardProps) {
+export function ApplicantCard({ applicant, onClick }: ApplicantCardProps) {
   return (
-    <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-brand-teal/30 transition-all duration-300 cursor-pointer flex flex-col gap-3 group">
+    <div 
+      onClick={onClick || (() => toast.info(`Viewing details for ${applicant.name}`))}
+      className="bg-white rounded-xl p-4 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-brand-teal/30 transition-all duration-300 cursor-pointer flex flex-col gap-3 group"
+    >
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           <Avatar 
@@ -64,7 +69,13 @@ export function ApplicantCard({ applicant }: ApplicantCardProps) {
       </div>
       
       <div className="pt-3 border-t border-slate-100 mt-1 flex items-center justify-between">
-        <div className="flex items-center gap-1 text-xs text-brand-teal font-medium hover:text-emerald-700 transition-colors">
+        <div 
+          onClick={(e) => {
+            e.stopPropagation();
+            toast.success(`Downloading resume for ${applicant.name}`);
+          }}
+          className="flex items-center gap-1 text-xs text-brand-teal font-medium hover:text-emerald-700 transition-colors"
+        >
           <FileText className="w-3.5 h-3.5" />
           View Resume
         </div>

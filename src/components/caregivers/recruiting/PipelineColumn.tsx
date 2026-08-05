@@ -4,13 +4,16 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { SortableApplicantCard } from './SortableApplicantCard';
 import { Applicant } from './ApplicantCard';
 import { Plus } from 'lucide-react';
+import { toast } from "sonner";
 
 interface PipelineColumnProps {
   id: string;
   applicants: Applicant[];
+  onAddApplicant?: () => void;
+  onApplicantClick?: (applicant: Applicant) => void;
 }
 
-export function PipelineColumn({ id, applicants }: PipelineColumnProps) {
+export function PipelineColumn({ id, applicants, onAddApplicant, onApplicantClick }: PipelineColumnProps) {
   const { setNodeRef } = useDroppable({
     id,
     data: { type: 'Column', stage: id }
@@ -27,7 +30,10 @@ export function PipelineColumn({ id, applicants }: PipelineColumnProps) {
           </span>
         </div>
         {id === "New" && (
-          <button className="p-1 text-slate-400 hover:text-brand-teal hover:bg-brand-teal/10 rounded-md transition-colors">
+          <button 
+            onClick={onAddApplicant}
+            className="p-1 text-slate-400 hover:text-brand-teal hover:bg-brand-teal/10 rounded-md transition-colors"
+          >
             <Plus className="w-4 h-4" />
           </button>
         )}
@@ -40,7 +46,11 @@ export function PipelineColumn({ id, applicants }: PipelineColumnProps) {
       >
         <SortableContext items={applicants.map(a => a.id)} strategy={verticalListSortingStrategy}>
           {applicants.map((applicant) => (
-            <SortableApplicantCard key={applicant.id} applicant={applicant} />
+            <SortableApplicantCard 
+              key={applicant.id} 
+              applicant={applicant} 
+              onClick={() => onApplicantClick?.(applicant)}
+            />
           ))}
         </SortableContext>
         

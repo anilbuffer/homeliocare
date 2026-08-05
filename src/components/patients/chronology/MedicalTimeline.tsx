@@ -25,7 +25,7 @@ export function MedicalTimeline({ entries, highlightedEntryIds }: MedicalTimelin
 
   if (entries.length === 0) {
     return (
-      <div className="text-center py-12 bg-slate-50 rounded-xl border border-slate-200 border-dashed">
+      <div className="text-center py-12 bg-slate-50 rounded-xl border border-slate-300 border-dashed">
         <ClipboardList className="w-12 h-12 text-slate-300 mx-auto mb-4" />
         <h3 className="text-lg font-medium text-slate-700">No entries found</h3>
         <p className="text-slate-500 mt-1 text-sm">No medical history matches the current filters.</p>

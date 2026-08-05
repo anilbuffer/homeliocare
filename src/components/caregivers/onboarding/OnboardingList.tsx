@@ -833,7 +833,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
           onClose={() => setReminderHire(null)}
           title={`Send Reminder — ${reminderHire.name}`}
           description={`Send automated notification for outstanding onboarding documents.`}
-          maxWidth="md"
+          maxWidth="xl"
         >
           <div className="space-y-4 py-2">
             <div className="p-3.5 bg-blue-50/60 rounded-xl border border-blue-100 text-xs space-y-1">
@@ -846,7 +846,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-slate-600 block">Reminder Template</label>
+              <label className="text-sm font-semibold text-slate-600 block">Reminder Template</label>
               <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800">
                 <option>Standard Missing Document Alert (I-9 / W-4 / CPR)</option>
                 <option>Welcome & Orientation Schedule Notice</option>
@@ -855,7 +855,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold text-slate-600 block">Custom Message Note (Optional)</label>
+              <label className="text-sm font-semibold text-slate-600 block">Custom Message Note (Optional)</label>
               <textarea
                 rows={3}
                 placeholder="Hi Amanda, please upload your CPR certificate at your earliest convenience to start your first shift!"
@@ -867,13 +867,13 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
           <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
             <button
               onClick={() => setReminderHire(null)}
-              className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 text-xs font-semibold"
+              className="px-4 py-2 rounded-xl text-slate-600 text-sm bg-slate-50 border border-slate-200 hover:bg-slate-100 font-semibold"
             >
               Cancel
             </button>
             <button
               onClick={() => handleSendReminder(reminderHire.id)}
-              className="px-4 py-2 rounded-xl bg-brand-teal text-white text-xs font-semibold flex items-center gap-1.5 hover:bg-brand-teal/90 transition-colors"
+              className="px-4 py-2 rounded-xl bg-brand-teal text-sm text-white font-semibold flex items-center gap-1.5 hover:bg-brand-teal/90 transition-colors"
             >
               <Send className="w-3.5 h-3.5" />
               Send Email & SMS
@@ -1024,11 +1024,11 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
           onClose={() => setIsAddHireModalOpen(false)}
           title="Add New Hire to Onboarding"
           description="Enter candidate details to initiate onboarding checklist."
-          maxWidth="md"
+          maxWidth="xl"
         >
           <form onSubmit={handleAddHire} className="space-y-4 py-2">
             <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-700 block">Full Name *</label>
+              <label className="text-sm font-semibold text-slate-700 block">Full Name *</label>
               <input
                 type="text"
                 required
@@ -1039,9 +1039,9 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-slate-700 block">Role Title</label>
+                <label className="text-sm font-semibold text-slate-700 block">Role Title</label>
                 <select
                   value={newHireData.role}
                   onChange={(e) => setNewHireData({ ...newHireData, role: e.target.value })}
@@ -1055,7 +1055,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-slate-700 block">Target Start Date</label>
+                <label className="text-sm font-semibold text-slate-700 block">Target Start Date</label>
                 <input
                   type="text"
                   placeholder="e.g. Nov 15, 2026"
@@ -1066,9 +1066,9 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-slate-700 block">Email Address</label>
+                <label className="text-sm font-semibold text-slate-700 block">Email Address</label>
                 <input
                   type="email"
                   placeholder="name@homeliocare.com"
@@ -1079,7 +1079,7 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-slate-700 block">Phone Number</label>
+                <label className="text-sm font-semibold text-slate-700 block">Phone Number</label>
                 <input
                   type="tel"
                   placeholder="(555) 000-0000"
@@ -1094,13 +1094,13 @@ export function OnboardingList({ activeKpiFilter = "all", onSelectKpiFilter }: O
               <button
                 type="button"
                 onClick={() => setIsAddHireModalOpen(false)}
-                className="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 text-xs font-semibold"
+                className="px-4 py-2 rounded-xl text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-sm font-semibold"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-brand-teal text-white text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm"
+                className="px-4 py-2 rounded-xl bg-brand-teal text-white text-sm font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm"
               >
                 Create Onboarding Hire
               </button>

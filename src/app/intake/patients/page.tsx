@@ -29,7 +29,7 @@ import { Card } from "@/components/ui/Card";
 import { NewPatientModal } from "@/components/patients/NewPatientModal";
 import { toast } from "sonner";
 
-type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged" | "Inactive";
+type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged" | "Care Completed";
 
 export default function PatientsPage() {
   const router = useRouter();
@@ -74,7 +74,7 @@ export default function PatientsPage() {
       else if (activeFilter === "High Risk") matchesFilter = patient.riskLevel === "High";
       else if (activeFilter === "Hospitalized") matchesFilter = patient.status === "Hospitalized";
       else if (activeFilter === "Discharged") matchesFilter = patient.status === "Discharged";
-      else if (activeFilter === "Inactive") matchesFilter = patient.status === "Inactive";
+      else if (activeFilter === "Care Completed") matchesFilter = patient.status === "Care Completed";
 
       return matchesSearch && matchesFilter;
     });
@@ -86,7 +86,7 @@ export default function PatientsPage() {
     const activeCount = allPatientsList.filter(p => p.status === "Active").length;
     const highRiskCount = allPatientsList.filter(p => p.riskLevel === "High").length;
     const hospitalizedCount = allPatientsList.filter(p => p.status === "Hospitalized").length;
-    const inactiveCount = allPatientsList.filter(p => p.status === "Inactive").length;
+    const inactiveCount = allPatientsList.filter(p => p.status === "Care Completed").length;
 
     return [
       {
@@ -130,8 +130,8 @@ export default function PatientsPage() {
         accentGlow: "group-hover:border-amber-300"
       },
       {
-        id: "Inactive" as FilterStatus,
-        title: "Inactive",
+        id: "Care Completed" as FilterStatus,
+        title: "Care Completed",
         count: inactiveCount,
         subtitle: "No longer on active service",
         icon: UserMinus,
@@ -277,7 +277,7 @@ export default function PatientsPage() {
         {/* Quick Filter Pills Row */}
         <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-0.5 no-scrollbar">
           <span className="text-xs font-medium text-slate-400 shrink-0 mr-1">Status:</span>
-          {(["ALL", "Active", "High Risk", "Hospitalized", "Discharged", "Inactive"] as FilterStatus[]).map((filterVal) => {
+          {(["ALL", "Active", "High Risk", "Hospitalized", "Discharged", "Care Completed"] as FilterStatus[]).map((filterVal) => {
             const isSelected = activeFilter === filterVal;
             return (
               <button
@@ -381,7 +381,7 @@ export default function PatientsPage() {
                                   ? "warning"
                                   : patient.status === "Discharged"
                                     ? "default"
-                                    : patient.status === "Inactive"
+                                    : patient.status === "Care Completed"
                                       ? "neutral"
                                       : "error"
                             }

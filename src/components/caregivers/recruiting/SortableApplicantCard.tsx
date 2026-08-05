@@ -5,9 +5,10 @@ import { ApplicantCard, Applicant } from './ApplicantCard';
 
 interface SortableApplicantCardProps {
   applicant: Applicant;
+  onClick?: () => void;
 }
 
-export function SortableApplicantCard({ applicant }: SortableApplicantCardProps) {
+export function SortableApplicantCard({ applicant, onClick }: SortableApplicantCardProps) {
   const {
     attributes,
     listeners,
@@ -25,7 +26,7 @@ export function SortableApplicantCard({ applicant }: SortableApplicantCardProps)
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners} className={isDragging ? 'z-50' : ''}>
-      <ApplicantCard applicant={applicant} />
+      <ApplicantCard applicant={applicant} onClick={onClick} />
     </div>
   );
 }

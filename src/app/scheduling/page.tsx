@@ -19,11 +19,11 @@ export default function SchedulingPage() {
   const [viewMode, setViewMode] = useState<"Day" | "Week" | "Month">("Day");
   const [layoutMode, setLayoutMode] = useState<LayoutMode>("Calendar");
   const [activeFilter, setActiveFilter] = useState("All Shifts");
-  
+
   const [caregiverFilter, setCaregiverFilter] = useState("");
   const [patientFilter, setPatientFilter] = useState("");
   const [regionFilter, setRegionFilter] = useState("");
-  
+
   const [shifts, setShifts] = useState<Shift[]>(mockShifts);
   const [selectedShiftId, setSelectedShiftId] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -48,16 +48,16 @@ export default function SchedulingPage() {
   const handleAssignCaregiver = (shiftId: string, caregiverId: string) => {
     const cg = mockCaregivers.find(c => c.id === caregiverId);
     if (!cg) return;
-    
+
     setShifts((prev) =>
       prev.map((shift) =>
         shift.id === shiftId
           ? {
-              ...shift,
-              status: "Pending Confirmation",
-              assignedCaregiverId: caregiverId,
-              assignedCaregiverName: cg.name,
-            }
+            ...shift,
+            status: "Pending Confirmation",
+            assignedCaregiverId: caregiverId,
+            assignedCaregiverName: cg.name,
+          }
           : shift
       )
     );
@@ -68,7 +68,7 @@ export default function SchedulingPage() {
   };
 
   const selectedShift = shifts.find((s) => s.id === selectedShiftId) || null;
-  
+
   // Basic recommendation logic: just sort caregivers by rating for the demo
   const suggestedCaregivers = [...mockCaregivers].sort((a, b) => b.rating - a.rating).slice(0, 3);
 
@@ -94,14 +94,14 @@ export default function SchedulingPage() {
   const uniqueRegions = Array.from(new Set(shifts.map(s => s.region).filter(Boolean)));
 
   return (
-    <div className="w-full h-full animate-in fade-in duration-500">
+    <div className="w-full animate-in fade-in duration-500">
       <Header
         viewMode={viewMode}
         setViewMode={setViewMode}
         openShiftsCount={openShiftsCount}
         onCreateShift={() => setIsCreateModalOpen(true)}
       />
-      
+
       <UrgencyStrip />
 
       <FilterBar

@@ -9,7 +9,7 @@ export function BillingTab({ patient }: { patient: Patient }) {
   if (!patient.billing) {
     return (
       <div className="space-y-6">
-        <Card className="p-8 text-center bg-slate-50 border-dashed border-2 border-slate-200">
+        <Card className="p-8 text-center bg-slate-50 border-dashed border border-slate-300">
           <h3 className="text-lg font-medium text-slate-700 mb-2">No billing records</h3>
         </Card>
       </div>

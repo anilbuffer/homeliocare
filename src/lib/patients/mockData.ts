@@ -1,7 +1,7 @@
 export interface Patient {
   id: string;
   name: string;
-  status: "Active" | "Inactive" | "Hospitalized" | "Discharged";
+  status: "Active" | "Care Completed" | "Hospitalized" | "Discharged";
   age: number;
   address: string;
   primaryDiagnosis: string;
@@ -371,7 +371,7 @@ export const mockPatients: Record<string, Patient> = {
   "c-3": {
     id: "c-3",
     name: "John Smith",
-    status: "Inactive",
+    status: "Care Completed",
     age: 65,
     address: "123 Main St, Anytown, CA 12345",
     primaryDiagnosis: "Routine Checkup",
