@@ -19,3 +19,5 @@ export default async function PatientHubPage({ params }: { params: Promise<{ id:
     </div>
   );
 }
+
+export function generateStaticParams() { return [{ id: "1" }, { id: "2" }, { id: "3" }, { id: "cg-001" }, { id: "pt-001" }]; }

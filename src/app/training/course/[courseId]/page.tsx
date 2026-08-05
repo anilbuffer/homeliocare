@@ -107,3 +107,5 @@ export default async function CourseOverviewPage({ params }: { params: Promise<{
     </div>
   );
 }
+
+export function generateStaticParams() { return [{ courseId: "1" }, { courseId: "2" }, { courseId: "3" }]; }

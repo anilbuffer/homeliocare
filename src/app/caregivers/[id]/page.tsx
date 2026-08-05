@@ -38,3 +38,5 @@ export default async function CaregiverProfilePage({ params }: { params: Promise
     </div>
   );
 }
+
+export function generateStaticParams() { return [{ id: "1" }, { id: "2" }, { id: "3" }, { id: "cg-001" }, { id: "pt-001" }]; }

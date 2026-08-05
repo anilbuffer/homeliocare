@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Ensure the base path matches the subfolder name
+  RewriteBase /homeliocare/
+
+  # If the requested file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # If an HTML file exists for the request, rewrite to it
+  # (Useful if trailingSlash was false, but harmless if true)
+  RewriteCond %{DOCUMENT_ROOT}/homeliocare/$1.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # Next.js generates a custom 404.html page on static export
+  ErrorDocument 404 /homeliocare/404.html
+</IfModule>

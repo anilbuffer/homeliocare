@@ -27,3 +27,5 @@ export default async function HrCaregiverProfilePage({ params }: { params: Promi
 
   return <CaregiverProfileClient initialCaregiver={caregiver} />;
 }
+
+export function generateStaticParams() { return [{ id: "1" }, { id: "2" }, { id: "3" }, { id: "cg-001" }, { id: "pt-001" }]; }
