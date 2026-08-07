@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   // Enables static export for cPanel static hosting
   output: "export",
   
-  // Set the base path to match the subfolder in cPanel (public_html/homeliocare)
-  // We only apply this in production so local development is unaffected
-  basePath: process.env.NODE_ENV === "production" ? "/homeliocare" : "",
+  // Since we are deploying to a subdomain (homeliocare.creativebuffer.com),
+  // the app is served at the root (/). We do not need a basePath.
+  // basePath: process.env.NODE_ENV === "production" ? "/homeliocare" : "",
   
   // Required for static export if you use the Next.js <Image /> component
   images: {
