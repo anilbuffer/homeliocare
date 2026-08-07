@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "@/components/ui/Modal";
-import { UserPlus, User, Calendar, Activity, Phone, MapPin } from "lucide-react";
+import { UserPlus, User, Calendar, Activity, Phone, MapPin, Building, AlertCircle, Shield, Hash } from "lucide-react";
 
 interface NewPatientModalProps {
   isOpen: boolean;
@@ -168,6 +168,75 @@ export function NewPatientModal({ isOpen, onClose }: NewPatientModalProps) {
                     className="w-full pl-9 pr-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all resize-none placeholder:text-slate-400"
                     placeholder="Street address, city, state, zip"
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Intake Logistics & Insurance Section */}
+          <div>
+            <h4 className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              Intake Logistics & Insurance
+              <div className="h-px bg-slate-100 flex-1"></div>
+            </h4>
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-[13px] font-medium text-slate-700">Referral Source</label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Building className="h-4 w-4 text-slate-400" />
+                    </div>
+                    <select className="w-full pl-9 pr-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all text-slate-600 appearance-none">
+                      <option value="">Select source...</option>
+                      <option value="hospital">Hospital Discharge</option>
+                      <option value="pcp">Primary Care Physician</option>
+                      <option value="family">Family / Self</option>
+                      <option value="agency">Home Health Agency</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[13px] font-medium text-slate-700">Intake Priority</label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <AlertCircle className="h-4 w-4 text-slate-400" />
+                    </div>
+                    <select className="w-full pl-9 pr-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all text-slate-600 appearance-none">
+                      <option value="routine">Routine</option>
+                      <option value="urgent">Urgent</option>
+                      <option value="expedited">Expedited (Same Day)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-[13px] font-medium text-slate-700">Insurance Provider</label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Shield className="h-4 w-4 text-slate-400" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
+                      placeholder="e.g. Medicare, BlueCross"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[13px] font-medium text-slate-700">Member ID</label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Hash className="h-4 w-4 text-slate-400" />
+                    </div>
+                    <input
+                      type="text"
+                      className="w-full pl-9 pr-3 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
+                      placeholder="e.g. ABC123456789"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

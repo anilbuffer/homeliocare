@@ -38,7 +38,7 @@ export function PipelineSnapshot() {
         {funnelStages.map((stage, idx) => {
           const widthPercent = Math.max(15, (stage.count / maxCount) * 100);
           return (
-            <div key={idx} onClick={() => router.push('/intake/patients')} className="group relative flex items-center gap-3 cursor-pointer">
+            <div key={idx} onClick={() => router.push('/intake/referrals')} className="group relative flex items-center gap-3 cursor-pointer">
               <div className="w-32 shrink-0 text-[11px] font-semibold text-slate-600 truncate text-right">
                 {stage.name}
               </div>

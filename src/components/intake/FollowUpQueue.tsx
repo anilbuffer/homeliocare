@@ -70,7 +70,7 @@ export function FollowUpQueue() {
         next.delete(id);
         return next;
       });
-      router.push('/intake/communications');
+      router.push(`/intake/patients/${lead.patientId}`);
     }, 800);
   };
 

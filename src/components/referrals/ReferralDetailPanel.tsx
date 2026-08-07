@@ -4,6 +4,8 @@ import { X, AlertCircle, Phone, Mail, Calendar, FileText, CheckCircle2, ChevronR
 import clsx from "clsx";
 import { useAuth } from "@/hooks/useAuth";
 import { ReferredOutModal } from "../intake/ReferredOutModal";
+import { Modal } from "@/components/ui/Modal";
+import { toast } from "sonner";
 
 import { Referral, ReferralStage } from "./types";
 
@@ -29,6 +31,10 @@ const STAGES: ReferralStage[] = [
 export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDetailPanelProps) {
   const { currentUser } = useAuth();
   const [isReferredOutModalOpen, setIsReferredOutModalOpen] = React.useState(false);
+  const [isBookAssessmentModalOpen, setIsBookAssessmentModalOpen] = React.useState(false);
+  const [isFollowUpModalOpen, setIsFollowUpModalOpen] = React.useState(false);
+  const [isBooking, setIsBooking] = React.useState(false);
+  const [isFollowingUp, setIsFollowingUp] = React.useState(false);
   const isIntakeCoordinator = currentUser?.role === "INTAKE_COORDINATOR";
 
   if (!referral) return null;
@@ -362,10 +368,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                 <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider px-1">Intake Outcome</div>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <button
-                    onClick={() => {
-                      onUpdate({ ...referral, stage: "Initial Assessment Scheduled" });
-                      onClose();
-                    }}
+                    onClick={() => setIsBookAssessmentModalOpen(true)}
                     className="flex-1 flex flex-col items-center justify-center gap-1.5 bg-brand-teal hover:bg-teal-600 text-white text-sm text-center font-medium py-2.5 px-3 rounded-xl shadow-md transition-colors cursor-pointer"
                   >
                     <CalendarCheck className="w-4 h-4" />
@@ -379,17 +382,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                     <span>Not Qualified - Refer Out</span>
                   </button>
                   <button
-                    onClick={() => {
-                      onUpdate({
-                        ...referral,
-                        nextAction: {
-                          description: "Follow up with client",
-                          dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-                          isOverdue: false
-                        }
-                      });
-                      onClose();
-                    }}
+                    onClick={() => setIsFollowUpModalOpen(true)}
                     className="flex-1 flex flex-col items-center justify-center gap-1.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm text-center font-medium py-2.5 px-3 rounded-xl transition-colors cursor-pointer"
                   >
                     <Clock className="w-4 h-4 text-amber-500" />
@@ -433,6 +426,133 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
         }}
         clientName={referral?.clientName}
       />
+
+      <Modal
+        isOpen={isBookAssessmentModalOpen}
+        onClose={() => !isBooking && setIsBookAssessmentModalOpen(false)}
+        title="Schedule Assessment"
+        description={`Schedule an initial assessment for ${referral?.clientName}. This will add them to the daily schedule queue.`}
+        maxWidth="md"
+        footer={
+          <>
+            <button
+              onClick={() => setIsBookAssessmentModalOpen(false)}
+              disabled={isBooking}
+              className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors disabled:opacity-50"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                setIsBooking(true);
+                setTimeout(() => {
+                  setIsBooking(false);
+                  setIsBookAssessmentModalOpen(false);
+                  toast.success("Assessment booked! Added to today's schedule queue.");
+                  onUpdate({ ...referral, stage: "Initial Assessment Scheduled" });
+                  onClose();
+                }, 1000);
+              }}
+              disabled={isBooking}
+              className="px-4 py-2 text-sm font-medium bg-brand-teal text-white rounded-xl hover:bg-teal-600 transition-colors flex items-center gap-2 disabled:opacity-70"
+            >
+              {isBooking ? "Booking..." : "Confirm Schedule"}
+            </button>
+          </>
+        }
+      >
+        <div className="space-y-4 py-2">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Date</label>
+            <input type="date" disabled={isBooking} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal disabled:opacity-50" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Time</label>
+            <input type="time" disabled={isBooking} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal disabled:opacity-50" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Assign Clinician</label>
+            <select disabled={isBooking} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal bg-white disabled:opacity-50">
+              <option value="">Select assessor...</option>
+              <option value="sarah">Sarah Jenkins, RN</option>
+              <option value="maria">Maria Santos, CC</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Location Details</label>
+            <textarea disabled={isBooking} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal disabled:opacity-50" rows={2} defaultValue={referral?.demographics?.address || ""}></textarea>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={isFollowUpModalOpen}
+        onClose={() => !isFollowingUp && setIsFollowUpModalOpen(false)}
+        title="Schedule Follow-Up"
+        description={`Set a follow-up reminder for ${referral?.clientName}. This will add the task to your follow-up queue.`}
+        maxWidth="md"
+        footer={
+          <>
+            <button
+              onClick={() => setIsFollowUpModalOpen(false)}
+              disabled={isFollowingUp}
+              className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors disabled:opacity-50"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                setIsFollowingUp(true);
+                setTimeout(() => {
+                  setIsFollowingUp(false);
+                  setIsFollowUpModalOpen(false);
+                  toast.success("Follow-up scheduled successfully!");
+                  onUpdate({
+                    ...referral,
+                    nextAction: {
+                      description: "Scheduled Follow Up",
+                      dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+                      isOverdue: false
+                    }
+                  });
+                  onClose();
+                }, 800);
+              }}
+              disabled={isFollowingUp}
+              className="px-4 py-2 text-sm font-medium bg-amber-500 text-white rounded-xl hover:bg-amber-600 transition-colors flex items-center gap-2 disabled:opacity-70 shadow-sm"
+            >
+              {isFollowingUp ? "Saving..." : "Set Follow-Up"}
+            </button>
+          </>
+        }
+      >
+        <div className="space-y-4 py-2">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Date</label>
+              <input type="date" disabled={isFollowingUp} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal disabled:opacity-50" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Time</label>
+              <input type="time" disabled={isFollowingUp} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal disabled:opacity-50" />
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Reason for Follow-Up</label>
+            <select disabled={isFollowingUp} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal bg-white disabled:opacity-50 appearance-none">
+              <option value="">Select a reason...</option>
+              <option value="docs">Missing Documentation (Orders, Consent)</option>
+              <option value="insurance">Insurance Authorization Pending</option>
+              <option value="unreachable">Client / Family Unreachable</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Additional Notes</label>
+            <textarea disabled={isFollowingUp} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal disabled:opacity-50" rows={3} placeholder="Provide any specifics needed for the follow-up..."></textarea>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

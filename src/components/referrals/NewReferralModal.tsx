@@ -126,22 +126,22 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
           <SectionBadge number={1} title="Referral Header" />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Referral ID</label>
+              <label className="text-sm font-medium text-slate-700">Referral ID</label>
               <input type="text" readOnly value="REF-2025-000123" className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-500 focus:outline-none" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Date Received</label>
+              <label className="text-sm font-medium text-slate-700">Date Received</label>
               <input type="datetime-local" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Priority</label>
+              <label className="text-sm font-medium text-slate-700">Priority</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>Routine</option>
                 <option>Urgent</option>
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Referral Status</label>
+              <label className="text-sm font-medium text-slate-700">Referral Status</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>New</option>
                 <option>In Review</option>
@@ -158,23 +158,23 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
           <SectionBadge number={2} title="Referring Provider / Facility Details" />
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="space-y-1.5 md:col-span-2">
-              <label className="text-xs font-medium text-slate-700">Hospital / Facility Name</label>
+              <label className="text-sm font-medium text-slate-700">Hospital / Facility Name</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="General Hospital" />
             </div>
             <div className="space-y-1.5 md:col-span-3">
-              <label className="text-xs font-medium text-slate-700">Referring Physician</label>
+              <label className="text-sm font-medium text-slate-700">Referring Physician</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Dr. Jane Smith" />
             </div>
             <div className="space-y-1.5 md:col-span-2">
-              <label className="text-xs font-medium text-slate-700">Discharge Planner Name</label>
+              <label className="text-sm font-medium text-slate-700">Discharge Planner Name</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Mark Doe" />
             </div>
             <div className="space-y-1.5 md:col-span-2">
-              <label className="text-xs font-medium text-slate-700">Contact Details (Phone / Email)</label>
+              <label className="text-sm font-medium text-slate-700">Contact Details (Phone / Email)</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="(555) 123-4567 / mark@hospital.org" />
             </div>
             <div className="space-y-1.5 md:col-span-1">
-              <label className="text-xs font-medium text-slate-700">NPI Number</label>
+              <label className="text-sm font-medium text-slate-700">NPI Number</label>
               <input type="text" pattern="\d{10}" title="Must be a 10-digit number" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="1234567890" />
             </div>
           </div>
@@ -185,15 +185,15 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
           <SectionBadge number={3} title="Clinical Patient Profile" />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Patient Name</label>
+              <label className="text-sm font-medium text-slate-700">Patient Name</label>
               <input name="clientName" required type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="John Doe" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Date of Birth</label>
+              <label className="text-sm font-medium text-slate-700">Date of Birth</label>
               <input name="dob" type="date" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700 block mb-2">Gender</label>
+              <label className="text-sm font-medium text-slate-700 block mb-2">Gender</label>
               <div className="flex items-center gap-4">
                 <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Male" className="accent-brand-teal" defaultChecked /> Male</label>
                 <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Female" className="accent-brand-teal" /> Female</label>
@@ -201,32 +201,32 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
               </div>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Phone Number</label>
+              <label className="text-sm font-medium text-slate-700">Phone Number</label>
               <input name="phone" type="tel" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="(555) 123-4567" />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="space-y-1.5 md:col-span-1">
-              <label className="text-xs font-medium text-slate-700">Email Address</label>
+              <label className="text-sm font-medium text-slate-700">Email Address</label>
               <input name="email" type="email" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="johndoe@email.com" />
             </div>
             <div className="space-y-1.5 md:col-span-1">
-              <label className="text-xs font-medium text-slate-700">Address</label>
+              <label className="text-sm font-medium text-slate-700">Address</label>
               <input name="address" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="123 Maple Street" />
             </div>
             <div className="space-y-1.5 md:col-span-1">
-              <label className="text-xs font-medium text-slate-700">City</label>
+              <label className="text-sm font-medium text-slate-700">City</label>
               <input name="city" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Chicago" />
             </div>
             <div className="grid grid-cols-2 gap-4 md:col-span-1">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-700">State</label>
+                <label className="text-sm font-medium text-slate-700">State</label>
                 <select name="state" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                   <option>IL</option>
                 </select>
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-slate-700">ZIP Code</label>
+                <label className="text-sm font-medium text-slate-700">ZIP Code</label>
                 <input name="zip" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="60601" />
               </div>
             </div>
@@ -235,19 +235,19 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
           {/* Clinical specific fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Primary Diagnosis / ICD Code(s)</label>
+              <label className="text-sm font-medium text-slate-700">Primary Diagnosis / ICD Code(s)</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="E11.9 - Type 2 diabetes mellitus" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Allergies</label>
+              <label className="text-sm font-medium text-slate-700">Allergies</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Penicillin, Peanuts" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Medical History</label>
+              <label className="text-sm font-medium text-slate-700">Medical History</label>
               <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="History of hypertension..." />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Current Medications</label>
+              <label className="text-sm font-medium text-slate-700">Current Medications</label>
               <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Lisinopril 10mg daily..." />
             </div>
           </div>
@@ -266,7 +266,7 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
               <p className="text-[10px] text-slate-400 mt-2">PNG, JPG, PDF up to 10MB</p>
             </div>
             <div className="w-full md:w-2/3">
-              <label className="text-xs font-medium text-slate-700 block mb-3">Required Clinical Documents</label>
+              <label className="text-sm font-medium text-slate-700 block mb-3">Required Clinical Documents</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {['Signed Physician Orders', 'Plan of Care / POC', 'Discharge Summary', 'Face-to-Face Encounter Notes'].map(doc => (
                   <button key={doc} type="button" className="flex items-center justify-between px-3 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-700 hover:bg-slate-50 transition-colors bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
@@ -284,29 +284,29 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
           <SectionBadge number={5} title="Payor & Authorization Details" />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Primary Insurance</label>
+              <label className="text-sm font-medium text-slate-700">Primary Insurance</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>Medicare</option>
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Member ID</label>
+              <label className="text-sm font-medium text-slate-700">Member ID</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="1234 56789A" />
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Secondary Insurance</label>
+              <label className="text-sm font-medium text-slate-700">Secondary Insurance</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>Select</option>
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Member ID</label>
+              <label className="text-sm font-medium text-slate-700">Member ID</label>
               <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Enter Member ID" />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Pre-Authorization Status</label>
+              <label className="text-sm font-medium text-slate-700">Pre-Authorization Status</label>
               <select
                 value={authStatus}
                 onChange={(e) => setAuthStatus(e.target.value)}
@@ -319,7 +319,7 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Authorization Number</label>
+              <label className="text-sm font-medium text-slate-700">Authorization Number</label>
               <input
                 type="text"
                 disabled={authStatus !== "Approved"}
@@ -335,7 +335,7 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
           <SectionBadge number={6} title="Clinical Intake Action & Disposition" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Triage Priority</label>
+              <label className="text-sm font-medium text-slate-700">Triage Priority</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>Standard</option>
                 <option>Routine</option>
@@ -343,7 +343,7 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Insurance Verification Status</label>
+              <label className="text-sm font-medium text-slate-700">Insurance Verification Status</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>Not Started</option>
                 <option>In Progress</option>
@@ -352,7 +352,7 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
               </select>
             </div>
             <div className="space-y-1.5 relative">
-              <label className="text-xs font-medium text-slate-700 flex items-center justify-between">
+              <label className="text-sm font-medium text-slate-700 flex items-center justify-between">
                 Clinical Review Approval
                 {!canApproveClinicalReview && (
                   <span title="Only Clinical Supervisors or RNs can change this" className="flex items-center">
@@ -373,7 +373,7 @@ export function NewReferralModal({ isOpen, onClose, onSubmit }: NewReferralModal
               </select>
             </div>
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Assignment to Care Team</label>
+              <label className="text-sm font-medium text-slate-700">Assignment to Care Team</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                 <option>Select Clinical Supervisor / RN</option>
                 <option>Jane Smith, RN</option>
