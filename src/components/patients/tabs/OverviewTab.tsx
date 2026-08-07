@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "@/components/ui/Card";
 import { Patient } from "@/lib/patients/mockData";
 import { Avatar } from "@/components/ui/Avatar";
-import { Phone, Mail, Globe, Users, Activity, Pill, Brain, Clock, Shield, ShieldAlert, FileText, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, Globe, Users, Activity, Pill, Brain, Clock, Shield, ShieldAlert, FileText, CheckCircle2, MessageSquare, PlayCircle } from "lucide-react";
 
 export function OverviewTab({ patient }: { patient: Patient }) {
   return (
@@ -70,8 +70,27 @@ export function OverviewTab({ patient }: { patient: Patient }) {
               <div className="pt-4 border-t border-slate-100">
                 <p className="text-xs text-slate-500 mb-1">Authorization Status</p>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  <span className="text-xs font-medium text-emerald-700">{patient.insurance.authorizationStatus}</span>
+                  {patient.insurance.authorizationStatus.includes("Pending") ? (
+                    <>
+                      <Clock className="w-4 h-4 text-amber-500" />
+                      <span className="text-xs font-medium text-amber-700">{patient.insurance.authorizationStatus}</span>
+                    </>
+                  ) : patient.insurance.authorizationStatus.includes("Hold") ? (
+                    <>
+                      <ShieldAlert className="w-4 h-4 text-rose-500" />
+                      <span className="text-xs font-medium text-rose-700">{patient.insurance.authorizationStatus}</span>
+                    </>
+                  ) : patient.insurance.authorizationStatus.includes("Expired") ? (
+                    <>
+                      <ShieldAlert className="w-4 h-4 text-slate-500" />
+                      <span className="text-xs font-medium text-slate-700">{patient.insurance.authorizationStatus}</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                      <span className="text-xs font-medium text-emerald-700">{patient.insurance.authorizationStatus}</span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -106,23 +125,39 @@ export function OverviewTab({ patient }: { patient: Patient }) {
         </Card>
       </div>
 
-      <div className="flex flex-col gap-4">
-        {/* Care Team */}
-        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
+      <div className="relative lg:h-full w-full">
+        <div className="flex flex-col gap-4 lg:absolute lg:inset-0">
+          {/* Care Team */}
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden shrink-0">
           <h3 className="text-lg font-semibold text-text-primary mb-4">Care Team</h3>
           <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <Avatar fallback="PP" size="sm" />
-              <div>
-                <p className="text-sm font-medium text-slate-800">{patient.careTeam.pcp}</p>
-                <p className="text-xs text-slate-500">Primary Care Physician</p>
+            <div className="flex items-center justify-between gap-3 group">
+              <div className="flex items-center gap-3">
+                <Avatar fallback="PP" size="sm" />
+                <div>
+                  <p className="text-sm font-medium text-slate-800">{patient.careTeam.pcp}</p>
+                  <p className="text-xs text-slate-500">Primary Care Physician</p>
+                </div>
               </div>
+              <button className="hidden group-hover:flex items-center gap-1.5 px-2 py-1.5 bg-brand-teal/10 hover:bg-brand-teal/20 text-brand-teal rounded-lg transition-colors text-xs font-semibold shrink-0">
+                <Phone className="w-3.5 h-3.5" /> Call
+              </button>
             </div>
-            <div className="flex items-center gap-3">
-              <Avatar src={patient.careTeam.caseManager.avatarUrl} fallback="CM" size="sm" />
-              <div>
-                <p className="text-sm font-medium text-slate-800">{patient.careTeam.caseManager.name}</p>
-                <p className="text-xs text-slate-500">Case Manager</p>
+            <div className="flex items-center justify-between gap-3 group">
+              <div className="flex items-center gap-3">
+                <Avatar src={patient.careTeam.caseManager.avatarUrl} fallback="CM" size="sm" />
+                <div>
+                  <p className="text-sm font-medium text-slate-800">{patient.careTeam.caseManager.name}</p>
+                  <p className="text-xs text-slate-500">Case Manager</p>
+                </div>
+              </div>
+              <div className="hidden group-hover:flex items-center gap-1 shrink-0">
+                <button className="p-1.5 bg-brand-teal/10 hover:bg-brand-teal/20 text-brand-teal rounded-lg transition-colors">
+                  <Phone className="w-3.5 h-3.5" />
+                </button>
+                <button className="p-1.5 bg-brand-teal/10 hover:bg-brand-teal/20 text-brand-teal rounded-lg transition-colors">
+                  <MessageSquare className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
             <div className="pt-4 border-t border-slate-100">
@@ -130,9 +165,19 @@ export function OverviewTab({ patient }: { patient: Patient }) {
               <div className="space-y-3">
                 {patient.careTeam.primaryCaregivers.length > 0 ? (
                   patient.careTeam.primaryCaregivers.map((cg, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <Avatar src={cg.avatarUrl} fallback={cg.name.substring(0, 2)} size="sm" />
-                      <p className="text-sm font-medium text-slate-700">{cg.name}</p>
+                    <div key={i} className="flex items-center justify-between gap-3 group">
+                      <div className="flex items-center gap-3">
+                        <Avatar src={cg.avatarUrl} fallback={cg.name.substring(0, 2)} size="sm" />
+                        <p className="text-sm font-medium text-slate-700">{cg.name}</p>
+                      </div>
+                      <div className="hidden group-hover:flex items-center gap-1 shrink-0">
+                        <button className="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors">
+                          <Phone className="w-3.5 h-3.5" />
+                        </button>
+                        <button className="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg transition-colors">
+                          <MessageSquare className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   ))
                 ) : (
@@ -144,20 +189,25 @@ export function OverviewTab({ patient }: { patient: Patient }) {
         </Card>
 
         {/* Recent Activity */}
-        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex-1">
-          <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+        <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex-1 flex flex-col min-h-0">
+          <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2 shrink-0">
             <Clock className="w-5 h-5 text-brand-teal" /> Recent Activity
           </h3>
-          <div className="relative border-l-2 border-slate-100 ml-3 space-y-6">
+          <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar min-h-0">
+            <div className="relative border-l-2 border-slate-100 ml-3 space-y-6">
             {patient.recentActivity.map((activity) => {
               const Icon = activity.type === "visit" ? Clock :
                 activity.type === "medication" ? Pill :
-                  activity.type === "incident" ? ShieldAlert : FileText;
+                  activity.type === "incident" ? ShieldAlert :
+                    activity.type === "call" ? Phone :
+                      activity.type === "sms" ? MessageSquare : FileText;
 
               const iconColor = activity.type === "visit" ? "bg-blue-100 text-blue-600 border-blue-200" :
                 activity.type === "medication" ? "bg-purple-100 text-purple-600 border-purple-200" :
                   activity.type === "incident" ? "bg-orange-100 text-orange-600 border-orange-200" :
-                    "bg-emerald-100 text-emerald-600 border-emerald-200";
+                    activity.type === "call" ? "bg-indigo-100 text-indigo-600 border-indigo-200" :
+                      activity.type === "sms" ? "bg-sky-100 text-sky-600 border-sky-200" :
+                        "bg-emerald-100 text-emerald-600 border-emerald-200";
 
               return (
                 <div key={activity.id} className="relative pl-6">
@@ -166,15 +216,40 @@ export function OverviewTab({ patient }: { patient: Patient }) {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-slate-800">{activity.title}</p>
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-slate-500 mt-0.5">
                       {new Date(activity.timestamp).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
                     </p>
+                    
+                    {/* Embedded Call Audio Snippet */}
+                    {activity.type === "call" && activity.audioUrl && (
+                      <div className="mt-2.5 flex items-center gap-3 bg-slate-50 border border-slate-100 rounded-xl p-2 max-w-sm hover:border-indigo-200 transition-colors cursor-pointer group">
+                        <button className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                          <PlayCircle className="w-5 h-5" />
+                        </button>
+                        <div className="flex-1">
+                          <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                            <div className="h-full bg-indigo-400 w-1/3 rounded-full"></div>
+                          </div>
+                          <p className="text-[10px] text-slate-400 font-medium mt-1">Audio Recording • {activity.duration}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Embedded SMS Snippet */}
+                    {activity.type === "sms" && activity.message && (
+                      <div className="mt-2.5 bg-sky-50 border border-sky-100 rounded-xl p-3 text-sm text-slate-700 max-w-sm relative">
+                        <div className="absolute -left-1.5 top-3 w-3 h-3 bg-sky-50 border-l border-b border-sky-100 transform rotate-45"></div>
+                        {activity.message}
+                      </div>
+                    )}
                   </div>
                 </div>
               );
             })}
+            </div>
           </div>
         </Card>
+        </div>
       </div>
     </div>
   );

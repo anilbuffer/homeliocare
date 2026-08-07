@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ReportDefinition } from "@/lib/reports-mock-data";
 import { ChartRenderer } from "./ChartRenderer";
-import { Download, FileSpreadsheet, X, Calendar, Share2, Printer } from "lucide-react";
+import { Download, FileSpreadsheet, X, Calendar, Share2, Printer, Filter } from "lucide-react";
 
 interface ReportViewProps {
   report: ReportDefinition;
@@ -13,6 +13,7 @@ export function ReportView({ report, onClose }: ReportViewProps) {
   const [period, setPeriod] = useState<"mtd" | "ytd" | "last_year">("mtd");
   const [isExporting, setIsExporting] = useState(false);
   const [exportType, setExportType] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<{name: string} | null>(null);
 
   const handleExport = (type: string) => {
     setExportType(type);
@@ -23,6 +24,27 @@ export function ReportView({ report, onClose }: ReportViewProps) {
       setExportType(null);
       alert(`${type} export complete!`);
     }, 1500);
+  };
+
+  const handleChartClick = (data: any) => {
+    if (data && data.name) {
+      if (activeFilter?.name === data.name) {
+        setActiveFilter(null);
+      } else {
+        setActiveFilter({ name: data.name });
+      }
+    }
+  };
+
+  const getTableData = () => {
+    if (report.title === "Decline Reasons" && activeFilter?.name === "Insurance Not Accepted") {
+      return [
+        { "Patient Name": "John Doe", "Payor": "Aetna", "Date": "2023-07-12", "Coordinator": "S. Jenkins", "Status": "Lost - Payor OON" },
+        { "Patient Name": "Mary Smith", "Payor": "Cigna", "Date": "2023-07-14", "Coordinator": "S. Jenkins", "Status": "Lost - No Auth" },
+        { "Patient Name": "Robert Jones", "Payor": "UnitedHealth", "Date": "2023-07-15", "Coordinator": "M. Lee", "Status": "Lost - PNA" },
+      ];
+    }
+    return report.data;
   };
 
   return (
@@ -117,17 +139,29 @@ export function ReportView({ report, onClose }: ReportViewProps) {
                 xAxisKey={report.xAxisKey}
                 dataKeys={report.dataKeys}
                 height="100%"
+                onChartClick={handleChartClick}
               />
             </div>
 
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col h-[250px] sm:h-[300px]">
-              <div className="px-3 sm:px-4 py-3 border-b border-slate-100 bg-slate-50/50 shrink-0">
-                <h3 className="font-semibold text-slate-900">Underlying Data</h3>
+              <div className="px-3 sm:px-4 py-3 border-b border-slate-100 bg-slate-50/50 shrink-0 flex items-center justify-between">
+                <h3 className="font-semibold text-slate-900 flex items-center gap-2">
+                  Underlying Data
+                  {activeFilter && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-teal/10 text-brand-teal text-xs font-medium border border-brand-teal/20">
+                      <Filter className="w-3 h-3" />
+                      Filtered by: {activeFilter.name}
+                      <button onClick={() => setActiveFilter(null)} className="hover:text-brand-teal/70 ml-1">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  )}
+                </h3>
               </div>
               <div className="flex-1 overflow-hidden">
                 <ChartRenderer
                   type="table"
-                  data={report.data}
+                  data={getTableData()}
                   height="100%"
                 />
               </div>

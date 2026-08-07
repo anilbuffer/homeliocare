@@ -26,7 +26,8 @@ import { mockPatients, Patient } from "@/lib/patients/mockData";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
-import { NewPatientModal } from "@/components/patients/NewPatientModal";
+import { NewInquiryModal } from "@/components/referrals/NewInquiryModal";
+import { NewReferralModal } from "@/components/referrals/NewReferralModal";
 import { toast } from "sonner";
 
 type FilterStatus = "ALL" | "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold";
@@ -38,7 +39,17 @@ export default function PatientsPage() {
   const [activeFilter, setActiveFilter] = useState<FilterStatus>("ALL");
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [isNewPatientModalOpen, setIsNewPatientModalOpen] = useState(false);
+  const [isIntakeDropdownOpen, setIsIntakeDropdownOpen] = useState(false);
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
+  const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
+  const [selectedPatients, setSelectedPatients] = useState<Set<string>>(new Set());
+  const [locationFilter, setLocationFilter] = useState("All Locations");
+  const [payerFilter, setPayerFilter] = useState("All Payers");
+  const [blockerFilter, setBlockerFilter] = useState("All Blockers");
+
+  const handleAddReferral = (newReferral: any) => {
+    toast.success("New intake created successfully");
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -74,9 +85,35 @@ export default function PatientsPage() {
         matchesFilter = patient.intakeStatus === activeFilter;
       }
 
-      return matchesSearch && matchesFilter;
+      // Blocker match
+      let matchesBlocker = true;
+      if (blockerFilter !== "All Blockers") {
+        if (blockerFilter === "Missing Face-to-Face") {
+          matchesBlocker = !!patient.missingDocuments?.some(d => d.includes("Face-to-Face") || d.includes("Hospital"));
+        } else if (blockerFilter === "Auth Pending") {
+          matchesBlocker = patient.intakeStatus === "Auth Pending";
+        } else if (blockerFilter === "Missing Orders") {
+          matchesBlocker = !!patient.missingDocuments?.some(d => d.includes("Orders"));
+        }
+      }
+
+      // Payer match
+      let matchesPayer = true;
+      if (payerFilter !== "All Payers") {
+        matchesPayer = patient.insurance?.primary?.toLowerCase().includes(payerFilter.toLowerCase()) || false;
+      }
+
+      // Location match
+      let matchesLocation = true;
+      if (locationFilter !== "All Locations") {
+        // mock location logic based on ID for demo purposes
+        if (locationFilter === "North Branch") matchesLocation = patient.id === "c-1";
+        if (locationFilter === "South Branch") matchesLocation = patient.id !== "c-1";
+      }
+
+      return matchesSearch && matchesFilter && matchesBlocker && matchesPayer && matchesLocation;
     });
-  }, [allPatientsList, searchQuery, activeFilter]);
+  }, [allPatientsList, searchQuery, activeFilter, blockerFilter, payerFilter, locationFilter]);
 
   // Dynamic Stats
   const stats = useMemo(() => {
@@ -156,13 +193,45 @@ export default function PatientsPage() {
           </p>
         </div>
 
-        <button
-          onClick={() => setIsNewPatientModalOpen(true)}
-          className="flex items-center justify-center gap-2 bg-brand-teal hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(13,148,136,0.25)] transition-all active:scale-95 whitespace-nowrap self-start sm:self-auto"
-        >
-          <UserPlus className="w-4 h-4" />
-          <span>New Patient</span>
-        </button>
+        <div className="relative">
+          <button
+            onClick={() => setIsIntakeDropdownOpen(!isIntakeDropdownOpen)}
+            className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(13,148,136,0.25)] transition-all active:scale-95 whitespace-nowrap"
+          >
+            <Plus className="w-4 h-4" />
+            New Intake
+          </button>
+          <AnimatePresence>
+            {isIntakeDropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] z-[60] py-1 overflow-hidden origin-top-right"
+              >
+                <button
+                  onClick={() => {
+                    setIsInquiryModalOpen(true);
+                    setIsIntakeDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
+                >
+                  New Inquiry
+                </button>
+                <button
+                  onClick={() => {
+                    setIsReferralModalOpen(true);
+                    setIsIntakeDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
+                >
+                  New Referral
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* KPI Stats Strip - Clickable Quick Filters */}
@@ -291,11 +360,14 @@ export default function PatientsPage() {
             );
           })}
 
-          {(searchQuery || activeFilter !== "ALL") && (
+          {(searchQuery || activeFilter !== "ALL" || locationFilter !== "All Locations" || payerFilter !== "All Payers" || blockerFilter !== "All Blockers") && (
             <button
               onClick={() => {
                 setSearchQuery("");
                 setActiveFilter("ALL");
+                setLocationFilter("All Locations");
+                setPayerFilter("All Payers");
+                setBlockerFilter("All Blockers");
               }}
               className="text-xs text-rose-600 hover:text-rose-700 font-semibold px-2 py-1 underline underline-offset-2 ml-auto shrink-0"
             >
@@ -303,6 +375,59 @@ export default function PatientsPage() {
             </button>
           )}
         </div>
+
+        {/* Expanded Filter Panel */}
+        <AnimatePresence>
+          {isFilterPanelOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="pt-4 border-t border-slate-100 mt-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600">Location / Branch</label>
+                  <select
+                    value={locationFilter}
+                    onChange={(e) => setLocationFilter(e.target.value)}
+                    className="w-full text-sm bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal focus:bg-white transition-all outline-none"
+                  >
+                    <option>All Locations</option>
+                    <option>North Branch</option>
+                    <option>South Branch</option>
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600">Payer Type</label>
+                  <select
+                    value={payerFilter}
+                    onChange={(e) => setPayerFilter(e.target.value)}
+                    className="w-full text-sm bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal focus:bg-white transition-all outline-none"
+                  >
+                    <option>All Payers</option>
+                    <option>Medicare</option>
+                    <option>Medicaid</option>
+                    <option>Private</option>
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-600">Blocker Category</label>
+                  <select
+                    value={blockerFilter}
+                    onChange={(e) => setBlockerFilter(e.target.value)}
+                    className="w-full text-sm bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal focus:bg-white transition-all outline-none"
+                  >
+                    <option>All Blockers</option>
+                    <option>Missing Face-to-Face</option>
+                    <option>Auth Pending</option>
+                    <option>Missing Orders</option>
+                  </select>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Zero Results State */}
@@ -319,6 +444,9 @@ export default function PatientsPage() {
             onClick={() => {
               setSearchQuery("");
               setActiveFilter("ALL");
+              setLocationFilter("All Locations");
+              setPayerFilter("All Payers");
+              setBlockerFilter("All Blockers");
             }}
             className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-xl hover:bg-slate-800 transition-colors"
           >
@@ -330,6 +458,57 @@ export default function PatientsPage() {
       {/* Main Content Area */}
       {filteredPatients.length > 0 && (
         <>
+          {/* Bulk Actions Header */}
+          <AnimatePresence>
+            {selectedPatients.size > 0 && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
+                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                className="bg-brand-teal/5 border border-brand-teal/20 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 overflow-hidden"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal font-bold text-sm">
+                    {selectedPatients.size}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-800">Patients Selected</p>
+                    <p className="text-xs text-slate-500">Choose an action to apply to all selected patients.</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      toast.success(`Reminders sent to ${selectedPatients.size} patient(s)`);
+                      setSelectedPatients(new Set());
+                    }}
+                    className="px-3 py-1.5 text-xs font-semibold bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+                  >
+                    Send Reminders
+                  </button>
+                  <button
+                    onClick={() => {
+                      toast.success(`Coordinator reassigned for ${selectedPatients.size} patient(s)`);
+                      setSelectedPatients(new Set());
+                    }}
+                    className="px-3 py-1.5 text-xs font-semibold bg-white text-slate-700 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+                  >
+                    Reassign Coordinator
+                  </button>
+                  <button
+                    onClick={() => {
+                      toast.success(`Status updated for ${selectedPatients.size} patient(s)`);
+                      setSelectedPatients(new Set());
+                    }}
+                    className="px-3 py-1.5 text-xs font-semibold bg-brand-teal text-white border border-transparent rounded-lg hover:bg-emerald-600 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.04)] shadow-brand-teal/20"
+                  >
+                    Update Status
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {viewMode === "list" ? (
             <div className="w-full bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.03)]">
               {/* Desktop / Tablet Table View (sm and up) */}
@@ -337,6 +516,20 @@ export default function PatientsPage() {
                 <table className="w-full text-xs text-left border-collapse">
                   <thead className="bg-slate-50/80 text-slate-500 border-b border-slate-200/80 sticky top-0 z-10 font-semibold text-xs uppercase tracking-wider">
                     <tr>
+                      <th className="px-4 py-3 w-10">
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 rounded border-slate-300 text-brand-teal focus:ring-brand-teal cursor-pointer"
+                          checked={selectedPatients.size === filteredPatients.length && filteredPatients.length > 0}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedPatients(new Set(filteredPatients.map(p => p.id)));
+                            } else {
+                              setSelectedPatients(new Set());
+                            }
+                          }}
+                        />
+                      </th>
                       <th className="px-4 sm:px-6 py-3">Patient Details</th>
                       <th className="px-4 py-3">Intake Status</th>
                       <th className="px-4 py-3">Missing Docs</th>
@@ -348,9 +541,22 @@ export default function PatientsPage() {
                     {filteredPatients.map((patient) => (
                       <tr
                         key={patient.id}
-                        className="hover:bg-slate-50/80 transition-colors group cursor-pointer"
+                        className={`transition-colors group cursor-pointer ${selectedPatients.has(patient.id) ? "bg-brand-teal/5" : "hover:bg-slate-50/80"}`}
                         onClick={() => router.push(`/intake/patients/${patient.id}`)}
                       >
+                        <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            className="w-4 h-4 rounded border-slate-300 text-brand-teal focus:ring-brand-teal cursor-pointer"
+                            checked={selectedPatients.has(patient.id)}
+                            onChange={(e) => {
+                              const newSet = new Set(selectedPatients);
+                              if (e.target.checked) newSet.add(patient.id);
+                              else newSet.delete(patient.id);
+                              setSelectedPatients(newSet);
+                            }}
+                          />
+                        </td>
                         <td className="px-4 sm:px-6 py-3">
                           <div className="flex items-center gap-3">
                             <Avatar
@@ -385,9 +591,13 @@ export default function PatientsPage() {
                         </td>
                         <td className="px-4 py-3">
                           {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
-                            <Badge className="text-xs" variant="error">
-                              {patient.missingDocuments.length} Missing
-                            </Badge>
+                            <div className="flex flex-wrap gap-1.5">
+                              {patient.missingDocuments.map((doc, i) => (
+                                <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-semibold whitespace-nowrap shadow-sm">
+                                  <span className="text-[10px]">🛑</span> {doc === "Hospital Discharge Summary" ? "Missing F2F Encounter" : `Missing ${doc}`}
+                                </span>
+                              ))}
+                            </div>
                           ) : (
                             <Badge className="text-xs" variant="success">
                               Complete
@@ -424,30 +634,62 @@ export default function PatientsPage() {
 
               {/* Mobile Mobile List Card Layout (< sm viewport) */}
               <div className="block sm:hidden divide-y divide-slate-100">
+                <div className="p-3 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+                  <label className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 rounded border-slate-300 text-brand-teal focus:ring-brand-teal cursor-pointer"
+                      checked={selectedPatients.size === filteredPatients.length && filteredPatients.length > 0}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setSelectedPatients(new Set(filteredPatients.map(p => p.id)));
+                        } else {
+                          setSelectedPatients(new Set());
+                        }
+                      }}
+                    />
+                    Select All
+                  </label>
+                </div>
                 {filteredPatients.map((patient) => (
                   <div
                     key={patient.id}
-                    className="p-4 hover:bg-slate-50/80 transition-colors cursor-pointer active:bg-slate-100/60"
+                    className={`p-4 transition-colors cursor-pointer active:bg-slate-100/60 ${selectedPatients.has(patient.id) ? "bg-brand-teal/5" : "hover:bg-slate-50/80"}`}
                     onClick={() => router.push(`/intake/patients/${patient.id}`)}
                   >
-                    <div className="flex items-start justify-between gap-3 mb-2.5">
-                      <div className="flex items-center gap-3">
-                        <Avatar
-                          src={patient.avatarUrl}
-                          alt={patient.name}
-                          fallback={patient.name.substring(0, 2)}
-                          size="md"
+                    <div className="flex items-start gap-3 mb-2.5">
+                      <div className="mt-1" onClick={(e) => e.stopPropagation()}>
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 rounded border-slate-300 text-brand-teal focus:ring-brand-teal cursor-pointer"
+                          checked={selectedPatients.has(patient.id)}
+                          onChange={(e) => {
+                            const newSet = new Set(selectedPatients);
+                            if (e.target.checked) newSet.add(patient.id);
+                            else newSet.delete(patient.id);
+                            setSelectedPatients(newSet);
+                          }}
                         />
-                        <div>
-                          <h4 className="font-bold text-slate-900 text-base leading-tight">
-                            {patient.name}
-                          </h4>
-                          <p className="text-xs text-slate-500 font-medium mt-0.5">
-                            {patient.age} yrs • {patient.demographics.gender}
-                          </p>
-                        </div>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-slate-400 shrink-0 self-center" />
+                      <div className="flex-1 flex items-start justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <Avatar
+                            src={patient.avatarUrl}
+                            alt={patient.name}
+                            fallback={patient.name.substring(0, 2)}
+                            size="md"
+                          />
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-base leading-tight">
+                              {patient.name}
+                            </h4>
+                            <p className="text-xs text-slate-500 font-medium mt-0.5">
+                              {patient.age} yrs • {patient.demographics.gender}
+                            </p>
+                          </div>
+                        </div>
+                        <ChevronRight className="w-5 h-5 text-slate-400 shrink-0 self-center" />
+                      </div>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
@@ -463,9 +705,13 @@ export default function PatientsPage() {
                         {patient.intakeStatus || "New Referral"}
                       </Badge>
                       {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
-                        <Badge variant="error">
-                          {patient.missingDocuments.length} Missing
-                        </Badge>
+                        <div className="flex flex-wrap gap-1.5 mt-1">
+                          {patient.missingDocuments.map((doc, i) => (
+                            <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-semibold whitespace-nowrap shadow-sm">
+                              <span className="text-[10px]">🛑</span> {doc === "Hospital Discharge Summary" ? "Missing F2F Encounter" : `Missing ${doc}`}
+                            </span>
+                          ))}
+                        </div>
                       ) : (
                         <Badge variant="success">
                           Complete Docs
@@ -499,6 +745,19 @@ export default function PatientsPage() {
                         {/* Top Row: Avatar & Name */}
                         <div className="flex items-start justify-between gap-3 mb-4">
                           <div className="flex items-center gap-3.5 min-w-0">
+                            <div className="self-start mt-1" onClick={(e) => e.stopPropagation()}>
+                              <input
+                                type="checkbox"
+                                className="w-4 h-4 rounded border-slate-300 text-brand-teal focus:ring-brand-teal cursor-pointer"
+                                checked={selectedPatients.has(patient.id)}
+                                onChange={(e) => {
+                                  const newSet = new Set(selectedPatients);
+                                  if (e.target.checked) newSet.add(patient.id);
+                                  else newSet.delete(patient.id);
+                                  setSelectedPatients(newSet);
+                                }}
+                              />
+                            </div>
                             <Avatar
                               src={patient.avatarUrl}
                               alt={patient.name}
@@ -547,9 +806,13 @@ export default function PatientsPage() {
                           <div className="flex justify-between items-center bg-slate-50/70 px-3 py-1.5 rounded-xl border border-slate-100">
                             <span className="text-slate-500 font-medium">Documents</span>
                             {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
-                              <Badge variant="error">
-                                {patient.missingDocuments.length} Missing
-                              </Badge>
+                              <div className="flex flex-wrap gap-1 justify-end ml-2">
+                                {patient.missingDocuments.map((doc, i) => (
+                                  <span key={i} className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[9px] font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                                    <span className="text-[9px]">🛑</span> {doc === "Hospital Discharge Summary" ? "Missing F2F" : `Missing ${doc.substring(0, 10)}${doc.length > 10 ? '...' : ''}`}
+                                  </span>
+                                ))}
+                              </div>
                             ) : (
                               <Badge variant="success">Complete</Badge>
                             )}
@@ -582,9 +845,15 @@ export default function PatientsPage() {
       )}
 
       {/* New Patient Modal */}
-      <NewPatientModal
-        isOpen={isNewPatientModalOpen}
-        onClose={() => setIsNewPatientModalOpen(false)}
+      <NewInquiryModal
+        isOpen={isInquiryModalOpen}
+        onClose={() => setIsInquiryModalOpen(false)}
+        onSubmit={handleAddReferral}
+      />
+      <NewReferralModal
+        isOpen={isReferralModalOpen}
+        onClose={() => setIsReferralModalOpen(false)}
+        onSubmit={handleAddReferral}
       />
     </div>
   );

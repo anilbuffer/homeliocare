@@ -23,11 +23,12 @@ interface ChartRendererProps {
   xAxisKey?: string;
   dataKeys?: { key: string; color: string; name?: string }[];
   height?: number | string;
+  onChartClick?: (data: any) => void;
 }
 
 const COLORS = ["#0ea5e9", "#10b981", "#8b5cf6", "#f59e0b", "#ef4444", "#64748b"];
 
-export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], height = 300 }: ChartRendererProps) {
+export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], height = 300, onChartClick }: ChartRendererProps) {
   if (!data || data.length === 0) {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center text-slate-400 p-4 md:p-8" style={{ minHeight: height }}>
@@ -65,7 +66,7 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
             <Tooltip content={<CustomTooltip />} />
             {dataKeys.length > 1 && <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />}
             {dataKeys.map((dk, i) => (
-              <Bar key={dk.key} dataKey={dk.key} name={dk.name || dk.key} fill={dk.color} radius={[4, 4, 0, 0]} />
+              <Bar key={dk.key} dataKey={dk.key} name={dk.name || dk.key} fill={dk.color} radius={[4, 4, 0, 0]} onClick={(data) => onChartClick && onChartClick(data)} />
             ))}
           </BarChart>
         </ResponsiveContainer>
@@ -117,6 +118,7 @@ export function ChartRenderer({ type, data, xAxisKey = "name", dataKeys = [], he
               dataKey={dataKeyName}
               nameKey="name"
               stroke="none"
+              onClick={(data) => onChartClick && onChartClick(data)}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

@@ -9,6 +9,10 @@ export interface Patient {
   avatarUrl?: string;
   intakeStatus?: "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold";
   missingDocuments?: string[];
+  safetyAlerts?: {
+    dnr: "DNR" | "Full Code" | "POLST" | "Unknown";
+    isolationProtocols: string[];
+  };
   
   demographics: {
     dob: string;
@@ -46,9 +50,12 @@ export interface Patient {
 
   recentActivity: Array<{
     id: string;
-    type: "visit" | "medication" | "incident" | "document" | "note";
+    type: "visit" | "medication" | "incident" | "document" | "note" | "call" | "sms";
     title: string;
     timestamp: string;
+    audioUrl?: string;
+    duration?: string;
+    message?: string;
   }>;
 
   carePlan?: {
@@ -173,7 +180,7 @@ export interface Patient {
 export const mockPatients: Record<string, Patient> = {
   "c-1": {
     id: "c-1",
-    name: "Eleanor Vance",
+    name: "Eleanor Rigby",
     status: "Active",
     age: 82,
     address: "142 Maple Street, Hillside, NJ 07205",
@@ -182,16 +189,17 @@ export const mockPatients: Record<string, Patient> = {
     avatarUrl: "/avatars/eleanor.png?v=2",
     intakeStatus: "Auth Pending",
     missingDocuments: ["Consent Form", "Primary Care Orders"],
+    safetyAlerts: { dnr: "DNR", isolationProtocols: ["Contact Precautions (MRSA)"] },
     
     demographics: {
       dob: "1944-03-12",
       gender: "Female",
       phone: "(555) 234-9812",
-      email: "eleanor.vance44@email.com",
+      email: "eleanor.rigby@email.com",
       preferredLanguage: "English",
       emergencyContacts: [
-        { name: "Robert Vance", relation: "Son", phone: "(555) 789-0123" },
-        { name: "Sarah Vance", relation: "Daughter-in-law", phone: "(555) 789-0124" }
+        { name: "Robert Rigby", relation: "Son", phone: "(555) 789-0123" },
+        { name: "Sarah Rigby", relation: "Daughter-in-law", phone: "(555) 789-0124" }
       ]
     },
     
@@ -200,7 +208,7 @@ export const mockPatients: Record<string, Patient> = {
       secondary: "AARP Supplemental",
       policyNumber: "MCR-9842100",
       groupNumber: "GRP-120",
-      authorizationStatus: "Approved (Valid through 12/31/2026)"
+      authorizationStatus: "Pending Authorization"
     },
 
     careTeam: {
@@ -220,7 +228,9 @@ export const mockPatients: Record<string, Patient> = {
     },
 
     recentActivity: [
+      { id: "a0_call", type: "call", title: "Inbound Call - Robert Rigby (Son)", timestamp: "2026-07-09T14:15:00Z", duration: "03:45", audioUrl: "/audio/mock_call.mp3" },
       { id: "a1", type: "visit", title: "Visit completed by David Kim", timestamp: "2026-07-09T10:30:00Z" },
+      { id: "a0_sms", type: "sms", title: "SMS from Jessica Smith", timestamp: "2026-07-09T09:20:00Z", message: "Patient is experiencing mild discomfort in left leg today." },
       { id: "a2", type: "medication", title: "Morning meds administered", timestamp: "2026-07-09T08:15:00Z" },
       { id: "a3", type: "document", title: "New Cardiology Report uploaded", timestamp: "2026-07-08T14:20:00Z" },
       { id: "a4", type: "incident", title: "Slight dizziness reported", timestamp: "2026-07-05T09:00:00Z" }
@@ -328,7 +338,7 @@ export const mockPatients: Record<string, Patient> = {
   },
   "c-2": {
     id: "c-2",
-    name: "Arthur Pendelton",
+    name: "John Doe",
     status: "Hospitalized",
     age: 76,
     address: "88 Oak Lane, Apt 4B, Springfield, MA 01103",
@@ -337,15 +347,16 @@ export const mockPatients: Record<string, Patient> = {
     avatarUrl: "/avatars/arthur.png?v=2",
     intakeStatus: "Onboarding Hold",
     missingDocuments: ["Hospital Discharge Summary"],
+    safetyAlerts: { dnr: "Full Code", isolationProtocols: [] },
     
     demographics: {
       dob: "1950-11-05",
       gender: "Male",
       phone: "(555) 456-7890",
-      email: "arthur.p@email.com",
+      email: "john.doe@email.com",
       preferredLanguage: "English",
       emergencyContacts: [
-        { name: "Martha Pendelton", relation: "Spouse", phone: "(555) 456-7891" }
+        { name: "Jane Doe", relation: "Spouse", phone: "(555) 456-7891" }
       ]
     },
     
@@ -376,7 +387,7 @@ export const mockPatients: Record<string, Patient> = {
   },
   "c-3": {
     id: "c-3",
-    name: "John Smith",
+    name: "Mary Smith",
     status: "Care Completed",
     age: 65,
     address: "123 Main St, Anytown, CA 12345",
@@ -385,12 +396,13 @@ export const mockPatients: Record<string, Patient> = {
     avatarUrl: "/avatars/placeholder.png",
     intakeStatus: "Ready to Admit",
     missingDocuments: [],
+    safetyAlerts: { dnr: "Unknown", isolationProtocols: [] },
     
     demographics: {
       dob: "1961-01-01",
       gender: "Male",
       phone: "(555) 123-4567",
-      email: "john.smith@email.com",
+      email: "mary.smith@email.com",
       preferredLanguage: "English",
       emergencyContacts: []
     },

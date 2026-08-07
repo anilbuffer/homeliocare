@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "@/components/ui/Modal";
-import { UploadCloud, Upload } from "lucide-react";
+import { UploadCloud, Upload, Mic, MapPin, CheckCircle2, AlertTriangle } from "lucide-react";
+import { cn } from "@/components/ui/Card";
 
 interface NewInquiryModalProps {
   isOpen: boolean;
@@ -23,14 +24,79 @@ const SectionBadge = ({ number, title, optional = false }: { number: number; tit
 export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDrafting, setIsDrafting] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<'cancel' | 'draft' | 'submit' | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // AI & Smart Features State
+  const [isDictating, setIsDictating] = useState(false);
+  const [addressStatus, setAddressStatus] = useState<'idle' | 'in-zone' | 'out-of-zone'>('idle');
+  const [highlightFields, setHighlightFields] = useState<Record<string, boolean>>({});
+
+  const [formData, setFormData] = useState({
+    clientName: '',
+    dob: '',
+    phone: '',
+    email: '',
+    address: '',
+    city: '',
+    state: 'IL',
+    zip: '',
+    gender: 'Male',
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'address') {
+      if (value.length > 5) {
+        if (value.toLowerCase().includes('chicago') || value.toLowerCase().includes('north')) {
+          setAddressStatus('in-zone');
+        } else if (value.toLowerCase().includes('south')) {
+          setAddressStatus('out-of-zone');
+        } else {
+          setAddressStatus('idle');
+        }
+      } else {
+        setAddressStatus('idle');
+      }
+    }
+  };
+
+  const handleDictate = () => {
+    setIsDictating(true);
+    setTimeout(() => {
+      setIsDictating(false);
+      setFormData(prev => ({
+        ...prev,
+        clientName: 'Mary Reynolds',
+        dob: '1955-08-22',
+        phone: '(312) 555-1234',
+        email: 'mary.r@email.com',
+        address: '789 South Street',
+        city: 'Chicago',
+        zip: '60616',
+        gender: 'Female',
+      }));
+      setAddressStatus('out-of-zone');
+      triggerHighlight(['clientName', 'dob', 'phone', 'email', 'address', 'city', 'zip']);
+    }, 2500);
+  };
+
+  const triggerHighlight = (fields: string[]) => {
+    const newHighlights: Record<string, boolean> = {};
+    fields.forEach(f => newHighlights[f] = true);
+    setHighlightFields(newHighlights);
+    setTimeout(() => {
+      setHighlightFields({});
+    }, 2000);
+  };
+
+  const executeSubmit = () => {
     setIsSubmitting(true);
-    
+
     const form = document.getElementById('new-inquiry-form') as HTMLFormElement;
     let formData = new FormData();
-    if(form) formData = new FormData(form);
+    if (form) formData = new FormData(form);
 
     const clientName = formData.get('clientName') as string || 'Unknown Patient';
     const clientInitials = clientName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
@@ -72,12 +138,19 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
     }, 600);
   };
 
-  const handleDraft = () => {
-    setIsDrafting(true);
-    setTimeout(() => {
-      setIsDrafting(false);
+  const executeConfirmAction = () => {
+    if (confirmAction === 'cancel') {
       onClose();
-    }, 1000);
+    } else if (confirmAction === 'draft') {
+      setIsDrafting(true);
+      setTimeout(() => {
+        setIsDrafting(false);
+        onClose();
+      }, 1000);
+    } else if (confirmAction === 'submit') {
+      executeSubmit();
+    }
+    setConfirmAction(null);
   };
 
   return (
@@ -90,7 +163,7 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
         <div className="flex w-full items-center justify-between">
           <button
             type="button"
-            onClick={onClose}
+            onClick={() => setConfirmAction('cancel')}
             className="px-6 py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors"
           >
             Cancel
@@ -98,7 +171,7 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={handleDraft}
+              onClick={() => setConfirmAction('draft')}
               disabled={isDrafting || isSubmitting}
               className="px-6 py-2.5 text-sm font-medium text-brand-teal bg-white border border-brand-teal rounded-xl hover:bg-teal-50 transition-colors disabled:opacity-70"
             >
@@ -106,7 +179,7 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
             </button>
             <button
               type="button"
-              onClick={handleSubmit}
+              onClick={() => setConfirmAction('submit')}
               disabled={isSubmitting || isDrafting}
               className="px-6 py-2.5 text-sm font-medium text-white bg-brand-teal rounded-xl hover:bg-teal-700 transition-colors disabled:opacity-70"
             >
@@ -117,6 +190,32 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
       }
     >
       <form id="new-inquiry-form" className="space-y-4">
+
+        {/* AI Action Bar */}
+        <div className="bg-gradient-to-r from-brand-teal/5 to-blue-50/50 backdrop-blur-xl rounded-2xl p-4 border border-brand-teal/10 flex items-center justify-between shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+          <div className="flex items-center gap-3">
+            <div className={cn("p-2 rounded-full", isDictating ? "bg-red-100 text-red-600 animate-pulse" : "bg-brand-teal/10 text-brand-teal")}>
+              <Mic className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-slate-800">AI Voice Dictation</h3>
+              <p className="text-xs text-slate-500">Speak naturally to log the patient inquiry</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={handleDictate}
+            disabled={isDictating}
+            className={cn(
+              "px-4 py-2 text-sm font-medium rounded-xl transition-all shadow-[0_6px_32px_rgba(0,0,0,0.06)] border",
+              isDictating
+                ? "bg-red-50 text-red-600 border-red-200"
+                : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+            )}
+          >
+            {isDictating ? "Recording..." : "Dictate Inquiry"}
+          </button>
+        </div>
 
         {/* 1. Inquiry Information */}
         <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
@@ -196,48 +295,55 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700">Patient Name</label>
-              <input name="clientName" required type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="John Doe" />
+              <input name="clientName" value={formData.clientName} onChange={handleInputChange} required type="text" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['clientName'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="John Doe" />
             </div>
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700">Date of Birth</label>
-              <input name="dob" type="date" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
+              <input name="dob" value={formData.dob} onChange={handleInputChange} type="date" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['dob'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} />
             </div>
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700 block mb-2">Gender</label>
               <div className="flex items-center gap-4">
-                <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Male" className="accent-brand-teal" defaultChecked /> Male</label>
-                <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Female" className="accent-brand-teal" /> Female</label>
-                <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Other" className="accent-brand-teal" /> Other</label>
+                <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Male" checked={formData.gender === 'Male'} onChange={handleInputChange} className="accent-brand-teal" /> Male</label>
+                <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Female" checked={formData.gender === 'Female'} onChange={handleInputChange} className="accent-brand-teal" /> Female</label>
+                <label className="flex items-center gap-1.5 text-sm text-slate-700 cursor-pointer"><input type="radio" name="gender" value="Other" checked={formData.gender === 'Other'} onChange={handleInputChange} className="accent-brand-teal" /> Other</label>
               </div>
             </div>
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700">Phone Number</label>
-              <input name="phone" type="tel" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="(555) 123-4567" />
+              <input name="phone" value={formData.phone} onChange={handleInputChange} type="tel" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['phone'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="(555) 123-4567" />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="space-y-1.5 md:col-span-1">
               <label className="text-sm font-medium text-slate-700">Email Address</label>
-              <input name="email" type="email" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="johndoe@email.com" />
+              <input name="email" value={formData.email} onChange={handleInputChange} type="email" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['email'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="johndoe@email.com" />
             </div>
             <div className="space-y-1.5 md:col-span-1">
-              <label className="text-sm font-medium text-slate-700">Address</label>
-              <input name="address" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="123 Maple Street" />
+              <label className="text-sm font-medium text-slate-700 flex items-center justify-between">
+                Address
+                {addressStatus === 'in-zone' && <span className="flex items-center gap-1 text-[10px] font-medium text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded shadow-sm border border-emerald-200"><CheckCircle2 className="w-3 h-3" /> In-Zone (North)</span>}
+                {addressStatus === 'out-of-zone' && <span className="flex items-center gap-1 text-[10px] font-medium text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded shadow-sm border border-rose-200"><AlertTriangle className="w-3 h-3" /> Out-of-Service Area</span>}
+              </label>
+              <div className="relative">
+                <MapPin className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input name="address" value={formData.address} onChange={handleInputChange} type="text" className={cn("w-full pl-9 pr-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['address'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="123 Maple Street" />
+              </div>
             </div>
             <div className="space-y-1.5 md:col-span-1">
               <label className="text-sm font-medium text-slate-700">City</label>
-              <input name="city" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Chicago" />
+              <input name="city" value={formData.city} onChange={handleInputChange} type="text" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['city'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="Chicago" />
             </div>
             <div className="grid grid-cols-2 gap-4 md:col-span-1">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">State</label>
-                <select name="state" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                <select name="state" value={formData.state} onChange={handleInputChange} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                   <option>IL</option>
                 </select>
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">ZIP Code</label>
-                <input name="zip" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="60601" />
+                <input name="zip" value={formData.zip} onChange={handleInputChange} type="text" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['zip'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="60601" />
               </div>
             </div>
           </div>
@@ -385,7 +491,7 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
         {/* 8. Internal Notes & Follow-up */}
         <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <SectionBadge number={8} title="Internal Notes & Follow-up" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700">Intake Notes (Internal use only)</label>
               <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Add internal notes here..." />
@@ -416,7 +522,7 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
         {/* 9. Outcome */}
         <div className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden">
           <SectionBadge number={9} title="Outcome & Next Actions" />
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700">Current Outcome</label>
               <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
@@ -435,8 +541,44 @@ export function NewInquiryModal({ isOpen, onClose, onSubmit }: NewInquiryModalPr
             </div>
           </div>
         </div>
-
       </form>
+
+      {/* Confirmation Dialog */}
+      <Modal
+        isOpen={confirmAction !== null}
+        onClose={() => setConfirmAction(null)}
+        title={
+          confirmAction === 'cancel' ? "Cancel Inquiry?" :
+          confirmAction === 'draft' ? "Save as Draft?" :
+          "Submit Inquiry?"
+        }
+        maxWidth="sm"
+        footer={
+          <div className="flex w-full justify-end gap-3">
+            <button
+              onClick={() => setConfirmAction(null)}
+              className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50"
+            >
+              No, go back
+            </button>
+            <button
+              onClick={executeConfirmAction}
+              className={cn(
+                "px-4 py-2 text-sm font-medium text-white rounded-lg",
+                confirmAction === 'cancel' ? "bg-red-600 hover:bg-red-700" : "bg-brand-teal hover:bg-teal-700"
+              )}
+            >
+              Yes, {confirmAction === 'cancel' ? 'cancel' : confirmAction === 'draft' ? 'save draft' : 'submit'}
+            </button>
+          </div>
+        }
+      >
+        <p className="text-sm text-slate-600">
+          {confirmAction === 'cancel' && "Are you sure you want to cancel? Any unsaved changes will be lost."}
+          {confirmAction === 'draft' && "Are you sure you want to save this inquiry as a draft? You can continue editing later."}
+          {confirmAction === 'submit' && "Are you sure you want to submit this inquiry? This action will process the form."}
+        </p>
+      </Modal>
     </Modal>
   );
 }

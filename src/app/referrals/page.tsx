@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, ListFilter, Kanban, CheckSquare } from "lucide-react";
 
+import { initialReferrals } from "../../components/referrals/MockData";
+import { Referral } from "../../components/referrals/types";
+
 import { KpiCardsRow } from "../../components/referrals/KpiCardsRow";
 import { PipelineBoard } from "../../components/referrals/PipelineBoard";
 import { SourcePerformanceChart } from "../../components/referrals/SourcePerformanceChart";
@@ -31,6 +34,7 @@ type ViewMode = "pipeline" | "list" | "tasks";
 export default function ReferralsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("pipeline");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [referrals, setReferrals] = useState<Referral[]>(initialReferrals);
 
   return (
     <div className="w-full mx-auto space-y-6">
@@ -85,7 +89,7 @@ export default function ReferralsPage() {
 
         {/* Row 2: Pipeline Board */}
         <motion.div variants={item}>
-          <PipelineBoard viewMode={viewMode} />
+          <PipelineBoard viewMode={viewMode} referrals={referrals} setReferrals={setReferrals} />
         </motion.div>
 
         {/* Row 3: Performance & Queue */}

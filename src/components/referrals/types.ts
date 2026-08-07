@@ -62,6 +62,7 @@ export interface Referral {
   serviceZoneStatus: "in-zone" | "near-capacity" | "out-of-zone";
   serviceZoneName?: string;
   capacityUtilization?: number;
+  readmissionRisk?: "High" | "Medium" | "Low";
   documents: DocumentStatus[];
   consents: ConsentStatus[];
   communications: CommunicationEntry[];

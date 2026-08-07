@@ -52,9 +52,40 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
               <span className="w-1 h-1 rounded-full bg-slate-300"></span>
               <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {patient.address}</span>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
               <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Diagnosis</span>
               <Badge variant="brand" className="bg-brand-teal/10 text-brand-teal border-brand-teal/20">{patient.primaryDiagnosis}</Badge>
+            </div>
+            {/* High-Alert Emergency Header */}
+            <div className="flex flex-wrap items-center gap-2">
+              {patient.safetyAlerts?.dnr && (
+                <Badge className={cn("text-[10px] uppercase font-bold px-2 py-0.5 border", 
+                  patient.safetyAlerts.dnr === "DNR" ? "bg-red-50 text-red-700 border-red-200" : 
+                  patient.safetyAlerts.dnr === "Full Code" ? "bg-emerald-50 text-emerald-700 border-emerald-200" :
+                  "bg-slate-100 text-slate-700 border-slate-200"
+                )}>
+                  {patient.safetyAlerts.dnr}
+                </Badge>
+              )}
+              {patient.riskSummary?.fallRisk?.level && (
+                <Badge className={cn("text-[10px] uppercase font-bold px-2 py-0.5 border", 
+                  patient.riskSummary.fallRisk.level === "High" ? "bg-orange-50 text-orange-700 border-orange-200" : 
+                  "bg-slate-100 text-slate-700 border-slate-200"
+                )}>
+                  {patient.riskSummary.fallRisk.level} Fall Risk
+                </Badge>
+              )}
+              {patient.demographics?.preferredLanguage && (
+                <Badge className="bg-blue-50 text-blue-700 border-blue-200 text-[10px] uppercase font-bold px-2 py-0.5 border">
+                  Lang: {patient.demographics.preferredLanguage}
+                </Badge>
+              )}
+              {patient.safetyAlerts?.isolationProtocols && patient.safetyAlerts.isolationProtocols.length > 0 && (
+                <Badge className="bg-purple-50 text-purple-700 border-purple-200 text-[10px] uppercase font-bold px-2 py-0.5 border flex items-center gap-1">
+                  <ShieldAlert className="w-3 h-3" />
+                  {patient.safetyAlerts.isolationProtocols.join(", ")}
+                </Badge>
+              )}
             </div>
           </div>
         </div>

@@ -1,8 +1,11 @@
 import React from "react";
-import { Users, UserPlus, TrendingUp, Clock } from "lucide-react";
+import { Users, UserPlus, TrendingUp, TrendingDown, Clock } from "lucide-react";
 import { cn } from "@/components/ui/Card";
 
 const kpiData = [
+  { label: "Avg. Time to First Contact", value: "12 mins", trend: "Target: <15 mins", icon: Clock, color: "text-brand-teal", bg: "bg-brand-teal/20", trendColor: "text-brand-teal" },
+  { label: "Insurance Auth Latency", value: "3.2 days", trend: "Waiting on payor", icon: Clock, color: "text-accent-purple", bg: "bg-accent-purple/20", trendColor: "text-slate-500" },
+  { label: "Discharge Drop-off Rate", value: "8.4%", trend: "Hospital to Admission", icon: TrendingDown, color: "text-accent-red", bg: "bg-accent-red/20", trendColor: "text-slate-500" },
   { label: "Total Referrals", value: "342", trend: "+ 12% this month", icon: Users, color: "text-brand-teal", bg: "bg-brand-teal/20", trendColor: "text-brand-teal" },
   { label: "Pending Admissions", value: "28", trend: "5 urgent", icon: UserPlus, color: "text-accent-purple", bg: "bg-accent-purple/20", trendColor: "text-accent-purple" },
   { label: "Conversion Rate", value: "68%", trend: "+ 2.4% vs last month", icon: TrendingUp, color: "text-accent-blue", bg: "bg-accent-blue/20", trendColor: "text-brand-teal" },

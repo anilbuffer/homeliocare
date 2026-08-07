@@ -32,9 +32,10 @@ export const initialReferrals: Referral[] = [
     communications: [
       { id: "c1", timestamp: "2026-07-16T10:05:00Z", author: "System", type: "note", content: "Referral received from General Hospital." }
     ],
+    readmissionRisk: "High",
     insurance: {
       payer: "Medicare",
-      status: "Pending",
+      status: "Verified",
     }
   },
   {
@@ -64,7 +65,7 @@ export const initialReferrals: Referral[] = [
         type: "call", 
         content: "Spoke with wife regarding care options.",
         recordingUrl: "https://example.com/recording.mp3",
-        summary: "The caller (wife) is looking for part-time care for her husband. They are primarily concerned about wandering and meal prep. Recommended a scheduling an assessment for next week."
+        summary: "• Caller (wife) seeks part-time care for husband with early-onset dementia\n• Primary concerns: wandering prevention and meal preparation\n• Recommended scheduling an in-home assessment for next week"
       }
     ],
     nextAction: {
