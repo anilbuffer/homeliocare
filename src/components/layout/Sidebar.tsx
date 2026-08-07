@@ -120,8 +120,7 @@ const getNavGroups = (role?: string) => {
           { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
           { name: "Referral & Intake", icon: Inbox, id: "referrals" },
           { name: "Patients", icon: Users, id: "patients" },
-          { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
-          { name: "Communications", icon: MessageSquare, id: "communications" },
+          { name: "Reports", icon: BarChart3, id: "reports" },
         ],
       },
     ];
@@ -338,7 +337,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/referrals") || pathname?.startsWith("/intake/referrals")) return "referrals";
     if (pathname?.startsWith("/communications") || pathname?.startsWith("/intake/communications")) return "communications";
     if (pathname?.startsWith("/compliance/reports")) return "reports";
-    if (pathname?.startsWith("/reports") && !pathname?.startsWith("/compliance/reports")) return "reports";
+    if (pathname?.startsWith("/intake/reports")) return "reports";
+    if (pathname?.startsWith("/reports") && !pathname?.startsWith("/compliance/reports") && !pathname?.startsWith("/intake/reports")) return "reports";
     if (pathname?.startsWith("/payroll")) return "payroll";
     if (pathname?.startsWith("/clinical/settings") || pathname?.startsWith("/field-supervisor/settings") || pathname?.startsWith("/billing/settings") || pathname?.startsWith("/intake/settings") || pathname?.startsWith("/compliance/settings") || pathname?.startsWith("/settings")) return "settings";
     if (pathname === "/dashboard" || pathname === "/" || pathname?.startsWith("/intake/dashboard") || pathname === "/clinical" || pathname === "/compliance" || pathname === "/field-supervisor" || pathname === "/training-admin") return "dashboard";
@@ -456,7 +456,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "billing-workspace") href = "/billing/workspace";
                   if (item.id === "authorizations") href = "/billing/authorizations";
                   if (item.id === "payroll") href = safeUser?.role === "HR" ? "/hr/payroll" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/payroll" : "/payroll";
-                  if (item.id === "reports") href = safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/reports" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/reports" : "/reports";
+                  if (item.id === "reports") href = safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/reports" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/reports" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/reports" : "/reports";
                   if (item.id === "messages") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/messages" : safeUser?.role === "CAREGIVER" ? "/caregiver/messages" : safeUser?.role === "HR" ? "/hr/messages" : safeUser?.role === "SCHEDULER" ? "/scheduler/messages" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/messages" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/messages" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/messages" : safeUser?.role === "TRAINER" ? "/training-admin/messages" : "/billing/messages";
                   if (item.id === "scheduling") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/schedule" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
                   if (item.id === "patients") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/patients" : "/patients";

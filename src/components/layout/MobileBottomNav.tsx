@@ -12,6 +12,7 @@ import {
   Users,
   CheckSquare,
   Award,
+  BarChart3,
 } from "lucide-react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -38,9 +39,9 @@ export function MobileBottomNav() {
     if (currentUser?.role === "INTAKE_COORDINATOR") {
       return [
         { name: "Home", href: "/intake/dashboard", icon: LayoutDashboard, pattern: ["/intake/dashboard"] },
-        { name: "Scheduler", href: "/intake/scheduling", icon: CalendarDays, pattern: ["/intake/scheduling"] },
-        { name: "Patients", href: "/intake/patients", icon: HeartHandshake, pattern: ["/intake/patients"] },
         { name: "Referrals", href: "/intake/referrals", icon: Receipt, pattern: ["/intake/referrals"] },
+        { name: "Patients", href: "/intake/patients", icon: HeartHandshake, pattern: ["/intake/patients"] },
+        { name: "Reports", href: "/intake/reports", icon: BarChart3, pattern: ["/intake/reports"] },
         { name: "Settings", href: "/intake/settings", icon: Settings, pattern: ["/intake/settings"] },
       ];
     }

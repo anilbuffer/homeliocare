@@ -7,6 +7,8 @@ export interface Patient {
   primaryDiagnosis: string;
   riskLevel: "Low" | "Medium" | "High";
   avatarUrl?: string;
+  intakeStatus?: "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold";
+  missingDocuments?: string[];
   
   demographics: {
     dob: string;
@@ -178,6 +180,8 @@ export const mockPatients: Record<string, Patient> = {
     primaryDiagnosis: "Congestive Heart Failure (CHF)",
     riskLevel: "High",
     avatarUrl: "/avatars/eleanor.png?v=2",
+    intakeStatus: "Auth Pending",
+    missingDocuments: ["Consent Form", "Primary Care Orders"],
     
     demographics: {
       dob: "1944-03-12",
@@ -331,6 +335,8 @@ export const mockPatients: Record<string, Patient> = {
     primaryDiagnosis: "Post-Stroke Recovery",
     riskLevel: "High",
     avatarUrl: "/avatars/arthur.png?v=2",
+    intakeStatus: "Onboarding Hold",
+    missingDocuments: ["Hospital Discharge Summary"],
     
     demographics: {
       dob: "1950-11-05",
@@ -377,6 +383,8 @@ export const mockPatients: Record<string, Patient> = {
     primaryDiagnosis: "Routine Checkup",
     riskLevel: "Low",
     avatarUrl: "/avatars/placeholder.png",
+    intakeStatus: "Ready to Admit",
+    missingDocuments: [],
     
     demographics: {
       dob: "1961-01-01",

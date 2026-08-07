@@ -49,18 +49,18 @@ export function SourcePerformanceChart() {
         {viewType === "bar" ? (
           <div className="space-y-3">
             {data.map((item, idx) => (
-              <div key={idx} className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
-                <div className="w-1/3">
+              <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 gap-2 sm:gap-0">
+                <div className="w-full sm:w-1/3">
                   <span className="text-sm font-medium text-slate-700">{item.source}</span>
                 </div>
-                <div className="w-1/3 flex items-center gap-2">
+                <div className="w-full sm:w-1/3 flex items-center gap-2">
                   <div className="w-full bg-slate-100 rounded-full h-2">
                     <div className="bg-slate-400 h-2 rounded-full" style={{ width: `${(item.volume / 45) * 100}%` }} />
                   </div>
-                  <span className="text-xs text-slate-500 w-8">{item.volume}</span>
+                  <span className="text-xs text-slate-500 w-8 shrink-0">{item.volume}</span>
                 </div>
-                <div className="w-1/3 flex items-center justify-end gap-2">
-                  <span className="text-sm font-medium text-slate-700">{item.conversion}%</span>
+                <div className="w-full sm:w-1/3 flex items-center sm:justify-end gap-2">
+                  <span className="text-sm font-medium text-slate-700">{item.conversion}% conversion</span>
                   <TrendingUp className="w-3 h-3 text-emerald-500" />
                 </div>
               </div>

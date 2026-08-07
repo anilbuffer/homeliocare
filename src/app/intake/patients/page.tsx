@@ -29,7 +29,7 @@ import { Card } from "@/components/ui/Card";
 import { NewPatientModal } from "@/components/patients/NewPatientModal";
 import { toast } from "sonner";
 
-type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged" | "Care Completed";
+type FilterStatus = "ALL" | "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold";
 
 export default function PatientsPage() {
   const router = useRouter();
@@ -68,13 +68,11 @@ export default function PatientsPage() {
         patient.riskLevel.toLowerCase().includes(query) ||
         patient.id.toLowerCase().includes(query);
 
-      // Status / Risk match
+      // Status match
       let matchesFilter = true;
-      if (activeFilter === "Active") matchesFilter = patient.status === "Active";
-      else if (activeFilter === "High Risk") matchesFilter = patient.riskLevel === "High";
-      else if (activeFilter === "Hospitalized") matchesFilter = patient.status === "Hospitalized";
-      else if (activeFilter === "Discharged") matchesFilter = patient.status === "Discharged";
-      else if (activeFilter === "Care Completed") matchesFilter = patient.status === "Care Completed";
+      if (activeFilter !== "ALL") {
+        matchesFilter = patient.intakeStatus === activeFilter;
+      }
 
       return matchesSearch && matchesFilter;
     });
@@ -83,15 +81,15 @@ export default function PatientsPage() {
   // Dynamic Stats
   const stats = useMemo(() => {
     const total = 247; // Database total representation
-    const activeCount = allPatientsList.filter(p => p.status === "Active").length;
-    const highRiskCount = allPatientsList.filter(p => p.riskLevel === "High").length;
-    const hospitalizedCount = allPatientsList.filter(p => p.status === "Hospitalized").length;
-    const inactiveCount = allPatientsList.filter(p => p.status === "Care Completed").length;
+    const newCount = allPatientsList.filter(p => p.intakeStatus === "New Referral").length;
+    const authCount = allPatientsList.filter(p => p.intakeStatus === "Auth Pending").length;
+    const readyCount = allPatientsList.filter(p => p.intakeStatus === "Ready to Admit").length;
+    const holdCount = allPatientsList.filter(p => p.intakeStatus === "Onboarding Hold").length;
 
     return [
       {
         id: "ALL" as FilterStatus,
-        title: "Total Patients",
+        title: "Total Intakes",
         count: total,
         subtitle: `${allPatientsList.length} loaded in view`,
         icon: Users,
@@ -100,44 +98,44 @@ export default function PatientsPage() {
         accentGlow: "group-hover:border-slate-300"
       },
       {
-        id: "Active" as FilterStatus,
-        title: "Active Care",
-        count: activeCount,
-        subtitle: "On active service, not discharged.",
-        icon: HeartPulse,
-        badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
-        activeBorder: "border-emerald-500 ring-2 ring-emerald-500/20",
-        accentGlow: "group-hover:border-emerald-300"
+        id: "New Referral" as FilterStatus,
+        title: "New Referrals",
+        count: newCount,
+        subtitle: "Needs initial review",
+        icon: UserPlus,
+        badgeBg: "bg-blue-50 text-blue-700 border-blue-200",
+        activeBorder: "border-blue-500 ring-2 ring-blue-500/20",
+        accentGlow: "group-hover:border-blue-300"
       },
       {
-        id: "High Risk" as FilterStatus,
-        title: "High Risk Alert",
-        count: highRiskCount,
-        subtitle: "Requires priority monitoring",
+        id: "Auth Pending" as FilterStatus,
+        title: "Auth Pending",
+        count: authCount,
+        subtitle: "Awaiting insurance",
         icon: AlertTriangle,
-        badgeBg: "bg-rose-50 text-rose-700 border-rose-200",
-        activeBorder: "border-rose-500 ring-2 ring-rose-500/20",
-        accentGlow: "group-hover:border-rose-300"
-      },
-      {
-        id: "Hospitalized" as FilterStatus,
-        title: "Hospitalized",
-        count: hospitalizedCount,
-        subtitle: "Inpatient / Temp Hold",
-        icon: Building2,
         badgeBg: "bg-amber-50 text-amber-700 border-amber-200",
         activeBorder: "border-amber-500 ring-2 ring-amber-500/20",
         accentGlow: "group-hover:border-amber-300"
       },
       {
-        id: "Care Completed" as FilterStatus,
-        title: "Care Completed",
-        count: inactiveCount,
-        subtitle: "No longer on active service",
-        icon: UserMinus,
-        badgeBg: "bg-slate-50 text-slate-700 border-slate-200",
-        activeBorder: "border-slate-500 ring-2 ring-slate-500/20",
-        accentGlow: "group-hover:border-slate-300"
+        id: "Ready to Admit" as FilterStatus,
+        title: "Ready to Admit",
+        count: readyCount,
+        subtitle: "Cleared for onboarding",
+        icon: CheckCircle2,
+        badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        activeBorder: "border-emerald-500 ring-2 ring-emerald-500/20",
+        accentGlow: "group-hover:border-emerald-300"
+      },
+      {
+        id: "Onboarding Hold" as FilterStatus,
+        title: "On Hold",
+        count: holdCount,
+        subtitle: "Waiting on external factor",
+        icon: Building2,
+        badgeBg: "bg-rose-50 text-rose-700 border-rose-200",
+        activeBorder: "border-rose-500 ring-2 ring-rose-500/20",
+        accentGlow: "group-hover:border-rose-300"
       }
     ];
   }, [allPatientsList]);
@@ -148,7 +146,7 @@ export default function PatientsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <h1 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
-            Patients Directory
+            Intake & Pre-Admit Roster
             <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/20">
               {filteredPatients.length} shown
             </span>
@@ -277,7 +275,7 @@ export default function PatientsPage() {
         {/* Quick Filter Pills Row */}
         <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-0.5 no-scrollbar">
           <span className="text-xs font-medium text-slate-400 shrink-0 mr-1">Status:</span>
-          {(["ALL", "Active", "High Risk", "Hospitalized", "Discharged", "Care Completed"] as FilterStatus[]).map((filterVal) => {
+          {(["ALL", "New Referral", "Auth Pending", "Assessment Scheduled", "Ready to Admit", "Onboarding Hold"] as FilterStatus[]).map((filterVal) => {
             const isSelected = activeFilter === filterVal;
             return (
               <button
@@ -340,8 +338,8 @@ export default function PatientsPage() {
                   <thead className="bg-slate-50/80 text-slate-500 border-b border-slate-200/80 sticky top-0 z-10 font-semibold text-xs uppercase tracking-wider">
                     <tr>
                       <th className="px-4 sm:px-6 py-3">Patient Details</th>
-                      <th className="px-4 py-3">Status</th>
-                      <th className="px-4 py-3">Risk Level</th>
+                      <th className="px-4 py-3">Intake Status</th>
+                      <th className="px-4 py-3">Missing Docs</th>
                       <th className="px-4 py-3">Primary Diagnosis</th>
                       <th className="px-4 sm:px-6 py-3 text-right">Actions</th>
                     </tr>
@@ -375,33 +373,26 @@ export default function PatientsPage() {
                           <Badge
                             className="text-xs"
                             variant={
-                              patient.status === "Active"
+                              patient.intakeStatus === "Ready to Admit"
                                 ? "success"
-                                : patient.status === "Hospitalized"
-                                  ? "warning"
-                                  : patient.status === "Discharged"
-                                    ? "default"
-                                    : patient.status === "Care Completed"
-                                      ? "neutral"
-                                      : "error"
+                                : patient.intakeStatus === "Onboarding Hold"
+                                  ? "error"
+                                  : "warning"
                             }
                           >
-                            {patient.status}
+                            {patient.intakeStatus || "New Referral"}
                           </Badge>
                         </td>
                         <td className="px-4 py-3">
-                          <Badge
-                            className="text-xs"
-                            variant={
-                              patient.riskLevel === "Low"
-                                ? "success"
-                                : patient.riskLevel === "Medium"
-                                  ? "warning"
-                                  : "error"
-                            }
-                          >
-                            {patient.riskLevel} Risk
-                          </Badge>
+                          {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
+                            <Badge className="text-xs" variant="error">
+                              {patient.missingDocuments.length} Missing
+                            </Badge>
+                          ) : (
+                            <Badge className="text-xs" variant="success">
+                              Complete
+                            </Badge>
+                          )}
                         </td>
                         <td className="px-4 py-3">
                           <span
@@ -462,28 +453,24 @@ export default function PatientsPage() {
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                       <Badge
                         variant={
-                          patient.status === "Active"
+                          patient.intakeStatus === "Ready to Admit"
                             ? "success"
-                            : patient.status === "Hospitalized"
-                              ? "warning"
-                              : patient.status === "Discharged"
-                                ? "default"
-                                : "error"
+                            : patient.intakeStatus === "Onboarding Hold"
+                              ? "error"
+                              : "warning"
                         }
                       >
-                        {patient.status}
+                        {patient.intakeStatus || "New Referral"}
                       </Badge>
-                      <Badge
-                        variant={
-                          patient.riskLevel === "Low"
-                            ? "success"
-                            : patient.riskLevel === "Medium"
-                              ? "warning"
-                              : "error"
-                        }
-                      >
-                        {patient.riskLevel} Risk
-                      </Badge>
+                      {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
+                        <Badge variant="error">
+                          {patient.missingDocuments.length} Missing
+                        </Badge>
+                      ) : (
+                        <Badge variant="success">
+                          Complete Docs
+                        </Badge>
+                      )}
                     </div>
 
                     <div className="text-xs text-slate-600 font-medium bg-slate-50 p-2 rounded-lg border border-slate-100 flex items-center justify-between">
@@ -546,32 +533,26 @@ export default function PatientsPage() {
                             <span className="text-slate-500 font-medium">Status</span>
                             <Badge
                               variant={
-                                patient.status === "Active"
+                                patient.intakeStatus === "Ready to Admit"
                                   ? "success"
-                                  : patient.status === "Hospitalized"
-                                    ? "warning"
-                                    : patient.status === "Discharged"
-                                      ? "default"
-                                      : "error"
+                                  : patient.intakeStatus === "Onboarding Hold"
+                                    ? "error"
+                                    : "warning"
                               }
                             >
-                              {patient.status}
+                              {patient.intakeStatus || "New Referral"}
                             </Badge>
                           </div>
 
                           <div className="flex justify-between items-center bg-slate-50/70 px-3 py-1.5 rounded-xl border border-slate-100">
-                            <span className="text-slate-500 font-medium">Risk Level</span>
-                            <Badge
-                              variant={
-                                patient.riskLevel === "Low"
-                                  ? "success"
-                                  : patient.riskLevel === "Medium"
-                                    ? "warning"
-                                    : "error"
-                              }
-                            >
-                              {patient.riskLevel} Risk
-                            </Badge>
+                            <span className="text-slate-500 font-medium">Documents</span>
+                            {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
+                              <Badge variant="error">
+                                {patient.missingDocuments.length} Missing
+                              </Badge>
+                            ) : (
+                              <Badge variant="success">Complete</Badge>
+                            )}
                           </div>
 
                           <div className="flex justify-between items-start bg-slate-50/70 px-3 py-2 rounded-xl border border-slate-100 gap-2">

@@ -4,16 +4,28 @@ import React, { useState } from "react";
 import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Patient } from "@/lib/patients/mockData";
-import { Calendar, ShieldAlert, MessageSquare, Edit3, MapPin } from "lucide-react";
+import { Calendar, ShieldAlert, MessageSquare, Edit3, MapPin, UserCheck, RefreshCw } from "lucide-react";
 import { cn } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
+import { toast } from "sonner";
 
 interface PatientHeaderProps {
   patient: Patient;
 }
 
 export function PatientHeader({ patient }: PatientHeaderProps) {
-  const [modalState, setModalState] = useState<"none" | "schedule" | "incident" | "message" | "edit">("none");
+  const [modalState, setModalState] = useState<"none" | "schedule" | "requestDocs" | "message" | "edit" | "handover">("none");
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleHandover = () => {
+    setIsSyncing(true);
+    // Simulate syncing to clinical system
+    setTimeout(() => {
+      setIsSyncing(false);
+      setModalState("none");
+      toast.success(`Successfully handed over ${patient.name} and synced to clinical systems.`);
+    }, 1500);
+  };
 
   return (
     <>
@@ -23,16 +35,13 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
             <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="xl" className="w-24 h-24 text-2xl" />
             <div className="absolute -bottom-2 -right-2">
               <Badge variant={
-                patient.status === "Active" || patient.status === "Care Completed" ? "success" :
-                  patient.status === "Hospitalized" ? "warning" :
-                    patient.status === "Discharged" ? "neutral" : "error"
+                patient.intakeStatus === "Ready to Admit" ? "success" :
+                  patient.intakeStatus === "Onboarding Hold" ? "error" : "warning"
               } className={cn(
                 "border-2 border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] font-semibold text-white whitespace-nowrap px-3 py-1",
-                patient.status === "Active" && "bg-emerald-500",
-                patient.status === "Hospitalized" && "bg-amber-500",
-                patient.status === "Discharged" && "bg-slate-500",
-                patient.status === "Care Completed" && "bg-teal-500"
-              )}>{patient.status}</Badge>
+                patient.intakeStatus === "Ready to Admit" ? "bg-emerald-500" :
+                patient.intakeStatus === "Onboarding Hold" ? "bg-rose-500" : "bg-amber-500"
+              )}>{patient.intakeStatus || "New Referral"}</Badge>
             </div>
           </div>
 
@@ -52,27 +61,38 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
 
         <div className="flex flex-col items-start md:items-end justify-between gap-3 w-full md:w-auto">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-semibold text-slate-500">Risk Level</span>
-            <Badge variant={
-              patient.riskLevel === "Low" ? "success" :
-                patient.riskLevel === "Medium" ? "warning" : "error"
-            } className="text-xs px-3 py-1 bg-rose-100 text-rose-700 border-rose-100 font-semibold">
-              {patient.riskLevel} Risk
-            </Badge>
+            <span className="text-xs font-semibold text-slate-500">Missing Docs</span>
+            {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
+              <Badge variant="error" className="text-xs px-3 py-1 bg-rose-100 text-rose-700 border-rose-100 font-semibold">
+                {patient.missingDocuments.length} Missing
+              </Badge>
+            ) : (
+              <Badge variant="success" className="text-xs px-3 py-1 bg-emerald-100 text-emerald-700 border-emerald-100 font-semibold">
+                Complete
+              </Badge>
+            )}
           </div>
 
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 mt-1 w-full sm:w-auto">
+            {(!patient.missingDocuments || patient.missingDocuments.length === 0) && (
+              <button
+                onClick={() => setModalState("handover")}
+                className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-all text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-[0_6px_32px_rgba(79,70,229,0.2)] hover:shadow-[0_6px_32px_rgba(79,70,229,0.3)] col-span-2 sm:col-span-1">
+                <UserCheck className="w-4 h-4 shrink-0" />
+                <span className="truncate">Handover to Clinical</span>
+              </button>
+            )}
             <button
               onClick={() => setModalState("schedule")}
               className="inline-flex items-center justify-center gap-2 bg-brand-teal hover:bg-emerald-600 active:scale-95 transition-all text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <Calendar className="w-4 h-4 shrink-0" />
-              <span className="truncate">Schedule Visit</span>
+              <span className="truncate">Schedule Assessment</span>
             </button>
             <button
-              onClick={() => setModalState("incident")}
+              onClick={() => setModalState("requestDocs")}
               className="inline-flex items-center justify-center gap-2 bg-white border border-slate-200/90 hover:bg-slate-50 active:scale-95 transition-all text-slate-700 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-[0_6px_32px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
               <ShieldAlert className="w-4 h-4 text-orange-500 shrink-0" />
-              <span className="truncate">New Incident</span>
+              <span className="truncate">Request Docs</span>
             </button>
             <button
               onClick={() => setModalState("message")}
@@ -93,8 +113,8 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
       <Modal
         isOpen={modalState === "schedule"}
         onClose={() => setModalState("none")}
-        title="Schedule Visit"
-        description={`Schedule a new visit for ${patient.name}`}
+        title="Schedule Assessment"
+        description={`Schedule an intake assessment for ${patient.name}`}
         footer={
           <>
             <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200/90 hover:bg-slate-50 rounded-xl transition-colors">Cancel</button>
@@ -127,38 +147,29 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
       </Modal>
 
       <Modal
-        isOpen={modalState === "incident"}
+        isOpen={modalState === "requestDocs"}
         onClose={() => setModalState("none")}
-        title="Report New Incident"
-        description="Log a new incident or adverse event."
+        title="Request Missing Documents"
+        description="Send a request for missing intake documents."
         footer={
           <>
             <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200/90 hover:bg-slate-50 rounded-xl transition-colors">Cancel</button>
-            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-rose-600 text-white rounded-xl hover:bg-rose-700 transition-colors">Submit Report</button>
+            <button onClick={() => setModalState("none")} className="px-4 py-2 text-sm font-medium bg-brand-teal text-white rounded-xl hover:bg-emerald-600 transition-colors">Send Request</button>
           </>
         }
       >
         <div className="space-y-4 py-2">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Incident Type</label>
-            <select className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal bg-white">
-              <option>Fall / Injury</option>
-              <option>Medication Error</option>
-              <option>Behavioral Issue</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Severity</label>
-            <div className="flex gap-3 mt-2">
-              <label className="flex items-center gap-2 text-sm"><input type="radio" name="sev" className="text-brand-teal" /> Low</label>
-              <label className="flex items-center gap-2 text-sm"><input type="radio" name="sev" className="text-amber-500" /> Medium</label>
-              <label className="flex items-center gap-2 text-sm"><input type="radio" name="sev" className="text-rose-500" /> High</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Document Types</label>
+            <div className="flex flex-col gap-2 mt-2">
+              <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="text-brand-teal" /> Insurance Card</label>
+              <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="text-brand-teal" /> Primary Care Orders</label>
+              <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="text-brand-teal" /> Consent Form</label>
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
-            <textarea className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" rows={4} placeholder="Describe what happened in detail..."></textarea>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Message</label>
+            <textarea className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" rows={3} placeholder="Please provide the following..."></textarea>
           </div>
         </div>
       </Modal>
@@ -219,6 +230,54 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Primary Diagnosis</label>
             <input type="text" defaultValue={patient.primaryDiagnosis} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={modalState === "handover"}
+        onClose={() => !isSyncing && setModalState("none")}
+        title="Clinical Handover & Sync"
+        description={`Hand over ${patient.name} to a Clinical Supervisor or RN. This will sync the patient's intake data to the clinical management system.`}
+        footer={
+          <>
+            <button onClick={() => setModalState("none")} disabled={isSyncing} className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200/90 hover:bg-slate-50 rounded-xl transition-colors disabled:opacity-50">Cancel</button>
+            <button onClick={handleHandover} disabled={isSyncing} className="px-4 py-2 text-sm font-medium bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors flex items-center gap-2 disabled:opacity-70 shadow-sm">
+              {isSyncing ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  Syncing...
+                </>
+              ) : (
+                <>
+                  <UserCheck className="w-4 h-4" />
+                  Confirm Handover
+                </>
+              )}
+            </button>
+          </>
+        }
+      >
+        <div className="space-y-4 py-2">
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Assign To</label>
+            <select disabled={isSyncing} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white disabled:opacity-50">
+              <option>Select Clinical Supervisor or RN...</option>
+              <option>Sarah Jenkins (RN)</option>
+              <option>Michael Chang (Clinical Supervisor)</option>
+              <option>Unassigned (Queue)</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Handover Notes</label>
+            <textarea disabled={isSyncing} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 disabled:opacity-50" rows={4} placeholder="Add any clinical notes, priority level, or specific instructions..."></textarea>
+          </div>
+          <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-3 flex items-start gap-3">
+            <RefreshCw className="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" />
+            <div className="text-sm text-indigo-800">
+              <span className="font-semibold block mb-0.5">System Sync</span>
+              This action will securely transmit the completed intake packet (demographics, initial assessment, insurance) to the main clinical record system.
+            </div>
           </div>
         </div>
       </Modal>

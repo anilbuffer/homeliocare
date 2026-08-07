@@ -12,13 +12,15 @@ import { HandoffSummaryModal } from "./HandoffSummaryModal";
 
 const PIPELINE_STAGES: ReferralStage[] = [
   "Referral Received",
+  "Clinical Review",
   "Contact Attempted",
-  "Initial Assessment Scheduled",
   "Insurance Verification",
+  "Insurance Verification / Authorization",
   "Eligibility Confirmed",
+  "Assigned to Care Team",
   "Consent & Agreements",
-  "Care Plan Setup",
-  "Admitted"
+  "Admitted",
+  "Converted"
 ];
 
 function calculateDischargeUrgency(deadline?: string) {
@@ -59,7 +61,15 @@ function ReferralCard({ referral, onClick, onDragStart }: ReferralCardProps) {
     >
       <div className="flex justify-between items-start mb-2">
         <div>
-          <h4 className="font-semibold text-text-primary text-sm">{referral.clientName} </h4>
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="font-semibold text-text-primary text-sm">{referral.clientName}</h4>
+            <span className={clsx(
+              "px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider",
+              referral.workflowType === "Referral" ? "bg-purple-100 text-purple-700" : "bg-teal-100 text-brand-teal"
+            )}>
+              {referral.workflowType || "Inquiry"}
+            </span>
+          </div>
           <p className="text-xs text-text-secondary">{referral.source} • {referral.daysInStage}d in stage</p>
         </div>
         <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-medium text-slate-600 shrink-0">
@@ -68,45 +78,95 @@ function ReferralCard({ referral, onClick, onDragStart }: ReferralCardProps) {
       </div>
 
       <div className="flex flex-wrap gap-2 mt-3">
-        {referral.dischargeDeadline && (
-          <div className={clsx(
-            "flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium border",
-            urgency === "danger" ? "bg-red-50 text-red-700 border-red-200" : "bg-amber-50 text-amber-700 border-amber-200"
-          )}>
-            <Clock className="w-3 h-3" />
-            &lt; 24h
-          </div>
-        )}
+        {referral.workflowType === "Referral" ? (
+          <>
+            {referral.npi ? (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-slate-50 text-slate-600 border border-slate-200">
+                <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                NPI on File
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                <AlertTriangle className="w-3 h-3" />
+                Missing NPI
+              </div>
+            )}
 
-        {referral.isPossibleDuplicate && (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
-            <Copy className="w-3 h-3" />
-            Duplicate?
-          </div>
-        )}
+            {referral.authorizationStatus && (
+              <div className={clsx(
+                "flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium border",
+                referral.authorizationStatus === "Approved" ? "bg-emerald-50 text-emerald-700 border-emerald-200" :
+                  referral.authorizationStatus === "Denied" ? "bg-red-50 text-red-700 border-red-200" :
+                    "bg-amber-50 text-amber-700 border-amber-200"
+              )}>
+                {referral.authorizationStatus} Auth
+              </div>
+            )}
 
-        {referral.serviceZoneStatus === "out-of-zone" ? (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-red-50 text-red-700 border border-red-200">
-            <AlertTriangle className="w-3 h-3" />
-            Out of Zone
-          </div>
-        ) : referral.serviceZoneStatus === "near-capacity" ? (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
-            <AlertTriangle className="w-3 h-3" />
-            Near Capacity
-          </div>
+            {referral.clinicalReviewStatus && (
+              <div className={clsx(
+                "flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium border",
+                referral.clinicalReviewStatus === "Approved" ? "bg-emerald-50 text-emerald-700 border-emerald-200" :
+                  referral.clinicalReviewStatus === "Denied" ? "bg-red-50 text-red-700 border-red-200" :
+                    "bg-amber-50 text-amber-700 border-amber-200"
+              )}>
+                Clinical {referral.clinicalReviewStatus}
+              </div>
+            )}
+
+            {referral.dischargeDeadline && (
+              <div className={clsx(
+                "flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium border",
+                urgency === "danger" ? "bg-red-50 text-red-700 border-red-200" : "bg-amber-50 text-amber-700 border-amber-200"
+              )}>
+                <Clock className="w-3 h-3" />
+                Discharge Deadline
+              </div>
+            )}
+          </>
         ) : (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
-            <CheckCircle2 className="w-3 h-3" />
-            In Zone
-          </div>
-        )}
+          <>
+            {referral.dischargeDeadline && (
+              <div className={clsx(
+                "flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium border",
+                urgency === "danger" ? "bg-red-50 text-red-700 border-red-200" : "bg-amber-50 text-amber-700 border-amber-200"
+              )}>
+                <Clock className="w-3 h-3" />
+                &lt; 24h
+              </div>
+            )}
 
-        {docs.total > 0 && (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-slate-50 text-slate-600 border border-slate-200">
-            <FileText className="w-3 h-3" />
-            {docs.completed}/{docs.total} Docs
-          </div>
+            {referral.isPossibleDuplicate && (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                <Copy className="w-3 h-3" />
+                Duplicate?
+              </div>
+            )}
+
+            {referral.serviceZoneStatus === "out-of-zone" ? (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-red-50 text-red-700 border border-red-200">
+                <AlertTriangle className="w-3 h-3" />
+                Out of Zone
+              </div>
+            ) : referral.serviceZoneStatus === "near-capacity" ? (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                <AlertTriangle className="w-3 h-3" />
+                Near Capacity
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <CheckCircle2 className="w-3 h-3" />
+                In Zone
+              </div>
+            )}
+
+            {docs.total > 0 && (
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md text-[10px] font-medium bg-slate-50 text-slate-600 border border-slate-200">
+                <FileText className="w-3 h-3" />
+                {docs.completed}/{docs.total} Docs
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -127,10 +187,11 @@ function ReferralCard({ referral, onClick, onDragStart }: ReferralCardProps) {
 
 interface PipelineBoardProps {
   viewMode: "pipeline" | "list" | "tasks";
+  referrals: Referral[];
+  setReferrals: React.Dispatch<React.SetStateAction<Referral[]>>;
 }
 
-export function PipelineBoard({ viewMode }: PipelineBoardProps) {
-  const [referrals, setReferrals] = useState<Referral[]>(initialReferrals);
+export function PipelineBoard({ viewMode, referrals, setReferrals }: PipelineBoardProps) {
   const [activeReferral, setActiveReferral] = useState<Referral | null>(null);
   const [draggedId, setDraggedId] = useState<string | null>(null);
   const [dragOverStage, setDragOverStage] = useState<ReferralStage | null>(null);
@@ -153,18 +214,46 @@ export function PipelineBoard({ viewMode }: PipelineBoardProps) {
     const id = e.dataTransfer.getData("text/plain");
 
     if (id && stage) {
-      if (stage === "Admitted") {
+      const ref = referrals.find(r => r.id === id);
+      if (!ref) return;
+
+      if (ref.workflowType === "Referral") {
+        const invalidReferralStages = ["Contact Attempted", "Initial Assessment Scheduled", "Insurance Verification"];
+        if (invalidReferralStages.includes(stage)) {
+          setDraggedId(null);
+          setDragOverStage(null);
+          return;
+        }
+      } else {
+        const invalidInquiryStages = ["Clinical Review", "Insurance Verification / Authorization", "Assigned to Care Team"];
+        if (invalidInquiryStages.includes(stage)) {
+          setDraggedId(null);
+          setDragOverStage(null);
+          return;
+        }
+      }
+
+      if (ref.workflowType === "Referral" && stage === "Eligibility Confirmed") {
+        if (ref.clinicalReviewStatus === "Pending" || ref.clinicalReviewStatus === "Denied") {
+          alert("Cannot move to Eligibility Confirmed: Clinical Review must be Approved");
+          setDraggedId(null);
+          setDragOverStage(null);
+          return;
+        }
+      }
+
+      if (stage === "Admitted" || stage === "Converted") {
         const refToAdmit = referrals.find(r => r.id === id);
         if (refToAdmit) {
           setPendingAdmitReferral(refToAdmit);
           setHandoffModalOpen(true);
         }
       } else {
-        setReferrals(prev => prev.map(ref => {
-          if (ref.id === id) {
-            return { ...ref, stage, daysInStage: 0 };
+        setReferrals(prev => prev.map(r => {
+          if (r.id === id) {
+            return { ...r, stage, daysInStage: 0 };
           }
-          return ref;
+          return r;
         }));
       }
     }

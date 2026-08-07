@@ -46,7 +46,7 @@ export function HandoffSummaryModal({ isOpen, onClose, referral, onConfirm }: Ha
               You are about to admit <strong>{referral.clientName}</strong>. This will create a new Client Profile and transfer all collected information. Please review the summary below.
             </p>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 grid grid-cols-2 gap-4">
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Demographics</h4>
                 <ul className="text-sm text-slate-700 space-y-1">

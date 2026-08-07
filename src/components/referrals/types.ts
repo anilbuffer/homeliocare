@@ -1,12 +1,15 @@
-export type ReferralStage = 
+export type ReferralStage =
   | "Referral Received"
   | "Contact Attempted"
   | "Initial Assessment Scheduled"
+  | "Clinical Review"
   | "Insurance Verification"
+  | "Insurance Verification / Authorization"
   | "Eligibility Confirmed"
+  | "Assigned to Care Team"
   | "Consent & Agreements"
-  | "Care Plan Setup"
-  | "Admitted";
+  | "Admitted"
+  | "Converted";
 
 export type ReferralSource = "Hospital" | "Doctor" | "Social Worker" | "Self" | "Online Form";
 
@@ -28,16 +31,24 @@ export interface CommunicationEntry {
   author: string;
   type: "call" | "email" | "text" | "note";
   content: string;
+  summary?: string;
+  recordingUrl?: string;
 }
 
 export interface Referral {
   id: string;
+  workflowType?: "Inquiry" | "Referral";
+  npi?: string;
+  authorizationStatus?: "Not Started" | "Pending" | "Approved" | "Denied";
+  clinicalReviewStatus?: "Pending" | "Approved" | "Denied";
   clientName: string;
   clientInitials: string;
   dob?: string;
   phone?: string;
   source: ReferralSource;
+  sourceDetails?: string;
   referringParty?: string;
+  intakeNotes?: string;
   dateReceived: string;
   stage: ReferralStage;
   daysInStage: number;
@@ -69,6 +80,14 @@ export interface Referral {
   demographics?: {
     gender?: string;
     address?: string;
+    city?: string;
+    state?: string;
+    zip?: string;
+    email?: string;
+    primaryContactName?: string;
+    primaryContactRelationship?: string;
+    primaryContactPhone?: string;
+    primaryContactEmail?: string;
   };
   diagnosis?: string;
   emergencyContact?: string;

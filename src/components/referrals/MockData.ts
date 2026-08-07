@@ -3,10 +3,16 @@ import { Referral } from "./types";
 export const initialReferrals: Referral[] = [
   {
     id: "ref-001",
+    workflowType: "Referral",
     clientName: "Eleanor Rigby",
     clientInitials: "ER",
     source: "Hospital",
+    sourceDetails: "Discharge Planner - Room 402B",
+    npi: "1234567890",
+    authorizationStatus: "Pending",
+    clinicalReviewStatus: "Pending",
     referringParty: "General Hospital Discharge",
+    intakeNotes: "Patient requires high level of care upon discharge. Family is anxious but supportive.",
     dateReceived: "2026-07-16T10:00:00Z",
     stage: "Referral Received",
     daysInStage: 1,
@@ -33,9 +39,12 @@ export const initialReferrals: Referral[] = [
   },
   {
     id: "ref-002",
+    workflowType: "Inquiry",
     clientName: "John Doe",
     clientInitials: "JD",
     source: "Online Form",
+    sourceDetails: "Google Ads Campaign - 'Home Care near me'",
+    intakeNotes: "Spouse inquired about services for husband with early-onset dementia. Needs help with ADLs and medication reminders.",
     dateReceived: "2026-07-15T14:30:00Z",
     stage: "Contact Attempted",
     daysInStage: 2,
@@ -48,7 +57,15 @@ export const initialReferrals: Referral[] = [
     documents: [],
     consents: [],
     communications: [
-      { id: "c2", timestamp: "2026-07-16T09:00:00Z", author: "Sarah Jenkins", type: "call", content: "Left voicemail." }
+      { 
+        id: "c2", 
+        timestamp: "2026-07-16T09:00:00Z", 
+        author: "Sarah Jenkins", 
+        type: "call", 
+        content: "Spoke with wife regarding care options.",
+        recordingUrl: "https://example.com/recording.mp3",
+        summary: "The caller (wife) is looking for part-time care for her husband. They are primarily concerned about wandering and meal prep. Recommended a scheduling an assessment for next week."
+      }
     ],
     nextAction: {
       description: "Follow up call",
@@ -58,6 +75,7 @@ export const initialReferrals: Referral[] = [
   },
   {
     id: "ref-003",
+    workflowType: "Inquiry",
     clientName: "Mary Smith",
     clientInitials: "MS",
     source: "Doctor",

@@ -1,6 +1,6 @@
 // src/lib/reports-mock-data.ts
 
-export type ReportCategory = "Clinical" | "HR" | "Scheduling" | "Financial" | "Compliance" | "Custom Reports";
+export type ReportCategory = "Clinical" | "HR" | "Scheduling" | "Financial" | "Compliance" | "Intake" | "Custom Reports";
 
 export interface ReportDefinition {
   id: string;
@@ -486,12 +486,89 @@ export const complianceReports: ReportDefinition[] = [
   },
 ];
 
+export const intakeReports: ReportDefinition[] = [
+  {
+    id: "int-1",
+    title: "Referral Sources",
+    description: "Volume of referrals by originating source (e.g. Hospital, SNF).",
+    category: "Intake",
+    chartType: "bar",
+    xAxisKey: "source",
+    dataKeys: [
+      { key: "volume", color: "#10b981", name: "Referrals" },
+    ],
+    data: [
+      { source: "Hospitals", volume: 120 },
+      { source: "SNFs", volume: 85 },
+      { source: "Physicians", volume: 60 },
+      { source: "Web/Direct", volume: 30 },
+      { source: "Family", volume: 15 },
+    ]
+  },
+  {
+    id: "int-2",
+    title: "Conversion Rates",
+    description: "Percentage of referrals that convert to active patients.",
+    category: "Intake",
+    chartType: "line",
+    xAxisKey: "month",
+    dataKeys: [
+      { key: "conversionRate", color: "#3b82f6", name: "Conversion Rate (%)" },
+    ],
+    data: [
+      { month: "Jan", conversionRate: 65 },
+      { month: "Feb", conversionRate: 68 },
+      { month: "Mar", conversionRate: 72 },
+      { month: "Apr", conversionRate: 70 },
+      { month: "May", conversionRate: 75 },
+      { month: "Jun", conversionRate: 78 },
+    ]
+  },
+  {
+    id: "int-3",
+    title: "Time to Admission",
+    description: "Average days from referral received to first assessment.",
+    category: "Intake",
+    chartType: "line",
+    xAxisKey: "month",
+    dataKeys: [
+      { key: "avgDays", color: "#8b5cf6", name: "Avg Days" },
+    ],
+    data: [
+      { month: "Jan", avgDays: 4.2 },
+      { month: "Feb", avgDays: 3.8 },
+      { month: "Mar", avgDays: 3.5 },
+      { month: "Apr", avgDays: 3.1 },
+      { month: "May", avgDays: 2.8 },
+      { month: "Jun", avgDays: 2.5 },
+    ]
+  },
+  {
+    id: "int-4",
+    title: "Decline Reasons",
+    description: "Why referrals were not admitted.",
+    category: "Intake",
+    chartType: "donut",
+    dataKeys: [
+      { key: "value", color: "#000" }
+    ],
+    data: [
+      { name: "Out of Service Area", value: 40 },
+      { name: "Staffing Shortage", value: 30 },
+      { name: "Patient Refused", value: 15 },
+      { name: "Insurance Not Accepted", value: 10 },
+      { name: "Other", value: 5 },
+    ]
+  },
+];
+
 export const allPrebuiltReports = [
   ...clinicalReports,
   ...hrReports,
   ...schedulingReports,
   ...financialReports,
   ...complianceReports,
+  ...intakeReports,
 ];
 
 export interface SavedReport {

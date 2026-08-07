@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Plus, ListFilter, Kanban, CheckSquare } from "lucide-react";
 
 import { KpiCardsRow } from "@/components/referrals/KpiCardsRow";
@@ -10,6 +10,9 @@ import { SourcePerformanceChart } from "@/components/referrals/SourcePerformance
 import { OnlineReferralQueue } from "@/components/referrals/OnlineReferralQueue";
 import { RecentlyDeclinedList } from "@/components/referrals/RecentlyDeclinedList";
 import { NewReferralModal } from "@/components/referrals/NewReferralModal";
+import { NewInquiryModal } from "@/components/referrals/NewInquiryModal";
+import { initialReferrals } from "@/components/referrals/MockData";
+import { Referral } from "@/components/referrals/types";
 
 const container = {
   hidden: { opacity: 0 },
@@ -30,7 +33,27 @@ type ViewMode = "pipeline" | "list" | "tasks";
 
 export default function IntakeReferralsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("pipeline");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
+  const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [referrals, setReferrals] = useState<Referral[]>(initialReferrals);
+
+  const handleAddReferral = (newReferral: Referral) => {
+    setReferrals(prev => [newReferral, ...prev]);
+  };
+
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="max-w-full mx-auto space-y-6">
@@ -66,13 +89,45 @@ export default function IntakeReferralsPage() {
             </button>
           </div>
 
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_24px_rgba(14,163,131,0.25)] hover:shadow-lg cursor-pointer"
-          >
-            <Plus className="w-4 h-4" />
-            New Inquiry
-          </button>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 active:scale-95 transition-all text-white px-4 py-2.5 rounded-full text-sm font-medium shadow-[0_6px_24px_rgba(14,163,131,0.25)] hover:shadow-lg cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              New Intake
+            </button>
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] z-[60] py-1 overflow-hidden origin-top-right"
+                >
+                  <button
+                    onClick={() => {
+                      setIsInquiryModalOpen(true);
+                      setIsDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
+                  >
+                    New Inquiry
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsReferralModalOpen(true);
+                      setIsDropdownOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
+                  >
+                    New Referral
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
@@ -84,7 +139,7 @@ export default function IntakeReferralsPage() {
 
         {/* Row 2: Pipeline Board */}
         <motion.div variants={item}>
-          <PipelineBoard viewMode={viewMode} />
+          <PipelineBoard viewMode={viewMode} referrals={referrals} setReferrals={setReferrals} />
         </motion.div>
 
         {/* Row 3: Performance & Queue */}
@@ -99,9 +154,15 @@ export default function IntakeReferralsPage() {
         </motion.div>
       </motion.div>
 
+      <NewInquiryModal
+        isOpen={isInquiryModalOpen}
+        onClose={() => setIsInquiryModalOpen(false)}
+        onSubmit={handleAddReferral}
+      />
       <NewReferralModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isReferralModalOpen}
+        onClose={() => setIsReferralModalOpen(false)}
+        onSubmit={handleAddReferral}
       />
     </div>
   );

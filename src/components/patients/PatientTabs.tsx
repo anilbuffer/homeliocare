@@ -34,7 +34,7 @@ function PatientTabsContent({ patient }: { patient: Patient }) {
   const { currentUser } = useAuth();
 
   const tabs = currentUser?.role === "INTAKE_COORDINATOR"
-    ? allTabs.filter(t => ["overview", "billing", "assessments", "careplan"].includes(t.id))
+    ? allTabs.filter(t => ["overview", "documents", "billing", "communication"].includes(t.id))
     : currentUser?.role === "CLINICAL_SUPERVISOR_RN"
       ? allTabs.filter(t => t.id !== "billing")
       : allTabs;
