@@ -82,6 +82,8 @@ const getNavGroups = (role?: string) => {
           { name: "Schedule", icon: CalendarDays, id: "schedule" },
           { name: "Messages", icon: MessageSquare, id: "messages", badge: 1 },
           { name: "Training", icon: GraduationCap, id: "training", badge: 1 },
+          { name: "Incident Report", icon: ShieldAlert, id: "incidents" },
+          { name: "Daily Assessment", icon: CheckSquare, id: "assessments" },
           { name: "Profile", icon: User, id: "profile" },
         ],
       },
@@ -318,6 +320,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname === "/caregiver/messages" || pathname?.startsWith("/caregiver/messages")) return "messages";
     if (pathname === "/caregiver/training" || pathname?.startsWith("/caregiver/training")) return "training";
     if (pathname === "/caregiver/profile" || pathname?.startsWith("/caregiver/profile")) return "profile";
+    if (pathname?.startsWith("/caregiver/incidents")) return "incidents";
+    if (pathname?.startsWith("/caregiver/assessments")) return "assessments";
     if (pathname === "/caregiver" || pathname?.startsWith("/caregiver")) return "today";
 
     // hr
@@ -504,8 +508,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "evv-monitoring") href = "/evv-monitoring";
                   if (item.id === "qa") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/qa" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/qa" : "/quality-assurance";
                   if (item.id === "visits") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/visits" : "/field-supervisor/visits";
-                  if (item.id === "incidents") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/incidents" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/incidents" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/incidents" : "/incidents";
-                  if (item.id === "assessments") href = "/clinical/assessments";
+                  if (item.id === "incidents") href = safeUser?.role === "CAREGIVER" ? "/caregiver/incidents" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/incidents" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/incidents" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/incidents" : "/incidents";
+                  if (item.id === "assessments") href = safeUser?.role === "CAREGIVER" ? "/caregiver/assessments" : "/clinical/assessments";
                   if (item.id === "compliance") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/tracking" : safeUser?.role === "TRAINER" ? "/training-admin/compliance" : "/compliance";
                   if (item.id === "referrals") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/referrals" : "/referrals";
                   if (item.id === "communications") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/communications" : "/communications";
