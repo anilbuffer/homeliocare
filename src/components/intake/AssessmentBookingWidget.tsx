@@ -119,7 +119,7 @@ export function AssessmentBookingWidget() {
                     )}
                   </AnimatePresence>
 
-                  <div className="flex flex-col sm:flex-row gap-3 justify-between">
+                  <div className="flex flex-col 2xl:flex-row gap-3 justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
                         <span className="font-bold text-slate-900 text-sm">{a.time}</span>
@@ -138,7 +138,7 @@ export function AssessmentBookingWidget() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 mt-3 sm:mt-0 w-full sm:w-auto">
+                    <div className="flex flex-wrap items-center gap-2 mt-2 2xl:mt-0 w-full 2xl:w-auto">
                       <button 
                         onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(a.address)}`, '_blank')}
                         className="flex items-center justify-center bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 w-8 h-8 rounded-full transition-colors group relative shrink-0" 
@@ -146,8 +146,8 @@ export function AssessmentBookingWidget() {
                       >
                         <Map className="w-4 h-4" />
                       </button>
-                      <div className="relative group/reassign">
-                        <button className="flex items-center justify-center gap-1.5 bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-600 text-slate-600 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer w-full sm:w-auto">
+                      <div className="relative group/reassign flex-1 sm:flex-none min-w-[110px]">
+                        <button className="flex items-center justify-center gap-1.5 bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-600 text-slate-600 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer w-full">
                           <Users className="w-3.5 h-3.5" />
                           Reassign
                         </button>
@@ -167,7 +167,7 @@ export function AssessmentBookingWidget() {
                       <button
                         onClick={() => handleMarkComplete(a.id)}
                         disabled={isCompleting}
-                        className="flex items-center justify-center gap-1.5 bg-brand-teal hover:bg-brand-teal/90 text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-colors shadow-[0_4px_14px_rgba(14,163,131,0.2)] active:scale-95 cursor-pointer w-full sm:w-auto"
+                        className="flex items-center justify-center gap-1.5 bg-brand-teal hover:bg-brand-teal/90 text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-colors shadow-[0_4px_14px_rgba(14,163,131,0.2)] active:scale-95 cursor-pointer flex-1 sm:flex-none min-w-[110px]"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         Complete <ArrowRight className="w-3 h-3 ml-0.5" />
