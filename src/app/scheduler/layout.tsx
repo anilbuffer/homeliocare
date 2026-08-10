@@ -11,10 +11,10 @@ export default function SchedulerLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
 
   // Standalone tab for Caregiver Tracker
-  if (pathname === "/scheduler/tracker") {
+  if (pathname?.startsWith("/scheduler/tracker")) {
     return (
       <AuthGuard allowedRoles={["SCHEDULER", "ADMIN"]}>
-        <div className="h-screen w-screen overflow-hidden bg-page-bg font-sans">{children}</div>
+        <div className="h-screen w-full overflow-hidden bg-page-bg font-sans">{children}</div>
       </AuthGuard>
     );
   }

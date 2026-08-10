@@ -65,7 +65,7 @@ export default function SchedulerTrackerPage() {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-page-bg font-sans relative">
+    <div className="flex h-screen w-full overflow-hidden bg-page-bg font-sans relative">
       <IconRail />
 
       <CaregiverRoster
