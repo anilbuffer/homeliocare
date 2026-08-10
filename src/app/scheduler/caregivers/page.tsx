@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Filter, LayoutGrid, List, Star, ShieldAlert, ArrowRight, Phone, Mail, MapPin } from "lucide-react";
+import { Search, LayoutGrid, List, Star, Phone } from "lucide-react";
 import { mockCaregivers } from "@/lib/caregivers/mockData";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
@@ -11,6 +12,7 @@ import { Card } from "@/components/ui/Card";
 import { cn } from "@/components/ui/Card";
 
 export default function SchedulerCaregiversPage() {
+  const router = useRouter();
   const [viewMode, setViewMode] = useState<"grid" | "table">("table");
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -28,7 +30,7 @@ export default function SchedulerCaregiversPage() {
   return (
     <div className="w-full mx-auto space-y-6 animate-in fade-in duration-300">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3 lg:mb-4">
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold text-slate-900">Caregiver Roster</h1>
@@ -41,7 +43,6 @@ export default function SchedulerCaregiversPage() {
           </p>
         </div>
       </div>
-
       {/* Filter Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex flex-1 items-center gap-3 max-w-xl">
@@ -55,7 +56,6 @@ export default function SchedulerCaregiversPage() {
               className="w-full pl-9 pr-4 py-2.5 bg-white rounded-xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all"
             />
           </div>
-
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
@@ -111,12 +111,19 @@ export default function SchedulerCaregiversPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2, delay: index * 0.03 }}
               >
-                <Card className="h-full bg-white rounded-2xl p-4 border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-brand-teal/60 transition-all duration-300 relative flex flex-col">
+                <Card 
+                  onClick={() => router.push("/scheduler/caregivers/availability")}
+                  className="h-full bg-white rounded-2xl p-4 border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:border-brand-teal/60 transition-all duration-300 relative flex flex-col cursor-pointer"
+                >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <Avatar src={cg.avatarUrl} alt={cg.name} fallback={cg.name.substring(0, 2)} size="md" />
                       <div>
-                        <h3 className="font-bold text-slate-900">{cg.name}</h3>
+                        <h3 className="font-bold text-slate-900">
+                          <Link href="/scheduler/caregivers/availability" className="hover:text-brand-teal transition-colors">
+                            {cg.name}
+                          </Link>
+                        </h3>
                         <p className="text-xs text-slate-500">{cg.role}</p>
                       </div>
                     </div>
@@ -160,9 +167,13 @@ export default function SchedulerCaregiversPage() {
                   </div>
 
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <Phone className="w-3 h-3 text-brand-teal" /> Contact Dispatch
-                    </span>
+                    <a 
+                      href={`tel:${cg.phone?.replace(/[^0-9]/g, '')}`} 
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center gap-1 hover:text-brand-teal transition-colors cursor-pointer"
+                    >
+                      <Phone className="w-3 h-3 text-brand-teal" /> Contact
+                    </a>
                     <span className="font-semibold text-brand-teal">Available</span>
                   </div>
                 </Card>
@@ -192,12 +203,20 @@ export default function SchedulerCaregiversPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {caregiversList.map((cg) => (
-                    <tr key={cg.id} className="hover:bg-slate-50/80 transition-colors">
+                    <tr 
+                      key={cg.id} 
+                      className="hover:bg-slate-50/80 transition-colors cursor-pointer"
+                      onClick={() => router.push("/scheduler/caregivers/availability")}
+                    >
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           <Avatar src={cg.avatarUrl} alt={cg.name} fallback={cg.name.substring(0, 2)} size="sm" />
                           <div>
-                            <div className="font-bold text-slate-900">{cg.name}</div>
+                            <div className="font-bold text-slate-900">
+                              <Link href="/scheduler/caregivers/availability" className="hover:text-brand-teal transition-colors">
+                                {cg.name}
+                              </Link>
+                            </div>
                             <div className="text-[10px] text-slate-500">{cg.role}</div>
                           </div>
                         </div>

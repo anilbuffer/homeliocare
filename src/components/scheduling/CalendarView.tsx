@@ -3,6 +3,7 @@ import type { Shift, Caregiver } from "@/lib/scheduling/mockData";
 import { format, parseISO } from "date-fns";
 import { Card } from "@/components/ui/Card";
 import clsx from "clsx";
+import { AlertTriangle, Clock } from "lucide-react";
 
 interface CalendarViewProps {
   viewMode: "Day" | "Week" | "Month";
@@ -18,6 +19,37 @@ const MONTH_WEEKS = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
 export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: CalendarViewProps) {
   // We'll create a row for Unfilled shifts, and rows for each caregiver
   const unfilledShifts = shifts.filter(s => s.status === "Unfilled");
+
+  // Conflict Detection
+  const conflicts: string[] = [];
+  caregivers.forEach(cg => {
+    const cgShifts = shifts.filter(s => s.assignedCaregiverId === cg.id && s.status !== "Call-Off" && s.status !== "Unfilled");
+    let totalHours = 0; 
+    let hasOverlap = false;
+
+    cgShifts.forEach((s1, i) => {
+      try {
+        const start1 = parseISO(s1.startTime);
+        const end1 = parseISO(s1.endTime);
+        // Mock weekly hours by scaling daily hours
+        totalHours += ((end1.getTime() - start1.getTime()) / (1000 * 60 * 60)) * 5; 
+
+        cgShifts.forEach((s2, j) => {
+          if (i !== j) {
+            const start2 = parseISO(s2.startTime);
+            const end2 = parseISO(s2.endTime);
+            // Overlap check
+            if (start1 < end2 && start2 < end1) hasOverlap = true;
+          }
+        });
+      } catch (e) {
+        // ignore date parsing errors for mock data
+      }
+    });
+
+    if (hasOverlap) conflicts.push(`${cg.name} has overlapping scheduled shifts.`);
+    if (totalHours > 40) conflicts.push(`${cg.name} exceeds 40 hrs/week (${Math.round(totalHours)} hrs projected).`);
+  });
 
   const getShiftStyle = (shift: Shift) => {
     try {
@@ -75,8 +107,29 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
   };
 
   return (
-    <Card noPadding className="overflow-hidden border border-slate-200">
-      <div className="overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full">
+    <div className="space-y-3">
+      {/* Conflict Detection Banner */}
+      {conflicts.length > 0 && (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-3 shadow-sm animate-in fade-in">
+          <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+            <AlertTriangle className="w-4 h-4" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-amber-900">Scheduling Conflicts Detected</h4>
+            <ul className="mt-1 space-y-1">
+              {conflicts.map((conflict, i) => (
+                <li key={i} className="text-xs font-medium text-amber-700/90 flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-amber-400" />
+                  {conflict}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      <Card noPadding className="overflow-hidden border border-slate-200">
+        <div className="overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-slate-100 [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full">
         <div className="min-w-[850px] lg:min-w-[1000px]">
           {/* Header Row */}
           <div className="flex border-b border-slate-200 bg-slate-50/90">
@@ -174,26 +227,8 @@ export function CalendarView({ viewMode, shifts, caregivers, onShiftClick }: Cal
         </div>
       </div>
     </Card>
+    </div>
   );
 }
 
-// Clock icon helper
-function Clock(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-}
+// Clock icon helper (imported from lucide-react instead)

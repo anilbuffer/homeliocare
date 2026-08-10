@@ -13,13 +13,13 @@ interface VisitQueueProps {
   onAssign?: (caregiverId: string, visitId: string) => void;
   activeCaregiver?: Caregiver | null;
   onDragOverVisit?: (visitId: string | null) => void;
+  onCompareRoutes?: (visitId: string) => void;
   caregivers?: Caregiver[];
 }
 
-export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, activeCaregiver, onDragOverVisit, caregivers = [] }: VisitQueueProps) {
+export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, activeCaregiver, onDragOverVisit, onCompareRoutes, caregivers = [] }: VisitQueueProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState<"All" | "Assigned" | "Unassigned" | "Completed">("All");
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [filterStatus, setFilterStatus] = useState<"All" | "Unassigned" | "Assigned" | "Completed">("All");
   const [dragOverId, setDragOverId] = useState<string | null>(null);
 
   // Group visits (mocking a single "TODAY" group for simplicity)
@@ -70,24 +70,22 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
   };
 
   return (
-    <div
-      className={clsx(
-        "relative h-screen transition-all duration-300 shrink-0 z-30",
-        isCollapsed ? "w-0" : "w-[340px]"
-      )}
-    >
-      <div className="absolute inset-0 overflow-hidden bg-white border-l border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-        <div className="w-[340px] h-full flex flex-col">
+    <div className="relative w-full h-full transition-all duration-300 shrink-0 z-30">
+      <div className="absolute inset-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-lg overflow-hidden bg-white border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
+        <div className="w-full h-full flex flex-col">
           {/* Header */}
           <div className="p-3 border-b border-slate-100 shrink-0">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="text-base font-semibold text-slate-800">Visit Queue</h2>
-              <button className="text-slate-400 hover:text-slate-600">
-                <Filter className="w-4 h-4" />
-              </button>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Visits Queue</h2>
+              <div className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+                Filter: 
+                <button onClick={() => setFilterStatus("All")} className={clsx("px-1.5 py-0.5 rounded transition-colors", filterStatus === "All" ? "bg-slate-200 text-slate-800" : "text-slate-400 hover:text-slate-600")}>All ({counts.All})</button>
+                |
+                <button onClick={() => setFilterStatus("Unassigned")} className={clsx("px-1.5 py-0.5 rounded transition-colors", filterStatus === "Unassigned" ? "bg-red-100 text-red-700" : "text-slate-400 hover:text-slate-600")}>Unassigned ({counts.Unassigned})</button>
+              </div>
             </div>
 
-            <div className="relative mb-2">
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
@@ -97,36 +95,10 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
                 className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
               />
             </div>
-
-            {/* Status Tabs */}
-            <div className="flex gap-1 overflow-x-auto pb-1 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
-              {(["All", "Assigned", "Unassigned", "Completed"] as const).map((tab) => {
-                const isActive = filterStatus === tab;
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => setFilterStatus(tab)}
-                    className={clsx(
-                      "flex-shrink-0 relative flex items-center gap-1.5 px-2 py-1 text-[11px] font-medium rounded-full transition-colors z-10",
-                      isActive ? "text-white" : "text-slate-600 bg-slate-50 border border-slate-200 hover:bg-slate-100"
-                    )}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="queue-tab"
-                        className="absolute inset-0 bg-brand-teal rounded-full -z-10 shadow-[0_6px_32px_rgba(0,0,0,0.06)]"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
-                    {tab} <span className={clsx("px-1.5 py-0.5 rounded-full text-[10px]", isActive ? "bg-white/20 text-white" : "bg-white text-slate-500 border border-slate-200")}>{counts[tab]}</span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
           {/* Timeline */}
-          <div className="flex-1 overflow-y-auto p-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div className="flex-1 overflow-y-auto p-2 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300">
             <div className="text-[11px] font-semibold text-slate-400 tracking-wider mb-2 pl-6">TODAY</div>
 
             <div className="relative">
@@ -214,6 +186,42 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
                         </div>
 
                         {(() => {
+                          if (v.status === "Unassigned") {
+                            return (
+                              <div className="mt-2 flex flex-col gap-1 mb-2">
+                                <div className="text-[10px] font-semibold text-slate-600 flex items-center justify-between gap-1">
+                                  <div className="flex items-center gap-1">
+                                    <span className="text-yellow-500">⚡</span> AI Match Suggestions
+                                  </div>
+                                  {onCompareRoutes && (
+                                    <button 
+                                      onClick={(e) => { e.stopPropagation(); onCompareRoutes(v.id); }}
+                                      className="text-brand-teal hover:text-teal-700 bg-teal-50 hover:bg-teal-100 px-1.5 py-0.5 rounded transition-colors flex items-center gap-1"
+                                    >
+                                      ⚖️ Compare
+                                    </button>
+                                  )}
+                                </div>
+                                <div className="bg-slate-50 rounded border border-slate-200 divide-y divide-slate-100 text-[10px] overflow-hidden">
+                                  <div className="p-1.5 flex justify-between items-center hover:bg-emerald-50 cursor-pointer transition-colors group" onClick={() => onAssign?.('c1', v.id)}>
+                                    <div className="flex flex-col">
+                                      <span className="font-semibold text-slate-700 group-hover:text-emerald-700">Priya Patel (RN)</span>
+                                      <span className="text-slate-500 text-[9px]">+0.8 mi detour, 98% skill match</span>
+                                    </div>
+                                    <span className="text-emerald-600 font-semibold text-[9px] bg-emerald-100/50 px-1.5 py-0.5 rounded border border-emerald-200">Best Fit</span>
+                                  </div>
+                                  <div className="p-1.5 flex justify-between items-center hover:bg-amber-50 cursor-pointer transition-colors group" onClick={() => onAssign?.('c2', v.id)}>
+                                    <div className="flex flex-col">
+                                      <span className="font-semibold text-slate-700 group-hover:text-amber-700">Maria Santos (CNA)</span>
+                                      <span className="text-slate-500 text-[9px]">+3.2 mi detour, overtime warning</span>
+                                    </div>
+                                    <span className="text-amber-600 font-semibold text-[9px] bg-amber-100/50 px-1.5 py-0.5 rounded border border-amber-200">Warn</span>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
+
                           const assignedCaregiver = v.caregiverId ? caregivers.find(c => c.id === v.caregiverId) : null;
                           const distInfo = getDistanceInfo(v, assignedCaregiver);
 
@@ -251,13 +259,6 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
         </div>
       </div>
 
-      {/* Collapse Toggle */}
-      <button
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute top-1/2 -translate-y-1/2 -left-3 bg-white border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] rounded-full w-6 h-6 flex items-center justify-center text-slate-500 hover:text-brand-teal transition-colors z-50"
-      >
-        {isCollapsed ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-      </button>
     </div>
   );
 }

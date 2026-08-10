@@ -166,8 +166,8 @@ export function PartnerSidebar({ isOpen = false, onClose }: PartnerSidebarProps)
                       isActive ? "text-white font-semibold" : "text-slate-300 hover:text-white hover:bg-sidebar-active/60"
                     )}
                   >
-                    <div className={clsx("flex items-center gap-3", isCollapsed && "justify-center w-full")}>
-                      <Icon className="w-5 h-5 shrink-0" />
+                    <div className={clsx("flex items-center gap-2", isCollapsed && "justify-center w-full")}>
+                      <Icon className="w-4 h-4 shrink-0" />
                       {!isCollapsed && <span className="truncate">{item.name}</span>}
                     </div>
                   </Link>

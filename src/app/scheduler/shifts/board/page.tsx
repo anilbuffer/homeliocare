@@ -2,9 +2,8 @@
 
 import React, { useState } from "react";
 import { Header } from "@/components/scheduling/Header";
-import { FilterBar, type LayoutMode } from "@/components/scheduling/FilterBar";
+import { FilterBar } from "@/components/scheduling/FilterBar";
 import { UrgencyStrip } from "@/components/scheduling/UrgencyStrip";
-import { CalendarView } from "@/components/scheduling/CalendarView";
 import { BoardView } from "@/components/scheduling/BoardView";
 import { ShiftModal } from "@/components/scheduling/ShiftModal";
 import { CreateShiftModal } from "@/components/scheduling/CreateShiftModal";
@@ -15,9 +14,8 @@ import {
   type ShiftStatus,
 } from "@/lib/scheduling/mockData";
 
-export default function SchedulerBoardPage() {
+export default function ScheduledShiftsBoardPage() {
   const [viewMode, setViewMode] = useState<"Day" | "Week" | "Month">("Day");
-  const [layoutMode, setLayoutMode] = useState<LayoutMode>("Calendar");
   const [activeFilter, setActiveFilter] = useState("All Shifts");
 
   const [caregiverFilter, setCaregiverFilter] = useState("");
@@ -99,8 +97,6 @@ export default function SchedulerBoardPage() {
       <UrgencyStrip />
 
       <FilterBar
-        layoutMode={layoutMode}
-        setLayoutMode={setLayoutMode}
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
         caregiverFilter={caregiverFilter}
@@ -115,20 +111,11 @@ export default function SchedulerBoardPage() {
       />
 
       <div className="mt-4">
-        {layoutMode === "Calendar" ? (
-          <CalendarView
-            viewMode={viewMode}
-            shifts={filteredShifts}
-            caregivers={mockCaregivers}
-            onShiftClick={(shift) => setSelectedShiftId(shift.id)}
-          />
-        ) : (
-          <BoardView
-            shifts={filteredShifts}
-            onShiftClick={(shift) => setSelectedShiftId(shift.id)}
-            onShiftStatusChange={handleShiftStatusChange}
-          />
-        )}
+        <BoardView
+          shifts={filteredShifts}
+          onShiftClick={(shift) => setSelectedShiftId(shift.id)}
+          onShiftStatusChange={handleShiftStatusChange}
+        />
       </div>
 
       <ShiftModal

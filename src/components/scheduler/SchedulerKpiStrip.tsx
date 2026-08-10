@@ -9,6 +9,8 @@ import {
   CheckCircle2,
   Timer,
   Users,
+  MapPin,
+  Activity,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -41,9 +43,10 @@ export function SchedulerKpiStrip({
   confirmedCount = 18,
   avgFillTimeMins = 24,
   availabilityGapsCount = 5,
-}: SchedulerKpiStripProps) {
+  evvCompliancePercent = 94,
+}: SchedulerKpiStripProps & { evvCompliancePercent?: number }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3.5 mb-5 sm:mb-6">
+    <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-7 gap-2.5 sm:gap-3.5 mb-5 sm:mb-6">
       {/* 1. Unfilled Shifts - Priority Card */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
@@ -131,6 +134,52 @@ export function SchedulerKpiStrip({
           <span className="text-[10px] text-emerald-600 font-medium truncate">Covered</span>
         </div>
         <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 truncate">86% shift fill rate</p>
+      </motion.div>
+
+      {/* NEW: EVV Compliance Risk Gauge */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.18 }}
+        className="col-span-2 sm:col-span-1 bg-white border border-slate-200/90 rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all"
+      >
+        <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+          <span className="text-[10px] sm:text-[11px] font-bold text-slate-700 uppercase tracking-wider truncate pr-1">
+            EVV Compliance
+          </span>
+          <div className={clsx(
+            "w-7 h-7 rounded-lg flex items-center justify-center shrink-0",
+            evvCompliancePercent >= 95 ? "bg-emerald-100 text-emerald-600" : "bg-rose-100 text-rose-600"
+          )}>
+            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          </div>
+        </div>
+        <div className="flex items-baseline gap-1 sm:gap-1.5">
+          <Counter value={evvCompliancePercent} className={clsx(
+            "text-xl font-bold",
+            evvCompliancePercent >= 95 ? "text-emerald-600" : "text-rose-600"
+          )} />
+          <span className={clsx(
+            "text-[10px] font-bold",
+            evvCompliancePercent >= 95 ? "text-emerald-600" : "text-rose-600"
+          )}>%</span>
+        </div>
+        <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1 truncate">
+          {evvCompliancePercent >= 95 ? "On target (≥95%)" : "Risk of billing hold"}
+        </p>
+        
+        {/* Progress Bar Gauge */}
+        <div className="w-full h-1.5 bg-slate-100 rounded-full mt-2.5 overflow-hidden">
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: `${evvCompliancePercent}%` }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className={clsx(
+              "h-full rounded-full",
+              evvCompliancePercent >= 95 ? "bg-emerald-500" : "bg-rose-500"
+            )}
+          />
+        </div>
       </motion.div>
 
       {/* 5. Avg. Fill Time */}

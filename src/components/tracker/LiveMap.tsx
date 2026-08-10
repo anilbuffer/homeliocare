@@ -84,7 +84,7 @@ export function LiveMap({
   };
 
   return (
-    <div className="flex-1 h-screen relative bg-[#0b0f19] overflow-hidden flex flex-col items-center justify-center">
+    <div className="flex-1 h-full relative bg-[#0b0f19] overflow-hidden flex flex-col items-center justify-center">
       {/* 1. Deep Charcoal/Midnight Palette & Map Base */}
       <div
         className="absolute inset-0 pointer-events-none"

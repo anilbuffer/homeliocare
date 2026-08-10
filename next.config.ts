@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Enables static export for cPanel static hosting
-  // output: "export",
+  output: "export",
   
   // Since we are deploying to a subdomain (homeliocare.creativebuffer.com),
   // the app is served at the root (/). We do not need a basePath.

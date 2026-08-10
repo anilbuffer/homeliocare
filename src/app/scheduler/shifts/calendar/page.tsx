@@ -2,10 +2,9 @@
 
 import React, { useState } from "react";
 import { Header } from "@/components/scheduling/Header";
-import { FilterBar, type LayoutMode } from "@/components/scheduling/FilterBar";
+import { FilterBar } from "@/components/scheduling/FilterBar";
 import { UrgencyStrip } from "@/components/scheduling/UrgencyStrip";
 import { CalendarView } from "@/components/scheduling/CalendarView";
-import { BoardView } from "@/components/scheduling/BoardView";
 import { ShiftModal } from "@/components/scheduling/ShiftModal";
 import { CreateShiftModal } from "@/components/scheduling/CreateShiftModal";
 import {
@@ -15,9 +14,8 @@ import {
   type ShiftStatus,
 } from "@/lib/scheduling/mockData";
 
-export default function SchedulingPage() {
+export default function ScheduledShiftsCalendarPage() {
   const [viewMode, setViewMode] = useState<"Day" | "Week" | "Month">("Day");
-  const [layoutMode, setLayoutMode] = useState<LayoutMode>("Calendar");
   const [activeFilter, setActiveFilter] = useState("All Shifts");
 
   const [caregiverFilter, setCaregiverFilter] = useState("");
@@ -34,7 +32,6 @@ export default function SchedulingPage() {
     setShifts((prev) =>
       prev.map((shift) => {
         if (shift.id === shiftId) {
-          // If changing back to unfilled, remove assignment
           if (newStatus === "Unfilled") {
             return { ...shift, status: newStatus, assignedCaregiverId: null, assignedCaregiverName: undefined };
           }
@@ -46,7 +43,7 @@ export default function SchedulingPage() {
   };
 
   const handleAssignCaregiver = (shiftId: string, caregiverId: string) => {
-    const cg = mockCaregivers.find(c => c.id === caregiverId);
+    const cg = mockCaregivers.find((c) => c.id === caregiverId);
     if (!cg) return;
 
     setShifts((prev) =>
@@ -68,20 +65,15 @@ export default function SchedulingPage() {
   };
 
   const selectedShift = shifts.find((s) => s.id === selectedShiftId) || null;
-
-  // Basic recommendation logic: just sort caregivers by rating for the demo
   const suggestedCaregivers = [...mockCaregivers].sort((a, b) => b.rating - a.rating).slice(0, 3);
 
-  // Filter shifts based on active filter and dropdowns
-  const filteredShifts = shifts.filter(s => {
-    // 1. Status Pill Filter
+  const filteredShifts = shifts.filter((s) => {
     if (activeFilter === "Call-Offs") {
       if (s.status !== "Call-Off") return false;
     } else if (activeFilter !== "All Shifts") {
       if (s.status !== activeFilter) return false;
     }
 
-    // 2. Dropdown Filters
     if (caregiverFilter && s.assignedCaregiverName !== caregiverFilter) return false;
     if (patientFilter && s.patientName !== patientFilter) return false;
     if (regionFilter && s.region !== regionFilter) return false;
@@ -89,9 +81,9 @@ export default function SchedulingPage() {
     return true;
   });
 
-  const uniqueCaregivers = Array.from(new Set(shifts.map(s => s.assignedCaregiverName).filter(Boolean))) as string[];
-  const uniquePatients = Array.from(new Set(shifts.map(s => s.patientName).filter(Boolean)));
-  const uniqueRegions = Array.from(new Set(shifts.map(s => s.region).filter(Boolean)));
+  const uniqueCaregivers = Array.from(new Set(shifts.map((s) => s.assignedCaregiverName).filter(Boolean))) as string[];
+  const uniquePatients = Array.from(new Set(shifts.map((s) => s.patientName).filter(Boolean)));
+  const uniqueRegions = Array.from(new Set(shifts.map((s) => s.region).filter(Boolean)));
 
   return (
     <div className="w-full animate-in fade-in duration-500">
@@ -119,20 +111,12 @@ export default function SchedulingPage() {
       />
 
       <div className="mt-4">
-        {layoutMode === "Calendar" ? (
-          <CalendarView
-            viewMode={viewMode}
-            shifts={filteredShifts}
-            caregivers={mockCaregivers}
-            onShiftClick={(shift) => setSelectedShiftId(shift.id)}
-          />
-        ) : (
-          <BoardView
-            shifts={filteredShifts}
-            onShiftClick={(shift) => setSelectedShiftId(shift.id)}
-            onShiftStatusChange={handleShiftStatusChange}
-          />
-        )}
+        <CalendarView
+          viewMode={viewMode}
+          shifts={filteredShifts}
+          caregivers={mockCaregivers}
+          onShiftClick={(shift) => setSelectedShiftId(shift.id)}
+        />
       </div>
 
       <ShiftModal

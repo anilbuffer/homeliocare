@@ -1,12 +1,11 @@
 import React from "react";
 import { Calendar, LayoutDashboard, ChevronDown, Filter } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
 import clsx from "clsx";
 
-export type LayoutMode = "Calendar" | "Board";
+export type LayoutMode = "Calendar" | "Board" | "List";
 
 interface FilterBarProps {
-  layoutMode: LayoutMode;
-  setLayoutMode: (mode: LayoutMode) => void;
   activeFilter: string;
   setActiveFilter: (filter: string) => void;
   caregiverFilter: string;
@@ -30,8 +29,6 @@ const SHIFT_FILTERS = [
 ];
 
 export function FilterBar({
-  layoutMode,
-  setLayoutMode,
   activeFilter,
   setActiveFilter,
   caregiverFilter,
@@ -44,6 +41,18 @@ export function FilterBar({
   uniquePatients,
   uniqueRegions,
 }: FilterBarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Determine current active mode from URL
+  const isCalendar = pathname.includes("/calendar");
+  const isBoard = pathname.includes("/board");
+  const isList = !isCalendar && !isBoard; // default to list if neither
+
+  const switchMode = (modePath: string) => {
+    router.push(`/scheduler/shifts/${modePath}`);
+  };
+
   return (
     <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.04)] mb-4 space-y-3">
       {/* Top row: Horizontal Filter Pills & Layout View Toggle */}
@@ -70,10 +79,22 @@ export function FilterBar({
         <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 border-t md:border-t-0 pt-2 md:pt-0 border-slate-100">
           <div className="flex items-center p-1 bg-slate-100/80 rounded-xl border border-slate-200/60 w-full sm:w-auto min-h-[32px]">
             <button
-              onClick={() => setLayoutMode("Calendar")}
+              onClick={() => switchMode("list")}
               className={clsx(
                 "flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all min-h-[34px]",
-                layoutMode === "Calendar"
+                isList
+                  ? "bg-white text-brand-teal shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+                  : "text-slate-500 hover:text-slate-800"
+              )}
+            >
+              <Filter className="w-3.5 h-3.5" />
+              <span>List</span>
+            </button>
+            <button
+              onClick={() => switchMode("calendar")}
+              className={clsx(
+                "flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all min-h-[34px]",
+                isCalendar
                   ? "bg-white text-brand-teal shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
                   : "text-slate-500 hover:text-slate-800"
               )}
@@ -82,10 +103,10 @@ export function FilterBar({
               <span>Calendar</span>
             </button>
             <button
-              onClick={() => setLayoutMode("Board")}
+              onClick={() => switchMode("board")}
               className={clsx(
                 "flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all min-h-[34px]",
-                layoutMode === "Board"
+                isBoard
                   ? "bg-white text-brand-teal shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
                   : "text-slate-500 hover:text-slate-800"
               )}

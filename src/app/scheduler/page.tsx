@@ -27,13 +27,17 @@ const defaultUnfilledShifts: UnfilledShiftItem[] = [
         rating: 4.9,
         distanceMiles: 1.8,
         matchingSkills: ["HHA", "Dementia"],
+        matchScore: 94,
+        overtimeRisk: false,
       },
       {
         id: "c1",
-        name: "Mabel Ortiz",
+        name: "Elena Rostova",
         rating: 4.8,
         distanceMiles: 2.1,
         matchingSkills: ["HHA", "Hoyer"],
+        matchScore: 88,
+        overtimeRisk: true,
       },
       {
         id: "c7",
@@ -41,6 +45,8 @@ const defaultUnfilledShifts: UnfilledShiftItem[] = [
         rating: 4.8,
         distanceMiles: 2.5,
         matchingSkills: ["HHA", "Dementia"],
+        matchScore: 82,
+        overtimeRisk: false,
       },
     ],
   },
@@ -55,10 +61,12 @@ const defaultUnfilledShifts: UnfilledShiftItem[] = [
     suggestedCaregivers: [
       {
         id: "c2",
-        name: "George Patel",
+        name: "David Miller",
         rating: 4.5,
         distanceMiles: 1.5,
         matchingSkills: ["CNA"],
+        matchScore: 91,
+        overtimeRisk: false,
       },
       {
         id: "c8",
@@ -66,6 +74,8 @@ const defaultUnfilledShifts: UnfilledShiftItem[] = [
         rating: 4.7,
         distanceMiles: 1.9,
         matchingSkills: ["CNA"],
+        matchScore: 85,
+        overtimeRisk: false,
       },
     ],
   },
@@ -84,6 +94,8 @@ const defaultUnfilledShifts: UnfilledShiftItem[] = [
         rating: 4.6,
         distanceMiles: 2.2,
         matchingSkills: ["CNA", "Diabetes"],
+        matchScore: 89,
+        overtimeRisk: true,
       },
       {
         id: "c4",
@@ -91,6 +103,8 @@ const defaultUnfilledShifts: UnfilledShiftItem[] = [
         rating: 4.7,
         distanceMiles: 4.2,
         matchingSkills: ["CNA", "Diabetes"],
+        matchScore: 76,
+        overtimeRisk: false,
       },
     ],
   },
@@ -130,8 +144,8 @@ export default function SchedulerDashboardPage() {
       unfilledDuration: "Just created",
       region: newShift.region || "General",
       suggestedCaregivers: [
-        { id: "c3", name: "Maria Alvarez", rating: 4.9, distanceMiles: 1.8, matchingSkills: ["HHA", "Dementia"] },
-        { id: "c8", name: "Robert Chen", rating: 4.7, distanceMiles: 2.1, matchingSkills: ["CNA"] },
+        { id: "c3", name: "Maria Alvarez", rating: 4.9, distanceMiles: 1.8, matchingSkills: ["HHA", "Dementia"], matchScore: 92, overtimeRisk: false },
+        { id: "c8", name: "Robert Chen", rating: 4.7, distanceMiles: 2.1, matchingSkills: ["CNA"], matchScore: 88, overtimeRisk: true },
       ],
     };
 
@@ -140,12 +154,12 @@ export default function SchedulerDashboardPage() {
   };
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto animate-in fade-in duration-500 relative">
+    <div className="w-full animate-in fade-in duration-500 relative">
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 sm:mb-6">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-xl font-extrabold text-slate-900 tracking-tight">
               Good morning, Alex 👋
             </h1>
             <span className="bg-brand-teal/10 text-brand-teal text-xs font-bold px-2.5 py-1 rounded-full border border-brand-teal/20 shrink-0">

@@ -30,6 +30,8 @@ export interface UnfilledShiftItem {
     rating: number;
     distanceMiles: number;
     matchingSkills: string[];
+    matchScore?: number;
+    overtimeRisk?: boolean;
   }[];
 }
 
@@ -171,28 +173,55 @@ export function UnfilledShiftsQueue({ shifts: initialShifts, onAssign }: Unfille
                         {shift.suggestedCaregivers.slice(0, 2).map((cg) => (
                           <div
                             key={cg.id}
-                            className="bg-white border border-slate-200/90 rounded-xl p-2.5 flex items-center justify-between hover:border-brand-teal/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all"
+                            className={clsx(
+                              "border rounded-xl p-2.5 flex items-center justify-between transition-all",
+                              cg.overtimeRisk 
+                                ? "bg-amber-50/30 border-amber-200 hover:border-amber-300 hover:shadow-sm"
+                                : "bg-white border-slate-200/90 hover:border-brand-teal/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+                            )}
                           >
                             <div className="flex items-center gap-2 min-w-0 pr-1">
                               <div className="w-8 h-8 rounded-full bg-slate-700 text-white font-bold text-xs flex items-center justify-center shrink-0">
                                 {cg.name.split(" ").map((n) => n[0]).join("")}
                               </div>
-                              <div className="min-w-0">
-                                <div className="text-xs font-bold text-slate-800 truncate">{cg.name}</div>
-                                <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-slate-500">
+                              <div className="min-w-0 relative group">
+                                <div className="text-xs font-bold text-slate-800 truncate flex items-center gap-1">
+                                  {cg.name}
+                                  {cg.matchScore && cg.matchScore > 90 && (
+                                    <span className="text-[9px] bg-brand-teal/10 text-brand-teal px-1 rounded-sm uppercase tracking-wider hidden xs:inline-block">Best Match</span>
+                                  )}
+                                </div>
+                                <div className="flex items-center flex-wrap gap-1 text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
+                                  {cg.matchScore && (
+                                    <span 
+                                      className="flex items-center text-emerald-600 font-bold"
+                                      title="Close by, skill match, no OT risk"
+                                    >
+                                      {cg.matchScore}%
+                                    </span>
+                                  )}
+                                  {cg.matchScore && <span className="text-slate-300">•</span>}
                                   <span className="flex items-center text-amber-500 font-semibold">
                                     <Star className="w-3 h-3 fill-amber-400 text-amber-400 inline mr-0.5" />
                                     {cg.rating}
                                   </span>
-                                  <span>•</span>
-                                  <span className="truncate">{cg.distanceMiles} mi away</span>
+                                  <span className="text-slate-300">•</span>
+                                  <span className="truncate">{cg.distanceMiles} mi</span>
                                 </div>
+                                {cg.overtimeRisk && (
+                                  <div className="text-[10px] font-bold text-amber-600 flex items-center gap-1 mt-0.5">
+                                    <AlertCircle className="w-3 h-3" /> Overtime Risk / Fatigue
+                                  </div>
+                                )}
                               </div>
                             </div>
 
                             <button
                               onClick={() => handleAssignCaregiver(shift.id, cg.id, cg.name)}
-                              className="ml-1.5 px-3 sm:px-3.5 py-2 min-h-[36px] rounded-xl bg-brand-teal hover:bg-teal-600 text-white text-xs font-bold shadow-xs hover:shadow active:scale-95 transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1"
+                              className={clsx(
+                                "ml-1.5 px-3 sm:px-3.5 py-2 min-h-[36px] rounded-xl text-white text-xs font-bold shadow-xs active:scale-95 transition-all shrink-0 cursor-pointer flex items-center justify-center gap-1",
+                                cg.overtimeRisk ? "bg-amber-500 hover:bg-amber-600 shadow-amber-500/20" : "bg-brand-teal hover:bg-teal-600 hover:shadow-brand-teal/20"
+                              )}
                               aria-label={`Assign ${cg.name} to ${shift.patientName}`}
                             >
                               <UserCheck className="w-3.5 h-3.5 shrink-0" />

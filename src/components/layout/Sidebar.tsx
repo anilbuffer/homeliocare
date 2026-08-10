@@ -25,6 +25,12 @@ import {
   PanelLeftOpen,
   FileText,
   UserPlus,
+  MapPin,
+  ListTodo,
+  Repeat,
+  List,
+  Clock,
+  UserCheck,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -101,11 +107,41 @@ const getNavGroups = (role?: string) => {
   if (role === "SCHEDULER") {
     return [
       {
-        label: "Dispatch & Scheduling",
+        label: "Workspace",
         items: [
           { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
-          { name: "Scheduling & Shift Board", icon: CalendarDays, id: "board" },
-          { name: "Caregivers", icon: HeartHandshake, id: "caregivers" },
+        ],
+      },
+      {
+        label: "Scheduling & Shifts",
+        items: [
+          { name: "Scheduled Shifts", icon: ListTodo, id: "scheduled-shifts" },
+          { name: "Recurring Patterns", icon: Repeat, id: "recurring-patterns" },
+        ],
+      },
+      {
+        label: "Route Planner & Dispatch",
+        items: [
+          { name: "Route Planner", icon: MapPin, id: "route-optimizer" },
+          { name: "Visit List", icon: List, id: "visit-list" },
+        ],
+      },
+      {
+        label: "Caregiver Directory",
+        items: [
+          { name: "Caregiver Roster", icon: HeartHandshake, id: "caregivers" },
+          { name: "Availability & Time-Off", icon: Clock, id: "availability" },
+        ],
+      },
+      {
+        label: "Patients & Census",
+        items: [
+          { name: "Patient List & Care Plans", icon: Users, id: "patients" },
+        ],
+      },
+      {
+        label: "Communications",
+        items: [
           { name: "Messages", icon: MessageSquare, id: "messages" },
         ],
       },
@@ -293,11 +329,15 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/hr/dashboard") || pathname === "/hr") return "dashboard";
 
     // scheduler
-    if (pathname === "/scheduler/board") return "board";
-    if (pathname === "/scheduler/tracker") return "tracker";
-    if (pathname === "/scheduler/caregivers") return "caregivers";
-    if (pathname === "/scheduler/messages") return "messages";
-    if (pathname?.startsWith("/scheduler")) return "dashboard";
+    if (pathname?.startsWith("/scheduler/shifts") && !pathname?.startsWith("/scheduler/shifts/recurring")) return "scheduled-shifts";
+    if (pathname?.startsWith("/scheduler/shifts/recurring")) return "recurring-patterns";
+    if (pathname?.startsWith("/scheduler/dispatch/optimizer")) return "route-optimizer";
+    if (pathname?.startsWith("/scheduler/dispatch/visits")) return "visit-list";
+    if (pathname?.startsWith("/scheduler/caregivers/availability")) return "availability";
+    if (pathname?.startsWith("/scheduler/caregivers")) return "caregivers";
+    if (pathname?.startsWith("/scheduler/patients/list")) return "patients";
+    if (pathname?.startsWith("/scheduler/messages")) return "messages";
+    if (pathname === "/scheduler" || pathname === "/scheduler/") return "dashboard";
 
     // trainer
     if (pathname?.startsWith("/training-admin/courses/builder")) return "course-builder";
@@ -459,7 +499,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "reports") href = safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing/reports" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/reports" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/reports" : "/reports";
                   if (item.id === "messages") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/messages" : safeUser?.role === "CAREGIVER" ? "/caregiver/messages" : safeUser?.role === "HR" ? "/hr/messages" : safeUser?.role === "SCHEDULER" ? "/scheduler/messages" : safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/messages" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/messages" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/messages" : safeUser?.role === "TRAINER" ? "/training-admin/messages" : "/billing/messages";
                   if (item.id === "scheduling") href = safeUser?.role === "CLIENT" || safeUser?.role === "FAMILY" ? "/portal/schedule" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/scheduling" : "/scheduling";
-                  if (item.id === "patients") href = safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/patients" : "/patients";
+                  if (item.id === "patients") href = safeUser?.role === "SCHEDULER" ? "/scheduler/patients/list" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/patients" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/patients" : "/patients";
                   if (item.id === "caregivers") href = safeUser?.role === "HR" ? "/hr/caregivers" : safeUser?.role === "SCHEDULER" ? "/scheduler/caregivers" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor/caregivers" : "/caregivers";
                   if (item.id === "evv-monitoring") href = "/evv-monitoring";
                   if (item.id === "qa") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance/qa" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical/qa" : "/quality-assurance";
@@ -478,7 +518,11 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                   if (item.id === "schedule") href = "/caregiver/schedule";
                   if (item.id === "profile") href = "/caregiver/profile";
                   if (item.id === "recruiting") href = "/hr/recruiting";
-                  if (item.id === "board") href = "/scheduler/board";
+                  if (item.id === "scheduled-shifts") href = "/scheduler/shifts/list";
+                  if (item.id === "recurring-patterns") href = "/scheduler/shifts/recurring";
+                  if (item.id === "route-optimizer") href = "/scheduler/dispatch/optimizer";
+                  if (item.id === "visit-list") href = "/scheduler/dispatch/visits";
+                  if (item.id === "availability") href = "/scheduler/caregivers/availability";
                   if (item.id === "course-builder") href = "/training-admin/courses/builder";
                   if (item.id === "courses") href = "/training-admin/courses";
                   if (item.id === "quizzes") href = "/training-admin/quizzes";
@@ -505,8 +549,8 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
                           isActive ? "text-white font-semibold" : "text-slate-300 hover:text-white hover:bg-sidebar-active/60"
                         )}
                       >
-                        <div className={clsx("flex items-center gap-3", isCollapsed && "justify-center w-full")}>
-                          <Icon className="w-5 h-5 shrink-0" />
+                        <div className={clsx("flex items-center gap-2", isCollapsed && "justify-center w-full")}>
+                          <Icon className="w-4 h-4 shrink-0" />
                           {!isCollapsed && <span className="truncate">{item.name}</span>}
                         </div>
                         {/* Badge */}
