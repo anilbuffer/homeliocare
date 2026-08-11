@@ -314,7 +314,7 @@ export function ComprehensiveCarePlanForm({
                       )
                     })}
                   </div>
-                  <button type="button" onClick={() => setAdlsList([...adlsList, `Custom ADL ${adlsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setAdlsList([...adlsList, `Custom ADL ${adlsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add ADL
                   </button>
                 </SectionWrapper>
@@ -337,7 +337,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setIadlsList([...iadlsList, `Custom IADL ${iadlsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setIadlsList([...iadlsList, `Custom IADL ${iadlsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add IADL
                   </button>
                   <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3">Assistive Devices / Equipment</h4>
@@ -377,7 +377,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setNutritionAreas([...nutritionAreas, `Custom Area ${nutritionAreas.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setNutritionAreas([...nutritionAreas, `Custom Area ${nutritionAreas.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add entry
                   </button>
                 </SectionWrapper>
@@ -420,7 +420,7 @@ export function ComprehensiveCarePlanForm({
                       )
                     })}
                   </div>
-                  <button type="button" onClick={() => setSafetyRisks([...safetyRisks, `Custom Risk ${safetyRisks.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setSafetyRisks([...safetyRisks, `Custom Risk ${safetyRisks.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add risk
                   </button>
                   <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3">Safety Equipment / Environmental Needs</h4>
@@ -447,7 +447,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setNeedsList([...needsList, needsList.length + 1])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setNeedsList([...needsList, needsList.length + 1])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add care need
                   </button>
                 </SectionWrapper>
@@ -475,7 +475,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setGoalsList([...goalsList, `G${goalsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setGoalsList([...goalsList, `G${goalsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add goal
                   </button>
                 </SectionWrapper>
@@ -497,7 +497,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setInterventionsList([...interventionsList, `Custom Intervention ${interventionsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setInterventionsList([...interventionsList, `Custom Intervention ${interventionsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add intervention
                   </button>
                 </SectionWrapper>
@@ -516,7 +516,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setCaregiverInstructions([...caregiverInstructions, `Custom Instruction ${caregiverInstructions.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setCaregiverInstructions([...caregiverInstructions, `Custom Instruction ${caregiverInstructions.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add instruction
                   </button>
                 </SectionWrapper>
@@ -534,7 +534,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setTeamRoles([...teamRoles, `Custom Role ${teamRoles.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setTeamRoles([...teamRoles, `Custom Role ${teamRoles.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add team member
                   </button>
                   <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3">Appointments & Follow-up</h4>
@@ -553,7 +553,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setScheduleTimes([...scheduleTimes, `Custom Time ${scheduleTimes.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setScheduleTimes([...scheduleTimes, `Custom Time ${scheduleTimes.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add schedule entry
                   </button>
                 </SectionWrapper>
@@ -583,7 +583,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setOutcomeAreas([...outcomeAreas, `Custom Area ${outcomeAreas.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setOutcomeAreas([...outcomeAreas, `Custom Area ${outcomeAreas.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add summary entry
                   </button>
                 </SectionWrapper>
@@ -600,7 +600,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setPreferencesList([...preferencesList, `Custom Preference ${preferencesList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setPreferencesList([...preferencesList, `Custom Preference ${preferencesList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add preference
                   </button>
                   <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3">Education & Training Provided</h4>
@@ -616,8 +616,8 @@ export function ComprehensiveCarePlanForm({
                   </h4>
                   <TableInput columns={["Warning Sign / Situation", "Immediate Action", "Notify", "Urgency", "Documentation"]} rows={3} addLabel="warning" />
 
-                  <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3 border-t pt-6">Final Care Summary</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2">
+                  <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3 border-t border-slate-200 pt-6">Final Care Summary</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <TextAreaField label="Overall Status" />
                     <TextAreaField label="Primary Care Needs" />
                     <TextAreaField label="Highest-Priority Risks" />
@@ -628,11 +628,11 @@ export function ComprehensiveCarePlanForm({
                     <TextAreaField label="Long-Term Plan" />
                     <TextAreaField label="Follow-up Requirements" className="md:col-span-2" />
                   </div>
-                  <button type="button" className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex items-center gap-1.5">
                     + Add version entry
                   </button>
 
-                  <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3 border-t pt-6">Approvals / Sign-Off</h4>
+                  <h4 className="text-sm font-semibold text-slate-800 mt-8 mb-3 border-t border-slate-200 pt-6">Approvals / Sign-Off</h4>
                   <div className="space-y-4">
                     {approvalsList.map((role, idx) => (
                       <div key={`${role}-${idx}`} className="grid grid-cols-1 md:grid-cols-4 gap-3 items-center">
@@ -643,7 +643,7 @@ export function ComprehensiveCarePlanForm({
                       </div>
                     ))}
                   </div>
-                  <button type="button" onClick={() => setApprovalsList([...approvalsList, `Custom Signatory ${approvalsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5">
+                  <button type="button" onClick={() => setApprovalsList([...approvalsList, `Custom Signatory ${approvalsList.length + 1}`])} className="mt-3 px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5">
                     + Add signatory
                   </button>
 
@@ -873,7 +873,7 @@ function TableInput({
         <button
           type="button"
           onClick={() => setRowCount(r => r + 1)}
-          className="self-start px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-sm flex items-center gap-1.5"
+          className="self-start px-3 py-1.5 text-xs font-semibold text-brand-teal bg-brand-teal/5 border border-brand-teal/20 border-dashed rounded-lg hover:bg-brand-teal/10 hover:border-brand-teal/40 transition-colors shadow-[0_6px_32px_rgba(239,68,68,0.04)] flex items-center gap-1.5"
         >
           + Add {addLabel}
         </button>

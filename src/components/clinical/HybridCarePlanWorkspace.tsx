@@ -16,7 +16,7 @@ interface TranscriptSegment {
   fieldId?: string; // Maps to a field in the form
 }
 
-const mockTranscript: TranscriptSegment[] = [
+const initialMockTranscript: TranscriptSegment[] = [
   { id: "t1", timestamp: "00:12", text: "Patient is Evelyn Harper.", confidence: "high", fieldId: "id-fullname" },
   { id: "t2", timestamp: "00:15", text: "Date of birth is April 12, 1952.", confidence: "high", fieldId: "id-dob" },
   { id: "t3", timestamp: "01:05", text: "Patient reports difficulty dressing lower extremities due to right hip stiffness.", confidence: "review", fieldId: "adls-dressing" },
@@ -38,6 +38,8 @@ export function HybridCarePlanWorkspace({ patientId, templateId, initialMode, on
   const [activeSegmentId, setActiveSegmentId] = useState<string | null>(null);
   const [hoveredFieldId, setHoveredFieldId] = useState<string | null>(null);
   const [isTranscriptOpen, setIsTranscriptOpen] = useState(initialMode !== "manual");
+  const [transcript, setTranscript] = useState<TranscriptSegment[]>(initialMockTranscript);
+  const [isRecordingNote, setIsRecordingNote] = useState(false);
 
   // Handlers for bidirectional hover
   const handleTranscriptHover = (fieldId?: string) => {
@@ -46,10 +48,29 @@ export function HybridCarePlanWorkspace({ patientId, templateId, initialMode, on
   const handleTranscriptLeave = () => setHoveredFieldId(null);
 
   const handleFieldHover = (fieldId: string) => {
-    const segment = mockTranscript.find(t => t.fieldId === fieldId);
+    const segment = transcript.find(t => t.fieldId === fieldId);
     if (segment) setActiveSegmentId(segment.id);
   };
   const handleFieldLeave = () => setActiveSegmentId(null);
+
+  const toggleRecordingNote = () => {
+    if (isRecordingNote) {
+      // Stop recording and add a mock note
+      setIsRecordingNote(false);
+      setTranscript(prev => [
+        ...prev,
+        {
+          id: `t${prev.length + 1}`,
+          timestamp: "05:15", // Mock new timestamp
+          text: "Patient mentioned minor pain in lower back after sitting for long periods.",
+          confidence: "high",
+          fieldId: "physical-pain"
+        }
+      ]);
+    } else {
+      setIsRecordingNote(true);
+    }
+  };
 
   return (
     <div className="w-full flex flex-col h-[calc(100vh-140px)] bg-slate-50 overflow-hidden rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative">
@@ -149,7 +170,7 @@ export function HybridCarePlanWorkspace({ patientId, templateId, initialMode, on
               <div className="flex-1 overflow-y-auto p-4 custom-scrollbar space-y-3.5">
                 <h3 className="text-xs font-semibold uppercase text-slate-400 mb-2">Transcript Highlights</h3>
 
-                {mockTranscript.map((segment) => {
+                {transcript.map((segment) => {
                   const isHovered = activeSegmentId === segment.id;
                   return (
                     <div
@@ -202,8 +223,24 @@ export function HybridCarePlanWorkspace({ patientId, templateId, initialMode, on
                     <div className="w-2 h-2 rounded-full bg-red-500" /> Missing / Unmapped
                   </div>
                 </div>
-                <button className="hidden md:flex w-full py-2 border border-dashed border-slate-300 rounded-xl text-slate-500 font-medium text-xs hover:border-brand-teal hover:text-brand-teal hover:bg-brand-teal/5 transition-colors items-center justify-center gap-2">
-                  <Mic className="w-3.5 h-3.5" /> Click to Add Voice Note
+                <button 
+                  onClick={toggleRecordingNote}
+                  className={clsx(
+                    "hidden md:flex w-full py-2 border border-dashed rounded-xl font-medium text-xs transition-colors items-center justify-center gap-2",
+                    isRecordingNote
+                      ? "border-red-300 text-red-500 bg-red-50 animate-pulse"
+                      : "border-slate-300 text-slate-500 hover:border-brand-teal hover:text-brand-teal hover:bg-brand-teal/5"
+                  )}
+                >
+                  {isRecordingNote ? (
+                    <>
+                      <Square className="w-3.5 h-3.5" /> Stop Recording Note
+                    </>
+                  ) : (
+                    <>
+                      <Mic className="w-3.5 h-3.5" /> Click to Add Voice Note
+                    </>
+                  )}
                 </button>
               </div>
             </motion.div>
