@@ -263,20 +263,54 @@ export default function NewReferralPage() {
                 <input name="npi" value={formData.npi} onChange={handleInputChange} type="text" pattern="\d{10}" title="Must be a 10-digit number" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['npi'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="1234567890" />
               </div>
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+              <div className="space-y-1.5 md:col-span-1">
+                <label className="text-sm font-medium text-slate-700">Referral Source Type</label>
+                <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Hospital Discharge</option>
+                  <option>Physician Office</option>
+                  <option>ALF / SNF</option>
+                  <option>Insurance Case Manager</option>
+                  <option>Self-Referral / Family</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="space-y-1.5 md:col-span-1">
+                <label className="text-sm font-medium text-slate-700">Discharge Date (if applicable)</label>
+                <input type="date" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
+              </div>
+              <div className="space-y-1.5 md:col-span-2">
+                <label className="text-sm font-medium text-slate-700">Reason for Referral</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Needs post-op wound care and PT" />
+              </div>
+            </div>
           </div>
 
           {/* 3. Clinical Patient Profile */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
             <SectionBadge number={3} title="Clinical Patient Profile" />
+            
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Patient Name</label>
                 <input name="clientName" value={formData.clientName} onChange={handleInputChange} required type="text" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['clientName'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="John Doe" />
               </div>
               <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Preferred Name</label>
+                <input name="preferredName" type="text" className="w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal border-slate-200" placeholder="Johnny" />
+              </div>
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Date of Birth</label>
                 <input name="dob" value={formData.dob} onChange={handleInputChange} type="date" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['dob'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} />
               </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">SSN / MBI</label>
+                <input name="ssn" type="text" className="w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal border-slate-200" placeholder="XXX-XX-XXXX" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700 block mb-2">Gender</label>
                 <div className="flex items-center gap-4">
@@ -286,10 +320,61 @@ export default function NewReferralPage() {
                 </div>
               </div>
               <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Race / Ethnicity</label>
+                <select name="race" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>American Indian / Alaska Native</option>
+                  <option>Asian</option>
+                  <option>Black / African American</option>
+                  <option>Hispanic or Latino</option>
+                  <option>Native Hawaiian / Pacific Islander</option>
+                  <option>White</option>
+                  <option>Decline to specify</option>
+                </select>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Preferred Language</label>
+                <div className="flex items-center gap-2">
+                  <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="English" />
+                  <label className="flex items-center gap-1.5 text-xs text-slate-700 shrink-0 cursor-pointer">
+                    <input type="checkbox" className="rounded text-brand-teal focus:ring-brand-teal border-slate-300" />
+                    Interpreter?
+                  </label>
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Marital Status</label>
+                <select name="maritalStatus" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Divorced</option>
+                  <option>Widowed</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Phone Number</label>
                 <input name="phone" value={formData.phone} onChange={handleInputChange} type="tel" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['phone'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="(555) 123-4567" />
               </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Living Situation</label>
+                <select name="livingSituation" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Lives Alone</option>
+                  <option>Lives with Family/Spouse</option>
+                  <option>Assisted Living Facility</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="space-y-1.5 md:col-span-2">
+                <label className="text-sm font-medium text-slate-700">Primary Caregiver at Home</label>
+                <input name="primaryCaregiver" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Name and Relationship (if any)" />
+              </div>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5 md:col-span-1">
                 <label className="text-sm font-medium text-slate-700">Email Address</label>
@@ -324,30 +409,120 @@ export default function NewReferralPage() {
               </div>
             </div>
 
+            <hr className="border-slate-100 my-6" />
+
             {/* Clinical specific fields */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-700">Primary Diagnosis / ICD Code(s)</label>
+                <label className="text-sm font-medium text-slate-700">Primary Diagnosis (ICD-10 Code)</label>
                 <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="E11.9 - Type 2 diabetes mellitus" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-700">Allergies</label>
-                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Penicillin, Peanuts" />
+                <label className="text-sm font-medium text-slate-700">Secondary Diagnoses</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="I10 - Essential hypertension" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-700">Medical History</label>
-                <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="History of hypertension..." />
+                <label className="text-sm font-medium text-slate-700">Allergies (with reaction type)</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Penicillin (Rash), Peanuts" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-700">Current Medications</label>
+                <label className="text-sm font-medium text-slate-700">Advance Directive Status</label>
+                <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Full Code</option>
+                  <option>DNR (Do Not Resuscitate)</option>
+                  <option>DNI (Do Not Intubate)</option>
+                  <option>Living Will / Healthcare Proxy</option>
+                  <option>Unknown</option>
+                </select>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Current Medications (drug, dose, freq)</label>
                 <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Lisinopril 10mg daily..." />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Recent Hospitalizations (dates, reason)</label>
+                <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Jan 12-15: Pneumonia" />
+              </div>
+              <div className="space-y-1.5 md:col-span-2">
+                <label className="text-sm font-medium text-slate-700">Past Medical/Surgical History</label>
+                <textarea rows={2} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Appendectomy 2010, History of hypertension..." />
               </div>
             </div>
           </div>
 
-          {/* 4. Requested Services & Clinical Orders */}
+          {/* 4. Functional & Risk Assessment */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
-            <SectionBadge number={4} title="Requested Services & Clinical Orders" />
+            <SectionBadge number={4} title="Functional & Risk Assessment" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Mobility Status / Ambulation Aids</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Uses walker, wheelchair" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Fall Risk Score / History</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. High risk, 2 falls in last month" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">ADL / IADL Needs</label>
+                <textarea rows={2} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Needs help with bathing, meal prep..." />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Cognitive Status Screening</label>
+                <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Alert and oriented</option>
+                  <option>Mild cognitive impairment</option>
+                  <option>Dementia / Alzheimer's</option>
+                  <option>Confusion</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* 5. Services Requested */}
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
+            <SectionBadge number={5} title="Services Requested & Preferences" />
+            <div className="space-y-3 mb-6">
+              <label className="text-sm font-medium text-slate-700 block">Type of Care Needed (Select all that apply)</label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {['Skilled Nursing', 'PT / OT / ST', 'Home Health Aide', 'Personal Care', 'Companion Care', 'Medical Social Worker'].map(service => (
+                  <label key={service} className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                    <input type="checkbox" className="rounded text-brand-teal focus:ring-brand-teal border-slate-300" />
+                    {service}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Requested Start-of-Care Date</label>
+                <input type="date" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Requested Frequency</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. 3 visits/week" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Special Skill Requirements</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Wound care certified, ventilator" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Caregiver Preferences (Language/Gender)</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Female, Spanish speaking" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Access Instructions & Pet Notes</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Gate code: 1234, friendly dog" />
+              </div>
+            </div>
+          </div>
+
+          {/* 6. Clinical Orders & Documents */}
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
+            <SectionBadge number={6} title="Clinical Orders & Documents" />
             <div className="flex flex-col md:flex-row gap-6">
               <div className="w-full md:w-1/3 border-2 border-dashed border-slate-200 rounded-xl p-6 flex flex-col items-center justify-center text-center bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer">
                 <UploadCloud className="w-8 h-8 text-slate-400 mb-2" />
@@ -371,20 +546,68 @@ export default function NewReferralPage() {
             </div>
           </div>
 
-          {/* 5. Payor & Authorization Details */}
+          {/* 7. Emergency Contacts & Family/Responsible Party */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
-            <SectionBadge number={5} title="Payor & Authorization Details" />
+            <SectionBadge number={7} title="Emergency Contacts & Family/Responsible Party" />
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Primary/Emergency Contact Name</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Jane Doe" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Relationship</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Daughter" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Phone Number</label>
+                <input type="tel" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="(555) 123-4567" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Email Address</label>
+                <input type="email" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="janedoe@email.com" />
+              </div>
+            </div>
+            <div className="flex gap-6 mt-4">
+              <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                <input type="checkbox" className="rounded w-4 h-4 text-brand-teal focus:ring-brand-teal border-slate-300" />
+                Responsible Party / Legal Guardian / POA
+              </label>
+              <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                <input type="checkbox" className="rounded w-4 h-4 text-brand-teal focus:ring-brand-teal border-slate-300" />
+                Consent for Family Portal Access
+              </label>
+            </div>
+          </div>
+
+          {/* 8. Payor & Authorization Details */}
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
+            <SectionBadge number={8} title="Payor & Authorization Details" />
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Primary Insurance</label>
                 <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
                   <option>Medicare</option>
+                  <option>Medicaid</option>
+                  <option>Private Insurance</option>
+                  <option>Private Pay</option>
+                  <option>VA</option>
                 </select>
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Member ID</label>
                 <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="1234 56789A" />
               </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Group Number</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. GRP12345" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Insurance Phone</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="For eligibility check" />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Secondary Insurance</label>
                 <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
@@ -395,7 +618,16 @@ export default function NewReferralPage() {
                 <label className="text-sm font-medium text-slate-700">Member ID</label>
                 <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Enter Member ID" />
               </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Group Number</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. GRP67890" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Policyholder Name/Rel</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="If not patient" />
+              </div>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Pre-Authorization Status</label>
@@ -422,9 +654,29 @@ export default function NewReferralPage() {
             </div>
           </div>
 
-          {/* 6. Clinical Intake Action & Disposition */}
+          {/* 9. Consents & Legal Documentation */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
-            <SectionBadge number={6} title="Clinical Intake Action & Disposition" />
+            <SectionBadge number={9} title="Consents & Legal Documentation" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+              {[
+                'Consent to Treat (Signed & Dated)',
+                'HIPAA Notice of Privacy Practices',
+                'Financial Responsibility Agreement',
+                'Advance Directive Acknowledgment',
+                'Photo/Video Consent (Optional)',
+                'Release of Medical Records'
+              ].map(consent => (
+                <label key={consent} className="flex items-center gap-3 text-sm text-slate-700 cursor-pointer p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+                  <input type="checkbox" className="rounded w-4 h-4 text-brand-teal focus:ring-brand-teal border-slate-300" />
+                  {consent}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* 10. Clinical Intake Action & Disposition */}
+          <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
+            <SectionBadge number={10} title="Clinical Intake Action & Disposition" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Triage Priority</label>

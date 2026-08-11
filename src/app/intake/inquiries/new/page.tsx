@@ -236,15 +236,27 @@ export default function NewInquiryPage() {
           {/* 3. Patient Information */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
             <SectionBadge number={3} title="Patient Information" optional />
+            
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Patient Name</label>
                 <input name="clientName" value={formData.clientName} onChange={handleInputChange} required type="text" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['clientName'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="John Doe" />
               </div>
               <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Preferred Name</label>
+                <input name="preferredName" type="text" className="w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal border-slate-200" placeholder="Johnny" />
+              </div>
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Date of Birth</label>
                 <input name="dob" value={formData.dob} onChange={handleInputChange} type="date" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['dob'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} />
               </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">SSN / MBI</label>
+                <input name="ssn" type="text" className="w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal border-slate-200" placeholder="XXX-XX-XXXX" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700 block mb-2">Gender</label>
                 <div className="flex items-center gap-4">
@@ -254,10 +266,61 @@ export default function NewInquiryPage() {
                 </div>
               </div>
               <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Race / Ethnicity</label>
+                <select name="race" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>American Indian / Alaska Native</option>
+                  <option>Asian</option>
+                  <option>Black / African American</option>
+                  <option>Hispanic or Latino</option>
+                  <option>Native Hawaiian / Pacific Islander</option>
+                  <option>White</option>
+                  <option>Decline to specify</option>
+                </select>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Preferred Language</label>
+                <div className="flex items-center gap-2">
+                  <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="English" />
+                  <label className="flex items-center gap-1.5 text-xs text-slate-700 shrink-0 cursor-pointer">
+                    <input type="checkbox" className="rounded text-brand-teal focus:ring-brand-teal border-slate-300" />
+                    Interpreter?
+                  </label>
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Marital Status</label>
+                <select name="maritalStatus" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Divorced</option>
+                  <option>Widowed</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Phone Number</label>
                 <input name="phone" value={formData.phone} onChange={handleInputChange} type="tel" className={cn("w-full px-3 py-2 bg-white border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-colors", highlightFields['phone'] ? "bg-brand-teal/5 border-brand-teal" : "border-slate-200")} placeholder="(555) 123-4567" />
               </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Living Situation</label>
+                <select name="livingSituation" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
+                  <option>Select</option>
+                  <option>Lives Alone</option>
+                  <option>Lives with Family/Spouse</option>
+                  <option>Assisted Living Facility</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="space-y-1.5 md:col-span-2">
+                <label className="text-sm font-medium text-slate-700">Primary Caregiver at Home</label>
+                <input name="primaryCaregiver" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Name and Relationship (if any)" />
+              </div>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5 md:col-span-1">
                 <label className="text-sm font-medium text-slate-700">Email Address</label>
@@ -300,7 +363,7 @@ export default function NewInquiryPage() {
           {/* 4. Primary Contact Information */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
             <SectionBadge number={4} title="Primary Contact Information" />
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-slate-700">Full Name</label>
                 <input name="primaryContactName" type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Jane Doe" />
@@ -322,12 +385,23 @@ export default function NewInquiryPage() {
                 <input name="primaryContactEmail" type="email" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="janedoe@email.com" />
               </div>
             </div>
+            <div className="flex gap-6 mt-4">
+              <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                <input type="checkbox" className="rounded text-brand-teal focus:ring-brand-teal border-slate-300" />
+                Responsible Party / Power of Attorney (POA)
+              </label>
+              <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
+                <input type="checkbox" className="rounded text-brand-teal focus:ring-brand-teal border-slate-300" />
+                Emergency Contact
+              </label>
+            </div>
           </div>
 
           {/* 5. Inquiry Details */}
           <div className="bg-white backdrop-blur-xl rounded-2xl p-6 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] relative overflow-hidden">
-            <SectionBadge number={5} title="Inquiry Details" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+            <SectionBadge number={5} title="Inquiry Details & Logistics" />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
               <div>
                 <div className="space-y-1.5 mb-6">
                   <label className="text-sm font-medium text-slate-700">Nature of Inquiry *</label>
@@ -363,12 +437,36 @@ export default function NewInquiryPage() {
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-slate-700">Best Time to Contact</label>
                   <select className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal">
-                    <option>Afternoon (12 PM - 5 PM)</option>
+                    <option>Anytime</option>
                     <option>Morning (8 AM - 12 PM)</option>
+                    <option>Afternoon (12 PM - 5 PM)</option>
+                    <option>Evening (5 PM - 8 PM)</option>
                   </select>
                 </div>
               </div>
             </div>
+
+            <hr className="border-slate-100 my-6" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Requested Start-of-Care Date</label>
+                <input type="date" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Preferred Visit Time Windows</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Mon/Wed/Fri mornings" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Caregiver Preferences</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="e.g. Female, Spanish speaking" />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-sm font-medium text-slate-700">Access Instructions & Pets</label>
+                <input type="text" className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal" placeholder="Gate code: 1234, large friendly dog" />
+              </div>
+            </div>
+
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-700">Additional Notes / Comments</label>
               <textarea rows={3} className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal resize-none" placeholder="Patient is looking for information about post-surgery home care services." />
