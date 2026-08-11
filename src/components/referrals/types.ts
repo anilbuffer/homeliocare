@@ -4,14 +4,13 @@ export type ReferralStage =
   | "Initial Assessment Scheduled"
   | "Clinical Review"
   | "Insurance Verification"
-  | "Insurance Verification / Authorization"
   | "Eligibility Confirmed"
   | "Assigned to Care Team"
   | "Consent & Agreements"
   | "Admitted"
   | "Converted";
 
-export type ReferralSource = "Hospital" | "Doctor" | "Social Worker" | "Self" | "Online Form";
+export type ReferralSource = "Hospital" | "Hospital Discharge" | "Doctor" | "Social Worker" | "Self" | "Online Form";
 
 export interface DocumentStatus {
   name: string;
@@ -57,6 +56,7 @@ export interface Referral {
     avatarUrl?: string;
   };
   dischargeDeadline?: string; // ISO date string, optional
+  urgency?: "Low" | "Medium" | "High";
   isPossibleDuplicate?: boolean;
   duplicateMatches?: Array<{ id: string; name: string; dob: string }>;
   serviceZoneStatus: "in-zone" | "near-capacity" | "out-of-zone";
@@ -84,6 +84,7 @@ export interface Referral {
     city?: string;
     state?: string;
     zip?: string;
+    phone?: string;
     email?: string;
     primaryContactName?: string;
     primaryContactRelationship?: string;

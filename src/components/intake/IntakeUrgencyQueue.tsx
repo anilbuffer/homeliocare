@@ -41,6 +41,16 @@ const initialInquiries: Inquiry[] = [
     phone: "(555) 123-4567"
   },
   {
+    id: "inq-ew-101",
+    patientId: "ref-ew-001",
+    name: "Eleanor Whitfield",
+    source: "Hospital Discharge (Cedar Falls)",
+    waitTimeStr: "5m",
+    waitTimeMins: 5,
+    isHospitalDischarge: true,
+    phone: "(610) 555-0148"
+  },
+  {
     id: "inq-102",
     patientId: "c-2",
     name: "Arthur Pendelton",

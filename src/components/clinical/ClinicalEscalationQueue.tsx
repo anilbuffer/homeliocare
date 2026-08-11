@@ -20,7 +20,7 @@ export interface EscalationItem {
 const mockEscalations: EscalationItem[] = [
   {
     id: "esc-1",
-    clientName: "Eleanor Vance",
+    clientName: "Eleanor Whitfield",
     clientId: "c-1",
     reporter: "Maria Santos",
     reporterRole: "CNA",

@@ -428,5 +428,199 @@ export const mockPatients: Record<string, Patient> = {
     },
 
     recentActivity: []
+  },
+  "ref-ew-001": {
+    id: "ref-ew-001",
+    name: "Eleanor Ruth Whitfield",
+    status: "Active",
+    age: 78,
+    address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
+    primaryDiagnosis: "s/p right hip ORIF, early-stage vascular dementia",
+    riskLevel: "High",
+    avatarUrl: "https://i.pravatar.cc/150?u=sarah",
+    intakeStatus: "Auth Pending",
+    missingDocuments: [],
+    safetyAlerts: { dnr: "Unknown", isolationProtocols: [] },
+    
+    demographics: {
+      dob: "1948-05-12",
+      gender: "Female",
+      phone: "(610) 555-0148",
+      email: "meg.wcho@gmail.com",
+      preferredLanguage: "English",
+      emergencyContacts: [
+        { name: "Margaret Whitfield-Cho", relation: "Daughter / POA", phone: "(610) 555-0192" },
+        { name: "David Whitfield", relation: "Son", phone: "(215) 555-0873" }
+      ]
+    },
+    
+    insurance: {
+      primary: "Medicaid - PA Community HealthChoices",
+      policyNumber: "PA-CHC-9928174",
+      groupNumber: "GRP-441-KF",
+      authorizationStatus: "Auth Pending"
+    },
+
+    careTeam: {
+      pcp: "Dr. Robert Chen",
+      specialists: [],
+      caseManager: { name: "Sarah Jenkins", avatarUrl: "" },
+      primaryCaregivers: []
+    },
+
+    riskSummary: {
+      fallRisk: { level: "High", lastAssessment: new Date().toISOString() },
+      medicationRisk: { level: "Medium", lastAssessment: new Date().toISOString() },
+      cognitiveStatus: { level: "Medium", lastAssessment: new Date().toISOString() }
+    },
+
+    recentActivity: [
+      {
+        id: "act-1",
+        type: "note",
+        title: "Intake Note Added",
+        timestamp: new Date().toISOString(),
+        message: "Patient discharging in 48 hrs. s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis. Mobility: Walker-assisted, fall risk (high). Needs care in place before discharge."
+      }
+    ],
+
+    documents: {
+      intake: [
+        { id: "doc-1", name: "Intake Inquiry Form", author: "Denise Okafor", date: "2026-08-11", size: "1.2 MB", type: "pdf" },
+      ],
+      consents: [
+        { id: "doc-2", name: "HIPAA Consent", author: "Meg Whitfield-Cho", date: "2026-08-11", size: "0.5 MB", type: "pdf" },
+        { id: "doc-3", name: "Service Agreement", author: "Meg Whitfield-Cho", date: "2026-08-11", size: "2.1 MB", type: "pdf" }
+      ],
+      clinical: [
+        { id: "doc-4", name: "Discharge Summary", author: "Cedar Falls Regional Hospital", date: "2026-08-11", size: "3.4 MB", type: "pdf" }
+      ],
+      insurance: [
+        { id: "doc-5", name: "Medicaid Card Copy", author: "Meg Whitfield-Cho", date: "2026-08-11", size: "1.8 MB", type: "img" }
+      ],
+      orders: [
+        { id: "doc-6", name: "Physician Orders", author: "Dr. Robert Chen", date: "2026-08-11", size: "1.1 MB", type: "pdf" }
+      ]
+    },
+
+    billing: {
+      authorization: {
+        used: 0,
+        total: 80
+      },
+      balance: 0.00,
+      claims: [
+        { id: "clm-1", serviceDates: "2026-08-11", payer: "Medicaid", amount: "$0.00", status: "Draft" }
+      ]
+    },
+
+    communication: {
+      familyThread: [
+        {
+          id: "msg-1",
+          sender: "Meg Whitfield-Cho",
+          timestamp: new Date(Date.now() - 3600000).toISOString(),
+          message: "Hi, I just wanted to check if everything is set for my mom's discharge on Thursday?",
+          direction: "inbound"
+        },
+        {
+          id: "msg-2",
+          sender: "Sarah Jenkins",
+          timestamp: new Date(Date.now() - 1800000).toISOString(),
+          message: "Hello Meg, we are finalizing the authorization with Medicaid now. We will have a caregiver ready for her on Thursday.",
+          direction: "outbound"
+        }
+      ],
+      logs: [
+        {
+          id: "log-1",
+          type: "Call in",
+          contact: "Meg Whitfield-Cho",
+          duration: "12m 45s",
+          timestamp: new Date(Date.now() - 7200000).toISOString(),
+          summary: "Daughter called regarding intake process and authorization status. Confirmed Medicaid details."
+        }
+      ],
+      internalNotes: [
+        {
+          id: "note-1",
+          author: "Sarah Jenkins",
+          timestamp: new Date(Date.now() - 3600000).toISOString(),
+          note: "Need to follow up with Medicaid on Wednesday if auth not received by then."
+        }
+      ]
+    }
+  },
+  "ref-002": {
+    id: "ref-002",
+    name: "John Doe",
+    status: "Active",
+    age: 72,
+    address: "123 Main St, Springfield, IL 62701",
+    primaryDiagnosis: "Early-onset dementia",
+    riskLevel: "Medium",
+    intakeStatus: "New Referral",
+    demographics: {
+      dob: "1954-04-12",
+      gender: "Male",
+      phone: "(555) 123-4567",
+      email: "johndoe@email.com",
+      preferredLanguage: "English",
+      emergencyContacts: []
+    },
+    insurance: {
+      primary: "Private Pay",
+      policyNumber: "N/A",
+      groupNumber: "N/A",
+      authorizationStatus: "Not Started"
+    },
+    careTeam: {
+      pcp: "Unknown",
+      specialists: [],
+      caseManager: { name: "Sarah Jenkins" },
+      primaryCaregivers: []
+    },
+    riskSummary: {
+      fallRisk: { level: "Medium", lastAssessment: new Date().toISOString() },
+      medicationRisk: { level: "Medium", lastAssessment: new Date().toISOString() },
+      cognitiveStatus: { level: "High", lastAssessment: new Date().toISOString() }
+    },
+    recentActivity: []
+  },
+  "ref-003": {
+    id: "ref-003",
+    name: "Mary Smith",
+    status: "Active",
+    age: 68,
+    address: "456 Elm St, Springfield, IL 62701",
+    primaryDiagnosis: "General debility",
+    riskLevel: "Low",
+    intakeStatus: "Auth Pending",
+    demographics: {
+      dob: "1958-08-20",
+      gender: "Female",
+      phone: "(555) 987-6543",
+      email: "marysmith@email.com",
+      preferredLanguage: "English",
+      emergencyContacts: []
+    },
+    insurance: {
+      primary: "Blue Cross",
+      policyNumber: "BC-12345",
+      groupNumber: "GRP-01",
+      authorizationStatus: "Pending"
+    },
+    careTeam: {
+      pcp: "Dr. Adams",
+      specialists: [],
+      caseManager: { name: "Mark T." },
+      primaryCaregivers: []
+    },
+    riskSummary: {
+      fallRisk: { level: "Low", lastAssessment: new Date().toISOString() },
+      medicationRisk: { level: "Low", lastAssessment: new Date().toISOString() },
+      cognitiveStatus: { level: "Low", lastAssessment: new Date().toISOString() }
+    },
+    recentActivity: []
   }
 };

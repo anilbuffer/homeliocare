@@ -194,6 +194,20 @@ export function CaregiverRoster({
                           End {cg.shiftEnd}
                         </div>
                       </div>
+                      {cg.id === "cg-dr-1" && (
+                        <div className="mt-2 bg-brand-teal/5 border border-brand-teal/20 rounded-lg p-2">
+                          <p className="text-[10px] font-semibold text-brand-teal uppercase tracking-wider mb-1 flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-pulse"></span>
+                            Match Reasoning
+                          </p>
+                          <ul className="text-[10px] text-slate-600 list-disc pl-3 space-y-0.5 mt-1">
+                            <li>Geographic proximity (8 min)</li>
+                            <li>Dementia-care experience (4 prior clients)</li>
+                            <li>Full availability match</li>
+                            <li>No overtime risk</li>
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 );

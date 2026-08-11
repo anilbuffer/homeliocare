@@ -27,6 +27,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
 import { NewPatientModal } from "@/components/patients/NewPatientModal";
+import { toast } from "sonner";
 
 type FilterStatus = "ALL" | "Active" | "High Risk" | "Hospitalized" | "Discharged" | "Care Completed";
 
@@ -527,7 +528,11 @@ export default function PatientsPage() {
                           </div>
                           <button
                             className="p-1 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition-colors shrink-0"
-                            onClick={(e) => e.preventDefault()}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              toast.info("Patient options coming soon");
+                            }}
                           >
                             <MoreVertical className="w-4 h-4" />
                           </button>

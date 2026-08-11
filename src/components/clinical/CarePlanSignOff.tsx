@@ -103,53 +103,71 @@ export function CarePlanSignOff({ onComplete, onBack }: CarePlanSignOffProps) {
           </div>
         </div>
 
-        {/* Right: RN Sign-Off */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col p-6 h-fit sticky top-6">
-          <h3 className="text-lg font-semibold text-slate-900 mb-2">RN Sign-Off</h3>
-          <p className="text-xs text-slate-500 mb-6">
-            Your signature certifies clinical accuracy of every field in this care plan.
-          </p>
+        {/* Right: Sign-Offs */}
+        <div className="flex flex-col gap-4 h-fit sticky top-6">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col p-6">
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">RN Sign-Off</h3>
+            <p className="text-xs text-slate-500 mb-6">
+              Your signature certifies clinical accuracy of every field in this care plan.
+            </p>
 
-          <label className="flex items-start gap-3 mb-6 cursor-pointer group">
-            <div className="pt-0.5">
-              <input
-                type="checkbox"
-                className="w-4 h-4 text-brand-teal border-slate-300 rounded focus:ring-brand-teal mt-0.5"
-                checked={attested}
-                onChange={(e) => setAttested(e.target.checked)}
-              />
-            </div>
-            <span className="text-xs text-slate-700 leading-relaxed group-hover:text-slate-900 transition-colors">
-              I, Rachel Miller RN, confirm this care plan accurately reflects my clinical assessment of Evelyn Harper and is ready to be filed.
-            </span>
-          </label>
-
-          <div className="border border-dashed border-slate-300 bg-slate-50 rounded-xl p-6 mb-6 flex flex-col items-center justify-center min-h-[120px]">
-            {attested ? (
-              <div className="flex flex-col items-center">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Signature</span>
-                <span className="font-[cursive] text-3xl text-slate-800 -rotate-2">Rachel Miller, RN</span>
+            <label className="flex items-start gap-3 mb-6 cursor-pointer group">
+              <div className="pt-0.5">
+                <input
+                  type="checkbox"
+                  className="w-4 h-4 text-brand-teal border-slate-300 rounded focus:ring-brand-teal mt-0.5"
+                  checked={attested}
+                  onChange={(e) => setAttested(e.target.checked)}
+                />
               </div>
-            ) : (
-              <span className="text-xs font-medium text-slate-400">Attest above to sign</span>
-            )}
+              <span className="text-xs text-slate-700 leading-relaxed group-hover:text-slate-900 transition-colors">
+                I, Rachel Miller RN, confirm this care plan accurately reflects my clinical assessment of Evelyn Harper and is ready to be filed.
+              </span>
+            </label>
+
+            <div className="border border-dashed border-slate-300 bg-slate-50 rounded-xl p-6 mb-6 flex flex-col items-center justify-center min-h-[120px]">
+              {attested ? (
+                <div className="flex flex-col items-center">
+                  <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">Signature</span>
+                  <span className="font-[cursive] text-3xl text-slate-800 -rotate-2">Rachel Miller, RN</span>
+                </div>
+              ) : (
+                <span className="text-xs font-medium text-slate-400">Attest above to sign</span>
+              )}
+            </div>
+
+            <button
+              onClick={() => {
+                if (attested) setIsSuccess(true);
+              }}
+              disabled={!attested}
+              className={clsx(
+                "w-full py-3 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2",
+                attested
+                  ? "bg-brand-teal text-white shadow-md shadow-brand-teal/20 hover:bg-brand-teal/90"
+                  : "bg-slate-100 text-slate-400 cursor-not-allowed"
+              )}
+            >
+              {attested ? <ShieldCheck className="w-4 h-4" /> : null}
+              Sign & Finalize Care Plan
+            </button>
           </div>
 
-          <button
-            onClick={() => {
-              if (attested) setIsSuccess(true);
-            }}
-            disabled={!attested}
-            className={clsx(
-              "w-full py-3 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2",
-              attested
-                ? "bg-brand-teal text-white shadow-md shadow-brand-teal/20 hover:bg-brand-teal/90"
-                : "bg-slate-100 text-slate-400 cursor-not-allowed"
-            )}
-          >
-            {attested ? <ShieldCheck className="w-4 h-4" /> : null}
-            Sign & Finalize Care Plan
-          </button>
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col p-6">
+            <h3 className="text-lg font-semibold text-slate-900 mb-2">POA / Client Sign-Off</h3>
+            <p className="text-xs text-slate-500 mb-6">Electronic signature capture for Legal POA.</p>
+            <div className="border border-slate-200 rounded-lg p-3 bg-slate-50 mb-4">
+              <p className="text-sm font-medium text-slate-700">Signed by: Margaret "Meg" Whitfield-Cho (POA)</p>
+              <p className="text-xs text-slate-500">Date: Pending</p>
+            </div>
+            <button className="w-full py-2 bg-slate-800 text-white text-sm font-semibold rounded-lg hover:bg-slate-700 transition-colors">Capture POA Signature</button>
+          </div>
+
+          <div className="bg-amber-50 rounded-2xl border border-amber-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] flex flex-col p-6">
+            <h3 className="text-lg font-semibold text-amber-900 mb-2 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> Physician Co-Sign</h3>
+            <p className="text-xs text-amber-700 mb-3 leading-relaxed">Care started — physician co-sign outstanding. Required within 14 days per PA regulation.</p>
+            <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold rounded-full w-fit">Status: Pending</span>
+          </div>
         </div>
 
       </div>

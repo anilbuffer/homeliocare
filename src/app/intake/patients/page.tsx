@@ -243,7 +243,7 @@ export default function PatientsPage() {
                 }`}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs sm:text-sm font-semibold text-slate-600 group-hover:text-slate-900 transition-colors truncate">
+                <span className="text-xs font-semibold text-slate-600 group-hover:text-slate-900 transition-colors truncate">
                   {item.title}
                 </span>
                 <div className={`p-2 rounded-xl border ${item.badgeBg}`}>
@@ -251,7 +251,7 @@ export default function PatientsPage() {
                 </div>
               </div>
               <div className="flex items-baseline justify-between gap-2">
-                <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                <span className="text-2xl font-bold text-slate-900 tracking-tight">
                   {item.count}
                 </span>
                 {isActive && (
@@ -727,7 +727,7 @@ export default function PatientsPage() {
             </div>
           ) : (
             /* Grid View (Responsive Multi-Column Cards) */
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
               {filteredPatients.map((patient, index) => (
                 <motion.div
                   key={patient.id}
@@ -736,7 +736,7 @@ export default function PatientsPage() {
                   transition={{ duration: 0.25, delay: index * 0.04 }}
                 >
                   <Link href={`/intake/patients/${patient.id}`} className="block h-full group">
-                    <Card className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] hover:border-brand-teal/50 transition-all duration-200 relative overflow-hidden flex flex-col justify-between h-full">
+                    <Card className="bg-white rounded-2xl p-4 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] hover:border-brand-teal/50 transition-all duration-200 relative overflow-hidden flex flex-col justify-between h-full">
                       <div>
                         {/* Top Row: Avatar & Name */}
                         <div className="flex items-start justify-between gap-3 mb-4">
@@ -758,14 +758,14 @@ export default function PatientsPage() {
                               src={patient.avatarUrl}
                               alt={patient.name}
                               fallback={patient.name.substring(0, 2)}
-                              size="lg"
+                              size="md"
                               className="shrink-0"
                             />
                             <div className="min-w-0">
-                              <h3 className="font-bold text-slate-900 group-hover:text-brand-teal transition-colors truncate text-base">
+                              <h3 className="font-semibold text-slate-900 group-hover:text-brand-teal transition-colors truncate text-sm">
                                 {patient.name}
                               </h3>
-                              <p className="text-xs font-medium text-slate-500 mt-0.5">
+                              <p className="text-xs font-normal text-slate-500">
                                 {patient.age} yrs • {patient.demographics.gender}
                               </p>
                             </div>
@@ -783,10 +783,11 @@ export default function PatientsPage() {
                         </div>
 
                         {/* Details Table */}
-                        <div className="space-y-2.5 mb-5 text-xs sm:text-sm">
+                        <div className="space-y-2.5 mb-4 text-xs">
                           <div className="flex justify-between items-center bg-slate-50/70 px-3 py-1.5 rounded-xl border border-slate-100">
                             <span className="text-slate-500 font-medium">Status</span>
                             <Badge
+                              className="text-[10px]"
                               variant={
                                 patient.intakeStatus === "Ready to Admit"
                                   ? "success"
@@ -798,7 +799,6 @@ export default function PatientsPage() {
                               {patient.intakeStatus || "New Referral"}
                             </Badge>
                           </div>
-
                           <div className="flex justify-between items-center bg-slate-50/70 px-3 py-1.5 rounded-xl border border-slate-100">
                             <span className="text-slate-500 font-medium">Documents</span>
                             {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
@@ -813,7 +813,6 @@ export default function PatientsPage() {
                               <Badge variant="success">Complete</Badge>
                             )}
                           </div>
-
                           <div className="flex justify-between items-start bg-slate-50/70 px-3 py-2 rounded-xl border border-slate-100 gap-2">
                             <span className="text-slate-500 font-medium shrink-0">Diagnosis</span>
                             <span
@@ -825,9 +824,8 @@ export default function PatientsPage() {
                           </div>
                         </div>
                       </div>
-
                       {/* Card Footer Link */}
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-brand-teal text-xs sm:text-sm font-bold tracking-tight">
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-brand-teal text-xs font-semibold tracking-tight">
                         <span>View Profile</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                       </div>
@@ -839,8 +837,6 @@ export default function PatientsPage() {
           )}
         </>
       )}
-
-
     </div>
   );
 }

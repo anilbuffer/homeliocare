@@ -2,7 +2,68 @@ import { Referral } from "./types";
 
 export const initialReferrals: Referral[] = [
   {
-    id: "ref-001",
+    id: "ref-ew-001",
+    workflowType: "Referral",
+    clientName: "Eleanor Ruth Whitfield",
+    clientInitials: "EW",
+    source: "Hospital Discharge",
+    sourceDetails: "Cedar Falls Regional Hospital",
+    referringParty: "Discharge Planner, Denise Okafor, RN Case Manager",
+    intakeNotes: "Patient discharging in 48 hrs. s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis. Mobility: Walker-assisted, fall risk (high). Needs care in place before discharge.",
+    dateReceived: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
+    stage: "Insurance Verification",
+    authorizationStatus: "Pending",
+    clinicalReviewStatus: "Pending",
+    daysInStage: 0,
+    assignedCoordinator: {
+      name: "Sarah Jenkins",
+      avatarUrl: "https://i.pravatar.cc/150?u=sarah",
+    },
+    dischargeDeadline: new Date(Date.now() + 1000 * 60 * 60 * 48).toISOString(), // 48 hours from now
+    urgency: "High",
+    serviceZoneStatus: "in-zone",
+    serviceZoneName: "Chester County",
+    documents: [
+      { name: "Discharge Summary", status: "Verified" },
+      { name: "Physician Orders", status: "Verified" },
+      { name: "Intake Inquiry Form", status: "Verified" }
+    ],
+    consents: [
+      { name: "HIPAA Consent", signed: true, date: new Date().toISOString() },
+      { name: "Service Agreement", signed: true, date: new Date().toISOString() }
+    ],
+    communications: [
+      {
+        id: "c-ew-1",
+        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 1).toISOString(),
+        author: "Meg Whitfield-Cho (Daughter)",
+        type: "call",
+        content: "Caller is the daughter, sounds overwhelmed. Mom (Eleanor) fell at home, broke her hip, had surgery Tuesday. Hospital says she can go home Thursday but can't be alone. Daughter works full time, can't move in. Brother is in Chicago, not much help day-to-day. Wants care to start the day Mom gets home. Confirmed Medicaid (CHC/Keystone First) — daughter isn't sure of authorization status, will need to verify. Cedar Falls is in our service area (Chester County).",
+        summary: "• Hours/week requested: 6 hrs/day, 7 days/week initially (reassess after 2 weeks)\n• Payment source: Medicaid — pending authorization verification\n• Outcome: Qualified → Assessment scheduled for tomorrow AM (before discharge)"
+      }
+    ],
+    insurance: {
+      payer: "Medicaid — PA Community HealthChoices, MCO: Keystone First CHC",
+      status: "Verified",
+    },
+    demographics: {
+      gender: "Female",
+      address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
+      phone: "(610) 555-0148",
+      primaryContactName: "Margaret \"Meg\" Whitfield-Cho",
+      primaryContactRelationship: "Daughter / POA",
+      primaryContactPhone: "(610) 555-0192",
+      primaryContactEmail: "meg.wcho@gmail.com"
+    },
+    diagnosis: "s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis",
+    emergencyContact: "David Whitfield (Son) - (215) 555-0873",
+    assessment: {
+      status: "Completed",
+      scheduledDate: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // Yesterday
+    }
+  },
+  {
+    id: "c-1",
     workflowType: "Referral",
     clientName: "Eleanor Rigby",
     clientInitials: "ER",
@@ -23,8 +84,9 @@ export const initialReferrals: Referral[] = [
     serviceZoneStatus: "in-zone",
     serviceZoneName: "North Region",
     documents: [
-      { name: "Referral Form", status: "Uploaded" },
-      { name: "Physician Orders", status: "Missing" },
+      { name: "Referral Form", status: "Verified" },
+      { name: "Physician Orders", status: "Verified" },
+      { name: "Intake Inquiry Form", status: "Verified" }
     ],
     consents: [
       { name: "HIPAA Consent", signed: false },
@@ -55,7 +117,9 @@ export const initialReferrals: Referral[] = [
     isPossibleDuplicate: true,
     duplicateMatches: [{ id: "c-982", name: "Johnathan Doe", dob: "1945-05-12" }],
     serviceZoneStatus: "near-capacity",
-    documents: [],
+    documents: [
+      { name: "Intake Inquiry Form", status: "Verified" }
+    ],
     consents: [],
     communications: [
       { 
@@ -90,7 +154,8 @@ export const initialReferrals: Referral[] = [
     serviceZoneStatus: "in-zone",
     documents: [
       { name: "Referral Form", status: "Verified" },
-      { name: "Insurance Card Copy", status: "Uploaded" },
+      { name: "Insurance Card Copy", status: "Verified" },
+      { name: "Intake Inquiry Form", status: "Verified" }
     ],
     consents: [
       { name: "HIPAA Consent", signed: true, date: "2026-07-11T10:00:00Z" },

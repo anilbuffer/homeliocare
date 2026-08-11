@@ -134,6 +134,16 @@ export function ShiftCard({ shift, onClick }: ShiftCardProps) {
             Needs coverage
           </div>
         )}
+
+        {shift.notes?.includes("Caregiver Introduction") && (
+          <div className="mt-2 p-2 bg-indigo-50 border border-indigo-100 rounded-lg">
+            <div className="flex items-center gap-1.5 mb-1">
+              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+              <p className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider">Caregiver Intro Event</p>
+            </div>
+            <p className="text-[10px] text-indigo-600">30m virtual intro with POA (Meg) scheduled prior to first shift.</p>
+          </div>
+        )}
       </div>
     </div>
   );

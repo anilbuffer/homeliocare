@@ -117,16 +117,17 @@ export const mockShifts: Shift[] = [
   {
     id: 's6',
     patientId: 'cl6',
-    patientName: 'Eleanor Whitaker',
+    patientName: 'Eleanor Whitfield',
     patientAddress: '412 Oak Ln, Astoria',
     requiredSkills: ['HHA', 'Dementia'],
     startTime: '2026-07-08T08:00:00Z',
     endTime: '2026-07-08T12:00:00Z',
-    status: 'In Progress',
+    status: 'Pending Confirmation',
     region: 'Queens',
-    assignedCaregiverId: 'c3',
-    assignedCaregiverName: 'Maria Alvarez',
-    shiftNumber: '#51'
+    assignedCaregiverId: 'cg-dr-1',
+    assignedCaregiverName: 'Denise Ruiz',
+    shiftNumber: '#51',
+    notes: 'Caregiver Introduction'
   },
   {
     id: 's7',

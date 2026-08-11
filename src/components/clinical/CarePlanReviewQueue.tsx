@@ -18,7 +18,7 @@ export interface CarePlanReview {
 const mockReviews: CarePlanReview[] = [
   {
     id: "cp-1",
-    clientName: "Eleanor Vance",
+    clientName: "Eleanor Whitfield",
     clientId: "c-1",
     dueDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days overdue
     triggerReason: "periodic_60",

@@ -50,7 +50,6 @@ const PIPELINE_STAGES: ReferralStage[] = [
   "Clinical Review",
   "Contact Attempted",
   "Insurance Verification",
-  "Insurance Verification / Authorization",
   "Eligibility Confirmed",
   "Assigned to Care Team",
   "Consent & Agreements",
@@ -138,10 +137,11 @@ function ReferralCard({ referral, onClick, onDragStart }: ReferralCardProps) {
         )}
 
         {/* AI Urgency Pill */}
-        {(referral.readmissionRisk === "High" || urgency === "danger") && (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 border border-rose-200 shadow-sm animate-pulse">
+        {(referral.readmissionRisk === "High" || urgency === "danger" || referral.urgency === "High") && (
+          <div className={clsx("flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-semibold shadow-[0_4px_20px_rgba(0,0,0,0.04)] animate-pulse border",
+            referral.urgency === "High" ? "bg-red-100 text-red-700 border-red-300" : "bg-rose-100 text-rose-700 border-rose-200")}>
             <Activity className="w-3 h-3" />
-            {referral.readmissionRisk === "High" ? "High Readmission Risk" : "Same-Day Discharge"}
+            {referral.urgency === "High" ? "🔴 Urgent (Discharge < 48h)" : referral.readmissionRisk === "High" ? "High Readmission Risk" : "Same-Day Discharge"}
           </div>
         )}
 
@@ -259,7 +259,7 @@ export function PipelineBoard({ viewMode, referrals, setReferrals }: PipelineBoa
           return;
         }
       } else {
-        const invalidInquiryStages = ["Clinical Review", "Insurance Verification / Authorization", "Assigned to Care Team"];
+        const invalidInquiryStages = ["Clinical Review", "Assigned to Care Team"];
         if (invalidInquiryStages.includes(stage)) {
           setDraggedId(null);
           setDragOverStage(null);

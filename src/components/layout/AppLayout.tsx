@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
 
+
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -16,6 +17,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
+
     </div>
   );
 }

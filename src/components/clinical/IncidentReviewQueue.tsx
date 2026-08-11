@@ -32,7 +32,7 @@ const mockIncidents: IncidentReview[] = [
   },
   {
     id: "inc-2",
-    clientName: "Eleanor Vance",
+    clientName: "Eleanor Whitfield",
     clientId: "c-1",
     reporter: "James O.",
     dateReported: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),

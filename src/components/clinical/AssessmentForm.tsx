@@ -128,6 +128,23 @@ export function AssessmentForm() {
                     <Activity className="w-5 h-5 text-brand-teal" />
                     Physical & Medical Status
                   </h3>
+                  
+                  <div className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+                    <div>
+                      <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Assessment Location</label>
+                      <select className="px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-teal outline-none bg-white font-medium text-slate-700">
+                        <option>Pre-discharge / In-hospital</option>
+                        <option>Client Home</option>
+                        <option>Assisted Living Facility</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                    <div className="flex-1 max-w-sm">
+                      <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Location Details</label>
+                      <input type="text" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-brand-teal outline-none" defaultValue="Cedar Falls Regional Hospital, Rm 412" />
+                    </div>
+                  </div>
+
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-1.5">

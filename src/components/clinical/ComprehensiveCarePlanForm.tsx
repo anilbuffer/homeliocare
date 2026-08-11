@@ -46,9 +46,9 @@ export function ComprehensiveCarePlanForm({
   const [nutritionAreas, setNutritionAreas] = useState(['Diet / Meal Pattern', 'Appetite', 'Weight / Weight Change', 'Hydration / Fluid Intake', 'Swallowing / Aspiration Concerns', 'Feeding Assistance', 'Dietary Restrictions / Preferences', 'Bowel Function', 'Bladder / Continence']);
   const [safetyRisks, setSafetyRisks] = useState(['Falls', 'Skin Integrity', 'Medication Safety', 'Infection', 'Wandering / Elopement', 'Home Safety', 'Nutrition / Dehydration', 'Other']);
   const [needsList, setNeedsList] = useState([1, 2, 3, 4, 5]);
-  const [goalsList, setGoalsList] = useState(['G1', 'G2', 'G3', 'G4', 'G5']);
-  const [interventionsList, setInterventionsList] = useState(['Personal Care', 'Mobility', 'Nutrition', 'Medication', 'Safety', 'Cognitive Support', 'Behavioral Support', 'Social Support', 'Medical Follow-up']);
-  const [caregiverInstructions, setCaregiverInstructions] = useState(['Morning Routine', 'Personal Care', 'Meals / Hydration', 'Medication Support', 'Mobility / Transfers', 'Behavior / Mood', 'Evening Routine', 'As Needed / PRN']);
+  const [goalsList, setGoalsList] = useState(['Eleanor ambulates safely with walker and one-person assist within 4 weeks', 'Zero fall incidents during care hours (Ongoing)', 'Medication adherence 100% via caregiver reminder system']);
+  const [interventionsList, setInterventionsList] = useState(['Personal Care', 'Mobility', 'Nutrition', 'Medication', 'Safety']);
+  const [caregiverInstructions, setCaregiverInstructions] = useState(['Morning Routine: Assist with transfer from bed. Do NOT allow ambulation without walker + caregiver at arm\'s length.', 'Assist with bathing (shower chair in place by day 3).', 'Medication Support: Administer medication reminder only — caregiver does not administer Eliquis.']);
   const [teamRoles, setTeamRoles] = useState(['Primary Care Provider', 'Specialist', 'Nurse / Clinician', 'Care Coordinator', 'Caregiver', 'Therapist', 'Family / Representative', 'Other']);
   const [scheduleTimes, setScheduleTimes] = useState(['Morning', 'Midday', 'Afternoon', 'Evening', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Weekend', 'As Needed']);
   const [outcomeAreas, setOutcomeAreas] = useState(['Functional Status', 'Health / Symptoms', 'Safety', 'Goal Achievement', 'Caregiver Capacity']);

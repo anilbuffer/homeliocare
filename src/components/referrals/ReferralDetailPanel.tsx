@@ -20,7 +20,6 @@ const STAGES: ReferralStage[] = [
   "Contact Attempted",
   "Clinical Review",
   "Insurance Verification",
-  "Insurance Verification / Authorization",
   "Eligibility Confirmed",
   "Assigned to Care Team",
   "Consent & Agreements",
@@ -92,14 +91,14 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
               {/* AI Call Summary (Top Placement) */}
               {latestAICall && (
-                <div className="bg-purple-50 border border-purple-200/60 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] relative overflow-hidden">
+                <div className="bg-purple-50 border border-purple-200/60 rounded-xl px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.04)] relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-3 opacity-20 pointer-events-none">
                     <Sparkles className="w-16 h-16 text-purple-600" />
                   </div>
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-xs font-bold text-purple-900 uppercase tracking-wider flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-purple-600" />
+                      <h3 className="text-xs font-semibold text-purple-900 uppercase tracking-wider flex items-center gap-2">
+                        <Sparkles className="w-3.5 h-3.5 text-purple-600" />
                         AI Call Summary
                       </h3>
                       <div className="flex items-center gap-2 bg-white/60 px-3 py-1.5 rounded-full border border-purple-100">
@@ -125,7 +124,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
               {(referral.nextAction?.isOverdue || referral.isPossibleDuplicate) && (
                 <div className="space-y-3">
                   {referral.nextAction?.isOverdue && (
-                    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3">
+                    <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                       <div>
                         <h4 className="font-semibold text-red-900 text-sm">Overdue Action</h4>
@@ -160,7 +159,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
               {/* Intake Notes */}
               {referral.intakeNotes && (
-                <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+                <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100 rounded-xl px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
                   <h3 className="text-sm font-semibold text-teal-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                     <FileText className="w-4 h-4" />
                     Intake Notes
@@ -173,29 +172,38 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
               {/* Info Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white border border-slate-200 rounded-xl p-4">
+                <div className="bg-white border border-slate-200 rounded-xl px-4 py-3">
                   <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Referral Details</h3>
                   <div className="space-y-3">
                     <div>
                       <span className="block text-xs text-slate-500">Received</span>
                       <span className="block text-sm font-medium text-slate-900">{new Date(referral.dateReceived).toLocaleDateString()}</span>
                     </div>
+                    {referral.urgency === "High" && (
+                      <div>
+                        <span className="block text-xs text-slate-500">SLA Timer</span>
+                        <span className="block text-xs font-medium text-rose-600 flex items-center gap-1">
+                          <Clock className="w-3.5 h-3.5" />
+                          Call-to-Assessment SLA: <span className="font-bold">Urgent</span>
+                        </span>
+                      </div>
+                    )}
                     {referral.referringParty && (
                       <div>
                         <span className="block text-xs text-slate-500">Referring Party</span>
-                        <span className="block text-sm font-medium text-slate-900">{referral.referringParty}</span>
+                        <span className="block text-xs font-medium text-slate-900">{referral.referringParty}</span>
                       </div>
                     )}
                     {referral.sourceDetails && (
                       <div>
                         <span className="block text-xs text-slate-500">Source Details</span>
-                        <span className="block text-sm font-medium text-slate-900">{referral.sourceDetails}</span>
+                        <span className="block text-xs font-medium text-slate-900">{referral.sourceDetails}</span>
                       </div>
                     )}
                     {referral.dischargeDeadline && (
                       <div>
                         <span className="block text-xs text-slate-500">Discharge Deadline</span>
-                        <span className="block text-sm font-medium text-red-600">{new Date(referral.dischargeDeadline).toLocaleString()}</span>
+                        <span className="block text-xs font-medium text-red-600">{new Date(referral.dischargeDeadline).toLocaleString()}</span>
                       </div>
                     )}
                   </div>
@@ -208,7 +216,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                       {referral.assignedCoordinator.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-slate-900">{referral.assignedCoordinator.name}</div>
+                      <div className="text-xs font-medium text-slate-900">{referral.assignedCoordinator.name}</div>
                       <div className="text-xs text-slate-500">Assigned</div>
                     </div>
                   </div>
@@ -218,7 +226,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
               {/* Demographics & Contact */}
               {referral.demographics && (
                 <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                  <div className="p-4 border-b border-slate-100 flex justify-between items-center">
+                  <div className="px-4 py-3 border-b border-slate-100 flex justify-between items-center">
                     <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2">
                       <User className="w-4 h-4 text-brand-teal" />
                       Patient Demographics & Contact
@@ -228,31 +236,31 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                     {referral.dob && (
                       <div>
                         <div className="text-xs text-slate-500">Date of Birth</div>
-                        <div className="text-sm font-medium text-slate-900">{referral.dob}</div>
+                        <div className="text-xs font-medium text-slate-900">{referral.dob}</div>
                       </div>
                     )}
                     {referral.demographics.gender && (
                       <div>
                         <div className="text-xs text-slate-500">Gender</div>
-                        <div className="text-sm font-medium text-slate-900">{referral.demographics.gender}</div>
+                        <div className="text-xs font-medium text-slate-900">{referral.demographics.gender}</div>
                       </div>
                     )}
                     {referral.phone && (
                       <div>
                         <div className="text-xs text-slate-500">Phone</div>
-                        <div className="text-sm font-medium text-slate-900">{referral.phone}</div>
+                        <div className="text-xs font-medium text-slate-900">{referral.phone}</div>
                       </div>
                     )}
                     {referral.demographics.email && (
                       <div>
                         <div className="text-xs text-slate-500">Email</div>
-                        <div className="text-sm font-medium text-slate-900">{referral.demographics.email}</div>
+                        <div className="text-xs font-medium text-slate-900">{referral.demographics.email}</div>
                       </div>
                     )}
                     {(referral.demographics.address || referral.demographics.city || referral.demographics.state || referral.demographics.zip) && (
                       <div className="sm:col-span-2">
                         <div className="text-xs text-slate-500">Address</div>
-                        <div className="text-sm font-medium text-slate-900">
+                        <div className="text-xs font-medium text-slate-900">
                           {referral.demographics.address}
                           {referral.demographics.city && `, ${referral.demographics.city}`}
                           {referral.demographics.state && ` ${referral.demographics.state}`}
@@ -266,17 +274,17 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
               {/* Insurance & Zone */}
               <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                <div className="p-4 border-b border-slate-100 flex justify-between items-center">
+                <div className="px-4 py-3 border-b border-slate-100 flex justify-between items-center">
                   <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-brand-teal" />
                     Eligibility & Insurance
                   </h3>
                 </div>
-                <div className="p-4 bg-slate-50/50">
+                <div className="px-4 py-3 bg-slate-50/50">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <div className="text-xs text-slate-500">Service Zone Check</div>
-                      <div className="text-sm font-medium text-slate-900 mt-1 flex items-center gap-2">
+                      <div className="text-xs font-medium text-slate-900 mt-1 flex items-center gap-2">
                         {referral.serviceZoneStatus === "in-zone" ? (
                           <><CheckCircle2 className="w-4 h-4 text-emerald-500" /> In Zone ({referral.serviceZoneName})</>
                         ) : (
@@ -289,18 +297,18 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                     <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200">
                       <div>
                         <div className="text-xs text-slate-500">Payer</div>
-                        <div className="text-sm font-medium text-slate-900">{referral.insurance.payer}</div>
+                        <div className="text-xs font-medium text-slate-900">{referral.insurance.payer}</div>
                       </div>
                       <div>
                         <div className="text-xs text-slate-500">Status</div>
-                        <div className="text-sm font-medium text-slate-900">
+                        <div className="text-xs font-medium text-slate-900 mt-1">
                           <span className={clsx(
                             "px-2 py-1 rounded-md text-xs",
                             referral.insurance.status === "Verified" ? "bg-emerald-100 text-emerald-700" :
-                              referral.insurance.status === "Pending" ? "bg-amber-100 text-amber-700" :
+                              referral.insurance.status === "Pending" ? "bg-amber-100 text-amber-700 border border-amber-300 animate-pulse" :
                                 "bg-red-100 text-red-700"
                           )}>
-                            {referral.insurance.status}
+                            {referral.insurance.status === "Pending" ? "Pending Verification" : referral.insurance.status}
                           </span>
                         </div>
                       </div>
@@ -311,7 +319,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
               {/* Checklist */}
               <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                <div className="p-4 border-b border-slate-100 flex justify-between items-center">
+                <div className="px-4 py-3 border-b border-slate-100 flex justify-between items-center">
                   <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2">
                     <FileText className="w-4 h-4 text-brand-teal" />
                     Documents & Consents
@@ -319,20 +327,20 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                 </div>
                 <div className="p-2">
                   {[...referral.documents, ...referral.consents.map(c => ({ name: c.name, status: c.signed ? "Verified" : "Missing" }))].map((doc, i) => (
-                    <div key={i} className="flex flex-col p-3 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100 last:border-0">
+                    <div key={i} className="flex flex-col p-2 hover:bg-slate-50 rounded-lg transition-colors border-b border-slate-100 last:border-0">
                       <div className="flex items-center justify-between mb-1">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                           <div className={clsx(
-                            "w-5 h-5 rounded flex items-center justify-center shrink-0",
+                            "w-4 h-4 rounded flex items-center justify-center shrink-0",
                             doc.status === "Verified" ? "bg-emerald-100 text-emerald-600" :
                               doc.status === "Uploaded" ? "bg-blue-100 text-blue-600" : "bg-rose-100 text-rose-600"
                           )}>
                             {doc.status === "Verified" ? <CheckCircle2 className="w-3.5 h-3.5" /> :
                               doc.status === "Uploaded" ? <FileText className="w-3.5 h-3.5" /> : <AlertCircle className="w-3.5 h-3.5" />}
                           </div>
-                          <span className="text-sm font-medium text-slate-700">{doc.name}</span>
+                          <span className="text-xs font-medium text-slate-700">{doc.name}</span>
                         </div>
-                        <span className={clsx("text-xs font-bold uppercase", doc.status === "Missing" ? "text-rose-600" : "text-slate-500")}>
+                        <span className={clsx("text-xs font-medium uppercase", doc.status === "Missing" ? "text-rose-600" : "text-slate-500")}>
                           {doc.status}
                         </span>
                       </div>
@@ -351,7 +359,7 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
 
               {/* Comm Log Placeholder */}
               <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                <div className="p-4 border-b border-slate-100 flex justify-between items-center">
+                <div className="px-4 py-3 border-b border-slate-100 flex justify-between items-center">
                   <h3 className="text-sm font-semibold text-slate-800 flex items-center gap-2">
                     <MessageSquarePlus className="w-4 h-4 text-brand-teal" />
                     Communication Log
@@ -370,10 +378,10 @@ export function ReferralDetailPanel({ referral, onClose, onUpdate }: ReferralDet
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-medium text-slate-900">{comm.author}</span>
+                            <span className="text-xs font-medium text-slate-900">{comm.author}</span>
                             <span className="text-xs text-slate-400">{new Date(comm.timestamp).toLocaleString()}</span>
                           </div>
-                          <p className="text-sm text-slate-600 mt-1">{comm.content}</p>
+                          <p className="text-xs text-slate-600 mt-1">{comm.content}</p>
 
                           {/* Recording Player (Mock) */}
                           {comm.recordingUrl && (
