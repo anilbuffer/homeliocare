@@ -9,8 +9,7 @@ import { PipelineBoard } from "@/components/referrals/PipelineBoard";
 import { SourcePerformanceChart } from "@/components/referrals/SourcePerformanceChart";
 import { OnlineReferralQueue } from "@/components/referrals/OnlineReferralQueue";
 import { RecentlyDeclinedList } from "@/components/referrals/RecentlyDeclinedList";
-import { NewReferralModal } from "@/components/referrals/NewReferralModal";
-import { NewInquiryModal } from "@/components/referrals/NewInquiryModal";
+import { useRouter } from "next/navigation";
 import { initialReferrals } from "@/components/referrals/MockData";
 import { Referral } from "@/components/referrals/types";
 
@@ -33,8 +32,7 @@ type ViewMode = "pipeline" | "list" | "tasks";
 
 export default function IntakeReferralsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("pipeline");
-  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
-  const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
+  const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [referrals, setReferrals] = useState<Referral[]>(initialReferrals);
 
@@ -108,7 +106,7 @@ export default function IntakeReferralsPage() {
                 >
                   <button
                     onClick={() => {
-                      setIsInquiryModalOpen(true);
+                      router.push("/intake/inquiries/new");
                       setIsDropdownOpen(false);
                     }}
                     className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
@@ -117,7 +115,7 @@ export default function IntakeReferralsPage() {
                   </button>
                   <button
                     onClick={() => {
-                      setIsReferralModalOpen(true);
+                      router.push("/intake/referrals/new");
                       setIsDropdownOpen(false);
                     }}
                     className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
@@ -154,16 +152,7 @@ export default function IntakeReferralsPage() {
         </motion.div>
       </motion.div>
 
-      <NewInquiryModal
-        isOpen={isInquiryModalOpen}
-        onClose={() => setIsInquiryModalOpen(false)}
-        onSubmit={handleAddReferral}
-      />
-      <NewReferralModal
-        isOpen={isReferralModalOpen}
-        onClose={() => setIsReferralModalOpen(false)}
-        onSubmit={handleAddReferral}
-      />
+
     </div>
   );
 }

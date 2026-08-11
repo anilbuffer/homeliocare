@@ -120,7 +120,7 @@ export function AssessmentBookingWidget() {
                   </AnimatePresence>
 
                   <div className="flex flex-col 2xl:flex-row gap-3 justify-between">
-                    <div>
+                    <div className="w-full">
                       <div className="flex items-center gap-2 mb-1.5">
                         <span className="font-bold text-slate-900 text-sm">{a.time}</span>
                         <span className="w-1 h-1 rounded-full bg-slate-300"></span>
@@ -139,9 +139,9 @@ export function AssessmentBookingWidget() {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 mt-2 2xl:mt-0 w-full 2xl:w-auto">
-                      <button 
+                      <button
                         onClick={() => window.open(`https://maps.google.com/?q=${encodeURIComponent(a.address)}`, '_blank')}
-                        className="flex items-center justify-center bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 w-8 h-8 rounded-full transition-colors group relative shrink-0" 
+                        className="flex items-center justify-center bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-600 w-8 h-8 rounded-full transition-colors group relative shrink-0"
                         title="View Route Map"
                       >
                         <Map className="w-4 h-4" />

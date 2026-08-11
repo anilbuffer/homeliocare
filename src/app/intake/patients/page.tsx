@@ -26,8 +26,6 @@ import { mockPatients, Patient } from "@/lib/patients/mockData";
 import { Badge } from "@/components/ui/Badge";
 import { Avatar } from "@/components/ui/Avatar";
 import { Card } from "@/components/ui/Card";
-import { NewInquiryModal } from "@/components/referrals/NewInquiryModal";
-import { NewReferralModal } from "@/components/referrals/NewReferralModal";
 import { toast } from "sonner";
 
 type FilterStatus = "ALL" | "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold";
@@ -40,8 +38,6 @@ export default function PatientsPage() {
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isIntakeDropdownOpen, setIsIntakeDropdownOpen] = useState(false);
-  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
-  const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
   const [selectedPatients, setSelectedPatients] = useState<Set<string>>(new Set());
   const [locationFilter, setLocationFilter] = useState("All Locations");
   const [payerFilter, setPayerFilter] = useState("All Payers");
@@ -212,7 +208,7 @@ export default function PatientsPage() {
               >
                 <button
                   onClick={() => {
-                    setIsInquiryModalOpen(true);
+                    router.push("/intake/inquiries/new");
                     setIsIntakeDropdownOpen(false);
                   }}
                   className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
@@ -221,7 +217,7 @@ export default function PatientsPage() {
                 </button>
                 <button
                   onClick={() => {
-                    setIsReferralModalOpen(true);
+                    router.push("/intake/referrals/new");
                     setIsIntakeDropdownOpen(false);
                   }}
                   className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
@@ -844,17 +840,7 @@ export default function PatientsPage() {
         </>
       )}
 
-      {/* New Patient Modal */}
-      <NewInquiryModal
-        isOpen={isInquiryModalOpen}
-        onClose={() => setIsInquiryModalOpen(false)}
-        onSubmit={handleAddReferral}
-      />
-      <NewReferralModal
-        isOpen={isReferralModalOpen}
-        onClose={() => setIsReferralModalOpen(false)}
-        onSubmit={handleAddReferral}
-      />
+
     </div>
   );
 }

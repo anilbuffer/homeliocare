@@ -10,14 +10,12 @@ import { PipelineSnapshot } from "@/components/intake/PipelineSnapshot";
 import { FollowUpQueue } from "@/components/intake/FollowUpQueue";
 import { Plus, Sparkles, PlayCircle, PauseCircle } from "lucide-react";
 import { toast } from "sonner";
-import { NewInquiryModal } from "@/components/referrals/NewInquiryModal";
-import { NewReferralModal } from "@/components/referrals/NewReferralModal";
+import { useRouter } from "next/navigation";
 
 export default function IntakeDashboard() {
   const { currentUser } = useAuth();
   const [greeting, setGreeting] = useState("Good morning");
-  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
-  const [isReferralModalOpen, setIsReferralModalOpen] = useState(false);
+  const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
@@ -142,7 +140,7 @@ export default function IntakeDashboard() {
                 >
                   <button
                     onClick={() => {
-                      setIsInquiryModalOpen(true);
+                      router.push("/intake/inquiries/new");
                       setIsDropdownOpen(false);
                     }}
                     className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
@@ -151,7 +149,7 @@ export default function IntakeDashboard() {
                   </button>
                   <button
                     onClick={() => {
-                      setIsReferralModalOpen(true);
+                      router.push("/intake/referrals/new");
                       setIsDropdownOpen(false);
                     }}
                     className="w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-teal transition-colors"
@@ -195,22 +193,7 @@ export default function IntakeDashboard() {
 
       </div>
 
-      <NewInquiryModal
-        isOpen={isInquiryModalOpen}
-        onClose={() => setIsInquiryModalOpen(false)}
-        onSubmit={(data) => {
-          console.log("New inquiry submitted:", data);
-          toast.success("Inquiry created successfully");
-        }}
-      />
-      <NewReferralModal
-        isOpen={isReferralModalOpen}
-        onClose={() => setIsReferralModalOpen(false)}
-        onSubmit={(data) => {
-          console.log("New referral submitted:", data);
-          toast.success("Referral created successfully");
-        }}
-      />
+
     </div>
   );
 }
