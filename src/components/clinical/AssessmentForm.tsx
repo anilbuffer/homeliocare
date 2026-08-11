@@ -60,7 +60,7 @@ export function AssessmentForm() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 self-start sm:self-auto">
+        <div className="flex items-center gap-2 md:gap-4 self-start sm:self-auto">
           <div className="flex items-center gap-2">
             <User className="w-4 h-4 text-slate-400" />
             <select
@@ -74,7 +74,7 @@ export function AssessmentForm() {
               <option value="p3">Marcus Johnson</option>
             </select>
           </div>
-          
+
           <div className="h-4 w-px bg-slate-200 hidden sm:block"></div>
 
           <div className="flex items-center gap-2">
