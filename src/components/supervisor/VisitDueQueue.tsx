@@ -22,7 +22,7 @@ type Visit = {
 const mockVisits: Visit[] = [
   {
     id: "v-1",
-    clientName: "Eleanor Vance",
+    clientName: "Eleanor Ruth Whitfield",
     address: "142 Maple St, Apt 4B",
     caregiverAssigned: "Maria Santos, CNA",
     lastVisitDate: null,

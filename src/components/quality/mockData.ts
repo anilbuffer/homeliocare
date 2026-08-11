@@ -36,7 +36,7 @@ export const mockAudits: Audit[] = [
   {
     id: "AUD-001",
     type: "Chart Audit",
-    subjectName: "Eleanor Vance",
+    subjectName: "Eleanor Ruth Whitfield",
     subjectType: "Patient",
     subjectId: "CLI-001",
     assignedSupervisor: "Sarah Jenkins",

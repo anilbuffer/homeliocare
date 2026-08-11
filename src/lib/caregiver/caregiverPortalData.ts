@@ -171,7 +171,7 @@ export const INITIAL_CAREGIVER_PROFILE: CaregiverProfileData = {
   completedVisitsTotal: 342,
   clientRating: 4.95,
   assignedClients: [
-    { id: "cli-101", name: "Eleanor Vance", mrn: "MRN-88491", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120" },
+    { id: "cli-101", name: "Eleanor Ruth Whitfield", mrn: "MRN-88491", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120" },
     { id: "cli-102", name: "Arthur Pendelton", mrn: "MRN-33920", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120" },
     { id: "cli-103", name: "Margaret Higgins", mrn: "MRN-77102", image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=120" },
   ],
@@ -192,7 +192,7 @@ export const INITIAL_VISITS: Visit[] = [
   {
     id: "visit-101",
     clientId: "cli-101",
-    clientName: "Eleanor Vance",
+    clientName: "Eleanor Ruth Whitfield",
     clientPhoto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
     address: "742 Evergreen Terrace",
     cityStateZip: "Springfield, IL 62704",
@@ -337,7 +337,7 @@ export const INITIAL_THREADS: MessageThread[] = [
   {
     id: "th-1",
     title: "Clinical Supervisor - Rachel Miller RN",
-    subtitle: "Re: Eleanor Vance's morning blood pressure trend",
+    subtitle: "Re: Eleanor Ruth Whitfield's morning blood pressure trend",
     avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=200",
     isGroup: false,
     unreadCount: 1,

@@ -29,7 +29,7 @@ interface CaregiverTopBarProps {
 export function CaregiverTopBar({
   onMenuClick,
   isClockedIn = false,
-  activeClientName = "Eleanor Vance",
+  activeClientName = "Eleanor Ruth Whitfield",
   isOffline = false,
   onToggleOffline,
   pendingSyncCount = 0,

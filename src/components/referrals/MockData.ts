@@ -11,9 +11,9 @@ export const initialReferrals: Referral[] = [
     referringParty: "Discharge Planner, Denise Okafor, RN Case Manager",
     intakeNotes: "Patient discharging in 48 hrs. s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis. Mobility: Walker-assisted, fall risk (high). Needs care in place before discharge.",
     dateReceived: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
-    stage: "Insurance Verification",
-    authorizationStatus: "Pending",
-    clinicalReviewStatus: "Pending",
+    stage: "Admitted",
+    authorizationStatus: "Approved",
+    clinicalReviewStatus: "Completed",
     daysInStage: 0,
     assignedCoordinator: {
       name: "Sarah Jenkins",
@@ -65,7 +65,7 @@ export const initialReferrals: Referral[] = [
   {
     id: "c-1",
     workflowType: "Referral",
-    clientName: "Eleanor Rigby",
+    clientName: "Eleanor Ruth Whitfield",
     clientInitials: "ER",
     source: "Hospital",
     sourceDetails: "Discharge Planner - Room 402B",

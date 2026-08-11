@@ -15,7 +15,7 @@ interface CaregiverLayoutProps {
 export function CaregiverLayout({
   children,
   isClockedIn = false,
-  activeClientName = "Eleanor Vance",
+  activeClientName = "Eleanor Ruth Whitfield",
   pendingSyncCount = 0,
 }: CaregiverLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);

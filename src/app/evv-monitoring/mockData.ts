@@ -13,7 +13,7 @@ export const mockExceptions: EVVException[] = [
     },
     patient: {
       id: "cl-1",
-      name: "Eleanor Vance",
+      name: "Eleanor Ruth Whitfield",
     },
     visitDate: "Today",
     scheduledTime: { start: "08:00 AM", end: "11:00 AM" },

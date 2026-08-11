@@ -553,7 +553,7 @@ export default function PatientsPage() {
                             }}
                           />
                         </td>
-                        <td className="px-4 sm:px-6 py-3">
+                        <td className="px-4 py-3">
                           <div className="flex items-center gap-3">
                             <Avatar
                               src={patient.avatarUrl}
@@ -562,10 +562,10 @@ export default function PatientsPage() {
                               size="md"
                             />
                             <div>
-                              <div className="font-semibold text-slate-900 group-hover:text-brand-teal transition-colors flex items-center gap-2">
+                              <div className="font-semibold text-slate-900 group-hover:text-brand-teal transition-colors flex items-center gap-2 whitespace-nowrap">
                                 {patient.name}
                               </div>
-                              <div className="text-slate-500 text-xs mt-0.5 font-medium">
+                              <div className="text-slate-500 text-xs mt-0.5 font-medium whitespace-nowrap">
                                 {patient.age} yrs • {patient.demographics.gender}
                               </div>
                             </div>
@@ -573,7 +573,7 @@ export default function PatientsPage() {
                         </td>
                         <td className="px-4 py-3">
                           <Badge
-                            className="text-xs"
+                            className="text-xs whitespace-nowrap"
                             variant={
                               patient.intakeStatus === "Ready to Admit"
                                 ? "success"
@@ -589,20 +589,20 @@ export default function PatientsPage() {
                           {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
                             <div className="flex flex-wrap gap-1.5">
                               {patient.missingDocuments.map((doc, i) => (
-                                <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-semibold whitespace-nowrap shadow-sm">
+                                <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(0,0,0,0.04)] ">
                                   <span className="text-[10px]">🛑</span> {doc === "Hospital Discharge Summary" ? "Missing F2F Encounter" : `Missing ${doc}`}
                                 </span>
                               ))}
                             </div>
                           ) : (
-                            <Badge className="text-xs" variant="success">
+                            <Badge className="text-xs whitespace-nowrap" variant="success">
                               Complete
                             </Badge>
                           )}
                         </td>
                         <td className="px-4 py-3">
                           <span
-                            className="font-medium text-slate-800 text-xs max-w-[240px] truncate block"
+                            className="font-medium text-slate-800 text-xs max-w-[240px] truncate block whitespace-nowrap"
                             title={patient.primaryDiagnosis}
                           >
                             {patient.primaryDiagnosis}
@@ -611,7 +611,7 @@ export default function PatientsPage() {
                         <td className="px-4 sm:px-6 py-3 text-right">
                           <div className="flex items-center justify-end gap-2">
                             <button
-                              className="inline-flex items-center gap-1 text-xs font-semibold text-brand-teal hover:text-emerald-700 bg-brand-teal/10 hover:bg-brand-teal/20 px-3 py-2 rounded-full transition-colors"
+                              className="inline-flex items-center gap-1 text-xs font-semibold text-brand-teal hover:text-emerald-700 bg-brand-teal/10 hover:bg-brand-teal/20 px-3 py-2 whitespace-nowrap rounded-full transition-colors"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 router.push(`/intake/patients/${patient.id}`);
@@ -703,7 +703,7 @@ export default function PatientsPage() {
                       {patient.missingDocuments && patient.missingDocuments.length > 0 ? (
                         <div className="flex flex-wrap gap-1.5 mt-1">
                           {patient.missingDocuments.map((doc, i) => (
-                            <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-semibold whitespace-nowrap shadow-sm">
+                            <span key={i} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-semibold whitespace-nowrap shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
                               <span className="text-[10px]">🛑</span> {doc === "Hospital Discharge Summary" ? "Missing F2F Encounter" : `Missing ${doc}`}
                             </span>
                           ))}

@@ -23,7 +23,7 @@ export function NotificationsCenter() {
       id: 1,
       type: "alert",
       title: "Late Clock-In Alert",
-      description: "Sarah J. is 10 mins late for shift with Eleanor Vance.",
+      description: "Sarah J. is 10 mins late for shift with Eleanor Ruth Whitfield.",
       time: "2 mins ago",
       icon: Clock,
       color: "text-amber-500",

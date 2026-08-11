@@ -35,11 +35,11 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
             <Avatar src={patient.avatarUrl} alt={patient.name} fallback={patient.name.substring(0, 2)} size="xl" className="w-24 h-24 text-2xl" />
             <div className="absolute -bottom-2 -right-2">
               <Badge variant={
-                patient.intakeStatus === "Ready to Admit" ? "success" :
+                (patient.intakeStatus === "Ready to Admit" || patient.intakeStatus === "Admitted") ? "success" :
                   patient.intakeStatus === "Onboarding Hold" ? "error" : "warning"
               } className={cn(
                 "border-2 border-white shadow-[0_6px_32px_rgba(0,0,0,0.06)] font-semibold text-white whitespace-nowrap px-3 py-1",
-                patient.intakeStatus === "Ready to Admit" ? "bg-emerald-500" :
+                (patient.intakeStatus === "Ready to Admit" || patient.intakeStatus === "Admitted") ? "bg-emerald-500" :
                 patient.intakeStatus === "Onboarding Hold" ? "bg-rose-500" : "bg-amber-500"
               )}>{patient.intakeStatus || "New Referral"}</Badge>
             </div>
@@ -105,7 +105,7 @@ export function PatientHeader({ patient }: PatientHeaderProps) {
           </div>
 
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 mt-1 w-full sm:w-auto">
-            {(!patient.missingDocuments || patient.missingDocuments.length === 0) && (
+            {patient.intakeStatus !== "Admitted" && (!patient.missingDocuments || patient.missingDocuments.length === 0) && (
               <button
                 onClick={() => setModalState("handover")}
                 className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-all text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-[0_6px_32px_rgba(79,70,229,0.2)] hover:shadow-[0_6px_32px_rgba(79,70,229,0.3)] col-span-2 sm:col-span-1">

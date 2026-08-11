@@ -108,7 +108,7 @@ export function OfflineSyncBanner({
 
               <h3 className="text-lg font-bold text-gray-900">Sync Conflict Detected</h3>
               <p className="text-xs text-gray-600 mt-1">
-                Office Dispatch modified Eleanor Vance&apos;s scheduled shift duration while you were offline.
+                Office Dispatch modified Eleanor Ruth Whitfield&apos;s scheduled shift duration while you were offline.
               </p>
 
               <div className="my-4 p-3 rounded-xl bg-gray-50 border border-slate-200 text-xs space-y-2">

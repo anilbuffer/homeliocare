@@ -39,7 +39,7 @@ export interface Referral {
   workflowType?: "Inquiry" | "Referral";
   npi?: string;
   authorizationStatus?: "Not Started" | "Pending" | "Approved" | "Denied";
-  clinicalReviewStatus?: "Pending" | "Approved" | "Denied";
+  clinicalReviewStatus?: "Pending" | "Approved" | "Denied" | "Completed";
   clientName: string;
   clientInitials: string;
   dob?: string;

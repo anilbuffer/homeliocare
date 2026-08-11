@@ -23,7 +23,7 @@ const mockRecords: AuthorizationRecord[] = [
   { id: "AUTH-992140", clientName: "Mary Smith", payer: "Medicaid", serviceType: "Personal Care", billingCodes: ["T1019"], startDate: "2026-01-01", endDate: "2026-08-15", unitsAuthorized: 480, unitsConsumed: 450, status: "EXPIRING" },
   { id: "AUTH-110294", clientName: "Robert Chen", payer: "BlueCross", serviceType: "Physical Therapy", billingCodes: ["97110", "97140"], startDate: "2026-05-01", endDate: "2026-08-05", unitsAuthorized: 120, unitsConsumed: 110, status: "EXPIRING" },
   { id: "AUTH-774129", clientName: "James Wilson", payer: "Medicaid", serviceType: "Respite", billingCodes: ["S5150"], startDate: "2026-02-01", endDate: "2026-12-31", unitsAuthorized: 600, unitsConsumed: 200, status: "ACTIVE" },
-  { id: "AUTH-441290", clientName: "Eleanor Vance", payer: "Aetna", serviceType: "Skilled Nursing", billingCodes: ["G0299"], startDate: "2026-07-01", endDate: "2026-09-30", unitsAuthorized: 150, unitsConsumed: 150, status: "EXPIRED" },
+  { id: "AUTH-441290", clientName: "Eleanor Ruth Whitfield", payer: "Aetna", serviceType: "Skilled Nursing", billingCodes: ["G0299"], startDate: "2026-07-01", endDate: "2026-09-30", unitsAuthorized: 150, unitsConsumed: 150, status: "EXPIRED" },
   { id: "AUTH-552199", clientName: "Sarah Jenkins", payer: "Medicare", serviceType: "Home Health Aide", billingCodes: ["G0156"], startDate: "2026-08-01", endDate: "2026-10-31", unitsAuthorized: 300, unitsConsumed: 0, status: "PENDING" },
 ];
 

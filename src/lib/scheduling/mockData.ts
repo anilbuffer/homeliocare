@@ -117,7 +117,7 @@ export const mockShifts: Shift[] = [
   {
     id: 's6',
     patientId: 'cl6',
-    patientName: 'Eleanor Whitfield',
+    patientName: 'Eleanor Ruth Whitfield',
     patientAddress: '412 Oak Ln, Astoria',
     requiredSkills: ['HHA', 'Dementia'],
     startTime: '2026-07-08T08:00:00Z',

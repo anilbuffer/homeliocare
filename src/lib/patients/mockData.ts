@@ -7,7 +7,7 @@ export interface Patient {
   primaryDiagnosis: string;
   riskLevel: "Low" | "Medium" | "High";
   avatarUrl?: string;
-  intakeStatus?: "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold";
+  intakeStatus?: "New Referral" | "Auth Pending" | "Assessment Scheduled" | "Ready to Admit" | "Onboarding Hold" | "Admitted";
   missingDocuments?: string[];
   safetyAlerts?: {
     dnr: "DNR" | "Full Code" | "POLST" | "Unknown";
@@ -180,26 +180,26 @@ export interface Patient {
 export const mockPatients: Record<string, Patient> = {
   "c-1": {
     id: "c-1",
-    name: "Eleanor Rigby",
+    name: "Eleanor Ruth Whitfield",
     status: "Active",
-    age: 82,
-    address: "142 Maple Street, Hillside, NJ 07205",
-    primaryDiagnosis: "Congestive Heart Failure (CHF)",
+    age: 78,
+    address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
+    primaryDiagnosis: "s/p right hip ORIF, early-stage vascular dementia",
     riskLevel: "High",
-    avatarUrl: "/avatars/eleanor.png?v=2",
+    avatarUrl: "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?auto=format&fit=crop&q=80&w=150",
     intakeStatus: "Auth Pending",
     missingDocuments: ["Consent Form", "Primary Care Orders"],
     safetyAlerts: { dnr: "DNR", isolationProtocols: ["Contact Precautions (MRSA)"] },
     
     demographics: {
-      dob: "1944-03-12",
+      dob: "1948-05-12",
       gender: "Female",
-      phone: "(555) 234-9812",
-      email: "eleanor.rigby@email.com",
+      phone: "(610) 555-0148",
+      email: "meg.wcho@gmail.com",
       preferredLanguage: "English",
       emergencyContacts: [
-        { name: "Robert Rigby", relation: "Son", phone: "(555) 789-0123" },
-        { name: "Sarah Rigby", relation: "Daughter-in-law", phone: "(555) 789-0124" }
+        { name: "Margaret \"Meg\" Whitfield-Cho", relation: "Daughter / POA", phone: "(610) 555-0192" },
+        { name: "David Whitfield", relation: "Son", phone: "(215) 555-0873" }
       ]
     },
     
@@ -437,8 +437,8 @@ export const mockPatients: Record<string, Patient> = {
     address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
     primaryDiagnosis: "s/p right hip ORIF, early-stage vascular dementia",
     riskLevel: "High",
-    avatarUrl: "https://i.pravatar.cc/150?u=sarah",
-    intakeStatus: "Auth Pending",
+    avatarUrl: "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?auto=format&fit=crop&q=80&w=150",
+    intakeStatus: "Admitted",
     missingDocuments: [],
     safetyAlerts: { dnr: "Unknown", isolationProtocols: [] },
     
@@ -458,7 +458,7 @@ export const mockPatients: Record<string, Patient> = {
       primary: "Medicaid - PA Community HealthChoices",
       policyNumber: "PA-CHC-9928174",
       groupNumber: "GRP-441-KF",
-      authorizationStatus: "Auth Pending"
+      authorizationStatus: "Approved"
     },
 
     careTeam: {

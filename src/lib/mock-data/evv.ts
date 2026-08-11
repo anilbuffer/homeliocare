@@ -52,7 +52,7 @@ export const mockEvvSubmissions: EVVSubmission[] = [
   {
     id: 'EVV-1001',
     visitId: 'VST-5432',
-    patientName: 'Eleanor Vance',
+    patientName: 'Eleanor Ruth Whitfield',
     caregiverName: 'Sarah Jenkins',
     date: '2026-07-20',
     beginTime: '08:00 AM',

@@ -40,7 +40,7 @@ export function SupervisorEvalCard() {
           <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-3">
             <div className="flex items-center gap-2 text-xs text-text-primary">
               <User className="w-3.5 h-3.5 text-slate-500" />
-              Patient: Eleanor Vance
+              Patient: Eleanor Ruth Whitfield
             </div>
             <div className="flex items-center gap-2 text-xs text-text-primary">
               <Calendar className="w-3.5 h-3.5 text-slate-500" />
@@ -121,7 +121,7 @@ export function SupervisorEvalCard() {
             <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-3">
               <div className="flex items-center gap-2 text-xs text-text-primary">
                 <User className="w-3.5 h-3.5 text-slate-500" />
-                Patient: Eleanor Vance
+                Patient: Eleanor Ruth Whitfield
               </div>
               <div className="flex items-center gap-2 text-xs text-text-primary">
                 <Calendar className="w-3.5 h-3.5 text-slate-500" />

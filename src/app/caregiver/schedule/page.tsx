@@ -173,10 +173,10 @@ export default function CaregiverSchedulePage() {
             {/* Week Grid Columns */}
             <div className="grid grid-cols-1 md:grid-cols-7 gap-3">
               {[
-                { day: "Mon", date: "Jul 20", shifts: [{ client: "Eleanor V.", time: "08:30-12:30", type: "Personal Care" }] },
+                { day: "Mon", date: "Jul 20", shifts: [{ client: "Eleanor W.", time: "08:30-12:30", type: "Personal Care" }] },
                 { day: "Tue", date: "Jul 21", shifts: [{ client: "Arthur P.", time: "13:30-16:30", type: "Mobility & Meal" }] },
-                { day: "Wed", date: "Jul 22 (Today)", dateClass: "text-brand-teal font-bold", shifts: [{ client: "Eleanor V.", time: "08:30-12:30", type: "Personal Care" }, { client: "Arthur P.", time: "13:30-16:30", type: "Mobility" }, { client: "Margaret H.", time: "17:00-19:00", type: "Dinner Prep" }] },
-                { day: "Thu", date: "Jul 23", shifts: [{ client: "Eleanor V.", time: "08:30-12:30", type: "Personal Care" }] },
+                { day: "Wed", date: "Jul 22 (Today)", dateClass: "text-brand-teal font-bold", shifts: [{ client: "Eleanor W.", time: "08:30-12:30", type: "Personal Care" }, { client: "Arthur P.", time: "13:30-16:30", type: "Mobility" }, { client: "Margaret H.", time: "17:00-19:00", type: "Dinner Prep" }] },
+                { day: "Thu", date: "Jul 23", shifts: [{ client: "Eleanor W.", time: "08:30-12:30", type: "Personal Care" }] },
                 { day: "Fri", date: "Jul 24", shifts: [{ client: "Margaret H.", time: "14:00-18:00", type: "Companion" }] },
                 { day: "Sat", date: "Jul 25", shifts: [] },
                 { day: "Sun", date: "Jul 26", shifts: [] },
@@ -401,7 +401,7 @@ export default function CaregiverSchedulePage() {
                 <div>
                   <label className="text-xs font-semibold text-gray-700 block mb-1">Select Shift to Call Off</label>
                   <select className="w-full p-2.5 border border-gray-300 rounded-xl text-xs font-medium bg-white">
-                    <option>Today: Eleanor Vance (08:30 AM - 12:30 PM)</option>
+                    <option>Today: Eleanor Ruth Whitfield (08:30 AM - 12:30 PM)</option>
                     <option>Today: Arthur Pendelton (01:30 PM - 04:30 PM)</option>
                   </select>
                 </div>

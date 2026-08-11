@@ -12,7 +12,7 @@ export default function SupervisoryVisitsPage() {
   const [findings, setFindings] = useState<{ description: string; severity: "minor" | "moderate" | "urgent" }[]>([]);
 
   const [formData, setFormData] = useState({
-    clientName: "Eleanor Vance", // Mocked from context
+    clientName: "Eleanor Ruth Whitfield", // Mocked from context
     caregiverName: "Maria Santos, CNA",
     visitType: "Periodic",
     isUnannounced: false,

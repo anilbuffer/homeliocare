@@ -33,7 +33,7 @@ const initialInquiries: Inquiry[] = [
   {
     id: "inq-101",
     patientId: "c-1",
-    name: "Eleanor Vance (Family: Robert)",
+    name: "Eleanor Ruth Whitfield (Family: Robert)",
     source: "Hospital Discharge (Mercy Gen)",
     waitTimeStr: "12m",
     waitTimeMins: 12,
@@ -43,7 +43,7 @@ const initialInquiries: Inquiry[] = [
   {
     id: "inq-ew-101",
     patientId: "ref-ew-001",
-    name: "Eleanor Whitfield",
+    name: "Eleanor Ruth Whitfield",
     source: "Hospital Discharge (Cedar Falls)",
     waitTimeStr: "5m",
     waitTimeMins: 5,

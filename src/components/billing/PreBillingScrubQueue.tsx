@@ -20,7 +20,7 @@ interface VisitRecord {
 const mockVisits: VisitRecord[] = [
   { id: "VIS-10492", clientName: "Mary Smith", dateOfService: "2026-07-26", amount: 145.00, status: "CLEAN" },
   { id: "VIS-10493", clientName: "Robert Chen", dateOfService: "2026-07-26", amount: 280.00, status: "CLEAN" },
-  { id: "VIS-10494", clientName: "Eleanor Vance", dateOfService: "2026-07-25", amount: 210.00, status: "BLOCKED", blockerReason: "EVV exception unresolved", blockerLink: "/evv-monitoring" },
+  { id: "VIS-10494", clientName: "Eleanor Ruth Whitfield", dateOfService: "2026-07-25", amount: 210.00, status: "BLOCKED", blockerReason: "EVV exception unresolved", blockerLink: "/evv-monitoring" },
   { id: "VIS-10495", clientName: "Sarah Jenkins", dateOfService: "2026-07-25", amount: 180.00, status: "BLOCKED", blockerReason: "Missing authorization units", blockerLink: "/billing/authorizations" },
   { id: "VIS-10496", clientName: "James Wilson", dateOfService: "2026-07-24", amount: 320.00, status: "BLOCKED", blockerReason: "Signature missing", blockerLink: "/quality-assurance" },
 ];

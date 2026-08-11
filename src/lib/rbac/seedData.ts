@@ -17,7 +17,7 @@ export const SEED_BRANCHES: Branch[] = [
 ];
 
 export const SEED_CLIENT_OPTIONS: ClientOption[] = [
-  { id: "cli-101", name: "Eleanor Vance", mrn: "MRN-88491" },
+  { id: "cli-101", name: "Eleanor Ruth Whitfield", mrn: "MRN-88491" },
   { id: "cli-102", name: "Arthur Pendelton", mrn: "MRN-33920" },
   { id: "cli-103", name: "Margaret Higgins", mrn: "MRN-77102" },
   { id: "cli-104", name: "Samuel Oak", mrn: "MRN-11293" },

@@ -360,7 +360,7 @@ export default function SettingsPage() {
                         <input
                           type="text"
                           required
-                          placeholder="e.g. Eleanor Vance"
+                          placeholder="e.g. Eleanor Ruth Whitfield"
                           value={inviteName}
                           onChange={(e) => setInviteName(e.target.value)}
                           className="w-full px-3.5 py-2.5 bg-white border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-teal"

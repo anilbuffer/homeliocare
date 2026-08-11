@@ -20,7 +20,7 @@ const sizeStyles = {
 /**
  * Generate 2-letter uppercase initials from name or fallback string
  * e.g., "Rachel Miller RN" -> "RM"
- * "Eleanor Vance" -> "EV"
+ * "Eleanor Ruth Whitfield" -> "EV"
  * "Maria Santos" -> "MS"
  */
 export function getInitials(name?: string, fallback?: string): string {

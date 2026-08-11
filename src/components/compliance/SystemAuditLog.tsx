@@ -5,7 +5,7 @@ import { ShieldAlert, Download, Search, Filter, History, UserCheck, ShieldCheck 
 import { toast } from "sonner";
 
 const systemLogs = [
-  { id: 1, action: "PHI Accessed", user: "Sarah Jenkins (RN)", target: "Patient Record: Eleanor Vance", time: "10:24 AM", date: "Jul 21, 2026", status: "Success", ip: "192.168.1.45" },
+  { id: 1, action: "PHI Accessed", user: "Sarah Jenkins (RN)", target: "Patient Record: Eleanor Ruth Whitfield", time: "10:24 AM", date: "Jul 21, 2026", status: "Success", ip: "192.168.1.45" },
   { id: 2, action: "Failed Login", user: "Unknown", target: "System Access", time: "09:12 AM", date: "Jul 21, 2026", status: "Failed", ip: "203.0.113.82" },
   { id: 3, action: "Password Changed", user: "Marcus Johnson (Caregiver)", target: "User Account", time: "08:45 AM", date: "Jul 21, 2026", status: "Success", ip: "192.168.1.112" },
   { id: 4, action: "Care Plan Updated", user: "Dr. Emily Wong", target: "Patient Record: Robert Chen", time: "04:30 PM", date: "Jul 20, 2026", status: "Success", ip: "10.0.0.15" },

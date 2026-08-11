@@ -26,7 +26,7 @@ export interface ChronologyInsights {
 }
 
 export const mockChronologyEntries: Record<string, ChronologyEntry[]> = {
-  "c-1": [ // Eleanor Vance
+  "c-1": [ // Eleanor Ruth Whitfield
     {
       id: "entry-1",
       patientId: "c-1",

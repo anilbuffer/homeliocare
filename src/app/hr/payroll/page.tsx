@@ -110,7 +110,7 @@ const payrollDataByPeriod: Record<string, PayrollRecord[]> = {
         {
           id: "EVV-101",
           date: "Jul 2, 2026",
-          clientName: "Eleanor Vance",
+          clientName: "Eleanor Ruth Whitfield",
           scheduledHours: 8.0,
           actualHours: 8.5,
           clockIn: "08:02 AM",
@@ -121,7 +121,7 @@ const payrollDataByPeriod: Record<string, PayrollRecord[]> = {
         {
           id: "EVV-102",
           date: "Jul 5, 2026",
-          clientName: "Eleanor Vance",
+          clientName: "Eleanor Ruth Whitfield",
           scheduledHours: 8.0,
           actualHours: 9.0,
           clockIn: "08:00 AM",
@@ -154,7 +154,7 @@ const payrollDataByPeriod: Record<string, PayrollRecord[]> = {
         {
           id: "EVV-105",
           date: "Jul 13, 2026",
-          clientName: "Eleanor Vance",
+          clientName: "Eleanor Ruth Whitfield",
           scheduledHours: 7.0,
           actualHours: 7.0,
           clockIn: "08:00 AM",

@@ -52,7 +52,7 @@ export function NewClaimModal({ isOpen, onClose }: NewClaimModalProps) {
             <label className="text-sm font-medium text-slate-700">Patient <span className="text-red-500">*</span></label>
             <select required className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all">
               <option value="">Search patient...</option>
-              <option value="1">Eleanor Rigby</option>
+              <option value="1">Eleanor Ruth Whitfield</option>
               <option value="2">James Sullivan</option>
               <option value="3">Martha Jones</option>
             </select>

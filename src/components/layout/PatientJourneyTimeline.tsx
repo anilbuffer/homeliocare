@@ -71,7 +71,7 @@ export function PatientJourneyTimeline() {
               EW
             </div>
             <div className="text-left">
-              <h3 className="font-semibold text-sm leading-tight">Eleanor Whitfield</h3>
+              <h3 className="font-semibold text-sm leading-tight">Eleanor Ruth Whitfield</h3>
               <p className="text-[10px] text-teal-100 uppercase tracking-widest font-medium">Demo Patient Journey</p>
             </div>
           </div>

@@ -47,7 +47,7 @@ const mockPatients: SchedulerPatient[] = [
   },
   {
     id: "p-4",
-    name: "Eleanor Vance",
+    name: "Eleanor Ruth Whitfield",
     address: "321 Oak St, Queens, NY 11102",
     accessInstructions: "Pending intake home assessment.",
     requiredSkills: ["CNA"],

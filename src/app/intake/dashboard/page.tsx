@@ -33,7 +33,7 @@ export default function IntakeDashboard() {
       return;
     }
 
-    const text = `${greeting} James. You have 2 urgent hospital discharges pending S L A breach for Eleanor Whitfield and Arthur Pendelton. 3 assessments are unassigned for tomorrow.`;
+    const text = `${greeting} James. You have 2 urgent hospital discharges pending S L A breach for Eleanor Ruth Whitfield and Arthur Pendelton. 3 assessments are unassigned for tomorrow.`;
     const utterance = new SpeechSynthesisUtterance(text);
 
     utterance.onend = () => setIsPlayingAudio(false);
@@ -90,7 +90,7 @@ export default function IntakeDashboard() {
               </h2>
             </div>
             <p className="text-xs text-slate-700 font-medium leading-relaxed">
-              {greeting} James. You have <span className="text-red-600 font-semibold bg-red-50 px-1 rounded">2 urgent hospital discharges pending SLA breach</span> (Eleanor Whitfield & Arthur Pendelton). <span className="text-amber-600 font-bold bg-amber-50 px-1 rounded">3 assessments are unassigned</span> for tomorrow.
+              {greeting} James. You have <span className="text-red-600 font-semibold bg-red-50 px-1 rounded">2 urgent hospital discharges pending SLA breach</span> (Eleanor Ruth Whitfield & Arthur Pendelton). <span className="text-amber-600 font-bold bg-amber-50 px-1 rounded">3 assessments are unassigned</span> for tomorrow.
             </p>
           </div>
           <button

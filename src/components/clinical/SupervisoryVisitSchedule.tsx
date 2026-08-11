@@ -20,7 +20,7 @@ export interface SupervisoryVisit {
 const mockVisits: SupervisoryVisit[] = [
   {
     id: "sv-1",
-    clientName: "Eleanor Whitfield",
+    clientName: "Eleanor Ruth Whitfield",
     clientId: "c-1",
     assignedRn: "Rachel Miller, RN",
     dueDate: new Date(Date.now() - 1000 * 60 * 60 * 24 * 1).toISOString(), // 1 day overdue
