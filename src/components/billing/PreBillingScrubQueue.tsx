@@ -23,6 +23,7 @@ const mockVisits: VisitRecord[] = [
   { id: "VIS-10494", clientName: "Eleanor Ruth Whitfield", dateOfService: "2026-07-25", amount: 210.00, status: "BLOCKED", blockerReason: "EVV exception unresolved", blockerLink: "/evv-monitoring" },
   { id: "VIS-10495", clientName: "Sarah Jenkins", dateOfService: "2026-07-25", amount: 180.00, status: "BLOCKED", blockerReason: "Missing authorization units", blockerLink: "/billing/authorizations" },
   { id: "VIS-10496", clientName: "James Wilson", dateOfService: "2026-07-24", amount: 320.00, status: "BLOCKED", blockerReason: "Signature missing", blockerLink: "/quality-assurance" },
+  { id: "VIS-10497", clientName: "Sarah Connor", dateOfService: "2026-07-24", amount: 240.00, status: "CLEAN" },
 ];
 
 export function PreBillingScrubQueue() {

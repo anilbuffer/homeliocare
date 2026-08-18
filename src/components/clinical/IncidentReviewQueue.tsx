@@ -51,6 +51,17 @@ const mockIncidents: IncidentReview[] = [
     isRestricted: false,
     status: "pending_review",
     summary: "Missed morning dose of Lisinopril due to pharmacy delivery delay.",
+  },
+  {
+    id: "inc-4",
+    clientName: "Sarah Connor",
+    clientId: "ref-ew-001",
+    reporter: "Maya Alvarez",
+    dateReported: new Date(Date.now() - 1000 * 60 * 60 * 12).toISOString(),
+    type: "medical_emergency",
+    isRestricted: false,
+    status: "pending_review",
+    summary: "Reported intense joint pain and swelling requiring immediate assessment.",
   }
 ];
 

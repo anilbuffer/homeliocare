@@ -22,6 +22,7 @@ const mockAuths: ExpiringAuth[] = [
   { id: "AUTH-8821", clientName: "Mary Smith", payer: "Medicaid", authNumber: "MA-992140", expirationDate: "2026-08-15", daysRemaining: 19, unitsAuthorized: 480, unitsConsumed: 450, status: "EXPIRING" },
   { id: "AUTH-8843", clientName: "Robert Chen", payer: "BlueCross", authNumber: "BC-110294", expirationDate: "2026-08-05", daysRemaining: 9, unitsAuthorized: 120, unitsConsumed: 110, status: "EXPIRING" },
   { id: "AUTH-8891", clientName: "James Wilson", payer: "Medicaid", authNumber: "MA-774129", expirationDate: "2026-07-30", daysRemaining: 3, unitsAuthorized: 200, unitsConsumed: 195, status: "EXPIRING" },
+  { id: "AUTH-8892", clientName: "Sarah Connor", payer: "Medicare Part B", authNumber: "MCR-19842", expirationDate: "2026-08-02", daysRemaining: 6, unitsAuthorized: 80, unitsConsumed: 76, status: "EXPIRING" },
 ];
 
 export function AuthorizationWatchlist() {

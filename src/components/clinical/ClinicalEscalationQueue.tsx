@@ -48,6 +48,16 @@ const mockEscalations: EscalationItem[] = [
     timeReported: new Date(Date.now() - 1000 * 60 * 15).toISOString(), // 15 mins ago
     type: "urgent_question",
   },
+  {
+    id: "esc-4",
+    clientName: "Sarah Connor",
+    clientId: "ref-ew-001",
+    reporter: "Maya Alvarez",
+    reporterRole: "CNA",
+    whatChanged: "Severe flare-up of Rheumatoid Arthritis pain, requested PRN medication.",
+    timeReported: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // 30 mins ago
+    type: "condition_change",
+  },
 ];
 
 export function ClinicalEscalationQueue() {

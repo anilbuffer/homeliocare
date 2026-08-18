@@ -174,6 +174,7 @@ export const INITIAL_CAREGIVER_PROFILE: CaregiverProfileData = {
     { id: "c-1", name: "Eleanor Ruth Whitfield", mrn: "MRN-88491", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120" },
     { id: "cli-102", name: "Arthur Pendelton", mrn: "MRN-33920", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120" },
     { id: "cli-103", name: "Margaret Higgins", mrn: "MRN-77102", image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=120" },
+    { id: "ref-ew-001", name: "Sarah Connor", mrn: "MRN-19842", image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=120" },
   ],
   certifications: [
     { id: "cert-1", name: "CNA License (State Board)", issueDate: "2023-04-10", expiryDate: "2027-04-10", status: "Active", issuer: "State Board of Nursing" },
@@ -265,6 +266,30 @@ export const INITIAL_VISITS: Visit[] = [
     ],
     medications: [
       { id: "m-301", medicationName: "Atorvastatin", dosage: "20mg", scheduleTime: "06:00 PM", instructions: "Take with evening meal", status: "pending" },
+    ]
+  },
+  {
+    id: "visit-104",
+    clientId: "ref-ew-001",
+    clientName: "Sarah Connor",
+    clientPhoto: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=200",
+    address: "909 Cybernetics Way",
+    cityStateZip: "Los Angeles, CA 90012",
+    phone: "(310) 555-0148",
+    scheduledStartTime: "09:00 AM",
+    scheduledEndTime: "01:00 PM",
+    status: "Scheduled",
+    clientCoords: { lat: 34.0522, lng: -118.2437 },
+    distanceFromClientMiles: 1.2,
+    travelTimeFromPreviousMin: 20,
+    travelDistanceMiles: 5.5,
+    tasks: [
+      { id: "t-401", category: "Personal Care", title: "Assist with morning mobility & ADLs", description: "Patient has severe Rheumatoid Arthritis, handle with care", completed: false },
+      { id: "t-402", category: "Meals", title: "Prepare anti-inflammatory lunch", completed: false },
+      { id: "t-403", category: "Health Monitoring", title: "Monitor pain levels", completed: false },
+    ],
+    medications: [
+      { id: "m-401", medicationName: "Pain Management Meds", dosage: "As prescribed", scheduleTime: "10:00 AM", instructions: "Check with patient if needed", status: "pending" },
     ]
   }
 ];

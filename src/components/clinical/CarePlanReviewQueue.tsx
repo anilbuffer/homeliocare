@@ -40,6 +40,14 @@ const mockReviews: CarePlanReview[] = [
     triggerReason: "periodic_60",
     status: "approaching",
   },
+  {
+    id: "cp-4",
+    clientName: "Sarah Connor",
+    clientId: "ref-ew-001",
+    dueDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days from now
+    triggerReason: "condition_change",
+    status: "approaching",
+  },
 ];
 
 export function CarePlanReviewQueue() {
