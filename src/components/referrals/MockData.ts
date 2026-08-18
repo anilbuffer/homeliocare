@@ -4,12 +4,12 @@ export const initialReferrals: Referral[] = [
   {
     id: "ref-ew-001",
     workflowType: "Referral",
-    clientName: "Eleanor Ruth Whitfield",
-    clientInitials: "EW",
+    clientName: "Sarah Connor",
+    clientInitials: "SC",
     source: "Hospital Discharge",
-    sourceDetails: "Cedar Falls Regional Hospital",
-    referringParty: "Discharge Planner, Denise Okafor, RN Case Manager",
-    intakeNotes: "Patient discharging in 48 hrs. s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis. Mobility: Walker-assisted, fall risk (high). Needs care in place before discharge.",
+    sourceDetails: "Los Angeles Medical Center",
+    referringParty: "Dr. Miles Dyson",
+    intakeNotes: "Patient requires support with ADLs due to severe flare-up of Rheumatoid Arthritis. Mobility: Requires assistance. Pain management plan established.",
     dateReceived: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
     stage: "Admitted",
     authorizationStatus: "Approved",
@@ -22,9 +22,9 @@ export const initialReferrals: Referral[] = [
     dischargeDeadline: new Date(Date.now() + 1000 * 60 * 60 * 48).toISOString(), // 48 hours from now
     urgency: "High",
     serviceZoneStatus: "in-zone",
-    serviceZoneName: "Chester County",
+    serviceZoneName: "Los Angeles County",
     documents: [
-      { name: "Discharge Summary", status: "Verified" },
+      { name: "Rheumatology Report", status: "Verified" },
       { name: "Physician Orders", status: "Verified" },
       { name: "Intake Inquiry Form", status: "Verified" }
     ],
@@ -36,27 +36,27 @@ export const initialReferrals: Referral[] = [
       {
         id: "c-ew-1",
         timestamp: new Date(Date.now() - 1000 * 60 * 60 * 1).toISOString(),
-        author: "Meg Whitfield-Cho (Daughter)",
+        author: "John Connor (Son)",
         type: "call",
-        content: "Caller is the daughter, sounds overwhelmed. Mom (Eleanor) fell at home, broke her hip, had surgery Tuesday. Hospital says she can go home Thursday but can't be alone. Daughter works full time, can't move in. Brother is in Chicago, not much help day-to-day. Wants care to start the day Mom gets home. Confirmed Medicaid (CHC/Keystone First) — daughter isn't sure of authorization status, will need to verify. Cedar Falls is in our service area (Chester County).",
-        summary: "• Hours/week requested: 6 hrs/day, 7 days/week initially (reassess after 2 weeks)\n• Payment source: Medicaid — pending authorization verification\n• Outcome: Qualified → Assessment scheduled for tomorrow AM (before discharge)"
+        content: "Caller is the son. Mom (Sarah) has severe arthritis flare-ups. Needs help with mobility and daily tasks. Wants care to start ASAP. Confirmed Medicare.",
+        summary: "• Hours/week requested: 4 hrs/day, 5 days/week initially\n• Payment source: Medicare — pending authorization verification\n• Outcome: Qualified → Assessment scheduled for tomorrow AM"
       }
     ],
     insurance: {
-      payer: "Medicaid — PA Community HealthChoices, MCO: Keystone First CHC",
+      payer: "Medicare Part B",
       status: "Verified",
     },
     demographics: {
       gender: "Female",
-      address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
-      phone: "(610) 555-0148",
-      primaryContactName: "Margaret \"Meg\" Whitfield-Cho",
-      primaryContactRelationship: "Daughter / POA",
-      primaryContactPhone: "(610) 555-0192",
-      primaryContactEmail: "meg.wcho@gmail.com"
+      address: "909 Cybernetics Way, Los Angeles, CA 90012",
+      phone: "(310) 555-0148",
+      primaryContactName: "John Connor",
+      primaryContactRelationship: "Son / POA",
+      primaryContactPhone: "(310) 555-0192",
+      primaryContactEmail: "s.connor@email.com"
     },
-    diagnosis: "s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis",
-    emergencyContact: "David Whitfield (Son) - (215) 555-0873",
+    diagnosis: "Severe Rheumatoid Arthritis, managing chronic pain",
+    emergencyContact: "Kyle Reese (Friend) - (215) 555-0873",
     assessment: {
       status: "Completed",
       scheduledDate: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // Yesterday
@@ -103,7 +103,7 @@ export const initialReferrals: Referral[] = [
   {
     id: "ref-002",
     workflowType: "Inquiry",
-    clientName: "John Doe",
+    clientName: "James Doe",
     clientInitials: "JD",
     source: "Online Form",
     sourceDetails: "Google Ads Campaign - 'Home Care near me'",
@@ -141,7 +141,7 @@ export const initialReferrals: Referral[] = [
   {
     id: "ref-003",
     workflowType: "Inquiry",
-    clientName: "Mary Smith",
+    clientName: "Martha Smith",
     clientInitials: "MS",
     source: "Doctor",
     referringParty: "Dr. Adams",

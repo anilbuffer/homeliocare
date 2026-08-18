@@ -431,38 +431,38 @@ export const mockPatients: Record<string, Patient> = {
   },
   "ref-ew-001": {
     id: "ref-ew-001",
-    name: "Eleanor Ruth Whitfield",
+    name: "Sarah Connor",
     status: "Active",
-    age: 78,
-    address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
-    primaryDiagnosis: "s/p right hip ORIF, early-stage vascular dementia",
+    age: 62,
+    address: "909 Cybernetics Way, Los Angeles, CA 90012",
+    primaryDiagnosis: "Severe Rheumatoid Arthritis, managing chronic pain",
     riskLevel: "High",
-    avatarUrl: "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?auto=format&fit=crop&q=80&w=150",
+    avatarUrl: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=150",
     intakeStatus: "Admitted",
     missingDocuments: [],
     safetyAlerts: { dnr: "Unknown", isolationProtocols: [] },
     
     demographics: {
-      dob: "1948-05-12",
+      dob: "1964-05-12",
       gender: "Female",
-      phone: "(610) 555-0148",
-      email: "meg.wcho@gmail.com",
+      phone: "(310) 555-0148",
+      email: "s.connor@email.com",
       preferredLanguage: "English",
       emergencyContacts: [
-        { name: "Margaret Whitfield-Cho", relation: "Daughter / POA", phone: "(610) 555-0192" },
-        { name: "David Whitfield", relation: "Son", phone: "(215) 555-0873" }
+        { name: "John Connor", relation: "Son / POA", phone: "(310) 555-0192" },
+        { name: "Kyle Reese", relation: "Friend", phone: "(215) 555-0873" }
       ]
     },
     
     insurance: {
-      primary: "Medicaid - PA Community HealthChoices",
-      policyNumber: "PA-CHC-9928174",
-      groupNumber: "GRP-441-KF",
+      primary: "Medicare Part B",
+      policyNumber: "MCR-19842",
+      groupNumber: "GRP-441-LA",
       authorizationStatus: "Approved"
     },
 
     careTeam: {
-      pcp: "Dr. Robert Chen",
+      pcp: "Dr. Miles Dyson",
       specialists: [],
       caseManager: { name: "Sarah Jenkins", avatarUrl: "" },
       primaryCaregivers: []
@@ -480,7 +480,7 @@ export const mockPatients: Record<string, Patient> = {
         type: "note",
         title: "Intake Note Added",
         timestamp: new Date().toISOString(),
-        message: "Patient discharging in 48 hrs. s/p right hip ORIF (fall at home), early-stage vascular dementia, hypertension, osteoarthritis. Mobility: Walker-assisted, fall risk (high). Needs care in place before discharge."
+        message: "Patient requires support with ADLs due to severe flare-up of Rheumatoid Arthritis. Mobility: Requires assistance. Pain management plan established."
       }
     ],
 
@@ -489,17 +489,17 @@ export const mockPatients: Record<string, Patient> = {
         { id: "doc-1", name: "Intake Inquiry Form", author: "Denise Okafor", date: "2026-08-11", size: "1.2 MB", type: "pdf" },
       ],
       consents: [
-        { id: "doc-2", name: "HIPAA Consent", author: "Meg Whitfield-Cho", date: "2026-08-11", size: "0.5 MB", type: "pdf" },
-        { id: "doc-3", name: "Service Agreement", author: "Meg Whitfield-Cho", date: "2026-08-11", size: "2.1 MB", type: "pdf" }
+        { id: "doc-2", name: "HIPAA Consent", author: "John Connor", date: "2026-08-11", size: "0.5 MB", type: "pdf" },
+        { id: "doc-3", name: "Service Agreement", author: "John Connor", date: "2026-08-11", size: "2.1 MB", type: "pdf" }
       ],
       clinical: [
-        { id: "doc-4", name: "Discharge Summary", author: "Cedar Falls Regional Hospital", date: "2026-08-11", size: "3.4 MB", type: "pdf" }
+        { id: "doc-4", name: "Rheumatology Report", author: "Los Angeles Medical Center", date: "2026-08-11", size: "3.4 MB", type: "pdf" }
       ],
       insurance: [
-        { id: "doc-5", name: "Medicaid Card Copy", author: "Meg Whitfield-Cho", date: "2026-08-11", size: "1.8 MB", type: "img" }
+        { id: "doc-5", name: "Medicare Card Copy", author: "John Connor", date: "2026-08-11", size: "1.8 MB", type: "img" }
       ],
       orders: [
-        { id: "doc-6", name: "Physician Orders", author: "Dr. Robert Chen", date: "2026-08-11", size: "1.1 MB", type: "pdf" }
+        { id: "doc-6", name: "Physician Orders", author: "Dr. Miles Dyson", date: "2026-08-11", size: "1.1 MB", type: "pdf" }
       ]
     },
 
@@ -510,7 +510,7 @@ export const mockPatients: Record<string, Patient> = {
       },
       balance: 0.00,
       claims: [
-        { id: "clm-1", serviceDates: "2026-08-11", payer: "Medicaid", amount: "$0.00", status: "Draft" }
+        { id: "clm-1", serviceDates: "2026-08-11", payer: "Medicare", amount: "$0.00", status: "Draft" }
       ]
     },
 
@@ -518,16 +518,16 @@ export const mockPatients: Record<string, Patient> = {
       familyThread: [
         {
           id: "msg-1",
-          sender: "Meg Whitfield-Cho",
+          sender: "John Connor",
           timestamp: new Date(Date.now() - 3600000).toISOString(),
-          message: "Hi, I just wanted to check if everything is set for my mom's discharge on Thursday?",
+          message: "Hi, I just wanted to check if everything is set for my mom's care starting Thursday?",
           direction: "inbound"
         },
         {
           id: "msg-2",
           sender: "Sarah Jenkins",
           timestamp: new Date(Date.now() - 1800000).toISOString(),
-          message: "Hello Meg, we are finalizing the authorization with Medicaid now. We will have a caregiver ready for her on Thursday.",
+          message: "Hello John, we are finalizing the authorization with Medicare now. We will have a caregiver ready for her on Thursday.",
           direction: "outbound"
         }
       ],
@@ -535,10 +535,10 @@ export const mockPatients: Record<string, Patient> = {
         {
           id: "log-1",
           type: "Call in",
-          contact: "Meg Whitfield-Cho",
+          contact: "John Connor",
           duration: "12m 45s",
           timestamp: new Date(Date.now() - 7200000).toISOString(),
-          summary: "Daughter called regarding intake process and authorization status. Confirmed Medicaid details."
+          summary: "Son called regarding intake process and authorization status. Confirmed Medicare details."
         }
       ],
       internalNotes: [
@@ -553,7 +553,7 @@ export const mockPatients: Record<string, Patient> = {
   },
   "ref-002": {
     id: "ref-002",
-    name: "John Doe",
+    name: "James Doe",
     status: "Active",
     age: 72,
     address: "123 Main St, Springfield, IL 62701",
@@ -589,7 +589,7 @@ export const mockPatients: Record<string, Patient> = {
   },
   "ref-003": {
     id: "ref-003",
-    name: "Mary Smith",
+    name: "Martha Smith",
     status: "Active",
     age: 68,
     address: "456 Elm St, Springfield, IL 62701",
