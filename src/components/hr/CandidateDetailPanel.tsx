@@ -121,7 +121,7 @@ export function CandidateDetailPanel({ candidate, isOpen, onClose, onUpdateCandi
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className="bg-white w-full max-w-2xl h-full shadow-2xl flex flex-col z-50 border-l border-slate-200"
+          className="bg-white w-full max-w-3xl h-full shadow-2xl flex flex-col z-50 border-l border-slate-200"
         >
           {/* Header */}
           <div className="p-5 border-b border-slate-200 bg-slate-50/80 flex items-start justify-between gap-4">

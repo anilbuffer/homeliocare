@@ -945,7 +945,7 @@ export default function HrPayrollPage() {
                 setStatusFilter("ALL");
                 setOtOnlyFilter(false);
               }}
-              className="px-3 py-2 text-rose-600 hover:bg-rose-50 text-xs font-semibold rounded-2xl transition-colors cursor-pointer"
+              className="px-3 py-2 text-rose-600 bg-rose-100 hover:bg-rose-200 text-xs font-semibold rounded-2xl transition-colors cursor-pointer border border-rose-200"
             >
               Reset Filters
             </button>
@@ -1271,14 +1271,14 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[18px] max-w-2xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-4xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-start justify-between border-b border-slate-200 p-3 sm:p-4 shrink-0 bg-white z-10">
               <div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-teal-100 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
-                    <Receipt className="w-4 h-4 text-brand-teal" />
+                  <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center border border-teal-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                    <Receipt className="w-5 h-5 text-brand-teal" />
                   </div>
                   <h3 className="font-semibold text-slate-900 text-base tracking-tight">Official Pay Stub Statement</h3>
                 </div>
@@ -1336,35 +1336,35 @@ export default function HrPayrollPage() {
               {/* Tab 1: Statement */}
               {activeStubTab === "statement" && (
                 <div className="space-y-4">
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3 text-xs shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                  <div className="bg-slate-50 px-4 py-3 rounded-xl border border-slate-200 space-y-3 text-xs shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
                     <div className="flex justify-between font-regular text-slate-600">
                       <span>Base Hours ({selectedPaystub.baseHours} hrs @ ${selectedPaystub.rate.toFixed(2)}/hr)</span>
-                      <span className="font-bold text-slate-900">${(selectedPaystub.baseHours * selectedPaystub.rate).toFixed(2)}</span>
+                      <span className="font-semibold text-slate-900">${(selectedPaystub.baseHours * selectedPaystub.rate).toFixed(2)}</span>
                     </div>
 
                     {selectedPaystub.otHours > 0 && (
                       <div className="flex justify-between font-regular text-slate-600">
                         <span>Overtime 1.5x ({selectedPaystub.otHours} hrs @ ${(selectedPaystub.rate * 1.5).toFixed(2)}/hr)</span>
-                        <span className="font-bold text-blue-700">${(selectedPaystub.otHours * selectedPaystub.rate * 1.5).toFixed(2)}</span>
+                        <span className="font-semibold text-blue-700">${(selectedPaystub.otHours * selectedPaystub.rate * 1.5).toFixed(2)}</span>
                       </div>
                     )}
 
                     {selectedPaystub.dtHours > 0 && (
                       <div className="flex justify-between font-regular text-slate-600">
                         <span>Double Time 2.0x ({selectedPaystub.dtHours} hrs @ ${(selectedPaystub.rate * 2.0).toFixed(2)}/hr)</span>
-                        <span className="font-bold text-rose-700">${(selectedPaystub.dtHours * selectedPaystub.rate * 2.0).toFixed(2)}</span>
+                        <span className="font-semibold text-rose-700">${(selectedPaystub.dtHours * selectedPaystub.rate * 2.0).toFixed(2)}</span>
                       </div>
                     )}
 
                     <div className="flex justify-between font-regular text-slate-600">
                       <span>Travel Mileage Reimbursement ({selectedPaystub.travelMiles} mi @ $0.65/mi)</span>
-                      <span className="font-bold text-slate-900">${(selectedPaystub.travelMiles * 0.65).toFixed(2)}</span>
+                      <span className="font-semibold text-slate-900">${(selectedPaystub.travelMiles * 0.65).toFixed(2)}</span>
                     </div>
 
                     {selectedPaystub.shiftDiff > 0 && (
                       <div className="flex justify-between font-regular text-slate-600">
                         <span>Shift Differentials (Night / Weekend)</span>
-                        <span className="font-bold text-purple-700">${selectedPaystub.shiftDiff.toFixed(2)}</span>
+                        <span className="font-semibold text-purple-700">${selectedPaystub.shiftDiff.toFixed(2)}</span>
                       </div>
                     )}
 
@@ -1384,7 +1384,7 @@ export default function HrPayrollPage() {
                     </div>
                   </div>
 
-                  <div className="bg-amber-50 p-4 rounded-2xl border border-amber-200 flex items-start gap-3 text-[13px] text-amber-900 font-medium shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+                  <div className="bg-amber-50 px-4 py-2.5 rounded-xl border border-amber-200 flex items-start gap-3 text-[13px] text-amber-900 font-medium shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
                     <div className="w-8 h-8 rounded-full bg-amber-200 flex items-center justify-center shrink-0">
                       <Lock className="w-4 h-4 text-amber-800" />
                     </div>
@@ -1584,7 +1584,7 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[18px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-200 p-3 sm:p-4 shrink-0 bg-white z-10">
@@ -1738,17 +1738,17 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[18px] max-w-lg w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200/80 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-2xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200/80 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-amber-100 flex items-center justify-center border border-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center border border-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <Shield className="w-5 h-5 text-amber-600" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-lg tracking-tight">HR Read-Only Access Rules</h3>
-                  <p className="text-[12px] text-slate-500 font-regular mt-0.5">Security Policy & Overtime Calculation Guidelines</p>
+                  <h3 className="font-semibold text-slate-900 text-base">HR Read-Only Access Rules</h3>
+                  <p className="text-[12px] text-slate-500 font-regular">Security Policy & Overtime Calculation Guidelines</p>
                 </div>
               </div>
               <button onClick={() => setIsRulesModalOpen(false)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
@@ -1759,19 +1759,19 @@ export default function HrPayrollPage() {
             {/* Scrollable Body */}
             <div className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-3 bg-white text-[12px]">
               <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200/60 space-y-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-                <div className="font-bold text-amber-900 flex items-center gap-2">
+                <div className="font-semibold text-sm text-amber-900 flex items-center gap-2">
                   <Lock className="w-4 h-4 text-amber-600" /> Separation of Duties Policy
                 </div>
-                <p className="text-amber-800 text-[13px] leading-relaxed">
+                <p className="text-amber-800 text-[12px] leading-relaxed">
                   HR managers have read-only access to caregiver payroll records for inquiry resolution, paystub distribution, and EVV compliance checks. Rate edits and manual payout adjustments are restricted to the Billing Administration module.
                 </p>
               </div>
 
               <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-3">
-                <div className="font-extrabold text-slate-900 uppercase text-xs tracking-wider border-b border-slate-100 pb-2">
+                <div className="font-semibold text-slate-900 text-sm border-b border-slate-100 pb-2">
                   California Overtime Calculation Rules
                 </div>
-                <ul className="space-y-2.5 text-slate-600 list-disc pl-4">
+                <ul className="space-y-1.5 text-slate-600 list-disc pl-4">
                   <li><strong className="text-slate-800">Daily Overtime (1.5x):</strong> Hours worked over 8.0 in a single workday.</li>
                   <li><strong className="text-slate-800">Daily Double Time (2.0x):</strong> Hours worked over 12.0 in a single workday.</li>
                   <li><strong className="text-slate-800">Weekly Overtime (1.5x):</strong> Hours worked over 40.0 in a single workweek.</li>
@@ -1800,17 +1800,17 @@ export default function HrPayrollPage() {
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="bg-white rounded-[18px] max-w-md w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
+            className="bg-white rounded-[18px] max-w-xl w-full shadow-[0_24px_64px_rgba(0,0,0,0.12)] border border-slate-200 flex flex-col max-h-[90vh] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 p-3 sm:p-4 shrink-0 bg-white z-10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-teal-50 flex items-center justify-center border border-teal-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center border border-teal-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
                   <Mail className="w-5 h-5 text-brand-teal" />
                 </div>
                 <div>
-                  <h3 className="font-extrabold text-slate-900 text-lg tracking-tight">Email Pay Stub Statement</h3>
-                  <p className="text-[13px] text-slate-500 font-medium mt-0.5">Recipient: {emailTarget.name}</p>
+                  <h3 className="font-semibold text-slate-900 text-base tracking-tight">Email Pay Stub Statement</h3>
+                  <p className="text-[12px] text-slate-500 font-normal mt-0.5">Recipient: {emailTarget.name}</p>
                 </div>
               </div>
               <button onClick={() => setIsEmailModalOpen(false)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
@@ -1821,20 +1821,20 @@ export default function HrPayrollPage() {
             {/* Scrollable Body */}
             <form id="emailForm" onSubmit={handleSendEmailPaystub} className="flex-1 overflow-y-auto custom-scrollbar p-3 sm:p-4 space-y-5 bg-white text-[13px]">
               <div className="space-y-1.5">
-                <label className="block font-bold text-slate-700">Caregiver Email Address</label>
+                <label className="block font-semibold text-slate-700">Caregiver Email Address</label>
                 <input
                   type="email"
                   required
                   value={emailTarget.email}
                   onChange={(e) => setEmailTarget({ ...emailTarget, email: e.target.value })}
-                  className="w-full p-3 bg-slate-50 border border-slate-200/80 rounded-2xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none transition-shadow shadow-sm"
+                  className="w-full p-3 bg-slate-50 border border-slate-200/80 rounded-xl font-medium focus:ring-2 focus:ring-brand-teal focus:outline-none transition-shadow shadow-[0_24px_64px_rgba(0,0,0,0.12)]"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label className="block font-semibold text-slate-700">Pay Period Statement</label>
-                <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-2xl text-slate-700 font-semibold flex flex-col gap-1 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-                  <span>{emailTarget.payPeriod}</span>
+                <div className="p-4 bg-slate-50 border border-slate-200/80 rounded-xl text-slate-700 font-semibold flex flex-col gap-1 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+                  <span className="font-normal">{emailTarget.payPeriod}</span>
                   <span className="text-brand-teal text-sm">Gross Total: ${emailTarget.grossTotal.toFixed(2)}</span>
                 </div>
               </div>
@@ -1845,14 +1845,14 @@ export default function HrPayrollPage() {
               <button
                 type="button"
                 onClick={() => setIsEmailModalOpen(false)}
-                className="px-4 py-2.5 bg-white bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[13px] rounded-2xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 w-full sm:w-auto text-center cursor-pointer"
+                className="px-4 py-2.5 bg-white bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-[13px] rounded-xl transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-200 w-full sm:w-auto text-center cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 form="emailForm"
                 type="submit"
-                className="px-4 py-2.5 bg-brand-teal text-white font-bold text-[13px] rounded-2xl hover:bg-brand-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] shadow-brand-teal/30 flex items-center justify-center gap-2 w-full sm:w-auto transition-all cursor-pointer"
+                className="px-4 py-2.5 bg-brand-teal text-white font-semibold text-[13px] rounded-xl hover:bg-brand-teal/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] shadow-brand-teal/30 flex items-center justify-center gap-2 w-full sm:w-auto transition-all cursor-pointer"
               >
                 <Send className="w-4 h-4" /> Send Email
               </button>

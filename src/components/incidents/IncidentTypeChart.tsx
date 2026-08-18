@@ -34,7 +34,7 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
     <Card className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(0,0,0,0.1)] hover:border-brand-teal/60 transition-all duration-300 relative overflow-hidden flex flex-col">
       <CardHeader title="Incidents by Category" subtitle="Last 30 days" />
       <div className="flex-1 flex flex-col sm:flex-row items-center min-h-0 gap-4 sm:gap-0">
-        <div className="relative w-full sm:w-[55%] h-[220px] sm:h-full min-h-[220px]">
+        <div className="relative w-full sm:w-[60%] h-[220px] sm:h-full min-h-[220px]">
           {/* Inner Text Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0">
             <motion.div
@@ -43,8 +43,8 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
               transition={{ delay: 0.5, duration: 0.5 }}
               className="text-center"
             >
-              <span className="block text-3xl font-black text-slate-800 leading-none">{total}</span>
-              <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1">Total</span>
+              <span className="block text-3xl font-bold text-slate-800 leading-none">{total}</span>
+              <span className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-1">Total</span>
             </motion.div>
           </div>
           <div className="relative z-10 w-full h-full">
@@ -59,7 +59,7 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
                   data={data}
                   cx="50%"
                   cy="50%"
-                  innerRadius={55}
+                  innerRadius={70}
                   outerRadius={85}
                   paddingAngle={4}
                   dataKey="value"
@@ -106,9 +106,9 @@ export function IncidentTypeChart({ onSelectCategory }: IncidentTypeChartProps) 
               onClick={() => handleClick(item)}
               onMouseEnter={() => setActiveIndex(i)}
               onMouseLeave={() => setActiveIndex(null)}
-              className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-left group w-[48%] sm:w-full"
+              className="flex items-center justify-between px-1.5 py-1 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all text-left group w-[48%] sm:w-full"
             >
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <div
                   className="w-2.5 h-2.5 rounded-full shadow-[0_6px_32px_rgba(0,0,0,0.06)] transition-transform group-hover:scale-125"
                   style={{ backgroundColor: item.color }}

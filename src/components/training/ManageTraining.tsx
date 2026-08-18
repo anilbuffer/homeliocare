@@ -126,7 +126,7 @@ export function ManageTraining() {
   };
 
   return (
-    <div className="space-y-6 pb-6 relative">
+    <div className="space-y-6 relative">
       {/* Notification Toast */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-[9999] bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl border border-slate-700 flex items-center gap-2.5 animate-bounce">

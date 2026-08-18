@@ -31,6 +31,7 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      maxWidth="2xl"
       title="Configure Required Training Rule"
       description="Define mandatory compliance courses & onboarding timelines by caregiver role"
       icon={
@@ -43,24 +44,24 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+            className="px-4 py-2.5 text-sm font-semibold text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
           >
             Cancel
           </button>
           <button
             type="submit"
             form="configure-rule-form"
-            className="px-4 py-2 text-xs font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2.5 text-sm font-semibold bg-brand-teal hover:bg-[#0c8a6f] text-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <ShieldCheck className="w-3.5 h-3.5" /> Save Rule Configuration
+            <ShieldCheck className="w-4 h-4" /> Save Rule Configuration
           </button>
         </div>
       }
     >
-      <form id="configure-rule-form" onSubmit={handleSubmit} className="space-y-4">
+      <form id="configure-rule-form" onSubmit={handleSubmit} className="space-y-6">
         {/* Target Role */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-semibold text-slate-700 mb-1.5">
             Target Caregiver Role *
           </label>
           <select
@@ -79,7 +80,7 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
         {/* Timeline Grid */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
               New Hire Due Window
             </label>
             <select
@@ -93,9 +94,8 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
               <option value="90">90 Days Post-Hire</option>
             </select>
           </div>
-
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
               Recertification Cycle
             </label>
             <select
@@ -111,9 +111,9 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
         </div>
 
         {/* Auto Assign Toggle */}
-        <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+        <div className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-slate-900 block">Auto-Assign to New Hires</span>
+            <span className="text-xs font-semibold text-slate-900 block">Auto-Assign to New Hires</span>
             <span className="text-[11px] text-slate-500">Automatically add required modules upon account creation</span>
           </div>
           <button
@@ -128,7 +128,6 @@ export function ConfigureRuleModal({ isOpen, onClose, onSaveRule }: ConfigureRul
             />
           </button>
         </div>
-
       </form>
     </Modal>
   );

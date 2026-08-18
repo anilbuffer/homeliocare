@@ -31,19 +31,19 @@ export function IncidentsKpiStrip() {
   };
 
   return (
-    <motion.div 
-      variants={containerVariants} 
-      initial="hidden" 
-      animate="show" 
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4"
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-7 gap-4"
     >
       {kpiData.map((kpi, idx) => {
         const Icon = kpi.icon;
         return (
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             whileHover={{ y: -4, scale: 1.02, transition: { type: "spring", stiffness: 400, damping: 20 } }}
-            key={idx} 
+            key={idx}
             className="bg-white backdrop-blur-xl rounded-2xl p-4 border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.12)] hover:border-brand-teal/60 transition-colors duration-300 relative overflow-hidden flex flex-col h-full group"
           >
             <div className="flex justify-between items-center mb-3">

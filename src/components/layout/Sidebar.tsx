@@ -170,7 +170,7 @@ const getNavGroups = (role?: string) => {
         label: "",
         items: [
           { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
-          { name: "Billing & Claims Workspace", icon: Receipt, id: "billing-workspace" },
+          { name: "Billing & Claims", icon: Receipt, id: "billing-workspace" },
           { name: "Authorizations", icon: ShieldCheck, id: "authorizations" },
           { name: "Payroll", icon: Receipt, id: "payroll" },
           { name: "Reports (Financial)", icon: BarChart3, id: "reports" },
