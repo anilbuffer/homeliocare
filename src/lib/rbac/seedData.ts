@@ -17,7 +17,7 @@ export const SEED_BRANCHES: Branch[] = [
 ];
 
 export const SEED_CLIENT_OPTIONS: ClientOption[] = [
-  { id: "cli-101", name: "Eleanor Ruth Whitfield", mrn: "MRN-88491" },
+  { id: "c-1", name: "Eleanor Ruth Whitfield", mrn: "MRN-88491" },
   { id: "cli-102", name: "Arthur Pendelton", mrn: "MRN-33920" },
   { id: "cli-103", name: "Margaret Higgins", mrn: "MRN-77102" },
   { id: "cli-104", name: "Samuel Oak", mrn: "MRN-11293" },
@@ -718,7 +718,7 @@ export const SEED_USERS: User[] = [
     role_id: "clinical_supervisor_rn",
     status: "active",
     branch_id: "branch-north",
-    assigned_clients: ["cli-101", "cli-103"],
+    assigned_clients: ["c-1", "cli-103"],
     assigned_caregivers: null,
     last_login_at: "Today, 8:20 AM",
     mfa_enabled: true,
@@ -754,7 +754,7 @@ export const SEED_USERS: User[] = [
     mfa_enabled: false,
     invited_by: "rachel.m@homeliocare.com",
     invited_at: "2026-04-12T13:10:00Z",
-    linked_client_ids: ["cli-101"],
+    linked_client_ids: ["c-1"],
     family_permissions: {
       billing_visibility: true,
       care_plan_visibility: true,

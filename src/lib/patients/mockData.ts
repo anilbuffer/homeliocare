@@ -187,7 +187,7 @@ export const mockPatients: Record<string, Patient> = {
     primaryDiagnosis: "s/p right hip ORIF, early-stage vascular dementia",
     riskLevel: "High",
     avatarUrl: "https://images.unsplash.com/photo-1566616213894-2d4e1baee5d8?auto=format&fit=crop&q=80&w=150",
-    intakeStatus: "Auth Pending",
+    intakeStatus: "Admitted",
     missingDocuments: ["Consent Form", "Primary Care Orders"],
     safetyAlerts: { dnr: "DNR", isolationProtocols: ["Contact Precautions (MRSA)"] },
     
@@ -208,16 +208,15 @@ export const mockPatients: Record<string, Patient> = {
       secondary: "AARP Supplemental",
       policyNumber: "MCR-9842100",
       groupNumber: "GRP-120",
-      authorizationStatus: "Pending Authorization"
+      authorizationStatus: "Approved"
     },
 
     careTeam: {
       pcp: "Dr. Amanda Chen",
       specialists: ["Dr. Robert Patel (Cardiology)"],
-      caseManager: { name: "Maria Garcia, RN", avatarUrl: "" },
+      caseManager: { name: "Sarah Jenkins", avatarUrl: "" },
       primaryCaregivers: [
-        { name: "David Kim", avatarUrl: "" },
-        { name: "Jessica Smith", avatarUrl: "" }
+        { name: "Maria Santos, CNA", avatarUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" }
       ]
     },
 

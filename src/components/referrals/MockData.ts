@@ -70,12 +70,12 @@ export const initialReferrals: Referral[] = [
     source: "Hospital",
     sourceDetails: "Discharge Planner - Room 402B",
     npi: "1234567890",
-    authorizationStatus: "Pending",
-    clinicalReviewStatus: "Pending",
+    authorizationStatus: "Approved",
+    clinicalReviewStatus: "Completed",
     referringParty: "General Hospital Discharge",
-    intakeNotes: "Patient requires high level of care upon discharge. Family is anxious but supportive.",
+    intakeNotes: "Patient requires high level of care upon discharge. s/p right hip ORIF, early-stage vascular dementia. Family is anxious but supportive.",
     dateReceived: "2026-07-16T10:00:00Z",
-    stage: "Referral Received",
+    stage: "Admitted",
     daysInStage: 1,
     assignedCoordinator: {
       name: "Sarah Jenkins",
@@ -96,9 +96,20 @@ export const initialReferrals: Referral[] = [
     ],
     readmissionRisk: "High",
     insurance: {
-      payer: "Medicare",
+      payer: "Medicare Part A & B",
       status: "Verified",
-    }
+    },
+    demographics: {
+      gender: "Female",
+      address: "214 Maple Ridge Lane, Cedar Falls, PA 19087",
+      phone: "(610) 555-0148",
+      primaryContactName: "Margaret \"Meg\" Whitfield-Cho",
+      primaryContactRelationship: "Daughter / POA",
+      primaryContactPhone: "(610) 555-0192",
+      primaryContactEmail: "meg.wcho@gmail.com"
+    },
+    diagnosis: "s/p right hip ORIF, early-stage vascular dementia",
+    emergencyContact: "David Whitfield (Son) - (215) 555-0873"
   },
   {
     id: "ref-002",

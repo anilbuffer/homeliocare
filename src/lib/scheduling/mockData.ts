@@ -43,6 +43,7 @@ export const mockCaregivers: Caregiver[] = [
   { id: 'c8', name: 'Robert Chen', credentials: ['CNA'], rating: 4.7, distanceMiles: 1.9 },
   { id: 'c9', name: 'Eleanor Whitaker', credentials: ['HHA', 'Dementia'], rating: 4.9, distanceMiles: 3.3 },
   { id: 'c10', name: 'Harold Simmons', credentials: ['CNA', 'Diabetes'], rating: 4.6, distanceMiles: 2.2 },
+  { id: 'cg-101', name: 'Maria Santos, CNA', credentials: ['CNA', 'Dementia'], rating: 4.9, distanceMiles: 1.1 },
 ];
 
 export const mockShifts: Shift[] = [
@@ -116,16 +117,16 @@ export const mockShifts: Shift[] = [
   },
   {
     id: 's6',
-    patientId: 'cl6',
+    patientId: 'c-1',
     patientName: 'Eleanor Ruth Whitfield',
-    patientAddress: '412 Oak Ln, Astoria',
+    patientAddress: '214 Maple Ridge Lane, Cedar Falls',
     requiredSkills: ['HHA', 'Dementia'],
     startTime: '2026-07-08T08:00:00Z',
     endTime: '2026-07-08T12:00:00Z',
-    status: 'Pending Confirmation',
-    region: 'Queens',
-    assignedCaregiverId: 'cg-dr-1',
-    assignedCaregiverName: 'Denise Ruiz',
+    status: 'Confirmed',
+    region: 'North Region',
+    assignedCaregiverId: 'cg-101',
+    assignedCaregiverName: 'Maria Santos, CNA',
     shiftNumber: '#51',
     notes: 'Caregiver Introduction'
   },
