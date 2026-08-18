@@ -7,6 +7,7 @@ import { PatientDetailsDrawer } from "../../../../components/scheduler/PatientDe
 import { SchedulerPatient } from "@/types/scheduler";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { mockPatients as intakePatients } from "@/lib/patients/mockData";
 
 const mockPatients: SchedulerPatient[] = [
   {
@@ -46,16 +47,35 @@ const mockPatients: SchedulerPatient[] = [
     status: "Admitted",
   },
   {
-    id: "p-4",
-    name: "Eleanor Ruth Whitfield",
-    address: "321 Oak St, Queens, NY 11102",
-    accessInstructions: "Pending intake home assessment.",
-    requiredSkills: ["CNA"],
-    authorizedHours: 15,
-    scheduledHours: 0,
-    primaryCaregiver: null,
-    riskFlags: [],
-    status: "Pending",
+    id: intakePatients["c-1"].id,
+    name: intakePatients["c-1"].name,
+    address: intakePatients["c-1"].address,
+    accessInstructions: "Key lockbox code: 1234.",
+    requiredSkills: ["CNA", "Dementia Care"],
+    authorizedHours: intakePatients["c-1"].billing?.authorization?.total || 80,
+    scheduledHours: intakePatients["c-1"].billing?.authorization?.used || 72,
+    primaryCaregiver: intakePatients["c-1"].careTeam.primaryCaregivers[0]?.name || "Unassigned",
+    riskFlags: [
+      intakePatients["c-1"].riskSummary.fallRisk.level === "High" ? "High Fall Risk" : "Fall Risk",
+      ...(intakePatients["c-1"].safetyAlerts?.isolationProtocols || [])
+    ],
+    status: intakePatients["c-1"].intakeStatus === "Admitted" ? "Admitted" : "Pending",
+  },
+  {
+    id: intakePatients["ref-ew-001"].id,
+    name: intakePatients["ref-ew-001"].name,
+    address: intakePatients["ref-ew-001"].address,
+    accessInstructions: "Gate code: 1984. Beware of dog.",
+    requiredSkills: ["HHA", "Pain Management", "ADL Support", "Mobility Assistance"],
+    authorizedHours: intakePatients["ref-ew-001"].billing?.authorization?.total || 80,
+    scheduledHours: intakePatients["ref-ew-001"].billing?.authorization?.used || 0,
+    primaryCaregiver: intakePatients["ref-ew-001"].careTeam.primaryCaregivers[0]?.name || null,
+    riskFlags: [
+      intakePatients["ref-ew-001"].riskSummary.fallRisk.level === "High" ? "High Fall Risk" : "Fall Risk",
+      `${intakePatients["ref-ew-001"].riskSummary.medicationRisk.level} Medication Risk`,
+      `${intakePatients["ref-ew-001"].riskSummary.cognitiveStatus.level} Cognitive Risk`
+    ],
+    status: intakePatients["ref-ew-001"].intakeStatus === "Admitted" ? "Admitted" : "Pending",
   }
 ];
 
