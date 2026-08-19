@@ -41,7 +41,9 @@ export default async function CaregiverProfilePage({ params }: { params: Promise
 
 export function generateStaticParams() {
   const keys = Object.keys(mockCaregivers);
-  const additionalKeys = ["1", "2", "3", "4", "cg-1", "cg-2", "cg-3", "cg-4", "cg-5", "cg-6", "cg-7", "cg-8", "cg-001", "pt-001", "c-1", "c-2", "c-3"];
+  const additionalKeys = ["1", "2", "3", "4", "cg-1", "cg-2", "cg-3", "cg-4", "cg-5", "cg-6", "cg-7", "cg-8", "cg-001", "pt-001", "c-1", "c-2", "c-3", "cg-dr-1", "cg-po-2"];
   const allIds = Array.from(new Set([...keys, ...additionalKeys]));
-  return allIds.map(id => ({ id }));
+  return allIds.map(id => ({ id: String(id) }));
 }
+
+export const dynamicParams = false;

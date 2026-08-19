@@ -132,20 +132,26 @@ export function PatientDetailsDrawer({ isOpen, onClose, patient, onEdit, onSched
               </div>
             </div>
 
-            <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 flex gap-3">
-              <button
-                onClick={() => onEdit?.()}
-                className="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-50 transition-colors"
-              >
-                Edit Details
-              </button>
-              <button
-                onClick={() => onSchedule?.()}
-                className="flex-1 py-2.5 rounded-xl bg-brand-teal text-white text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-brand-teal/20 hover:bg-teal-600 transition-colors"
-              >
-                Schedule Visit
-              </button>
-            </div>
+            {(onEdit || onSchedule) && (
+              <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 flex gap-3">
+                {onEdit && (
+                  <button
+                    onClick={() => onEdit()}
+                    className="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-50 transition-colors"
+                  >
+                    Edit Details
+                  </button>
+                )}
+                {onSchedule && (
+                  <button
+                    onClick={() => onSchedule()}
+                    className="flex-1 py-2.5 rounded-xl bg-brand-teal text-white text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-brand-teal/20 hover:bg-teal-600 transition-colors"
+                  >
+                    Schedule Visit
+                  </button>
+                )}
+              </div>
+            )}
           </motion.div>
         </>
       )}

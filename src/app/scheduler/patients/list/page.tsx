@@ -8,6 +8,8 @@ import { SchedulerPatient } from "@/types/scheduler";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { mockPatients as intakePatients } from "@/lib/patients/mockData";
+import { useAuth } from "@/hooks/useAuth";
+import { useRBAC } from "@/lib/rbac/rbacStore";
 
 const mockPatients: SchedulerPatient[] = [
   {
@@ -81,12 +83,20 @@ const mockPatients: SchedulerPatient[] = [
 
 export default function PatientsListPage() {
   const router = useRouter();
+  const { currentUser } = useAuth();
+  const { permissions } = useRBAC();
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState<"All" | "Admitted">("All");
   type SortColumn = "name" | "hours" | null;
   const [sortColumn, setSortColumn] = useState<SortColumn>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [selectedPatient, setSelectedPatient] = useState<SchedulerPatient | null>(null);
+
+  const patientPerm = permissions.find(p => p.role_id === currentUser?.role_id && p.module_id === "mod_patients");
+  const canEditPatient = patientPerm?.access_level === "edit" || patientPerm?.access_level === "full";
+
+  const schedulePerm = permissions.find(p => p.role_id === currentUser?.role_id && p.module_id === "mod_scheduling");
+  const canSchedule = schedulePerm?.access_level === "edit" || schedulePerm?.access_level === "full";
 
   const handleSort = (column: SortColumn) => {
     if (sortColumn === column) {
@@ -291,13 +301,13 @@ export default function PatientsListPage() {
         isOpen={!!selectedPatient}
         onClose={() => setSelectedPatient(null)}
         patient={selectedPatient}
-        onEdit={() => {
+        onEdit={canEditPatient ? () => {
           toast.info(`Editing details for ${selectedPatient?.name}`);
-        }}
-        onSchedule={() => {
+        } : undefined}
+        onSchedule={canSchedule ? () => {
           toast.success(`Opening scheduler for ${selectedPatient?.name}`);
           router.push("/scheduler/dispatch/optimizer");
-        }}
+        } : undefined}
       />
     </div>
   );
