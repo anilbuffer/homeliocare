@@ -10,9 +10,10 @@ interface PatientDetailsDrawerProps {
   patient: SchedulerPatient | null;
   onEdit?: () => void;
   onSchedule?: () => void;
+  onViewFullChart?: () => void;
 }
 
-export function PatientDetailsDrawer({ isOpen, onClose, patient, onEdit, onSchedule }: PatientDetailsDrawerProps) {
+export function PatientDetailsDrawer({ isOpen, onClose, patient, onEdit, onSchedule, onViewFullChart }: PatientDetailsDrawerProps) {
   if (!patient) return null;
 
   return (
@@ -148,6 +149,14 @@ export function PatientDetailsDrawer({ isOpen, onClose, patient, onEdit, onSched
                     className="flex-1 py-2.5 rounded-xl bg-brand-teal text-white text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-brand-teal/20 hover:bg-teal-600 transition-colors"
                   >
                     Schedule Visit
+                  </button>
+                )}
+                {onViewFullChart && (
+                  <button
+                    onClick={() => onViewFullChart()}
+                    className="flex-1 py-2.5 rounded-xl bg-slate-800 text-white text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-slate-700 transition-colors"
+                  >
+                    View Chart
                   </button>
                 )}
               </div>

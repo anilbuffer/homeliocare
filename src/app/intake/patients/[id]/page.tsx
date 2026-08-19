@@ -1,25 +1,6 @@
-import React from "react";
-import { notFound } from "next/navigation";
-import { mockPatients } from "@/lib/patients/mockData";
-import { PatientHeader } from "@/components/patients/PatientHeader";
-import { PatientTabs } from "@/components/patients/PatientTabs";
+import { redirect } from "next/navigation";
 
-export default async function IntakePatientHubPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function IntakePatientRedirectPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
-  const patient = mockPatients[resolvedParams.id];
-
-  if (!patient) {
-    notFound();
-  }
-
-  return (
-    <div className="w-full max-w-full">
-      <PatientHeader patient={patient} />
-      <PatientTabs patient={patient} />
-    </div>
-  );
-}
-
-export function generateStaticParams() {
-  return Object.keys(mockPatients).map((id) => ({ id }));
+  redirect(`/patients/${resolvedParams.id}`);
 }

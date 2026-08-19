@@ -308,6 +308,11 @@ export default function PatientsListPage() {
           toast.success(`Opening scheduler for ${selectedPatient?.name}`);
           router.push("/scheduler/dispatch/optimizer");
         } : undefined}
+        onViewFullChart={() => {
+          if (selectedPatient) {
+            router.push(`/patients/${selectedPatient.id}`);
+          }
+        }}
       />
     </div>
   );

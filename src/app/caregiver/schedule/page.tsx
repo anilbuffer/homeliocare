@@ -24,8 +24,10 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Avatar } from "@/components/ui/Avatar";
+import { useRouter } from "next/navigation";
 
 export default function CaregiverSchedulePage() {
+  const router = useRouter();
   const [openShifts, setOpenShifts] = useState<OpenShift[]>(INITIAL_OPEN_SHIFTS);
   const [timeOffRequests, setTimeOffRequests] = useState<TimeOffRequest[]>(INITIAL_TIME_OFF);
   const [weekOffset, setWeekOffset] = useState(0);
@@ -190,7 +192,11 @@ export default function CaregiverSchedulePage() {
                   <div className="space-y-2 flex-1">
                     {d.shifts.length > 0 ? (
                       d.shifts.map((s, i) => (
-                        <div key={i} className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200 text-xs space-y-1">
+                        <div 
+                          key={i} 
+                          onClick={() => router.push('/caregiver/visits/active')}
+                          className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200 text-xs space-y-1 cursor-pointer hover:bg-blue-100 transition-colors"
+                        >
                           <span className="font-bold text-blue-950 block truncate">{s.client}</span>
                           <span className="text-[11px] font-mono text-blue-800 flex items-center gap-1">
                             <Clock className="w-3 h-3 text-blue-600" /> {s.time}

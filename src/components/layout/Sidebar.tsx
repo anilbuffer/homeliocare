@@ -250,6 +250,7 @@ const getNavGroups = (role?: string) => {
       label: "",
       items: [
         { name: "Dashboard", icon: LayoutDashboard, id: "dashboard" },
+        { name: "Command Center", icon: Activity, id: "command-center" },
         { name: "User Management", icon: ShieldCheck, id: "users" },
         { name: "Patients", icon: Users, id: "patients" },
         { name: "Scheduling", icon: CalendarDays, id: "scheduling" },
@@ -385,6 +386,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
     if (pathname?.startsWith("/reports") && !pathname?.startsWith("/compliance/reports") && !pathname?.startsWith("/intake/reports")) return "reports";
     if (pathname?.startsWith("/payroll")) return "payroll";
     if (pathname?.startsWith("/clinical/settings") || pathname?.startsWith("/field-supervisor/settings") || pathname?.startsWith("/billing/settings") || pathname?.startsWith("/intake/settings") || pathname?.startsWith("/compliance/settings") || pathname?.startsWith("/settings")) return "settings";
+    if (pathname?.startsWith("/admin/command-center")) return "command-center";
     if (pathname === "/dashboard" || pathname === "/" || pathname?.startsWith("/intake/dashboard") || pathname === "/clinical" || pathname === "/compliance" || pathname === "/field-supervisor" || pathname === "/training-admin") return "dashboard";
     return "dashboard";
   }, [pathname, safeUser?.role]);
@@ -494,6 +496,7 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
 
                   let href = "#";
                   if (item.id === "dashboard") href = safeUser?.role === "QA_COMPLIANCE_OFFICER" ? "/compliance" : safeUser?.role === "INTAKE_COORDINATOR" ? "/intake/dashboard" : safeUser?.role === "BILLING_FINANCE_STAFF" ? "/billing" : safeUser?.role === "CLINICAL_SUPERVISOR_RN" ? "/clinical" : safeUser?.role === "FIELD_SUPERVISOR" ? "/field-supervisor" : safeUser?.role === "TRAINER" ? "/training-admin" : safeUser?.role === "HR" ? "/hr/dashboard" : safeUser?.role === "SCHEDULER" ? "/scheduler" : "/dashboard";
+                  if (item.id === "command-center") href = "/admin/command-center";
                   if (item.id === "users") href = "/users";
                   if (item.id === "training") href = safeUser?.role === "CAREGIVER" ? "/caregiver/training" : safeUser?.role === "HR" ? "/hr/training" : "/training";
                   if (item.id === "billing-admin") href = "/billing/workspace";
