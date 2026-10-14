@@ -15,31 +15,45 @@ interface VisitQueueProps {
   onDragOverVisit?: (visitId: string | null) => void;
   onCompareRoutes?: (visitId: string) => void;
   caregivers?: Caregiver[];
+  className?: string;
 }
 
-export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, activeCaregiver, onDragOverVisit, onCompareRoutes, caregivers = [] }: VisitQueueProps) {
+export function VisitQueue({
+  visits,
+  selectedVisitId,
+  onSelectVisit,
+  onAssign,
+  activeCaregiver,
+  onDragOverVisit,
+  onCompareRoutes,
+  caregivers = [],
+  className,
+}: VisitQueueProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState<"All" | "Unassigned" | "Assigned" | "Completed">("All");
+  const [filterStatus, setFilterStatus] = useState<"All" | "Unassigned" | "Assigned">("All");
   const [dragOverId, setDragOverId] = useState<string | null>(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const isCustomWidth = Boolean(className);
 
   // Group visits (mocking a single "TODAY" group for simplicity)
   const filteredVisits = visits.filter((v) => {
-    const matchesSearch = v.patientName.toLowerCase().includes(searchTerm.toLowerCase()) || v.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = filterStatus === "All"
-      || (filterStatus === "Assigned" && (v.status === "Assigned" || v.status === "In Progress"))
-      || v.status === filterStatus;
+    const matchesSearch =
+      v.patientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      v.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      v.address.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      filterStatus === "All" ||
+      (filterStatus === "Assigned" && (v.status === "Assigned" || v.status === "In Progress")) ||
+      v.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
 
-  const getStatusCounts = () => {
-    return {
-      All: visits.length,
-      Assigned: visits.filter(v => v.status === "Assigned" || v.status === "In Progress").length,
-      Unassigned: visits.filter(v => v.status === "Unassigned").length,
-      Completed: visits.filter(v => v.status === "Completed").length,
-    };
+  const counts = {
+    All: visits.length,
+    Unassigned: visits.filter((v) => v.status === "Unassigned").length,
+    Assigned: visits.filter((v) => v.status === "Assigned" || v.status === "In Progress").length,
   };
-  const counts = getStatusCounts();
 
   const getIconForStatus = (status: Visit["status"], className?: string) => {
     const defaultClassName = className || "w-4 h-4 text-white";
@@ -70,22 +84,31 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
   };
 
   return (
-    <div className="relative w-full h-full transition-all duration-300 shrink-0 z-30">
-      <div className="absolute inset-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-lg overflow-hidden bg-white border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)]">
-        <div className="w-full h-full flex flex-col">
+    <div
+      className={clsx(
+        "relative transition-all duration-300 shrink-0 z-30",
+        isCustomWidth
+          ? clsx("h-full", className)
+          : clsx("h-screen", isCollapsed ? "w-0" : "w-[340px]")
+      )}
+    >
+      <div
+        className={clsx(
+          "absolute inset-0 overflow-hidden bg-white shadow-[0_6px_32px_rgba(0,0,0,0.06)]",
+          isCustomWidth ? "rounded-2xl border border-slate-200" : "border-l border-slate-200"
+        )}
+      >
+        <div className={clsx("h-full flex flex-col", isCustomWidth ? "w-full" : "w-[340px]")}>
           {/* Header */}
           <div className="p-3 border-b border-slate-100 shrink-0">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Visits Queue</h2>
-              <div className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
-                Filter: 
-                <button onClick={() => setFilterStatus("All")} className={clsx("px-1.5 py-0.5 rounded transition-colors", filterStatus === "All" ? "bg-slate-200 text-slate-800" : "text-slate-400 hover:text-slate-600")}>All ({counts.All})</button>
-                |
-                <button onClick={() => setFilterStatus("Unassigned")} className={clsx("px-1.5 py-0.5 rounded transition-colors", filterStatus === "Unassigned" ? "bg-red-100 text-red-700" : "text-slate-400 hover:text-slate-600")}>Unassigned ({counts.Unassigned})</button>
-              </div>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-base font-semibold text-slate-800">Visits Queue</h2>
+              <button className="text-slate-400 hover:text-slate-600">
+                <Filter className="w-4 h-4" />
+              </button>
             </div>
 
-            <div className="relative">
+            <div className="relative mb-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
@@ -94,6 +117,48 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal transition-all placeholder:text-slate-400"
               />
+            </div>
+
+            {/* Status Tabs */}
+            <div className="flex bg-slate-50 p-0.5 rounded-lg">
+              {(["All", "Unassigned", "Assigned"] as const).map((tab) => {
+                const isActive = filterStatus === tab;
+                const count = counts[tab];
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setFilterStatus(tab)}
+                    className={clsx(
+                      "flex-1 relative flex items-center justify-center gap-1.5 py-1.5 text-xs font-medium rounded-md transition-colors z-10",
+                      isActive
+                        ? (tab === "Unassigned" ? "text-white" : "text-slate-800")
+                        : "text-slate-500 hover:text-slate-700"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="visit-tab"
+                        className={clsx(
+                          "absolute inset-0 rounded-md -z-10 shadow-[0_6px_32px_rgba(0,0,0,0.06)]",
+                          tab === "Unassigned" ? "bg-red-500" : "bg-white border border-slate-200"
+                        )}
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    {tab}{" "}
+                    <span
+                      className={clsx(
+                        "px-1.5 py-0.5 rounded-full text-[10px]",
+                        isActive && tab === "Unassigned"
+                          ? "bg-white/20 text-white"
+                          : "bg-slate-100 text-slate-600"
+                      )}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -259,6 +324,15 @@ export function VisitQueue({ visits, selectedVisitId, onSelectVisit, onAssign, a
         </div>
       </div>
 
+      {/* Collapse Toggle */}
+      {!isCustomWidth && (
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="absolute top-1/2 -translate-y-1/2 -left-3 bg-white border border-slate-200 shadow-[0_6px_32px_rgba(0,0,0,0.06)] rounded-full w-6 h-6 flex items-center justify-center text-slate-500 hover:text-brand-teal transition-colors z-50"
+        >
+          {isCollapsed ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+        </button>
+      )}
     </div>
   );
 }

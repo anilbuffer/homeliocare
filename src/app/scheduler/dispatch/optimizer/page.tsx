@@ -226,6 +226,7 @@ export default function SchedulerTrackerPage() {
         {/* Right Column (Queue) */}
         <div className="w-[380px] shrink-0 h-full flex flex-col">
           <VisitQueue
+            className="w-full h-full"
             visits={visits}
             selectedVisitId={selectedVisitId}
             onSelectVisit={handleSelectVisit}
